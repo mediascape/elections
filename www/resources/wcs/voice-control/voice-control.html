@@ -1,0 +1,58 @@
+
+
+<polymer-element name="voice-control" extends="component-query" >
+
+<template>
+<style>
+	@media (max-width:350px){
+
+	    	video{width:100%;}
+
+	}
+	@media (min-width:351px){
+
+	    	video{width:100%;height:100%;}
+
+	}
+
+</style>
+
+<div  id="container"></div>
+
+</template>
+<script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.0.0/annyang.min.js"></script>
+ <script>
+Polymer('voice-control',{
+
+	skew:0.0,
+	sm:null,
+	l:'',
+
+	ready: function() {
+		var _this = this;
+		document.addEventListener ('motion-ready',this.smReady.bind(this));
+	},
+
+	smReady:function(e){
+    if (annyang) {
+    // Let's define our first command. First the text we expect, and then the function it should call
+    var commands = {
+      'show control panel': function() {
+        alert('showing control panel');
+      }
+    };
+
+    // Add our commands to annyang
+    annyang.addCommands(commands);
+
+    // Start listening. You can call this here, or attach this call to an event, button, etc.
+    annyang.start();
+  }
+  }
+
+
+
+
+});
+ </script>
+</polymer-element>

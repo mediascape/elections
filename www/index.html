@@ -1,0 +1,72 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1.0, minimum-scale=1.0, maximum-scale=1.0">
+<meta http-equiv="Cache-control" content="no-cache">
+<!-- NEEDED SCRIPTS -->
+<script  src="../resources/wcs/bower_components/webcomponentsjs/webcomponents.js"></script>
+<script  src="../resources/libs/require.js"></script>
+<script async src="mediascape.js"></script>
+<script async src="../resources/libs/utils.js"></script>
+<!-- NEEDED SCRIPTS END -->
+<!--<script async src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.0.0/annyang.min.js"></script>-->
+<link rel="stylesheet" type="text/css" href="../resources/css/style.css"/>
+<link rel="stylesheet" type="text/css" href="../resources/css/animate.css"/>
+
+<!-- WEBCOMPONETS -->
+<link rel="import" href="../resources/wcs/bower_components/polymer/polymer.html">
+<link rel="import" href="../js/mediascape/AdaptationToolkit/componentManager/component-query.html">
+<link rel="import" href="../js/mediascape/AdaptationToolkit/componentManager/componentStatus.html">
+<link rel="import" href="../resources/wcs/audio-video-sm/video-audio.html">
+<link rel="import" href="../resources/wcs/bar-graph/bar-graph.html">
+<link rel="import" href="../resources/wcs/result-table/result-table.html">
+<link rel="import" href="../resources/wcs/timeline/timeline.html">
+<!--<link rel="import" href="../resources/wcs/polymer/drag-resize/drag-resize.html">
+
+
+<link rel="import" href="../resources/wcs/bar-graph/bar-graph.html">-->
+
+<!-- WEBCOMPONETS END -->
+
+<script>
+
+
+document.addEventListener('adaptationToolkit-ready',function(data){
+
+        var AE = mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation;
+        var rulesAE = "/resources/adaptationRules/rules.json"
+        AE.startApplicationContext();
+        var UI = mediascape.AdaptationToolkit.Adaptation.UIAdaptation;
+        UI.init(data.detail.components,UI.LAYOUTMODE.STATIC);
+        UI.useLayout('accordion');
+        var location = "http://"+window.location.host+window.location.pathname;
+        mediascape.AdaptationToolkit.uiComponents.addAssociationPanel(location+"?group="+AE.GROUP_ID);
+        document.addEventListener('applicationContext-ready',function(){
+            AE.init(rulesAE, AE.getApplicationContext());
+            AE.on('actionchange', UI.onComponentsChange);
+        });
+
+});
+
+
+</script>
+</head>
+<body style="overflow: hidden;margin-left:-8px;margin-top:-8px;">
+
+ <!-- Definition of each webcompoent -->
+  <x-media  id="video1" file="../resources/media/ETB2_new.mp4"  ismuted="true"></x-media>
+  <x-media id="video2" file="../resources/media/Bildu_new.mp4"  ismuted="true"></x-media>
+  <x-media id="video3"  file="../resources/media/EAJ_new.mp4"  ismuted="true"></x-media>
+  <bar-graph id='graph' place='Irunea'></bar-graph>
+  <!--<result-table id='results'></result-table>-->
+<mediascape-timeline id='control' ></mediascape-timeline>
+
+  <!-- End of definition of each webcompoent -->
+
+  <!-- Other way to intectact with UIENGINE -->
+
+<script>
+new loadingPanel('/resources/images/mediascape_logo.png',10);
+</script>
+</body>
+
+</html>

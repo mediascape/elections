@@ -1,0 +1,167 @@
+<dom-module id="x-media" >
+
+
+
+<template>
+	<style >
+	@media (max-width:350px){
+
+	    	video{width:100%;}
+
+	}
+	@media (min-width:351px){
+
+	    	video{width:100%;height:100%;}
+
+	}
+
+</style>
+
+<div  id="container"></div>
+
+</template>
+</dom-module>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>-->
+ <script>
+Polymer({
+	is:'x-media',
+  behaviors:[ComponentQueryBehavior,ComponentStatusBehavior],
+	hostAttributes:{
+		skew:0.0,
+		sm:null,
+		l:''
+	},
+	properties:{
+		file:{
+			 type:String,
+
+		},
+			ismuted:{
+				type:String,
+				value:'false'
+			},
+			customCmd:{
+	        type:String,
+	        value:'',
+	        observer: 'customCmdReceived'
+	    }
+	},
+
+	ready: function() {
+		var _this = this;
+		document.addEventListener ('motion-ready',this.smReady.bind(this));
+
+
+
+
+
+			function toExecute(){
+				console.log('context updated');
+				if(mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAgentId()===event.detail.agentid){
+					for(var i=0;i<event.detail.context.agents.length;i++){
+						var cmpStatus = event.detail.context.agents[i].capabilities.componentsStatus;
+						if(event.detail.context.agents[i].id===event.detail.agentid &&  cmpStatus!="supported"){
+
+							if(event.detail.context.agents[i].capabilities.componentsStatus[this.getAttribute('compId').split('compId')[1]].customCmd.length>0){
+							if(event.detail.context.agents[i].capabilities.componentsStatus[this.getAttribute('compId').split('compId')[1]].customCmd[event.detail.context.agents[i].capabilities.componentsStatus[this.getAttribute('compId').split('compId')[1]].customCmd.length-1]==='mutePlayer' && this.$.container.children[0].muted===false){
+								this.mutePlayer();
+							}
+							else if(event.detail.context.agents[i].capabilities.componentsStatus[this.getAttribute('compId').split('compId')[1]].customCmd[event.detail.context.agents[i].capabilities.componentsStatus[this.getAttribute('compId').split('compId')[1]].customCmd.length-1]==='soundPlayer' && this.$.container.children[0].muted===true){
+								this.soundPlayer();
+							}
+
+							}
+						}
+					}
+				}
+
+			}
+
+			document.addEventListener('contextUpdate',toExecute.bind(this));
+
+
+		/*Polymer.addEventListener(document,'mute',function(){
+			if(mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAgents().self.agentid===event.detail.agent && scope.getAttribute('compId')===event.detail.cmp)
+			scope.mutePlayer();
+
+		});*/
+
+
+
+	},
+	muteChanged:function(){
+		 if (this.mute === true){
+
+		}
+	},
+	smReady:function(e){
+		var _this = this;
+		this.sm = mediascape.AdaptationToolkit.SharedMotion();
+		var id = 0;
+		if (navigator.appVersion.indexOf("MK12")!=-1)
+		setTimeout(function(){
+			if(_this.id.indexOf("video")>-1){
+
+				video=document.createElement('video');
+				video.id="player1"+_this.id;
+
+				//if (this.show)
+					video.src=_this.file;
+				if(_this.ismuted==="true"){
+					video.muted=true;
+				}
+				video.preload = "auto";
+				_this.$.container.appendChild(video);
+				video.addEventListener('ended', function () {
+						_this.restart();
+				});
+			}
+ 			_this.sm.addVideo ($(_this.querySelector('video')),id,_this.skew);
+			var cmpStatus = mediascape.AdaptationToolkit.componentManager.core.getComoponentsToShow();
+			if (cmpStatus) mediascape.AdaptationToolkit.Adaptation.UIAdaptation.onComponentsChange(cmpStatus);
+		},10000);
+		else
+		setTimeout(function(){
+			if(_this.id.indexOf("video")>-1){
+
+				video=document.createElement('video');
+				video.id="player1"+_this.id;
+			//	video.mute =true;
+				//if (_this.show)
+					video.src=_this.file;
+				if(_this.ismuted==="true"){
+					video.muted=true;
+				}
+				video.preload = "auto";
+				_this.$.container.appendChild(video);
+				video.addEventListener('ended', function () {
+  					_this.restart();
+				});
+			}
+			_this.sm.addVideo ($(_this.querySelector('video')),id,_this.skew);
+			var cmpStatus = mediascape.AdaptationToolkit.componentManager.core.getComoponentsToShow();
+			if (cmpStatus) mediascape.AdaptationToolkit.Adaptation.UIAdaptation.onComponentsChange(cmpStatus);
+		},4000);
+  },
+	play:function(){
+		if (this.sm) this.sm.mapp.motions.shared.update(null, 1);
+	},
+
+  start_volumeChanged:function(currentVol){
+		this.$.container.children[0].volume=parseInt(currentVol);
+	},
+
+	mutePlayer:function(){
+		this.$.container.children[0].muted=true;
+	},
+	soundPlayer:function(){
+		this.$.container.children[0].muted=false;
+	},
+	restart: function (){
+		this.sm.mapp.motions.shared.update(0, 1);
+	},
+	customCmdReceived: function(data){
+			console.log("DATA",data);
+	}
+});
+ </script>
