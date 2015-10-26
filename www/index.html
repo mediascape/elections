@@ -2,6 +2,10 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1.0, minimum-scale=1.0, maximum-scale=1.0">
 <meta http-equiv="Cache-control" content="no-cache">
+
+<meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">        
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0"/>        
 <!-- NEEDED SCRIPTS -->
 <script  src="../resources/wcs/bower_components/webcomponentsjs/webcomponents.js"></script>
 <script  src="../resources/libs/require.js"></script>
@@ -25,6 +29,24 @@
 
 <link rel="import" href="../resources/wcs/bar-graph/bar-graph.html">-->
 
+<link href="../resources/css/configPanel/css/bootstrap.min.css" rel="stylesheet">        
+<link href="../resources/css/configPanel/css/material-design-iconic-font.min.css" rel="stylesheet">
+<link href="../resources/css/configPanel/css/vicomtech-template.css" rel="stylesheet">
+<link href="../resources/css/configPanel/css/add-device.css" rel="stylesheet">
+<link href="../resources/css/configPanel/css/add-twitter.css" rel="stylesheet">
+<link href="../resources/css/configPanel/css/bootstrap-switch.css" rel="stylesheet">
+<link href="../resources/css/configPanel/css/radio.css" rel="stylesheet">
+<link href="../resources/css/configPanel/css/graphics.css" rel="stylesheet">
+<link href="../resources/css/configPanel/css/camara.css" rel="stylesheet">
+
+<script src="../resources/css/configPanel/main1.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>   
+<script src="../resources/css/configPanel/js/bootstrap.min.js"></script>
+<script src="../resources/css/configPanel/js/bootstrap-switch.js"></script>
+
+
+
+
 <!-- WEBCOMPONETS END -->
 
 <script>
@@ -39,7 +61,9 @@ document.addEventListener('adaptationToolkit-ready',function(data){
         UI.init(data.detail.components,UI.LAYOUTMODE.STATIC);
         UI.useLayout('accordion');
         var location = "http://"+window.location.host+window.location.pathname;
-        mediascape.AdaptationToolkit.uiComponents.addAssociationPanel(location+"?group="+AE.GROUP_ID);
+        
+        mediascape.AdaptationToolkit.uiComponents.addControlPanel(location+"?group="+AE.GROUP_ID);
+
         document.addEventListener('applicationContext-ready',function(){
             AE.init(rulesAE, AE.getApplicationContext());
             AE.on('actionchange', UI.onComponentsChange);
@@ -53,7 +77,7 @@ document.addEventListener('adaptationToolkit-ready',function(data){
 <body style="overflow: hidden;margin-left:-8px;margin-top:-8px;">
 
  <!-- Definition of each webcompoent -->
-  <x-media  id="video1" file="../resources/media/ETB2_new.mp4"  ismuted="true"></x-media>
+ <x-media  id="video1" file="../resources/media/ETB2_new.mp4"  ismuted="true"></x-media>
   <x-media id="video2" file="../resources/media/Bildu_new.mp4"  ismuted="true"></x-media>
   <x-media id="video3"  file="../resources/media/EAJ_new.mp4"  ismuted="true"></x-media>
   <bar-graph id='graph' place='Irunea'></bar-graph>
@@ -67,6 +91,7 @@ document.addEventListener('adaptationToolkit-ready',function(data){
 <script>
 new loadingPanel('/resources/images/mediascape_logo.png',10);
 </script>
+ 
 </body>
 
 </html>

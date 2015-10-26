@@ -1,0 +1,147 @@
+.body {
+  height: 100%;
+  border-radius: 20px;
+  background-color: #173f56;
+}
+
+.titulo_porcentaje {
+  font-size: 2em;
+}
+.clm_2 {
+  height: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.contenido {
+  height: 100%;
+  margin-right: 0px;
+  margin-left: 0px;
+  border-radius: 20px;
+  background-color: #2e89b7;
+}
+
+.txt_ciudad {
+  margin: 20px;
+  color: #1e6299;
+  font-size: 2em;
+}
+.pastilla_ciudad {
+  margin-top: 20px;
+  padding: 1px;
+  border-radius: 20px;
+  background-color: #c7dcea;
+}
+.pastilla_ciudad:hover {
+  border: 8px none #ff9b00;
+  background-color: white;
+  box-shadow: #fc751b 0px 0px 0px 7px inset;
+}
+
+.txt_ciudad_2011_2015 {
+  margin-top: 17px;
+  color: #b2d2e2;
+  font-size: 3em;
+  text-align: left;
+}
+
+.ciudades_fila {
+  padding: 20px;
+}
+
+.switch_div {
+  padding: 19px;
+}
+.switch_img {
+  margin: 0px 20px 0px 0px;
+  float: right;
+}
+.txt_titular {
+  position: static;
+  margin-top: 25px;
+  color: #afd2d6;
+  font-size: 2em;
+  line-height: 35px;
+}
+
+
+
+/* tabs seccion izquierda */
+.nav-tabs>li>a {border: none !important;}
+.data-information-section {
+  height: 90px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.tabs-graficos {
+  margin: 0 !important;
+}
+span.year-text {color: white; font-size: 2em; font-weight: bold;}
+ul.nav-tabs li{
+  text-align: center !important;
+    margin-right: 18px;
+    border-radius: 20px 20px 0px 0px;
+    background-color: #3d5f6b;  
+}
+ul.nav-tabs li:hover {background: #ff9b00; }
+ul.nav-tabs li a img { width: 25% !important;}
+ul.nav-tabs li.active{
+    border-radius: 20px 20px 0px 0px;
+    background-color: #97c7e8 !important;
+}
+.nav-tabs>li>a, .nav-tabs>li>a:focus, .nav-tabs>li>a:hover {border: none !important; background-color: transparent !important;}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {border: none !important; background-color: transparent !important;}
+/* contenido de los tabs */
+.tab-pane {
+  height: 100%;
+  background-color: #97c7e8;
+  padding-bottom: 20px;
+  border-radius: 0px 0px 20px 20px;  
+}
+.pastilla_ciudad {
+  height: 100%;
+  max-height: 100%;
+  border-radius: 20px;
+  background-color: #c7dcea;
+}
+
+
+
+/* emisora columna derecha */
+div.content-emisoras {
+    height: 100%;
+    padding: 20px 20px 2px;
+    border-radius: 20px;
+    background-color: #375364;
+}
+div.emisora {
+  margin-bottom: 22px;
+    border-radius: 25px;
+    background-color: #5c7586;
+    text-align: left;
+}
+p.text_ciudad {
+  margin-top: 21px;
+  padding-bottom: 14px;
+  color: white;
+  font-size: 3vh;
+  line-height: 21px;
+  text-align: left;
+}
+span.comparative {
+  font-size: 2vh;
+  margin-top: 13px !important;
+  color: #d4e5f1 !important;
+  text-align: left !important;
+}
+img.imagen-emisora-peque { width: 100%; padding-top: 15px;}
+div.switch-emisora { padding-top: 25px;}
+/* switch */
+div.check-switch {
+  height: 250px !important;
+  border: 0 !important;
+  padding-top: 3vh;
+} 
+.bootstrap-switch {border: none !important;}
+.bootstrap-switch-primary {color: #CCC !important; background-color: green !important; font-size: 14px !important;}
+.bootstrap-switch-label {background-color: white !important;}

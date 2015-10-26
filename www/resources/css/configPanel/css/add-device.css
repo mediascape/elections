@@ -1,0 +1,74 @@
+.fullwidth-template {
+	/*background: url('http://detele.es/wp-content/uploads/2012/04/hay-una-cosa-que-te-quiero-decir-plato-jorge-javier-vazquez-2.jpg');*/
+	background-size: cover;
+}
+
+.section-add-device {
+	text-align: center;
+	background: rgba(43, 69, 128, 0.8);
+}
+.add-device-content {
+	background-color: transparent;
+    margin: auto !important;
+    float: none;	
+	height: 100% !important;
+}
+.add-device-content  .qr-code-content { margin-top: 60px;}
+.add-device-content  .qr-code-content img { }
+.add-device-content  p {color: white; font-size: 3vw; margin-top: 10px;}
+.add-device-content .qr-code-toy {
+	right: 0;
+    position: absolute;
+    bottom: -40px;
+    left: 0;
+}
+.add-device-content .qr-code-toy img { width: 40%; }
+/*  animacion */
+.animated { 
+    -webkit-animation-duration: 2s; 
+    animation-duration: 2s; 
+    -webkit-animation-fill-mode: both; 
+    animation-fill-mode: both; 
+    -webkit-animation-timing-function: linear; 
+    animation-timing-function: linear; 
+} 
+
+@-webkit-keyframes bounceInUp { 
+    0% { 
+        opacity: 0; 
+        -webkit-transform: translateY(2000px); 
+    } 
+    60% { 
+        opacity: 1; 
+        -webkit-transform: translateY(-30px); 
+    } 
+    80% { 
+        -webkit-transform: translateY(10px); 
+    } 
+    100% { 
+        -webkit-transform: translateY(0); 
+    } 
+} 
+
+@keyframes bounceInUp { 
+    0% { 
+        opacity: 0; 
+        transform: translateY(2000px); 
+    } 
+    60% { 
+        opacity: 1; 
+        transform: translateY(-30px); 
+    } 
+    80% { 
+        transform: translateY(10px); 
+    } 
+    100% { 
+        transform: translateY(0); 
+    } 
+} 
+
+.bounceInUp { 
+    -webkit-animation-name: bounceInUp; 
+    animation-name: bounceInUp; 
+}
+

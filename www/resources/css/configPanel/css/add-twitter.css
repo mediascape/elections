@@ -1,0 +1,47 @@
+
+.twitter-selector-container div {
+	margin: auto;
+	margin-top: 20px;
+	height: 43%;
+	background-color: white;
+	vertical-align: middle !important;
+}
+
+.twitter-selector-container div.twitter-hashtag{
+	width: 100%;
+	background-color: #99d5f2;	
+	color: white;	
+	-webkit-border-radius: 26px;
+	-moz-border-radius: 26px;
+	border-radius: 26px;
+	border: 8px solid #99d5f2;
+}
+.twitter-selector-container div.twitter-hashtag:hover {border-color:#fc9200; }
+.twitter-selector-container div.twitter-hashtag div {background: transparent !important; }
+.twitter-selector-container div.twitter-hashtag div img {width: 80%; padding-top: 3vh;}
+div.seleccion-hashtag { text-align: left !important; padding-top: 7vh; font-size: 2.2vh;}
+div.seleccion-hashtag .select-hashtag {background-color: #dcf1ff; width: 65%;}
+p.titulo-seccion {font-size: 3vw; color: white;}
+/* switch */
+.twitter-selector-container div.check-switch {
+	height: 250px !important;
+	border: 0 !important;
+	padding-top: 7vh;
+} 
+.bootstrap-switch {border: none !important;}
+.bootstrap-switch-primary {color: #CCC !important; background-color: green !important; font-size: 14px !important;}
+.bootstrap-switch-label {background-color: white !important;}
+
+.twitter-selector-container div.twitter-topic{
+	width: 100%;
+	background-color: #397caa;
+	margin-top: 30px;
+	color: white;
+	-webkit-border-radius: 26px;
+	-moz-border-radius: 26px;
+	border-radius: 26px;
+	border: 8px solid #397caa;
+}
+.twitter-selector-container div.twitter-topic:hover {border-color: #fc9200; }
+.twitter-selector-container div.twitter-topic div {background-color: transparent !important;}
+.twitter-selector-container div.twitter-topic div img {width: 80%; padding-top: 3vh;}

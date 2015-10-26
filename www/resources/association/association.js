@@ -64,19 +64,19 @@ define( ["jquery","qrcode"], function($) {
 						qrElement.style.height=height+"px";
 						qrElement.style.marginLeft=marginLeft+"px";
 						qrElement.style.marginTop=marginTop+"px";
-						qrElement.style.border="4px solid grey";
+						//qrElement.style.border="4px solid grey";
 						associationCode.style.transition="width 1.5s";
 						associationCode.appendChild(qrElement);
 						associationCode.appendChild(document.createElement("br"));
-						var urlElement = document.createElement("div");
+						var urlElement = document.createElement("p");
 						urlElement.id="url";
 						urlElement.innerHTML=shortedUrl;
-						urlElement.style.height="20px";
-						urlElement.style.fontSize='30px';
-						urlElement.style.textAlign='center';
-						//urlElement.style.marginLeft=marginLeft+"px";
+						//urlElement.style.height="20px";
+						//urlElement.style.fontSize='30px';
+						//urlElement.style.textAlign='center';
+						//urlElement.style.marginLeft="-20%";
 						//urlElement.style.marginTop=marginTop+"px";
-						urlElement.style.color='white';
+						//urlElement.style.color='white';
 						associationCode.appendChild(urlElement);
 						asociationElement.appendChild(associationCode);
 						var qrcode = new QRCode(type+"qrcode", {

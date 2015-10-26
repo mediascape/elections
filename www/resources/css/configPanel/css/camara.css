@@ -1,0 +1,52 @@
+.body {
+  height: 100%;
+  border-radius: 20px;
+  background-color: #173f56;
+}
+
+.switch_div {
+  padding: 19px;
+}
+.switch_img {
+  margin: 0px 20px 0px 0px;
+  float: right;
+}
+
+/* camara columna derecha */
+div.content-camaras {
+    height: 100%;
+    padding: 20px 20px 2px;
+    border-radius: 20px;
+    background-color: #375364;
+}
+div.camara {
+	margin-bottom: 22px;
+    border-radius: 25px;
+    background-color: #5c7586;
+    text-align: left;
+}
+div.camara:hover{
+  border: 8px none #ff9b00;
+  box-shadow: #fc751b 0px 0px 0px 7px inset;
+}
+div.camara-on {
+	background-color: #23527c !important;
+}
+div.camara-logo-partidos img { width: 50%;}
+div.iconos-camara { 
+	color: white;
+    margin-top: 18px;
+    text-align: right;
+}
+div.switch-camara { padding-top: 25px; margin-top: 10px;}
+
+/* switch */
+div.check-switch {
+	height: 40px !important;
+    border: 0 !important;
+    padding-top: 3vh;
+} 
+.bootstrap-switch {border: none !important;}
+.bootstrap-switch-primary {color: #CCC !important; background-color: green !important; font-size: 14px !important;}
+.bootstrap-switch-label {background-color: white !important;}
+

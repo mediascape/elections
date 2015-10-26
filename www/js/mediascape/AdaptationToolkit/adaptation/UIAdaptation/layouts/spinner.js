@@ -610,6 +610,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
     },this);
       mediascape.AdaptationToolkit.uiComponents.addMenuToCmps(cmps,false);
     }
+    
     spinner.__moduleName = "spinnerLayout";
     return spinner;
 
