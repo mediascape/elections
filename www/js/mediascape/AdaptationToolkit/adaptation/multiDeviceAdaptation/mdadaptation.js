@@ -100,6 +100,17 @@ function($, applicationContext){
 
       return null;
     };
+    var addCounter = function(agentid){
+        var ids_order = applicationContext.getItem('order_agentid') || [];
+        console.log("AGENT ORDER",ids_order);
+        if(ids_order.lastIndexOf(agentid)===-1)
+        {
+          ids_order.push(agentid);
+          applicationContext.setItem('order_agentid',ids_order);
+        }
+        console.log('lastIndexOf',ids_order.lastIndexOf(agentid));
+        return ids_order.lastIndexOf(agentid);
+    }
     var getChangeDiff = function (obj){
         if (localStatus === null) {
           localStatus = obj;
@@ -128,14 +139,17 @@ function($, applicationContext){
       } else if( change.type === 'AGENT_JOIN' ) {
         if( hasAgent(change.agentid) == false) {
           // new agent joined, add it into the list
-          context.agents.push( {"id": change.agentid, "capabilities": [],agentContext:change.agentContext} );
+          var cnt = addCounter(change.agentid);
+          context.agents.push( {"_id":cnt,"id": change.agentid, "capabilities": [],agentContext:change.agentContext} );
         }
+
       }
       else if( change.type === 'VALUE_CHANGE' ) {
         // update the exiting agent with the new capability list
         var agent = getAgentById(change.agentid);
         if (!agent) {
-            agent = {"id": change.agentid, "capabilities": [],agentContext:change.agentContext};
+            var cnt = addCounter(change.agentid);
+            agent = {"_id":cnt,"id": change.agentid, "capabilities": [],agentContext:change.agentContext};
             context.agents.push(agent);
             agent = getAgentById(change.agentid);
 
