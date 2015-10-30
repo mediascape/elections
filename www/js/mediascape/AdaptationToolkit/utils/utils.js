@@ -52,7 +52,7 @@ define ([],
                   console.log(objectGraphPath);
                   var prop = objectGraphPath[objectGraphPath.length-1].indexOf('undefined') === 0
                               ?objectGraphPath[objectGraphPath.length-1].substring(1)
-                              :"show"
+                              :objectGraphPath[objectGraphPath.length-2].substring(1);
                   propertyChanges.push({ "compId":cmpId,"property":prop,"newValue":a});
                 }
               }
