@@ -68,7 +68,9 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
                                                     componentsContainer.querySelector('figure'));
         }
         componentsContainer.querySelector('figure').parentNode.removeChild(componentsContainer.querySelector('figure'));
-        document.querySelector('x-media').play();
+        if(document.querySelector('x-media')){
+          document.querySelector('x-media').play();
+        }
 
       }
       if(componentsContainer.querySelector('#arrows')){
@@ -183,7 +185,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
 
         }
       }
-      Polymer.addEventListener(downArrow,'tap', downArrowFunc );
+      downArrow.addEventListener('click', downArrowFunc );
       scrollHorizontal.listeners.push(downArrowFunc);
 
       function upArrowFunc(event){
@@ -226,7 +228,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
 
       }
 
-      Polymer.addEventListener(upArrow,'tap',upArrowFunc);
+      upArrow.addEventListener('click',upArrowFunc);
       scrollHorizontal.listeners.push(upArrowFunc);
 
 
@@ -321,7 +323,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
             }
           }
 
-          Polymer.addEventListener(ordered_cmps[i],'trackend',trackendFunc,true);
+          ordered_cmps[i].addEventListener('trackend',trackendFunc,true);
           scrollHorizontal.listeners.push(trackendFunc);
       }(i);
     }
@@ -400,7 +402,9 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
                                                     componentsContainer.querySelector('figure'));
         }
         componentsContainer.querySelector('figure').parentNode.removeChild(componentsContainer.querySelector('figure'));
-        document.querySelector('x-media').play();
+        if(document.querySelector('x-media')){
+          document.querySelector('x-media').play();
+        }
       }
       if(componentsContainer.querySelector('#arrows')){
         componentsContainer.removeChild(componentsContainer.querySelector('#arrows'));

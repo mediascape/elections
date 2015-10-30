@@ -471,23 +471,19 @@ define(
       //This panel includes the qr code for association, the component manager and the layout change
       this.addControlPanel = function (url){
         
-
+        
         this.ctrlPanel=new ControlPanel(url);
         var associationPanel = document.createElement('span');
 
-          associationPanel.id ="associationPanel";
+         
+          var scope=this;
+          document.addEventListener('keydown',function(e){
 
-          associationPanel.style.width='0';
-          associationPanel.style.height='0';
-
-          associationPanel.style.borderRight='300px solid transparent';
-          associationPanel.style.borderTop='100px solid';
-          associationPanel.style.position='absolute';
-          associationPanel.style.backgroundColor='blue';
-          document.body.appendChild(associationPanel);
-          associationPanel.onclick=function(){
-            mediascape.AdaptationToolkit.uiComponents.ctrlPanel.show();
-          }
+             if (e.keyCode === 16 ){
+                if ( scope.ctrlPanel.showing) scope.ctrlPanel.hide();
+                else scope.ctrlPanel.show();
+              }
+          });
 
       }
       this.addMenuToCmps=function(cmps,show){

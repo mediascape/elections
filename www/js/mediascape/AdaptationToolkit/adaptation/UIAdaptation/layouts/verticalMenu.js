@@ -71,7 +71,9 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
                                                     componentsContainer.querySelector('figure'));
         }
         componentsContainer.querySelector('figure').parentNode.removeChild(componentsContainer.querySelector('figure'));
-        document.querySelector('x-media').play();
+        if(document.querySelector('x-media')){
+          document.querySelector('x-media').play();
+        }
       }
       if(componentsContainer.querySelector('#arrows')){
         componentsContainer.removeChild(componentsContainer.querySelector('#arrows'));
@@ -190,9 +192,9 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
           }
 
         }
-        Polymer.addEventListener(a,'tap',clickFunc,true);
-        Polymer.addEventListener(a,'mouseout',unhoverFunc,true);
-        Polymer.addEventListener(a,'mouseover',hoverFunc,true);
+        a.addEventListener('click',clickFunc,true);
+        a.addEventListener('mouseout',unhoverFunc,true);
+        a.addEventListener('mouseover',hoverFunc,true);
         verticalMenu.listeners.push(clickFunc);
         verticalMenu.listeners.push(unhoverFunc);
         verticalMenu.listeners.push(hoverFunc);
@@ -289,7 +291,9 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
                                                     componentsContainer.querySelector('figure'));
         }
         componentsContainer.querySelector('figure').parentNode.removeChild(componentsContainer.querySelector('figure'));
-        document.querySelector('x-media').play();
+        if(document.querySelector('x-media')){
+          document.querySelector('x-media').play();
+        }
 
       }
       if(componentsContainer.querySelector('#arrows')){

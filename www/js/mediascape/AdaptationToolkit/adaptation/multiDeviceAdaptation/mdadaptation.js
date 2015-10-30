@@ -370,7 +370,6 @@ function($, applicationContext){
         /*  mediascape.AdaptationToolkit.uiComponents.addMultiDeviceButtonPanel( function() {
             var componentId = 'view';
             console.log('click multi-device button');
-
             // prepare the list of available devices
             var devices = [];
             for(var i = 0; i < context.agents.length; i++){
@@ -379,7 +378,6 @@ function($, applicationContext){
                 devices.push({id: agent.id, type: agent.capabilities['deviceType']});
               }
             }
-
             if(devices.length > 0)
             mediascape.AdaptationToolkit.uiComponents.showOperationDialog(devices, config, onUserOperation);
           });*/

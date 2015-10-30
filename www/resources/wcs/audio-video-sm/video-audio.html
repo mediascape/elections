@@ -162,6 +162,12 @@ Polymer({
 	},
 	customCmdReceived: function(data){
 			console.log("DATA",data);
+			if(data==='mutePlayer'){
+				this.mutePlayer();
+			}
+			else if(data==='soundPlayer'){
+				this.soundPlayer();
+			}
 	}
 });
  </script>

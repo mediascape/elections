@@ -7,17 +7,56 @@ var ControlPanel= function (url){
 	this.activeSection='';
 	this.activeDevice='';
 	this.selfID='';
+	this.selfIDNum='';
+	this.showing=true;
 	var devBox=null;
 	var QRurl=url;
 	var layoutSect1=null;
 	var qrSect=null;
+	var camerasSect=null;
 	/* Kontruktorea gauza inizializatzen diren lekua */
 	this.controlPanel = function(){
+
+			var cmps=mediascape.AdaptationToolkit.componentManager.core.getComponents();
 			console.log('Konstruktorea');
+			//'../resources/css/configPanel/img/camara/logo_etb2.png'
+			var comp='video1';
+
+			function filterById(el){
+				if(el.id===comp)return el;
+			}
+			var c=cmps.filter(filterById);
 			
+			 var cam1=new camera();
+			 cam1.setID(c[0].getAttribute('compId'));
+			 cam1.setName(c[0].id);
+			 cam1.setImage('../resources/css/configPanel/img/camara/logo_etb2.png');
+
+
+			 comp='video2';
+			 c=cmps.filter(filterById);
+			 var cam2=new camera();
+			 cam2.setID(c[0].getAttribute('compId'));
+			 cam2.setName(c[0].id);
+			 cam2.setImage('../resources/css/configPanel/img/camara/logo_bildu.png');
+
+			 comp='video3';
+			 c=cmps.filter(filterById);
+			 var cam3=new camera();
+			 cam3.setID(c[0].getAttribute('compId'));
+			 cam3.setName(c[0].id);
+			 cam3.setImage('../resources/css/configPanel/img/camara/logo_pp.png');
+
+
+			 camerasSect=new camerasSection();
+			 camerasSect.addCamera(cam1);
+			 camerasSect.addCamera(cam2);
+			 camerasSect.addCamera(cam3);
+
+
 			 devBox=new deviceBox();
 			 var lay1=new layout();
-			 lay1.setName('spinner');
+			 lay1.setName('menu');
 			 lay1.setImage('../resources/css/configPanel/img/layouts/layout_01.png');
 
 			 var lay2=new layout();
@@ -25,18 +64,38 @@ var ControlPanel= function (url){
 			 lay2.setImage('../resources/css/configPanel/img/layouts/layout_02.png');
 
 			 var lay3=new layout();
-			 lay3.setName('customGrid');
+			 lay3.setName('pip');
 			 lay3.setImage('../resources/css/configPanel/img/layouts/layout_03.png');
 
 			 var lay4=new layout();
-			 lay4.setName('pip');
+			 lay4.setName('customGrid');
 			 lay4.setImage('../resources/css/configPanel/img/layouts/layout_04.png');
+
+			 var lay5=new layout();
+			 lay5.setName('scrollHorizontal');
+			 lay5.setImage('../resources/css/configPanel/img/layouts/layout_05.png');
+
+			 var lay6=new layout();
+			 lay6.setName('verticalMenu');
+			 lay6.setImage('../resources/css/configPanel/img/layouts/layout_06.png');
+
+			 var lay7=new layout();
+			 lay7.setName('horizontal');
+			 lay7.setImage('../resources/css/configPanel/img/layouts/layout_07.png');
+
+			 var lay8=new layout();
+			 lay8.setName('accordion');
+			 lay8.setImage('../resources/css/configPanel/img/layouts/layout_08.png');
 
 			 layoutSect1=new layoutSection();
 			 layoutSect1.addLayout(lay1);
 			 layoutSect1.addLayout(lay2);
 			 layoutSect1.addLayout(lay3);
 			 layoutSect1.addLayout(lay4);
+			 layoutSect1.addLayout(lay5);
+			 layoutSect1.addLayout(lay6);
+			 layoutSect1.addLayout(lay7);
+			 layoutSect1.addLayout(lay8);
 			 qrSect=new qrSection(QRurl);
 			 /*var twitterSect=new twitterSection();
 			 var radioSect=new radioSection();
@@ -114,27 +173,46 @@ var ControlPanel= function (url){
 				 mediascape.AdaptationToolkit.uiComponents.ctrlPanel.selfID=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAgentId();
 				var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
 				
+
+				var agents=agCtx.agents;		
+				var val=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.selfID;
+				function filterById(el){
+					if(el.id===val)return el;
+				}
+				
+				var a=agents.filter(filterById);
+
+				container.querySelector('#devNum').innerHTML=a[0]._id+1;
+				mediascape.AdaptationToolkit.uiComponents.ctrlPanel.selfIDNum=a[0]._id+1;
+
+				var val=event.detail.agentid;
+				var b=agents.filter(filterById);
+				
+
+
+
+
 				if(agCtx.agents.length>1 && devBox.devices.length===0)
 				{
 					for(var i=0;i<agCtx.agents.length;i++){
 						var dev1=new device();
 						if(agCtx.agents[i].capabilities.platform.deviceType==='TV'){
-						 	dev1.setText('Television');
+						 	dev1.setText('Television id: '+(agCtx.agents[i]._id+1));
 						 	dev1.setIcon('zmdi zmdi-tv');
 						 }
 						 else if(agCtx.agents[i].capabilities.platform.deviceType==='desktop' || agCtx.agents[i].capabilities.platform.deviceType==='Desktop')
 						 {
-						 	dev1.setText('Laptop');
+						 	dev1.setText('Desktop id: '+(agCtx.agents[i]._id+1));
 		        			dev1.setIcon('zmdi zmdi-laptop');
 						 }
 						 else if(agCtx.agents[i].capabilities.platform.deviceType==='Tablet')
 						 {
-						 	dev1.setText('Tablet');
+						 	dev1.setText('Tablet id: '+(agCtx.agents[i]._id+1));
 		        			dev1.setIcon('zmdi zmdi-tablet');
 						 }
 						 else if(agCtx.agents[i].capabilities.platform.deviceType==='mobile')
 						 {
-						 	dev1.setText('SmartPhone');
+						 	dev1.setText('SmartPhone id: '+(agCtx.agents[i]._id+1));
 		        			dev1.setIcon('zmdi zmdi-smartphone');
 						 }
 						 dev1.setID(agCtx.agents[i].id);
@@ -143,7 +221,7 @@ var ControlPanel= function (url){
 						var twitterSect=new twitterSection();
 				 		var radioSect=new radioSection();
 				 		var graphicSect=new graphicSection();
-				 		var camerasSect=new camerasSection();
+				 		
 				 		if(i===0){
 						 	var section2=new section();
 					 		section2.setName('AddDevice');
@@ -162,6 +240,8 @@ var ControlPanel= function (url){
 						 var section3=new section();
 						 section3.setName(agCtx.agents[i].id+'cameras');
 						 section3.addItem(devBox);
+						 camerasSect.setCamsViewStatus(agCtx.agents[i].id);
+						 camerasSect.setCamsSoundStatus(agCtx.agents[i].id);
 						 section3.addItem(camerasSect);						 
 						 this.addItem(section3);
 						 container.appendChild(section3.render());
@@ -211,22 +291,22 @@ var ControlPanel= function (url){
 				 *	  Desktop, tablet, mobile, tv
 				 */
 				 if(event.detail.profile.deviceType==='TV'){
-				 	dev1.setText('Television');
+				 	dev1.setText('Television id: '+(b[0]._id+1));
 				 	dev1.setIcon('zmdi zmdi-tv');
 				 }
 				 else if(event.detail.profile.deviceType==='desktop' || event.detail.profile.deviceType==='Desktop')
 				 {
-				 	dev1.setText('Laptop');
+				 	dev1.setText('Desktop id: '+(b[0]._id+1));
         			dev1.setIcon('zmdi zmdi-laptop');
 				 }
 				 else if(event.detail.profile.deviceType==='Tablet')
 				 {
-				 	dev1.setText('Tablet');
+				 	dev1.setText('Tablet id: '+(b[0]._id+1));
         			dev1.setIcon('zmdi zmdi-tablet');
 				 }
 				 else if(event.detail.profile.deviceType==='mobile')
 				 {
-				 	dev1.setText('SmartPhone');
+				 	dev1.setText('SmartPhone id: '+(b[0]._id+1));
         			dev1.setIcon('zmdi zmdi-smartphone');
 				 }
 				 
@@ -238,7 +318,7 @@ var ControlPanel= function (url){
 			 		var twitterSect=new twitterSection();
 			 		var radioSect=new radioSection();
 			 		var graphicSect=new graphicSection();
-			 		var camerasSect=new camerasSection();
+			 
 
 				 	var section2=new section();
 			 		section2.setName('AddDevice');
@@ -253,9 +333,13 @@ var ControlPanel= function (url){
 					 this.addItem(section1);
 					 container.appendChild(section1.render());
 
+
+
 					 var section3=new section();
 					 section3.setName(event.detail.agentid+'cameras');
 					 section3.addItem(devBox);
+					 camerasSect.setCamsViewStatus(event.detail.agentid);
+					 camerasSect.setCamsSoundStatus(event.detail.agentid);
 					 section3.addItem(camerasSect);
 					 this.addItem(section3);
 					 container.appendChild(section3.render());
@@ -294,7 +378,7 @@ var ControlPanel= function (url){
 				 	var twitterSect=new twitterSection();
 			 		var radioSect=new radioSection();
 			 		var graphicSect=new graphicSection();
-			 		var camerasSect=new camerasSection();
+			 		
 				 	
 					 var section1=new section();
 					 section1.setName(event.detail.agentid+'layouts');
@@ -306,6 +390,8 @@ var ControlPanel= function (url){
 					 var section3=new section();
 					 section3.setName(event.detail.agentid+'cameras');
 					 section3.addItem(devBox);
+					 camerasSect.setCamsViewStatus(event.detail.agentid);
+					 camerasSect.setCamsSoundStatus(event.detail.agentid);
 					 section3.addItem(camerasSect);
 					 this.addItem(section3);
 					 container.appendChild(section3.render());
@@ -377,6 +463,68 @@ var ControlPanel= function (url){
 			}
 	}
 	document.addEventListener('agentChange',this.onAgentChange.bind(this));
+
+	this.onCtxUpdate=function(event){
+		console.log(event);
+
+		var sections=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items;
+		var sectionNum=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items.length;
+		var sectionDiv=document.querySelector('#fullTemp').children;
+
+		if(event.detail.context.lastChange.diff!==null){
+			var changes=event.detail.context.lastChange.diff;
+
+			for(var j=0;j<changes.length;j++){
+				for(var i=2;i<sectionNum;i++){
+					if(changes[j].property==='show'){
+						if(sections[i].name.indexOf(event.detail.agentid)===0 && sectionDiv[i].querySelector('#view'+changes[j].compId)!==null){
+							
+							// Show/hide commands
+															
+							if(changes[j].newValue===false){
+								
+								sectionDiv[i].querySelector('#view'+changes[j].compId).children[0].className='bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-id-viewCheck'+changes[j].compId+' bootstrap-switch-animate bootstrap-switch-off';
+								sectionDiv[i].querySelector('#view'+changes[j].compId).children[0].children[0].style.width='150px'
+								sectionDiv[i].querySelector('#view'+changes[j].compId).children[0].children[0].style.marginLeft='-50px';
+							
+							}
+							else if(changes[j].newValue===true){
+								sectionDiv[i].querySelector('#view'+changes[j].compId).children[0].className='bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-id-viewCheck'+changes[j].compId+' bootstrap-switch-animate bootstrap-switch-on';
+								sectionDiv[i].querySelector('#view'+changes[j].compId).children[0].children[0].style.width='150px'
+								sectionDiv[i].querySelector('#view'+changes[j].compId).children[0].children[0].style.marginLeft='0px';
+								
+							}
+						}
+
+							
+						
+							//Sound/mute
+
+
+				}
+					else{
+						if(changes[j].newValue==='mutePlayer' || changes[j].newValue==='soundPlayer'){
+							if(sections[i].name.indexOf(event.detail.agentid)===0 && sectionDiv[i].querySelector('#sound'+changes[j].compId)!==null){
+								if(changes[j].newValue==='mutePlayer'){								
+									sectionDiv[i].querySelector('#sound'+changes[j].compId).children[0].className='bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-id-soundCheck'+changes[j].compId+' bootstrap-switch-animate bootstrap-switch-off';
+									sectionDiv[i].querySelector('#sound'+changes[j].compId).children[0].children[0].style.width='150px'
+									sectionDiv[i].querySelector('#sound'+changes[j].compId).children[0].children[0].style.marginLeft='-50px';
+								}
+								else if(changes[j].newValue==='soundPlayer'){
+									sectionDiv[i].querySelector('#sound'+changes[j].compId).children[0].className='bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-id-soundCheck'+changes[j].compId+' bootstrap-switch-animate bootstrap-switch-on';
+									sectionDiv[i].querySelector('#sound'+changes[j].compId).children[0].children[0].style.width='150px'
+									sectionDiv[i].querySelector('#sound'+changes[j].compId).children[0].children[0].style.marginLeft='0px';
+									
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+	}
+	document.addEventListener('contextUpdate',this.onCtxUpdate.bind(this));
 	this.render=function(sectionName){
 
 		var div=document.createElement('div');
@@ -483,9 +631,11 @@ var ControlPanel= function (url){
 	}
 	this.hide=function(){
 		document.querySelector('#fullTemp').style.display='none';
+		this.showing=false;
 	}
 	this.show=function(){
 		document.querySelector('#fullTemp').style.display='block';
+		this.showing=true;
 	}
 		this.controlPanel();
 }
@@ -565,7 +715,8 @@ var menu = function (){
 
 		//take the agent number which is related to the agentId
 		var device=new devId();
-		device.setNum(1);
+
+		
 		var dev=device.render();
 		containerDiv.appendChild(dev);
 
@@ -605,7 +756,7 @@ var devId=function(){
 		var div=document.createElement('div');
 		div.className='mydevice';
 		var p=document.createElement('p');
-		p.innerHTML="device <strong>"+this.num+"</strong>";
+		p.innerHTML="device <strong id='devNum'>"+this.num+"</strong>";
 
 		div.appendChild(p);
 
@@ -711,6 +862,8 @@ var device=function(){
 		var i=document.createElement('i');
 		i.className=this.icon;
 		a.appendChild(i);
+		
+
 		a.innerHTML=a.innerHTML+this.text;
 
 		div.appendChild(a);
@@ -770,7 +923,7 @@ var layout=function(){
 
 	this.render=function(){
 		var div=document.createElement('div');
-		div.className="col-md-6 boxlayout";
+		div.className="col-md-4 boxlayout";
 
 		var a=document.createElement('a');
 		a.href='#';
@@ -786,6 +939,7 @@ var layout=function(){
 	this.onclick=function(){
 		var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
 		mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.changeAgentlayout(agentToChange,this.name);
+		
 	}
 
 }
@@ -799,8 +953,8 @@ var layoutSection=function(){
 	}
 
 	this.render=function(){
-		var row=document.createElement('div');
-		row.className=row;
+		var div=document.createElement('div');
+		div.className='template-content-center';
 		var layoutCol=document.createElement('div');
 		layoutCol.className="col-md-12 layout-columns";
 
@@ -809,9 +963,9 @@ var layoutSection=function(){
 			layoutCol.appendChild(it.render());
 		});
 
-		row.appendChild(layoutCol);
+		div.appendChild(layoutCol);
 
-		return row;
+		return div;
 	}
 }
 
@@ -850,8 +1004,157 @@ var qrSection=function(url){
 		return extDiv;
 	}
 }
+var camera=function(){
 
-var camerasSection=function(url){
+	this.setImage=function(image){
+		this.image=image;
+	}
+	this.setID=function(camID){
+		this.id=camID;
+	}
+	this.setName=function(name){
+		this.name=name;
+	}
+	this.setViewStatus=function(stat){
+		this.viewStatus=stat;
+	}
+	this.setSoundStatus=function(stat){
+		this.soundStatus=stat;
+	}	
+	
+	this.render=function(){
+		var div1=document.createElement('div');
+			div1.className='col-md-12 camara';
+
+				var div2=document.createElement('div');
+				div2.className='col-md-8 camara-logo-partidos';
+
+					var img1=document.createElement('img');
+					img1.src=this.image;
+
+					div2.appendChild(img1);
+
+				var div3=document.createElement('div');
+				div3.className='col-md-4';
+
+					var div4=document.createElement('div');
+					div4.className='col-md-12';
+
+						var div5=document.createElement('div');
+						div5.className='col-md-6 iconos-camara';
+							var i1=document.createElement('i');
+							i1.className='zmdi zmdi-videocam zmdi-hc-2x';
+
+							div5.appendChild(i1);
+
+						var div6=document.createElement('div');
+						div6.className='col-md-6 check-switch';
+							var input1=document.createElement('input');
+							input1.type='checkbox';
+							input1.name='set-camara';
+							input1.checked=this.viewStatus;
+							input1.id='viewCheck'+this.id;
+							
+							div6.appendChild(input1);
+							div6.id='view'+this.id;
+							div6.addEventListener('click',this.viewclick.bind(this),true);
+
+						div4.appendChild(div5);
+						div4.appendChild(div6);
+
+					var div7=document.createElement('div');
+					div7.className='col-md-12';
+
+						var div8=document.createElement('div');
+						div8.className='col-md-6 iconos-camara';
+							var i2=document.createElement('i');
+							i2.className='zmdi zmdi-volume-up zmdi-hc-2x';
+
+							div8.appendChild(i2);
+
+						var div9=document.createElement('div');
+						div9.className='col-md-6 check-switch';
+							var input2=document.createElement('input');
+							input2.type='checkbox';
+							input2.name='set-camara';
+							input2.checked=this.soundStatus;			
+
+							input2.id='soundCheck'+this.id;
+							div9.appendChild(input2);
+							div9.id='sound'+this.id;
+							
+							
+							div9.addEventListener('click',this.soundclick.bind(this),true);
+
+						div7.appendChild(div8);
+						div7.appendChild(div9);
+				div3.appendChild(div4);
+				div3.appendChild(div7);
+
+			div1.appendChild(div2);
+			div1.appendChild(div3);
+			return div1;
+	}
+	this.viewclick=function(){
+		var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
+		var agents=agCtx.agents;
+		var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
+		var val=agentToChange;
+		function filterById(el){
+			if(el.id===val)return el;
+		}
+		
+		var a=agents.filter(filterById);
+		var scope=this;
+		var b=a[0].capabilities.componentsStatus.filter(function(el,i){
+			if(el.compId===scope.id)return el;
+		});
+
+		console.log('viewClick');
+		if(b[0].show===true){
+			mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'hide');
+		}
+		else{
+			mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'show');
+		}
+	}
+	this.soundclick=function(){
+
+		var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
+		var agents=agCtx.agents;
+		var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
+		var val=agentToChange;
+		function filterById(el){
+			if(el.id===val)return el;
+		}
+		
+		var a=agents.filter(filterById);
+		var scope=this;
+		var b=a[0].capabilities.componentsStatus.filter(function(el,i){
+			if(el.compId===scope.id)return el;
+		});
+
+		console.log('soundClick');
+
+
+
+		 if(b[0].customCmd.lastIndexOf('mutePlayer') <b[0].customCmd.lastIndexOf('soundPlayer')){
+
+		 	mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'mutePlayer');
+		 }
+		 else{
+		 	mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'soundPlayer');
+		 }
+
+
+	}
+}
+var camerasSection=function(){
+	this.cameras=[];
+
+	this.addCamera=function(cam){
+		this.cameras.push(cam);
+	}
 	this.render=function(){
 
 		var extDiv=document.createElement('div');
@@ -866,218 +1169,84 @@ var camerasSection=function(url){
 					var div3=document.createElement('div');
 					div3.className='contenido content-camara';
 
-						var div4=document.createElement('div');
-						div4.className='col-md-12 camara camara-on';
+						this.cameras.forEach(function(it){
 
-							var div5=document.createElement('div');
-							div5.className='col-md-8 camara-logo-partidos';
-
-								var img1=document.createElement('img');
-								img1.src='../resources/css/configPanel/img/camara/logo_sozialista.png';
-
-								div5.appendChild(img1);
-
-							var div6=document.createElement('div');
-							div6.className='col-md-4';
-
-								var div7=document.createElement('div');
-								div7.className='col-md-12';
-
-									var div8=document.createElement('div');
-									div8.className='col-md-6 iconos-camara';
-										var i1=document.createElement('i');
-										i1.className='zmdi zmdi-videocam zmdi-hc-2x';
-
-										div8.appendChild(i1);
-
-									var div9=document.createElement('div');
-									div9.className='col-md-6 check-switch';
-										var input1=document.createElement('input');
-										input1.type='checkbox';
-										input1.name='set-camara';
-										input1.checked=true;
-
-										div9.appendChild(input1);
-
-									div7.appendChild(div8);
-									div7.appendChild(div9);
-
-								var div10=document.createElement('div');
-								div10.className='col-md-12';
-
-									var div11=document.createElement('div');
-									div11.className='col-md-6 iconos-camara';
-										var i2=document.createElement('i');
-										i2.className='zmdi zmdi-volume-up zmdi-hc-2x';
-
-										div11.appendChild(i2);
-
-									var div12=document.createElement('div');
-									div12.className='col-md-6 check-switch';
-										var input2=document.createElement('input');
-										input2.type='checkbox';
-										input2.name='set-camara';
-										input2.checked=true;
-
-										div12.appendChild(input2);
-
-									div10.appendChild(div11);
-									div10.appendChild(div12);
-							div6.appendChild(div7);
-							div6.appendChild(div10);
-
-						div4.appendChild(div5);
-						div4.appendChild(div6);
-
-
-					div3.appendChild(div4);	
-
-
-
-
-
-
-
-					var div4=document.createElement('div');
-						div4.className='col-md-12 camara';
-
-							var div5=document.createElement('div');
-							div5.className='col-md-8 camara-logo-partidos';
-
-								var img1=document.createElement('img');
-								img1.src='../resources/css/configPanel/img/camara/logo_bildu.png';
-
-								div5.appendChild(img1);
-
-							var div6=document.createElement('div');
-							div6.className='col-md-4';
-
-								var div7=document.createElement('div');
-								div7.className='col-md-12';
-
-									var div8=document.createElement('div');
-									div8.className='col-md-6 iconos-camara';
-										var i1=document.createElement('i');
-										i1.className='zmdi zmdi-videocam zmdi-hc-2x';
-
-										div8.appendChild(i1);
-
-									var div9=document.createElement('div');
-									div9.className='col-md-6 check-switch';
-										var input1=document.createElement('input');
-										input1.type='checkbox';
-										input1.name='set-camara';
-										input1.checked=true;
-
-										div9.appendChild(input1);
-
-									div7.appendChild(div8);
-									div7.appendChild(div9);
-
-								var div10=document.createElement('div');
-								div10.className='col-md-12';
-
-									var div11=document.createElement('div');
-									div11.className='col-md-6 iconos-camara';
-										var i2=document.createElement('i');
-										i2.className='zmdi zmdi-volume-up zmdi-hc-2x';
-
-										div11.appendChild(i2);
-
-									var div12=document.createElement('div');
-									div12.className='col-md-6 check-switch';
-										var input2=document.createElement('input');
-										input2.type='checkbox';
-										input2.name='set-camara';
-										input2.checked=true;
-
-										div12.appendChild(input2);
-
-									div10.appendChild(div11);
-									div10.appendChild(div12);
-							div6.appendChild(div7);
-							div6.appendChild(div10);
-
-						div4.appendChild(div5);
-						div4.appendChild(div6);
-
-
-					div3.appendChild(div4);	
-
-
-
-					var div4=document.createElement('div');
-						div4.className='col-md-12 camara';
-
-							var div5=document.createElement('div');
-							div5.className='col-md-8 camara-logo-partidos';
-
-								var img1=document.createElement('img');
-								img1.src='../resources/css/configPanel/img/camara/logo_pp.png';
-
-								div5.appendChild(img1);
-
-							var div6=document.createElement('div');
-							div6.className='col-md-4';
-
-								var div7=document.createElement('div');
-								div7.className='col-md-12';
-
-									var div8=document.createElement('div');
-									div8.className='col-md-6 iconos-camara';
-										var i1=document.createElement('i');
-										i1.className='zmdi zmdi-videocam zmdi-hc-2x';
-
-										div8.appendChild(i1);
-
-									var div9=document.createElement('div');
-									div9.className='col-md-6 check-switch';
-										var input1=document.createElement('input');
-										input1.type='checkbox';
-										input1.name='set-camara';
-										input1.checked=true;
-
-										div9.appendChild(input1);
-
-									div7.appendChild(div8);
-									div7.appendChild(div9);
-
-								var div10=document.createElement('div');
-								div10.className='col-md-12';
-
-									var div11=document.createElement('div');
-									div11.className='col-md-6 iconos-camara';
-										var i2=document.createElement('i');
-										i2.className='zmdi zmdi-volume-up zmdi-hc-2x';
-
-										div11.appendChild(i2);
-
-									var div12=document.createElement('div');
-									div12.className='col-md-6 check-switch';
-										var input2=document.createElement('input');
-										input2.type='checkbox';
-										input2.name='set-camara';
-										input2.checked=true;
-
-										div12.appendChild(input2);
-
-									div10.appendChild(div11);
-									div10.appendChild(div12);
-							div6.appendChild(div7);
-							div6.appendChild(div10);
-
-						div4.appendChild(div5);
-						div4.appendChild(div6);
-
-
-					div3.appendChild(div4);	
-
+							div3.appendChild(it.render());
+						});
 
 				div2.appendChild(div3);
 				div1.appendChild(div2);
 				extDiv.appendChild(div1);
 
 		return extDiv;
+	}
+	this.setCamsViewStatus=function(agentID){
+
+		var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
+		var agents=agCtx.agents;
+		var agentToChange=agentID;
+		
+		var a=agents.filter(function(el){
+			if(el.id===agentToChange)return el;
+		});
+		var scope=this;
+
+		for(var i=0;i<this.cameras.length;i++){
+
+			var cam=this.cameras[i].id;
+			b=a[0].capabilities.componentsStatus.filter(function(el){
+				if(el.compId===cam)return el;
+			});
+
+		
+			if(b[0].show===true){
+				this.cameras[i].setViewStatus(true);
+			}
+			else{
+				this.cameras[i].setViewStatus(false);
+			}
+
+		}
+
+	}
+	this.setCamsSoundStatus=function(agentID){
+		var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
+		var agents=agCtx.agents;
+		var agentToChange=agentID;
+		
+		var a=agents.filter(function(el){
+			if(el.id===agentToChange)return el;
+		});
+		var scope=this;
+
+		for(var i=0;i<this.cameras.length;i++){
+
+			var cam=this.cameras[i].id;
+			b=a[0].capabilities.componentsStatus.filter(function(el){
+				if(el.compId===cam)return el;
+			});
+
+
+			if(b[0].customCmd.lastIndexOf('mutePlayer')===-1 && b[0].customCmd.lastIndexOf('soundPlayer')===-1){
+				if(document.querySelector('#'+this.cameras[i].name).ismuted==='false'){
+	                this.cameras[i].setSoundStatus(true);
+	              }
+	              else{
+	                this.cameras[i].setSoundStatus(false);
+	              }
+
+			}
+			else {
+				if(b[0].customCmd.lastIndexOf('mutePlayer') <b[0].customCmd.lastIndexOf('soundPlayer')){
+
+			 		this.cameras[i].setSoundStatus(false);
+			 	}
+			 	else{
+					this.cameras[i].setSoundStatus(true);
+			 	}
+			}
+		}
+
 	}
 }
 

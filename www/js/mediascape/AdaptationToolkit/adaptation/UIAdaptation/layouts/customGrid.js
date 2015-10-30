@@ -65,7 +65,9 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
                                                     componentsContainer.querySelector('figure'));
         }
         componentsContainer.querySelector('figure').parentNode.removeChild(componentsContainer.querySelector('figure'));
-        document.querySelector('x-media').play();
+        if(document.querySelector('x-media')){
+          document.querySelector('x-media').play();
+        }
 
       }
       if(componentsContainer.querySelector('#arrows')){
@@ -240,7 +242,9 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
                                                     componentsContainer.querySelector('figure'));
         }
         componentsContainer.querySelector('figure').parentNode.removeChild(componentsContainer.querySelector('figure'));
-        document.querySelector('x-media').play();
+        if(document.querySelector('x-media')){
+          document.querySelector('x-media').play();
+        }
       }
       if(componentsContainer.querySelector('#arrows')){
         componentsContainer.removeChild(componentsContainer.querySelector('#arrows'));

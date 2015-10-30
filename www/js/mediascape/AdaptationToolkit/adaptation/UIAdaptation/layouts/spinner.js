@@ -70,7 +70,9 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
                                                     componentsContainer.querySelector('figure'));
         }
         componentsContainer.querySelector('figure').parentNode.removeChild(componentsContainer.querySelector('figure'));
-        document.querySelector('x-media').play();
+        /*if(document.querySelector('x-media')){
+          document.querySelector('x-media').play();
+        }*/
       }
       if(componentsContainer.querySelector('#arrows')){
         componentsContainer.removeChild(componentsContainer.querySelector('#arrows'));
@@ -189,7 +191,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
      for(var i=0;i<cmps.length;i++)
      {
         fig.appendChild(cmps[i]);
-        if(cmps[i].nodeName==='X-MEDIA')cmps[i].play();
+        //if(cmps[i].nodeName==='X-MEDIA')cmps[i].play();
         cmps[i].style.width='35%';
         cmps[i].style.height=cmpHeight;
         cmps[i].style.position='absolute';
@@ -496,7 +498,9 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
                                                     componentsContainer.querySelector('figure'));
         }
         componentsContainer.querySelector('figure').parentNode.removeChild(componentsContainer.querySelector('figure'));
-        document.querySelector('x-media').play();
+        /*if(document.querySelector('x-media')){
+          document.querySelector('x-media').play();
+        }*/
       }
 
 

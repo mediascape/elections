@@ -66,7 +66,9 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
                                                     componentsContainer.querySelector('figure'));
         }
         componentsContainer.querySelector('figure').parentNode.removeChild(componentsContainer.querySelector('figure'));
-        document.querySelector('x-media').play();
+        if(document.querySelector('x-media')){
+          document.querySelector('x-media').play();
+        }
       }
       if(componentsContainer.querySelector('#arrows')){
         componentsContainer.removeChild(componentsContainer.querySelector('#arrows'));
@@ -170,7 +172,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
           }
 
 
-          Polymer.addEventListener(comp_name,'mouseout',unhoverFunc,true);
+          comp_name.addEventListener('mouseout',unhoverFunc,true);
 
           function hoverFunc(event){
             event.srcElement.style.background='#003545';
@@ -178,7 +180,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
            event.srcElement.style.fontWeight='bold';
            event.srcElement.style.height=Math.round(0.05*(height))-5+'px';
           }
-           Polymer.addEventListener(comp_name,'mouseover',hoverFunc,true);
+           comp_name.addEventListener('mouseover',hoverFunc,true);
 
           comp_name.onclick=function(){
             var aux=event.srcElement.id.split('compDiv')[1];
@@ -299,7 +301,9 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
                                                     componentsContainer.querySelector('figure'));
         }
         componentsContainer.querySelector('figure').parentNode.removeChild(componentsContainer.querySelector('figure'));
-        document.querySelector('x-media').play();
+        if(document.querySelector('x-media')){
+          document.querySelector('x-media').play();
+        }
       }
       if(componentsContainer.querySelector('#arrows')){
         componentsContainer.removeChild(componentsContainer.querySelector('#arrows'));

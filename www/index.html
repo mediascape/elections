@@ -62,11 +62,12 @@ document.addEventListener('adaptationToolkit-ready',function(data){
         UI.useLayout('accordion');
         var location = "http://"+window.location.host+window.location.pathname;
         
-        mediascape.AdaptationToolkit.uiComponents.addControlPanel(location+"?group="+AE.GROUP_ID);
+        
 
         document.addEventListener('applicationContext-ready',function(){
             AE.init(rulesAE, AE.getApplicationContext());
             AE.on('actionchange', UI.onComponentsChange);
+            mediascape.AdaptationToolkit.uiComponents.addControlPanel(location+"?group="+AE.GROUP_ID);
         });
 
 });
