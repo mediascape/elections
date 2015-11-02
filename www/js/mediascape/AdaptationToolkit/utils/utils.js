@@ -53,7 +53,8 @@ define ([],
                   objectGraphPath = objectGraphPath.filter(function(p){ if (p.indexOf('undefined')===-1) return true;})
                   var prop = objectGraphPath[objectGraphPath.length-1].substring(1);
 
-                  propertyChanges.push({ "compId":cmpId,"property":prop,"newValue":a});
+                  if (objectGraphPath.length>2)
+                    propertyChanges.push({ "compId":cmpId,"property":prop,"newValue":a});
                 }
               }
             })(objectA, objectB);
