@@ -476,34 +476,31 @@ var ControlPanel= function (url){
 
 			for(var j=0;j<changes.length;j++){
 				for(var i=2;i<sectionNum;i++){
-					if(changes[j].property==='show'){
-						if(sections[i].name.indexOf(event.detail.agentid)===0 && sectionDiv[i].querySelector('#view'+changes[j].compId)!==null){
-							
-							// Show/hide commands
-															
-							if(changes[j].newValue===false){
+					//if(changes[j].property==='show'){
+
+						if(changes[j].newValue==='hide' || changes[j].newValue==='show'){
+							if(sections[i].name.indexOf(event.detail.agentid)===0 && sectionDiv[i].querySelector('#view'+changes[j].compId)!==null){
+								// Show/hide commands
+								if(changes[j].newValue==='hide'){
+									
+									sectionDiv[i].querySelector('#view'+changes[j].compId).children[0].className='bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-id-viewCheck'+changes[j].compId+' bootstrap-switch-animate bootstrap-switch-off';
+									sectionDiv[i].querySelector('#view'+changes[j].compId).children[0].children[0].style.width='150px'
+									sectionDiv[i].querySelector('#view'+changes[j].compId).children[0].children[0].style.marginLeft='-50px';
 								
-								sectionDiv[i].querySelector('#view'+changes[j].compId).children[0].className='bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-id-viewCheck'+changes[j].compId+' bootstrap-switch-animate bootstrap-switch-off';
-								sectionDiv[i].querySelector('#view'+changes[j].compId).children[0].children[0].style.width='150px'
-								sectionDiv[i].querySelector('#view'+changes[j].compId).children[0].children[0].style.marginLeft='-50px';
-							
-							}
-							else if(changes[j].newValue===true){
-								sectionDiv[i].querySelector('#view'+changes[j].compId).children[0].className='bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-id-viewCheck'+changes[j].compId+' bootstrap-switch-animate bootstrap-switch-on';
-								sectionDiv[i].querySelector('#view'+changes[j].compId).children[0].children[0].style.width='150px'
-								sectionDiv[i].querySelector('#view'+changes[j].compId).children[0].children[0].style.marginLeft='0px';
-								
-							}
+								}
+								else if(changes[j].newValue==='show'){
+									sectionDiv[i].querySelector('#view'+changes[j].compId).children[0].className='bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-id-viewCheck'+changes[j].compId+' bootstrap-switch-animate bootstrap-switch-on';
+									sectionDiv[i].querySelector('#view'+changes[j].compId).children[0].children[0].style.width='150px'
+									sectionDiv[i].querySelector('#view'+changes[j].compId).children[0].children[0].style.marginLeft='0px';
+									
+								}
+							}				
 						}
-
-							
-						
-							//Sound/mute
-
-
-				}
-					else{
-						if(changes[j].newValue==='mutePlayer' || changes[j].newValue==='soundPlayer'){
+					
+					//}
+					//Sound/mute
+					//else{
+						else if(changes[j].newValue==='mutePlayer' || changes[j].newValue==='soundPlayer'){
 							if(sections[i].name.indexOf(event.detail.agentid)===0 && sectionDiv[i].querySelector('#sound'+changes[j].compId)!==null){
 								if(changes[j].newValue==='mutePlayer'){								
 									sectionDiv[i].querySelector('#sound'+changes[j].compId).children[0].className='bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-id-soundCheck'+changes[j].compId+' bootstrap-switch-animate bootstrap-switch-off';
@@ -518,7 +515,7 @@ var ControlPanel= function (url){
 								}
 							}
 						}
-					}
+					//}
 				}
 			}
 		}
