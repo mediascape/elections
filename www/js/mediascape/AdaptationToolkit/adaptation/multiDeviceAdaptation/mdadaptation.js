@@ -114,7 +114,7 @@ function($, applicationContext){
     var getChangeDiff = function (obj){
         if (localStatus === null) {
           localStatus = obj;
-          return obj;
+          return mediascape.AdaptationToolkit.Utils.getObjectDiff(obj,localStatus);
         }
         else {
            var diff = mediascape.AdaptationToolkit.Utils.getObjectDiff(obj,localStatus);
