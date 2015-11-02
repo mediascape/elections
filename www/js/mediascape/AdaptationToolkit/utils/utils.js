@@ -50,9 +50,9 @@ define ([],
                 if(a != b || a.length != b.length) {
                   var cmpId = objectGraphPath[1].substring(1,objectGraphPath[1].length-1);
                   console.log(objectGraphPath);
-                  var prop = objectGraphPath[objectGraphPath.length-1].indexOf('undefined') === 0
-                              ?objectGraphPath[objectGraphPath.length-1].substring(1)
-                              :objectGraphPath[objectGraphPath.length-2].substring(1);
+                  objectGraphPath = objectGraphPath.filter(function(p){ if (p.indexOf('undefined')===-1) return true;})
+                  var prop = objectGraphPath[objectGraphPath.length-1].substring(1);
+
                   propertyChanges.push({ "compId":cmpId,"property":prop,"newValue":a});
                 }
               }
