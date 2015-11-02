@@ -17,142 +17,142 @@ var ControlPanel= function (url){
 	/* Kontruktorea gauza inizializatzen diren lekua */
 	this.controlPanel = function(){
 
-			var cmps=mediascape.AdaptationToolkit.componentManager.core.getComponents();
-			console.log('Konstruktorea');
-			//'../resources/css/configPanel/img/camara/logo_etb2.png'
-			var comp='video1';
+		var cmps=mediascape.AdaptationToolkit.componentManager.core.getComponents();
+		console.log('Konstruktorea');
+		//'../resources/css/configPanel/img/camara/logo_etb2.png'
+		var comp='video1';
 
-			function filterById(el){
-				if(el.id===comp)return el;
-			}
-			var c=cmps.filter(filterById);
-			
-			 var cam1=new camera();
-			 cam1.setID(c[0].getAttribute('compId'));
-			 cam1.setName(c[0].id);
-			 cam1.setImage('../resources/css/configPanel/img/camara/logo_etb2.png');
+		function filterById(el){
+			if(el.id===comp)return el;
+		}
+		var c=cmps.filter(filterById);
 
-
-			 comp='video2';
-			 c=cmps.filter(filterById);
-			 var cam2=new camera();
-			 cam2.setID(c[0].getAttribute('compId'));
-			 cam2.setName(c[0].id);
-			 cam2.setImage('../resources/css/configPanel/img/camara/logo_bildu.png');
-
-			 comp='video3';
-			 c=cmps.filter(filterById);
-			 var cam3=new camera();
-			 cam3.setID(c[0].getAttribute('compId'));
-			 cam3.setName(c[0].id);
-			 cam3.setImage('../resources/css/configPanel/img/camara/logo_pp.png');
+		var cam1=new camera();
+		cam1.setID(c[0].getAttribute('compId'));
+		cam1.setName(c[0].id);
+		cam1.setImage('../resources/css/configPanel/img/camara/logo_etb2.png');
 
 
-			 camerasSect=new camerasSection();
-			 camerasSect.addCamera(cam1);
-			 camerasSect.addCamera(cam2);
-			 camerasSect.addCamera(cam3);
+		comp='video2';
+		c=cmps.filter(filterById);
+		var cam2=new camera();
+		cam2.setID(c[0].getAttribute('compId'));
+		cam2.setName(c[0].id);
+		cam2.setImage('../resources/css/configPanel/img/camara/logo_bildu.png');
+
+		comp='video3';
+		c=cmps.filter(filterById);
+		var cam3=new camera();
+		cam3.setID(c[0].getAttribute('compId'));
+		cam3.setName(c[0].id);
+		cam3.setImage('../resources/css/configPanel/img/camara/logo_pp.png');
 
 
-			 devBox=new deviceBox();
-			 var lay1=new layout();
-			 lay1.setName('menu');
-			 lay1.setImage('../resources/css/configPanel/img/layouts/layout_01.png');
-
-			 var lay2=new layout();
-			 lay2.setName('spinner');
-			 lay2.setImage('../resources/css/configPanel/img/layouts/layout_02.png');
-
-			 var lay3=new layout();
-			 lay3.setName('pip');
-			 lay3.setImage('../resources/css/configPanel/img/layouts/layout_03.png');
-
-			 var lay4=new layout();
-			 lay4.setName('customGrid');
-			 lay4.setImage('../resources/css/configPanel/img/layouts/layout_04.png');
-
-			 var lay5=new layout();
-			 lay5.setName('scrollHorizontal');
-			 lay5.setImage('../resources/css/configPanel/img/layouts/layout_05.png');
-
-			 var lay6=new layout();
-			 lay6.setName('verticalMenu');
-			 lay6.setImage('../resources/css/configPanel/img/layouts/layout_06.png');
-
-			 var lay7=new layout();
-			 lay7.setName('horizontal');
-			 lay7.setImage('../resources/css/configPanel/img/layouts/layout_07.png');
-
-			 var lay8=new layout();
-			 lay8.setName('accordion');
-			 lay8.setImage('../resources/css/configPanel/img/layouts/layout_08.png');
-
-			 layoutSect1=new layoutSection();
-			 layoutSect1.addLayout(lay1);
-			 layoutSect1.addLayout(lay2);
-			 layoutSect1.addLayout(lay3);
-			 layoutSect1.addLayout(lay4);
-			 layoutSect1.addLayout(lay5);
-			 layoutSect1.addLayout(lay6);
-			 layoutSect1.addLayout(lay7);
-			 layoutSect1.addLayout(lay8);
-			 qrSect=new qrSection(QRurl);
-			 /*var twitterSect=new twitterSection();
-			 var radioSect=new radioSection();
-			 var graphicSect=new graphicSection();*/
-			 //sidebar menu
-			 var menu1=new menu();
-
-			 var item1=new menuItem();
-			 item1.setText('Add device');
-			 item1.setIcon('zmdi zmdi-plus');
-			 item1.setSection('AddDevice');
-			 menu1.addItem(item1);
-
-			 var item2=new menuItem();
-			 item2.setText('Layouts');
-			 item2.setIcon('zmdi zmdi-view-quilt');
-			 item2.setSection('layouts');
-			 menu1.addItem(item2);
+		camerasSect=new camerasSection();
+		camerasSect.addCamera(cam1);
+		camerasSect.addCamera(cam2);
+		camerasSect.addCamera(cam3);
 
 
+		devBox=new deviceBox();
+		var lay1=new layout();
+		lay1.setName('menu');
+		lay1.setImage('../resources/css/configPanel/img/layouts/layout_01.png');
 
-			 var item3=new menuItem();
-			 item3.setText('Cameras');
-			 item3.setIcon('zmdi zmdi-videocam');
-			 item3.setSection('cameras');
-			 menu1.addItem(item3);
+		var lay2=new layout();
+		lay2.setName('spinner');
+		lay2.setImage('../resources/css/configPanel/img/layouts/layout_02.png');
 
-			 var item4=new menuItem();
-			 item4.setText('Twitter');
-			 item4.setIcon('zmdi zmdi-twitter');
-			 item4.setSection('twitter');
-			 menu1.addItem(item4);
+		var lay3=new layout();
+		lay3.setName('pip');
+		lay3.setImage('../resources/css/configPanel/img/layouts/layout_03.png');
 
-			 var item5=new menuItem();
-			 item5.setText('Radio');
-			 item5.setIcon('zmdi zmdi-radio');
-			 item5.setSection('radio');
-			 menu1.addItem(item5);
+		var lay4=new layout();
+		lay4.setName('customGrid');
+		lay4.setImage('../resources/css/configPanel/img/layouts/layout_04.png');
 
-			 var item6=new menuItem();
-			 item6.setText('Graphics');
-			 item6.setIcon('zmdi zmdi-view-quilt');
-			 item6.setSection('graphics');
-			 menu1.addItem(item6);
+		var lay5=new layout();
+		lay5.setName('scrollHorizontal');
+		lay5.setImage('../resources/css/configPanel/img/layouts/layout_05.png');
+
+		var lay6=new layout();
+		lay6.setName('verticalMenu');
+		lay6.setImage('../resources/css/configPanel/img/layouts/layout_06.png');
+
+		var lay7=new layout();
+		lay7.setName('horizontal');
+		lay7.setImage('../resources/css/configPanel/img/layouts/layout_07.png');
+
+		var lay8=new layout();
+		lay8.setName('accordion');
+		lay8.setImage('../resources/css/configPanel/img/layouts/layout_08.png');
+
+		layoutSect1=new layoutSection();
+		layoutSect1.addLayout(lay1);
+		layoutSect1.addLayout(lay2);
+		layoutSect1.addLayout(lay3);
+		layoutSect1.addLayout(lay4);
+		layoutSect1.addLayout(lay5);
+		layoutSect1.addLayout(lay6);
+		layoutSect1.addLayout(lay7);
+		layoutSect1.addLayout(lay8);
+		qrSect=new qrSection(QRurl);
+		/*var twitterSect=new twitterSection();
+		var radioSect=new radioSection();
+		var graphicSect=new graphicSection();*/
+		//sidebar menu
+		var menu1=new menu();
+
+		var item1=new menuItem();
+		item1.setText('Add device');
+		item1.setIcon('zmdi zmdi-plus');
+		item1.setSection('AddDevice');
+		menu1.addItem(item1);
+
+		var item2=new menuItem();
+		item2.setText('Layouts');
+		item2.setIcon('zmdi zmdi-view-quilt');
+		item2.setSection('layouts');
+		menu1.addItem(item2);
 
 
 
+		var item3=new menuItem();
+		item3.setText('Cameras');
+		item3.setIcon('zmdi zmdi-videocam');
+		item3.setSection('cameras');
+		menu1.addItem(item3);
 
-			 this.addItem(menu1);
+		var item4=new menuItem();
+		item4.setText('Twitter');
+		item4.setIcon('zmdi zmdi-twitter');
+		item4.setSection('twitter');
+		menu1.addItem(item4);
 
-			
-			
-			 document.body.appendChild(this.render(''));
+		var item5=new menuItem();
+		item5.setText('Radio');
+		item5.setIcon('zmdi zmdi-radio');
+		item5.setSection('radio');
+		menu1.addItem(item5);
+
+		var item6=new menuItem();
+		item6.setText('Graphics');
+		item6.setIcon('zmdi zmdi-view-quilt');
+		item6.setSection('graphics');
+		menu1.addItem(item6);
 
 
-			 
-            
+
+
+		this.addItem(menu1);
+
+
+
+		document.body.appendChild(this.render(''));
+
+
+
+
 
 	}
 	this.addItem=function(item){
@@ -167,300 +167,300 @@ var ControlPanel= function (url){
 	}
 	this.onAgentChange = function (event){
 
-			var container=document.querySelector('#fullTemp');
-			if (event.detail.status === "join"){
-				 /* Gehitu gailua */
-				 mediascape.AdaptationToolkit.uiComponents.ctrlPanel.selfID=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAgentId();
-				var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
-				
+		var container=document.querySelector('#fullTemp');
+		if (event.detail.status === "join"){
+			/* Gehitu gailua */
+			mediascape.AdaptationToolkit.uiComponents.ctrlPanel.selfID=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAgentId();
+			var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
 
-				var agents=agCtx.agents;		
-				var val=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.selfID;
-				function filterById(el){
-					if(el.id===val)return el;
-				}
-				
-				var a=agents.filter(filterById);
 
-				container.querySelector('#devNum').innerHTML=a[0]._id+1;
-				mediascape.AdaptationToolkit.uiComponents.ctrlPanel.selfIDNum=a[0]._id+1;
+			var agents=agCtx.agents;
+			var val=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.selfID;
+			function filterById(el){
+				if(el.id===val)return el;
+			}
 
-				var val=event.detail.agentid;
-				var b=agents.filter(filterById);
-				
+			var a=agents.filter(filterById);
 
+			container.querySelector('#devNum').innerHTML=a[0]._id+1;
+			mediascape.AdaptationToolkit.uiComponents.ctrlPanel.selfIDNum=a[0]._id+1;
+
+			var val=event.detail.agentid;
+			var b=agents.filter(filterById);
 
 
 
-				if(agCtx.agents.length>1 && devBox.devices.length===0)
-				{
-					for(var i=0;i<agCtx.agents.length;i++){
-						var dev1=new device();
-						if(agCtx.agents[i].capabilities.platform.deviceType==='TV'){
-						 	dev1.setText('Television id: '+(agCtx.agents[i]._id+1));
-						 	dev1.setIcon('zmdi zmdi-tv');
-						 }
-						 else if(agCtx.agents[i].capabilities.platform.deviceType==='desktop' || agCtx.agents[i].capabilities.platform.deviceType==='Desktop')
-						 {
-						 	dev1.setText('Desktop id: '+(agCtx.agents[i]._id+1));
-		        			dev1.setIcon('zmdi zmdi-laptop');
-						 }
-						 else if(agCtx.agents[i].capabilities.platform.deviceType==='Tablet')
-						 {
-						 	dev1.setText('Tablet id: '+(agCtx.agents[i]._id+1));
-		        			dev1.setIcon('zmdi zmdi-tablet');
-						 }
-						 else if(agCtx.agents[i].capabilities.platform.deviceType==='mobile')
-						 {
-						 	dev1.setText('SmartPhone id: '+(agCtx.agents[i]._id+1));
-		        			dev1.setIcon('zmdi zmdi-smartphone');
-						 }
-						 dev1.setID(agCtx.agents[i].id);
 
 
-						var twitterSect=new twitterSection();
-				 		var radioSect=new radioSection();
-				 		var graphicSect=new graphicSection();
-				 		
-				 		if(i===0){
-						 	var section2=new section();
-					 		section2.setName('AddDevice');
-					 		section2.addItem(qrSect);
-					 		this.addItem(section2);
-					 		container.appendChild(section2.render());
-					 	}
+			if(agCtx.agents.length>1 && devBox.devices.length===0)
+			{
+				for(var i=0;i<agCtx.agents.length;i++){
+					var dev1=new device();
+					if(agCtx.agents[i].capabilities.platform.deviceType==='TV'){
+						dev1.setText('Television id: '+(agCtx.agents[i]._id+1));
+						dev1.setIcon('zmdi zmdi-tv');
+					}
+					else if(agCtx.agents[i].capabilities.platform.deviceType==='desktop' || agCtx.agents[i].capabilities.platform.deviceType==='Desktop')
+					{
+						dev1.setText('Desktop id: '+(agCtx.agents[i]._id+1));
+						dev1.setIcon('zmdi zmdi-laptop');
+					}
+					else if(agCtx.agents[i].capabilities.platform.deviceType==='Tablet')
+					{
+						dev1.setText('Tablet id: '+(agCtx.agents[i]._id+1));
+						dev1.setIcon('zmdi zmdi-tablet');
+					}
+					else if(agCtx.agents[i].capabilities.platform.deviceType==='mobile')
+					{
+						dev1.setText('SmartPhone id: '+(agCtx.agents[i]._id+1));
+						dev1.setIcon('zmdi zmdi-smartphone');
+					}
+					dev1.setID(agCtx.agents[i].id);
 
-						 var section1=new section();
-						 section1.setName(agCtx.agents[i].id+'layouts');
-						 section1.addItem(devBox);
-						 section1.addItem(layoutSect1);
-						 this.addItem(section1);
-						 container.appendChild(section1.render());
 
-						 var section3=new section();
-						 section3.setName(agCtx.agents[i].id+'cameras');
-						 section3.addItem(devBox);
-						 camerasSect.setCamsViewStatus(agCtx.agents[i].id);
-						 camerasSect.setCamsSoundStatus(agCtx.agents[i].id);
-						 section3.addItem(camerasSect);						 
-						 this.addItem(section3);
-						 container.appendChild(section3.render());
+					var twitterSect=new twitterSection();
+					var radioSect=new radioSection();
+					var graphicSect=new graphicSection();
 
-						 var section4=new section();
-						 section4.setName(agCtx.agents[i].id+'twitter');
-						 section4.addItem(devBox);
-						 section4.addItem(twitterSect);
-						 this.addItem(section4);
-						 container.appendChild(section4.render());
-
-						 var section5=new section();
-						 section5.setName(agCtx.agents[i].id+'radio');
-						 section5.addItem(devBox);
-						 section5.addItem(radioSect);
-						 this.addItem(section5);
-						 container.appendChild(section5.render());
-
-						 var section6=new section();
-						 section6.setName(agCtx.agents[i].id+'graphics');
-						 section6.addItem(devBox);
-						 section6.addItem(graphicSect);
-						 this.addItem(section6);
-						 container.appendChild(section6.render());
-
-						 $("[name='twitter-checkbox']").bootstrapSwitch();
-            				$("[name='set-graphic']").bootstrapSwitch();
-            				$("[name='set-graphic-emisora']").bootstrapSwitch();
-            				$("[name='set-camara']").bootstrapSwitch();
-							$("[name='set-graphic-camara']").bootstrapSwitch();
-						 devBox.addDevice(dev1);
-
+					if(i===0){
+						var section2=new section();
+						section2.setName('AddDevice');
+						section2.addItem(qrSect);
+						this.addItem(section2);
+						container.appendChild(section2.render());
 					}
 
-					 var sections=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items;
-					 var sectionNum=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items.length;
-					 var sectionDiv=document.querySelector('#fullTemp').children;
-					 for(var i=2;i<sectionNum;i++){
-					 	sectionDiv[i].replaceChild(devBox.render(),sectionDiv[i].children[0]);
-					 }
-				}
-				else{
-				 mediascape.AdaptationToolkit.uiComponents.ctrlPanel.selfID=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAgentId();
-				 var dev1=new device();
-				 /* ERABILI gailua gehitzeko
-				 *event.detail.profile.deviceType
-				 *	  Desktop, tablet, mobile, tv
-				 */
-				 if(event.detail.profile.deviceType==='TV'){
-				 	dev1.setText('Television id: '+(b[0]._id+1));
-				 	dev1.setIcon('zmdi zmdi-tv');
-				 }
-				 else if(event.detail.profile.deviceType==='desktop' || event.detail.profile.deviceType==='Desktop')
-				 {
-				 	dev1.setText('Desktop id: '+(b[0]._id+1));
-        			dev1.setIcon('zmdi zmdi-laptop');
-				 }
-				 else if(event.detail.profile.deviceType==='Tablet')
-				 {
-				 	dev1.setText('Tablet id: '+(b[0]._id+1));
-        			dev1.setIcon('zmdi zmdi-tablet');
-				 }
-				 else if(event.detail.profile.deviceType==='mobile')
-				 {
-				 	dev1.setText('SmartPhone id: '+(b[0]._id+1));
-        			dev1.setIcon('zmdi zmdi-smartphone');
-				 }
-				 
-				 if(devBox.devices.length===0)
-				 {/* Agentid-a * event.detail.agentid*/
-				 	dev1.setID(event.detail.agentid);
+					var section1=new section();
+					section1.setName(agCtx.agents[i].id+'layouts');
+					section1.addItem(devBox);
+					section1.addItem(layoutSect1);
+					this.addItem(section1);
+					container.appendChild(section1.render());
 
-				 	
-			 		var twitterSect=new twitterSection();
-			 		var radioSect=new radioSection();
-			 		var graphicSect=new graphicSection();
-			 
+					var section3=new section();
+					section3.setName(agCtx.agents[i].id+'cameras');
+					section3.addItem(devBox);
+					camerasSect.setCamsViewStatus(agCtx.agents[i].id);
+					camerasSect.setCamsSoundStatus(agCtx.agents[i].id);
+					section3.addItem(camerasSect);
+					this.addItem(section3);
+					container.appendChild(section3.render());
 
-				 	var section2=new section();
-			 		section2.setName('AddDevice');
-			 		section2.addItem(qrSect);
-			 		this.addItem(section2);
-			 		container.appendChild(section2.render());
+					var section4=new section();
+					section4.setName(agCtx.agents[i].id+'twitter');
+					section4.addItem(devBox);
+					section4.addItem(twitterSect);
+					this.addItem(section4);
+					container.appendChild(section4.render());
 
-					 var section1=new section();
-					 section1.setName(event.detail.agentid+'layouts');
-					 section1.addItem(devBox);
-					 section1.addItem(layoutSect1);
-					 this.addItem(section1);
-					 container.appendChild(section1.render());
+					var section5=new section();
+					section5.setName(agCtx.agents[i].id+'radio');
+					section5.addItem(devBox);
+					section5.addItem(radioSect);
+					this.addItem(section5);
+					container.appendChild(section5.render());
 
+					var section6=new section();
+					section6.setName(agCtx.agents[i].id+'graphics');
+					section6.addItem(devBox);
+					section6.addItem(graphicSect);
+					this.addItem(section6);
+					container.appendChild(section6.render());
 
+					$("[name='twitter-checkbox']").bootstrapSwitch();
+					$("[name='set-graphic']").bootstrapSwitch();
+					$("[name='set-graphic-emisora']").bootstrapSwitch();
+					$("[name='set-camara']").bootstrapSwitch();
+					$("[name='set-graphic-camara']").bootstrapSwitch();
+					devBox.addDevice(dev1);
 
-					 var section3=new section();
-					 section3.setName(event.detail.agentid+'cameras');
-					 section3.addItem(devBox);
-					 camerasSect.setCamsViewStatus(event.detail.agentid);
-					 camerasSect.setCamsSoundStatus(event.detail.agentid);
-					 section3.addItem(camerasSect);
-					 this.addItem(section3);
-					 container.appendChild(section3.render());
-
-					 var section4=new section();
-					 section4.setName(event.detail.agentid+'twitter');
-					 section4.addItem(devBox);
-					 section4.addItem(twitterSect);
-					 this.addItem(section4);
-					 container.appendChild(section4.render());
-
-					 var section5=new section();
-					 section5.setName(event.detail.agentid+'radio');
-					 section5.addItem(devBox);
-					 section5.addItem(radioSect);
-					 this.addItem(section5);
-					 container.appendChild(section5.render());
-
-					 var section6=new section();
-					 section6.setName(event.detail.agentid+'graphics');
-					 section6.addItem(devBox);
-					 section6.addItem(graphicSect);
-					 this.addItem(section6);
-					 container.appendChild(section6.render());
-					 $("[name='twitter-checkbox']").bootstrapSwitch();
-            		 $("[name='set-graphic']").bootstrapSwitch();
-            		 $("[name='set-graphic-emisora']").bootstrapSwitch();
-            		 $("[name='set-camara']").bootstrapSwitch();
-					 $("[name='set-graphic-camara']").bootstrapSwitch();
-
-
-				 }
-				 else{
-				 	dev1.setID(event.detail.agentid);
-
-				 	var twitterSect=new twitterSection();
-			 		var radioSect=new radioSection();
-			 		var graphicSect=new graphicSection();
-			 		
-				 	
-					 var section1=new section();
-					 section1.setName(event.detail.agentid+'layouts');
-					 section1.addItem(devBox);
-					 section1.addItem(layoutSect1);
-					 this.addItem(section1);
-					 container.appendChild(section1.render());
-
-					 var section3=new section();
-					 section3.setName(event.detail.agentid+'cameras');
-					 section3.addItem(devBox);
-					 camerasSect.setCamsViewStatus(event.detail.agentid);
-					 camerasSect.setCamsSoundStatus(event.detail.agentid);
-					 section3.addItem(camerasSect);
-					 this.addItem(section3);
-					 container.appendChild(section3.render());
-
-					 var section4=new section();
-					 section4.setName(event.detail.agentid+'twitter');
-					 section4.addItem(devBox);
-					 section4.addItem(twitterSect);
-					 this.addItem(section4);
-					 container.appendChild(section4.render());
-
-					 var section5=new section();
-					 section5.setName(event.detail.agentid+'radio');
-					 section5.addItem(devBox);
-					 section5.addItem(radioSect);
-					 this.addItem(section5);
-					 container.appendChild(section5.render());
-
-					 var section6=new section();
-					 section6.setName(event.detail.agentid+'graphics');
-					 section6.addItem(devBox);
-					 section6.addItem(graphicSect);
-					 this.addItem(section6);
-					 container.appendChild(section6.render());
-					 $("[name='twitter-checkbox']").bootstrapSwitch();
-            		 $("[name='set-graphic']").bootstrapSwitch();
-            		 $("[name='set-graphic-emisora']").bootstrapSwitch();
-            		 $("[name='set-camara']").bootstrapSwitch();
-					 $("[name='set-graphic-camara']").bootstrapSwitch();
-
-				 }
-				 devBox.addDevice(dev1);
-
-				 var sections=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items;
-				 var sectionNum=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items.length;
-				 var sectionDiv=document.querySelector('#fullTemp').children;
-				 for(var i=2;i<sectionNum;i++){
-				 	sectionDiv[i].replaceChild(devBox.render(),sectionDiv[i].children[0]);
-				 }
 				}
 
-
-			}
-			else {
-				/* kendu gailua */
-				devBox.removeDevice(event.detail.agentid);
 				var sections=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items;
 				var sectionNum=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items.length;
 				var sectionDiv=document.querySelector('#fullTemp').children;
-				var removed=0;
 				for(var i=2;i<sectionNum;i++){
-					
-					if(sections[i-removed].name.indexOf(event.detail.agentid)===0)
-				 	{
-				 		mediascape.AdaptationToolkit.uiComponents.ctrlPanel.removeItem(sections[i-removed].name);
-				 		sections=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items;
-				 		container.removeChild(sectionDiv[i-removed]);
-				 		
-				 		removed=removed+1;
-
-				 	}
-				 	else{
-				 		sectionDiv[i-removed].replaceChild(devBox.render(),sectionDiv[i-removed].children[0]);
-				 	}
+					sectionDiv[i].replaceChild(devBox.render(),sectionDiv[i].children[0]);
+				}
+			}
+			else{
+				mediascape.AdaptationToolkit.uiComponents.ctrlPanel.selfID=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAgentId();
+				var dev1=new device();
+				/* ERABILI gailua gehitzeko
+				*event.detail.profile.deviceType
+				*	  Desktop, tablet, mobile, tv
+				*/
+				if(event.detail.profile.deviceType==='TV'){
+					dev1.setText('Television id: '+(b[0]._id+1));
+					dev1.setIcon('zmdi zmdi-tv');
+				}
+				else if(event.detail.profile.deviceType==='desktop' || event.detail.profile.deviceType==='Desktop')
+				{
+					dev1.setText('Desktop id: '+(b[0]._id+1));
+					dev1.setIcon('zmdi zmdi-laptop');
+				}
+				else if(event.detail.profile.deviceType==='Tablet')
+				{
+					dev1.setText('Tablet id: '+(b[0]._id+1));
+					dev1.setIcon('zmdi zmdi-tablet');
+				}
+				else if(event.detail.profile.deviceType==='mobile')
+				{
+					dev1.setText('SmartPhone id: '+(b[0]._id+1));
+					dev1.setIcon('zmdi zmdi-smartphone');
 				}
 
+				if(devBox.devices.length===0)
+				{/* Agentid-a * event.detail.agentid*/
+					dev1.setID(event.detail.agentid);
 
 
+					var twitterSect=new twitterSection();
+					var radioSect=new radioSection();
+					var graphicSect=new graphicSection();
+
+
+					var section2=new section();
+					section2.setName('AddDevice');
+					section2.addItem(qrSect);
+					this.addItem(section2);
+					container.appendChild(section2.render());
+
+					var section1=new section();
+					section1.setName(event.detail.agentid+'layouts');
+					section1.addItem(devBox);
+					section1.addItem(layoutSect1);
+					this.addItem(section1);
+					container.appendChild(section1.render());
+
+
+
+					var section3=new section();
+					section3.setName(event.detail.agentid+'cameras');
+					section3.addItem(devBox);
+					camerasSect.setCamsViewStatus(event.detail.agentid);
+					camerasSect.setCamsSoundStatus(event.detail.agentid);
+					section3.addItem(camerasSect);
+					this.addItem(section3);
+					container.appendChild(section3.render());
+
+					var section4=new section();
+					section4.setName(event.detail.agentid+'twitter');
+					section4.addItem(devBox);
+					section4.addItem(twitterSect);
+					this.addItem(section4);
+					container.appendChild(section4.render());
+
+					var section5=new section();
+					section5.setName(event.detail.agentid+'radio');
+					section5.addItem(devBox);
+					section5.addItem(radioSect);
+					this.addItem(section5);
+					container.appendChild(section5.render());
+
+					var section6=new section();
+					section6.setName(event.detail.agentid+'graphics');
+					section6.addItem(devBox);
+					section6.addItem(graphicSect);
+					this.addItem(section6);
+					container.appendChild(section6.render());
+					$("[name='twitter-checkbox']").bootstrapSwitch();
+					$("[name='set-graphic']").bootstrapSwitch();
+					$("[name='set-graphic-emisora']").bootstrapSwitch();
+					$("[name='set-camara']").bootstrapSwitch();
+					$("[name='set-graphic-camara']").bootstrapSwitch();
+
+
+				}
+				else{
+					dev1.setID(event.detail.agentid);
+
+					var twitterSect=new twitterSection();
+					var radioSect=new radioSection();
+					var graphicSect=new graphicSection();
+
+
+					var section1=new section();
+					section1.setName(event.detail.agentid+'layouts');
+					section1.addItem(devBox);
+					section1.addItem(layoutSect1);
+					this.addItem(section1);
+					container.appendChild(section1.render());
+
+					var section3=new section();
+					section3.setName(event.detail.agentid+'cameras');
+					section3.addItem(devBox);
+					camerasSect.setCamsViewStatus(event.detail.agentid);
+					camerasSect.setCamsSoundStatus(event.detail.agentid);
+					section3.addItem(camerasSect);
+					this.addItem(section3);
+					container.appendChild(section3.render());
+
+					var section4=new section();
+					section4.setName(event.detail.agentid+'twitter');
+					section4.addItem(devBox);
+					section4.addItem(twitterSect);
+					this.addItem(section4);
+					container.appendChild(section4.render());
+
+					var section5=new section();
+					section5.setName(event.detail.agentid+'radio');
+					section5.addItem(devBox);
+					section5.addItem(radioSect);
+					this.addItem(section5);
+					container.appendChild(section5.render());
+
+					var section6=new section();
+					section6.setName(event.detail.agentid+'graphics');
+					section6.addItem(devBox);
+					section6.addItem(graphicSect);
+					this.addItem(section6);
+					container.appendChild(section6.render());
+					$("[name='twitter-checkbox']").bootstrapSwitch();
+					$("[name='set-graphic']").bootstrapSwitch();
+					$("[name='set-graphic-emisora']").bootstrapSwitch();
+					$("[name='set-camara']").bootstrapSwitch();
+					$("[name='set-graphic-camara']").bootstrapSwitch();
+
+				}
+				devBox.addDevice(dev1);
+
+				var sections=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items;
+				var sectionNum=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items.length;
+				var sectionDiv=document.querySelector('#fullTemp').children;
+				for(var i=2;i<sectionNum;i++){
+					sectionDiv[i].replaceChild(devBox.render(),sectionDiv[i].children[0]);
+				}
 			}
+
+
+		}
+		else {
+			/* kendu gailua */
+			devBox.removeDevice(event.detail.agentid);
+			var sections=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items;
+			var sectionNum=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items.length;
+			var sectionDiv=document.querySelector('#fullTemp').children;
+			var removed=0;
+			for(var i=2;i<sectionNum;i++){
+
+				if(sections[i-removed].name.indexOf(event.detail.agentid)===0)
+				{
+					mediascape.AdaptationToolkit.uiComponents.ctrlPanel.removeItem(sections[i-removed].name);
+					sections=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items;
+					container.removeChild(sectionDiv[i-removed]);
+
+					removed=removed+1;
+
+				}
+				else{
+					sectionDiv[i-removed].replaceChild(devBox.render(),sectionDiv[i-removed].children[0]);
+				}
+			}
+
+
+
+		}
 	}
 	document.addEventListener('agentChange',this.onAgentChange.bind(this));
 
@@ -477,66 +477,68 @@ var ControlPanel= function (url){
 			for(var j=0;j<changes.length;j++){
 				for(var i=2;i<sectionNum;i++){
 					//if(changes[j].property==='show'){
+					var selector = '#view'+changes[j].compId;
+					if(changes[j].property==='show'){
 
-						if(changes[j].property==='show'){
+						if(sections[i].name.indexOf(event.detail.agentid)===0 &&
+								sectionDiv[i].querySelector(selector)!==null){
+							// Show/hide commands
+							if(changes[j].newValue===false){
 
-							if(sections[i].name.indexOf(event.detail.agentid)===0 && sectionDiv[i].querySelector('#view'+changes[j].compId)!==null){
-								// Show/hide commands
-								if(changes[j].newValue===false){
-									
-									sectionDiv[i].querySelector('#view'+changes[j].compId).children[0].className='bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-id-viewCheck'+changes[j].compId+' bootstrap-switch-animate bootstrap-switch-off';
-									sectionDiv[i].querySelector('#view'+changes[j].compId).children[0].children[0].style.width='150px'
-									sectionDiv[i].querySelector('#view'+changes[j].compId).children[0].children[0].style.marginLeft='-50px';
-								
-								}
-								else if(changes[j].newValue===true){
-									sectionDiv[i].querySelector('#view'+changes[j].compId).children[0].className='bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-id-viewCheck'+changes[j].compId+' bootstrap-switch-animate bootstrap-switch-on';
-									sectionDiv[i].querySelector('#view'+changes[j].compId).children[0].children[0].style.width='150px'
-									sectionDiv[i].querySelector('#view'+changes[j].compId).children[0].children[0].style.marginLeft='0px';
-									
-								}
-							}				
+								sectionDiv[i].querySelector(selector).children[0].className='bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-id-viewCheck'+changes[j].compId+' bootstrap-switch-animate bootstrap-switch-off';
+								sectionDiv[i].querySelector(selector).children[0].children[0].style.width='150px'
+								sectionDiv[i].querySelector(selector).children[0].children[0].style.marginLeft='-50px';
 
+							}
+							else if(changes[j].newValue===true){
+								sectionDiv[i].querySelector(selector).children[0].className='bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-id-viewCheck'+changes[j].compId+' bootstrap-switch-animate bootstrap-switch-on';
+								sectionDiv[i].querySelector(selector).children[0].children[0].style.width='150px'
+								sectionDiv[i].querySelector(selector).children[0].children[0].style.marginLeft='0px';
+
+							}
 						}
 
-						if(changes[j].newValue==='hide' || changes[j].newValue==='show'){
-							if(sections[i].name.indexOf(event.detail.agentid)===0 && sectionDiv[i].querySelector('#view'+changes[j].compId)!==null){
-								// Show/hide commands
-								if(changes[j].newValue==='hide'){
-									
-									sectionDiv[i].querySelector('#view'+changes[j].compId).children[0].className='bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-id-viewCheck'+changes[j].compId+' bootstrap-switch-animate bootstrap-switch-off';
-									sectionDiv[i].querySelector('#view'+changes[j].compId).children[0].children[0].style.width='150px'
-									sectionDiv[i].querySelector('#view'+changes[j].compId).children[0].children[0].style.marginLeft='-50px';
-								
-								}
-								else if(changes[j].newValue==='show'){
-									sectionDiv[i].querySelector('#view'+changes[j].compId).children[0].className='bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-id-viewCheck'+changes[j].compId+' bootstrap-switch-animate bootstrap-switch-on';
-									sectionDiv[i].querySelector('#view'+changes[j].compId).children[0].children[0].style.width='150px'
-									sectionDiv[i].querySelector('#view'+changes[j].compId).children[0].children[0].style.marginLeft='0px';
-									
-								}
-							}				
+					}
+		else if(changes[j].property==='customCmd'){
+					if(changes[j].newValue==='hide' || changes[j].newValue==='show'){
+						if(sections[i].name.indexOf(event.detail.agentid)===0 && sectionDiv[i].querySelector(selector)!==null){
+							// Show/hide commands
+							if(changes[j].newValue==='hide'){
+
+								sectionDiv[i].querySelector(selector).children[0].className='bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-id-viewCheck'+changes[j].compId+' bootstrap-switch-animate bootstrap-switch-off';
+								sectionDiv[i].querySelector(selector).children[0].children[0].style.width='150px'
+								sectionDiv[i].querySelector(selector).children[0].children[0].style.marginLeft='-50px';
+
+							}
+							else if(changes[j].newValue==='show'){
+								sectionDiv[i].querySelector(selector).children[0].className='bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-id-viewCheck'+changes[j].compId+' bootstrap-switch-animate bootstrap-switch-on';
+								sectionDiv[i].querySelector(selector).children[0].children[0].style.width='150px'
+								sectionDiv[i].querySelector(selector).children[0].children[0].style.marginLeft='0px';
+
+							}
 						}
-					
+					}
+
 					//}
 					//Sound/mute
 					//else{
-						else if(changes[j].newValue==='mutePlayer' || changes[j].newValue==='soundPlayer'){
-							if(sections[i].name.indexOf(event.detail.agentid)===0 && sectionDiv[i].querySelector('#sound'+changes[j].compId)!==null){
-								if(changes[j].newValue==='mutePlayer'){								
-									sectionDiv[i].querySelector('#sound'+changes[j].compId).children[0].className='bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-id-soundCheck'+changes[j].compId+' bootstrap-switch-animate bootstrap-switch-off';
-									sectionDiv[i].querySelector('#sound'+changes[j].compId).children[0].children[0].style.width='150px'
-									sectionDiv[i].querySelector('#sound'+changes[j].compId).children[0].children[0].style.marginLeft='-50px';
-								}
-								else if(changes[j].newValue==='soundPlayer'){
-									sectionDiv[i].querySelector('#sound'+changes[j].compId).children[0].className='bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-id-soundCheck'+changes[j].compId+' bootstrap-switch-animate bootstrap-switch-on';
-									sectionDiv[i].querySelector('#sound'+changes[j].compId).children[0].children[0].style.width='150px'
-									sectionDiv[i].querySelector('#sound'+changes[j].compId).children[0].children[0].style.marginLeft='0px';
-									
-								}
+					else if(changes[j].newValue==='mutePlayer' || changes[j].newValue==='soundPlayer'){
+						var selector = '#sound'+changes[j].compId;
+						if(sections[i].name.indexOf(event.detail.agentid)===0 && sectionDiv[i].querySelector(selector)!==null){
+							if(changes[j].newValue==='mutePlayer'){
+								sectionDiv[i].querySelector(selector).children[0].className='bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-id-soundCheck'+changes[j].compId+' bootstrap-switch-animate bootstrap-switch-off';
+								sectionDiv[i].querySelector(selector).children[0].children[0].style.width='150px'
+								sectionDiv[i].querySelector(selector).children[0].children[0].style.marginLeft='-50px';
+							}
+							else if(changes[j].newValue==='soundPlayer'){
+								sectionDiv[i].querySelector(selector).children[0].className='bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-id-soundCheck'+changes[j].compId+' bootstrap-switch-animate bootstrap-switch-on';
+								sectionDiv[i].querySelector(selector).children[0].children[0].style.width='150px'
+								sectionDiv[i].querySelector(selector).children[0].children[0].style.marginLeft='0px';
+
 							}
 						}
-					//}
+					}
+					}
 				}
 			}
 		}
@@ -655,7 +657,7 @@ var ControlPanel= function (url){
 		document.querySelector('#fullTemp').style.display='block';
 		this.showing=true;
 	}
-		this.controlPanel();
+	this.controlPanel();
 }
 
 
@@ -734,7 +736,7 @@ var menu = function (){
 		//take the agent number which is related to the agentId
 		var device=new devId();
 
-		
+
 		var dev=device.render();
 		containerDiv.appendChild(dev);
 
@@ -880,7 +882,7 @@ var device=function(){
 		var i=document.createElement('i');
 		i.className=this.icon;
 		a.appendChild(i);
-		
+
 
 		a.innerHTML=a.innerHTML+this.text;
 
@@ -957,7 +959,7 @@ var layout=function(){
 	this.onclick=function(){
 		var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
 		mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.changeAgentlayout(agentToChange,this.name);
-		
+
 	}
 
 }
@@ -996,7 +998,7 @@ var qrSection=function(url){
 		extDiv.style.width=width;
 		var qrdiv=document.createElement('div');
 		qrdiv.className='qr-code-content';
-		
+
 		mediascape.association.createQRcode(url,qrdiv,(30*width/100),(30*width/100),'',(25*width/100),50);
 		//var qrimg=document.createElement('img');
 		//qrimg.src="../resources/css/configPanel/img/qr/qrcode.png";
@@ -1038,80 +1040,80 @@ var camera=function(){
 	}
 	this.setSoundStatus=function(stat){
 		this.soundStatus=stat;
-	}	
-	
+	}
+
 	this.render=function(){
 		var div1=document.createElement('div');
-			div1.className='col-md-12 camara';
+		div1.className='col-md-12 camara';
 
-				var div2=document.createElement('div');
-				div2.className='col-md-8 camara-logo-partidos';
+		var div2=document.createElement('div');
+		div2.className='col-md-8 camara-logo-partidos';
 
-					var img1=document.createElement('img');
-					img1.src=this.image;
+		var img1=document.createElement('img');
+		img1.src=this.image;
 
-					div2.appendChild(img1);
+		div2.appendChild(img1);
 
-				var div3=document.createElement('div');
-				div3.className='col-md-4';
+		var div3=document.createElement('div');
+		div3.className='col-md-4';
 
-					var div4=document.createElement('div');
-					div4.className='col-md-12';
+		var div4=document.createElement('div');
+		div4.className='col-md-12';
 
-						var div5=document.createElement('div');
-						div5.className='col-md-6 iconos-camara';
-							var i1=document.createElement('i');
-							i1.className='zmdi zmdi-videocam zmdi-hc-2x';
+		var div5=document.createElement('div');
+		div5.className='col-md-6 iconos-camara';
+		var i1=document.createElement('i');
+		i1.className='zmdi zmdi-videocam zmdi-hc-2x';
 
-							div5.appendChild(i1);
+		div5.appendChild(i1);
 
-						var div6=document.createElement('div');
-						div6.className='col-md-6 check-switch';
-							var input1=document.createElement('input');
-							input1.type='checkbox';
-							input1.name='set-camara';
-							input1.checked=this.viewStatus;
-							input1.id='viewCheck'+this.id;
-							
-							div6.appendChild(input1);
-							div6.id='view'+this.id;
-							div6.addEventListener('click',this.viewclick.bind(this),true);
+		var div6=document.createElement('div');
+		div6.className='col-md-6 check-switch';
+		var input1=document.createElement('input');
+		input1.type='checkbox';
+		input1.name='set-camara';
+		input1.checked=this.viewStatus;
+		input1.id='viewCheck'+this.id;
 
-						div4.appendChild(div5);
-						div4.appendChild(div6);
+		div6.appendChild(input1);
+		div6.id='view'+this.id;
+		div6.addEventListener('click',this.viewclick.bind(this),true);
 
-					var div7=document.createElement('div');
-					div7.className='col-md-12';
+		div4.appendChild(div5);
+		div4.appendChild(div6);
 
-						var div8=document.createElement('div');
-						div8.className='col-md-6 iconos-camara';
-							var i2=document.createElement('i');
-							i2.className='zmdi zmdi-volume-up zmdi-hc-2x';
+		var div7=document.createElement('div');
+		div7.className='col-md-12';
 
-							div8.appendChild(i2);
+		var div8=document.createElement('div');
+		div8.className='col-md-6 iconos-camara';
+		var i2=document.createElement('i');
+		i2.className='zmdi zmdi-volume-up zmdi-hc-2x';
 
-						var div9=document.createElement('div');
-						div9.className='col-md-6 check-switch';
-							var input2=document.createElement('input');
-							input2.type='checkbox';
-							input2.name='set-camara';
-							input2.checked=this.soundStatus;			
+		div8.appendChild(i2);
 
-							input2.id='soundCheck'+this.id;
-							div9.appendChild(input2);
-							div9.id='sound'+this.id;
-							
-							
-							div9.addEventListener('click',this.soundclick.bind(this),true);
+		var div9=document.createElement('div');
+		div9.className='col-md-6 check-switch';
+		var input2=document.createElement('input');
+		input2.type='checkbox';
+		input2.name='set-camara';
+		input2.checked=this.soundStatus;
 
-						div7.appendChild(div8);
-						div7.appendChild(div9);
-				div3.appendChild(div4);
-				div3.appendChild(div7);
+		input2.id='soundCheck'+this.id;
+		div9.appendChild(input2);
+		div9.id='sound'+this.id;
 
-			div1.appendChild(div2);
-			div1.appendChild(div3);
-			return div1;
+
+		div9.addEventListener('click',this.soundclick.bind(this),true);
+
+		div7.appendChild(div8);
+		div7.appendChild(div9);
+		div3.appendChild(div4);
+		div3.appendChild(div7);
+
+		div1.appendChild(div2);
+		div1.appendChild(div3);
+		return div1;
 	}
 	this.viewclick=function(){
 		var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
@@ -1121,7 +1123,7 @@ var camera=function(){
 		function filterById(el){
 			if(el.id===val)return el;
 		}
-		
+
 		var a=agents.filter(filterById);
 		var scope=this;
 		var b=a[0].capabilities.componentsStatus.filter(function(el,i){
@@ -1145,7 +1147,7 @@ var camera=function(){
 		function filterById(el){
 			if(el.id===val)return el;
 		}
-		
+
 		var a=agents.filter(filterById);
 		var scope=this;
 		var b=a[0].capabilities.componentsStatus.filter(function(el,i){
@@ -1156,13 +1158,13 @@ var camera=function(){
 
 
 
-		 if(b[0].customCmd.lastIndexOf('mutePlayer') <b[0].customCmd.lastIndexOf('soundPlayer')){
+		if(b[0].customCmd.lastIndexOf('mutePlayer') <b[0].customCmd.lastIndexOf('soundPlayer')){
 
-		 	mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'mutePlayer');
-		 }
-		 else{
-		 	mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'soundPlayer');
-		 }
+			mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'mutePlayer');
+		}
+		else{
+			mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'soundPlayer');
+		}
 
 
 	}
@@ -1177,24 +1179,24 @@ var camerasSection=function(){
 
 		var extDiv=document.createElement('div');
 		extDiv.className='template-content-center ';
-		
-			var div1=document.createElement('div');
-			div1.className='col-md-12 layout-columns';
 
-				var div2=document.createElement('div');
-				div2.className='col-md-12';
+		var div1=document.createElement('div');
+		div1.className='col-md-12 layout-columns';
 
-					var div3=document.createElement('div');
-					div3.className='contenido content-camara';
+		var div2=document.createElement('div');
+		div2.className='col-md-12';
 
-						this.cameras.forEach(function(it){
+		var div3=document.createElement('div');
+		div3.className='contenido content-camara';
 
-							div3.appendChild(it.render());
-						});
+		this.cameras.forEach(function(it){
 
-				div2.appendChild(div3);
-				div1.appendChild(div2);
-				extDiv.appendChild(div1);
+			div3.appendChild(it.render());
+		});
+
+		div2.appendChild(div3);
+		div1.appendChild(div2);
+		extDiv.appendChild(div1);
 
 		return extDiv;
 	}
@@ -1203,7 +1205,7 @@ var camerasSection=function(){
 		var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
 		var agents=agCtx.agents;
 		var agentToChange=agentID;
-		
+
 		var a=agents.filter(function(el){
 			if(el.id===agentToChange)return el;
 		});
@@ -1216,7 +1218,7 @@ var camerasSection=function(){
 				if(el.compId===cam)return el;
 			});
 
-		
+
 			if(b[0].show===true){
 				this.cameras[i].setViewStatus(true);
 			}
@@ -1231,7 +1233,7 @@ var camerasSection=function(){
 		var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
 		var agents=agCtx.agents;
 		var agentToChange=agentID;
-		
+
 		var a=agents.filter(function(el){
 			if(el.id===agentToChange)return el;
 		});
@@ -1247,21 +1249,21 @@ var camerasSection=function(){
 
 			if(b[0].customCmd.lastIndexOf('mutePlayer')===-1 && b[0].customCmd.lastIndexOf('soundPlayer')===-1){
 				if(document.querySelector('#'+this.cameras[i].name).ismuted==='false'){
-	                this.cameras[i].setSoundStatus(true);
-	              }
-	              else{
-	                this.cameras[i].setSoundStatus(false);
-	              }
+					this.cameras[i].setSoundStatus(true);
+				}
+				else{
+					this.cameras[i].setSoundStatus(false);
+				}
 
 			}
 			else {
 				if(b[0].customCmd.lastIndexOf('mutePlayer') <b[0].customCmd.lastIndexOf('soundPlayer')){
 
-			 		this.cameras[i].setSoundStatus(false);
-			 	}
-			 	else{
+					this.cameras[i].setSoundStatus(false);
+				}
+				else{
 					this.cameras[i].setSoundStatus(true);
-			 	}
+				}
 			}
 		}
 

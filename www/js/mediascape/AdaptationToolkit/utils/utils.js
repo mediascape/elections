@@ -48,10 +48,11 @@ define ([],
                 }
               } else if(a.constructor != Function) { // filter out functions
                 if(a != b || a.length != b.length) {
+                 if (objectGraphPath.length>2){
                   var cmpId = objectGraphPath[1].substring(1,objectGraphPath[1].length-1);
                   console.log(objectGraphPath);
                   objectGraphPath = objectGraphPath.filter(function(p){ if (p.indexOf('undefined')===-1) return true;})
-                  if (objectGraphPath.length>2){
+
                       var prop = objectGraphPath[objectGraphPath.length-1].substring(1);
                       propertyChanges.push({ "compId":cmpId,"property":prop,"newValue":a});
                   }

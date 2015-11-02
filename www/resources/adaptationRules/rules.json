@@ -229,7 +229,7 @@
         "name": "userpref",
         "enabled": true,
         "priority": 2,
-        "capabilities": ["deviceType", "operation","componentsStatus"],
+        "capabilities": ["deviceType","componentsStatus"],
         "behaviour": [
             {
                 "componentId": "chart",
