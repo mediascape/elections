@@ -148,7 +148,7 @@
         "bestfit": {
             "name": "bestfit",
             "enabled": true,
-            "capabilities": ["screenSize", "deviceType","touchScreen","componentsStatus","layoutEvent","platform"],
+            "capabilities": ["screenSize", "deviceType","touchScreen","componentsStatus","layoutEvent","platform","layoutStatus"],
             "priority": 1,
             "behaviour": [
                 {

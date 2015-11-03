@@ -423,6 +423,7 @@ function($, applicationContext){
           console.log(required_capability_list);
           setComponentsAsIntrument();
           setLayoutAsInstrument();
+          setLayoutStatusInstrument();
         };
 
         // parse the input json file to extract rules and constraints
@@ -501,7 +502,7 @@ function($, applicationContext){
 
             },
             on: function (){
-              ac.setItem('layoutEvent','');
+                ac.setItem('layoutEvent','');
 
             },
             off: function (){
@@ -511,6 +512,31 @@ function($, applicationContext){
           };
           ac.load({
             "layoutEvent": layoutEventInstrument
+          });
+        }
+        var setLayoutStatusInstrument = function (){
+          var ac = mediascape.agentContext;
+          var _this = this;
+          var layoutEventInstrument = {
+            init: function () {
+              this.setCapability("layoutStatus", "supported");
+              ac.setItem('layoutStatus',mediascape.AdaptationToolkit.Adaptation.UIAdaptation.getActualLayout());
+              console.log("INIT LAYOUT STATUS INSTRUMENT");
+
+            },
+            on: function (){
+                document.addEventListener('layoutEvent',function(layout){
+                      ac.setItem('layoutStatus',layout);
+                });
+
+            },
+            off: function (){
+
+            }
+
+          };
+          ac.load({
+            "layoutStatus": layoutEventInstrument
           });
         }
 

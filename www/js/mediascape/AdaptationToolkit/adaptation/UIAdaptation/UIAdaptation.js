@@ -787,7 +787,9 @@ define(
             }
           }
         }
-
+      this.getActualLayout = function (){
+         return actualLayout.name;
+      }
 
       this.updateComponentQuery = function (cmp){
         var cmps = mediascape.AdaptationToolkit.componentManager.core.getComponents();
