@@ -233,6 +233,7 @@ var ControlPanel= function (url){
 					var section1=new section();
 					section1.setName(agCtx.agents[i].id+'layouts');
 					section1.addItem(devBox);
+					layoutSect1.setActiveLayout(agCtx.agents[i].capabilities.layoutStatus);
 					section1.addItem(layoutSect1);
 					this.addItem(section1);
 					container.appendChild(section1.render());
@@ -329,6 +330,7 @@ var ControlPanel= function (url){
 					var section1=new section();
 					section1.setName(event.detail.agentid+'layouts');
 					section1.addItem(devBox);
+					layoutSect1.setActiveLayout(b[0].capabilities.layoutStatus);
 					section1.addItem(layoutSect1);
 					this.addItem(section1);
 					container.appendChild(section1.render());
@@ -383,6 +385,7 @@ var ControlPanel= function (url){
 					var section1=new section();
 					section1.setName(event.detail.agentid+'layouts');
 					section1.addItem(devBox);
+					layoutSect1.setActiveLayout(b[0].capabilities.layoutStatus);
 					section1.addItem(layoutSect1);
 					this.addItem(section1);
 					container.appendChild(section1.render());
@@ -499,45 +502,60 @@ var ControlPanel= function (url){
 						}
 
 					}
-		else if(changes[j].property==='customCmd'){
-					if(changes[j].newValue==='hide' || changes[j].newValue==='show'){
-						if(sections[i].name.indexOf(event.detail.agentid)===0 && sectionDiv[i].querySelector(selector)!==null){
-							// Show/hide commands
-							if(changes[j].newValue==='hide'){
+					else if(changes[j].property==='customCmd'){
+						if(changes[j].newValue==='hide' || changes[j].newValue==='show'){
+							if(sections[i].name.indexOf(event.detail.agentid)===0 && sectionDiv[i].querySelector(selector)!==null){
+								// Show/hide commands
+								if(changes[j].newValue==='hide'){
 
-								sectionDiv[i].querySelector(selector).children[0].className='bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-id-viewCheck'+changes[j].compId+' bootstrap-switch-animate bootstrap-switch-off';
-								sectionDiv[i].querySelector(selector).children[0].children[0].style.width='150px'
-								sectionDiv[i].querySelector(selector).children[0].children[0].style.marginLeft='-50px';
+									sectionDiv[i].querySelector(selector).children[0].className='bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-id-viewCheck'+changes[j].compId+' bootstrap-switch-animate bootstrap-switch-off';
+									sectionDiv[i].querySelector(selector).children[0].children[0].style.width='150px'
+									sectionDiv[i].querySelector(selector).children[0].children[0].style.marginLeft='-50px';
 
+								}
+								else if(changes[j].newValue==='show'){
+									sectionDiv[i].querySelector(selector).children[0].className='bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-id-viewCheck'+changes[j].compId+' bootstrap-switch-animate bootstrap-switch-on';
+									sectionDiv[i].querySelector(selector).children[0].children[0].style.width='150px'
+									sectionDiv[i].querySelector(selector).children[0].children[0].style.marginLeft='0px';
+
+								}
 							}
-							else if(changes[j].newValue==='show'){
-								sectionDiv[i].querySelector(selector).children[0].className='bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-id-viewCheck'+changes[j].compId+' bootstrap-switch-animate bootstrap-switch-on';
-								sectionDiv[i].querySelector(selector).children[0].children[0].style.width='150px'
-								sectionDiv[i].querySelector(selector).children[0].children[0].style.marginLeft='0px';
+						}
 
+						//}
+						//Sound/mute
+						//else{
+						else if(changes[j].newValue==='mutePlayer' || changes[j].newValue==='soundPlayer'){
+							var selector = '#sound'+changes[j].compId;
+							if(sections[i].name.indexOf(event.detail.agentid)===0 && sectionDiv[i].querySelector(selector)!==null){
+								if(changes[j].newValue==='mutePlayer'){
+									sectionDiv[i].querySelector(selector).children[0].className='bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-id-soundCheck'+changes[j].compId+' bootstrap-switch-animate bootstrap-switch-off';
+									sectionDiv[i].querySelector(selector).children[0].children[0].style.width='150px'
+									sectionDiv[i].querySelector(selector).children[0].children[0].style.marginLeft='-50px';
+								}
+								else if(changes[j].newValue==='soundPlayer'){
+									sectionDiv[i].querySelector(selector).children[0].className='bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-id-soundCheck'+changes[j].compId+' bootstrap-switch-animate bootstrap-switch-on';
+									sectionDiv[i].querySelector(selector).children[0].children[0].style.width='150px'
+									sectionDiv[i].querySelector(selector).children[0].children[0].style.marginLeft='0px';
+
+								}
 							}
 						}
 					}
-
-					//}
-					//Sound/mute
-					//else{
-					else if(changes[j].newValue==='mutePlayer' || changes[j].newValue==='soundPlayer'){
-						var selector = '#sound'+changes[j].compId;
-						if(sections[i].name.indexOf(event.detail.agentid)===0 && sectionDiv[i].querySelector(selector)!==null){
-							if(changes[j].newValue==='mutePlayer'){
-								sectionDiv[i].querySelector(selector).children[0].className='bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-id-soundCheck'+changes[j].compId+' bootstrap-switch-animate bootstrap-switch-off';
-								sectionDiv[i].querySelector(selector).children[0].children[0].style.width='150px'
-								sectionDiv[i].querySelector(selector).children[0].children[0].style.marginLeft='-50px';
-							}
-							else if(changes[j].newValue==='soundPlayer'){
-								sectionDiv[i].querySelector(selector).children[0].className='bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-id-soundCheck'+changes[j].compId+' bootstrap-switch-animate bootstrap-switch-on';
-								sectionDiv[i].querySelector(selector).children[0].children[0].style.width='150px'
-								sectionDiv[i].querySelector(selector).children[0].children[0].style.marginLeft='0px';
-
-							}
+				}
+			}
+		}
+		else if(event.detail.context.lastChange.key==='layoutEvent'){
+			for(var i=2;i<sectionNum;i++){
+				if(sections[i].name===event.detail.agentid+'layouts'){
+					var layoutList=sections[i].items[1].layouts;
+					for(var j=0;j<layoutList.length;j++){
+						if(layoutList[j].name===event.detail.context.lastChange.value){
+							sectionDiv[i].querySelector('#'+event.detail.context.lastChange.value+'Layout').className='active';
 						}
-					}
+						else{
+							sectionDiv[i].querySelector('#'+layoutList[j].name+'Layout').className='';
+						}
 					}
 				}
 			}
@@ -648,6 +666,27 @@ var ControlPanel= function (url){
 			}
 		}
 
+	}
+	this.changeLayout=function(agentToChange,layoutName){
+		var sections=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items;
+		var sectionNum=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items.length;
+		var sectionDiv=document.querySelector('#fullTemp').children;
+
+
+
+		for(var i=2;i<sectionNum;i++){
+			if(sections[i].name===agentToChange+'layouts'){
+				var layoutList=sections[i].items[1].layouts;
+				for(var j=0;j<layoutList.length;j++){
+					if(layoutList[j].name===layoutName){
+						sectionDiv[i].querySelector('#'+layoutName+'Layout').className='active';
+					}
+					else{
+						sectionDiv[i].querySelector('#'+layoutList[j].name+'Layout').className='';
+					}
+				}
+			}
+		}
 	}
 	this.hide=function(){
 		document.querySelector('#fullTemp').style.display='none';
@@ -941,13 +980,16 @@ var layout=function(){
 	}
 
 
-	this.render=function(){
+	this.render=function(actLay){
 		var div=document.createElement('div');
 		div.className="col-md-4 boxlayout";
 
 		var a=document.createElement('a');
 		a.href='#';
-
+		a.id=this.name+'Layout';
+		if(this.name===actLay){//jarri aktibatua dagoena
+			a.className='active';
+		}
 
 		var img=document.createElement('img');
 		img.src=this.image;
@@ -959,17 +1001,20 @@ var layout=function(){
 	this.onclick=function(){
 		var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
 		mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.changeAgentlayout(agentToChange,this.name);
-
+		mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeLayout(agentToChange,this.name);
 	}
 
 }
 
 var layoutSection=function(){
 	this.layouts=[];
-
+	this.activeLayout='';
 
 	this.addLayout=function(lay){
 		this.layouts.push(lay);
+	}
+	this.setActiveLayout=function(actLay){
+		this.activeLayout=actLay;
 	}
 
 	this.render=function(){
@@ -977,10 +1022,10 @@ var layoutSection=function(){
 		div.className='template-content-center';
 		var layoutCol=document.createElement('div');
 		layoutCol.className="col-md-12 layout-columns";
-
+		var scope=this;
 		this.layouts.forEach(function(it){
 
-			layoutCol.appendChild(it.render());
+			layoutCol.appendChild(it.render(scope.activeLayout));
 		});
 
 		div.appendChild(layoutCol);
