@@ -288,6 +288,8 @@ function($, applicationContext){
               if (e.agentid === me && key === "layoutEvent"){
                   if (value !="" && value !="supported"){
                     mediascape.AdaptationToolkit.Adaptation.UIAdaptation.useLayout(value);
+                    var eventL = new CustomEvent('layoutEvent',{detail:{layoutName:value}})
+                    document.dispatchEvent(eventL);
                     mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAgents ()['self'].setItem('layoutEvent','');
                   }
               }
@@ -521,12 +523,15 @@ function($, applicationContext){
             init: function () {
               this.setCapability("layoutStatus", "supported");
               ac.setItem('layoutStatus',mediascape.AdaptationToolkit.Adaptation.UIAdaptation.getActualLayout());
+              document.addEventListener('layoutEvent',function(ev){
+                    ac.setItem('layoutStatus',ev.detail.layoutName);
+              });
               console.log("INIT LAYOUT STATUS INSTRUMENT");
 
             },
             on: function (){
-                document.addEventListener('layoutEvent',function(layout){
-                      ac.setItem('layoutStatus',layout);
+                document.addEventListener('layoutEvent',function(ev){
+                      ac.setItem('layoutStatus',ev.detail.layoutName);
                 });
 
             },
