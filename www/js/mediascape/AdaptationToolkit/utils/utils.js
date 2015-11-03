@@ -20,7 +20,7 @@ define ([],
         return text;
       }
       this.getObjectDiff = function (objectA,objectB){
-
+          console.log(objectA,objectB);
           var propertyChanges = [];
           var objectGraphPath = ["componentsStatus"];
           (function(a, b) {

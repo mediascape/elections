@@ -18,7 +18,7 @@ function($, applicationContext){
   var multiDeviceAdaptation = function(){
     // the reference to the shared context
     var applicationContext = undefined;
-    var nonUIChange = []//["mutePlayer","soundPlayer"];
+    var nonUIChange = ["mutePlayer","soundPlayer"];
     // the constructed context based on the context updates
     var context = {"agents":[]};
     var userActionOn = false;
@@ -116,6 +116,9 @@ function($, applicationContext){
           localStatus = obj;
           return mediascape.AdaptationToolkit.Utils.getObjectDiff(obj,localStatus);
         }
+        else if (obj.length != localStatus.length){
+           return null;
+        }
         else {
            var diff = mediascape.AdaptationToolkit.Utils.getObjectDiff(obj,localStatus);
            localStatus = obj;
@@ -126,7 +129,7 @@ function($, applicationContext){
     var updateContext = function(change) {
       var diff = null;
       if (change.capability === "componentsStatus") diff = getChangeDiff(change.value);
-      if (change.diff) {diff = change.diff; change.capability ="componentsStatus"}
+      if (change.diff && diff !=null) {diff = change.diff; change.capability ="componentsStatus"}
           context.lastChange = {key:change.capability,value:change.value,diff:diff};
           context.agentid = change.agentid;
       if( change.type === 'CAPABILITY_CHANGE' ) {
@@ -673,7 +676,7 @@ function($, applicationContext){
                       agentChange = ag;
                       //if (cmd === "hide") cmps[c].customCmd = [];
                       /*else */cmps[c].customCmd.push(cmd);
-                      if (nonUIChange.indexOf(cmd)>-1){
+                     if (nonUIChange.indexOf(cmd)>-1){
                           cmps.eventType="data";
                       }
                       else {
@@ -693,12 +696,12 @@ function($, applicationContext){
                 if (cmps.eventType!=="data")
                     setTimeout(function(){
                       onUpdateContext({type:"VALUE_CHANGE",agentid:agentId,diff:[{"property":"customCmd","newValue":cmd,compId:cmpId}]});
-                    },0);
+                    },200);
                 userActionOn = true;
                 setTimeout(function(){
                   userActionOn=false;
                   mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.notifyUpdateContext(context,"cmp_changed",agentId);
-                },500);
+                },800);
 
 
               }
