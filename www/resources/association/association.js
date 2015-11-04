@@ -68,9 +68,11 @@ define( ["jquery","qrcode"], function($) {
 						associationCode.style.transition="width 1.5s";
 						associationCode.appendChild(qrElement);
 						associationCode.appendChild(document.createElement("br"));
-						var urlElement = document.createElement("p");
+						var urlElement = document.createElement("a");
 						urlElement.id="url";
+						urlElement.href=shortedUrl;
 						urlElement.innerHTML=shortedUrl;
+						urlElement.target='_blank';
 						//urlElement.style.height="20px";
 						//urlElement.style.fontSize='30px';
 						//urlElement.style.textAlign='center';

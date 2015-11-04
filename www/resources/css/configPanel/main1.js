@@ -373,6 +373,7 @@ var ControlPanel= function (url){
 					$("[name='set-graphic-camara']").bootstrapSwitch();
 
 
+
 				}
 				else{
 					dev1.setID(event.detail.agentid);
@@ -434,6 +435,7 @@ var ControlPanel= function (url){
 				for(var i=2;i<sectionNum;i++){
 					sectionDiv[i].replaceChild(devBox.render(),sectionDiv[i].children[0]);
 				}
+				
 			}
 
 
@@ -460,7 +462,7 @@ var ControlPanel= function (url){
 					sectionDiv[i-removed].replaceChild(devBox.render(),sectionDiv[i-removed].children[0]);
 				}
 			}
-
+			mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSection(mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeSection,undefined);
 
 
 		}
@@ -653,8 +655,9 @@ var ControlPanel= function (url){
 			if(this.activeSection==='AddDevice'){
 				document.querySelector('#'+this.activeSection).className='options';
 			}
-
-			document.querySelector('#'+sectionName).className='active';
+			if(sectionName!==''){
+				document.querySelector('#'+sectionName).className='active';
+			}
 
 			if(device!==undefined){
 				this.activeSection=sectionName;
@@ -665,6 +668,7 @@ var ControlPanel= function (url){
 				this.activeDevice=this.selfID;
 			}
 		}
+
 
 	}
 	this.changeLayout=function(agentToChange,layoutName){

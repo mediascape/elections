@@ -15,7 +15,7 @@
 }
 .add-device-content  .qr-code-content { margin-top: 60px;}
 .add-device-content  .qr-code-content img { }
-.add-device-content  p {color: white; font-size: 3vw; margin-top: 10px;}
+.add-device-content  a {color: white; font-size: 3vw; margin-top: 10px;}
 .add-device-content .qr-code-toy {
 	right: 0;
     position: absolute;
