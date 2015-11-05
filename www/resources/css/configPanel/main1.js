@@ -420,6 +420,8 @@ var ControlPanel= function (url){
 					section6.addItem(graphicSect);
 					this.addItem(section6);
 					container.appendChild(section6.render());
+
+
 					$("[name='twitter-checkbox']").bootstrapSwitch();
 					$("[name='set-graphic']").bootstrapSwitch();
 					$("[name='set-graphic-emisora']").bootstrapSwitch();
@@ -435,7 +437,7 @@ var ControlPanel= function (url){
 				for(var i=2;i<sectionNum;i++){
 					sectionDiv[i].replaceChild(devBox.render(),sectionDiv[i].children[0]);
 				}
-				
+				mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSection(mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeSection,undefined);
 			}
 
 
@@ -1331,17 +1333,10 @@ var camerasSection=function(){
 	}
 }
 
-var twitterSection=function(){
+var hashtag=function(){
 	this.render=function(){
-
-		var extDiv=document.createElement('div');
-		extDiv.className='template-content-center';
-
-		var tselector=document.createElement('div');
-		tselector.className='col-md-12 layout-columns twitter-selector-container';
-		//abstraer cada componente por separado? hashtag y trending map
-		var hashtag=document.createElement('div');
-		hashtag.className='col-md-10 twitter-hashtag';
+		var hashtagDiv=document.createElement('div');
+		hashtagDiv.className='col-md-10 twitter-hashtag';
 
 		var div1=document.createElement('div');
 		div1.className='col-md-3';
@@ -1391,9 +1386,15 @@ var twitterSection=function(){
 		input1.checked=true;
 
 		div3.appendChild(input1);
-		hashtag.appendChild(div1);
-		hashtag.appendChild(div2);
-		hashtag.appendChild(div3);
+		hashtagDiv.appendChild(div1);
+		hashtagDiv.appendChild(div2);
+		hashtagDiv.appendChild(div3);
+		return hashtagDiv;
+	}
+}
+var trendingMap=function(){
+	this.render=function(){
+
 		var trending=document.createElement('div');
 		trending.className='col-md-10 twitter-topic';
 
@@ -1427,8 +1428,27 @@ var twitterSection=function(){
 		trending.appendChild(div4);
 		trending.appendChild(div5);
 		trending.appendChild(div6);
-		tselector.appendChild(hashtag);
-		tselector.appendChild(trending);
+
+		return trending;
+	}
+}
+
+var twitterSection=function(){
+	this.render=function(){
+
+		var extDiv=document.createElement('div');
+		extDiv.className='template-content-center';
+
+		var tselector=document.createElement('div');
+		tselector.className='col-md-12 layout-columns twitter-selector-container';
+		//abstraer cada componente por separado? hashtag y trending map
+		
+		var hashtagComp=new hashtag();
+		tselector.appendChild(hashtagComp.render());
+		
+
+		var trendingComp=new trendingMap();
+		tselector.appendChild(trendingComp.render());
 
 		extDiv.appendChild(tselector);
 		return extDiv;
@@ -1564,17 +1584,8 @@ var radioSection=function(){
 
 	}
 }
-var graphicSection=function(){
+var table=function(){
 	this.render=function(){
-		var div1=document.createElement('div');
-		div1.className='template-content-center';
-
-		var div2=document.createElement('div');
-		div2.className='col-md-12 layout-columns';
-
-		var div3=document.createElement('div');
-		div3.className='col-md-6 clm_2 izda';
-
 		var div4=document.createElement('div');
 		div4.className='contenido';
 
@@ -1752,15 +1763,15 @@ var graphicSection=function(){
 		div8.appendChild(div9);
 		div4.appendChild(div5);
 		div4.appendChild(div8);
-		div3.appendChild(div4);
-
-		var div28=document.createElement('div');
-		div28.className='col-md-6 clm_2';
-
-		var div29=document.createElement('div');
-		div29.className='contenido content-emisoras';
-
-
+		return div4;
+	}
+}
+var graph=function(){
+	this.place='';
+	this.setPlace=function(where){
+		this.place=where;
+	}
+	this.render=function(){
 		var div30=document.createElement('div');
 		div30.className='col-md-12 emisora';
 
@@ -1775,7 +1786,7 @@ var graphicSection=function(){
 		div32.className='col-md-7';
 		var p5=document.createElement('p');
 		p5.className='text_ciudad';
-		p5.innerHTML='BILBAO';
+		p5.innerHTML=this.place;
 
 		var br=document.createElement('br');
 		p5.appendChild(br);
@@ -1800,147 +1811,52 @@ var graphicSection=function(){
 		div30.appendChild(div31);
 		div30.appendChild(div32);
 		div30.appendChild(div33);
+		return div30;
+
+	}
+}
+var graphicSection=function(){
+	this.render=function(){
+		var div1=document.createElement('div');
+		div1.className='template-content-center';
+
+		var div2=document.createElement('div');
+		div2.className='col-md-12 layout-columns';
+
+		var div3=document.createElement('div');
+		div3.className='col-md-6 clm_2 izda';
+
+		var resTable=new table();		
+		div3.appendChild(resTable.render());
+
+		var div4=document.createElement('div');
+		div4.className='col-md-6 clm_2';
+
+		var div5=document.createElement('div');
+		div5.className='contenido content-emisoras';
 
 
-		div29.appendChild(div30);
+		var bilboGraph=new graph();
+		bilboGraph.setPlace('BILBAO');
+		div5.appendChild(bilboGraph.render());
 
 
-		var div30=document.createElement('div');
-		div30.className='col-md-12 emisora';
+		var donostiGraph=new graph();
+		donostiGraph.setPlace('DONOSTIA/SAN SEBASTIAN');
+		div5.appendChild(donostiGraph.render());
 
-		var div31=document.createElement('div');
-		div31.className='col-md-2';
-		var img6=document.createElement('img');
-		img6.className='imagen-emisora-peque';
-		img6.src='../resources/css/configPanel/img/graphics/icon_chart-2011-2015.png';
-		div31.appendChild(img6);
+		var iruneaGraph=new graph();
+		iruneaGraph.setPlace('IRUÑA/PAMPLONA');
+		div5.appendChild(iruneaGraph.render());
 
-		var div32=document.createElement('div');
-		div32.className='col-md-7';
-		var p5=document.createElement('p');
-		p5.className='text_ciudad';
-		p5.innerHTML='DONOSTIA/SAN SEBASTIAN';
+		var gasteizGraph=new graph();
+		gasteizGraph.setPlace('VITORIA-GASTEIZ');
+		div5.appendChild(gasteizGraph.render());
 
-		var br=document.createElement('br');
-		p5.appendChild(br);
-
-		var span3=document.createElement('span');
-		span3.className='comparative';
-		span3.innerHTML='COMPARATIVE';
-		p5.appendChild(span3);
-
-		div32.appendChild(p5);
-
-		var div33=document.createElement('div');
-		div33.className='col-md-3 switch-emisora';
-
-		var input3=document.createElement('input');
-		input3.type='checkbox';
-		input3.name='set-graphic-emisora';
-		input3.checked=true;
-
-		div33.appendChild(input3);
-
-		div30.appendChild(div31);
-		div30.appendChild(div32);
-		div30.appendChild(div33);
-
-
-		div29.appendChild(div30);
-
-
-
-		var div30=document.createElement('div');
-		div30.className='col-md-12 emisora';
-
-		var div31=document.createElement('div');
-		div31.className='col-md-2';
-		var img6=document.createElement('img');
-		img6.className='imagen-emisora-peque';
-		img6.src='../resources/css/configPanel/img/graphics/icon_chart-2011-2015.png';
-		div31.appendChild(img6);
-
-		var div32=document.createElement('div');
-		div32.className='col-md-7';
-		var p5=document.createElement('p');
-		p5.className='text_ciudad';
-		p5.innerHTML='Iruña/PAMPLONA';
-
-		var br=document.createElement('br');
-		p5.appendChild(br);
-
-		var span3=document.createElement('span');
-		span3.className='comparative';
-		span3.innerHTML='COMPARATIVE';
-		p5.appendChild(span3);
-
-		div32.appendChild(p5);
-
-		var div33=document.createElement('div');
-		div33.className='col-md-3 switch-emisora';
-
-		var input3=document.createElement('input');
-		input3.type='checkbox';
-		input3.name='set-graphic-emisora';
-		input3.checked=true;
-
-		div33.appendChild(input3);
-
-		div30.appendChild(div31);
-		div30.appendChild(div32);
-		div30.appendChild(div33);
-
-
-		div29.appendChild(div30);
-
-		var div30=document.createElement('div');
-		div30.className='col-md-12 emisora';
-
-		var div31=document.createElement('div');
-		div31.className='col-md-2';
-		var img6=document.createElement('img');
-		img6.className='imagen-emisora-peque';
-		img6.src='../resources/css/configPanel/img/graphics/icon_chart-2011-2015.png';
-		div31.appendChild(img6);
-
-		var div32=document.createElement('div');
-		div32.className='col-md-7';
-		var p5=document.createElement('p');
-		p5.className='text_ciudad';
-		p5.innerHTML='VITORIA-GASTEIZ';
-
-		var br=document.createElement('br');
-		p5.appendChild(br);
-
-		var span3=document.createElement('span');
-		span3.className='comparative';
-		span3.innerHTML='COMPARATIVE';
-		p5.appendChild(span3);
-
-
-		div32.appendChild(p5);
-
-		var div33=document.createElement('div');
-		div33.className='col-md-3 switch-emisora';
-
-		var input3=document.createElement('input');
-		input3.type='checkbox';
-		input3.name='set-graphic-emisora';
-		input3.checked=true;
-
-		div33.appendChild(input3);
-
-		div30.appendChild(div31);
-		div30.appendChild(div32);
-		div30.appendChild(div33);
-
-
-		div29.appendChild(div30);
-
-		div28.appendChild(div29);
+		div4.appendChild(div5);
 
 		div2.appendChild(div3);
-		div2.appendChild(div28);
+		div2.appendChild(div4);
 
 		div1.appendChild(div2);
 		return div1;
