@@ -45,6 +45,7 @@
  },
  contextUpdate: function (event){
       var event = event.detail || event;
+      if (event.context.lastChange)
       if (event.type == "cmp_changed" && event.context.lastChange.diff) {
         var customCmds = event.context.lastChange.diff.filter(function(prop){
               if (prop.property)

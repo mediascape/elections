@@ -18,13 +18,13 @@ function($, applicationContext){
   var multiDeviceAdaptation = function(){
     // the reference to the shared context
     var applicationContext = undefined;
-    var nonUIChange = ["mutePlayer","soundPlayer"];
+    var nonUIChange = ["mutePlayer","soundPlayer","present","past"];
     // the constructed context based on the context updates
     var context = {"agents":[]};
     var userActionOn = false;
     // id of the local agent
     var local_agent_id;
-
+    var changeType = "ui";
     // the list to record the capabilities involved in the rule file
     var required_capability_list = [];
 
@@ -129,9 +129,15 @@ function($, applicationContext){
     var updateContext = function(change) {
       var diff = null;
       if (change.capability === "componentsStatus") diff = getChangeDiff(change.value);
-      if (change.diff && diff !=null) {diff = change.diff; change.capability ="componentsStatus"}
-          context.lastChange = {key:change.capability,value:change.value,diff:diff};
-          context.agentid = change.agentid;
+      if (diff != null){
+          if (change.diff ) {diff = change.diff; change.capability ="componentsStatus"}
+            context.lastChange = {key:change.capability,value:change.value,diff:diff};
+            context.agentid = change.agentid;
+          if(diff[0])
+            if (diff[0].property === "customCmd" && nonUIChange.indexOf(diff[0].newValue) !== -1 )
+              changeType = "data";
+            else changeType = "ui";
+      }
       if( change.type === 'CAPABILITY_CHANGE' ) {
 
         console.log('********************* capability change event **********************');
@@ -198,7 +204,7 @@ function($, applicationContext){
         // notify the UI engine about which web components to display
         if( myactions && myactions.length && myactions.length > 0){
           var event = {"type": "FULL_UPDATE", "actions": myactions,agentid:change.agentid};
-          doCallbacks(event);
+          if (changeType === "ui") doCallbacks(event);
           // update componentStatus
           updateComponentStatus(event);
         }
@@ -259,7 +265,7 @@ function($, applicationContext){
               && ag.capabilities.hasOwnProperty('componentsStatus')) return true;
           else return false;
       })
-      if (needInfoReady) hybridAdaptation(change);
+      if (needInfoReady ) hybridAdaptation(change);
     };
 
 
@@ -296,13 +302,7 @@ function($, applicationContext){
                     mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAgents ()['self'].setItem('layoutEvent','');
                   }
               }
-            /*  var wait = setInterval ((function (func,e,change){
-                return function () {
-                  if (func(e.agentid)) {
-                    onUpdateContext(change);
-                    clearInterval(wait);}
-                  }
-                })(hasAgent,e,change),200);*/
+
                   onUpdateContext(change);
               }
             }, e.agentid);
@@ -347,17 +347,8 @@ function($, applicationContext){
             change['key'] = e.key;
             change['capabilities'] = e.diff.capabilities;
             change['agentContext'] = e.agentContext;
-            /*
-            * Do wait until agent is ready
-            */
-          /*  var wait = setInterval ((function (func,e,change){
-              return function () {
-                if (func(e.agentid)) {
-                  onUpdateContext(change);
-                  clearInterval(wait);}
-                }
-              })(hasAgent,e,change),200);*/
-                onUpdateContext(change);
+
+            onUpdateContext(change);
             }
             subscribeAgentCapabilities(e);
           }
@@ -700,6 +691,7 @@ function($, applicationContext){
                 userActionOn = true;
                 setTimeout(function(){
                   userActionOn=false;
+                  context.lastChange.diff = [{"property":"customCmd","newValue":cmd,compId:cmpId}];
                   mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.notifyUpdateContext(context,"cmp_changed",agentId);
                 },800);
 
