@@ -93,17 +93,17 @@ ul.nav-tabs li.active{
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {border: none !important; background-color: transparent !important;}
 /* contenido de los tabs */
 .tab-pane {
-  height: 100%;
+  /*height: 100%;*/
   background-color: #97c7e8;
   padding-bottom: 20px;
   border-radius: 0px 0px 20px 20px;  
-}
+}/*
 .pastilla_ciudad {
   height: 100%;
   max-height: 100%;
   border-radius: 20px;
   background-color: #c7dcea;
-}
+}*/
 
 
 
@@ -115,6 +115,7 @@ div.content-emisoras {
     background-color: #375364;
 }
 div.emisora {
+  height: 80px;
   margin-bottom: 22px;
     border-radius: 25px;
     background-color: #5c7586;

@@ -22,6 +22,7 @@
 <link rel="import" href="../js/mediascape/AdaptationToolkit/componentManager/componentStatus.html">
 <link rel="import" href="../resources/wcs/audio-video-sm/video-audio.html">
 <link rel="import" href="../resources/wcs/bar-graph/bar-graph.html">
+<link rel="import" href="../resources/wcs/graphic/x-graphic.html">
 <link rel="import" href="../resources/wcs/result-table/result-table.html">
 <link rel="import" href="../resources/wcs/timeline/timeline.html">
 <!--<link rel="import" href="../resources/wcs/polymer/drag-resize/drag-resize.html">
@@ -37,6 +38,7 @@
 <link href="../resources/css/configPanel/css/bootstrap-switch.css" rel="stylesheet">
 <link href="../resources/css/configPanel/css/radio.css" rel="stylesheet">
 <link href="../resources/css/configPanel/css/graphics.css" rel="stylesheet">
+
 <link href="../resources/css/configPanel/css/camara.css" rel="stylesheet">
 
 <script src="../resources/css/configPanel/main1.js"></script>
@@ -82,7 +84,8 @@ document.addEventListener('adaptationToolkit-ready',function(data){
   <x-media id="video2" file="../resources/media/Bildu_new.mp4"  ismuted="true"></x-media>
   <x-media id="video3"  file="../resources/media/EAJ_new.mp4"  ismuted="true"></x-media>
   <bar-graph id='graph' place='Irunea'></bar-graph>
-  <!--<result-table id='results'></result-table>-->
+    <x-graphic id='graph1' place='Irunea' seatNum='26'></x-graphic>
+  <result-table id='results'></result-table>
 <mediascape-timeline id='control' ></mediascape-timeline>
 
   <!-- End of definition of each webcompoent -->

@@ -694,6 +694,7 @@ var ControlPanel= function (url){
 			}
 		}
 	}
+	
 	this.hide=function(){
 		document.querySelector('#fullTemp').style.display='none';
 		this.showing=false;
@@ -1455,6 +1456,7 @@ var twitterSection=function(){
 	}
 }
 
+
 var radioSection=function(){
 	this.render=function(){
 		var div1=document.createElement('div');
@@ -1569,6 +1571,8 @@ var radioSection=function(){
 
 		div19.appendChild(div20);
 
+
+
 		div16.appendChild(div17);
 		div16.appendChild(div19);
 
@@ -1585,6 +1589,8 @@ var radioSection=function(){
 	}
 }
 var table=function(){
+	this.activeYear='';
+	this.activePlace='';
 	this.render=function(){
 		var div4=document.createElement('div');
 		div4.className='contenido';
@@ -1618,7 +1624,8 @@ var table=function(){
 
 		var li1=document.createElement('li');
 		li1.role='presentation';
-		li1.className='active';
+		li1.className='';
+		li1.addEventListener('click',this.pastClick.bind(this));
 		var a1=document.createElement('a');
 		a1.href='#2011';
 		a1.ariaControls='2011';
@@ -1643,7 +1650,8 @@ var table=function(){
 
 		var li2=document.createElement('li');
 		li2.role='presentation';
-		li2.className='';
+		li2.className='active';
+		li2.addEventListener('click',this.presentClick.bind(this));
 		var a2=document.createElement('a');
 		a2.href='#2015';
 		a2.ariaControls='2015';
@@ -1675,7 +1683,7 @@ var table=function(){
 		div10.role='tabpanel';
 
 		var div11=document.createElement('div');
-		div11.className='col-md-12 pastilla_ciudad';
+		div11.className='col-md-12 pastilla_ciudad actuve';
 		var div12=document.createElement('div');
 		div12.className='txt_ciudad';
 		div12.innerHTML='Bilbao';
@@ -1764,6 +1772,14 @@ var table=function(){
 		div4.appendChild(div5);
 		div4.appendChild(div8);
 		return div4;
+	}
+	this.presentClick=function(){
+		var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
+		mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'2015');
+	}
+	this.pastClick=function(){
+		var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
+		mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'2011');
 	}
 }
 var graph=function(){

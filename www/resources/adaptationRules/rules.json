@@ -184,9 +184,17 @@
                     "needs":"none"
                 },
                 {
+                    "componentId": "graph1",
+                    "required": false,
+                    "bestfit": "biggestScreenSize",
+                    "movable": true,
+                    "duplicable":false,
+                    "needs":"none"
+                },
+                {
                     "componentId": "results",
                     "required": false,
-                    "bestfit": "touchable",
+                    "bestfit": "biggestScreenSize",
                     "movable": true,
                     "duplicable":false,
                     "needs":"none"

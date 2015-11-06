@@ -43,6 +43,15 @@
   icon:../resources/images/icons_manag/Irunea.png;
 
 }
+#graph1{
+  
+  order:9;
+  rwidth:400px;
+  propx:400;
+  propy:350;
+  icon:../resources/images/icons_manag/Irunea.png;
+
+}
 #twitterMap{
   needs:none;
   order:10;

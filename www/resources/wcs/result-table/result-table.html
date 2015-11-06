@@ -77,7 +77,7 @@ input{
 
  			#placeSelection{font-size:15px;}
 	    	#counting{font-size:15px;}
-	    	input{height:20px;}
+
 }
 @media (min-width:341px) and (max-width:450px){
 	    	#resultsTab{font-size:8px;display:block;}
@@ -86,8 +86,7 @@ input{
  		#resultsTab_pip{display:none;}
 	    	#placeSelection{font-size:9px;}
 	    	#counting{font-size:10px;}
-	    	input{height:30px;}
-	    	.imgClass{width:30px;}
+	    	
 
 
 }
@@ -96,8 +95,7 @@ input{
 	    	#resultsTab_horizontal{font-size:10px;}
 	    	#placeSelection{font-size:10px;}
 	    	#counting{font-size:10px;}
-	    	input{height:30px;}
-	    	.imgClass{width:30px;}
+	    	
 
 
 }
@@ -105,15 +103,14 @@ input{
 
 	    	#placeSelection{font-size:15px;}
 	    	#counting{font-size:15px;}
-	    	input{height:40px;}
-	    	.imgClass{width:40px;}
+	    	
 }
 @media (min-width:801px) {
 	    	#resultsTab{font-size:20px;}
 	    	#placeSelection{font-size:20px;}
 	    	#counting{font-size:20px;}
 	    	input{height:40px;}
-	    	.imgClass{width:40px;}
+	    
 }
  @media (min-width:1000px) and (min-aspect-ratio:8/1){
  			#resultsTab{display:none;font-size:15px;}
@@ -255,7 +252,7 @@ Polymer({
 	smReady:function(){
   		// Sharemotion objetua lortu
   		var _this=this;
-   		this.sm = mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.sharedmotion();
+   		this.sm = mediascape.AdaptationToolkit.SharedMotion();
   		// ebentuak entzun ta jaso
   		var handler = function (e) {
       		_this.timestamp=1432509468+Math.round(e.pos);
