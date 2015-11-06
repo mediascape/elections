@@ -14,6 +14,7 @@ var ControlPanel= function (url){
 	var layoutSect1=null;
 	var qrSect=null;
 	var camerasSect=null;
+	var graphicSect=null;
 	/* Kontruktorea gauza inizializatzen diren lekua */
 	this.controlPanel = function(){
 
@@ -47,12 +48,18 @@ var ControlPanel= function (url){
 		cam3.setName(c[0].id);
 		cam3.setImage('../resources/css/configPanel/img/camara/logo_pp.png');
 
+		comp='results';
+		c=cmps.filter(filterById);
+		var resTable=new table();
+		resTable.setID(c[0].getAttribute('compId'));
 
 		camerasSect=new camerasSection();
 		camerasSect.addCamera(cam1);
 		camerasSect.addCamera(cam2);
 		camerasSect.addCamera(cam3);
 
+		graphicSect=new graphicSection();
+		graphicSect.addTableComp(resTable);
 
 		devBox=new deviceBox();
 		var lay1=new layout();
@@ -220,7 +227,7 @@ var ControlPanel= function (url){
 
 					var twitterSect=new twitterSection();
 					var radioSect=new radioSection();
-					var graphicSect=new graphicSection();
+					
 
 					if(i===0){
 						var section2=new section();
@@ -318,7 +325,7 @@ var ControlPanel= function (url){
 
 					var twitterSect=new twitterSection();
 					var radioSect=new radioSection();
-					var graphicSect=new graphicSection();
+					
 
 
 					var section2=new section();
@@ -380,7 +387,7 @@ var ControlPanel= function (url){
 
 					var twitterSect=new twitterSection();
 					var radioSect=new radioSection();
-					var graphicSect=new graphicSection();
+					
 
 
 					var section1=new section();
@@ -1591,6 +1598,9 @@ var radioSection=function(){
 var table=function(){
 	this.activeYear='';
 	this.activePlace='';
+	this.setID=function(tabId){
+		this.id=tabId;
+	}
 	this.render=function(){
 		var div4=document.createElement('div');
 		div4.className='contenido';
@@ -1775,11 +1785,11 @@ var table=function(){
 	}
 	this.presentClick=function(){
 		var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
-		mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'2015');
+		mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'present');
 	}
 	this.pastClick=function(){
 		var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
-		mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'2011');
+		mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'past');
 	}
 }
 var graph=function(){
@@ -1832,6 +1842,10 @@ var graph=function(){
 	}
 }
 var graphicSection=function(){
+	this.tableComp=[];
+	this.addTableComp=function(c){
+		this.tableComp.push(c);
+	}
 	this.render=function(){
 		var div1=document.createElement('div');
 		div1.className='template-content-center';
@@ -1842,8 +1856,8 @@ var graphicSection=function(){
 		var div3=document.createElement('div');
 		div3.className='col-md-6 clm_2 izda';
 
-		var resTable=new table();		
-		div3.appendChild(resTable.render());
+			
+		div3.appendChild(this.tableComp[0].render());
 
 		var div4=document.createElement('div');
 		div4.className='col-md-6 clm_2';
