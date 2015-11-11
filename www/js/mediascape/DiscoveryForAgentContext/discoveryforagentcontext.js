@@ -845,6 +845,85 @@ define(["mediascape/Discovery/discovery","mediascape/Agentcontext/agentcontext",
 				});
 			}
 		});
+	  var componentStatusInstrument = {
+		    init: function () {
+		      this.setCapability("componentsStatus", "supported");
+		      document.addEventListener('onComponentsChange',function(data){
+
+		        ac.setItem('componentsStatus',data.detail.cmps);
+
+		      });
+		      console.log("INIT INSTRUMENT");
+
+		    },
+		    on: function (){
+
+		      document.addEventListener('onComponentsChange',function(data){
+
+
+		        ac.setItem('componentsStatus',data.detail.cmps);
+
+		      });
+		    },
+		    off: function (){
+		      document.removeEventListener('onComponentsChange',function(data){
+
+
+		        ac.setItem('componentsStatus',data.detail.cmps);
+
+
+		      });
+		    }
+
+		  };
+		  ac.load({
+		    "componentsStatus": componentStatusInstrument
+		  });
+		var layoutEventInstrument = {
+		    init: function () {
+		      this.setCapability("layoutEvent", "supported");
+		      ac.setItem('layoutEvent','');
+		      console.log("INIT INSTRUMENT");
+
+		    },
+		    on: function (){
+		      ac.setItem('layoutEvent','');
+
+		    },
+		    off: function (){
+
+		    }
+
+		  };
+		  ac.load({
+		    "layoutEvent": layoutEventInstrument
+		  });
+
+	  var layoutEventInstrument = {
+		    init: function () {
+		      this.setCapability("layoutStatus", "supported");
+		       document.addEventListener('applicationContext-ready',function (){ac.setItem('layoutStatus',mediascape.AdaptationToolkit.Adaptation.UIAdaptation.getActualLayout());});
+		      document.addEventListener('layoutEvent',function(ev){
+		        ac.setItem('layoutStatus',ev.detail.layoutName);
+		      });
+		      console.log("INIT LAYOUT STATUS INSTRUMENT");
+
+		    },
+		    on: function (){
+		      document.addEventListener('layoutEvent',function(ev){
+		        ac.setItem('layoutStatus',ev.detail.layoutName);
+		      });
+
+		    },
+		    off: function (){
+
+		    }
+
+		  };
+		  ac.load({
+		    "layoutStatus": layoutEventInstrument
+		  });
+
 	};
 
 	DiscoveryWP4.__moduleName = "discovery_wp4";

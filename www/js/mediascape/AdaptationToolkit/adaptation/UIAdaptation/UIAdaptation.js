@@ -108,9 +108,12 @@ define(
         })[0];
         if (!actualLayout) throw new Error ("There is no layout named: "+layoutName);
         else  {
-              if (this.layoutMode === this.LAYOUTMODE.STATIC) this.layout(cmps,"onComponentsChange");
+              if (this.layoutMode === this.LAYOUTMODE.STATIC) {
+                this.layout(cmps,"onComponentsChange");
+              }
               else  this.layout(cmps,"onLayoutChange");
               }
+
       }
 
       this.layout = function (_cmps,event){
