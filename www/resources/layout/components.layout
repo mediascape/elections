@@ -49,6 +49,33 @@
   rwidth:400px;
   propx:400;
   propy:350;
+  icon:../resources/images/icons_manag/Bilbo.png;
+
+}
+#graph2{
+  
+  order:12;
+  rwidth:400px;
+  propx:400;
+  propy:350;
+  icon:../resources/images/icons_manag/Donostia.png;
+
+}
+#graph3{
+  
+  order:13;
+  rwidth:400px;
+  propx:400;
+  propy:350;
+  icon:../resources/images/icons_manag/Gasteiz.png;
+
+}
+#graph4{
+  
+  order:14;
+  rwidth:400px;
+  propx:400;
+  propy:350;
   icon:../resources/images/icons_manag/Irunea.png;
 
 }

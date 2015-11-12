@@ -32,7 +32,7 @@ var loadingPanel = function (centralImg,time,cb){
    img.style.animationDelay="0s";
    div.appendChild(img);
 
-   var loading=document.createElement('div');
+   /*var loading=document.createElement('div');
    loading.id='floatingCirclesG';
    loading.style.top='50%';
    var loadingStyle=document.createElement('style');
@@ -44,7 +44,7 @@ var loadingPanel = function (centralImg,time,cb){
      loading.appendChild(circle);
    }
    document.body.appendChild(loadingStyle);
-   div.appendChild(loading);
+   div.appendChild(loading);*/
 
 
 

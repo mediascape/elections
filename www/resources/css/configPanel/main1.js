@@ -94,6 +94,10 @@ var ControlPanel= function (url){
 		lay8.setName('accordion');
 		lay8.setImage('../resources/css/configPanel/img/layouts/layout_08.png');
 
+		var lay9=new layout();
+		lay9.setName('divided');
+		lay9.setImage('../resources/css/configPanel/img/layouts/layout_06.png');
+
 		layoutSect1=new layoutSection();
 		layoutSect1.addLayout(lay1);
 		layoutSect1.addLayout(lay2);
@@ -103,6 +107,7 @@ var ControlPanel= function (url){
 		layoutSect1.addLayout(lay6);
 		layoutSect1.addLayout(lay7);
 		layoutSect1.addLayout(lay8);
+		layoutSect1.addLayout(lay9);
 		qrSect=new qrSection(QRurl);
 		/*var twitterSect=new twitterSection();
 		var radioSect=new radioSection();
@@ -271,6 +276,7 @@ var ControlPanel= function (url){
 					var section6=new section();
 					section6.setName(agCtx.agents[i].id+'graphics');
 					section6.addItem(devBox);
+					graphicSect.setTableViewStatus(agCtx.agents[i].id);
 					section6.addItem(graphicSect);
 					this.addItem(section6);
 					container.appendChild(section6.render());
@@ -370,6 +376,7 @@ var ControlPanel= function (url){
 					var section6=new section();
 					section6.setName(event.detail.agentid+'graphics');
 					section6.addItem(devBox);
+					graphicSect.setTableViewStatus(event.detail.agentid);
 					section6.addItem(graphicSect);
 					this.addItem(section6);
 					container.appendChild(section6.render());
@@ -424,6 +431,7 @@ var ControlPanel= function (url){
 					var section6=new section();
 					section6.setName(event.detail.agentid+'graphics');
 					section6.addItem(devBox);
+					graphicSect.setTableViewStatus(event.detail.agentid);
 					section6.addItem(graphicSect);
 					this.addItem(section6);
 					container.appendChild(section6.render());
@@ -485,7 +493,9 @@ var ControlPanel= function (url){
 		var sectionNum=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items.length;
 		var sectionDiv=document.querySelector('#fullTemp').children;
 
-		if(event.detail.context.lastChange.diff!==null){
+
+		if(event.detail.context.lastChange!==undefined){
+		if(event.detail.context.lastChange.diff!==null ){
 			var changes=event.detail.context.lastChange.diff;
 
 			for(var j=0;j<changes.length;j++){
@@ -552,6 +562,7 @@ var ControlPanel= function (url){
 								}
 							}
 						}
+
 					}
 				}
 			}
@@ -571,6 +582,7 @@ var ControlPanel= function (url){
 				}
 			}
 		}
+	}
 
 	}
 	document.addEventListener('contextUpdate',this.onCtxUpdate.bind(this));
@@ -698,6 +710,45 @@ var ControlPanel= function (url){
 						sectionDiv[i].querySelector('#'+layoutList[j].name+'Layout').className='';
 					}
 				}
+			}
+		}
+	}
+
+	this.changeTable=function(agentToChange,year,place){
+		var sections=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items;
+		var sectionNum=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items.length;
+		var sectionDiv=document.querySelector('#fullTemp').children;
+
+
+
+		for(var i=2;i<sectionNum;i++){
+			if(sections[i].name===agentToChange+'graphics'){
+				
+					if(year===2015){
+						sectionDiv[i].querySelector('#presentLI').className='active';
+						sectionDiv[i].querySelector('#pastLI').className='';
+						sectionDiv[i].querySelector('#presentPanel').className='col-md-12 fade in tab-pane active';
+						sectionDiv[i].querySelector('#pastPanel').className='col-md-12 fade in tab-pane ';
+
+					}
+					else if(year===2011){
+						sectionDiv[i].querySelector('#presentLI').className='';
+						sectionDiv[i].querySelector('#pastLI').className='active';
+						sectionDiv[i].querySelector('#presentPanel').className='col-md-12 fade in tab-pane ';
+						sectionDiv[i].querySelector('#pastPanel').className='col-md-12 fade in tab-pane active';
+					}
+					var places=sectionDiv[i].querySelectorAll('.pastilla_ciudad');
+					for(var j=0;j<places.length;j++){
+						if(place!==''){
+							if(places[j].id===place){
+								places[j].className='col-md-12 pastilla_ciudad active';
+							}
+							else{
+								places[j].className='col-md-12 pastilla_ciudad';
+							}
+						}
+					}
+				
 			}
 		}
 	}
@@ -1597,9 +1648,12 @@ var radioSection=function(){
 }
 var table=function(){
 	this.activeYear='';
-	this.activePlace='';
+	this.activePlace='irunea2015';
 	this.setID=function(tabId){
 		this.id=tabId;
+	}
+	this.setViewStatus=function(stat){
+		this.viewStatus=stat;
 	}
 	this.render=function(){
 		var div4=document.createElement('div');
@@ -1614,10 +1668,13 @@ var table=function(){
 
 		var div7=document.createElement('div');
 		div7.className='col-md-3 check-switch';
+		div7.addEventListener('click',this.viewclick.bind(this),true);
 		var input1=document.createElement('input');
 		input1.type='checkbox';
 		input1.name='set-graphic';
-		input1.checked=true;
+		input1.id='viewCheck'+this.id;
+		input1.checked=this.viewStatus;
+		div7.id='view'+this.id;
 
 		div7.appendChild(input1);
 
@@ -1633,11 +1690,12 @@ var table=function(){
 		ul.role='tablist';
 
 		var li1=document.createElement('li');
+		li1.id='pastLi';
 		li1.role='presentation';
 		li1.className='';
 		li1.addEventListener('click',this.pastClick.bind(this));
 		var a1=document.createElement('a');
-		a1.href='#2011';
+		//a1.href='#2011';
 		a1.ariaControls='2011';
 		a1.role='tab';
 		a1.dataToggle='tab';
@@ -1659,11 +1717,12 @@ var table=function(){
 
 
 		var li2=document.createElement('li');
+		li2.id='presentLi';
 		li2.role='presentation';
 		li2.className='active';
 		li2.addEventListener('click',this.presentClick.bind(this));
 		var a2=document.createElement('a');
-		a2.href='#2015';
+		//a2.href='#2015';
 		a2.ariaControls='2015';
 		a2.role='tab';
 		a2.dataToggle='tab';
@@ -1688,12 +1747,14 @@ var table=function(){
 		div9.className='tab-content';
 
 		var div10=document.createElement('div');
-		div10.className='col-md-12 fade in tab-pane active';
-		div10.id='2011';
+		div10.className='col-md-12 fade in tab-pane ';
+		div10.id='pastPanel';
 		div10.role='tabpanel';
 
 		var div11=document.createElement('div');
-		div11.className='col-md-12 pastilla_ciudad actuve';
+		div11.id='bilbo2011';
+		div11.addEventListener('click',this.pastClick.bind(this));
+		div11.className='col-md-12 pastilla_ciudad';
 		var div12=document.createElement('div');
 		div12.className='txt_ciudad';
 		div12.innerHTML='Bilbao';
@@ -1702,6 +1763,8 @@ var table=function(){
 
 
 		var div13=document.createElement('div');
+		div13.id='donostia2011';
+		div13.addEventListener('click',this.pastClick.bind(this));
 		div13.className='col-md-12 pastilla_ciudad';
 		var div14=document.createElement('div');
 		div14.className='txt_ciudad';
@@ -1710,6 +1773,8 @@ var table=function(){
 		div13.appendChild(div14);
 
 		var div15=document.createElement('div');
+		div15.id='gasteiz2011';
+		div15.addEventListener('click',this.pastClick.bind(this));
 		div15.className='col-md-12 pastilla_ciudad';
 		var div16=document.createElement('div');
 		div16.className='txt_ciudad';
@@ -1718,6 +1783,8 @@ var table=function(){
 		div15.appendChild(div16);
 
 		var div17=document.createElement('div');
+		div17.id='irunea2011';
+		div17.addEventListener('click',this.pastClick.bind(this));
 		div17.className='col-md-12 pastilla_ciudad';
 		var div18=document.createElement('div');
 		div18.className='txt_ciudad';
@@ -1733,11 +1800,13 @@ var table=function(){
 
 
 		var div19=document.createElement('div');
-		div19.className='col-md-12 fade in tab-pane';
-		div19.id='2015';
+		div19.className='col-md-12 fade in tab-pane active';
+		div19.id='presentPanel';
 		div19.role='tabpanel';
 
 		var div20=document.createElement('div');
+		div20.id='bilbo2015';
+		div20.addEventListener('click',this.presentClick.bind(this));
 		div20.className='col-md-12 pastilla_ciudad';
 		var div21=document.createElement('div');
 		div21.className='txt_ciudad';
@@ -1747,6 +1816,8 @@ var table=function(){
 
 
 		var div22=document.createElement('div');
+		div22.id='donostia2015';
+		div22.addEventListener('click',this.presentClick.bind(this));
 		div22.className='col-md-12 pastilla_ciudad';
 		var div23=document.createElement('div');
 		div23.className='txt_ciudad';
@@ -1755,6 +1826,8 @@ var table=function(){
 		div22.appendChild(div23);
 
 		var div24=document.createElement('div');
+		div24.id='gasteiz2015';
+		div24.addEventListener('click',this.presentClick.bind(this));
 		div24.className='col-md-12 pastilla_ciudad';
 		var div25=document.createElement('div');
 		div25.className='txt_ciudad';
@@ -1763,7 +1836,9 @@ var table=function(){
 		div24.appendChild(div25);
 
 		var div26=document.createElement('div');
-		div26.className='col-md-12 pastilla_ciudad';
+		div26.id='irunea2015';
+		div26.addEventListener('click',this.presentClick.bind(this));
+		div26.className='col-md-12 pastilla_ciudad active';
 		var div27=document.createElement('div');
 		div27.className='txt_ciudad';
 		div27.innerHTML='Iruña / Pamplona';
@@ -1785,12 +1860,57 @@ var table=function(){
 	}
 	this.presentClick=function(){
 		var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
-		mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'present');
+		
+		if(event.currentTarget.tagName==='LI' || event.currentTarget.tagName==='li'){
+			this.activePlace=this.activePlace.split('2011')[0]+"2015";
+			mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'present');
+			mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeTable(agentToChange,2015,this.activePlace);
+		}
+		else{
+			this.activePlace=event.currentTarget.id;
+			mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,this.activePlace);
+			mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeTable(agentToChange,2015,this.activePlace);
+		}
 	}
 	this.pastClick=function(){
 		var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
-		mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'past');
+		
+		if(event.currentTarget.tagName==='LI' || event.currentTarget.tagName==='li'){
+			this.activePlace=this.activePlace.split('2015')[0]+"2011";
+			mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'past');
+			mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeTable(agentToChange,2011,this.activePlace);
+		}
+		else{
+			this.activePlace=event.currentTarget.id;
+			mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,this.activePlace);
+			mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeTable(agentToChange,2011,this.activePlace);
+		}
+
 	}
+	this.viewclick=function(){
+		var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
+		var agents=agCtx.agents;
+		var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
+		var val=agentToChange;
+		function filterById(el){
+			if(el.id===val)return el;
+		}
+
+		var a=agents.filter(filterById);
+		var scope=this;
+		var b=a[0].capabilities.componentsStatus.filter(function(el,i){
+			if(el.compId===scope.id)return el;
+		});
+
+		console.log('viewClick');
+		if(b[0].show===true){
+			mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'hide');
+		}
+		else{
+			mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'show');
+		}
+	}
+
 }
 var graph=function(){
 	this.place='';
@@ -1892,6 +2012,32 @@ var graphicSection=function(){
 		return div1;
 
 
+
+	}
+	this.setTableViewStatus=function(agentID){
+
+		var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
+		var agents=agCtx.agents;
+		var agentToChange=agentID;
+
+		var a=agents.filter(function(el){
+			if(el.id===agentToChange)return el;
+		});
+		var scope=this;
+
+		
+		var tab=this.tableComp[0].id;
+		b=a[0].capabilities.componentsStatus.filter(function(el){
+			if(el.compId===tab)return el;
+		});
+
+
+		if(b[0].show===true){
+			this.tableComp[0].setViewStatus(true);
+		}
+		else{
+			this.tableComp[0].setViewStatus(false);
+		}
 
 	}
 

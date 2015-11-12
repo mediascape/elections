@@ -250,7 +250,8 @@ Polymer({
 	smReady:function(){
   		// Sharemotion objetua lortu
   		var _this=this;
-   		this.sm = mediascape.AdaptationToolkit.SharedMotion();
+
+   		this.sm =  mediascape.AdaptationToolkit.SharedMotion();
   		// ebentuak entzun ta jaso
   		var handler = function (e) {
       		_this.timestamp=1432509468+Math.round(e.pos);
@@ -283,6 +284,7 @@ Polymer({
 		this.children[0].removeChild(this.children[0].querySelector('#resultsTab'));
 		this.children[0].removeChild(this.children[0].querySelector('#resultsTab_horizontal'));
 		this.children[0].removeChild(this.children[0].querySelector('#resultsTab_pip'));
+
 		this.drawTable(this.resultsData,this.time,this.where,shape);
 
 	},
@@ -351,8 +353,8 @@ Polymer({
 						shape=2;
 					}
 					else if(this.children[0].querySelector('#resultsTab_pip').style.display==='block'){
-			        shape=3;
-		}
+			        	shape=3;
+					}		
 
 					this.children[0].removeChild(this.children[0].querySelector('#resultsTab'));
 					this.children[0].removeChild(this.children[0].querySelector('#resultsTab_horizontal'));
@@ -371,7 +373,7 @@ Polymer({
 
 		var x=this.$.placeSelection;
 
-  	if (x.value==='donostia') where=0;
+  		if (x.value==='donostia') where=0;
 		else if(x.value==='bilbo') where=1;
 		else if(x.value==='gasteiz') where =2;
 		else if(x.value==='irunea') where=3;
@@ -598,6 +600,24 @@ Polymer({
 	},
   customCmdReceived: function(data){
       console.log("DATA",data);
+      if(data==='past'){
+      	this.pastData();
+      }
+      else if(data==='present'){
+      	this.actualData();
+      }
+      else if(data==='bilbo2015' || data==='bilbo2011'){
+      	this.value='bilbo';
+      }
+      else if(data==='donostia2015' || data==='donostia2011'){
+      	this.value='donostia';
+      }
+      else if(data==='gasteiz2015' || data==='gasteiz2011'){
+      	this.value='gasteiz';
+      }
+      else if(data==='irunea2015' || data==='irunea2011'){
+      	this.value='irunea';
+      }
   }
 
 

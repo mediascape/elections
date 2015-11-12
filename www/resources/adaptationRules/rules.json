@@ -192,6 +192,30 @@
                     "needs":"none"
                 },
                 {
+                    "componentId": "graph2",
+                    "required": false,
+                    "bestfit": "biggestScreenSize",
+                    "movable": true,
+                    "duplicable":false,
+                    "needs":"none"
+                },
+                {
+                    "componentId": "graph3",
+                    "required": false,
+                    "bestfit": "biggestScreenSize",
+                    "movable": true,
+                    "duplicable":false,
+                    "needs":"none"
+                },
+                {
+                    "componentId": "graph4",
+                    "required": false,
+                    "bestfit": "biggestScreenSize",
+                    "movable": true,
+                    "duplicable":false,
+                    "needs":"none"
+                },
+                {
                     "componentId": "results",
                     "required": false,
                     "bestfit": "biggestScreenSize",
@@ -202,7 +226,7 @@
                 {
                     "componentId": "graph",
                     "required": false,
-                    "bestfit": "touchable",
+                    "bestfit": "biggestScreenSize",
                     "movable": true,
                     "duplicable":false,
                     "needs":"none"
