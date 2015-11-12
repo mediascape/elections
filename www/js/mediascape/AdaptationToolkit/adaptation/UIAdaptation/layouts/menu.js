@@ -117,7 +117,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
     menu.render = function (cmps,show,resize){
 
     var container=document.querySelector('#componentsContainer');
-    container.style.display='grid';
+    container.style.display='inline-block';
     container.style.gridAutoFlow='';
     container.style.overflowX='';
 
@@ -128,7 +128,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
     main_comp_height=Math.round(0.95*(height+10));
     var space=Math.round(0.05*(height+10));
 
-    container.style.gridTemplateRows=main_comp_height+'px '+space+'px';
+    
     var small_comp_width=parseInt((width-20)/comp_num);
     
     
