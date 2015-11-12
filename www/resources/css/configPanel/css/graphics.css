@@ -37,6 +37,11 @@
   background-color: white;
   box-shadow: #fc751b 0px 0px 0px 7px inset;
 }
+.pastilla_ciudad.active{
+  border: 8px none #ff9b00;
+  background-color: white;
+  box-shadow: #fc751b 0px 0px 0px 7px inset;
+}
 
 .txt_ciudad_2011_2015 {
   margin-top: 17px;

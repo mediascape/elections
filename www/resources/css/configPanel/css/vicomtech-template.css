@@ -55,3 +55,4 @@ font-weight:500;  text-transform:uppercase;  display: table; width:100%;  }
 .template-all-layouts{height:100%;}
 .layout-fullwidth{height:100%; padding:5px;}
 .layout-horizontal-divided{height:50%; padding:5px;}
+.layout-horizontal-three-divided{height:33.333333%;padding:5px;}

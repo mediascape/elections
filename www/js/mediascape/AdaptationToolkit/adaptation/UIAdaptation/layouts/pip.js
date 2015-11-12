@@ -36,6 +36,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
       }
       componentsContainer.style.backgroundColor='';
       componentsContainer.style.perspective='';
+       componentsContainer.className='';
       if(document.querySelector('#layout_classes')!=null){
         document.head.removeChild(document.querySelector('#layout_classes'));
       }
@@ -73,6 +74,22 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
           document.querySelector('x-media').play();
         }
       }
+      if(componentsContainer.children[0].id.startsWith('divided')){
+        for(var i=0;i<cmps.length;i++){
+          if(componentsContainer.querySelector('#divided'+cmps[i].id)){
+            while (componentsContainer.querySelector('#divided'+cmps[i].id).firstChild)
+            {
+              componentsContainer.querySelector('#divided'+cmps[i].id).parentNode.insertBefore(componentsContainer.querySelector('#divided'+cmps[i].id).firstChild,
+                                                      componentsContainer.querySelector('#divided'+cmps[i].id));
+            }
+            componentsContainer.querySelector('#divided'+cmps[i].id).parentNode.removeChild(componentsContainer.querySelector('#divided'+cmps[i].id));
+          }
+        }
+        if (document.querySelector('x-media')){
+          document.querySelector('x-media').play();
+        }
+      }
+
       if(componentsContainer.querySelector('#arrows')){
         componentsContainer.removeChild(componentsContainer.querySelector('#arrows'));
       }
@@ -326,6 +343,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
       }
       componentsContainer.style.backgroundColor='';
       componentsContainer.style.perspective='';
+       componentsContainer.className='';
       if(document.querySelector('#layout_classes')!=null){
         document.head.removeChild(document.querySelector('#layout_classes'));
       }
@@ -367,6 +385,22 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
           document.querySelector('x-media').play();
         }
       }
+      if(componentsContainer.children[0].id.startsWith('divided')){
+        for(var i=0;i<cmps.length;i++){
+          if(componentsContainer.querySelector('#divided'+cmps[i].id)){
+            while (componentsContainer.querySelector('#divided'+cmps[i].id).firstChild)
+            {
+              componentsContainer.querySelector('#divided'+cmps[i].id).parentNode.insertBefore(componentsContainer.querySelector('#divided'+cmps[i].id).firstChild,
+                                                      componentsContainer.querySelector('#divided'+cmps[i].id));
+            }
+            componentsContainer.querySelector('#divided'+cmps[i].id).parentNode.removeChild(componentsContainer.querySelector('#divided'+cmps[i].id));
+          }
+        }
+        if (document.querySelector('x-media')){
+          document.querySelector('x-media').play();
+        }
+      }
+
       if(componentsContainer.querySelector('#arrows')){
         componentsContainer.removeChild(componentsContainer.querySelector('#arrows'));
       }
