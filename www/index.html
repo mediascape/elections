@@ -60,19 +60,11 @@ document.addEventListener('adaptationToolkit-ready',function(data){
         AE.startApplicationContext();
         var UI = mediascape.AdaptationToolkit.Adaptation.UIAdaptation;
         UI.init(data.detail.components,UI.LAYOUTMODE.STATIC);
-<<<<<<< HEAD
         // IF want to apply to all device same layout it can be used as
         // UI.useLayout('accordion')
         // Device type that knows about: Desktop,Mobile,Tablet,Tv
-        UI.useLayout({deviceTypes:[{deviceType:'Desktop',layout:'accordion'},
+        UI.useLayout({deviceTypes:[{deviceType:'Desktop',layout:'divided'},
                      {deviceType:'Tablet',layout:'pip'}]});
-        var location = "http://"+window.location.host+window.location.pathname;
-
-
-=======
-        UI.useLayout('divided');
->>>>>>> 3d68f79cd906855b21367ae2a9d04ff3b2fd2ffc
-
         var location = "http://"+window.location.host+window.location.pathname;
        
         document.addEventListener('applicationContext-ready',function(){
