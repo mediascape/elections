@@ -43,7 +43,8 @@ define(
   "mediascape/AdaptationToolkit/adaptation/UIAdaptation/layouts/accordion",
   "mediascape/AdaptationToolkit/adaptation/UIAdaptation/layouts/verticalMenu",
   "mediascape/AdaptationToolkit/adaptation/UIAdaptation/layouts/scrollHorizontal",
-  "mediascape/AdaptationToolkit/adaptation/UIAdaptation/layouts/spinner"],
+  "mediascape/AdaptationToolkit/adaptation/UIAdaptation/layouts/spinner",
+  "mediascape/AdaptationToolkit/adaptation/UIAdaptation/layouts/divided"],
   function(componentsManager){
     var layoutList   = Array.prototype.slice.apply( arguments );
     var cmps=[];
