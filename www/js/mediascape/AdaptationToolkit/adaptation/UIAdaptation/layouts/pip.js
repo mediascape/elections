@@ -1,10 +1,15 @@
 /**
-* This layout organize N components as picture in picture, one of them as fullScreen
-* and the rest in top of the fullscreen ones. It renders using proportion space of
-* left side of the web.
+* This layout organizes N components as picture in picture. The component with the 
+* lowest order will be shown in fullscreen and the others are placed with a reduced 
+* size following the aspect ratio when it is possible in a column at the right side 
+* of the screen and over the fullscreen component. When a component from the column
+* is clicked, it is changed to the fullscreen position replacing its position.
+
 * @module mediascape/AdaptationToolkit/adaptation/UIAdaptation/layouts/pip
 * @requires mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor
 */
+
+
 
 define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"],
   function(LayoutConstructor){
@@ -14,7 +19,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
     var timers=[];
     pip.onComponentsChange = function (cmps){
         console.log("test");
-      this.cmps = cmps;
+    this.cmps = cmps;
       var components = mediascape.AdaptationToolkit.componentManager.core.getComponents();
       for(var i=0;i<components.length;i++){
         components[i].style.width='';
@@ -82,15 +87,15 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
           document.querySelector('x-media').play();
         }
       }
-      if(componentsContainer.children[0].id.startsWith('divided')){
-        for(var i=0;i<cmps.length;i++){
-          if(componentsContainer.querySelector('#divided'+cmps[i].id)){
-            while (componentsContainer.querySelector('#divided'+cmps[i].id).firstChild)
+      if(componentsContainer.lastChild.id.startsWith('divided')){
+        for(var i=0;i<components.length;i++){
+          if(componentsContainer.querySelector('#divided'+components[i].id)){
+            while (componentsContainer.querySelector('#divided'+components[i].id).firstChild)
             {
-              componentsContainer.querySelector('#divided'+cmps[i].id).parentNode.insertBefore(componentsContainer.querySelector('#divided'+cmps[i].id).firstChild,
-                                                      componentsContainer.querySelector('#divided'+cmps[i].id));
+              componentsContainer.querySelector('#divided'+components[i].id).parentNode.insertBefore(componentsContainer.querySelector('#divided'+components[i].id).firstChild,
+                                                      componentsContainer.querySelector('#divided'+components[i].id));
             }
-            componentsContainer.querySelector('#divided'+cmps[i].id).parentNode.removeChild(componentsContainer.querySelector('#divided'+cmps[i].id));
+            componentsContainer.querySelector('#divided'+components[i].id).parentNode.removeChild(componentsContainer.querySelector('#divided'+components[i].id));
           }
         }
         if (document.querySelector('x-media')){
@@ -152,17 +157,17 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
 
       }*/
       mediascape.AdaptationToolkit.uiComponents.addMenuToCmps(cmps,true);
-
-
+          
+      
       cmps.forEach(function(cmp,i){
          !function outer(i){
         cmp.removeEventListener('mousemove',activityFunc,true);
-
+        
         cmp.removeEventListener('mousemove',activityFunc,false);
         cmp.addEventListener('mousemove',activityFunc);
          pip.listeners.push(activityFunc);
           function activityFunc(e){
-
+          
           this.querySelector('#menuBar'+this.id).style.display='block';
           clearTimeout(timers[i]);
           var scope=this;
@@ -171,13 +176,13 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
           },3000);
         }
         }(i);
-
-
+         
+           
       });
-
-
-
-
+      
+      
+      
+       
 
 
 
@@ -253,7 +258,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
       }
       if(enough===true){
          heights.push(height-total_height);
-
+       
 
           //fullScreenCmp.style.gridColumn='1/span 3';
           fullScreenCmp.style.marginLeft='0px';
@@ -267,7 +272,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
 
         usedHeight=0;
         for(var i=0;i<col_cmps;i++){
-
+          
           //cmpsToColumn[i].style.gridColumn='2/span 1';
           cmpsToColumn[i].style.marginLeft=a+'px';
           cmpsToColumn[i].style.width=b+'px';
@@ -281,7 +286,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
 
 
         }
-
+        
 
       }
       else{
@@ -296,7 +301,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
         fullScreenCmp.style.backgroundColor='white';
         fullScreenCmp.style.zIndex='1';
 
-
+        
         for(var i=0;i<col_cmps;i++){
 
           //cmpsToColumn[i].style.gridColumn='2/span 1';
@@ -393,7 +398,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
           document.querySelector('x-media').play();
         }
       }
-      if(componentsContainer.children[0].id.startsWith('divided')){
+      if(componentsContainer.lastChild.id.startsWith('divided')){
         for(var i=0;i<cmps.length;i++){
           if(componentsContainer.querySelector('#divided'+cmps[i].id)){
             while (componentsContainer.querySelector('#divided'+cmps[i].id).firstChild)
@@ -467,17 +472,17 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
       }*/
 
       mediascape.AdaptationToolkit.uiComponents.addMenuToCmps(cmps,true);
-
-
+          
+      
       cmps.forEach(function(cmp,i){
       !function outer(i){
         cmp.removeEventListener('mousemove',activityFunc,true);
-
+        
         cmp.removeEventListener('mousemove',activityFunc,false);
         cmp.addEventListener('mousemove',activityFunc);
           pip.listeners.push(activityFunc);
           function activityFunc(e){
-
+          
           this.querySelector('#menuBar'+this.id).style.display='block';
           clearTimeout(timers[i]);
           var scope=this;
@@ -486,11 +491,11 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
           },3000);
         }
         }(i);
-
-
+       
+           
       });
-
-
+      
+      
 
 
     }
@@ -523,7 +528,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
       pip.listeners.forEach (function(listener){
       for(var i=0;i<cmps.length;i++){
         cmps[i].removeEventListener('mousemove',listener,true);
-
+        
         cmps[i].removeEventListener('mousemove',listener,false);
         clearTimeout(timers[i]);
       }

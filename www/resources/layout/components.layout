@@ -14,14 +14,14 @@
   icon:../resources/images/icons_manag/bildu.png;
 }
 #video3{
-  order:4;
+  order:3;
   rwidth:460px;
   propx:16;
   propy:9;
   icon:../resources/images/icons_manag/eaj.png;
 }
 #control{
-  order:5;
+  order:20;
   rwidth:600px;
   propx:600;
   propy:280;
@@ -29,23 +29,22 @@
 
 }
 #results{
-  order:7;
+  order:2;
   rwidth:460px;
   propx:460;
   propy:250;
   icon:../resources/images/icons_manag/table.png;
 }
 #graph{
-  order:8;
+  order:5;
   rwidth:400px;
   propx:400;
   propy:350;
   icon:../resources/images/icons_manag/Irunea.png;
 
 }
-#graph1{
-  
-  order:9;
+#graph1{  
+  order:6;
   rwidth:400px;
   propx:400;
   propy:350;
@@ -54,7 +53,7 @@
 }
 #graph2{
   
-  order:12;
+  order:7;
   rwidth:400px;
   propx:400;
   propy:350;
@@ -63,7 +62,7 @@
 }
 #graph3{
   
-  order:13;
+  order:8;
   rwidth:400px;
   propx:400;
   propy:350;
@@ -72,7 +71,7 @@
 }
 #graph4{
   
-  order:14;
+  order:9;
   rwidth:400px;
   propx:400;
   propy:350;

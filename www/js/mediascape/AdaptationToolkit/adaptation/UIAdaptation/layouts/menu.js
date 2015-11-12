@@ -1,3 +1,15 @@
+/**
+* This layout organizes N components using a menu. The component with the 
+* lowest order will be shown in fullscreen and the others are not shown. A menu with 
+* the available components appears at the bottom of the screen whenever there is activity
+* on the display. When one component from the list is selected, the associated component 
+* takes the fullscreen place.
+
+* @module mediascape/AdaptationToolkit/adaptation/UIAdaptation/layouts/menu
+* @requires mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor
+*/
+
+
 define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"],
   function(LayoutConstructor){
 
@@ -71,15 +83,15 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
           document.querySelector('x-media').play();
         }
       }
-      if(componentsContainer.children[0].id.startsWith('divided')){
-        for(var i=0;i<cmps.length;i++){
-          if(componentsContainer.querySelector('#divided'+cmps[i].id)){
-            while (componentsContainer.querySelector('#divided'+cmps[i].id).firstChild)
+      if(componentsContainer.lastChild.id.startsWith('divided')){
+        for(var i=0;i<components.length;i++){
+          if(componentsContainer.querySelector('#divided'+components[i].id)){
+            while (componentsContainer.querySelector('#divided'+components[i].id).firstChild)
             {
-              componentsContainer.querySelector('#divided'+cmps[i].id).parentNode.insertBefore(componentsContainer.querySelector('#divided'+cmps[i].id).firstChild,
-                                                      componentsContainer.querySelector('#divided'+cmps[i].id));
+              componentsContainer.querySelector('#divided'+components[i].id).parentNode.insertBefore(componentsContainer.querySelector('#divided'+components[i].id).firstChild,
+                                                      componentsContainer.querySelector('#divided'+components[i].id));
             }
-            componentsContainer.querySelector('#divided'+cmps[i].id).parentNode.removeChild(componentsContainer.querySelector('#divided'+cmps[i].id));
+            componentsContainer.querySelector('#divided'+components[i].id).parentNode.removeChild(componentsContainer.querySelector('#divided'+components[i].id));
           }
         }
         if (document.querySelector('x-media')){
@@ -323,7 +335,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
           document.querySelector('x-media').play();
         }
       }
-      if(componentsContainer.children[0].id.startsWith('divided')){
+      if(componentsContainer.lastChild.id.startsWith('divided')){
         for(var i=0;i<cmps.length;i++){
           if(componentsContainer.querySelector('#divided'+cmps[i].id)){
             while (componentsContainer.querySelector('#divided'+cmps[i].id).firstChild)

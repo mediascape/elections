@@ -1,3 +1,14 @@
+/**
+* This layout organizes N components dividing the screen into equal size horizontal
+* areas, one for each component. The components will be ordered taking into account 
+* the priority from the top to the bottom.
+
+* @module mediascape/AdaptationToolkit/adaptation/UIAdaptation/layouts/horizontal
+* @requires mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor
+*/
+
+
+
 define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"],
   function(LayoutConstructor){
 
@@ -71,15 +82,15 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
         }
 
       }
-      if(componentsContainer.children[0].id.startsWith('divided')){
-        for(var i=0;i<cmps.length;i++){
-          if(componentsContainer.querySelector('#divided'+cmps[i].id)){
-            while (componentsContainer.querySelector('#divided'+cmps[i].id).firstChild)
+     if(componentsContainer.lastChild.id.startsWith('divided')){
+        for(var i=0;i<components.length;i++){
+          if(componentsContainer.querySelector('#divided'+components[i].id)){
+            while (componentsContainer.querySelector('#divided'+components[i].id).firstChild)
             {
-              componentsContainer.querySelector('#divided'+cmps[i].id).parentNode.insertBefore(componentsContainer.querySelector('#divided'+cmps[i].id).firstChild,
-                                                      componentsContainer.querySelector('#divided'+cmps[i].id));
+              componentsContainer.querySelector('#divided'+components[i].id).parentNode.insertBefore(componentsContainer.querySelector('#divided'+components[i].id).firstChild,
+                                                      componentsContainer.querySelector('#divided'+components[i].id));
             }
-            componentsContainer.querySelector('#divided'+cmps[i].id).parentNode.removeChild(componentsContainer.querySelector('#divided'+cmps[i].id));
+            componentsContainer.querySelector('#divided'+components[i].id).parentNode.removeChild(componentsContainer.querySelector('#divided'+components[i].id));
           }
         }
         if (document.querySelector('x-media')){
@@ -210,7 +221,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
         }
 
       }
-      if(componentsContainer.children[0].id.startsWith('divided')){
+      if(componentsContainer.lastChild.id.startsWith('divided')){
         for(var i=0;i<cmps.length;i++){
           if(componentsContainer.querySelector('#divided'+cmps[i].id)){
             while (componentsContainer.querySelector('#divided'+cmps[i].id).firstChild)

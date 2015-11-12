@@ -202,7 +202,7 @@
                 {
                     "componentId": "graph3",
                     "required": false,
-                    "bestfit": "biggestScreenSize",
+                    "bestfit": "touchable",
                     "movable": true,
                     "duplicable":false,
                     "needs":"none"

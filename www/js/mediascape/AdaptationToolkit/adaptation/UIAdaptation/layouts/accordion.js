@@ -1,3 +1,17 @@
+
+/**
+* This layout organizes N components imitating an accordion behaviour. All the components 
+* are showed at the same time following the order property. At the beginning, the screen 
+* is divided in equal size vertical areas, one for each component. When the mouse is over 
+* a component, that component is expanded and the others shrink. Furthermore, when the 
+* component is clicked it takes the fullscreen place.
+
+* @module mediascape/AdaptationToolkit/adaptation/UIAdaptation/layouts/accordion
+* @requires mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor
+*/
+
+
+
 define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"],
 function(LayoutConstructor){
 
@@ -74,15 +88,15 @@ function(LayoutConstructor){
       document.querySelector('x-media').play();
 
     }
-    if(componentsContainer.children[0].id.startsWith('divided')){
-        for(var i=0;i<cmps.length;i++){
-          if(componentsContainer.querySelector('#divided'+cmps[i].id)){
-            while (componentsContainer.querySelector('#divided'+cmps[i].id).firstChild)
+   if(componentsContainer.lastChild.id.startsWith('divided')){
+        for(var i=0;i<components.length;i++){
+          if(componentsContainer.querySelector('#divided'+components[i].id)){
+            while (componentsContainer.querySelector('#divided'+components[i].id).firstChild)
             {
-              componentsContainer.querySelector('#divided'+cmps[i].id).parentNode.insertBefore(componentsContainer.querySelector('#divided'+cmps[i].id).firstChild,
-                                                      componentsContainer.querySelector('#divided'+cmps[i].id));
+              componentsContainer.querySelector('#divided'+components[i].id).parentNode.insertBefore(componentsContainer.querySelector('#divided'+components[i].id).firstChild,
+                                                      componentsContainer.querySelector('#divided'+components[i].id));
             }
-            componentsContainer.querySelector('#divided'+cmps[i].id).parentNode.removeChild(componentsContainer.querySelector('#divided'+cmps[i].id));
+            componentsContainer.querySelector('#divided'+components[i].id).parentNode.removeChild(componentsContainer.querySelector('#divided'+components[i].id));
           }
         }
         if (document.querySelector('x-media')){
@@ -426,7 +440,7 @@ function(LayoutConstructor){
       componentsContainer.querySelector('figure').parentNode.removeChild(componentsContainer.querySelector('figure'));
       document.querySelector('x-media').play();
     }
-   if(componentsContainer.children[0].id.startsWith('divided')){
+   if(componentsContainer.lastChild.id.startsWith('divided')){
         for(var i=0;i<cmps.length;i++){
           if(componentsContainer.querySelector('#divided'+cmps[i].id)){
             while (componentsContainer.querySelector('#divided'+cmps[i].id).firstChild)
@@ -441,8 +455,6 @@ function(LayoutConstructor){
           document.querySelector('x-media').play();
         }
       }
-
-
     if(componentsContainer.querySelector('#arrows')){
       componentsContainer.removeChild(componentsContainer.querySelector('#arrows'));
     }

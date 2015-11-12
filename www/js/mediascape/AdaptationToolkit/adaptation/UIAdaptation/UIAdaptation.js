@@ -51,6 +51,7 @@
 * @requires mediascape/AdaptationToolkit/adaptation/UIAdaptation/layouts/verticalMenu
 * @requires mediascape/AdaptationToolkit/adaptation/UIAdaptation/layouts/scrollHorizontal
 * @requires mediascape/AdaptationToolkit/adaptation/UIAdaptation/layouts/spinner
+* @requires mediascape/AdaptationToolkit/adaptation/UIAdaptation/layouts/divided
 *
 */
 define(

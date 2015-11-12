@@ -53,6 +53,32 @@ var ControlPanel= function (url){
 		var resTable=new table();
 		resTable.setID(c[0].getAttribute('compId'));
 
+		comp='graph1';
+		c=cmps.filter(filterById);
+		var iruneaGraph=new graph();
+		iruneaGraph.setPlace('IRUNEA/PAMPLONA');
+		iruneaGraph.setID(c[0].getAttribute('compId'));
+
+		comp='graph2';
+		c=cmps.filter(filterById);
+		var bilboGraph=new graph();
+		bilboGraph.setPlace('BILBAO');
+		bilboGraph.setID(c[0].getAttribute('compId'));
+
+		comp='graph3';
+		c=cmps.filter(filterById);
+		var donostiGraph=new graph();
+		donostiGraph.setPlace('DONOSTIA/SAN SEBASTIAN');
+		donostiGraph.setID(c[0].getAttribute('compId'));
+
+		comp='graph4';
+		c=cmps.filter(filterById);
+		var gasteizGraph=new graph();
+		gasteizGraph.setPlace('VITORIA-GASTEIZ');
+		gasteizGraph.setID(c[0].getAttribute('compId'));
+
+		
+
 		camerasSect=new camerasSection();
 		camerasSect.addCamera(cam1);
 		camerasSect.addCamera(cam2);
@@ -60,6 +86,10 @@ var ControlPanel= function (url){
 
 		graphicSect=new graphicSection();
 		graphicSect.addTableComp(resTable);
+		graphicSect.addGraphComp(iruneaGraph);
+		graphicSect.addGraphComp(bilboGraph);
+		graphicSect.addGraphComp(donostiGraph);
+		graphicSect.addGraphComp(gasteizGraph);
 
 		devBox=new deviceBox();
 		var lay1=new layout();
@@ -277,6 +307,7 @@ var ControlPanel= function (url){
 					section6.setName(agCtx.agents[i].id+'graphics');
 					section6.addItem(devBox);
 					graphicSect.setTableViewStatus(agCtx.agents[i].id);
+					graphicSect.setGraphsViewStatus(agCtx.agents[i].id);
 					section6.addItem(graphicSect);
 					this.addItem(section6);
 					container.appendChild(section6.render());
@@ -377,6 +408,7 @@ var ControlPanel= function (url){
 					section6.setName(event.detail.agentid+'graphics');
 					section6.addItem(devBox);
 					graphicSect.setTableViewStatus(event.detail.agentid);
+					graphicSect.setGraphsViewStatus(event.detail.agentid);
 					section6.addItem(graphicSect);
 					this.addItem(section6);
 					container.appendChild(section6.render());
@@ -432,6 +464,7 @@ var ControlPanel= function (url){
 					section6.setName(event.detail.agentid+'graphics');
 					section6.addItem(devBox);
 					graphicSect.setTableViewStatus(event.detail.agentid);
+					graphicSect.setGraphsViewStatus(event.detail.agentid);
 					section6.addItem(graphicSect);
 					this.addItem(section6);
 					container.appendChild(section6.render());
@@ -1416,21 +1449,13 @@ var hashtag=function(){
 		var select=document.createElement('select');
 		select.className='form-control select-hashtag';
 
-		var opt1=document.createElement('option');
-		opt1.innerHTML='Urkullu';
-		select.appendChild(opt1);
 
-		var opt2=document.createElement('option');
-		opt2.innerHTML='2';
-		select.appendChild(opt2);
-
-		var opt3=document.createElement('option');
-		opt3.innerHTML='3';
-		select.appendChild(opt3);
-
-		var opt4=document.createElement('option');
-		opt4.innerHTML='4';
-		select.appendChild(opt4);
+		var HT=['Elecciones',' elecciones',' Hauteskundeak',' hauteskundeak',' eleccion',' #elecciones24m',' #24m',' #L6elecciones','#eleccionesA3',' #eleccion2015',' hauteskundeak',' elecciones',' @hauteskundeak',' #hauteskundeak2015',' #Elecciones2015',' #hauteskundeak15',' #Elecciones15',' #M24Donostia',' #eleccionesVG',' @Navarra2015',' #Navarra24M',' #24M',' #M24Donostia',' #EleccionesNA15',' #Navarra24M',' @PPopular',' @PSOE',' @vox_es',' @UPyD',' @ahorapodemos',' @PartidoPACMA',' @Equo',' @CiudadanosCs',' @webpcpe',' @RecortesCero',' @phumanista_esp',' #UPyD',' #PSOE',' #PP',' #BILDU',' #Podemos',' #HagamosHistoria24M',' #VOX',' #AhoraVOX',' #Ciudadanos',' #UPN',' @PPvasco',' @UPyDEuskadi',' @Cs_Euskadi',' @IrabaziEuskadi',' @PES_PSE',' @EzkerBatua',' @ealkartasuna',' @plaZFeminista',' @PodemosEuskadi_',' @ehbildu',' @IkuneICP',' @eajpnv',' @PacmaEuskadi',' @UdalBerri',' @GastoriaVG',' @hegasum',' @IUEzker',' @upn_navarra',' @libertadnavarra',' @SainNavarra',' @RCN_NOK',' Kike Fernández',' @KikeFdzdePinedo',' @arabaehbildu',' @ehbilduaraba',' Miren Larrion',' @miren_larrion',' @ehbildugasteiz',' @EA_Araba',' Ramiro González',' @ramirogonza',' @eajpnvaraba',' @pnvjuntasaraba',' Gorka Urtaran',' @pnvgasteiz',' @gorka__urtaran',' Cristina González',' @CristinaGnlz',' @psealava',' @PSEporAlava',' Peio López De Munain',' @porvitoria',' @peiomunain_xvg',' Javier De Andrés',' @JavierdAndres',' @PP_Juntas_Alava',' Javier Maroto',' @JavierMaroto',' Koldo Martin',' @KoldoPodemos',' @PodemosVitoria',' Ana Unibaso',' @IkuneICP',' Niko Gutiérrez',' @Nik0Gutierrez',' Ignacio Oñate',' @Ignacionate',' Miguel Angel Carrera',' @MikelK10',' Rodrigo Zamora',' @Rodri_Zamora_Al',' José Damían Garcia-Moreno',' @josedamian1980',' #IrabaziAlaba',' @iu_araba',' @EquoAraba',' Óscar Fernández',' @oskar_fm',' @IrabaziGasteiz',' @EQUO_VG',' @EBgasteiz',' Esaú Martín',' @esaumartin',' @vox_alava',' #AhoraVOX',' Adolfo Gago',' @toohope',' Vanesa Costa',' Nerea Icuza',' @icuza',' Esther Saez de Argandoña',' @unicaire',' @GastoriaVG',' Jorge Hinojal',' @JorgeHiSo',' @shgjorge',' @hegasum',' Diana Plaza',' @RecortesCero',' Xabier Olano',' @Xabier_Olano_',' @ehbildugipuzkoa',' @alternatiba',' @EA_Gipuzkoa',' #gipuzkoarrokgaraile',' Juankar Izagirre',' @AlkateSS',' @HiriBizia',' @SortuDonostia',' @EA_Donostia',' #BILDU',' @ehbildu',' Markel Olano',' @eajpnvgipuzkoa',' @markelolano',' @markelolano2015',' Eneko Goia',' @enekogoia2015',' @DonostiaPNV',' @pnvdonostia',' @eajpnv',' Denis Itxaso',' @DenisItxaso',' @PSEGIPUZKOA',' Ernesto Gasco',' @gasco63',' Juan Carlos Cano',' @PPGipuzkoa',' @CanoAristoy',' Miren Albistur',' @MirenAlbistur',' @PPdonostiarras',' Juantxo Iturria',' @juantxo_iturria',' #BadaGaraia',' #GipuzkoaAldatu',' @podemosDonostia',' Amaia Martín',' @sybillacumas',' @Irabazidonostia',' #Podemos',' #HagamosHistoria24M',' Arantza González',' @arantzagg',' @IRABAZIGipuzkoa',' @Irabazidonostia',' @IUDonostia',' @eQuoGipuzkoa',' Manuel Aguirre',' @Mccguirre',' Arantza Aranzabal',' @aranaranzabal',' #donostiaUPyD',' @votaUPyD',' Jonathan Calvo',' @joncalrue',' Nicolás de Miguel',' @NicodeMig',' Josebe Iturrioz',' @JosebeIturrioz',' #AldaketaGorpuzteko',' @plaZFeminista',' Saioa Escolar',' @Pacma_Gipuzkoa',' @PacmaGipuzkoa',' @PacmaEuskadi',' Josu Unanue',' @unanuejosu',' @ehbildubizkaia',' #bizkaitarrokgaraile',' Aitziber Ibarbarriaga',' @AitziIbaiba',' @ehbildubilbo',' @SortuBilbo',' #BILDU',' @EA_Bizkaia',' Unai Rementeria',' @urementeria',' Juan María Aburto',' @juanmariaburto',' @AzalgorriBilbao',' @eajpnvbilbao @eajpnv',' Carlos Totorica',' @PSEBizkaia',' #CarlosTotorica',' Alfonso Gil',' @AlfonsoGil',' @PSEBilbao',' @GroupPES_Bilbao',' Javier Ruiz',' @JavierRuiz_PP',' @PPBizkaia',' Luis Eguiluz',' @LuisEguiluz_pp',' @PPdeBilbao',' Asun Merino',' @AsunPodemos',' @PodemosBizkaia',' Francisco Samir Lahdou',' @PodemosBilbao',' @PodemosBilbaoE',' Xabier Jiménez',' @Eljoventopo',' #IrabaziBizkaia',' @BilboIrabaziz',' @IUBilbao',' @EquoBizkaia',' Roque Adrada',' @RoqueAdrada',' Javier Gabilondo',' @JavierGabilondo',' Santiago Sáinz',' @Sainz_Robles',' @Ciudadanos',' David Pasarín',' @davidpasarin',' Patricia Gómez',' @vox_vizcaya',' Urko de Azumendi',' @urkobilbao2015',' @vox_bilbao',' Carmen Muñoz',' @CarmenMunozL',' #BilbaoEnComun',' @UdalBerri',' @Equo',' @iunida',' @ALTER_info',' JOSE MANUEL VÁZQUEZ RIOS',' @phumanista_esp',' Kepa Lozano',' @KEPALOZANO',' Goizane Rodríguez',' @JusticiaPAT',' Joseba Arroita',' @IkuneICP',' Sergio Saenz',' @webpcpe',' #24mvotapcpe',' Uxue Barkos',' @uxuebarkos',' Itziar Gomez',' @itziargomez',' @GeroaBaiIrunea',' @geroabai',' #orainbai',' @EAJPNVNafarroa',' Javier Esparza',' @JavierJesparza',' @_navarrisimo',' #Navarrisimo',' #adelantenavarros',' Enrique Maya',' #Navarrisimo',' #UPN',' @upn_navarra',' Ana Beltran',' @abeltran_ana',' @PPNavarra',' Pablo Zalba',' @PabloZalba',' #Pamplona',' #Navarra',' @PPNavarra',' #DespiertaPamplona',' María Chivite',' @mavichina',' @PSNPSOE',' Maite Esporrin',' @maiteesporrin',' @PamplonaPSN',' @psnpsoe',' #VotaPSOE',' #VotaPSNPSOE',' #EsporrinAlcaldesa',' #ActivemosPamplona',' Adolfo Araiz',' @AdolfoAraiz',' @EHbilduNafarroa',' #Nafarrokgaraile',' #nafarrokgaraile',' Joseba Asiron',' @josebaasiron',' @EAnafarroa',' Laura Pérez Ruano',' @laperua',' @Podemosnavarra',' #EsAhora',' #CambiaNavarra',' Diego Paños',' @diegopanos',' #CambiaNavarra',' @Cs_Navarra_',' Iñaki Arana',' #NavarraPideCambio',' Miguel Zarranz',' @miguelzarranz',' @UPyD_Navarra',' Damaso Crespo',' @upyd_navarra',' #LIBRES',' Jose Miguel Nuin',' @josemiguelnuin',' @IzdaNavarra @EzkerraN',' Mikel Iriarte',' @libertadnavarra',' David Marzo',' @davidMarzo',' @EquoNavarfarroa',' #LaAlternativaVerde',' #AukeraVerdea',' @EquoNavarra',' Maria Yazmina Larumbe',' @PacmaNavarra',' Daniel Fernández',' #SuVozTuVoto',' Luis Miguel Latasa',' @SainNavarra',' @PartidoSAIn',' Samuel Valderrey',' @SamuelValderrey',' #VOTASAIn',' Ramon Morcillo',' @RCN_NOK',' #marihuana',' Edurne Eguino',' @SoyEdurneNaiz',' @EdurneEguino',' @IUPamplona'];
+		for(var i=0;i<HT.length;i++){
+			var opt1=document.createElement('option');
+			opt1.innerHTML=HT[i];
+			select.appendChild(opt1);
+		}
 
 		div2.appendChild(p1);
 		div2.appendChild(p2);
@@ -1649,6 +1674,7 @@ var radioSection=function(){
 var table=function(){
 	this.activeYear='';
 	this.activePlace='irunea2015';
+	this.viewStatus='';
 	this.setID=function(tabId){
 		this.id=tabId;
 	}
@@ -1917,6 +1943,12 @@ var graph=function(){
 	this.setPlace=function(where){
 		this.place=where;
 	}
+	this.setID=function(graphId){
+		this.id=graphId;
+	}
+	this.setViewStatus=function(stat){
+		this.viewStatus=stat;
+	}
 	this.render=function(){
 		var div30=document.createElement('div');
 		div30.className='col-md-12 emisora';
@@ -1950,7 +1982,10 @@ var graph=function(){
 		var input3=document.createElement('input');
 		input3.type='checkbox';
 		input3.name='set-graphic-emisora';
-		input3.checked=true;
+		input3.checked=this.viewStatus;
+		input3.id='viewCheck'+this.id;
+		div33.id='view'+this.id;
+		div33.addEventListener('click',this.viewclick.bind(this),true);
 
 		div33.appendChild(input3);
 
@@ -1960,11 +1995,38 @@ var graph=function(){
 		return div30;
 
 	}
+	this.viewclick=function(){
+		var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
+		var agents=agCtx.agents;
+		var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
+		var val=agentToChange;
+		function filterById(el){
+			if(el.id===val)return el;
+		}
+
+		var a=agents.filter(filterById);
+		var scope=this;
+		var b=a[0].capabilities.componentsStatus.filter(function(el,i){
+			if(el.compId===scope.id)return el;
+		});
+
+		console.log('viewClick');
+		if(b[0].show===true){
+			mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'hide');
+		}
+		else{
+			mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'show');
+		}
+	}
 }
 var graphicSection=function(){
 	this.tableComp=[];
+	this.graphComps=[];
 	this.addTableComp=function(c){
 		this.tableComp.push(c);
+	}
+	this.addGraphComp=function(c){
+		this.graphComps.push(c);
 	}
 	this.render=function(){
 		var div1=document.createElement('div');
@@ -1985,24 +2047,10 @@ var graphicSection=function(){
 		var div5=document.createElement('div');
 		div5.className='contenido content-emisoras';
 
-
-		var bilboGraph=new graph();
-		bilboGraph.setPlace('BILBAO');
-		div5.appendChild(bilboGraph.render());
-
-
-		var donostiGraph=new graph();
-		donostiGraph.setPlace('DONOSTIA/SAN SEBASTIAN');
-		div5.appendChild(donostiGraph.render());
-
-		var iruneaGraph=new graph();
-		iruneaGraph.setPlace('IRUÑA/PAMPLONA');
-		div5.appendChild(iruneaGraph.render());
-
-		var gasteizGraph=new graph();
-		gasteizGraph.setPlace('VITORIA-GASTEIZ');
-		div5.appendChild(gasteizGraph.render());
-
+		for(var i=0;i<this.graphComps.length;i++){
+			div5.appendChild(this.graphComps[i].render());
+		}
+		
 		div4.appendChild(div5);
 
 		div2.appendChild(div3);
@@ -2039,6 +2087,33 @@ var graphicSection=function(){
 			this.tableComp[0].setViewStatus(false);
 		}
 
+	}
+	this.setGraphsViewStatus=function(agentID){
+		var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
+		var agents=agCtx.agents;
+		var agentToChange=agentID;
+
+		var a=agents.filter(function(el){
+			if(el.id===agentToChange)return el;
+		});
+		var scope=this;
+
+		for(var i=0;i<this.graphComps.length;i++){
+
+			var graphic=this.graphComps[i].id;
+			b=a[0].capabilities.componentsStatus.filter(function(el){
+				if(el.compId===graphic)return el;
+			});
+
+
+			if(b[0].show===true){
+				this.graphComps[i].setViewStatus(true);
+			}
+			else{
+				this.graphComps[i].setViewStatus(false);
+			}
+
+		}
 	}
 
 }

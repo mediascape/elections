@@ -1,3 +1,16 @@
+/**
+* This layout organizes N components dividing the screen into equal size areas, one
+* for each component. The components will be ordered taking into account 
+* the priority from the left to the right and from top to the bottom. If it is not
+* possible to divide the screen into equal cells, it will be divided into a higher
+* number of cells and there will be empty cells. 
+
+* @module mediascape/AdaptationToolkit/adaptation/UIAdaptation/layouts/divided
+* @requires mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor
+*/
+
+
+
 define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"],
   function(LayoutConstructor){
 
@@ -72,15 +85,15 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
 
       }
 
-      if(componentsContainer.children[0].id.startsWith('divided')){
-        for(var i=0;i<cmps.length;i++){
-          if(componentsContainer.querySelector('#divided'+cmps[i].id)){
-            while (componentsContainer.querySelector('#divided'+cmps[i].id).firstChild)
+      if(componentsContainer.lastChild.id.startsWith('divided')){
+        for(var i=0;i<components.length;i++){
+          if(componentsContainer.querySelector('#divided'+components[i].id)){
+            while (componentsContainer.querySelector('#divided'+components[i].id).firstChild)
             {
-              componentsContainer.querySelector('#divided'+cmps[i].id).parentNode.insertBefore(componentsContainer.querySelector('#divided'+cmps[i].id).firstChild,
-                                                      componentsContainer.querySelector('#divided'+cmps[i].id));
+              componentsContainer.querySelector('#divided'+components[i].id).parentNode.insertBefore(componentsContainer.querySelector('#divided'+components[i].id).firstChild,
+                                                      componentsContainer.querySelector('#divided'+components[i].id));
             }
-            componentsContainer.querySelector('#divided'+cmps[i].id).parentNode.removeChild(componentsContainer.querySelector('#divided'+cmps[i].id));
+            componentsContainer.querySelector('#divided'+components[i].id).parentNode.removeChild(componentsContainer.querySelector('#divided'+components[i].id));
           }
         }
         if (document.querySelector('x-media')){
@@ -88,7 +101,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
         }
       }
 
-      
+
       if(componentsContainer.querySelector('#arrows')){
         componentsContainer.removeChild(componentsContainer.querySelector('#arrows'));
       }
@@ -115,76 +128,94 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
       container.style.display='inline-block';
       container.style.gridAutoFlow='';
       container.className='template-all-layouts';
-      if(cmps.length===1){
-        for(var i=0;i<cmps.length;i++){
+
+
+      
+      var ordered_cmps=[];
+      ordered_cmps = cmps.sort(function(it1,it2){
+      if (it1.lproperties.order > it2.lproperties.order) return 1;
+      else return -1;
+      });
+
+
+
+
+      if(ordered_cmps.length===1){
+        for(var i=0;i<ordered_cmps.length;i++){
           var div=document.createElement('div');
-          div.id='divided'+cmps[i].id;
+          div.id='divided'+ordered_cmps[i].id;
           div.className='col-md-12 layout-fullwidth';
-          div.appendChild(cmps[i]);
+          div.appendChild(ordered_cmps[i]);
           //cmps[i].style.width='100%';
+          ordered_cmps[i].style.backgroundColor='black';
           container.appendChild(div);
         }
       }
-      else if(cmps.length===2){
-        for(var i=0;i<cmps.length;i++){
+      else if(ordered_cmps.length===2){
+        for(var i=0;i<ordered_cmps.length;i++){
           var div=document.createElement('div');
-          div.id='divided'+cmps[i].id;
+          div.id='divided'+ordered_cmps[i].id;
           div.className='col-md-6 layout-fullwidth';
-          div.appendChild(cmps[i]);
+          div.appendChild(ordered_cmps[i]);
           //cmps[i].style.width='100%';
+          ordered_cmps[i].style.backgroundColor='black';
           container.appendChild(div);
         }
       }
-      else if(cmps.length===3){
-        for(var i=0;i<cmps.length;i++){
+      else if(ordered_cmps.length===3){
+        for(var i=0;i<ordered_cmps.length;i++){
           var div=document.createElement('div');
-          div.id='divided'+cmps[i].id;
+          div.id='divided'+ordered_cmps[i].id;
           div.className='col-md-6 layout-horizontal-divided';
-          div.appendChild(cmps[i]);
+          div.appendChild(ordered_cmps[i]);
           //cmps[i].style.width='100%';
+          ordered_cmps[i].style.backgroundColor='black';
           container.appendChild(div);
         }
       }
-      else if(cmps.length===4){
-        for(var i=0;i<cmps.length;i++){
+      else if(ordered_cmps.length===4){
+        for(var i=0;i<ordered_cmps.length;i++){
           var div=document.createElement('div');
-          div.id='divided'+cmps[i].id;
+          div.id='divided'+ordered_cmps[i].id;
           div.className='col-md-6 layout-horizontal-divided';
-          div.appendChild(cmps[i]);
+          div.appendChild(ordered_cmps[i]);
           //cmps[i].style.width=div.style.width;
+          ordered_cmps[i].style.backgroundColor='black';
           container.appendChild(div);
         }
       }
-      else if(cmps.length===5){
-        for(var i=0;i<cmps.length;i++){
+      else if(ordered_cmps.length===5){
+        for(var i=0;i<ordered_cmps.length;i++){
           var div=document.createElement('div');
-          div.id='divided'+cmps[i].id;
+          div.id='divided'+ordered_cmps[i].id;
           div.className='col-md-4 layout-horizontal-divided';
           
-          div.appendChild(cmps[i]);
+          div.appendChild(ordered_cmps[i]);
          // cmps[i].style.width='100%';
+         ordered_cmps[i].style.backgroundColor='black';
          container.appendChild(div);
 
         }
       }
-      else if(cmps.length===6){
-        for(var i=0;i<cmps.length;i++){
+      else if(ordered_cmps.length===6){
+        for(var i=0;i<ordered_cmps.length;i++){
           var div=document.createElement('div');
-          div.id='divided'+cmps[i].id;
+          div.id='divided'+ordered_cmps[i].id;
           div.className='col-md-4 layout-horizontal-divided';
-          div.appendChild(cmps[i]);
+          div.appendChild(ordered_cmps[i]);
           //cmps[i].style.width='100%';
-          cmps[i].style.backgroundColor='black';
+          ordered_cmps[i].style.backgroundColor='black';
           container.appendChild(div);
         }
       }
       else{
-        for(var i=0;i<cmps.length;i++){
+        for(var i=0;i<ordered_cmps.length;i++){
           var div=document.createElement('div');
-          div.id='divided'+cmps[i].id;
+          div.id='divided'+ordered_cmps[i].id;
           div.className='col-md-4 layout-horizontal-three-divided';
-          div.appendChild(cmps[i]);
+          div.appendChild(ordered_cmps[i]);
           //cmps[i].style.width='100%';
+          ordered_cmps[i].style.backgroundColor='black';
           container.appendChild(div);
         }
       }
@@ -265,7 +296,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
         }
       }
 
-      if(componentsContainer.children[0].id.startsWith('divided')){
+      if(componentsContainer.lastChild.id.startsWith('divided')){
         for(var i=0;i<cmps.length;i++){
           if(componentsContainer.querySelector('#divided'+cmps[i].id)){
             while (componentsContainer.querySelector('#divided'+cmps[i].id).firstChild)
