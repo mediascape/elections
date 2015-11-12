@@ -1,3 +1,7 @@
+/**
+*  Minimu skeleton that layout or template must implement to work on the UIAdaptation ecosystem
+*  @module mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor
+*/
 define(
   [
   ],

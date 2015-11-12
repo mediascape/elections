@@ -33,12 +33,23 @@
 **              MIT license (http://opensource.org/licenses/MIT)
 **
 */
-
+/**
+* Adaptation module wraps all functionality for webcomponents adaptation divided in two
+* sections: device adaptation engine and user interface adaptation engine.
+* device adaptation: Howto distribute components on the existing different devices.
+* user interface adaptation: Having N webcomponents to render howto render on each devices.
+* depending the context and the agent.
+* @module mediascape/AdaptationToolkit/adaptation/modules
+* @requires mediascape/AdaptationToolkit/adaptation/multiDeviceAdaptation/mdadaptation
+* @requires mediascape/AdaptationToolkit/adaptation/UIAdaptation/UIAdaptation
+*
+*/
 define(
   [	"mediascape/AdaptationToolkit/adaptation/multiDeviceAdaptation/mdadaptation",
   "mediascape/AdaptationToolkit/adaptation/UIAdaptation/UIAdaptation"
   ],
   function(){
+
     var adaptation = {};
     var moduleList   = Array.prototype.slice.apply( arguments );
     var adaptation =  function Adaptation( AdaptationToolkit, _AdaptationToolkit, config ){

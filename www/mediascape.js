@@ -38,7 +38,26 @@
     waitSeconds:25
   });
 
-
+  /**
+ * mediascape collect all needed modules on mediascape object, accesible by mediascape
+ * javascript object. Once is ready fire a event mediascape-modules-ready
+ * @module mediascape
+ * @requires mediascape/AdaptationToolkit/AdaptationToolkit
+ * @requires mediascape/Discovery/discovery
+ * @requires mediascape/Sharedstate/sharedstate
+ * @requires mediascape/Mappingservice/mappingservice
+ * @requires mediascape/Agentcontext/agentcontext
+ * @requires mediascape/Applicationcontext/applicationcontext
+ * @requires mediascape/DiscoveryForAgentContext/discoveryforagentcontext
+ * @requires mediascape/DeviceProfile/deviceProfile
+ * @requires resources/association/association
+ *
+  */
+  /**
+  ^ Event emited to document listener when mediascape is ready.
+  * @event mediascape-modules-ready
+  * @param {Object} mediascape-modules-ready {"detail":{"loaded":true}}
+  */
   // Start the main app logic.
   define( "mediascape", [ "mediascape/AdaptationToolkit/AdaptationToolkit","mediascape/Discovery/discovery"
   ,"mediascape/Sharedstate/sharedstate","mediascape/Mappingservice/mappingservice",
@@ -83,7 +102,7 @@
       //return of ms object with discovery and features objects and its functions
       return mediascape;
     });
-
+/** All modules are ready so mediascape it can be started */
   require([ "mediascape" ], function (mediascape) {
     console.log("mediascape require");
     if (document.readyState === "complete") mediascape.init();

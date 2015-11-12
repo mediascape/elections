@@ -1,8 +1,40 @@
 /**
- * multiDeviceAdaptation module.
- * @module mediascape/AdaptationToolkit/adaptation/multiDeviceAdaptation/madaptation
- * @see module: madaptation
- */
+* MultiDeviceAdaptationEngine module is the responsible of relation between sharedContext
+* and application logic. This module offers functions to get all information need related
+* with the sharedContext. This information is used to decide howto distribute all components
+* on the each device dependeing on the context. For this purpose, there is an plugin system
+* that implements different rules with different priority to decide the best distirbution. The
+* configuration file of the plugins is located at resources/adaotationRules/rules.json
+*
+* @module mediascape/AdaptationToolkit/adaptation/multiDeviceAdaptation/mdadaptation
+* @requires mediascape/AdaptationToolkit/adaptation/multiDeviceAdaptation/plugins/explicit
+* @requires mediascape/AdaptationToolkit/adaptation/multiDeviceAdaptation/plugins/bestfit
+* @requires mediascape/AdaptationToolkit/adaptation/multiDeviceAdaptation/plugins/userPref
+* @requires mediascape/AdaptationToolkit/adaptation/multiDeviceAdaptation/plugins/affinitymatch
+* @requires mediascape/Applicationcontext/applicationcontext
+* @requires jquery
+*
+*/
+/**
+* Fired when sharedContext is initialize and ready to use: listener document
+* @event applicationContext-ready
+* @param {Object} applicationContext-ready { "detail": "application context ready" }
+*/
+/**
+* Fire when sharedContext has change, the could be identify by the object lastChange
+* @event contextUpdate
+* @param {Object} contextUpdate { "detail": {"context":context,type:type,"agentid":agentid}}
+*/
+/**
+* Fire when component status change, updated are related with local agent, output is received by UIAdaptation
+* @event onComponentsChange
+* @param {Object} onComponentsChange {"detail":{"type":"localChange","cmps":status,"agentid":change.agentid}}
+*/
+/**
+* Fire when layout change, updated are related with local agent
+* @event layoutEvent
+* @param {Object} layoutEvent ',{detail:{layoutName:value}})
+*/
 define(['jquery',
 'mediascape/Applicationcontext/applicationcontext',
 'mediascape/AdaptationToolkit/adaptation/multiDeviceAdaptation/plugins/explicit',
@@ -10,10 +42,7 @@ define(['jquery',
 'mediascape/AdaptationToolkit/adaptation/multiDeviceAdaptation/plugins/bestfit',
 'mediascape/AdaptationToolkit/adaptation/multiDeviceAdaptation/plugins/userpref'],
 function($, applicationContext){
-  /**
-    * Utility functions for multi Device Adaptation
-    * @exports mediascape/AdaptationToolkit/adaptation/multiDeviceAdaptation/madaptation
-    */
+
   /** ApplicationContext instance. */
   var plugin_modules = {};
   var localStatus = null;

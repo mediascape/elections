@@ -33,7 +33,26 @@
 **              MIT license (http://opensource.org/licenses/MIT)
 **
 */
-
+/**
+* UserInterfaceAdaptationEngine module is the responsible of render webcomponents
+* the proper way taking in account a number of webcompoents and agents context.
+* It receives an input of N webcomponents to show, and depends of the context and
+* configuration, it renders some template or other template. It is ready to receives
+* template changes remotely. Templates are based on [layoutConstructor]{@link module-mediascape_AdaptationToolkit_adaptation_UIAdaptation_layoutConstructor.html}
+*
+*
+*
+* @module mediascape/AdaptationToolkit/adaptation/UIAdaptation/UIAdaptation
+* @requires mediascape/AdaptationToolkit/adaptation/UIAdaptation/layouts/pip
+* @requires mediascape/AdaptationToolkit/adaptation/UIAdaptation/layouts/menu
+* @requires mediascape/AdaptationToolkit/adaptation/UIAdaptation/layouts/horizontal
+* @requires mediascape/AdaptationToolkit/adaptation/UIAdaptation/layouts/customGrid
+* @requires mediascape/AdaptationToolkit/adaptation/UIAdaptation/layouts/accordion
+* @requires mediascape/AdaptationToolkit/adaptation/UIAdaptation/layouts/verticalMenu
+* @requires mediascape/AdaptationToolkit/adaptation/UIAdaptation/layouts/scrollHorizontal
+* @requires mediascape/AdaptationToolkit/adaptation/UIAdaptation/layouts/spinner
+*
+*/
 define(
   ["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layouts/pip",
   "mediascape/AdaptationToolkit/adaptation/UIAdaptation/layouts/menu",
@@ -49,6 +68,10 @@ define(
     var cmps=[];
     //var prev_orientation='';
     var UIAdaptation = function(){
+      /**
+      * @Constructor UIAdaptation
+      *
+      */
       var layouts = [];
       var actualLayout;
       var layoutIndex=0;
@@ -101,6 +124,27 @@ define(
       }
       this.useLayout = function (layoutName){
         // find the rule
+        // Find out my layout according deviceProfile
+        if (typeof layoutName === "object" ){
+            // All device same layout
+
+               // Find out which layout reciprocate with the deviceType
+            var found =   layoutName.deviceTypes.some(function(deviceType){
+                 if(mediascape.deviceType === deviceType.deviceType){
+                    layoutName = deviceType.layout;
+                    return true;
+                 }
+               });
+          if (!found) {
+            // set default to accordion
+            layoutName = "accordion";
+            console.warn ("Not layout found for device type: "+mediascape.deviceType +" Using default one");
+
+          }
+
+
+        }
+
         if (actualLayout) actualLayout.unload(cmps);
         actualLayout = layouts.filter(function(el){
           if (el.name == layoutName) return true;

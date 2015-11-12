@@ -178,6 +178,7 @@ define(["mediascape/Discovery/discovery","mediascape/Agentcontext/agentcontext",
 					document.addEventListener('mediascape-modules-ready',function(){
 					mediascape.DeviceProfile.checkDevice(navigator.userAgent).done(function(result){
 						console.log("result",result);
+						mediascape.deviceType = result.deviceType;
 						ac.setItem("platform", result);
 					});
 				});

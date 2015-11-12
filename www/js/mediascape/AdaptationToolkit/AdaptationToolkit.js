@@ -33,10 +33,20 @@
 **		MIT license (http://opensource.org/licenses/MIT)
 **
 */
-
+/**
+* AdaptationToolkit module wraps all functionality for webcomponents adaptation:
+* adaptation modules, uicomponents user interface widgets, componentManager
+* : parse webcomponents, normalize and css rules assocaition, utils that could be used
+* for manipulated webcompoents etc..
+* @module mediascape/AdaptationToolkit/AdaptationToolkit
+* @requires mediascape/AdaptationToolkit/adaptation/modules
+* @requires mediascape/AdaptationToolkit/componentManager/modules
+* @requires mediascape/AdaptationToolkit/uiComponents/uiComponents
+* @requires mediascape/AdaptationToolkit/utils/utils
+* @alias mediascape/AdaptationToolkit/AdaptationToolkit
+*/
 define(
 	[	"mediascape/AdaptationToolkit/adaptation/modules",
-
 		"mediascape/AdaptationToolkit/componentManager/modules",
 		"mediascape/AdaptationToolkit/uiComponents/uiComponents",
 		"mediascape/AdaptationToolkit/SharedMotion/SharedMotion",
@@ -44,6 +54,11 @@ define(
 
 	],
 	function(){
+		/**
+		* Module of AdaptationToolkit
+		* @alias mediascape/AdaptationToolkit/AdaptationToolkit
+		* @exports mediascape/AdaptationToolkit/AdaptationToolkit
+	  */
 		var moduleList   = Array.prototype.slice.apply( arguments );
 		var AdaptationToolkit = {};
 		var  AdaptationToolkit =function AdaptationToolkit( mediascape, _mediascape, config ){
