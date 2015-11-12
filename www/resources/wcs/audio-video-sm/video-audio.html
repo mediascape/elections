@@ -6,14 +6,14 @@
 	<style >
 
 	@media (max-width:350px){
+		video{width:100%;}
 
-	    video{width:100%;height:100%;}
 
 
 	}
 	@media (min-width:351px){
-
-	    video{width:100%;height:100%;}
+		video{width:100%;}
+	   
 
 	}
 
@@ -106,10 +106,11 @@ Polymer({
 
 				video=document.createElement('video');
 				video.id="player1"+_this.id;
-				//video.style.width='100%';
+				video.style.width='100%';
+				video.style.height='100%';
 
 				//if (this.show)
-					video.src=_this.file;
+				video.src=_this.file;
 				if(_this.ismuted==="true"){
 					video.muted=true;
 				}
@@ -129,7 +130,8 @@ Polymer({
 
 				video=document.createElement('video');
 				video.id="player1"+_this.id;
-				//video.style.width='100%';
+				video.style.width='100%';
+				video.style.height='100%';
 			//	video.mute =true;
 				//if (_this.show)
 					video.src=_this.file;
