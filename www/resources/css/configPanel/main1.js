@@ -1680,7 +1680,7 @@ var radioSection=function(){
 var table=function(){
 	this.activeYear='';
 	this.activePlace='irunea2015';
-	this.viewStatus='';
+	
 	this.setID=function(tabId){
 		this.id=tabId;
 	}

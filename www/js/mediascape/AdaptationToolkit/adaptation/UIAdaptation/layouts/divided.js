@@ -85,21 +85,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
 
       }
 
-      if(componentsContainer.lastChild.id.startsWith('divided')){
-        for(var i=0;i<components.length;i++){
-          if(componentsContainer.querySelector('#divided'+components[i].id)){
-            while (componentsContainer.querySelector('#divided'+components[i].id).firstChild)
-            {
-              componentsContainer.querySelector('#divided'+components[i].id).parentNode.insertBefore(componentsContainer.querySelector('#divided'+components[i].id).firstChild,
-                                                      componentsContainer.querySelector('#divided'+components[i].id));
-            }
-            componentsContainer.querySelector('#divided'+components[i].id).parentNode.removeChild(componentsContainer.querySelector('#divided'+components[i].id));
-          }
-        }
-        if (document.querySelector('x-media')){
-          document.querySelector('x-media').play();
-        }
-      }
+      
 
 
       if(componentsContainer.querySelector('#arrows')){
@@ -142,81 +128,56 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
 
       if(ordered_cmps.length===1){
         for(var i=0;i<ordered_cmps.length;i++){
-          var div=document.createElement('div');
-          div.id='divided'+ordered_cmps[i].id;
-          div.className='col-md-12 layout-fullwidth';
-          div.appendChild(ordered_cmps[i]);
-          //cmps[i].style.width='100%';
-          ordered_cmps[i].style.backgroundColor='black';
-          container.appendChild(div);
+
+          ordered_cmps[i].className='col-md-12 layout-fullwidth';          
+         
         }
       }
       else if(ordered_cmps.length===2){
         for(var i=0;i<ordered_cmps.length;i++){
-          var div=document.createElement('div');
-          div.id='divided'+ordered_cmps[i].id;
-          div.className='col-md-6 layout-fullwidth';
-          div.appendChild(ordered_cmps[i]);
-          //cmps[i].style.width='100%';
-          ordered_cmps[i].style.backgroundColor='black';
-          container.appendChild(div);
+          
+          ordered_cmps[i].className='col-md-6 layout-fullwidth';          
+  
+
         }
       }
       else if(ordered_cmps.length===3){
         for(var i=0;i<ordered_cmps.length;i++){
-          var div=document.createElement('div');
-          div.id='divided'+ordered_cmps[i].id;
-          div.className='col-md-6 layout-horizontal-divided';
-          div.appendChild(ordered_cmps[i]);
-          //cmps[i].style.width='100%';
-          ordered_cmps[i].style.backgroundColor='black';
-          container.appendChild(div);
+          
+          ordered_cmps[i].className='col-md-6 layout-horizontal-divided';
+      
         }
       }
       else if(ordered_cmps.length===4){
         for(var i=0;i<ordered_cmps.length;i++){
-          var div=document.createElement('div');
-          div.id='divided'+ordered_cmps[i].id;
-          div.className='col-md-6 layout-horizontal-divided';
-          div.appendChild(ordered_cmps[i]);
-          //cmps[i].style.width=div.style.width;
-          ordered_cmps[i].style.backgroundColor='black';
-          container.appendChild(div);
+
+          ordered_cmps[i].className='col-md-6 layout-horizontal-divided';
+          
+          
         }
       }
       else if(ordered_cmps.length===5){
         for(var i=0;i<ordered_cmps.length;i++){
-          var div=document.createElement('div');
-          div.id='divided'+ordered_cmps[i].id;
-          div.className='col-md-4 layout-horizontal-divided';
+        
+          ordered_cmps[i].className='col-md-4 layout-horizontal-divided';
+        
           
-          div.appendChild(ordered_cmps[i]);
-         // cmps[i].style.width='100%';
-         ordered_cmps[i].style.backgroundColor='black';
-         container.appendChild(div);
-
         }
       }
       else if(ordered_cmps.length===6){
         for(var i=0;i<ordered_cmps.length;i++){
-          var div=document.createElement('div');
-          div.id='divided'+ordered_cmps[i].id;
-          div.className='col-md-4 layout-horizontal-divided';
-          div.appendChild(ordered_cmps[i]);
-          //cmps[i].style.width='100%';
-          ordered_cmps[i].style.backgroundColor='black';
-          container.appendChild(div);
+        
+          ordered_cmps[i].className='col-md-4 layout-horizontal-divided';
+
+          
         }
       }
       else{
         for(var i=0;i<ordered_cmps.length;i++){
-          var div=document.createElement('div');
-          div.id='divided'+ordered_cmps[i].id;
-          div.className='col-md-4 layout-horizontal-three-divided';
-          div.appendChild(ordered_cmps[i]);
-          //cmps[i].style.width='100%';
-          ordered_cmps[i].style.backgroundColor='black';
-          container.appendChild(div);
+         
+          ordered_cmps[i].className='col-md-4 layout-horizontal-three-divided';          
+    
+     
         }
       }
 
@@ -296,21 +257,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
         }
       }
 
-      if(componentsContainer.lastChild.id.startsWith('divided')){
-        for(var i=0;i<cmps.length;i++){
-          if(componentsContainer.querySelector('#divided'+cmps[i].id)){
-            while (componentsContainer.querySelector('#divided'+cmps[i].id).firstChild)
-            {
-              componentsContainer.querySelector('#divided'+cmps[i].id).parentNode.insertBefore(componentsContainer.querySelector('#divided'+cmps[i].id).firstChild,
-                                                      componentsContainer.querySelector('#divided'+cmps[i].id));
-            }
-            componentsContainer.querySelector('#divided'+cmps[i].id).parentNode.removeChild(componentsContainer.querySelector('#divided'+cmps[i].id));
-          }
-        }
-        if (document.querySelector('x-media')){
-          document.querySelector('x-media').play();
-        }
-      }
+  
 
 
 
