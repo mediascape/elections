@@ -13,7 +13,7 @@
 	}
 	@media (min-width:351px){
 		video{width:100%;}
-	   
+
 
 	}
 
@@ -57,7 +57,7 @@ Polymer({
 
 
 
-			function toExecute(){
+			function toExecute(event){
 				console.log('context updated');
 				if(mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAgentId()===event.detail.agentid){
 					for(var i=0;i<event.detail.context.agents.length;i++){

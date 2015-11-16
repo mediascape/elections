@@ -470,12 +470,12 @@ define(
 
       //This panel includes the qr code for association, the component manager and the layout change
       this.addControlPanel = function (url){
-        
-        
+
+
         this.ctrlPanel=new ControlPanel(url);
         var associationPanel = document.createElement('span');
 
-         
+
           var scope=this;
           document.addEventListener('keydown',function(e){
 
@@ -516,7 +516,8 @@ define(
                 fullIcon.style.marginRight='15px';
 
                 fullIcon.addEventListener('click',function(e){
-
+                  e.srcElement = e.srcElement || e.target;
+                  console.log(e);
                   document.querySelector('#'+e.srcElement.id.split('fullIcon')[1]).fire('componentToFullscreen');
 
                 });

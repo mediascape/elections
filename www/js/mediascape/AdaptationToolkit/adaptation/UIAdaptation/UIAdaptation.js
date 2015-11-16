@@ -220,7 +220,7 @@ define(
             //  actualLayout.render(_cmps);
           }
           else {
-            throw new Error ("Event does not exists");
+            console.warn ("Event does not exists");
           }
           break;
           case this.LAYOUTMODE.ADAPTABLE:
@@ -278,7 +278,7 @@ define(
       this.onWindowResize = function (event){
         // Filter only showing ones
         //cmps = cmds.filter(function(el){});
-
+      event.srcElement =  event.srcElement || event.target;
        if(prev_orientation!==undefined && prev_orientation!==''){
 
             if(prev_orientation !== event.srcElement.orientation  ){
@@ -845,7 +845,10 @@ define(
         var event = new CustomEvent('resize', { 'detail': 'emulate' });
         window.dispatchEvent(event);
         for (var x = 0 ; x< cmps.length;x++)
-             cmps[x].updateNodes();
+            {
+                cmps[x] = document.querySelector("#"+cmps[x].id);
+                cmps[x].updateNodes();
+            }
         this.forceRedraw();
 
       }

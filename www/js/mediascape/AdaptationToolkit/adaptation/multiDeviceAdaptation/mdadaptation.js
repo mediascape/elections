@@ -147,13 +147,13 @@ function($, applicationContext){
     // Add clients on connection order
     var addCounter = function(agentid){
       var ids_order = applicationContext.getItem('order_agentid') || [];
-      console.log("AGENT ORDER",ids_order);
+
       if(ids_order.lastIndexOf(agentid)===-1)
       {
         ids_order.push(agentid);
         applicationContext.setItem('order_agentid',ids_order);
       }
-      console.log('lastIndexOf',ids_order.lastIndexOf(agentid));
+
       return ids_order.lastIndexOf(agentid);
     }
     var getChangeDiff = function (obj){
@@ -238,7 +238,6 @@ function($, applicationContext){
     // react on the context change, the core function of the designed hybrid adaptation
     var hybridAdaptation = function(change) {
       var decisions = [];
-
       // inform all plugins about this change and get back the updated decisions from each of them
       for(var i=0; i<plugins.length; i++) {
         var decision = plugins[i].onChange(change, context);
@@ -264,7 +263,6 @@ function($, applicationContext){
     };
     // update componentStatus local and remote
     var updateComponentStatus = function (change){
-
       var components = change.actions.map(function(c){
         if (c.type === "SHOW") return document.querySelector("#"+c.component).getAttribute('compId');
         else return null;
@@ -313,17 +311,16 @@ function($, applicationContext){
       // Check if all capabilities are collected before shared with decision plugins
       var needInfoReady = context.agents.every (function(ag){
         if (ag.capabilities.hasOwnProperty('touchScreen') && ag.capabilities.hasOwnProperty('screenSize')
-        && ag.capabilities.hasOwnProperty('componentsStatus')) return true;
+        && ag.capabilities['componentsStatus']!=="undefined") return true;
         else return false;
       })
-
-      if (needInfoReady ) hybridAdaptation(change);
+     if (needInfoReady ) hybridAdaptation(change);
     };
 
 
     // subscribe all demanded agent capabilities
     var subscribeAgentCapabilities = function(e) {
-      console.log('subscribe agent capabilities');
+      console.log('subscribe agent capabilities',required_capability_list);
       for(var i=0; i<required_capability_list.length; i++){
         var capability = required_capability_list[i];
 
@@ -387,7 +384,7 @@ function($, applicationContext){
           change['agentContext'] = e.agentContext;
           change['value'] = 'joined';
           onUpdateContext(change);
-          notifiAgentChange('join',e.agentid)
+          setTimeout(function () { notifiAgentChange('join',e.agentid)},500);
         }
         else {
           console.log(e.key);
@@ -454,7 +451,7 @@ function($, applicationContext){
       }
 
       // print out all demanded agent capabilities
-      console.log(required_capability_list);
+
 
     };
 
@@ -638,7 +635,7 @@ function($, applicationContext){
       });
     }
     if (agentChange!=null){
-      console.log(agents);
+
       if (mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAgents()['self'].agentid === agentId)
       {
         var agent = getAgentById(agentId);

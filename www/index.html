@@ -7,7 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0"/>
 <!-- NEEDED SCRIPTS -->
-<script  src="../resources/wcs/bower_components/webcomponentsjs/webcomponents.js"></script>
+<script  src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.17/webcomponents-lite.js"></script>
 <script  src="../resources/libs/require.js"></script>
 <script async src="mediascape.js"></script>
 <script async src="../resources/libs/utils.js"></script>
@@ -66,11 +66,12 @@ document.addEventListener('adaptationToolkit-ready',function(data){
         UI.useLayout({deviceTypes:[{deviceType:'desktop',layout:'divided'},
                      {deviceType:'Tablet',layout:'pip'}]});
         var location = "http://"+window.location.host+window.location.pathname;
-       
+
         document.addEventListener('applicationContext-ready',function(){
+            mediascape.AdaptationToolkit.uiComponents.addControlPanel(location+"?group="+AE.GROUP_ID);
             AE.init(rulesAE, AE.getApplicationContext());
             AE.on('actionchange', UI.onComponentsChange);
-            mediascape.AdaptationToolkit.uiComponents.addControlPanel(location+"?group="+AE.GROUP_ID);
+
 
         });
 
@@ -91,7 +92,7 @@ document.addEventListener('adaptationToolkit-ready',function(data){
   <x-graphic id='graph3' place='Donostia' ></x-graphic>
   <x-graphic id='graph4' place='Gasteiz' ></x-graphic>
 
-   
+
   <result-table id='results'></result-table>
 <!--<mediascape-timeline id='control' ></mediascape-timeline>-->
 

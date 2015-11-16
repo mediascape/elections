@@ -1,9 +1,9 @@
 
 /**
-* This layout organizes N components imitating an accordion behaviour. All the components 
-* are showed at the same time following the order property. At the beginning, the screen 
-* is divided in equal size vertical areas, one for each component. When the mouse is over 
-* a component, that component is expanded and the others shrink. Furthermore, when the 
+* This layout organizes N components imitating an accordion behaviour. All the components
+* are showed at the same time following the order property. At the beginning, the screen
+* is divided in equal size vertical areas, one for each component. When the mouse is over
+* a component, that component is expanded and the others shrink. Furthermore, when the
 * component is clicked it takes the fullscreen place.
 
 * @module mediascape/AdaptationToolkit/adaptation/UIAdaptation/layouts/accordion
@@ -88,7 +88,7 @@ function(LayoutConstructor){
       document.querySelector('x-media').play();
 
     }
-   
+
 
     if(componentsContainer.querySelector('#arrows')){
       componentsContainer.removeChild(componentsContainer.querySelector('#arrows'));
@@ -107,17 +107,17 @@ function(LayoutConstructor){
     }
 
     mediascape.AdaptationToolkit.uiComponents.addMenuToCmps(cmps,true);
-          
-      
+
+
       cmps.forEach(function(cmp,i){
       !function outer(i){
         cmp.removeEventListener('mousemove',activityFunc,true);
-        
+
         cmp.removeEventListener('mousemove',activityFunc,false);
         cmp.addEventListener('mousemove',activityFunc);
           accordion.listeners.push(activityFunc);
           function activityFunc(e){
-          
+
           this.querySelector('#menuBar'+this.id).style.display='block';
           clearTimeout(timers[i]);
           var scope=this;
@@ -126,8 +126,8 @@ function(LayoutConstructor){
           },3000);
         }
         }(i);
-       
-           
+
+
       });
 
   }
@@ -195,8 +195,9 @@ function(LayoutConstructor){
       !function outer(i){
 
         function mouseOverFunc(event){
-          
+          console.log(event);
           if(this.timeout) clearTimeout(this.timeout);
+          event.srcElement = event.srcElement || event.target ;
           if(bigComponent===event.srcElement.id){clearTimeout(this.timeout);}
           if(this.id===bigComponent){clearTimeout(this.timeout);}
           else{this.timeout = setTimeout(ToExecute, 1500);}
@@ -248,24 +249,24 @@ function(LayoutConstructor){
             }
           }
           mediascape.AdaptationToolkit.Adaptation.UIAdaptation.updateComponentQuery();
-          
-        }
-         
 
-        ordered_cmps[i].removeEventListener(mouseOverFunc);
+        }
+
+
+        //ordered_cmps[i].removeEventListener(mouseOverFunc);
 
         ordered_cmps[i].addEventListener('mouseover',mouseOverFunc,false);
         ordered_cmps[i].addEventListener('mouseleave',mouseLeaveFunc,true);
         accordion.listeners.push(mouseOverFunc);
         accordion.listeners.push(mouseLeaveFunc);
 
-        
 
 
 
 
-        
-    
+
+
+
 
       }(i);
 
@@ -310,7 +311,7 @@ function(LayoutConstructor){
   accordion.onPriorizeComponent=function(cmp){
 
         if(this.timeout) clearTimeout(this.timeout);
-        
+
 
         var container=document.querySelector('#componentsContainer');
         var ordered_cmps=[];
@@ -320,10 +321,10 @@ function(LayoutConstructor){
         });
         var i='';
         for(var a=0;a<ordered_cmps.length;a++){
-          if(ordered_cmps[a].id===cmp.id)i=a;
-          
+          if(ordered_cmps[a].id===cmp.id) i=a;
+
         }
-        
+
 
         var width = window.innerWidth ||document.documentElement.clientWidth ||document.body.clientWidth;
 
@@ -426,7 +427,7 @@ function(LayoutConstructor){
       componentsContainer.querySelector('figure').parentNode.removeChild(componentsContainer.querySelector('figure'));
       document.querySelector('x-media').play();
     }
-   
+
     if(componentsContainer.querySelector('#arrows')){
       componentsContainer.removeChild(componentsContainer.querySelector('#arrows'));
     }
@@ -443,17 +444,17 @@ function(LayoutConstructor){
     }
 
     mediascape.AdaptationToolkit.uiComponents.addMenuToCmps(cmps,true);
-          
-      
+
+
       cmps.forEach(function(cmp,i){
       !function outer(i){
         cmp.removeEventListener('mousemove',activityFunc,true);
-        
+
         cmp.removeEventListener('mousemove',activityFunc,false);
         cmp.addEventListener('mousemove',activityFunc);
           accordion.listeners.push(activityFunc);
           function activityFunc(e){
-          
+
           this.querySelector('#menuBar'+this.id).style.display='block';
           clearTimeout(timers[i]);
           var scope=this;
@@ -462,8 +463,8 @@ function(LayoutConstructor){
           },3000);
         }
         }(i);
-       
-           
+
+
       });
 
   }
@@ -486,7 +487,7 @@ function(LayoutConstructor){
         cmps[i].removeEventListener('mouseover',listener,false);
         cmps[i].removeEventListener('mouseleave',listener,false)
         cmps[i].removeEventListener('mousemove',listener,true);
-        
+
         cmps[i].removeEventListener('mousemove',listener,false);
         //cmps[i].removeEventListener('hold',listener,true);
         //cmps[i].removeEventListener('hold',listener,false);

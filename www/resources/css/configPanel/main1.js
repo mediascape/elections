@@ -19,7 +19,7 @@ var ControlPanel= function (url){
 	this.controlPanel = function(){
 
 		var cmps=mediascape.AdaptationToolkit.componentManager.core.getComponents();
-		console.log('Konstruktorea');
+
 		//'../resources/css/configPanel/img/camara/logo_etb2.png'
 		var comp='video1';
 
@@ -77,7 +77,7 @@ var ControlPanel= function (url){
 		gasteizGraph.setPlace('VITORIA-GASTEIZ');
 		gasteizGraph.setID(c[0].getAttribute('compId'));
 
-		
+
 
 		camerasSect=new camerasSection();
 		camerasSect.addCamera(cam1);
@@ -190,7 +190,7 @@ var ControlPanel= function (url){
 
 
 
-		document.body.appendChild(this.render(''));
+	document.body.appendChild(this.render(''));
 
 
 
@@ -208,7 +208,6 @@ var ControlPanel= function (url){
 		}
 	}
 	this.onAgentChange = function (event){
-
 		var container=document.querySelector('#fullTemp');
 		if (event.detail.status === "join"){
 			/* Gehitu gailua */
@@ -262,7 +261,7 @@ var ControlPanel= function (url){
 
 					var twitterSect=new twitterSection();
 					var radioSect=new radioSection();
-					
+
 
 					if(i===0){
 						var section2=new section();
@@ -335,6 +334,7 @@ var ControlPanel= function (url){
 				*event.detail.profile.deviceType
 				*	  Desktop, tablet, mobile, tv
 				*/
+				event.detail.profile = event.detail.profile || {'deviceType':'Desktop'};
 				if(event.detail.profile.deviceType==='TV'){
 					dev1.setText('Television id: '+(b[0]._id+1));
 					dev1.setIcon('zmdi zmdi-tv');
@@ -362,7 +362,7 @@ var ControlPanel= function (url){
 
 					var twitterSect=new twitterSection();
 					var radioSect=new radioSection();
-					
+
 
 
 					var section2=new section();
@@ -426,7 +426,7 @@ var ControlPanel= function (url){
 
 					var twitterSect=new twitterSection();
 					var radioSect=new radioSection();
-					
+
 
 
 					var section1=new section();
@@ -520,8 +520,6 @@ var ControlPanel= function (url){
 	document.addEventListener('agentChange',this.onAgentChange.bind(this));
 
 	this.onCtxUpdate=function(event){
-		console.log(event);
-
 		var sections=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items;
 		var sectionNum=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items.length;
 		var sectionDiv=document.querySelector('#fullTemp').children;
@@ -756,7 +754,7 @@ var ControlPanel= function (url){
 
 		for(var i=2;i<sectionNum;i++){
 			if(sections[i].name===agentToChange+'graphics'){
-				
+
 					if(year===2015){
 						sectionDiv[i].querySelector('#presentLI').className='active';
 						sectionDiv[i].querySelector('#pastLI').className='';
@@ -781,11 +779,11 @@ var ControlPanel= function (url){
 							}
 						}
 					}
-				
+
 			}
 		}
 	}
-	
+
 	this.hide=function(){
 		document.querySelector('#fullTemp').style.display='none';
 		this.showing=false;
@@ -1303,13 +1301,13 @@ var camera=function(){
 		if(b[0].customCmd.lastIndexOf('mutePlayer')===-1 && b[0].customCmd.lastIndexOf('soundPlayer')===-1){
 				if(document.querySelector('#'+scope.name).ismuted==='false'){
 					mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'mutePlayer');
-					
+
 				}
 				else{
 					mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'soundPlayer');
-					
+
 				}
-			
+
 		}
 		else{
 			if(b[0].customCmd.lastIndexOf('mutePlayer') <b[0].customCmd.lastIndexOf('soundPlayer')){
@@ -1360,7 +1358,8 @@ var camerasSection=function(){
 		var agentToChange=agentID;
 
 		var a=agents.filter(function(el){
-			if(el.id===agentToChange)return el;
+			if(el.id===agentToChange)return true
+			else return false;
 		});
 		var scope=this;
 
@@ -1403,11 +1402,11 @@ var camerasSection=function(){
 			if(b[0].customCmd.lastIndexOf('mutePlayer')===-1 && b[0].customCmd.lastIndexOf('soundPlayer')===-1){
 				if(document.querySelector('#'+this.cameras[i].name).ismuted==='false'){
 					this.cameras[i].setSoundStatus(true);
-					
+
 				}
 				else{
 					this.cameras[i].setSoundStatus(false);
-					
+
 				}
 
 			}
@@ -1532,10 +1531,10 @@ var twitterSection=function(){
 		var tselector=document.createElement('div');
 		tselector.className='col-md-12 layout-columns twitter-selector-container';
 		//abstraer cada componente por separado? hashtag y trending map
-		
+
 		var hashtagComp=new hashtag();
 		tselector.appendChild(hashtagComp.render());
-		
+
 
 		var trendingComp=new trendingMap();
 		tselector.appendChild(trendingComp.render());
@@ -1680,7 +1679,7 @@ var radioSection=function(){
 var table=function(){
 	this.activeYear='';
 	this.activePlace='irunea2015';
-	
+
 	this.setID=function(tabId){
 		this.id=tabId;
 	}
@@ -1892,7 +1891,7 @@ var table=function(){
 	}
 	this.presentClick=function(){
 		var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
-		
+
 		if(event.currentTarget.tagName==='LI' || event.currentTarget.tagName==='li'){
 			this.activePlace=this.activePlace.split('2011')[0]+"2015";
 			mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'present');
@@ -1906,7 +1905,7 @@ var table=function(){
 	}
 	this.pastClick=function(){
 		var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
-		
+
 		if(event.currentTarget.tagName==='LI' || event.currentTarget.tagName==='li'){
 			this.activePlace=this.activePlace.split('2015')[0]+"2011";
 			mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'past');
@@ -2044,7 +2043,7 @@ var graphicSection=function(){
 		var div3=document.createElement('div');
 		div3.className='col-md-6 clm_2 izda';
 
-			
+
 		div3.appendChild(this.tableComp[0].render());
 
 		var div4=document.createElement('div');
@@ -2056,7 +2055,7 @@ var graphicSection=function(){
 		for(var i=0;i<this.graphComps.length;i++){
 			div5.appendChild(this.graphComps[i].render());
 		}
-		
+
 		div4.appendChild(div5);
 
 		div2.appendChild(div3);
@@ -2079,7 +2078,7 @@ var graphicSection=function(){
 		});
 		var scope=this;
 
-		
+
 		var tab=this.tableComp[0].id;
 		b=a[0].capabilities.componentsStatus.filter(function(el){
 			if(el.compId===tab)return el;

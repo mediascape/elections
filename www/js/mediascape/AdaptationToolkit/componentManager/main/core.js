@@ -107,6 +107,9 @@ define(
         return promise;
       };
       this.getComponents = function (){
+        for (c in components){
+           components[c] = document.querySelector('#'+components[c].id);
+        }
         return components;
       }
       this.getComponentsStatus = function (){
@@ -168,8 +171,10 @@ define(
         componentsContainer.id = "componentsContainer";
         document.body.appendChild(componentsContainer);
         cmps.forEach(function(c){
-          componentsContainer.appendChild(c);
-        })
+	        var node = document.querySelector('#'+c.id);
+          c = node;
+          componentsContainer.appendChild(node);
+        });
 
       }
 

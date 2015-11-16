@@ -5,6 +5,66 @@ define(["mediascape/Discovery/discovery","mediascape/Agentcontext/agentcontext",
 		var ac = mediascape.agentContext;
 		var instruments = {};
 		var _this = this;
+		/****************************************************************************************************************
+		*
+		*	Touch Screen
+		*
+		*		Calls mediascape.discovery.isPresent function to detect the presence of the touchScreen
+		*	agent, if the agent exists, the system sets the touchScreen status as support, unless it will be set
+		*	as unsupported.
+		*
+		******************************************************************************************************************/
+
+
+  	try {
+    		document.createEvent("TouchEvent");
+
+
+
+				var instrument = {
+					init: function () {
+
+
+							this.setCapability("touchScreen", "supported");
+							ac.setItem("touchScreen", "supported");
+
+					},
+					on: function () {
+
+							this.setCapability("touchScreen", "supported");
+							ac.setItem("touchScreen", "supported");
+					},
+					off:function(){
+
+					}
+				}
+				ac.load({
+					"touchScreen": instrument
+				});
+			} catch (e) {
+
+
+					var instrument = {
+						init: function () {
+
+								this.setCapability("touchScreen", "unsupported");
+								ac.setItem("touchScreen", "unsupported");
+						},
+						on: function () {
+
+								this.setCapability("touchScreen", "unsupported");
+								ac.setItem("touchScreen", "unsupported");
+						},
+						off: function(){
+
+						}
+
+					}
+					ac.load({
+						"touchScreen": instrument
+					});
+
+			}
 
 		/****************************************************************************************************************
 		*
@@ -153,6 +213,87 @@ define(["mediascape/Discovery/discovery","mediascape/Agentcontext/agentcontext",
 		*	returning the language of the device.
 		*
 		******************************************************************************************************************/
+		var componentStatusInstrument = {
+				init: function () {
+					this.setCapability("componentsStatus", "supported");
+					document.addEventListener('onComponentsChange',function(data){
+
+						ac.setItem('componentsStatus',data.detail.cmps);
+							console.log("componentsStatus updated",data.detail);
+
+					});
+
+
+				},
+				on: function (){
+
+					document.addEventListener('onComponentsChange',function(data){
+
+
+						ac.setItem('componentsStatus',data.detail.cmps);
+							console.log("componentsStatus updated",data.detail);
+
+					});
+				},
+				off: function (){
+					document.removeEventListener('onComponentsChange',function(data){
+
+
+						ac.setItem('componentsStatus',data.detail.cmps);
+							console.log("componentsStatus updated",data.detail);
+
+
+					});
+				}
+
+			};
+			ac.load({
+				"componentsStatus": componentStatusInstrument
+			});
+		var layoutEventInstrument = {
+				init: function () {
+					this.setCapability("layoutEvent", "supported");
+					ac.setItem('layoutEvent','');
+					console.log("INIT INSTRUMENT");
+
+				},
+				on: function (){
+					ac.setItem('layoutEvent','');
+
+				},
+				off: function (){
+
+				}
+
+			};
+			ac.load({
+				"layoutEvent": layoutEventInstrument
+			});
+
+		var layoutEventInstrument = {
+				init: function () {
+					this.setCapability("layoutStatus", "supported");
+					 document.addEventListener('applicationContext-ready',function (){ac.setItem('layoutStatus',mediascape.AdaptationToolkit.Adaptation.UIAdaptation.getActualLayout());});
+					document.addEventListener('layoutEvent',function(ev){
+						ac.setItem('layoutStatus',ev.detail.layoutName);
+					});
+					console.log("INIT LAYOUT STATUS INSTRUMENT");
+
+				},
+				on: function (){
+					document.addEventListener('layoutEvent',function(ev){
+						ac.setItem('layoutStatus',ev.detail.layoutName);
+					});
+
+				},
+				off: function (){
+
+				}
+
+			};
+			ac.load({
+				"layoutStatus": layoutEventInstrument
+			});
 
 		mediascape.discovery.isPresent("language").then(function(data){
 			if(data.presence){
@@ -244,7 +385,7 @@ define(["mediascape/Discovery/discovery","mediascape/Agentcontext/agentcontext",
 		*	to subscribe to an event. This event will return the changes hapened on the geolocation sensor.
 		*
 		******************************************************************************************************************/
-
+/*
 		// Geolocation
 		mediascape.discovery.isPresent("geolocation").then(function(data){
 			if(data.presence){
@@ -273,7 +414,7 @@ define(["mediascape/Discovery/discovery","mediascape/Agentcontext/agentcontext",
 				});
 			}
 		});
-
+*/
 		/****************************************************************************************************************
 		*
 		*	User Proximity
@@ -326,7 +467,7 @@ define(["mediascape/Discovery/discovery","mediascape/Agentcontext/agentcontext",
 		******************************************************************************************************************/
 
 		// DeviceProximity
-		mediascape.discovery.isPresent("deviceProximity").then(function(data){
+	/*	mediascape.discovery.isPresent("deviceProximity").then(function(data){
 			if(data.presence){
 				function listener() {
 					mediascape.discovery.getExtra("deviceProximity").then(function(data){
@@ -350,47 +491,8 @@ define(["mediascape/Discovery/discovery","mediascape/Agentcontext/agentcontext",
 				});
 			}
 		});
+*/
 
-		/****************************************************************************************************************
-		*
-		*	Touch Screen
-		*
-		*		Calls mediascape.discovery.isPresent function to detect the presence of the touchScreen
-		*	agent, if the agent exists, the system sets the touchScreen status as support, unless it will be set
-		*	as unsupported.
-		*
-		******************************************************************************************************************/
-
-		mediascape.discovery.isPresent("touchscreen").then(function(data){
-			if(data.presence === true){
-				var instrument = {
-					init: function () {
-
-
-							this.setCapability("touchScreen", "supported");
-							ac.setItem("touchScreen", "supported");
-
-					}
-				}
-				ac.load({
-					"touchScreen": instrument
-				});
-			}
-			else {
-
-					var instrument = {
-						init: function () {
-
-								this.setCapability("touchScreen", "unsupported");
-								ac.setItem("touchScreen", "unsupported");
-						}
-					}
-					ac.load({
-						"touchScreen": instrument
-					});
-
-			}
-		});
 
 		/****************************************************************************************************************
 		*
@@ -846,86 +948,8 @@ define(["mediascape/Discovery/discovery","mediascape/Agentcontext/agentcontext",
 				});
 			}
 		});
-	  var componentStatusInstrument = {
-		    init: function () {
-		      this.setCapability("componentsStatus", "supported");
-		      document.addEventListener('onComponentsChange',function(data){
 
-		        ac.setItem('componentsStatus',data.detail.cmps);
-
-		      });
-		      console.log("INIT INSTRUMENT");
-
-		    },
-		    on: function (){
-
-		      document.addEventListener('onComponentsChange',function(data){
-
-
-		        ac.setItem('componentsStatus',data.detail.cmps);
-
-		      });
-		    },
-		    off: function (){
-		      document.removeEventListener('onComponentsChange',function(data){
-
-
-		        ac.setItem('componentsStatus',data.detail.cmps);
-
-
-		      });
-		    }
-
-		  };
-		  ac.load({
-		    "componentsStatus": componentStatusInstrument
-		  });
-		var layoutEventInstrument = {
-		    init: function () {
-		      this.setCapability("layoutEvent", "supported");
-		      ac.setItem('layoutEvent','');
-		      console.log("INIT INSTRUMENT");
-
-		    },
-		    on: function (){
-		      ac.setItem('layoutEvent','');
-
-		    },
-		    off: function (){
-
-		    }
-
-		  };
-		  ac.load({
-		    "layoutEvent": layoutEventInstrument
-		  });
-
-	  var layoutEventInstrument = {
-		    init: function () {
-		      this.setCapability("layoutStatus", "supported");
-		       document.addEventListener('applicationContext-ready',function (){ac.setItem('layoutStatus',mediascape.AdaptationToolkit.Adaptation.UIAdaptation.getActualLayout());});
-		      document.addEventListener('layoutEvent',function(ev){
-		        ac.setItem('layoutStatus',ev.detail.layoutName);
-		      });
-		      console.log("INIT LAYOUT STATUS INSTRUMENT");
-
-		    },
-		    on: function (){
-		      document.addEventListener('layoutEvent',function(ev){
-		        ac.setItem('layoutStatus',ev.detail.layoutName);
-		      });
-
-		    },
-		    off: function (){
-
-		    }
-
-		  };
-		  ac.load({
-		    "layoutStatus": layoutEventInstrument
-		  });
-
-	};
+			};
 
 	DiscoveryWP4.__moduleName = "discovery_wp4";
 
