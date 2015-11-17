@@ -60,7 +60,7 @@ function($, applicationContext){
       /** ApplicationContext instance. */
     var applicationContext = undefined;
     // Custom Events shouldn't affect to UI
-    var nonUIChange = ["mutePlayer","soundPlayer","present","past"];
+    var UIChangeEvents = ["show","hide"];
     // the constructed context based on the context updates
     var context = {"agents":[]};
     var userActionOn = false;
@@ -179,7 +179,7 @@ function($, applicationContext){
         context.lastChange = {key:change.capability,value:change.value,diff:diff};
         context.agentid = change.agentid;
         if(diff[0])
-        if (diff[0].property === "customCmd" && nonUIChange.indexOf(diff[0].newValue) !== -1 ) changeType = "data";
+        if (diff[0].property === "customCmd" && UIChangeEvents.indexOf(diff[0].newValue) !== -1 ) changeType = "data";
         else changeType = "ui";
       }
       else {
@@ -623,11 +623,11 @@ function($, applicationContext){
             if (cmps[c].compId === cmpId){
               agentChange = ag;
               cmps[c].customCmd.push(cmd);
-              if (nonUIChange.indexOf(cmd)>-1){
-                cmps.eventType="data";
+              if (UIChangeEvents.indexOf(cmd)>-1){
+                cmps.eventType="ui";
               }
               else {
-                cmps.eventType ="ui";
+                cmps.eventType ="data";
               }
             }
           }
