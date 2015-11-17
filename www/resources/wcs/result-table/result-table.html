@@ -600,24 +600,37 @@ Polymer({
 	},
   customCmdReceived: function(data){
       console.log("DATA",data);
-      if(data==='past'){
+      if(data==='resultTablePast'){
       	this.pastData();
       }
-      else if(data==='present'){
+      else if(data==='resultTablePresent'){
       	this.actualData();
       }
-      else if(data==='bilbo2015' || data==='bilbo2011'){
+      else if(data==='bilbo'){
       	this.value='bilbo';
+      	if(this.actualShowing===false){
+      		this.pastData();
+      	}
       }
-      else if(data==='donostia2015' || data==='donostia2011'){
+      else if(data==='donostia'){
       	this.value='donostia';
-      }
-      else if(data==='gasteiz2015' || data==='gasteiz2011'){
+      	if(this.actualShowing===false){
+      		this.pastData();
+      	}
+      }      
+      else if( data==='gasteiz'){
       	this.value='gasteiz';
-      }
-      else if(data==='irunea2015' || data==='irunea2011'){
+      	if(this.actualShowing===false){
+      		this.pastData();
+      	}
+      }       
+      else if(data==='irunea'){
       	this.value='irunea';
+      	if(this.actualShowing===false){
+      		this.pastData();
+      	}
       }
+      
   }
 
 

@@ -19,7 +19,7 @@ var ControlPanel= function (url){
 	this.controlPanel = function(){
 
 		var cmps=mediascape.AdaptationToolkit.componentManager.core.getComponents();
-
+		console.log('Konstruktorea');
 		//'../resources/css/configPanel/img/camara/logo_etb2.png'
 		var comp='video1';
 
@@ -77,7 +77,7 @@ var ControlPanel= function (url){
 		gasteizGraph.setPlace('VITORIA-GASTEIZ');
 		gasteizGraph.setID(c[0].getAttribute('compId'));
 
-
+		
 
 		camerasSect=new camerasSection();
 		camerasSect.addCamera(cam1);
@@ -190,9 +190,11 @@ var ControlPanel= function (url){
 
 
 
-	document.body.appendChild(this.render(''));
+		document.body.appendChild(this.render(''));
 
 
+
+		
 
 
 
@@ -208,6 +210,7 @@ var ControlPanel= function (url){
 		}
 	}
 	this.onAgentChange = function (event){
+
 		var container=document.querySelector('#fullTemp');
 		if (event.detail.status === "join"){
 			/* Gehitu gailua */
@@ -261,7 +264,7 @@ var ControlPanel= function (url){
 
 					var twitterSect=new twitterSection();
 					var radioSect=new radioSection();
-
+					
 
 					if(i===0){
 						var section2=new section();
@@ -306,6 +309,7 @@ var ControlPanel= function (url){
 					section6.setName(agCtx.agents[i].id+'graphics');
 					section6.addItem(devBox);
 					graphicSect.setTableViewStatus(agCtx.agents[i].id);
+					graphicSect.setTableDataStatus(agCtx.agents[i].id);
 					graphicSect.setGraphsViewStatus(agCtx.agents[i].id);
 					section6.addItem(graphicSect);
 					this.addItem(section6);
@@ -334,7 +338,6 @@ var ControlPanel= function (url){
 				*event.detail.profile.deviceType
 				*	  Desktop, tablet, mobile, tv
 				*/
-				event.detail.profile = event.detail.profile || {'deviceType':'Desktop'};
 				if(event.detail.profile.deviceType==='TV'){
 					dev1.setText('Television id: '+(b[0]._id+1));
 					dev1.setIcon('zmdi zmdi-tv');
@@ -362,7 +365,7 @@ var ControlPanel= function (url){
 
 					var twitterSect=new twitterSection();
 					var radioSect=new radioSection();
-
+					
 
 
 					var section2=new section();
@@ -408,6 +411,7 @@ var ControlPanel= function (url){
 					section6.setName(event.detail.agentid+'graphics');
 					section6.addItem(devBox);
 					graphicSect.setTableViewStatus(event.detail.agentid);
+					graphicSect.setTableDataStatus(event.detail.agentid);
 					graphicSect.setGraphsViewStatus(event.detail.agentid);
 					section6.addItem(graphicSect);
 					this.addItem(section6);
@@ -426,7 +430,7 @@ var ControlPanel= function (url){
 
 					var twitterSect=new twitterSection();
 					var radioSect=new radioSection();
-
+					
 
 
 					var section1=new section();
@@ -464,6 +468,7 @@ var ControlPanel= function (url){
 					section6.setName(event.detail.agentid+'graphics');
 					section6.addItem(devBox);
 					graphicSect.setTableViewStatus(event.detail.agentid);
+					graphicSect.setTableDataStatus(event.detail.agentid);
 					graphicSect.setGraphsViewStatus(event.detail.agentid);
 					section6.addItem(graphicSect);
 					this.addItem(section6);
@@ -520,6 +525,8 @@ var ControlPanel= function (url){
 	document.addEventListener('agentChange',this.onAgentChange.bind(this));
 
 	this.onCtxUpdate=function(event){
+		console.log(event);
+
 		var sections=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items;
 		var sectionNum=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items.length;
 		var sectionDiv=document.querySelector('#fullTemp').children;
@@ -593,6 +600,45 @@ var ControlPanel= function (url){
 								}
 							}
 						}
+						//Table values
+						if(changes[j].newValue==='resultTablePresent' || changes[j].newValue==='resultTablePast'|| changes[j].newValue==='donostia' 
+							|| changes[j].newValue==='bilbo' || changes[j].newValue==='gasteiz' || changes[j].newValue==='irunea'){
+
+							
+								if(sections[i].name===event.detail.agentid+'graphics'){
+				
+									if(changes[j].newValue==='resultTablePresent'){
+										sectionDiv[i].querySelector('#presentLI').className='active';
+										sectionDiv[i].querySelector('#pastLI').className='';
+										sectionDiv[i].querySelector('#presentPanel').className='col-md-12 fade in tab-pane active';
+										sectionDiv[i].querySelector('#pastPanel').className='col-md-12 fade in tab-pane ';
+
+									}
+									else if(changes[j].newValue==='resultTablePast'){
+										sectionDiv[i].querySelector('#presentLI').className='';
+										sectionDiv[i].querySelector('#pastLI').className='active';
+										sectionDiv[i].querySelector('#presentPanel').className='col-md-12 fade in tab-pane ';
+										sectionDiv[i].querySelector('#pastPanel').className='col-md-12 fade in tab-pane active';
+									}
+
+									else{
+										var places=sectionDiv[i].querySelectorAll('.pastilla_ciudad');
+										for(var k=0;k<places.length;k++){
+											
+											if(places[k].id===changes[j].newValue){
+												places[k].className='col-md-12 pastilla_ciudad active';
+												
+											}
+											else{
+												places[k].className='col-md-12 pastilla_ciudad';
+											}
+											
+										}
+									}									
+																		
+								}
+												
+							}					
 
 					}
 				}
@@ -745,7 +791,7 @@ var ControlPanel= function (url){
 		}
 	}
 
-	this.changeTable=function(agentToChange,year,place){
+	this.changeTableYear=function(agentToChange,year){
 		var sections=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items;
 		var sectionNum=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items.length;
 		var sectionDiv=document.querySelector('#fullTemp').children;
@@ -754,36 +800,49 @@ var ControlPanel= function (url){
 
 		for(var i=2;i<sectionNum;i++){
 			if(sections[i].name===agentToChange+'graphics'){
+				
+				if(year===2015){
+					sectionDiv[i].querySelector('#presentLI').className='active';
+					sectionDiv[i].querySelector('#pastLI').className='';
+					sectionDiv[i].querySelector('#presentPanel').className='col-md-12 fade in tab-pane active';
+					sectionDiv[i].querySelector('#pastPanel').className='col-md-12 fade in tab-pane ';
 
-					if(year===2015){
-						sectionDiv[i].querySelector('#presentLI').className='active';
-						sectionDiv[i].querySelector('#pastLI').className='';
-						sectionDiv[i].querySelector('#presentPanel').className='col-md-12 fade in tab-pane active';
-						sectionDiv[i].querySelector('#pastPanel').className='col-md-12 fade in tab-pane ';
-
-					}
-					else if(year===2011){
-						sectionDiv[i].querySelector('#presentLI').className='';
-						sectionDiv[i].querySelector('#pastLI').className='active';
-						sectionDiv[i].querySelector('#presentPanel').className='col-md-12 fade in tab-pane ';
-						sectionDiv[i].querySelector('#pastPanel').className='col-md-12 fade in tab-pane active';
-					}
-					var places=sectionDiv[i].querySelectorAll('.pastilla_ciudad');
-					for(var j=0;j<places.length;j++){
-						if(place!==''){
-							if(places[j].id===place){
-								places[j].className='col-md-12 pastilla_ciudad active';
-							}
-							else{
-								places[j].className='col-md-12 pastilla_ciudad';
-							}
-						}
-					}
-
+				}
+				else if(year===2011){
+					sectionDiv[i].querySelector('#presentLI').className='';
+					sectionDiv[i].querySelector('#pastLI').className='active';
+					sectionDiv[i].querySelector('#presentPanel').className='col-md-12 fade in tab-pane ';
+					sectionDiv[i].querySelector('#pastPanel').className='col-md-12 fade in tab-pane active';
+				}
+				
 			}
 		}
 	}
 
+	this.changeTablePlace=function(agentToChange,place){
+		var sections=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items;
+		var sectionNum=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items.length;
+		var sectionDiv=document.querySelector('#fullTemp').children;
+
+
+
+		for(var i=2;i<sectionNum;i++){
+			if(sections[i].name===agentToChange+'graphics'){
+				
+				var opts=sectionDiv[i].querySelectorAll('.pastilla_ciudad');
+				for(var j=0;j<opts.length;j++){
+					if(opts[j].id===place){
+						opts[j].className='col-md-12 pastilla_ciudad active';
+					}
+					else{
+						opts[j].className='col-md-12 pastilla_ciudad';
+					}
+				}
+								
+			}
+		}
+	}
+	
 	this.hide=function(){
 		document.querySelector('#fullTemp').style.display='none';
 		this.showing=false;
@@ -1301,13 +1360,13 @@ var camera=function(){
 		if(b[0].customCmd.lastIndexOf('mutePlayer')===-1 && b[0].customCmd.lastIndexOf('soundPlayer')===-1){
 				if(document.querySelector('#'+scope.name).ismuted==='false'){
 					mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'mutePlayer');
-
+					
 				}
 				else{
 					mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'soundPlayer');
-
+					
 				}
-
+			
 		}
 		else{
 			if(b[0].customCmd.lastIndexOf('mutePlayer') <b[0].customCmd.lastIndexOf('soundPlayer')){
@@ -1358,8 +1417,7 @@ var camerasSection=function(){
 		var agentToChange=agentID;
 
 		var a=agents.filter(function(el){
-			if(el.id===agentToChange)return true
-			else return false;
+			if(el.id===agentToChange)return el;
 		});
 		var scope=this;
 
@@ -1402,11 +1460,11 @@ var camerasSection=function(){
 			if(b[0].customCmd.lastIndexOf('mutePlayer')===-1 && b[0].customCmd.lastIndexOf('soundPlayer')===-1){
 				if(document.querySelector('#'+this.cameras[i].name).ismuted==='false'){
 					this.cameras[i].setSoundStatus(true);
-
+					
 				}
 				else{
 					this.cameras[i].setSoundStatus(false);
-
+					
 				}
 
 			}
@@ -1531,10 +1589,10 @@ var twitterSection=function(){
 		var tselector=document.createElement('div');
 		tselector.className='col-md-12 layout-columns twitter-selector-container';
 		//abstraer cada componente por separado? hashtag y trending map
-
+		
 		var hashtagComp=new hashtag();
 		tselector.appendChild(hashtagComp.render());
-
+		
 
 		var trendingComp=new trendingMap();
 		tselector.appendChild(trendingComp.render());
@@ -1677,15 +1735,21 @@ var radioSection=function(){
 	}
 }
 var table=function(){
-	this.activeYear='';
-	this.activePlace='irunea2015';
-
+		
 	this.setID=function(tabId){
 		this.id=tabId;
 	}
 	this.setViewStatus=function(stat){
 		this.viewStatus=stat;
+	}	
+	this.setPlaceStat=function(stat){
+		this.activePlace=stat;
 	}
+	this.setYearStat=function(stat){
+		this.activeYear=stat;
+	}
+
+
 	this.render=function(){
 		var div4=document.createElement('div');
 		div4.className='contenido';
@@ -1723,8 +1787,13 @@ var table=function(){
 		var li1=document.createElement('li');
 		li1.id='pastLi';
 		li1.role='presentation';
-		li1.className='';
-		li1.addEventListener('click',this.pastClick.bind(this));
+		if(this.activeYear==='2011'){
+			li1.className='active';
+		}
+		else{
+			li1.className='';
+		}
+		li1.addEventListener('click',this.pastClick.bind(this),true);
 		var a1=document.createElement('a');
 		//a1.href='#2011';
 		a1.ariaControls='2011';
@@ -1750,8 +1819,13 @@ var table=function(){
 		var li2=document.createElement('li');
 		li2.id='presentLi';
 		li2.role='presentation';
-		li2.className='active';
-		li2.addEventListener('click',this.presentClick.bind(this));
+		if(this.activeYear==='2015'){
+			li2.className='active';
+		}
+		else{
+			li2.className='';
+		}
+		li2.addEventListener('click',this.presentClick.bind(this),true);
 		var a2=document.createElement('a');
 		//a2.href='#2015';
 		a2.ariaControls='2015';
@@ -1778,14 +1852,26 @@ var table=function(){
 		div9.className='tab-content';
 
 		var div10=document.createElement('div');
-		div10.className='col-md-12 fade in tab-pane ';
+
+		if(this.activeYear==='2011'){
+			div10.className='col-md-12 fade in tab-pane active ';
+		}
+		else{
+			div10.className='col-md-12 fade in tab-pane'; 
+		}
 		div10.id='pastPanel';
 		div10.role='tabpanel';
 
 		var div11=document.createElement('div');
-		div11.id='bilbo2011';
-		div11.addEventListener('click',this.pastClick.bind(this));
-		div11.className='col-md-12 pastilla_ciudad';
+		div11.id='bilbo';
+		if(this.activePlace===div11.id){
+			div11.className='col-md-12 pastilla_ciudad active';
+		}
+		else{
+			div11.className='col-md-12 pastilla_ciudad';
+		}
+		div11.addEventListener('click',this.placeClick.bind(this));
+		
 		var div12=document.createElement('div');
 		div12.className='txt_ciudad';
 		div12.innerHTML='Bilbao';
@@ -1794,9 +1880,14 @@ var table=function(){
 
 
 		var div13=document.createElement('div');
-		div13.id='donostia2011';
-		div13.addEventListener('click',this.pastClick.bind(this));
-		div13.className='col-md-12 pastilla_ciudad';
+		div13.id='donostia';
+		div13.addEventListener('click',this.placeClick.bind(this));
+		if(this.activePlace===div13.id){
+			div13.className='col-md-12 pastilla_ciudad active';
+		}
+		else{
+			div13.className='col-md-12 pastilla_ciudad';
+		}
 		var div14=document.createElement('div');
 		div14.className='txt_ciudad';
 		div14.innerHTML='Donostia - San Sebastian';
@@ -1804,9 +1895,14 @@ var table=function(){
 		div13.appendChild(div14);
 
 		var div15=document.createElement('div');
-		div15.id='gasteiz2011';
-		div15.addEventListener('click',this.pastClick.bind(this));
-		div15.className='col-md-12 pastilla_ciudad';
+		div15.id='gasteiz';
+		div15.addEventListener('click',this.placeClick.bind(this));
+		if(this.activePlace===div15.id){
+			div15.className='col-md-12 pastilla_ciudad active';
+		}
+		else{
+			div15.className='col-md-12 pastilla_ciudad';
+		}
 		var div16=document.createElement('div');
 		div16.className='txt_ciudad';
 		div16.innerHTML='Vitoria / Gasteiz';
@@ -1814,9 +1910,14 @@ var table=function(){
 		div15.appendChild(div16);
 
 		var div17=document.createElement('div');
-		div17.id='irunea2011';
-		div17.addEventListener('click',this.pastClick.bind(this));
-		div17.className='col-md-12 pastilla_ciudad';
+		div17.id='irunea';
+		div17.addEventListener('click',this.placeClick.bind(this));
+		if(this.activePlace===div17.id){
+			div17.className='col-md-12 pastilla_ciudad active';
+		}
+		else{
+			div17.className='col-md-12 pastilla_ciudad';
+		}
 		var div18=document.createElement('div');
 		div18.className='txt_ciudad';
 		div18.innerHTML='Iruña / Pamplona';
@@ -1831,14 +1932,24 @@ var table=function(){
 
 
 		var div19=document.createElement('div');
-		div19.className='col-md-12 fade in tab-pane active';
+		if(this.activeYear==='2015'){
+			div19.className='col-md-12 fade in tab-pane active ';
+		}
+		else{
+			div19.className='col-md-12 fade in tab-pane'; 
+		}
 		div19.id='presentPanel';
 		div19.role='tabpanel';
 
 		var div20=document.createElement('div');
-		div20.id='bilbo2015';
-		div20.addEventListener('click',this.presentClick.bind(this));
-		div20.className='col-md-12 pastilla_ciudad';
+		div20.id='bilbo';
+		div20.addEventListener('click',this.placeClick.bind(this));
+		if(this.activePlace===div20.id){
+			div20.className='col-md-12 pastilla_ciudad active';
+		}
+		else{
+			div20.className='col-md-12 pastilla_ciudad';
+		}
 		var div21=document.createElement('div');
 		div21.className='txt_ciudad';
 		div21.innerHTML='Bilbao';
@@ -1847,9 +1958,14 @@ var table=function(){
 
 
 		var div22=document.createElement('div');
-		div22.id='donostia2015';
-		div22.addEventListener('click',this.presentClick.bind(this));
-		div22.className='col-md-12 pastilla_ciudad';
+		div22.id='donostia';
+		div22.addEventListener('click',this.placeClick.bind(this));
+		if(this.activePlace===div22.id){
+			div22.className='col-md-12 pastilla_ciudad active';
+		}
+		else{
+			div22.className='col-md-12 pastilla_ciudad';
+		}
 		var div23=document.createElement('div');
 		div23.className='txt_ciudad';
 		div23.innerHTML='Donostia - San Sebastian';
@@ -1857,9 +1973,14 @@ var table=function(){
 		div22.appendChild(div23);
 
 		var div24=document.createElement('div');
-		div24.id='gasteiz2015';
-		div24.addEventListener('click',this.presentClick.bind(this));
-		div24.className='col-md-12 pastilla_ciudad';
+		div24.id='gasteiz';
+		div24.addEventListener('click',this.placeClick.bind(this));
+		if(this.activePlace===div24.id){
+			div24.className='col-md-12 pastilla_ciudad active';
+		}
+		else{
+			div24.className='col-md-12 pastilla_ciudad';
+		}
 		var div25=document.createElement('div');
 		div25.className='txt_ciudad';
 		div25.innerHTML='Vitoria / Gasteiz';
@@ -1867,9 +1988,14 @@ var table=function(){
 		div24.appendChild(div25);
 
 		var div26=document.createElement('div');
-		div26.id='irunea2015';
-		div26.addEventListener('click',this.presentClick.bind(this));
-		div26.className='col-md-12 pastilla_ciudad active';
+		div26.id='irunea';
+		div26.addEventListener('click',this.placeClick.bind(this));
+		if(this.activePlace===div26.id){
+			div26.className='col-md-12 pastilla_ciudad active';
+		}
+		else{
+			div26.className='col-md-12 pastilla_ciudad';
+		}
 		var div27=document.createElement('div');
 		div27.className='txt_ciudad';
 		div27.innerHTML='Iruña / Pamplona';
@@ -1890,33 +2016,20 @@ var table=function(){
 		return div4;
 	}
 	this.presentClick=function(){
-		var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
-
-		if(event.currentTarget.tagName==='LI' || event.currentTarget.tagName==='li'){
-			this.activePlace=this.activePlace.split('2011')[0]+"2015";
-			mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'present');
-			mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeTable(agentToChange,2015,this.activePlace);
-		}
-		else{
-			this.activePlace=event.currentTarget.id;
-			mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,this.activePlace);
-			mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeTable(agentToChange,2015,this.activePlace);
-		}
+		var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;			
+		mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'resultTablePresent');
+		mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeTableYear(agentToChange,2015);
+		
 	}
 	this.pastClick=function(){
 		var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
-
-		if(event.currentTarget.tagName==='LI' || event.currentTarget.tagName==='li'){
-			this.activePlace=this.activePlace.split('2015')[0]+"2011";
-			mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'past');
-			mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeTable(agentToChange,2011,this.activePlace);
-		}
-		else{
-			this.activePlace=event.currentTarget.id;
-			mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,this.activePlace);
-			mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeTable(agentToChange,2011,this.activePlace);
-		}
-
+		mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'resultTablePast');
+		mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeTableYear(agentToChange,2011);
+	}
+	this.placeClick=function(){
+		var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
+		mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,event.currentTarget.id);
+		mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeTablePlace(agentToChange,event.currentTarget.id);
 	}
 	this.viewclick=function(){
 		var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
@@ -2033,6 +2146,7 @@ var graphicSection=function(){
 	this.addGraphComp=function(c){
 		this.graphComps.push(c);
 	}
+
 	this.render=function(){
 		var div1=document.createElement('div');
 		div1.className='template-content-center';
@@ -2043,7 +2157,7 @@ var graphicSection=function(){
 		var div3=document.createElement('div');
 		div3.className='col-md-6 clm_2 izda';
 
-
+			
 		div3.appendChild(this.tableComp[0].render());
 
 		var div4=document.createElement('div');
@@ -2055,7 +2169,7 @@ var graphicSection=function(){
 		for(var i=0;i<this.graphComps.length;i++){
 			div5.appendChild(this.graphComps[i].render());
 		}
-
+		
 		div4.appendChild(div5);
 
 		div2.appendChild(div3);
@@ -2078,7 +2192,7 @@ var graphicSection=function(){
 		});
 		var scope=this;
 
-
+		
 		var tab=this.tableComp[0].id;
 		b=a[0].capabilities.componentsStatus.filter(function(el){
 			if(el.compId===tab)return el;
@@ -2091,6 +2205,80 @@ var graphicSection=function(){
 		else{
 			this.tableComp[0].setViewStatus(false);
 		}
+
+	}
+	this.setTableDataStatus=function(agentID){
+
+		var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
+		var agents=agCtx.agents;
+		var agentToChange=agentID;
+
+		var a=agents.filter(function(el){
+			if(el.id===agentToChange)return el;
+		});
+		var scope=this;
+
+		var tab=this.tableComp[0].id;
+		b=a[0].capabilities.componentsStatus.filter(function(el){
+			if(el.compId===tab)return el;
+		});
+
+
+		if(b[0].customCmd.lastIndexOf('resultTablePast')===-1 && b[0].customCmd.lastIndexOf('resultTablePresent')===-1 
+			&& b[0].customCmd.lastIndexOf('donostia')===-1 && b[0].customCmd.lastIndexOf('bilbo')===-1 
+			&& b[0].customCmd.lastIndexOf('gasteiz')===-1 && b[0].customCmd.lastIndexOf('irunea')===-1){
+			
+				this.tableComp[0].setPlaceStat('irunea');
+				this.tableComp[0].setYearStat('2015');
+		
+		}
+		else if(b[0].customCmd.lastIndexOf('resultTablePast')<b[0].customCmd.lastIndexOf('resultTablePresent') 
+			&& b[0].customCmd.lastIndexOf('donostia')===-1 && b[0].customCmd.lastIndexOf('bilbo')===-1
+			&& b[0].customCmd.lastIndexOf('gasteiz')===-1 && b[0].customCmd.lastIndexOf('irunea')===-1 ){
+
+				this.tableComp[0].setPlaceStat('irunea');
+				this.tableComp[0].setYearStat('2015');
+		}
+		else if(b[0].customCmd.lastIndexOf('resultTablePast')>b[0].customCmd.lastIndexOf('resultTablePresent') 
+			&& b[0].customCmd.lastIndexOf('donostia')===-1 && b[0].customCmd.lastIndexOf('bilbo')===-1 
+			&& b[0].customCmd.lastIndexOf('gasteiz')===-1 && b[0].customCmd.lastIndexOf('irunea')===-1){
+
+			this.tableComp[0].setPlaceStat('irunea');
+			this.tableComp[0].setYearStat('2011');
+		}
+		else{
+			
+						
+			var indexes=[];
+
+			indexes.push([b[0].customCmd.lastIndexOf('donostia'),'donostia']);
+			indexes.push([b[0].customCmd.lastIndexOf('bilbo'),'bilbo']);
+			indexes.push([b[0].customCmd.lastIndexOf('gasteiz'),'gasteiz']);
+			indexes.push([b[0].customCmd.lastIndexOf('irunea'),'irunea']);
+
+
+			var ordered_ind=[];
+      		ordered_ind = indexes.sort(function(it1,it2){
+      		if (it1[0] > it2[0]) return 1;
+      		else return -1;
+      		});
+
+			this.tableComp[0].setPlaceStat(indexes[3][1]);
+
+			if(b[0].customCmd.lastIndexOf('resultTablePast')===-1 && b[0].customCmd.lastIndexOf('resultTablePresent')===-1){
+				this.tableComp[0].setYearStat('2015');
+			}
+			else if(b[0].customCmd.lastIndexOf('resultTablePast')<b[0].customCmd.lastIndexOf('resultTablePresent')){
+				this.tableComp[0].setYearStat('2015');
+			}
+			else if(b[0].customCmd.lastIndexOf('resultTablePast')>b[0].customCmd.lastIndexOf('resultTablePresent')){
+				this.tableComp[0].setYearStat('2011');
+			}
+			
+		}
+		
+	
+
 
 	}
 	this.setGraphsViewStatus=function(agentID){
