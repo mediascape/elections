@@ -20,7 +20,6 @@ define ([],
         return text;
       }
       this.getObjectDiff = function (objectA,objectB){
-          console.log(objectA,objectB);
           var propertyChanges = [];
           var objectGraphPath = ["componentsStatus"];
           (function(a, b) {
@@ -50,7 +49,6 @@ define ([],
                 if(a != b || a.length != b.length) {
                  if (objectGraphPath.length>2){
                   var cmpId = objectGraphPath[1].substring(1,objectGraphPath[1].length-1);
-                  console.log(objectGraphPath);
                   objectGraphPath = objectGraphPath.filter(function(p){ if (p.indexOf('undefined')===-1) return true;})
 
                       var prop = objectGraphPath[objectGraphPath.length-1].substring(1);

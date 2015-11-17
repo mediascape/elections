@@ -195,7 +195,6 @@ function(LayoutConstructor){
       !function outer(i){
 
         function mouseOverFunc(event){
-          console.log(event);
           if(this.timeout) clearTimeout(this.timeout);
           event.srcElement = event.srcElement || event.target ;
           if(bigComponent===event.srcElement.id){clearTimeout(this.timeout);}

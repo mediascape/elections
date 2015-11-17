@@ -56,6 +56,7 @@ function(){
 
             }
            }
+           console.log(decision);
             return  decision;
 
         };

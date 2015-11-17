@@ -156,24 +156,27 @@ function($, applicationContext){
 
       return ids_order.lastIndexOf(agentid);
     }
-    var getChangeDiff = function (obj){
-      if (localStatus === null) {
+    var getChangeDiff = function (agentid,obj){
+    /*  if (localStatus === null) {
         localStatus = obj;
         return mediascape.AdaptationToolkit.Utils.getObjectDiff(obj,localStatus);
       }
-      else if (obj.length != localStatus.length){
+      else*/
+      var ag = getAgentById(agentid);
+      localStatus = ag.capabilities.componentsStatus;
+
+       if ( (obj.length != localStatus.length) || (localStatus ==="supported" || localStatus ==="undefined")){
         return null;
       }
       else {
         var diff = mediascape.AdaptationToolkit.Utils.getObjectDiff(obj,localStatus);
-        localStatus = obj;
-        return diff;
+       return diff;
       }
     }
     // called whenever a change happens to the shared context
     var updateContext = function(change) {
       var diff = null;
-      if (change.capability === "componentsStatus") diff = getChangeDiff(change.value);
+      if (change.capability === "componentsStatus") diff = getChangeDiff(change.agentid,change.value);
       if (diff != null ){
         if (change.diff ) {diff = change.diff; change.capability ="componentsStatus"}
         context.lastChange = {key:change.capability,value:change.value,diff:diff};
@@ -310,8 +313,7 @@ function($, applicationContext){
       updateContext(change);
       // Check if all capabilities are collected before shared with decision plugins
       var needInfoReady = context.agents.every (function(ag){
-        if (ag.capabilities.hasOwnProperty('touchScreen') && ag.capabilities.hasOwnProperty('screenSize')
-        && ag.capabilities['componentsStatus']!=="undefined") return true;
+        if (ag.capabilities.hasOwnProperty('touchScreen') && ag.capabilities.hasOwnProperty('screenSize')) return true;
         else return false;
       })
      if (needInfoReady ) hybridAdaptation(change);
@@ -384,7 +386,7 @@ function($, applicationContext){
           change['agentContext'] = e.agentContext;
           change['value'] = 'joined';
           onUpdateContext(change);
-          setTimeout(function () { notifiAgentChange('join',e.agentid)},500);
+          setTimeout(function () { notifiAgentChange('join',e.agentid)},1500);
         }
         else {
           console.log(e.key);
@@ -641,12 +643,11 @@ function($, applicationContext){
         var agent = getAgentById(agentId);
         mediascape.agentContext.setItem('componentsStatus',cmps);
         if (cmps.eventType!=="data")
+            setTimeout(function(){
+              onUpdateContext({type:"VALUE_CHANGE",agentid:agentId,diff:[{"property":"customCmd","newValue":cmd,compId:cmpId}]});
+            },200);
+
         setTimeout(function(){
-          onUpdateContext({type:"VALUE_CHANGE",agentid:agentId,diff:[{"property":"customCmd","newValue":cmd,compId:cmpId}]});
-        },200);
-        userActionOn = true;
-        setTimeout(function(){
-          userActionOn=false;
           context.lastChange.diff = [{"property":"customCmd","newValue":cmd,compId:cmpId}];
           mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.notifyUpdateContext(context,"cmp_changed",agentId);
         },800);
