@@ -48,7 +48,8 @@ function(){
                      }
                      else{
                       // this.localChange = false;
-                      decision.actions.push({"type": "HIDE", "component": componentsStatus[c].selector});
+                      if(componentsStatus[c].customCmd.lastIndexOf('hide')!=-1)
+                        decision.actions.push({"type": "HIDE", "component": componentsStatus[c].selector});
 
                      }
                      //else return false;
