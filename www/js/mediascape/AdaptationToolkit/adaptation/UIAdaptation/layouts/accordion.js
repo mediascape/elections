@@ -253,7 +253,8 @@ function(LayoutConstructor){
 
 
         //ordered_cmps[i].removeEventListener(mouseOverFunc);
-
+        ordered_cmps[i].removeEventListener('mouseover',mouseOverFunc,false);
+        ordered_cmps[i].removeEventListener('mouseleave',mouseLeaveFunc,true);
         ordered_cmps[i].addEventListener('mouseover',mouseOverFunc,false);
         ordered_cmps[i].addEventListener('mouseleave',mouseLeaveFunc,true);
         accordion.listeners.push(mouseOverFunc);

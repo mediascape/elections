@@ -1,6 +1,6 @@
-define (["msv","mcorp","magicui","magic"],
-    function (msv,mcorp,magicui,magic) {
-
+define (["msv","mcorp"],
+    function (msv,mcorp,mSync) {
+    var mediaSync = mSync;
     var SharedMotion = function(){
       this.init = function(){
           this.mapp = MCorp.app("5755267014547000624", {anon:true});
@@ -21,19 +21,21 @@ define (["msv","mcorp","magicui","magic"],
             //this.options.skew = skew;
           //  var isOn = e.detail.actualLoadedc.indexOf(_id)>-1;
         //    console.log(isOn,e.detail.actualLoadedc,_id,skew);
-            var id = _video.attr ('id');
+            var id = _video.getAttribute ('id');
             scope.mapp.msvs.shared.query();
             var opts = {};
             opts.skew = skew;
-            opts.target = 0.1;
+            opts.target = 0.25
+            opts.debug=false;
+            opts.mode ="skip";
             console.log(opts);
-            scope.mapp.cams[id] = new TM.MediaSync(_video, scope.mapp.msvs.shared, opts);
+            scope.mapp.cams[id] = new mediascape.mediaSync().mediaSync(_video, scope.mapp.msvs.shared, opts);
          }
          else
             throw new Error ("video without defined");
       }
       this.addMovingCursor = function(data){
-        this.cursor = TM.movingCursor(this.mapp.motions.shared, data);
+        this.cursor = mSync.movingCursor(this.mapp.motions.shared, data);
       }
       return this;
     }
