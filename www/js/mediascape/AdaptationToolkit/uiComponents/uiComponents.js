@@ -473,7 +473,7 @@ define(
 
 
         this.ctrlPanel=new ControlPanel(url);
-        var associationPanel = document.createElement('span');
+        
 
 
           var scope=this;
@@ -484,6 +484,290 @@ define(
                 else scope.ctrlPanel.show();
               }
           });
+
+      }
+      this.addController=function(){
+
+
+        var prettyPrint=function(val){
+          // Convert time in seconds to X days, hours, minutes, seconds
+          var days = Math.floor(val / (60 * 60 * 24));
+          var hours = Math.floor((val - days * (60 * 60 * 24)) / (60 * 60));
+          var mins = Math.floor((val - days * (60 * 60 * 24) - hours * (60 * 60)) / (60));
+          var secs = Math.floor((val - days * (60 * 60 * 24) - hours * (60 * 60)) - mins * 60);
+          var s = "";
+          if (days > 1) s = days + " days ";
+          else if (days > 0) s = days + " day ";
+          if (hours > 1) s += hours + ":";
+          else if (hours > 0) s += hours + ":";
+          if (mins > 1) s += mins + ":";
+          else if (mins > 0) s += mins + ":";
+          if (secs > 9) s += secs + "  ";
+          else s += "0"+secs ;
+          return s;
+        }
+        var smReady=function(){
+              try{
+              
+              
+              if (!mediascape.AdaptationToolkit.Utils.getUrlVar('group')) this.mapp.motions.shared.update(0);
+             if (this.mapp.motions.shared.vel == 0) {
+
+               img4.setAttribute('src','../resources/css/configPanel/img/controller/Play_activo.png');
+              
+
+              } else {
+
+                img4.setAttribute('src','../resources/css/configPanel/img/controller/Pause_activo.png');
+                
+              }
+        
+              var handler = function (e) {
+                div4.style.width=100*Math.round(e.pos)/1561+'%';
+                div8.innerHTML = prettyPrint(83869 +e.pos);
+
+              };
+            this.mapp.motions.shared.on("timeupdate", handler);
+            var _this=this;
+              setInterval(function(){
+                if (_this.mapp.motions.shared.vel == 0) {
+
+                   img4.setAttribute('src','../resources/css/configPanel/img/controller/Play_activo.png');
+                   
+                 } else {
+
+                   img4.setAttribute('src','../resources/css/configPanel/img/controller/Pause_activo.png');
+                   
+                 }
+              },1500);
+              }
+              catch (e) {console.log(e);}
+            }
+
+        playPause=function (){  
+          //play       
+          if(img4.src.indexOf('Play_activo.png')>-1){
+            img4.src="../resources/css/configPanel/img/controller/Pause_activo.png";
+            this.mapp.motions.shared.update(null,1,0);
+          }               
+          else{
+            img4.src="../resources/css/configPanel/img/controller/Play_activo.png";
+            this.mapp.motions.shared.update(null,0,0);
+          }     
+              
+          
+        }
+        
+
+        foward=function (){
+            var time = this.mapp.motions.shared.query();
+            time = findNextMarkerTime (time);
+            this.mapp.motions.shared.update(time,1,0);
+
+        }
+        rewind=function (){
+
+            var time = this.mapp.motions.shared.query();
+            time = findPreviousMarkerTime (time);
+            this.mapp.motions.shared.update(time,1,0);
+        }
+
+
+        findNextMarkerTime=function(time){
+
+            var mSorted = markers.sort(function(a,b){
+                  if (a.value>b.value) return 1;
+                  else return -1;
+            });
+            var m1 = mSorted.sort(function(m1,m2){
+                if (m1.value<time.pos) return 1;
+                else return -1;
+            });
+            return m1[0].value;
+
+        }
+        findPreviousMarkerTime=function(time){
+
+            var mSorted = markers.sort(function(a,b){
+                if (a.value<b.value) return 1;
+                else return -1;
+              });
+              var m1 = mSorted.filter(function(m1){
+                if (m1.value+10<time.pos) return true;
+                else return false;
+              });
+            return m1[0].value;
+        }
+
+
+
+        var sm=mediascape.AdaptationToolkit.SharedMotion();
+        document.addEventListener('motion-ready',smReady.bind(sm),false);
+        
+        markers=[{value:260,description:"EH Bildu, PSE comparecencia",progresspoint:260*100/1561},
+          {value:690,description:'PNV comparecencia',progresspoint:690*100/1561},
+          {value:780,description:"EH Bildu - Eizagirre",progresspoint:780*100/1561},
+          {value:970,description:"Tertulia politica",progresspoint:970*100/1561},
+          {value:1074,description:"Podemos Madrid comparecencia",progresspoint:1074*100/1561},
+          {value:1302,description:"PP Euskadi comparecencia",progresspoint:1302*100/1561},
+          {value:1404,description:"PP Madrid comparecencia",progresspoint:1404*100/1561}];
+        
+
+
+        var nav=document.createElement('nav');
+        nav.className='cbp-spmenu cbp-spmenu-horizontal cbp-spmenu-bottom';
+        nav.id='cbp-spmenu-s4';
+
+          var but=document.createElement('button');
+          but.id='showBottom';
+          but.innerHTML='Show/Hide Controller';
+
+          nav.appendChild(but);
+
+          var div1=document.createElement('div');
+          div1.className='controller_caja';
+
+            var div2=document.createElement('div');
+            div2.className='barra_superior';
+
+              var div3=document.createElement('div');
+              div3.className='barra_play';
+              
+
+                var div4=document.createElement('div');
+                div4.className='barra_play_estado';
+                div3.appendChild(div4);
+
+                for(var i=0;i<markers.length;i++){
+                  var img1=document.createElement('img');
+                  img1.className='hito01';
+                  img1.src='../resources/css/configPanel/img/controller/hito.jpg';
+                  img1.style.left=markers[i].progresspoint+'%';
+                   !function outer(i){
+                      img1.addEventListener('click',function(event){
+                        event.stopPropagation();
+                        
+                        sm.mapp.motions.shared.update(markers[i].value,1,0);
+                        div4.style.width=markers[i].progresspoint+'%';
+                        div8.innerHTML = prettyPrint(83869 +markers[i].value);
+                      });
+                    }(i);
+
+
+                  div3.appendChild(img1);                  
+                }               
+               div3.addEventListener('click',function(event){
+              
+                var jumpValue=Math.round(event.offsetX*1561/div3.clientWidth);
+                sm.mapp.motions.shared.update(jumpValue,1,0);
+                div4.style.width=100*Math.round(jumpValue)/1561+'%';
+                div8.innerHTML = prettyPrint(83869 +jumpValue);
+              });
+
+              div2.appendChild(div3);
+              div1.appendChild(div2);
+
+            var div5=document.createElement('div');
+            div5.className='w-clearfix barra_inferior';
+
+            var div6=document.createElement('div');
+            div6.className='botonera col-lg-4 col-md-5 col-sm-6';
+
+              var img3=document.createElement('img');
+              img3.className='btn_r_izda';
+              img3.width=111;
+
+              img3.src='../resources/css/configPanel/img/controller/rew_izda.png';
+              img3.addEventListener('click',rewind.bind(sm));
+              div6.appendChild(img3);
+
+              var img4=document.createElement('img');
+              img4.className='btn_stop';
+              img4.width=69;
+              img4.src='../resources/css/configPanel/img/controller/Pause_activo.png';
+              img4.id='pauseBut';
+              img4.addEventListener('click',playPause.bind(sm));
+              div6.appendChild(img4);
+
+          
+
+              var img6=document.createElement('img');
+              img6.className='btn_r_dcha';
+              img6.width=107;
+              img6.src='../resources/css/configPanel/img/controller/rew_dcha.png';
+              img6.addEventListener('click',foward.bind(sm));
+              div6.appendChild(img6);
+
+              div5.appendChild(div6);
+
+            var div7=document.createElement('div');
+            div7.className='w-clearfix tiempos col-lg-4 col-md-5 col-sm-6';
+
+              var div8=document.createElement('div');
+              div8.className='txt_tiempo_ejecucion';
+              div8.innerHTML='0:10:37';
+
+
+              var div9=document.createElement('div');
+              div9.className='tiempo_total';
+              div9.innerHTML='23:43:50';
+
+              div7.appendChild(div8);
+              div7.appendChild(div9);
+
+              div5.appendChild(div7);
+
+
+           /* var div10=document.createElement('div');
+            div10.className='logo_y_cierre col-lg-4 col-md-2 hidden-sm';*/
+
+            /* var img7=document.createElement('img');
+             img7.className='cierre col-md-3';
+             img7.src='../resources/css/configPanel/img/controller/x_inactiva.png';
+             div10.appendChild(img7);*/
+
+             /*var img8=document.createElement('img');
+             img8.className='logo-mediascape visible-lg col-md-9';
+             img8.src='../resources/css/configPanel/img/controller/logo-Mediascape-apaisado.png';
+             div10.appendChild(img8);*/
+
+             //div5.appendChild(div10);
+
+
+             div1.appendChild(div5);
+            
+
+             nav.appendChild(div1);
+
+             document.body.appendChild(nav);
+
+
+
+
+             
+
+
+
+
+
+
+             var menuBottom = document.getElementById( 'cbp-spmenu-s4' ),       
+              showBottom = document.getElementById( 'showBottom' ),       
+              body = document.body;
+            
+            showBottom.onclick = function() {
+              classie.toggle( this, 'active' );
+              classie.toggle( menuBottom, 'cbp-spmenu-open' );
+              disableOther( 'showBottom' );
+            };      
+
+            function disableOther( button ) {       
+              if( button !== 'showBottom' ) {
+                classie.toggle( showBottom, 'disabled' );
+              }       
+            }
+
+
 
       }
       this.addMenuToCmps=function(cmps,show){

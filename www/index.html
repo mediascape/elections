@@ -25,6 +25,8 @@
 <link rel="import" href="../resources/wcs/graphic/x-graphic.html">
 <link rel="import" href="../resources/wcs/result-table/result-table.html">
 <link rel="import" href="../resources/wcs/timeline/timeline.html">
+
+
 <!--<link rel="import" href="../resources/wcs/polymer/drag-resize/drag-resize.html">
 
 
@@ -39,6 +41,7 @@
 <link href="../resources/css/configPanel/css/radio.css" rel="stylesheet">
 <link href="../resources/css/configPanel/css/graphics.css" rel="stylesheet">
 <link href="../resources/css/configPanel/css/camara.css" rel="stylesheet">
+<link href="../resources/css/configPanel/css/controller.css" rel="stylesheet">
 
 <script src="../resources/css/configPanel/main1.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -46,13 +49,13 @@
 <script src="../resources/css/configPanel/js/bootstrap-switch.js"></script>
 
 
-
+  <script src="../resources/css/configPanel/js/classie.js"></script>
 
 <!-- WEBCOMPONETS END -->
 
 <script>
 
-
+ 
 document.addEventListener('adaptationToolkit-ready',function(data){
 
         var AE = mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation;
@@ -71,7 +74,7 @@ document.addEventListener('adaptationToolkit-ready',function(data){
             mediascape.AdaptationToolkit.uiComponents.addControlPanel(location+"?group="+AE.GROUP_ID);
             AE.init(rulesAE, AE.getApplicationContext());
             AE.on('actionchange', UI.onComponentsChange);
-
+            mediascape.AdaptationToolkit.uiComponents.addController();
 
         });
 

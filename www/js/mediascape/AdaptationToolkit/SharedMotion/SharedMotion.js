@@ -8,7 +8,7 @@ define (["msv","mcorp","magicui","magic"],
           this.mapp.init();
           this.mapp.run =function (){
           var event = new CustomEvent("motion-ready", {"detail":{"loaded":true}});
-          document.dispatchEvent(event);
+          setTimeout(function(e){document.dispatchEvent(event);},5000);
        }
      }
       //this.mapp.run = this.toRun.bind(this);

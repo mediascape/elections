@@ -1440,6 +1440,7 @@ var camerasSection=function(){
 
 	}
 	this.setCamsSoundStatus=function(agentID){
+		console.log('DENTRO');
 		var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
 		var agents=agCtx.agents;
 		var agentToChange=agentID;
