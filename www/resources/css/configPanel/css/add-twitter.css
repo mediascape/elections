@@ -18,18 +18,22 @@
 }
 .twitter-selector-container div.twitter-hashtag:hover {border-color:#fc9200; }
 .twitter-selector-container div.twitter-hashtag div {background: transparent !important; }
-.twitter-selector-container div.twitter-hashtag div img {width: 80%; padding-top: 3vh;}
+.twitter-selector-container div.twitter-hashtag div img {width: 100%; padding-top: 3vh;}
 div.seleccion-hashtag { text-align: left !important; padding-top: 7vh; font-size: 2.2vh;}
 div.seleccion-hashtag .select-hashtag {background-color: #dcf1ff; width: 65%;}
 p.titulo-seccion {font-size: 3vw; color: white;}
 /* switch */
 .twitter-selector-container div.check-switch {
-	height: 250px !important;
+	min-height: 250px !important;
 	border: 0 !important;
 	padding-top: 7vh;
 } 
 .bootstrap-switch {border: none !important;}
-.bootstrap-switch-primary {color: #CCC !important; background-color: green !important; font-size: 14px !important;}
+.bootstrap-switch-primary {
+    color: #FFF !important;
+    background-color: rgb(26, 185, 26) !important;
+    font-size: 14px !important; font-weight:bold;
+}
 .bootstrap-switch-label {background-color: white !important;}
 
 .twitter-selector-container div.twitter-topic{
@@ -45,3 +49,21 @@ p.titulo-seccion {font-size: 3vw; color: white;}
 .twitter-selector-container div.twitter-topic:hover {border-color: #fc9200; }
 .twitter-selector-container div.twitter-topic div {background-color: transparent !important;}
 .twitter-selector-container div.twitter-topic div img {width: 80%; padding-top: 3vh;}
+
+div.seleccion-hashtag{ padding-top: 6%;}
+
+@media (max-width: 992px){
+    .twitter-selector-container div.check-switch{border:1px solid red; height:auto; clear:both; min-height:auto !important; padding-top:0; padding-left:40%; margin-bottom:20px;}
+}
+
+@media (min-width: 992px) and (max-width: 1200px){
+	
+}
+
+@media (max-width: 1024px){
+
+}
+
+@media (max-width: 767px){
+
+}

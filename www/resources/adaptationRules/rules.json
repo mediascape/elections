@@ -176,6 +176,38 @@
                     "needs":"none"
                 },
                 {
+                    "componentId": "video4",
+                    "required": false,
+                    "bestfit": "biggestScreenSize",
+                    "movable": true,
+                    "duplicable":false,
+                    "needs":"none"
+                },
+                {
+                    "componentId": "video5",
+                    "required": false,
+                    "bestfit": "biggestScreenSize",
+                    "movable": true,
+                    "duplicable":false,
+                    "needs":"none"
+                },
+                {
+                    "componentId": "video6",
+                    "required": false,
+                    "bestfit": "biggestScreenSize",
+                    "movable": true,
+                    "duplicable":false,
+                    "needs":"none"
+                },
+                {
+                    "componentId": "video7",
+                    "required": false,
+                    "bestfit": "biggestScreenSize",
+                    "movable": true,
+                    "duplicable":false,
+                    "needs":"none"
+                },
+                {
                     "componentId": "control",
                     "required": false,
                     "bestfit": "touchable",

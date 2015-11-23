@@ -481,9 +481,23 @@ define(
         tab.style.zIndex=999;
         var scope=this;
         tab.addEventListener('click',function(event){
-          if ( scope.ctrlPanel.showing) scope.ctrlPanel.hide();
+          if ( scope.ctrlPanel.showing){ scope.ctrlPanel.hide();}
             else scope.ctrlPanel.show();
         });
+
+
+        var menuButtonP=document.createElement('p');
+        menuButtonP.className='responsive-menu-button';
+        menuButtonP.innerHTML=' <button type="button" data-toggle="offcanvas"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></button>';
+
+        document.body.appendChild(menuButtonP);
+        $(document).ready(function() {
+              $('[data-toggle=offcanvas]').click(function() {
+                $('.menu-sidebar').toggleClass('active');
+              });
+                      
+        });
+
 
         this.ctrlPanel=new ControlPanel(url);
         this.ctrlPanel.hide();

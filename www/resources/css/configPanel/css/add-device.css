@@ -72,3 +72,33 @@
     animation-name: bounceInUp; 
 }
 
+@media (min-width: 992px) and (max-width: 1200px){
+
+}
+
+@media (max-width: 1024px) and (orientation: landscape){
+        .qr-code-toy img {width: 74%;}
+         .add-device-content img{width:74%}
+                
+}
+
+@media (max-width: 1024px) and (orientation: portrait){
+         .qr-code-toy img {width: 100%;}
+        .add-device-content img{width:100%}
+
+}
+
+@media (max-width: 767px) and (orientation: portrait){
+         .qr-code-content img {width: 74%;}
+         .add-device-content img{width:74%;}
+}
+
+@media (max-width: 767px) and (orientation: landscape){
+         .qr-code-content img { width: 25%;}
+         .add-device-content img{width:25%;}
+
+        .qr-code-toy img {width: 54%;}
+        .add-device-content img{width:54%;} 
+}
+
+

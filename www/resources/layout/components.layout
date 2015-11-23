@@ -20,6 +20,34 @@
   propy:9;
   icon:../resources/images/icons_manag/eaj.png;
 }
+#video4{
+  order:3;
+  rwidth:460px;
+  propx:16;
+  propy:9;
+  icon:../resources/images/icons_manag/eaj.png;
+}
+#video5{
+  order:3;
+  rwidth:460px;
+  propx:16;
+  propy:9;
+  icon:../resources/images/icons_manag/eaj.png;
+}
+#video6{
+  order:3;
+  rwidth:460px;
+  propx:16;
+  propy:9;
+  icon:../resources/images/icons_manag/eaj.png;
+}
+#video7{
+  order:3;
+  rwidth:460px;
+  propx:16;
+  propy:9;
+  icon:../resources/images/icons_manag/eaj.png;
+}
 #control{
   order:20;
   rwidth:600px;

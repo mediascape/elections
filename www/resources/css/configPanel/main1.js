@@ -46,7 +46,35 @@ var ControlPanel= function (url){
 		var cam3=new camera();
 		cam3.setID(c[0].getAttribute('compId'));
 		cam3.setName(c[0].id);
-		cam3.setImage('../resources/css/configPanel/img/camara/logo_pp.png');
+		cam3.setImage('../resources/css/configPanel/img/camara/logos_partidos_PNV_BLANCO.png');
+
+		/*comp='video4';
+		c=cmps.filter(filterById);
+		var cam4=new camera();
+		cam4.setID(c[0].getAttribute('compId'));
+		cam4.setName(c[0].id);
+		cam4.setImage('../resources/css/configPanel/img/camara/logo_sozialista.png');
+
+		comp='video5';
+		c=cmps.filter(filterById);
+		var cam5=new camera();
+		cam5.setID(c[0].getAttribute('compId'));
+		cam5.setName(c[0].id);
+		cam5.setImage('../resources/css/configPanel/img/camara/logos_partidos_Populares_vascos_BLANCO.png');
+
+		comp='video6';
+		c=cmps.filter(filterById);
+		var cam6=new camera();
+		cam6.setID(c[0].getAttribute('compId'));
+		cam6.setName(c[0].id);
+		cam6.setImage('../resources/css/configPanel/img/camara/logos_partidos_Populares_genova_BLANCO.png');
+
+		comp='video7';
+		c=cmps.filter(filterById);
+		var cam7=new camera();
+		cam7.setID(c[0].getAttribute('compId'));
+		cam7.setName(c[0].id);
+		cam7.setImage('../resources/css/configPanel/img/camara/logos_partidos_Podemos_BLANCO.png');*/
 
 		comp='results';
 		c=cmps.filter(filterById);
@@ -83,6 +111,11 @@ var ControlPanel= function (url){
 		camerasSect.addCamera(cam1);
 		camerasSect.addCamera(cam2);
 		camerasSect.addCamera(cam3);
+		/*camerasSect.addCamera(cam4);
+		camerasSect.addCamera(cam5);
+		camerasSect.addCamera(cam6);
+		camerasSect.addCamera(cam7);*/
+
 
 		graphicSect=new graphicSection();
 		graphicSect.addTableComp(resTable);
@@ -710,10 +743,10 @@ var ControlPanel= function (url){
 						var devNum=document.querySelector('#fullTemp').children[i].children[0].children;
 						for(var j=0;j<devNum.length;j++){
 							if(devNum[j].id===device){
-								devNum[j].className="col-md-"+(12/devNum.length)+" boxdevice active";
+								devNum[j].className="col-md-"+(12/devNum.length)+" col-xs-"+(12/devNum.length)+" boxdevice active";
 							}
 							if(devNum[j].id===scope.activeDevice){
-								devNum[j].className="col-md-"+(12/devNum.length)+" boxdevice";
+								devNum[j].className="col-md-"+(12/devNum.length)+" col-xs-"+(12/devNum.length)+" boxdevice";
 							}
 						}
 
@@ -730,10 +763,10 @@ var ControlPanel= function (url){
 						var devNum=document.querySelector('#fullTemp').children[i].children[0].children;
 						for(var j=0;j<devNum.length;j++){
 							if(devNum[j].id===scope.selfID){
-								devNum[j].className="col-md-"+(12/devNum.length)+" boxdevice active";
+								devNum[j].className="col-md-"+(12/devNum.length)+" col-xs-"+(12/devNum.length)+" boxdevice active";
 							}
 							if(devNum[j].id===scope.activeDevice && scope.activeDevice!==scope.selfID){
-								devNum[j].className="col-md-"+(12/devNum.length)+" boxdevice";
+								devNum[j].className="col-md-"+(12/devNum.length)+" col-xs-"+(12/devNum.length)+" boxdevice";
 							}
 						}
 					}
@@ -1111,7 +1144,7 @@ var deviceBox=function(){
 			div.id=it.id;
 
 
-			div.className="col-md-"+(12/scope.devices.length)+" boxdevice";
+			div.className="col-md-"+(12/scope.devices.length)+" col-xs-"+(12/scope.devices.length)+" boxdevice";
 
 			div.appendChild(it.render());
 			extDiv.appendChild(div);
@@ -1199,7 +1232,11 @@ var qrSection=function(url){
 		var qrdiv=document.createElement('div');
 		qrdiv.className='qr-code-content';
 
+		
+
 		mediascape.association.createQRcode(url,qrdiv,(30*width/100),(30*width/100),'',(25*width/100),50);
+		var img=document.createElement('img');
+		
 		//var qrimg=document.createElement('img');
 		//qrimg.src="../resources/css/configPanel/img/qr/qrcode.png";
 
@@ -1394,18 +1431,35 @@ var camerasSection=function(){
 		div1.className='col-md-12 layout-columns';
 
 		var div2=document.createElement('div');
-		div2.className='col-md-12';
+		div2.className='col-md-6';
 
 		var div3=document.createElement('div');
 		div3.className='contenido content-camara';
 
-		this.cameras.forEach(function(it){
 
-			div3.appendChild(it.render());
-		});
+
+		for(var i=0;i<Math.round(this.cameras.length/2);i++){
+
+			div3.appendChild(this.cameras[i].render());
+		}
 
 		div2.appendChild(div3);
+
+		var div4=document.createElement('div');
+		div4.className='col-md-6';
+
+		var div5=document.createElement('div');
+		div5.className='contenido content-camara';
+
+		for(var i=Math.round(this.cameras.length/2);i<this.cameras.length;i++){
+
+			div5.appendChild(this.cameras[i].render());
+		}
+
+		div4.appendChild(div5);
+		
 		div1.appendChild(div2);
+		div1.appendChild(div4);
 		extDiv.appendChild(div1);
 
 		return extDiv;
@@ -1489,13 +1543,13 @@ var hashtag=function(){
 		hashtagDiv.className='col-md-10 twitter-hashtag';
 
 		var div1=document.createElement('div');
-		div1.className='col-md-3';
+		div1.className='col-md-3 col-xs-3';
 		var img=document.createElement('img');
 		img.src='../resources/css/configPanel/img/hastag_consombra.png';
 		div1.appendChild(img);
 
 		var div2=document.createElement('div');
-		div2.className='col-md-6 seleccion-hashtag';
+		div2.className='col-md-6 col-xs-9 seleccion-hashtag';
 
 		var p1=document.createElement('p');
 		p1.className='titulo-seccion';
@@ -1547,13 +1601,13 @@ var trendingMap=function(){
 		trending.className='col-md-10 twitter-topic';
 
 		var div4=document.createElement('div');
-		div4.className='col-md-3';
+		div4.className='col-md-3 col-xs-3';
 		var img2=document.createElement('img');
 		img2.src='../resources/css/configPanel/img/twitter_consombra.png';
 		div4.appendChild(img2);
 
 		var div5=document.createElement('div');
-		div5.className='col-md-6 seleccion-hashtag';
+		div5.className='col-md-6 col-xs-9 seleccion-hashtag';
 		var p3=document.createElement('p');
 		p3.className='titulo-seccion';
 		p3.innerHTML='Map and trending topic';
@@ -1625,7 +1679,7 @@ var radioSection=function(){
 		div6.className='w-row';
 
 		var div7=document.createElement('div');
-		div7.className='w-col w-col-6';
+		div7.className='col-xs-4 col-sm-6';
 
 		var img=document.createElement('img');
 		img.className="radio_btn_pausa";
@@ -1634,7 +1688,7 @@ var radioSection=function(){
 		div7.appendChild(img);
 
 		var div8=document.createElement('div');
-		div8.className='w-col w-col-6 w-clearfix';
+		div8.className='col-xs-8 col-sm-6';
 
 		var div9=document.createElement('div');
 		div9.className='radio_nombre_emisora';
@@ -1720,8 +1774,24 @@ var radioSection=function(){
 
 
 
+		var div21=document.createElement('div');
+		div21.className='emisora_logo';
+
+		var div22=document.createElement('div');
+		div22.className='logo_emisora_p';
+
+		var img6=document.createElement('img');
+		img6.className='logo_emisora_img';
+		img6.src='../resources/css/configPanel/img/radio/logo_eitb_blanco.png';
+		div22.appendChild(img6);
+
+		div21.appendChild(div22);
+
+
+
 		div16.appendChild(div17);
 		div16.appendChild(div19);
+		div16.appendChild(div21);
 
 		div15.appendChild(div16);
 		div14.appendChild(div15);
@@ -1753,7 +1823,7 @@ var table=function(){
 
 	this.render=function(){
 		var div4=document.createElement('div');
-		div4.className='contenido';
+		div4.className='contenido_graphics';
 
 		var div5=document.createElement('div');
 		div5.className='col-md-12 data-information-section';
@@ -1795,25 +1865,8 @@ var table=function(){
 			li1.className='';
 		}
 		li1.addEventListener('click',this.pastClick.bind(this),true);
-		var a1=document.createElement('a');
-		//a1.href='#2011';
-		a1.ariaControls='2011';
-		a1.role='tab';
-		a1.dataToggle='tab';
-
-		var img1=document.createElement('img')
-		img1.src='../resources/css/configPanel/img/graphics/icon_chart.png';
-
-		var br=document.createElement('br');
-
-		var span1=document.createElement('span');
-		span1.className='year-text';
-		span1.innerHTML='2011';
-
-		a1.appendChild(img1);
-		a1.appendChild(br);
-		a1.appendChild(span1);
-		li1.appendChild(a1);
+		
+		li1.innerHTML='<a href="#2011" aria-controls="2011" role="tab" data-toggle="tab"><img src="../resources/css/configPanel/img/graphics/icon_chart.png"/><br><span class="year-text">2011</span></a>'
 
 
 
@@ -1827,25 +1880,8 @@ var table=function(){
 			li2.className='';
 		}
 		li2.addEventListener('click',this.presentClick.bind(this),true);
-		var a2=document.createElement('a');
-		//a2.href='#2015';
-		a2.ariaControls='2015';
-		a2.role='tab';
-		a2.dataToggle='tab';
-
-		var img2=document.createElement('img')
-		img2.src='../resources/css/configPanel/img/graphics/icon_chart.png';
-
-		var br=document.createElement('br');
-
-		var span2=document.createElement('span');
-		span2.className='year-text';
-		span2.innerHTML='2015';
-
-		a2.appendChild(img2);
-		a2.appendChild(br);
-		a2.appendChild(span2);
-		li2.appendChild(a2);
+		li2.innerHTML='<a href="#2012" aria-controls="2012" role="tab" data-toggle="tab"><img src="../resources/css/configPanel/img/graphics/icon_chart.png"/><br><span class="year-text">2011</span></a>';
+		
 		ul.appendChild(li1);
 		ul.appendChild(li2);
 
@@ -2070,17 +2106,17 @@ var graph=function(){
 	}
 	this.render=function(){
 		var div30=document.createElement('div');
-		div30.className='col-md-12 emisora';
+		div30.className='col-md-12 row emisora';
 
 		var div31=document.createElement('div');
-		div31.className='col-md-2';
+		div31.className='col-md-2 col-sm-2 col-xs-4';
 		var img6=document.createElement('img');
 		img6.className='imagen-emisora-peque';
 		img6.src='../resources/css/configPanel/img/graphics/icon_chart-2011-2015.png';
 		div31.appendChild(img6);
 
 		var div32=document.createElement('div');
-		div32.className='col-md-7';
+		div32.className='col-md-7 col-sm-7 col-xs-8';
 		var p5=document.createElement('p');
 		p5.className='text_ciudad';
 		p5.innerHTML=this.place;
@@ -2096,13 +2132,14 @@ var graph=function(){
 		div32.appendChild(p5);
 
 		var div33=document.createElement('div');
-		div33.className='col-md-3 switch-emisora';
+		div33.className='col-md-3 col-sm-3 col-xs-12 switch-emisora';
 
 		var input3=document.createElement('input');
 		input3.type='checkbox';
 		input3.name='set-graphic-emisora';
 		input3.checked=this.viewStatus;
 		input3.id='viewCheck'+this.id;
+
 		div33.id='view'+this.id;
 		div33.addEventListener('click',this.viewclick.bind(this),true);
 
@@ -2165,7 +2202,7 @@ var graphicSection=function(){
 		div4.className='col-md-6 clm_2';
 
 		var div5=document.createElement('div');
-		div5.className='contenido content-emisoras';
+		div5.className='contenido_graphics content-emisoras';
 
 		for(var i=0;i<this.graphComps.length;i++){
 			div5.appendChild(this.graphComps[i].render());

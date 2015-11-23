@@ -42,7 +42,7 @@ font-weight:500;  text-transform:uppercase;  display: table; width:100%;  }
 .template-content .boxdevice div a:hover{background-color:#fc9200; color:#fff;}
 
 
-.template-content .template-content-center{height:85%; overflow:hidden; padding:0; margin:0;
+.template-content .template-content-center{height:85%; overflow:hidden; padding:0; margin:0; clear:both;
 }
 .template-content .layout-columns{height:100%; margin-top:10px; background-color:rgba(23,63,86,0.95); padding-top:10px;}
 .layout-columns .boxlayout{margin:10px 0px; height:30%;}
@@ -56,3 +56,53 @@ font-weight:500;  text-transform:uppercase;  display: table; width:100%;  }
 .layout-fullwidth{height:100%; padding:5px;}
 .layout-horizontal-divided{height:50%; padding:5px;}
 .layout-horizontal-three-divided{height:33.333333%;padding:5px;}
+
+.responsive-menu-button{padding:0; margin:0; position:absolute; width:48px; height:48px; top:0; right:0; z-index:9999999; display:none;}
+.responsive-menu-button button{display:block; width:48px; height:48px; background-color:#1E53BB; color:#fff; border:0; font-size:20px;}
+
+@media (min-width: 992px) and (max-width: 1200px){
+    .menu-sidebar .sidebar-menu ul li a span i{font-size: 7vh;}
+    .menu-sidebar .sidebar-menu ul li a span strong{font-size:inherit;}
+    .menu-sidebar .sidebar-menu ul li.vicomtechlogo-li{margin-top:10px; padding-top:5%;}
+    .menu-sidebar .sidebar-menu ul li.vicomtechlogo-li img{float:none; width:60%; bottom:0;}
+}
+
+@media (max-width: 992px){
+    .menu-sidebar {        
+        -webkit-transition: all 0.25s ease-out;
+        -moz-transition: all 0.25s ease-out;
+        transition: all 0.25s ease-out;
+        width: 20%;
+    }
+    .template-content{width: 80%; float:right; height:auto;}
+    .menu-sidebar .sidebar-menu ul li a{padding-left: 0%;}
+    .menu-sidebar .sidebar-menu ul li a span i{float:none; width:100%; font-size: 7vh;}
+    .menu-sidebar .sidebar-menu ul li a span strong{display:none;}
+    .menu-sidebar .sidebar-menu ul li.vicomtechlogo-li{background-color:rgba(0,0,0,0.08); margin-top:10px; padding-top:5%;}
+    .menu-sidebar .sidebar-menu ul li.vicomtechlogo-li img{float:none; width:60%; bottom:0;}
+    .menu-sidebar .vicomtechlogo{display:none;}
+    .template-content .boxdevice{}
+    .template-content .boxdevice div i{ font-size: 9vh;}
+    .template-content .boxdevice div a{padding-bottom:10px;}
+}
+@media (max-width: 767px){
+    .responsive-menu-button{display:block;}
+    .template-content{width: 100%; float:none; height:auto; padding:0px 5px;}
+    .menu-sidebar {        
+        -webkit-transition: all 0.25s ease-out;
+        -moz-transition: all 0.25s ease-out;
+        transition: all 0.25s ease-out;
+        margin-left:-100px;
+        width:100px;
+    }
+    .menu-sidebar.active{margin-left:0;}
+    .menu-sidebar .mydevice {  height: 12%;}
+    .menu-sidebar .mydevice p{line-height:1.8em;}
+    
+}
+
+@media (max-width: 600px){
+    .template-content .boxdevice div a{font-size:11px;}
+    .template-content .boxdevice div i{ font-size: 7vh;}
+}
+
