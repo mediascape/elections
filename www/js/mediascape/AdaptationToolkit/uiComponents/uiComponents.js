@@ -471,15 +471,28 @@ define(
       //This panel includes the qr code for association, the component manager and the layout change
       this.addControlPanel = function (url){
 
+        var tab=document.createElement('img');
+        tab.src='../resources/css/configPanel/img/icono_MediaScape.png';
+        document.body.appendChild(tab);
+        tab.style.top=0;
+        tab.style.left=0;
+        tab.style.width='15%';
+        tab.style.position='absolute';
+        tab.style.zIndex=999;
+        var scope=this;
+        tab.addEventListener('click',function(event){
+          if ( scope.ctrlPanel.showing) scope.ctrlPanel.hide();
+            else scope.ctrlPanel.show();
+        });
 
         this.ctrlPanel=new ControlPanel(url);
-        
+        this.ctrlPanel.hide();
 
 
           var scope=this;
-          document.addEventListener('keydown',function(e){
+          document.addEventListener('keydown',function(event){
 
-             if (e.keyCode === 16 ){
+             if (event.keyCode === 16 ){
                 if ( scope.ctrlPanel.showing) scope.ctrlPanel.hide();
                 else scope.ctrlPanel.show();
               }
