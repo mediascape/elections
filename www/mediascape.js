@@ -30,7 +30,6 @@
     qrcode:'mediascape/lib/qrcode.min',
     socketio: '/socket.io/socket.io',
     ui:'../resources/libs/jquery-ui',
-    shake:'/resources/libs/shake',
     association:'/resources/association/association',
     domReady:'/resources/libs/domReady'
       },
