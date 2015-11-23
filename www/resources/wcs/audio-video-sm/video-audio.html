@@ -120,7 +120,8 @@ Polymer({
 						_this.restart();
 				});
 			}
- 			_this.sm.addVideo ($(_this.querySelector('video')),id,_this.skew);
+
+ 			_this.sm.addVideo (_this.querySelector('video'),id,_this.skew);
 			var cmpStatus = mediascape.AdaptationToolkit.componentManager.core.getComoponentsToShow();
 			if (cmpStatus) mediascape.AdaptationToolkit.Adaptation.UIAdaptation.onComponentsChange(cmpStatus);
 		},10000);
@@ -144,7 +145,8 @@ Polymer({
   					_this.restart();
 				});
 			}
-			_this.sm.addVideo ($(_this.querySelector('video')),id,_this.skew);
+
+			_this.sm.addVideo (_this.querySelector('video'),id,_this.skew);
 			var cmpStatus = mediascape.AdaptationToolkit.componentManager.core.getComoponentsToShow();
 			if (cmpStatus) mediascape.AdaptationToolkit.Adaptation.UIAdaptation.onComponentsChange(cmpStatus);
 		},4000);

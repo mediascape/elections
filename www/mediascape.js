@@ -24,8 +24,7 @@
     jquery: '../resources/libs/jquery-2.1.1.min',
     msv:'http://www.mcorp.no/lib/msv-2.0',
     mcorp:'http://www.mcorp.no/lib/mcorp-2.0',
-    magicui:'../resources/libs/magic-ui-2.0',
-    magic:'../resources/libs/magic-2.0',
+    mediaSync:'mediascape/MediaSync/mediasync',
     d3:'../resources/libs/d3.v3.min',
     '2015data':'../resources/libs/2015',
     qrcode:'mediascape/lib/qrcode.min',
@@ -63,7 +62,7 @@
   ,"mediascape/Sharedstate/sharedstate","mediascape/Mappingservice/mappingservice",
   "mediascape/Agentcontext/agentcontext","mediascape/Applicationcontext/applicationcontext",
   "mediascape/DiscoveryForAgentContext/discoveryforagentcontext",'mediascape/DeviceProfile/deviceProfile',
-  'association'],
+  'association','mediascape/MediaSync/mediasync'],
   function(){
       var mediascape = {};
       var discovery= {};
@@ -72,7 +71,7 @@
       mediascape.init = function(options) {
         mediascapeOptions = {};
         _this = Object.create( mediascape );
-        var dontCall = ['sharedState', 'mappingService', 'applicationContext'];
+        var dontCall = ['sharedState', 'mappingService', 'applicationContext','mediaSync'];
       //  _this1 = Object.create( discovery );
 			for( var i=0; i<moduleList.length; ++i ){
 				var name = moduleList[ i ].__moduleName;

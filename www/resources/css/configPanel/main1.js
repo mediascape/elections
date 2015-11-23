@@ -77,7 +77,7 @@ var ControlPanel= function (url){
 		gasteizGraph.setPlace('VITORIA-GASTEIZ');
 		gasteizGraph.setID(c[0].getAttribute('compId'));
 
-		
+
 
 		camerasSect=new camerasSection();
 		camerasSect.addCamera(cam1);
@@ -194,7 +194,7 @@ var ControlPanel= function (url){
 
 
 
-		
+
 
 
 
@@ -254,7 +254,7 @@ var ControlPanel= function (url){
 						dev1.setText('Tablet id: '+(agCtx.agents[i]._id+1));
 						dev1.setIcon('zmdi zmdi-tablet');
 					}
-					else if(agCtx.agents[i].capabilities.platform.deviceType==='mobile')
+					else if(agCtx.agents[i].capabilities.platform.deviceType==='Mobile' || agCtx.agents[i].capabilities.platform.deviceType==='mobile')
 					{
 						dev1.setText('SmartPhone id: '+(agCtx.agents[i]._id+1));
 						dev1.setIcon('zmdi zmdi-smartphone');
@@ -264,7 +264,7 @@ var ControlPanel= function (url){
 
 					var twitterSect=new twitterSection();
 					var radioSect=new radioSection();
-					
+
 
 					if(i===0){
 						var section2=new section();
@@ -365,7 +365,7 @@ var ControlPanel= function (url){
 
 					var twitterSect=new twitterSection();
 					var radioSect=new radioSection();
-					
+
 
 
 					var section2=new section();
@@ -430,7 +430,7 @@ var ControlPanel= function (url){
 
 					var twitterSect=new twitterSection();
 					var radioSect=new radioSection();
-					
+
 
 
 					var section1=new section();
@@ -601,12 +601,12 @@ var ControlPanel= function (url){
 							}
 						}
 						//Table values
-						if(changes[j].newValue==='resultTablePresent' || changes[j].newValue==='resultTablePast'|| changes[j].newValue==='donostia' 
+						if(changes[j].newValue==='resultTablePresent' || changes[j].newValue==='resultTablePast'|| changes[j].newValue==='donostia'
 							|| changes[j].newValue==='bilbo' || changes[j].newValue==='gasteiz' || changes[j].newValue==='irunea'){
 
-							
+
 								if(sections[i].name===event.detail.agentid+'graphics'){
-				
+
 									if(changes[j].newValue==='resultTablePresent'){
 										sectionDiv[i].querySelector('#presentLI').className='active';
 										sectionDiv[i].querySelector('#pastLI').className='';
@@ -624,21 +624,21 @@ var ControlPanel= function (url){
 									else{
 										var places=sectionDiv[i].querySelectorAll('.pastilla_ciudad');
 										for(var k=0;k<places.length;k++){
-											
+
 											if(places[k].id===changes[j].newValue){
 												places[k].className='col-md-12 pastilla_ciudad active';
-												
+
 											}
 											else{
 												places[k].className='col-md-12 pastilla_ciudad';
 											}
-											
+
 										}
-									}									
-																		
+									}
+
 								}
-												
-							}					
+
+							}
 
 					}
 				}
@@ -800,7 +800,7 @@ var ControlPanel= function (url){
 
 		for(var i=2;i<sectionNum;i++){
 			if(sections[i].name===agentToChange+'graphics'){
-				
+
 				if(year===2015){
 					sectionDiv[i].querySelector('#presentLI').className='active';
 					sectionDiv[i].querySelector('#pastLI').className='';
@@ -814,7 +814,7 @@ var ControlPanel= function (url){
 					sectionDiv[i].querySelector('#presentPanel').className='col-md-12 fade in tab-pane ';
 					sectionDiv[i].querySelector('#pastPanel').className='col-md-12 fade in tab-pane active';
 				}
-				
+
 			}
 		}
 	}
@@ -828,7 +828,7 @@ var ControlPanel= function (url){
 
 		for(var i=2;i<sectionNum;i++){
 			if(sections[i].name===agentToChange+'graphics'){
-				
+
 				var opts=sectionDiv[i].querySelectorAll('.pastilla_ciudad');
 				for(var j=0;j<opts.length;j++){
 					if(opts[j].id===place){
@@ -838,11 +838,11 @@ var ControlPanel= function (url){
 						opts[j].className='col-md-12 pastilla_ciudad';
 					}
 				}
-								
+
 			}
 		}
 	}
-	
+
 	this.hide=function(){
 		document.querySelector('#fullTemp').style.display='none';
 		this.showing=false;
@@ -1360,13 +1360,13 @@ var camera=function(){
 		if(b[0].customCmd.lastIndexOf('mutePlayer')===-1 && b[0].customCmd.lastIndexOf('soundPlayer')===-1){
 				if(document.querySelector('#'+scope.name).ismuted==='false'){
 					mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'mutePlayer');
-					
+
 				}
 				else{
 					mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'soundPlayer');
-					
+
 				}
-			
+
 		}
 		else{
 			if(b[0].customCmd.lastIndexOf('mutePlayer') <b[0].customCmd.lastIndexOf('soundPlayer')){
@@ -1461,11 +1461,11 @@ var camerasSection=function(){
 			if(b[0].customCmd.lastIndexOf('mutePlayer')===-1 && b[0].customCmd.lastIndexOf('soundPlayer')===-1){
 				if(document.querySelector('#'+this.cameras[i].name).ismuted==='false'){
 					this.cameras[i].setSoundStatus(true);
-					
+
 				}
 				else{
 					this.cameras[i].setSoundStatus(false);
-					
+
 				}
 
 			}
@@ -1590,10 +1590,10 @@ var twitterSection=function(){
 		var tselector=document.createElement('div');
 		tselector.className='col-md-12 layout-columns twitter-selector-container';
 		//abstraer cada componente por separado? hashtag y trending map
-		
+
 		var hashtagComp=new hashtag();
 		tselector.appendChild(hashtagComp.render());
-		
+
 
 		var trendingComp=new trendingMap();
 		tselector.appendChild(trendingComp.render());
@@ -1736,13 +1736,13 @@ var radioSection=function(){
 	}
 }
 var table=function(){
-		
+
 	this.setID=function(tabId){
 		this.id=tabId;
 	}
 	this.setViewStatus=function(stat){
 		this.viewStatus=stat;
-	}	
+	}
 	this.setPlaceStat=function(stat){
 		this.activePlace=stat;
 	}
@@ -1858,7 +1858,7 @@ var table=function(){
 			div10.className='col-md-12 fade in tab-pane active ';
 		}
 		else{
-			div10.className='col-md-12 fade in tab-pane'; 
+			div10.className='col-md-12 fade in tab-pane';
 		}
 		div10.id='pastPanel';
 		div10.role='tabpanel';
@@ -1872,7 +1872,7 @@ var table=function(){
 			div11.className='col-md-12 pastilla_ciudad';
 		}
 		div11.addEventListener('click',this.placeClick.bind(this));
-		
+
 		var div12=document.createElement('div');
 		div12.className='txt_ciudad';
 		div12.innerHTML='Bilbao';
@@ -1937,7 +1937,7 @@ var table=function(){
 			div19.className='col-md-12 fade in tab-pane active ';
 		}
 		else{
-			div19.className='col-md-12 fade in tab-pane'; 
+			div19.className='col-md-12 fade in tab-pane';
 		}
 		div19.id='presentPanel';
 		div19.role='tabpanel';
@@ -2017,10 +2017,10 @@ var table=function(){
 		return div4;
 	}
 	this.presentClick=function(event){
-		var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;			
+		var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
 		mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'resultTablePresent');
 		mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeTableYear(agentToChange,2015);
-		
+
 	}
 	this.pastClick=function(event){
 		var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
@@ -2158,7 +2158,7 @@ var graphicSection=function(){
 		var div3=document.createElement('div');
 		div3.className='col-md-6 clm_2 izda';
 
-			
+
 		div3.appendChild(this.tableComp[0].render());
 
 		var div4=document.createElement('div');
@@ -2170,7 +2170,7 @@ var graphicSection=function(){
 		for(var i=0;i<this.graphComps.length;i++){
 			div5.appendChild(this.graphComps[i].render());
 		}
-		
+
 		div4.appendChild(div5);
 
 		div2.appendChild(div3);
@@ -2193,7 +2193,7 @@ var graphicSection=function(){
 		});
 		var scope=this;
 
-		
+
 		var tab=this.tableComp[0].id;
 		b=a[0].capabilities.componentsStatus.filter(function(el){
 			if(el.compId===tab)return el;
@@ -2225,31 +2225,31 @@ var graphicSection=function(){
 		});
 
 
-		if(b[0].customCmd.lastIndexOf('resultTablePast')===-1 && b[0].customCmd.lastIndexOf('resultTablePresent')===-1 
-			&& b[0].customCmd.lastIndexOf('donostia')===-1 && b[0].customCmd.lastIndexOf('bilbo')===-1 
+		if(b[0].customCmd.lastIndexOf('resultTablePast')===-1 && b[0].customCmd.lastIndexOf('resultTablePresent')===-1
+			&& b[0].customCmd.lastIndexOf('donostia')===-1 && b[0].customCmd.lastIndexOf('bilbo')===-1
 			&& b[0].customCmd.lastIndexOf('gasteiz')===-1 && b[0].customCmd.lastIndexOf('irunea')===-1){
-			
+
 				this.tableComp[0].setPlaceStat('irunea');
 				this.tableComp[0].setYearStat('2015');
-		
+
 		}
-		else if(b[0].customCmd.lastIndexOf('resultTablePast')<b[0].customCmd.lastIndexOf('resultTablePresent') 
+		else if(b[0].customCmd.lastIndexOf('resultTablePast')<b[0].customCmd.lastIndexOf('resultTablePresent')
 			&& b[0].customCmd.lastIndexOf('donostia')===-1 && b[0].customCmd.lastIndexOf('bilbo')===-1
 			&& b[0].customCmd.lastIndexOf('gasteiz')===-1 && b[0].customCmd.lastIndexOf('irunea')===-1 ){
 
 				this.tableComp[0].setPlaceStat('irunea');
 				this.tableComp[0].setYearStat('2015');
 		}
-		else if(b[0].customCmd.lastIndexOf('resultTablePast')>b[0].customCmd.lastIndexOf('resultTablePresent') 
-			&& b[0].customCmd.lastIndexOf('donostia')===-1 && b[0].customCmd.lastIndexOf('bilbo')===-1 
+		else if(b[0].customCmd.lastIndexOf('resultTablePast')>b[0].customCmd.lastIndexOf('resultTablePresent')
+			&& b[0].customCmd.lastIndexOf('donostia')===-1 && b[0].customCmd.lastIndexOf('bilbo')===-1
 			&& b[0].customCmd.lastIndexOf('gasteiz')===-1 && b[0].customCmd.lastIndexOf('irunea')===-1){
 
 			this.tableComp[0].setPlaceStat('irunea');
 			this.tableComp[0].setYearStat('2011');
 		}
 		else{
-			
-						
+
+
 			var indexes=[];
 
 			indexes.push([b[0].customCmd.lastIndexOf('donostia'),'donostia']);
@@ -2275,10 +2275,10 @@ var graphicSection=function(){
 			else if(b[0].customCmd.lastIndexOf('resultTablePast')>b[0].customCmd.lastIndexOf('resultTablePresent')){
 				this.tableComp[0].setYearStat('2011');
 			}
-			
+
 		}
-		
-	
+
+
 
 
 	}
