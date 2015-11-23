@@ -2,16 +2,11 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1.0, minimum-scale=1.0, maximum-scale=1.0">
 <meta http-equiv="Cache-control" content="no-cache">
-
 <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0"/>
-        <!--<link rel="import" href="../resources/wcs/polymer/drag-resize/drag-resize.html">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0"/>
 
-
-        <link rel="import" href="../resources/wcs/bar-graph/bar-graph.html">-->
 <link rel="stylesheet" type="text/css" href="../resources/css/style.css"/>
-<!--<link rel="stylesheet" type="text/css" href="../resources/css/animate.css"/>-->
 <link href="../resources/css/configPanel/css/bootstrap.min.css" rel="stylesheet">
 <link href="../resources/css/configPanel/css/material-design-iconic-font.min.css" rel="stylesheet">
 <link href="../resources/css/configPanel/css/vicomtech-template.css" rel="stylesheet">
@@ -21,6 +16,9 @@
 <link href="../resources/css/configPanel/css/radio.css" rel="stylesheet">
 <link href="../resources/css/configPanel/css/graphics.css" rel="stylesheet">
 <link href="../resources/css/configPanel/css/camara.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../resources/css/style.css"/>
+<link rel="stylesheet" type="text/css" href="../resources/css/animate.css"/>
+
 <!-- NEEDED SCRIPTS -->
 <script  src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.17/webcomponents-lite.js"></script>
 <script  src="../resources/libs/require.js"></script>
@@ -32,27 +30,15 @@
 <script async src="../resources/libs/utils.js"></script>
   <script src="../resources/css/configPanel/js/classie.js"></script>
 <!-- NEEDED SCRIPTS END -->
-<!--<script async src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.0.0/annyang.min.js"></script>-->
-<link rel="stylesheet" type="text/css" href="../resources/css/style.css"/>
-<link rel="stylesheet" type="text/css" href="../resources/css/animate.css"/>
 
 <!-- WEBCOMPONETS -->
 <link rel="import" href="../resources/wcs/bower_components/polymer/polymer.html">
 <link rel="import" href="../js/mediascape/AdaptationToolkit/componentManager/component-query.html">
 <link rel="import" href="../js/mediascape/AdaptationToolkit/componentManager/componentStatus.html">
 <link rel="import" href="../resources/wcs/audio-video-sm/video-audio.html">
-<link rel="import" href="../resources/wcs/bar-graph/bar-graph.html">
 <link rel="import" href="../resources/wcs/graphic/x-graphic.html">
 <link rel="import" href="../resources/wcs/result-table/result-table.html">
 <link href="../resources/css/configPanel/css/controller.css" rel="stylesheet">
-
-
-
-
-
-
-
-
 <!-- WEBCOMPONETS END -->
 
 <script>
@@ -68,7 +54,7 @@ document.addEventListener('adaptationToolkit-ready',function(data){
         // IF want to apply to all device same layout it can be used as
         // UI.useLayout('accordion')
         // Device type that knows about: Desktop,Mobile,Tablet,Tv
-        UI.useLayout({deviceTypes:[{deviceType:'desktop',layout:'divided'},
+        UI.useLayout({deviceTypes:[{deviceType:'Desktop',layout:'divided'},
                      {deviceType:'Tablet',layout:'pip'}]});
         var location = "http://"+window.location.host+window.location.pathname;
 
@@ -88,26 +74,17 @@ document.addEventListener('adaptationToolkit-ready',function(data){
 <body style="overflow: hidden;margin-left:-8px;margin-top:-8px;">
 
  <!-- Definition of each webcompoent -->
- <x-media  id="video1" file="../resources/media/ETB2_new.mp4"  ismuted="true"></x-media>
+  <x-media  id="video1" file="../resources/media/ETB2_new.mp4"  ismuted="true"></x-media>
   <x-media id="video2" file="../resources/media/Bildu_new.mp4"  ismuted="true"></x-media>
   <x-media id="video3"  file="../resources/media/EAJ_new.mp4"  ismuted="true"></x-media>
-<!--  <bar-graph id='graph' place='Irunea'></bar-graph>-->
- <x-graphic id='graph1' place='Irunea' ></x-graphic>
+  <x-graphic id='graph1' place='Irunea' ></x-graphic>
   <x-graphic id='graph2' place='Bilbo' ></x-graphic>
   <x-graphic id='graph3' place='Donostia' ></x-graphic>
   <x-graphic id='graph4' place='Gasteiz' ></x-graphic>
-
-
   <result-table id='results'></result-table>
-
-  <!-- End of definition of each webcompoent -->
-
-  <!-- Other way to intectact with UIENGINE -->
+<!-- End of definition of each webcompoent -->
 <script>
 new loadingPanel('/resources/images/MediaScapelogo_gif-720.gif',10);
-//new loadingPanel('/resources/images/mediascape_logo.png',10);
 </script>
-
 </body>
-
 </html>
