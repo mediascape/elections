@@ -255,6 +255,7 @@
                     "duplicable":false,
                     "needs":"none"
                 },
+                
                 {
                     "componentId": "graph",
                     "required": false,

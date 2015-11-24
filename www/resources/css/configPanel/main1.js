@@ -139,7 +139,7 @@ var ControlPanel= function (url){
 
 		var lay4=new layout();
 		lay4.setName('customGrid');
-		lay4.setImage('../resources/css/configPanel/img/layouts/layout_04.png');
+		lay4.setImage('../resources/css/configPanel/img/layouts/layout_10.png');
 
 		var lay5=new layout();
 		lay5.setName('scrollHorizontal');
@@ -151,7 +151,7 @@ var ControlPanel= function (url){
 
 		var lay7=new layout();
 		lay7.setName('horizontal');
-		lay7.setImage('../resources/css/configPanel/img/layouts/layout_07.png');
+		lay7.setImage('../resources/css/configPanel/img/layouts/layout_09.png');
 
 		var lay8=new layout();
 		lay8.setName('accordion');
@@ -1880,7 +1880,7 @@ var table=function(){
 			li2.className='';
 		}
 		li2.addEventListener('click',this.presentClick.bind(this),true);
-		li2.innerHTML='<a href="#2012" aria-controls="2012" role="tab" data-toggle="tab"><img src="../resources/css/configPanel/img/graphics/icon_chart.png"/><br><span class="year-text">2011</span></a>';
+		li2.innerHTML='<a href="#2012" aria-controls="2015" role="tab" data-toggle="tab"><img src="../resources/css/configPanel/img/graphics/icon_chart.png"/><br><span class="year-text">2015</span></a>';
 		
 		ul.appendChild(li1);
 		ul.appendChild(li2);

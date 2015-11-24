@@ -1,0 +1,331 @@
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+
+<dom-module id="x-table" >
+
+
+<template>
+<style>
+
+#container {
+	background-color: #0A2533;
+	padding: 15px;
+	height:100%;
+}
+div.content-detalle-graphs  {
+	background-color: #173F56 !important;
+	margin: auto;
+	overflow: hidden;
+	text-align: left;
+	padding-left: 40px;
+}
+.template-all-layouts{height:auto;}
+h1{color: #748c99; font-family: 'Montserrat', sans-serif; font-weight: bold; text-transform:uppercase;
+font-size: 3vw;}
+h1 span.tit01{padding-left:10%;}
+h1 span.tit02{float:right;}
+
+table{border-spacing: 10px;     border-collapse: separate; width:100%;}
+table th{text-align:center;}
+table th img{display:block; width:50%; margin:auto; max-width:130px;}
+table th p{background-color:#317da7; font-family: 'Montserrat', sans-serif; font-size:1.5vw; text-transform:uppercase; color:#fff; padding:10px 0px;}
+
+table td{background-color: #fff; font-family: 'Montserrat', sans-serif; font-size:1.8vw; text-transform:uppercase; text-align:center; width:20%;}
+table > tbody > tr:nth-child(2n+1) > th{background-color: #134054;}
+table > tbody > tr:nth-child(2n+1) > td{ background-color: #c9d7dc;}
+
+table td.td-name{width:20%;}
+table td.td-img{width:20%;}
+table td.td-img img{width:50%;}
+
+@media (max-width: 992px) and (min-width:768px) {
+    div.content-detalle-graphs{padding-left:10px;}
+    h1{font-size:3vw; padding:0px 10px;}
+}
+@media (max-width: 768px) {
+    .content-progress{width:100% !important;}
+     .td-name{display:none;}
+
+}
+
+
+
+</style>
+<iron-ajax id="data" auto url="2015.json" handleAs="json" last-response="{{response}}"></iron-ajax>
+     <div id='container' class="template-all-layouts ">  
+            <div class="col-md-12 layout-fullwidth content-detalle-graphs">
+				<div>
+                    <h1><span id='counting' >100%</span><span id='year' class="tit01">2011</span> <span id='seatNum' class="tit02">Escaños a repartir 27</span></h1>
+                </div>
+                <table>
+                    <tr>
+                       <th><img src="data/icon_formacion_politica.png"/><p>Candidatura</p></th>
+                       <th class="td-name"><img src="data/none.png"/><p>&nbsp;</p></th>
+                       <th><img src="data/icon_urna.png"/><p>Votos</p></th>
+                       <th><img src="data/icon_porcentaje.png"/><p>% Votos</p></th>
+                       <th><img src="data/icon_escanos.png"/><p>Escaños</p></th>
+                    </tr>
+                    <tr>
+                       <td id="name0" class="td-name">EAJ-PNV</td>
+                       <td  class="td-img"><img id='logo0' src="data/logo-PNV-transp.png"/></td>
+                       <td id='votes0' class="td-op1">29.029</td>
+                       <td id='perc0' class="td-op2">30,13</td>
+                       <td id='seats0' class="td-op3">9</td>
+                    </tr>
+                    <tr>
+                       <td id="name1" class="td-name">PSN-PSOE</td>
+                       <td class="td-img"><img id='logo1' src="data/logo-psoe-transp.png"/></td>
+                       <td id='votes1' class="td-op1">29.029</td>
+                       <td id='perc1' class="td-op2">30,13</td>
+                       <td id='seats1' class="td-op3">9</td>
+                    </tr>
+                    <tr>
+                       <td id="name2" class="td-name">EH BILDU</td>
+                       <td  class="td-img"><img id='logo2' src="data/logo-Bildu-transp.png"/></td>
+                       <td id='votes2' class="td-op1">29.029</td>
+                       <td id='perc2' class="td-op2">30,13</td>
+                       <td id='seats2' class="td-op3">9</td>
+                    </tr>
+                    <tr>
+                       <td id="name3" class="td-name">PARTIDO POPULAR</td>
+                       <td  class="td-img"><img id='logo3' src="data/logo-pp-transp.png"/></td>
+                       <td id='votes3' class="td-op1">29.029</td>
+                       <td id='perc3' class="td-op2">30,13</td>
+                       <td id='seats3' class="td-op3">9</td>
+                    </tr>
+                    <tr>
+                       <td id="name4" class="td-name">PARTIDO POPULAR</td>
+                       <td class="td-img"><img id='logo4'  src="data/logo-pp-transp.png"/></td>
+                       <td id='votes4' class="td-op1">29.029</td>
+                       <td id='perc4' class="td-op2">30,13</td>
+                       <td id='seats4' class="td-op3">9</td>
+                    </tr>
+                    <tr>
+                       <td id="name5" class="td-name">PARTIDO POPULAR</td>
+                       <td class="td-img"><img  id='logo5' src="data/logo-pp-transp.png"/></td>
+                       <td id='votes5' class="td-op1">29.029</td>
+                       <td id='perc5' class="td-op2">30,13</td>
+                       <td id='seats5' class="td-op3">9</td>
+                    </tr>
+                  
+                </table>                
+			</div>	
+        </div>
+</template>
+</dom-module>
+<script>
+Polymer({
+
+    is:'x-table',
+    behaviors:[ComponentQueryBehavior,ComponentStatusBehavior],
+    properties:{
+      where:{
+        type:String,
+        value:'',
+        notify: true
+      },
+      timestamp:{
+         type:Number,
+         value:0,
+         observer:'timestampChanged'
+      },
+      value:{
+         type:String,
+         observer:'valueChanged'
+      },
+       	prevTime:{
+          type:Number,
+          value:1432509468
+        },
+        customCmd:{
+            type:String,
+            value:'',
+            observer: 'customCmdReceived'
+        }
+    },
+    resultsData:{},
+    time:'',
+    where:'',
+   	actualShowing:true,
+
+
+	ready:function(){
+		document.addEventListener ('motion-ready',this.smReady.bind(this));
+
+		var scope=this;
+		
+
+		this.resultsData={};
+		this.$.data.addEventListener("response",function(e){
+			scope.resultsData=e.detail.response;
+
+
+			for(var i=1;i<scope.resultsData.results.length;i++){
+				if(scope.timestamp===scope.resultsData.results[i].time){
+					scope.time=i;
+				}
+			}
+			scope.where=3;//Iruñea por defecto
+			scope.time=1;
+	
+			this.value='irunea';//iruñea por defecto
+			scope.$.seatNum.innerHTML='Escaños a repartir 26'
+			scope.drawTable(scope.resultsData,scope.time,scope.where);
+
+		});
+
+
+	},
+	smReady:function(){
+  		// Sharemotion objetua lortu
+  		var _this=this;
+
+   		this.sm =  mediascape.AdaptationToolkit.SharedMotion();
+  		// ebentuak entzun ta jaso
+  		var handler = function (e) {
+      		_this.timestamp=1432509468+Math.round(e.pos);
+
+
+      	};
+    	this.sm.mapp.motions.shared.on("timeupdate", handler);
+	},
+	actualData:function(){
+		
+		this.actualShowing=true;
+		this.drawTable(this.resultsData,this.time,this.where);
+
+	},
+	pastData:function(){
+		
+		this.time=0;
+		this.actualShowing=false;
+		this.drawTable(this.resultsData,this.time,this.where);
+
+	},
+	timestampChanged:function(){
+
+		var interval=10;
+		var prev=this.time;
+		if(this.resultsData.results!==undefined){
+		var nextTs=false;
+			for(var i=1;i<this.resultsData.results.length;i++){
+					if(this.timestamp===parseInt(this.resultsData.results[i].time))
+					{
+
+						 this.time=i;
+						nextTs=true;
+					}
+
+			}
+			if(nextTs===false){
+				for(var i=1;i<this.resultsData.results.length;i++){
+					if(this.timestamp>parseInt(this.resultsData.results[i].time) && this.timestamp<parseInt(this.resultsData.results[i+1].time)){
+						this.time=i;
+
+					}
+				}
+			}
+
+			if(prev!=this.time){
+				if(this.actualShowing===true){
+
+					this.drawTable(this.resultsData,this.time,this.where);
+				}
+			//	this.prevTime = this.timestamp;
+			}
+
+
+		}
+	},
+
+	valueChanged:function(){
+
+
+
+
+  		if (this.value==='donostia') where=0;
+		else if(this.value==='bilbo') where=1;
+		else if(this.value==='gasteiz') where =2;
+		else if(this.value==='irunea') where=3;
+		else if(this.value==='gipuzkoa') where=4;
+		else if(this.value==='bizkaia') where=5;
+		else if(this.value==='araba') where =6;
+		else if(this.value==='nafarroa') where=7;
+		
+		if(this.value==='irunea'){
+			this.$.seatNum.innerHTML='Escaños a repartir 26';
+		}
+		else if(this.value==='donostia'){
+			this.$.seatNum.innerHTML='Escaños a repartir 27';
+		}
+		else if(this.value==='bilbo'){
+			this.$.seatNum.innerHTML='Escaños a repartir 25';
+		}
+		else if(this.value==='gasteiz'){
+			this.$.seatNum.innerHTML='Escaños a repartir 27';
+		}
+
+    	this.where = where;
+    	this.drawTable(this.resultsData,this.time,this.where);
+
+
+	},
+	drawTable:function(results,time,where){
+		this.$.counting.innerHTML='Escrutado: '+results.results[time].places[where].counting;
+		if(this.$.counting.innerHTML.indexOf('%')<=-1){
+			this.$.counting.innerHTML=this.$.counting.innerHTML+'%';
+		}
+		if(time===0){
+			this.$.year.innerHTML='2011';
+		}
+		else{
+			this.$.year.innerHTML='2015';
+		}
+		for (var i=0;i<6;i++){
+
+			this.querySelector('#name'+i).innerHTML=results.results[time].places[where].parties[i].name;
+			this.querySelector('#logo'+i).src="/resources/images/icons/"+results.results[time].places[where].parties[i].icon;
+			this.querySelector('#votes'+i).innerHTML=results.results[time].places[where].parties[i].votes;
+			this.querySelector('#perc'+i).innerHTML=results.results[time].places[where].parties[i].percentage;
+			this.querySelector('#seats'+i).innerHTML=results.results[time].places[where].parties[i].councillors;
+
+		}
+		
+	},
+  customCmdReceived: function(data){
+      console.log("DATA",data);
+      if(data==='resultTablePast'){
+      	this.pastData();
+      }
+      else if(data==='resultTablePresent'){
+      	this.actualData();
+      }
+      else if(data==='bilbo'){
+      	this.value='bilbo';
+      	if(this.actualShowing===false){
+      		this.pastData();
+      	}
+      }
+      else if(data==='donostia'){
+      	this.value='donostia';
+      	if(this.actualShowing===false){
+      		this.pastData();
+      	}
+      }      
+      else if( data==='gasteiz'){
+      	this.value='gasteiz';
+      	if(this.actualShowing===false){
+      		this.pastData();
+      	}
+      }       
+      else if(data==='irunea'){
+      	this.value='irunea';
+      	if(this.actualShowing===false){
+      		this.pastData();
+      	}
+      }
+      
+  }
+
+
+});
+ </script>

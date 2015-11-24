@@ -37,7 +37,7 @@
 <link rel="import" href="../js/mediascape/AdaptationToolkit/componentManager/componentStatus.html">
 <link rel="import" href="../resources/wcs/audio-video-sm/video-audio.html">
 <link rel="import" href="../resources/wcs/graphic/x-graphic.html">
-<link rel="import" href="../resources/wcs/result-table/result-table.html">
+<link rel="import" href="../resources/wcs/table/x-table.html">
 <link href="../resources/css/configPanel/css/controller.css" rel="stylesheet">
 <!-- WEBCOMPONETS END -->
 
@@ -54,7 +54,7 @@ document.addEventListener('adaptationToolkit-ready',function(data){
         // IF want to apply to all device same layout it can be used as
         // UI.useLayout('accordion')
         // Device type that knows about: Desktop,Mobile,Tablet,Tv
-        UI.useLayout({deviceTypes:[{deviceType:'desktop',layout:'divided'},
+        UI.useLayout({deviceTypes:[{deviceType:'desktop',layout:'verticalMenu'},
                      {deviceType:'Tablet',layout:'pip'}]});
         var location = "http://"+window.location.host+window.location.pathname;
 
@@ -85,7 +85,8 @@ document.addEventListener('adaptationToolkit-ready',function(data){
   <x-graphic id='graph2' place='Bilbo' ></x-graphic>
   <x-graphic id='graph3' place='Donostia' ></x-graphic>
   <x-graphic id='graph4' place='Gasteiz' ></x-graphic>
-  <result-table id='results'></result-table>
+  
+  <x-table id='results'></x-table>
 <!-- End of definition of each webcompoent -->
 <script>
 new loadingPanel('/resources/images/MediaScapelogo_gif-720.gif',10);
