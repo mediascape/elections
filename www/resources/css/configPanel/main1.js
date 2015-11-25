@@ -283,23 +283,23 @@ var ControlPanel= function (url){
 				for(var i=0;i<agCtx.agents.length;i++){
 					var dev1=new device();
 					if(agCtx.agents[i].capabilities.platform.deviceType==='TV'){
-						dev1.setText('Television id: '+(agCtx.agents[i]._id+1));
-						dev1.setIcon('zmdi zmdi-tv');
+						
+						dev1.setIcon('TV_'+(agCtx.agents[i]._id+1)+'.png');
 					}
 					else if(agCtx.agents[i].capabilities.platform.deviceType==='desktop' || agCtx.agents[i].capabilities.platform.deviceType==='Desktop')
 					{
-						dev1.setText('Desktop id: '+(agCtx.agents[i]._id+1));
-						dev1.setIcon('zmdi zmdi-laptop');
+						
+						dev1.setIcon('LAPTOP_'+(agCtx.agents[i]._id+1)+'.png');
 					}
 					else if(agCtx.agents[i].capabilities.platform.deviceType==='Tablet')
 					{
-						dev1.setText('Tablet id: '+(agCtx.agents[i]._id+1));
-						dev1.setIcon('zmdi zmdi-tablet');
+						
+						dev1.setIcon('TABLET_'+(agCtx.agents[i]._id+1)+'.png');
 					}
 					else if(agCtx.agents[i].capabilities.platform.deviceType==='Mobile' || agCtx.agents[i].capabilities.platform.deviceType==='mobile')
 					{
-						dev1.setText('SmartPhone id: '+(agCtx.agents[i]._id+1));
-						dev1.setIcon('zmdi zmdi-smartphone');
+						
+						dev1.setIcon('MOVIL_'+(agCtx.agents[i]._id+1)+'.png');
 					}
 					dev1.setID(agCtx.agents[i].id);
 
@@ -382,23 +382,23 @@ var ControlPanel= function (url){
 				*	  Desktop, tablet, mobile, tv
 				*/
 				if(event.detail.profile.deviceType==='TV'){
-					dev1.setText('Television id: '+(b[0]._id+1));
-					dev1.setIcon('zmdi zmdi-tv');
+					
+					dev1.setIcon('TV_'+(b[0]._id+1)+'.png');
 				}
 				else if(event.detail.profile.deviceType==='desktop' || event.detail.profile.deviceType==='Desktop')
 				{
-					dev1.setText('Desktop id: '+(b[0]._id+1));
-					dev1.setIcon('zmdi zmdi-laptop');
+					
+					dev1.setIcon('LAPTOP_'+(b[0]._id+1)+'.png');
 				}
 				else if(event.detail.profile.deviceType==='Tablet')
 				{
-					dev1.setText('Tablet id: '+(b[0]._id+1));
-					dev1.setIcon('zmdi zmdi-tablet');
+					
+					dev1.setIcon('TABLET_'+(b[0]._id+1)+'.png');
 				}
 				else if(event.detail.profile.deviceType==='mobile')
 				{
-					dev1.setText('SmartPhone id: '+(b[0]._id+1));
-					dev1.setIcon('zmdi zmdi-smartphone');
+			
+					dev1.setIcon('MOVIL_'+(b[0]._id+1)+'.png');
 				}
 
 				if(devBox.devices.length===0)
@@ -1114,11 +1114,9 @@ var section=function(){
 }
 var device=function(){
 	this.icon='';
-	this.text='';
+	
 
-	this.setText=function(text){
-		this.text=text;
-	}
+	
 	this.setIcon=function(icon){
 		this.icon=icon;
 	}
@@ -1131,12 +1129,13 @@ var device=function(){
 		var a=document.createElement('a');
 		a.href='#';
 
-		var i=document.createElement('i');
-		i.className=this.icon;
-		a.appendChild(i);
+		var img1=document.createElement('img');
+		img1.src='../resources/css/configPanel/img/devices/'+this.icon;
+		//img1.style.width='20%';
+		a.appendChild(img1);
 
 
-		a.innerHTML=a.innerHTML+this.text;
+		
 
 		div.appendChild(a);
 
@@ -1309,7 +1308,7 @@ var camera=function(){
 		div1.className='col-md-12 camara';
 
 		var div2=document.createElement('div');
-		div2.className='col-md-8 camara-logo-partidos';
+		div2.className='col-md-6 col-sm-6 camara-logo-partidos';
 
 		var img1=document.createElement('img');
 		img1.src=this.image;
@@ -1317,20 +1316,20 @@ var camera=function(){
 		div2.appendChild(img1);
 
 		var div3=document.createElement('div');
-		div3.className='col-md-4';
+		div3.className='col-md-6 col-sm-6 camara-all-switch';
 
 		var div4=document.createElement('div');
 		div4.className='col-md-12';
 
 		var div5=document.createElement('div');
-		div5.className='col-md-6 iconos-camara';
+		div5.className='col-md-3 col-sm-3 iconos-camara';
 		var i1=document.createElement('i');
 		i1.className='zmdi zmdi-videocam zmdi-hc-2x';
 
 		div5.appendChild(i1);
 
 		var div6=document.createElement('div');
-		div6.className='col-md-6 check-switch';
+		div6.className='col-md-8 col-sm-8 check-switch';
 		var input1=document.createElement('input');
 		input1.type='checkbox';
 		input1.name='set-camara';
@@ -1348,14 +1347,14 @@ var camera=function(){
 		div7.className='col-md-12';
 
 		var div8=document.createElement('div');
-		div8.className='col-md-6 iconos-camara';
+		div8.className='col-md-3 col-sm-3 iconos-camara';
 		var i2=document.createElement('i');
 		i2.className='zmdi zmdi-volume-up zmdi-hc-2x';
 
 		div8.appendChild(i2);
 
 		var div9=document.createElement('div');
-		div9.className='col-md-6 check-switch';
+		div9.className='col-md-8 col-sm-8 check-switch';
 		var input2=document.createElement('input');
 		input2.type='checkbox';
 		input2.name='set-camara';
@@ -2209,7 +2208,7 @@ var graph=function(){
 		div30.className='col-md-12 row emisora';
 
 		var div31=document.createElement('div');
-		div31.className='col-md-2 col-sm-2 col-xs-4';
+		div31.className='col-md-2 col-sm-2 col-xs-4 hidden-xs';
 		var img6=document.createElement('img');
 		img6.className='imagen-emisora-peque';
 		img6.src='../resources/css/configPanel/img/graphics/icon_chart-2011-2015.png';

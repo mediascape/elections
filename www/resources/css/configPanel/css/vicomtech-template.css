@@ -36,7 +36,7 @@ line-height:11vh;}
 .template-content .boxdevice div{ height:100%; text-align:center;  text-align:center; text-transform:uppercase;
 font-weight:500;  text-transform:uppercase;  display: table; width:100%;  }
 .template-content .boxdevice div a{display:block; height:100%; display: table-cell; vertical-align: middle; font-size:2vh; font-family: 'Montserrat', sans-serif; line-height:1em; color:#808080; text-decoration:none; background-color:#48545b;}
-.template-content .boxdevice div i{display:block; font-size:10vh; }
+.template-content .boxdevice div img{display:block; font-size:10vh; height:12vh;margin-left:auto;margin-right:auto; }
 
 .template-content .boxdevice.active div a{background-color:#55b2ff; color:#224f66;}
 .template-content .boxdevice div a:hover{background-color:#fc9200; color:#fff;}

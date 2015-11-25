@@ -106,6 +106,9 @@ Polymer({
 	soundRadio:function(){
 		this.$.radioAudio.muted=false;
 	},
+	restart: function (){
+		this.sm.mapp.motions.shared.update(0, 1);
+	},
 	
 	customCmdReceived: function(data){
 			console.log("DATA",data);

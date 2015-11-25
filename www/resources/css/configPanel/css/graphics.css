@@ -37,11 +37,6 @@
   background-color: white;
   box-shadow: #fc751b 0px 0px 0px 7px inset;
 }
-.pastilla_ciudad.active{
-  border: 8px none #ff9b00;
-  background-color: white;
-  box-shadow: #fc751b 0px 0px 0px 7px inset;
-}
 
 .txt_ciudad_2011_2015 {
   margin-top: 17px;
@@ -104,24 +99,23 @@ ul.nav-tabs li.active{
   padding-bottom: 20px;
   border-radius: 0px 0px 20px 20px;  
 }
-/*.pastilla_ciudad {
-  height: 100%;
+.pastilla_ciudad {
+  
   max-height: 100%;
   border-radius: 20px;
   background-color: #c7dcea;
-}*/
+}
 
 
 
 /* emisora columna derecha */
 div.content-emisoras {
-    height: 100%;
+    /*height: 100%;*/
     padding: 20px 20px 2px;
     border-radius: 20px;
     background-color: #375364;
 }
 div.emisora {
-  height: 80px;
   margin-bottom: 22px;
     border-radius: 25px;
     background-color: #5c7586;
@@ -145,7 +139,7 @@ img.imagen-emisora-peque { width: 100%; padding-top: 15px;}
 div.switch-emisora { padding-top: 25px;}
 /* switch */
 div.check-switch {
-  min-height: 40px !important;
+  height: 250px !important;
   border: 0 !important;
   padding-top: 3vh;
 } 
@@ -186,12 +180,17 @@ div.check-switch {
     img.imagen-emisora-peque { width: 153%;}
     .switch-emisora { margin-top: 20px;}
     .txt_titular{font-size: 1.6em;}
-    .txt_ciudad {font-size: 1.6em;}
+    .txt_ciudad {font-size: 1.4em;}
     span.year-text{font-size: 1.5em;}
     .pastilla_ciudad {padding: 0px; height: auto;}
     div.emisora {height: 156px;}
     .emisoras {text-align: center;}
     div.switch-emisora {padding: 0px; margin:0px; margin-left: 20px;}
+        .tab-content>.active {
+            display: block;
+            overflow: auto;
+        }
+
 }
 
 @media (max-width: 767px) and (orientation: landscape){
@@ -201,5 +200,9 @@ div.check-switch {
     div.switch-emisora {padding: 0px; margin-left: 10px;}
     div.emisora {
       height: 138px;
-    }   
+    }
+.tab-content>.active {
+            display: block;
+            overflow: auto;
+        }   
 }
