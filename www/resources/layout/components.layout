@@ -63,6 +63,13 @@
   propy:460;
   icon:../resources/images/icons_manag/table.png;
 }
+#radio{
+  order:5;
+  rwidth:460px;
+  propx:460;
+  propy:460;
+  icon:../resources/images/icons_manag/table.png;
+}
 
 #graph{
   order:5;

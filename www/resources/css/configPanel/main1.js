@@ -15,6 +15,7 @@ var ControlPanel= function (url){
 	var qrSect=null;
 	var camerasSect=null;
 	var graphicSect=null;
+	var radioSect=null
 	/* Kontruktorea gauza inizializatzen diren lekua */
 	this.controlPanel = function(){
 
@@ -81,6 +82,13 @@ var ControlPanel= function (url){
 		var resTable=new table();
 		resTable.setID(c[0].getAttribute('compId'));
 
+		comp='radio';
+		c=cmps.filter(filterById);
+		var radioComp=new radios();
+		radioComp.setID(c[0].getAttribute('compId'));
+
+		
+
 		comp='graph1';
 		c=cmps.filter(filterById);
 		var iruneaGraph=new graph();
@@ -123,6 +131,9 @@ var ControlPanel= function (url){
 		graphicSect.addGraphComp(bilboGraph);
 		graphicSect.addGraphComp(donostiGraph);
 		graphicSect.addGraphComp(gasteizGraph);
+
+		radioSect=new radioSection();
+		radioSect.addComponent(radioComp);
 
 		devBox=new deviceBox();
 		var lay1=new layout();
@@ -172,9 +183,7 @@ var ControlPanel= function (url){
 		layoutSect1.addLayout(lay8);
 		layoutSect1.addLayout(lay9);
 		qrSect=new qrSection(QRurl);
-		/*var twitterSect=new twitterSection();
-		var radioSect=new radioSection();
-		var graphicSect=new graphicSection();*/
+		
 		//sidebar menu
 		var menu1=new menu();
 
@@ -296,7 +305,7 @@ var ControlPanel= function (url){
 
 
 					var twitterSect=new twitterSection();
-					var radioSect=new radioSection();
+					
 
 
 					if(i===0){
@@ -334,6 +343,7 @@ var ControlPanel= function (url){
 					var section5=new section();
 					section5.setName(agCtx.agents[i].id+'radio');
 					section5.addItem(devBox);
+					radioSect.setRadioViewStatus(agCtx.agents[i].id);
 					section5.addItem(radioSect);
 					this.addItem(section5);
 					container.appendChild(section5.render());
@@ -397,7 +407,7 @@ var ControlPanel= function (url){
 
 
 					var twitterSect=new twitterSection();
-					var radioSect=new radioSection();
+					
 
 
 
@@ -436,6 +446,7 @@ var ControlPanel= function (url){
 					var section5=new section();
 					section5.setName(event.detail.agentid+'radio');
 					section5.addItem(devBox);
+					radioSect.setRadioViewStatus(event.detail.agentid);
 					section5.addItem(radioSect);
 					this.addItem(section5);
 					container.appendChild(section5.render());
@@ -462,7 +473,7 @@ var ControlPanel= function (url){
 					dev1.setID(event.detail.agentid);
 
 					var twitterSect=new twitterSection();
-					var radioSect=new radioSection();
+					
 
 
 
@@ -493,6 +504,7 @@ var ControlPanel= function (url){
 					var section5=new section();
 					section5.setName(event.detail.agentid+'radio');
 					section5.addItem(devBox);
+					radioSect.setRadioViewStatus(event.detail.agentid);
 					section5.addItem(radioSect);
 					this.addItem(section5);
 					container.appendChild(section5.render());
@@ -589,6 +601,19 @@ var ControlPanel= function (url){
 								sectionDiv[i].querySelector(selector).children[0].className='bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-id-viewCheck'+changes[j].compId+' bootstrap-switch-animate bootstrap-switch-on';
 								sectionDiv[i].querySelector(selector).children[0].children[0].style.width='150px'
 								sectionDiv[i].querySelector(selector).children[0].children[0].style.marginLeft='0px';
+
+							}
+						}
+						else if(sections[i].name.indexOf(event.detail.agentid)===0 &&
+								sectionDiv[i].querySelector('#radioViewBut')!==null){
+							if(changes[j].newValue===false){
+
+								sectionDiv[i].querySelector('#radioViewBut').src='../resources/css/configPanel/img/radio/Radio_btn_play.png';
+								
+
+							}
+							else if(changes[j].newValue===true){
+								sectionDiv[i].querySelector('#radioViewBut').src='../resources/css/configPanel/img/radio/Radio_btn_pausa.png';
 
 							}
 						}
@@ -1657,12 +1682,14 @@ var twitterSection=function(){
 	}
 }
 
-
-var radioSection=function(){
+var radios=function(){
+	this.setID=function(radId){
+		this.id=radId;
+	}
+	this.setViewStatus=function(stat){
+		this.viewStatus=stat;
+	}
 	this.render=function(){
-		var div1=document.createElement('div');
-		div1.className='template-content-center';
-
 		var div2=document.createElement('div');
 		div2.className='col-md-12 layout-columns';
 
@@ -1683,8 +1710,16 @@ var radioSection=function(){
 
 		var img=document.createElement('img');
 		img.className="radio_btn_pausa";
+		img.id='radioViewBut';
 		img.width='150';
-		img.src='../resources/css/configPanel/img/radio/Radio_btn_pausa.png';
+		if(this.viewStatus===true){
+			img.src='../resources/css/configPanel/img/radio/Radio_btn_pausa.png';
+		}
+		else{
+			img.src='../resources/css/configPanel/img/radio/Radio_btn_play.png';
+		}
+		img.addEventListener('click',this.viewClick.bind(this),true);
+
 		div7.appendChild(img);
 
 		var div8=document.createElement('div');
@@ -1705,11 +1740,14 @@ var radioSection=function(){
 		img1.className='radio_ecualizador_img';
 		img1.src='../resources/css/configPanel/img/radio/animacion-ecualizador_transp.gif';
 		div10.appendChild(img1);
+
 		div8.appendChild(div9);
-		div8.appendChild(div10);
+		div8.appendChild(div10);	
 
 		div6.appendChild(div7);
 		div6.appendChild(div8);
+
+
 		var div11=document.createElement('div');
 		div11.className='separador_horizontal';
 
@@ -1795,15 +1833,77 @@ var radioSection=function(){
 
 		div15.appendChild(div16);
 		div14.appendChild(div15);
-
 		div2.appendChild(div3);
 		div2.appendChild(div14);
 
-		div1.appendChild(div2);
+		return div2;
+	}
+	this.viewClick=function(event){
+		var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
+		var agents=agCtx.agents;
+		var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
+		var val=agentToChange;
+		function filterById(el){
+			if(el.id===val)return el;
+		}
+
+		var a=agents.filter(filterById);
+		var scope=this;
+		var b=a[0].capabilities.componentsStatus.filter(function(el,i){
+			if(el.compId===scope.id)return el;
+		});
+
+		console.log('viewClick');
+		if(b[0].show===true){
+			mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'hide');
+		}
+		else{
+			mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'show');
+		}
+	}
+}
+var radioSection=function(){
+	this.radioComponent=[];
+
+	this.addComponent=function(c){
+		this.radioComponent.push(c);
+	}
+	this.render=function(){
+		var div1=document.createElement('div');
+		div1.className='template-content-center';		
+
+		div1.appendChild(this.radioComponent[0].render());
 
 		return div1;
 
 	}
+	this.setRadioViewStatus=function(agentID){
+
+		var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
+		var agents=agCtx.agents;
+		var agentToChange=agentID;
+
+		var a=agents.filter(function(el){
+			if(el.id===agentToChange)return el;
+		});
+		var scope=this;
+
+
+		var rad=this.radioComponent[0].id;
+		b=a[0].capabilities.componentsStatus.filter(function(el){
+			if(el.compId===rad)return el;
+		});
+
+
+		if(b[0].show===true){
+			this.radioComponent[0].setViewStatus(true);
+		}
+		else{
+			this.radioComponent[0].setViewStatus(false);
+		}
+
+	}
+	
 }
 var table=function(){
 

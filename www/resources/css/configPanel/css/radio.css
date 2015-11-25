@@ -1,3 +1,5 @@
+
+.template-content .template-content-center{ height: inherit; min-height:85%;}
 .wrapper {
   padding: 3% 3% 0%;
 }
@@ -22,6 +24,7 @@
   font-size: 2em;
 }
 .clm_2 {
+  
   padding-right: 15px;
   padding-left: 15px;
 }
@@ -159,14 +162,25 @@
 }
 .radio_logo_centrar {
   text-align: center;
-
 }
 
 .radio_logo_centrar img {
-    width: 100%;
+    width: 60%;
 }
-.logo_emisora_img{width: 100%;}
+.logo_emisora_img{width: 60%;}
 
+.slider-panel{padding:10px 30px; overflow:auto; clear:both;}
+.slider-panel i{color:#fff; float:left; font-size:50px;}
+.slider-panel #slider{width:90%; float:right; margin:20px 0px;}
+.slider-panel #slider .ui-corner-all{border-radius: 0;}
+.slider-panel #slider.ui-widget-content{border:0; background-image:none; background-color:#499ECA;}
+.slider-panel #slider .ui-widget-header {
+    border: 0; background-image:none; background-color:#F37300;   
+}
+.slider-panel #slider .ui-state-default, .slider-panel #slider.ui-widget-content .ui-state-default, .slider-panel #slider .ui-widget-header .ui-state-default {
+    border: 1px solid #F86100; background-image:none; background-color:#F37300; 
+}
+.slider-panel #slider.ui-slider .ui-slider-handle {  width: 1.7em;  height: 1.7em;     top: -.5em;}
 
 /* responsive */
 
@@ -180,7 +194,7 @@
     padding-left: 0px;
   }
   .contenido {
-   /* height: 100%;*/
+    height: 100%;
   }
   .boton_play_pause {
     width: 46%;
@@ -306,4 +320,9 @@
   margin-top: 30px;
   }
 
+}
+@media (max-width: 767px){
+    .clm_2{padding-left:0px;}
+    .slider-panel i { font-size: 40px;}
+    .slider-panel #slider { width: 85%;  margin-top: 15px;}
 }

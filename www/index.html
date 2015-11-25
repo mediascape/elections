@@ -19,6 +19,7 @@
 <link rel="stylesheet" type="text/css" href="../resources/css/style.css"/>
 <link rel="stylesheet" type="text/css" href="../resources/css/animate.css"/>
 
+
 <!-- NEEDED SCRIPTS -->
 <script  src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.17/webcomponents-lite.js"></script>
 <script  src="../resources/libs/require.js"></script>
@@ -28,7 +29,8 @@
 <script src="../resources/css/configPanel/js/bootstrap.min.js"></script>
 <script src="../resources/css/configPanel/js/bootstrap-switch.js"></script>
 <script async src="../resources/libs/utils.js"></script>
-  <script src="../resources/css/configPanel/js/classie.js"></script>
+<script src="../resources/css/configPanel/js/classie.js"></script>
+
 <!-- NEEDED SCRIPTS END -->
 
 <!-- WEBCOMPONETS -->
@@ -38,8 +40,13 @@
 <link rel="import" href="../resources/wcs/audio-video-sm/video-audio.html">
 <link rel="import" href="../resources/wcs/graphic/x-graphic.html">
 <link rel="import" href="../resources/wcs/table/x-table.html">
+<link rel="import" href="../resources/wcs/radio/x-radio.html">
 <link href="../resources/css/configPanel/css/controller.css" rel="stylesheet">
 <!-- WEBCOMPONETS END -->
+
+
+
+       
 
 <script>
 
@@ -87,6 +94,7 @@ document.addEventListener('adaptationToolkit-ready',function(data){
   <x-graphic id='graph4' place='Gasteiz' ></x-graphic>
   
   <x-table id='results'></x-table>
+  <x-radio id='radio' file='/resources/media/RadioEuskadiSync.mp3' ></x-radio>
 <!-- End of definition of each webcompoent -->
 <script>
 new loadingPanel('/resources/images/MediaScapelogo_gif-720.gif',10);

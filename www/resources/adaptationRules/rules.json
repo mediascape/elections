@@ -255,6 +255,14 @@
                     "duplicable":false,
                     "needs":"none"
                 },
+                {
+                    "componentId": "radio",
+                    "required": false,
+                    "bestfit": "biggestScreenSize",
+                    "movable": true,
+                    "duplicable":false,
+                    "needs":"none"
+                },
                 
                 {
                     "componentId": "graph",

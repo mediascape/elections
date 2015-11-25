@@ -1,0 +1,115 @@
+<dom-module id="x-radio" >
+
+
+
+<template>
+	<style >
+
+	#container{
+		background-color: #0A2533;
+		padding: 15px;
+	}
+	.content-detalle-radio .radio-component-panel{background-color:#000003; overflow:auto; border-radius:15px; padding:3%;}
+	.content-detalle-radio .radio-component-panel img{width:100%;}
+	.content-detalle-radio .radio-component-panel .logo-radio{background-color:#317da7; border-radius:15px;}
+	.content-detalle-radio .radio-component-panel .equal {padding-top:15px;}
+
+	.radio-component-panel-all .radio-title p{font-family: 'Montserrat', sans-serif; font-size:7vw; color:#ffffff; text-align:center;}
+
+	@media (max-width: 992px){
+	}
+	@media (max-width: 768px){
+	    .radio-component-panel-all .radio-title p{font-size:9vw;}
+	}
+
+	@media (max-width: 700px) and (orientation: landscape){
+	    .content-detalle-radio .radio-component-panel .logo-radio{width:50%; float:left;}
+	    .content-detalle-radio .radio-component-panel .equal {width:50%; float:right;}
+	    .radio-component-panel-all .radio-title p{font-size:8vw;}
+	}
+
+</style>
+
+<div id='container' class="template-all-layouts ">  
+            <div class="col-md-12 layout-fullwidth content-detalle-radio">
+				<div class="radio-component-panel-all">
+                    <div class="radio-component-panel">
+                        <div class="logo-radio col-md-6 col-sm-6">
+                            <img id="broadcaster_logo" src="logo_eitb_blanco.png" />
+                        </div>
+                        <div class="equal col-md-6 col-sm-6">
+                            <img src="animacion-ecualizador_transp.gif" />
+                        </div>                        
+                    </div>
+                    <div class="radio-title col-md-12">
+                        <p id='broadcaster_name'>Radio Euskadi</p>
+                    </div>
+                </div>
+            </div>	
+        </div>
+        <audio id='radioAudio' src=''></audio>
+
+</template>
+</dom-module>
+
+ <script>
+Polymer({
+	is:'x-radio',
+  behaviors:[ComponentQueryBehavior,ComponentStatusBehavior],
+	hostAttributes:{
+		skew:0.0,
+		sm:null,
+		l:''
+	},
+	properties:{
+			file:{
+				 type:String,
+
+			},			
+			customCmd:{
+	        type:String,
+	        value:'',
+	        observer: 'customCmdReceived'
+	    }
+	},
+
+	ready: function() {
+		var _this = this;
+		this.$.radioAudio.src=this.file;
+		document.addEventListener ('motion-ready',this.smReady.bind(this));
+
+
+	},
+	
+	smReady:function(e){
+		var _this = this;
+		this.sm = mediascape.AdaptationToolkit.SharedMotion();
+		var id = 0;
+		setTimeout(function(){
+			_this.$.radioAudio.addEventListener('ended', function () {
+					_this.restart();
+			});
+			_this.sm.addVideo (_this.$.radioAudio,id,_this.skew);
+			var cmpStatus = mediascape.AdaptationToolkit.componentManager.core.getComoponentsToShow();
+			if (cmpStatus) mediascape.AdaptationToolkit.Adaptation.UIAdaptation.onComponentsChange(cmpStatus);
+		},4000);
+			
+  	},	
+
+  	play:function(){
+		if (this.sm) this.sm.mapp.motions.shared.update(null, 1);
+	},
+
+	muteRadio:function(){
+		this.$.radioAudio.muted=true;
+	},
+	soundRadio:function(){
+		this.$.radioAudio.muted=false;
+	},
+	
+	customCmdReceived: function(data){
+			console.log("DATA",data);
+			
+	}
+});
+ </script>

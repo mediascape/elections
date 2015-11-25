@@ -66,7 +66,25 @@ define(
                  v.play();
                }
              }
+
+             var a = el.querySelector('audio');
+            if (a){
+               a.src = el.getAttribute('file');
+               el.show = true;
+               if (el.play) {
+                // el.pause();
+                 el.play();
+                 a.play();
+               }
+             }
+            
+
+
+
+
             }
+
+
              el.style.display="block";
             //el.shadowRoot.host.style.width="400px";
             //el.shadowRoot.host.style.height="400px";
@@ -82,6 +100,11 @@ define(
             var v = el.querySelector('video');
             if (v) {
               v.src="";
+              el.show = false;
+            }
+            var a = el.querySelector('audio');
+            if (a) {
+              a.src="";
               el.show = false;
             }
 
