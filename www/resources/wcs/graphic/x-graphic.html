@@ -18,9 +18,9 @@ div.content-detalle-graphs  {
 	text-align: left;
 	padding-left: 40px;
 }
-
-h1 {color: #748c99; font-family: 'Montserrat', sans-serif; font-weigth: bold;font-size: 3vw; text-transform: uppercase;  }
-h2 {color: #748c99; font-family: 'Montserrat', sans-serif; font-weigth: bold;font-size: 1.5vw;}
+h1, h2 {color: #748c99; font-family: 'Montserrat', sans-serif; font-weigth: bold;text-transform: uppercase;}
+h1 {font-size: 3vw;}
+h2 {font-size: 1.5vw;}
 
 /* progress bar */
 div.content-progress-bars {
@@ -59,6 +59,48 @@ div.logo-patidos img { width: 115px; background-color: #FFF; padding: 10px; -web
 		.podemos { color: #D67CD6;}
 		.podemos-old { color: #965092;}
 
+/* responsive */
+
+@media (min-width: 768px) and (max-width: 1200px) and (orientation: portrait){
+    .content-progress{width:100% !important;}
+}
+
+@media (max-width: 1024px) and (orientation: landscape){
+	div.content-detalle-graphs {overflow:auto;}	
+	h1{font-size: 42px;text-transform: uppercase;}
+	h2{font-size: 25px;}
+		
+}
+
+@media (max-width: 1024px) and (orientation: portrait){
+	div.content-detalle-graphs {overflow:auto;}	
+	h1{font-size: 42px;text-transform: uppercase;}
+	h2{font-size: 25px;}	
+}
+
+@media (max-width: 767px) and (orientation: portrait){
+	div.logo-patidos img {
+		margin-top: 19px;
+		width: 75px;
+	}	
+	h1{font-size: 25px; margin:5px 0px; text-transform: uppercase;}
+	h2{font-size: 20px; margin:0; }
+	div.content-detalle-graphs {overflow:auto;}
+    .content-progress{padding-left:0; margin-top:0px;}
+    
+}
+
+@media (max-width: 767px) and (orientation: landscape){
+	div.logo-patidos img {
+		margin-top: 19px;
+		width: 75px;
+	}	
+	
+	div.content-detalle-graphs {overflow:auto;}
+    .content-progress{width:50% !important; float:left; padding-left:0; margin-top:0px;}
+    h1 {font-size: 25px; margin:0; float:left; text-transform: uppercase; }
+    h2 { font-size: 20px;  margin:3px 10px; float:left;}
+}
 
 </style>
 
@@ -163,6 +205,27 @@ div.logo-patidos img { width: 115px; background-color: #FFF; padding: 10px; -web
 								2015
 							  </div>
 							  <span id='num5year15' class="total-escanyos podemos-old">9</span>
+							</div>
+					</div>
+				</div>
+
+				<!-- cada progreso -->
+				<div class="media content-progress">
+					<div class="media-left logo-patidos">
+						<img id='logo6' class="media-object" src="detalle-graph/logo-podemos-transp.png" alt="psoe">
+					</div>					
+					<div class="media-body content-progress-bars">
+							<div class="progress">
+							  <div id='bar6year11' class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em; width: 2%; background-color:#D67CD6;">
+								2011
+							  </div>
+							  <span id='num6year11' class="total-escanyos podemos"></span>
+							</div>
+							<div class="progress">
+							  <div id='bar6year15' class="progress-bar" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 28%; background-color:#965092;">
+								2015
+							  </div>
+							  <span id='num6year15' class="total-escanyos podemos-old">9</span>
 							</div>
 					</div>
 				</div>
@@ -309,7 +372,7 @@ return {
 		
 			dataToShow=[];
 			dataToShow.push(data.results[scope.hostAttributes.time].places[where].counting);
-			for(var i=0;i<5;i++)
+			for(var i=0;i<6;i++)
 			{
 				dataToShow.push({'party':data.results[0].places[where].parties[i].name,'2015':data.results[scope.hostAttributes.time].places[where].parties[i].councillors,'color15':data.results[scope.hostAttributes.time].places[where].parties[i].color});
 			}
@@ -343,7 +406,7 @@ return {
 		
 			dataToShow=[];
 			dataToShow.push(data.results[scope.hostAttributes.time].places[where].counting);
-			for(var i=0;i<5;i++)
+			for(var i=0;i<6;i++)
 			{
 				dataToShow.push({'party':data.results[0].places[where].parties[i].name,'2011':data.results[0].places[where].parties[i].councillors,'color11':data.results[0].places[where].parties[i].color,'icon':data.results[0].places[where].parties[i].icon});
 			}
