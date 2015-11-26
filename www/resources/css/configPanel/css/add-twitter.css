@@ -23,7 +23,7 @@ div.seleccion-hashtag { text-align: left !important; padding-top: 7vh; font-size
 div.seleccion-hashtag .select-hashtag {background-color: #dcf1ff; width: 65%;}
 p.titulo-seccion {font-size: 3vw; color: white;}
 /* switch */
-.twitter-selector-container div.check-switch {
+.twitter-selector-container div.check-switch-twitter {
 	min-height: 250px !important;
 	border: 0 !important;
 	padding-top: 7vh;

@@ -28,7 +28,7 @@
   padding-right: 15px;
   padding-left: 15px;
 }
-.contenido {
+.contenido-radio{
   margin-right: 0px;
   margin-left: 0px;
   border-radius: 20px;
@@ -193,7 +193,7 @@
     padding-right: 20px;
     padding-left: 0px;
   }
-  .contenido {
+  .contenido-radio {
     height: 100%;
   }
   .boton_play_pause {

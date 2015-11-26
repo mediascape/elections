@@ -524,7 +524,7 @@ var ControlPanel= function (url){
 					$("[name='set-graphic']").bootstrapSwitch();
 					$("[name='set-graphic-emisora']").bootstrapSwitch();
 					$("[name='set-camara']").bootstrapSwitch();
-					$("[name='set-graphic-camara']").bootstrapSwitch();
+					$("[name='set-camara-camara']").bootstrapSwitch();
 
 				}
 				devBox.addDevice(dev1);
@@ -1329,7 +1329,7 @@ var camera=function(){
 		div5.appendChild(i1);
 
 		var div6=document.createElement('div');
-		div6.className='col-md-8 col-sm-8 check-switch';
+		div6.className='col-md-8 col-sm-8 check-switch-camara';
 		var input1=document.createElement('input');
 		input1.type='checkbox';
 		input1.name='set-camara';
@@ -1354,7 +1354,7 @@ var camera=function(){
 		div8.appendChild(i2);
 
 		var div9=document.createElement('div');
-		div9.className='col-md-8 col-sm-8 check-switch';
+		div9.className='col-md-8 col-sm-8 check-switch-vol';
 		var input2=document.createElement('input');
 		input2.type='checkbox';
 		input2.name='set-camara';
@@ -1458,7 +1458,7 @@ var camerasSection=function(){
 		div2.className='col-md-6';
 
 		var div3=document.createElement('div');
-		div3.className='contenido content-camara';
+		div3.className='contenido-camaras content-camara';
 
 
 
@@ -1473,7 +1473,7 @@ var camerasSection=function(){
 		div4.className='col-md-6';
 
 		var div5=document.createElement('div');
-		div5.className='contenido content-camara';
+		div5.className='contenido-camaras content-camara';
 
 		for(var i=Math.round(this.cameras.length/2);i<this.cameras.length;i++){
 
@@ -1599,7 +1599,7 @@ var hashtag=function(){
 		div2.appendChild(select);
 
 		var div3=document.createElement('div');
-		div3.className='col-md-3 check-switch';
+		div3.className='col-md-3 check-switch-twitter';
 
 		var input1=document.createElement('input');
 		input1.type='checkbox';
@@ -1643,7 +1643,7 @@ var trendingMap=function(){
 		div5.appendChild(p4);
 
 		var div6=document.createElement('div');
-		div6.className='col-md-3 check-switch';
+		div6.className='col-md-3 check-switch-twitter';
 
 		var input2=document.createElement('input');
 		input2.type='checkbox';
@@ -1696,7 +1696,7 @@ var radios=function(){
 		div3.className='col-md-6 clm_2 izda';
 
 		var div4=document.createElement('div');
-		div4.className='contenido';
+		div4.className='contenido-radio';
 
 		var div5=document.createElement('div');
 		div5.className='radio_row1';
@@ -1775,9 +1775,9 @@ var radios=function(){
 
 
 		var div15=document.createElement('div');
-		div15.className='contenido';
+		div15.className='contenido-radio';
 
-		//Las radios se podrian abstraer? cada radio es un div dentro de div 16
+		
 		var div16=document.createElement('div');
 		div16.className='emisoras';
 
@@ -1932,11 +1932,11 @@ var table=function(){
 		div6.innerHTML='Table data information';
 
 		var div7=document.createElement('div');
-		div7.className='col-md-3 check-switch';
+		div7.className='col-md-3 check-switch-graphics';
 		div7.addEventListener('click',this.viewclick.bind(this),true);
 		var input1=document.createElement('input');
 		input1.type='checkbox';
-		input1.name='set-graphic';
+		input1.name='set-graphic-emisora';
 		input1.id='viewCheck'+this.id;
 		input1.checked=this.viewStatus;
 		div7.id='view'+this.id;
@@ -2231,7 +2231,7 @@ var graph=function(){
 		div32.appendChild(p5);
 
 		var div33=document.createElement('div');
-		div33.className='col-md-3 col-sm-3 col-xs-12 switch-emisora';
+		div33.className='col-md-3 col-sm-3 col-xs-12 check-switch-graphics';
 
 		var input3=document.createElement('input');
 		input3.type='checkbox';

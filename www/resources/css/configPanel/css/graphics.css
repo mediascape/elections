@@ -1,8 +1,3 @@
-.body {
-  height: 100%;
-  border-radius: 20px;
-  background-color: #173f56;
-}
 
 .titulo_porcentaje {
   font-size: 2em;
@@ -31,6 +26,11 @@
   padding: 1px;
   border-radius: 20px;
   background-color: #c7dcea;
+}
+.pastilla_ciudad.active{
+  border: 8px none #ff9b00;
+  background-color: white;
+  box-shadow: #fc751b 0px 0px 0px 7px inset;
 }
 .pastilla_ciudad:hover {
   border: 8px none #ff9b00;
@@ -100,7 +100,6 @@ ul.nav-tabs li.active{
   border-radius: 0px 0px 20px 20px;  
 }
 .pastilla_ciudad {
-  
   max-height: 100%;
   border-radius: 20px;
   background-color: #c7dcea;
@@ -110,7 +109,7 @@ ul.nav-tabs li.active{
 
 /* emisora columna derecha */
 div.content-emisoras {
-    /*height: 100%;*/
+    height: 100%;
     padding: 20px 20px 2px;
     border-radius: 20px;
     background-color: #375364;
@@ -138,10 +137,10 @@ span.comparative {
 img.imagen-emisora-peque { width: 100%; padding-top: 15px;}
 div.switch-emisora { padding-top: 25px;}
 /* switch */
-div.check-switch {
-  height: 250px !important;
-  border: 0 !important;
-  padding-top: 3vh;
+div.check-switch-graphics {
+  height: 40px !important;
+    border: 0 !important;
+  margin-top: 3vh;
 } 
 .bootstrap-switch {border: none !important;}
 .bootstrap-switch-primary {
