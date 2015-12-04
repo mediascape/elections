@@ -107,9 +107,9 @@ define(
         return promise;
       };
       this.getComponents = function (){
-        for (c in components){
+        /*for (c in components){
            components[c] = document.querySelector('#'+components[c].id);
-        }
+        }*/
         return components;
       }
       this.getComponentsStatus = function (){

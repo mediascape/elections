@@ -64,7 +64,8 @@ define(
   "mediascape/AdaptationToolkit/adaptation/UIAdaptation/layouts/verticalMenu",
   "mediascape/AdaptationToolkit/adaptation/UIAdaptation/layouts/scrollHorizontal",
   "mediascape/AdaptationToolkit/adaptation/UIAdaptation/layouts/spinner",
-  "mediascape/AdaptationToolkit/adaptation/UIAdaptation/layouts/divided"],
+  "mediascape/AdaptationToolkit/adaptation/UIAdaptation/layouts/divided",
+  "mediascape/AdaptationToolkit/adaptation/UIAdaptation/layouts/carousel"],
   function(componentsManager){
     var layoutList   = Array.prototype.slice.apply( arguments );
     var cmps=[];
@@ -846,7 +847,7 @@ define(
         window.dispatchEvent(event);
         for (var x = 0 ; x< cmps.length;x++)
             {
-                cmps[x] = document.querySelector("#"+cmps[x].id);
+                //cmps[x] = document.querySelector("#"+cmps[x].id);
                 cmps[x].updateNodes();
             }
         this.forceRedraw();

@@ -1,24 +1,22 @@
-
-
 /**
-* This layout organizes N components in a grid. Having each component a given 
-* preferred width, aspect ratio and the order, the screen is divided in cells 
-* of different sizes. The Grid layout iterates across the components with a 
-* priority-based order, and goes over the layout matrix from left to right and
-* from top to down, filling empty slots with unplaced components.
+* This layout organizes N components...
 
-* @module mediascape/AdaptationToolkit/adaptation/UIAdaptation/layouts/customGrid
+* @module mediascape/AdaptationToolkit/adaptation/UIAdaptation/layouts/carousel
 * @requires mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor
 */
 
 
+
 define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"],
   function(LayoutConstructor){
-
-    var customGrid = new LayoutConstructor('customGrid');
-    customGrid.onComponentsChange = function (cmps){
+    var fullScreenCmp;
+    var carousel = new LayoutConstructor('carousel');
+    carousel.listeners = [];
+    var timers=[];
+    
+    carousel.onComponentsChange = function (cmps){
         console.log("test");
-        this.cmps = cmps;
+    this.cmps = cmps;
       var components = mediascape.AdaptationToolkit.componentManager.core.getComponents();
       for(var i=0;i<components.length;i++){
         components[i].style.width='';
@@ -43,6 +41,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
         components[i].style.transformOrigin= '';
         components[i].style.outline='';
         components[i].style.transform='';
+
 
       }
       componentsContainer.style.backgroundColor='';
@@ -73,6 +72,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
       if(document.querySelector('#upArrowImg')!=null){
           document.body.removeChild(document.querySelector('#upArrowImg'));
       }
+
       if(componentsContainer.querySelector('figure')){
         while (componentsContainer.querySelector('figure').firstChild)
         {
@@ -83,7 +83,6 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
         if(document.querySelector('x-media')){
           document.querySelector('x-media').play();
         }
-
       }
 
       if(document.querySelector('#swContainer')){
@@ -101,7 +100,9 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
           document.querySelector('x-media').play();
         }
       }
-    
+      
+     
+
       if(componentsContainer.querySelector('#arrows')){
         componentsContainer.removeChild(componentsContainer.querySelector('#arrows'));
       }
@@ -118,104 +119,82 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
       }
 
 
-
-
-      var enableResizeCallback= function(){
-        if(document.querySelector('drag-resize')!=null){
-            componentsContainer.removeChild(document.querySelector('drag-resize'));
-          }
-
-          for(var i=0;i<cmps.length;i++){
-            cmps[i].style.top=cmps[i].offsetTop+'px';
-            cmps[i].style.left=cmps[i].offsetLeft+'px';
-
-          }
-          for(var i=0;i<cmps.length;i++)
-          {
-            cmps[i].style.position='absolute';
-          }
-
-          var dragResizeCmp=document.createElement('drag-resize');
-          componentsContainer.appendChild(dragResizeCmp);
-
-      }
-      var scope=this;
-      var disableResizeCallback=function(){
-
-
-        if(document.querySelector('drag-resize')!=null){
-            componentsContainer.removeChild(document.querySelector('drag-resize'));
-            var distances=[];
-            for(var i=0;i<cmps.length;i++){
-              cmps[i].lproperties.propx=cmps[i].style.width.split('px')[0];
-              cmps[i].lproperties.propy=cmps[i].style.height.split('px')[0];
-              cmps[i].lproperties.rwidth=cmps[i].style.width;
-
-              cmps[i].style.position='';
-              distances.push(Math.sqrt(Math.pow(parseInt(cmps[i].style.top.split('px')[0]),2)+Math.pow(parseInt(cmps[i].style.left.split('px')[0]),2)));
-
-            }
-
-            var indexes = new Array(distances.length);
-            for (var i = 0; i < distances.length; ++i) indexes[i] = i;
-            indexes.sort(function (a, b) { return distances[a] < distances[b] ? -1 : distances[a] > distances[b] ? 1 : 0; });
-            for(var i=0;i<cmps.length;i++){
-              cmps[indexes[i]].lproperties.order=i+1;
-            }
-           scope.render(cmps);
-          }
-      }
-      var saveLayoutCallback=function(){
-          if(document.querySelector('drag-resize')!=null){
-            componentsContainer.removeChild(document.querySelector('drag-resize'));
-          }
-      }
-      mediascape.AdaptationToolkit.uiComponents.customPanel(enableResizeCallback,disableResizeCallback,saveLayoutCallback);
-
     }
-    customGrid.render = function (cmps){
+    carousel.render = function (cmps){
 
-      document.body.style.backgroundColor='white';
-      document.body.style.padding='';
+      
 
+      document.body.style.backgroundColor='#0A2533';
+      document.body.style.padding='15px 0px';
       var container=document.querySelector('#componentsContainer');
-
+      container.style.display='';
       container.style.overflowX='';
-
-      container.style.display='grid';
-      container.style.gridAutoFlow='row dense';
-
-      var width = window.innerWidth ||document.documentElement.clientWidth ||document.body.clientWidth;
-      var height = window.innerHeight ||document.documentElement.clientHeight ||document.body.clientHeight;
-
-     var columns = Math.round(width/10);
-     var r=Math.round(height/10);
-     var c_width=(width)/columns;
-     var r_height=(height)/r;
-
-     container.style.gridTemplateColumns='repeat('+columns+','+c_width+'px)';
-     container.style.gridTemplateRows='repeat('+r+','+r_height+'px)';
-
-     for(var i=0;i<cmps.length;i++)
-     {
-        cmps[i].style.order=cmps[i].lproperties.order;
-        cmps[i].style.gridColumn='span '+Math.round(parseInt(cmps[i].lproperties.rwidth.split('px')[0])/c_width);
-        cmps[i].style.width=Math.round(parseInt(cmps[i].lproperties.rwidth.split('px')[0])/c_width)*c_width+'px';
-        cmps[i].style.height=(Math.round(parseInt(cmps[i].lproperties.rwidth.split('px')[0])/c_width)*c_width*cmps[i].lproperties.propy)/cmps[i].lproperties.propx+'px';
-        cmps[i].style.gridRow='span '+Math.round(parseInt(cmps[i].style.height.split('px')[0])/r_height);
-        cmps[i].style.backgroundColor='black';
+      
 
 
-     }
+
+      var ordered_cmps=[];
+      ordered_cmps = cmps.sort(function(it1,it2){
+      if (it1.lproperties.order > it2.lproperties.order) return 1;
+      else return -1;
+      });
+   
+
+      var div=document.createElement('div');
+      div.className='swiper-container';
+      div.id='swContainer';
+      div.innerHTML='<div id="wrapper" class="swiper-wrapper"></div><div class="swiper-pagination"></div>';
+      componentsContainer.appendChild(div);
+     
+      var mySwiper =  new Swiper('.swiper-container',{
+      
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        effect: 'coverflow',
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView:'auto',       
+       
+        initialSlide:0,
+        
+        coverflow: {
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows : false
+        }
+        
+      }); 
+
+      for(var i=0;i<ordered_cmps.length;i++){    
+        var div=document.createElement('div'); 
+
+        div.className='swiper-slide';   
+        div.id='slide'+ordered_cmps[i].id;
+        var node = document.querySelector("#"+ordered_cmps[i].id);
+        div.appendChild(node);
+        mySwiper.appendSlide(div);
+        mySwiper.update(true);
+      }
+      
+      
+      if(document.querySelector('x-media')){
+          document.querySelector('x-media').play();
+        }
+
+      mediascape.AdaptationToolkit.Adaptation.UIAdaptation.updateComponentQuery();
+
+
 
     }
-    customGrid.onOrientationChange = function (cmps){
+    carousel.onOrientationChange = function (cmps){
       console.log("test");
-    }
-    customGrid.onLayoutChangeEvent = function (cmps){
-      console.log("layout changed");
 
-      for(var i=0;i<cmps.length;i++){
+    }
+    carousel.onLayoutChangeEvent = function (cmps){
+      console.log("layout changed");
+     for(var i=0;i<cmps.length;i++){
         cmps[i].style.width='';
         cmps[i].style.height='';
         cmps[i].style.gridColumn='';
@@ -233,7 +212,6 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
         cmps[i].style.animationName='';
         cmps[i].style.animationDuration='';
         cmps[i].style.display='block';
-
 
         cmps[i].style.left='';
         cmps[i].style.transformOrigin= '';
@@ -269,6 +247,11 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
       if(document.querySelector('#upArrowImg')!=null){
           document.body.removeChild(document.querySelector('#upArrowImg'));
       }
+
+
+
+
+
       if(componentsContainer.querySelector('figure')){
         while (componentsContainer.querySelector('figure').firstChild)
         {
@@ -280,7 +263,8 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
           document.querySelector('x-media').play();
         }
       }
-      
+
+
       if(document.querySelector('#swContainer')){
 
         
@@ -290,13 +274,17 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
          componentsContainer.appendChild(node);
         
         }
-        }
+      }
         document.querySelector('#swContainer').parentNode.removeChild(document.querySelector('#swContainer'));
         if(document.querySelector('x-media')){
           document.querySelector('x-media').play();
         }
       
       }
+      
+
+
+
 
       if(componentsContainer.querySelector('#arrows')){
         componentsContainer.removeChild(componentsContainer.querySelector('#arrows'));
@@ -304,6 +292,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
       if(componentsContainer.querySelector('#back')){
         componentsContainer.removeChild(componentsContainer.querySelector('#back'));
       }
+
       this.render(cmps);
 
       if(document.querySelector('#customizePanel')!=null){
@@ -312,81 +301,40 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
           componentsContainer.removeChild(document.querySelector('drag-resize'));
         }
       }
+       mediascape.AdaptationToolkit.Adaptation.UIAdaptation.updateComponentQuery();
+       
+    }
+    carousel.onPriorizeComponent=function(cmp){
+        var clicked=cmp;
+        var rendered=true;
+        var _cmps = this.cmps;
+        this.render(_cmps,rendered,clicked);
+    }
+    carousel.onResizeEvent=function(cmps){
 
-
-
-
-      var enableResizeCallback= function(){
-        if(document.querySelector('drag-resize')!=null){
-            componentsContainer.removeChild(document.querySelector('drag-resize'));
-          }
-          for(var i=0;i<cmps.length;i++){
-            cmps[i].style.top=cmps[i].offsetTop+'px';
-            cmps[i].style.left=cmps[i].offsetLeft+'px';
-
-          }
-          for(var i=0;i<cmps.length;i++)
-          {
-            cmps[i].style.position='absolute';
-          }
-
-          var dragResizeCmp=document.createElement('drag-resize');
-          componentsContainer.appendChild(dragResizeCmp);
-
-      }
-      var scope=this;
-      var disableResizeCallback=function(){
-
-
-        if(document.querySelector('drag-resize')!=null){
-            componentsContainer.removeChild(document.querySelector('drag-resize'));
-            var distances=[];
-            for(var i=0;i<cmps.length;i++){
-              cmps[i].lproperties.propx=cmps[i].style.width.split('px')[0];
-              cmps[i].lproperties.propy=cmps[i].style.height.split('px')[0];
-              cmps[i].lproperties.rwidth=cmps[i].style.width;
-
-              cmps[i].style.position='';
-              distances.push(Math.sqrt(Math.pow(parseInt(cmps[i].style.top.split('px')[0]),2)+Math.pow(parseInt(cmps[i].style.left.split('px')[0]),2)));
-
-            }
-            for(var i=0;i<cmps.length;i++){
-             cmps[i].style.top='';
-              cmps[i].style.left='';
-
-            }
-            var indexes = new Array(distances.length);
-            for (var i = 0; i < distances.length; ++i) indexes[i] = i;
-            indexes.sort(function (a, b) { return distances[a] < distances[b] ? -1 : distances[a] > distances[b] ? 1 : 0; });
-            for(var i=0;i<cmps.length;i++){
-              cmps[indexes[i]].lproperties.order=i+1;
-            }
-            scope.render(cmps);
-          }
-      }
-      var saveLayoutCallback=function(){
-          if(document.querySelector('drag-resize')!=null){
-            componentsContainer.removeChild(document.querySelector('drag-resize'));
-          }
-      }
-      mediascape.AdaptationToolkit.uiComponents.customPanel(enableResizeCallback,disableResizeCallback,saveLayoutCallback);
-
+      
+      mediascape.AdaptationToolkit.Adaptation.UIAdaptation.updateComponentQuery();
+    }
+    carousel.unload = function(cmps){
+      carousel.listeners.forEach (function(listener){
+        for(var i=0;i<cmps.length;i++){
+          
+          
+        }
+      },this);
+   
     }
 
-    customGrid.onResizeEvent=function(cmps){
-      console.log("layout changed");
-      for(var i=0;i<cmps.length;i++){
-        cmps[i].className='';
-      }
-      if(document.querySelector('#layout_classes')!=null){
-        document.head.removeChild(document.querySelector('#layout_classes'));
-      }
-      this.render(cmps);
-    }
-    customGrid.unload = function(cpms){
 
-    }
-    customGrid.__moduleName = "customGridLayout";
-    return customGrid;
 
-  });
+    carousel.__moduleName = "carouselLayout";
+    return carousel;
+
+  }
+
+  );
+  window.oncontextmenu = function(event) {
+      event.preventDefault();
+      event.stopPropagation();
+      return false;
+  };

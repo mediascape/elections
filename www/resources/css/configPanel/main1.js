@@ -153,7 +153,7 @@ var ControlPanel= function (url){
 		lay4.setImage('../resources/css/configPanel/img/layouts/layout_10.png');
 
 		var lay5=new layout();
-		lay5.setName('scrollHorizontal');
+		lay5.setName('accordion');
 		lay5.setImage('../resources/css/configPanel/img/layouts/layout_05.png');
 
 		var lay6=new layout();
@@ -165,7 +165,7 @@ var ControlPanel= function (url){
 		lay7.setImage('../resources/css/configPanel/img/layouts/layout_09.png');
 
 		var lay8=new layout();
-		lay8.setName('accordion');
+		lay8.setName('carousel');
 		lay8.setImage('../resources/css/configPanel/img/layouts/layout_08.png');
 
 		var lay9=new layout();
@@ -609,12 +609,12 @@ var ControlPanel= function (url){
 							if(changes[j].newValue===false){
 
 								sectionDiv[i].querySelector('#radioViewBut').src='../resources/css/configPanel/img/radio/Radio_btn_play.png';
-								
+								sectionDiv[i].querySelector('#radioEq').src='../resources/css/configPanel/img/radio/Radio-animacion-off-estatico.png';
 
 							}
 							else if(changes[j].newValue===true){
 								sectionDiv[i].querySelector('#radioViewBut').src='../resources/css/configPanel/img/radio/Radio_btn_pausa.png';
-
+								sectionDiv[i].querySelector('#radioEq').src='../resources/css/configPanel/img/radio/animacion-ecualizador_transp.gif';
 							}
 						}
 
@@ -729,7 +729,8 @@ var ControlPanel= function (url){
 		div.style.position='absolute';
 		div.style.top='0';
 		div.style.zIndex='99999';
-		div.style.backgroundColor='white';
+		div.style.backgroundColor='rgba(255, 255, 255, 0.5)';
+
 		this.activeSection=sectionName;
 		this.items.forEach(function(it){
 			if(it instanceof menu ||  it.name===sectionName){
@@ -1705,7 +1706,7 @@ var radios=function(){
 		div6.className='w-row';
 
 		var div7=document.createElement('div');
-		div7.className='col-xs-4 col-sm-6';
+		div7.className='col-xs-4 col-sm-6 col-md-4';
 
 		var img=document.createElement('img');
 		img.className="radio_btn_pausa";
@@ -1722,7 +1723,7 @@ var radios=function(){
 		div7.appendChild(img);
 
 		var div8=document.createElement('div');
-		div8.className='col-xs-8 col-sm-6';
+		div8.className='col-xs-8 col-sm-6 col-md-8';
 
 		var div9=document.createElement('div');
 		div9.className='radio_nombre_emisora';
@@ -1737,7 +1738,13 @@ var radios=function(){
 
 		var img1=document.createElement('img');
 		img1.className='radio_ecualizador_img';
-		img1.src='../resources/css/configPanel/img/radio/animacion-ecualizador_transp.gif';
+		img1.id='radioEq';
+		if(this.viewStatus===true){
+			img1.src='../resources/css/configPanel/img/radio/animacion-ecualizador_transp.gif';
+		}
+		else{
+			img1.src='../resources/css/configPanel/img/radio/Radio-animacion-off-estático.png';
+		}
 		div10.appendChild(img1);
 
 		div8.appendChild(div9);
@@ -2205,17 +2212,12 @@ var graph=function(){
 	}
 	this.render=function(){
 		var div30=document.createElement('div');
-		div30.className='col-md-12 row emisora';
+		div30.className='col-md-12 emisora';
 
-		var div31=document.createElement('div');
-		div31.className='col-md-2 col-sm-2 col-xs-4 hidden-xs';
-		var img6=document.createElement('img');
-		img6.className='imagen-emisora-peque';
-		img6.src='../resources/css/configPanel/img/graphics/icon_chart-2011-2015.png';
-		div31.appendChild(img6);
+		
 
 		var div32=document.createElement('div');
-		div32.className='col-md-7 col-sm-7 col-xs-8';
+		div32.className='col-md-8 col-sm-8 col-xs-8';
 		var p5=document.createElement('p');
 		p5.className='text_ciudad';
 		p5.innerHTML=this.place;
@@ -2231,7 +2233,7 @@ var graph=function(){
 		div32.appendChild(p5);
 
 		var div33=document.createElement('div');
-		div33.className='col-md-3 col-sm-3 col-xs-12 check-switch-graphics';
+		div33.className='col-md-4 col-sm-4 col-xs-12 check-switch-graphics';
 
 		var input3=document.createElement('input');
 		input3.type='checkbox';
@@ -2244,7 +2246,7 @@ var graph=function(){
 
 		div33.appendChild(input3);
 
-		div30.appendChild(div31);
+
 		div30.appendChild(div32);
 		div30.appendChild(div33);
 		return div30;
@@ -2292,13 +2294,13 @@ var graphicSection=function(){
 		div2.className='col-md-12 layout-columns';
 
 		var div3=document.createElement('div');
-		div3.className='col-md-6 clm_2 izda';
+		div3.className='col-md-6 clm_2_graph izda';
 
 
 		div3.appendChild(this.tableComp[0].render());
 
 		var div4=document.createElement('div');
-		div4.className='col-md-6 clm_2';
+		div4.className='col-md-6 clm_2_graph';
 
 		var div5=document.createElement('div');
 		div5.className='contenido_graphics content-emisoras';

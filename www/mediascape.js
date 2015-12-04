@@ -32,7 +32,8 @@
     ui:'../resources/libs/jquery-ui',
     shake:'../resources/libs/shake',
     association:'/resources/association/association',
-    domReady:'/resources/libs/domReady'
+    domReady:'/resources/libs/domReady',
+    swiper:'../resources/css/configPanel/js/swiper.min'
       },
     waitSeconds:25
   });
@@ -102,7 +103,7 @@
       return mediascape;
     });
 /** All modules are ready so mediascape it can be started */
-  require([ "mediascape" ], function (mediascape) {
+  require([ "mediascape" ,'swiper'], function (mediascape,swiper) {
     console.log("mediascape require");
     if (document.readyState === "complete") mediascape.init();
     else setTimeout(mediascape.init,2000);

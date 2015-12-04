@@ -1,19 +1,21 @@
 
+
 .titulo_porcentaje {
   font-size: 2em;
 }
-.clm_2 {
+.clm_2_graph {
   height: 100%;
   padding-right: 15px;
   padding-left: 15px;
 }
 
 .contenido_graphics {
-  height: 100%;
+  /*height: 100%;*/
   margin-right: 0px;
   margin-left: 0px;
   border-radius: 20px;
   background-color: #2e89b7;
+  overflow:auto;
 }
 
 .txt_ciudad {
@@ -21,16 +23,16 @@
   color: #1e6299;
   font-size: 2em;
 }
+.pastilla_ciudad.active{
+  border: 8px none #ff9b00;
+  background-color: white;
+  box-shadow: #fc751b 0px 0px 0px 7px inset;
+}
 .pastilla_ciudad {
   margin-top: 20px;
   padding: 1px;
   border-radius: 20px;
   background-color: #c7dcea;
-}
-.pastilla_ciudad.active{
-  border: 8px none #ff9b00;
-  background-color: white;
-  box-shadow: #fc751b 0px 0px 0px 7px inset;
 }
 .pastilla_ciudad:hover {
   border: 8px none #ff9b00;
@@ -64,9 +66,9 @@
   line-height: 35px;
 }
 
-
-
 /* tabs seccion izquierda */
+
+.nav-tabs { border-bottom: none !important;}
 .nav-tabs>li>a {border: none !important;}
 .data-information-section {
   height: 90px;
@@ -100,6 +102,7 @@ ul.nav-tabs li.active{
   border-radius: 0px 0px 20px 20px;  
 }
 .pastilla_ciudad {
+  /*height: 100%;*/
   max-height: 100%;
   border-radius: 20px;
   background-color: #c7dcea;
@@ -109,16 +112,18 @@ ul.nav-tabs li.active{
 
 /* emisora columna derecha */
 div.content-emisoras {
-    height: 100%;
+    /*height: 100%;*/
     padding: 20px 20px 2px;
     border-radius: 20px;
     background-color: #375364;
+  overflow: auto;
 }
 div.emisora {
   margin-bottom: 22px;
     border-radius: 25px;
     background-color: #5c7586;
     text-align: left;
+  height:90px;
 }
 p.text_ciudad {
   margin-top: 21px;
@@ -138,9 +143,9 @@ img.imagen-emisora-peque { width: 100%; padding-top: 15px;}
 div.switch-emisora { padding-top: 25px;}
 /* switch */
 div.check-switch-graphics {
-  height: 40px !important;
-    border: 0 !important;
-  margin-top: 3vh;
+  height: 35px !important;
+  border: 0 !important;
+  margin-top: 2vh;
 } 
 .bootstrap-switch {border: none !important;}
 .bootstrap-switch-primary {
@@ -153,55 +158,138 @@ div.check-switch-graphics {
 
 /* responsive */
 
-@media (min-width: 992px) and (max-width: 1200px){
+@media (min-width: 1025px) and (max-width: 1280px) and (orientation: landscape){
 
+    .data-information-section {
+      height: auto; overflow: auto;
+    }
+    .txt_titular { margin-top: 10px; font-size: 20px;}
+    check-switch.bootstrap-switch { padding-top: 10px !important;}
+    div.switch-emisora {
+      padding-top: 17px;
+    }   
+    p.text_ciudad {
+      font-size: 22px;
+      line-height: 22px;
+    }
+    .txt_ciudad { font-size: 20px !important;}
+    span.year-text { font-size: 20px !important;}
+    .data-information-section { margin-top: 2px; }
+    span.comparative {display: none;} 
+    div.emisora {height: auto; overflow: auto; padding: 5px; }
+    .tabs-graficos {
+      padding-bottom: 15px;
+    } 
+    ul.nav-tabs li a img { display: none;}  
 }
 
 @media (max-width: 1024px) and (orientation: landscape){
-  
-    
+    .data-information-section {
+          height: 90px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    div.tab-content div.tab-pane.active{
+      padding-top: 10px !important;
+    }
+    .txt_titular { font-size: 20px !important; margin-top: 0px !important;}
+    div.check-switch-graphics { padding-top:10px;}
+    p.text_ciudad {
+      font-size: 22px;
+      line-height: 22px;
+    }
+    .txt_ciudad { font-size: 20px !important;}
+    span.year-text { font-size: 20px !important;}
+    .data-information-section { margin-top: 2px; }
+    span.comparative {display: none;} 
+    div.emisora { }
+    .pastilla_ciudad {  }
+    div.emisora .bootstrap-switch{float:right;}
+    .tabs-graficos {
+      padding-bottom: 15px;
+    } 
+    ul.nav-tabs li a img { display: none;}
 }
 
 @media (max-width: 1024px) and (orientation: portrait){
-   ul.nav-tabs li{width: 43%;}
-  .contenido_graphics { 
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-  }
-  .content-emisora {
-    margin-bottom: 20px;
-  } 
+    div.tab-content div.tab-pane.active{
+      padding-top: 10px !important;
+    }
+    .nav-tabs {
+      border-bottom: none !important;
+      /*margin-bottom: -20px !important;*/
+      clear: both !important;
+    }
+    .txt_titular { font-size: 20px; margin: 0px !important;}
+    div.check-switch-graphics { padding:0px; margin:0px;}
+    .tab-pane { padding-bottom: 10px !important; }
+    ul.nav-tabs li{width: 43%;}    
+    .contenido_graphics{ 
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+    }
+    .content-emisora {
+      margin-bottom: 20px;
+    } 
+    p.text_ciudad {
+      font-size: 20px;
+      line-height: 26px;
+    }
+    .txt_ciudad { font-size: 19px !important;}
+    span.year-text { font-size: 21px !important;}
+    ul.nav-tabs li a img {display: none;}
+    .data-information-section {
+      height: auto; overflow: auto;
+      }
+    span.comparative {display: none;} 
+    div.emisora { height: auto; overflow: auto;}
+    .pastilla_ciudad {  }
 }
 
-@media (max-width: 767px) and (orientation: portrait){
-    p.text_ciudad {font-size: 19px;}
+@media (max-width: 767px) and (orientation: landscape) {
+    p.text_ciudad {font-size: 19px; }
     span.comparative {font-size: 3vh;}
     img.imagen-emisora-peque { width: 153%;}
     .switch-emisora { margin-top: 20px;}
-    .txt_titular{font-size: 1.6em;}
-    .txt_ciudad {font-size: 1.4em;}
+    .txt_titular{font-size: 1em; text-transform:uppercase; font-weight:bold; line-height:16px; margin-top: 18px !important;}
+        .nav-tabs>li>a { padding:0;}    
     span.year-text{font-size: 1.5em;}
     .pastilla_ciudad {padding: 0px; height: auto;}
-    div.emisora {height: 156px;}
+    div.emisora {height: auto; overflow: auto;}
     .emisoras {text-align: center;}
-    div.switch-emisora {padding: 0px; margin:0px; margin-left: 20px;}
+    div.switch-emisora {padding: 0px; margin:0px; margin-top: 15px;}
         .tab-content>.active {
             display: block;
             overflow: auto;
+           padding-left:5px; padding-right:5px;
         }
-
-}
-
-@media (max-width: 767px) and (orientation: landscape){
-    p.text_ciudad {font-size: 6vh;}
-    span.comparative {font-size: 5vh;}
-    img.imagen-emisora-peque { width: 100px;}
-    div.switch-emisora {padding: 0px; margin-left: 10px;}
-    div.emisora {
-      height: 138px;
+    .txt_ciudad { font-size: 19px !important; line-height:19px; padding: 15px;}
+    span.year-text { font-size: 21px !important;}
+    ul.nav-tabs li a img {display: none;}
+    .data-information-section {
+      height: 53px !important;
+      margin-top: 2px !important; 
     }
-.tab-content>.active {
-            display: block;
-            overflow: auto;
-        }   
+
 }
+
+@media (max-width: 767px) and (orientation: portrait) {
+    .tab-content>.active { padding-top: 10px;}
+    .txt_titular { font-size: 1em; text-transform:uppercase; font-weight:bold; line-height:16px; margin-top: 5px !important;}
+    span.comparative {display: none;} 
+    div.emisora {overflow:auto; height:auto; clear:both; padding-right: 9px; padding-left: 7px;}
+    .pastilla_ciudad {padding:1px; margin-top:10px; }
+        .clm_2_graph{padding-left:0px; padding-right:0px;}
+        .data-information-section{padding-left:5px; padding-right:5px;} 
+        div.content-emisoras  {padding:10px 10px 0px 10px;}    
+        div.emisora .bootstrap-switch{float:right; }
+    div.emisora div.switch-emisora.bilbao {padding-bottom: 15px; padding-top: 17px;}
+    div.switch-emisora {}
+    p.text_ciudad { margin-top: 16px;  padding-bottom: 9px; font-size:18px;}
+    p.text_ciudad.bilbao {
+      padding-top: 5px;
+    }
+        .layout-columns{padding:3px;}
+
+}
+

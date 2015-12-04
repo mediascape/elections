@@ -9,13 +9,10 @@
 }
 .web_component_izda {
   display: inline-block;
-  height: 100%;
+  /*height: 100%;*/
   background-color: #dee8ef;
 }
-.body {
-  border-radius: 20px;
-  background-color: #173f56;
-}
+
 .nombre_ciudad {
   color: rgba(255, 255, 255, 0.26);
   font-size: 1em;
@@ -150,7 +147,7 @@
 }
 .radio_btn_pausa {
   margin: 20px;
-  width:50%;
+  width:80%;
 }
 .radio_ecualizador_centrar {
   margin-top: 43px;
@@ -193,11 +190,9 @@
     padding-right: 20px;
     padding-left: 0px;
   }
-  .contenido-radio {
-    height: 100%;
-  }
+
   .boton_play_pause {
-    width: 46%;
+    width: 45%;
     height: 150px;
     margin-top: 21px;
     margin-bottom: 20px;

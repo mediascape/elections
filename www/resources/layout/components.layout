@@ -71,19 +71,12 @@
   icon:../resources/images/icons_manag/table.png;
 }
 
-#graph{
-  order:5;
-  rwidth:400px;
-  propx:400;
-  propy:350;
-  icon:../resources/images/icons_manag/Irunea.png;
 
-}
 #graph1{  
   order:6;
   rwidth:400px;
   propx:400;
-  propy:350;
+  propy:300;
   icon:../resources/images/icons_manag/Bilbo.png;
 
 }
@@ -92,7 +85,7 @@
   order:7;
   rwidth:400px;
   propx:400;
-  propy:350;
+  propy:300;
   icon:../resources/images/icons_manag/Donostia.png;
 
 }

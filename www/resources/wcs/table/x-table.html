@@ -168,7 +168,7 @@ Polymer({
 			scope.time=1;
 	
 			this.value='irunea';//iruñea por defecto
-			scope.$.seatNum.innerHTML='Escaños a repartir 26'
+			scope.$.seatNum.innerHTML='Escaños: 26'
 			scope.drawTable(scope.resultsData,scope.time,scope.where);
 
 		});
@@ -252,16 +252,16 @@ Polymer({
 		else if(this.value==='nafarroa') where=7;
 		
 		if(this.value==='irunea'){
-			this.$.seatNum.innerHTML='Escaños a repartir 26';
+			this.$.seatNum.innerHTML='Escaños: 26';
 		}
 		else if(this.value==='donostia'){
-			this.$.seatNum.innerHTML='Escaños a repartir 27';
+			this.$.seatNum.innerHTML='Escaños: 27';
 		}
 		else if(this.value==='bilbo'){
-			this.$.seatNum.innerHTML='Escaños a repartir 25';
+			this.$.seatNum.innerHTML='Escaños: 25';
 		}
 		else if(this.value==='gasteiz'){
-			this.$.seatNum.innerHTML='Escaños a repartir 27';
+			this.$.seatNum.innerHTML='Escaños: 27';
 		}
 
     	this.where = where;
@@ -275,10 +275,10 @@ Polymer({
 			this.$.counting.innerHTML=this.$.counting.innerHTML+'%';
 		}
 		if(time===0){
-			this.$.year.innerHTML='2011';
+			this.$.year.innerHTML=results.results[time].places[where].name+' 2011';
 		}
 		else{
-			this.$.year.innerHTML='2015';
+			this.$.year.innerHTML=results.results[time].places[where].name+' 2015';
 		}
 		for (var i=0;i<6;i++){
 

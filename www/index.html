@@ -18,7 +18,8 @@
 <link href="../resources/css/configPanel/css/camara.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="../resources/css/style.css"/>
 <link rel="stylesheet" type="text/css" href="../resources/css/animate.css"/>
-
+<link rel="stylesheet" href="../resources/css/swiper.min.css">
+<link href="../resources/css/carousel.css" rel="stylesheet">
 
 <!-- NEEDED SCRIPTS -->
 <script  src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.17/webcomponents-lite.js"></script>
@@ -30,6 +31,7 @@
 <script src="../resources/css/configPanel/js/bootstrap-switch.js"></script>
 <script async src="../resources/libs/utils.js"></script>
 <script src="../resources/css/configPanel/js/classie.js"></script>
+
 
 <!-- NEEDED SCRIPTS END -->
 
@@ -61,7 +63,7 @@ document.addEventListener('adaptationToolkit-ready',function(data){
         // IF want to apply to all device same layout it can be used as
         // UI.useLayout('accordion')
         // Device type that knows about: Desktop,Mobile,Tablet,Tv
-        UI.useLayout({deviceTypes:[{deviceType:'desktop',layout:'verticalMenu'},
+        UI.useLayout({deviceTypes:[{deviceType:'desktop',layout:'carousel'},
                      {deviceType:'Tablet',layout:'pip'}]});
         var location = "http://"+window.location.host+window.location.pathname;
 
@@ -71,14 +73,19 @@ document.addEventListener('adaptationToolkit-ready',function(data){
             AE.on('actionchange', UI.onComponentsChange);
             mediascape.AdaptationToolkit.uiComponents.addController();
 
+
+
+
+
         });
+        
 
 });
 
 
 </script>
 </head>
-<body style="overflow: hidden;margin-left:-8px;margin-top:-8px;">
+<body style="margin-left:-8px;margin-top:-8px;">
 
  <!-- Definition of each webcompoent -->
   <x-media  id="video1" file="../resources/media/ETB2_new.mp4"  ismuted="true"></x-media>
@@ -99,5 +106,8 @@ document.addEventListener('adaptationToolkit-ready',function(data){
 <script>
 new loadingPanel('/resources/images/MediaScapelogo_gif-720.gif',10);
 </script>
+
+
+ 
 </body>
 </html>

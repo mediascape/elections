@@ -1,20 +1,20 @@
 
 .twitter-selector-container div {
-	margin: auto;
-	margin-top: 20px;
-	height: 43%;
-	background-color: white;
-	vertical-align: middle !important;
+  margin: auto;
+  margin-top: 20px;
+  height: 43%;
+  background-color: white;
+  vertical-align: middle !important;
 }
 
 .twitter-selector-container div.twitter-hashtag{
-	width: 100%;
-	background-color: #99d5f2;	
-	color: white;	
-	-webkit-border-radius: 26px;
-	-moz-border-radius: 26px;
-	border-radius: 26px;
-	border: 8px solid #99d5f2;
+  width: 100%;
+  background-color: #99d5f2;  
+  color: white; 
+  -webkit-border-radius: 26px;
+  -moz-border-radius: 26px;
+  border-radius: 26px;
+  border: 8px solid #99d5f2;
 }
 .twitter-selector-container div.twitter-hashtag:hover {border-color:#fc9200; }
 .twitter-selector-container div.twitter-hashtag div {background: transparent !important; }
@@ -24,9 +24,9 @@ div.seleccion-hashtag .select-hashtag {background-color: #dcf1ff; width: 65%;}
 p.titulo-seccion {font-size: 3vw; color: white;}
 /* switch */
 .twitter-selector-container div.check-switch-twitter {
-	min-height: 250px !important;
-	border: 0 !important;
-	padding-top: 7vh;
+  height: 250px !important;
+  border: 0 !important;
+  padding-top: 7vh;
 } 
 .bootstrap-switch {border: none !important;}
 .bootstrap-switch-primary {
@@ -37,14 +37,15 @@ p.titulo-seccion {font-size: 3vw; color: white;}
 .bootstrap-switch-label {background-color: white !important;}
 
 .twitter-selector-container div.twitter-topic{
-	width: 100%;
-	background-color: #397caa;
-	margin-top: 30px;
-	color: white;
-	-webkit-border-radius: 26px;
-	-moz-border-radius: 26px;
-	border-radius: 26px;
-	border: 8px solid #397caa;
+  width: 100%;
+  background-color: #397caa;
+  margin-top: 30px;
+  color: white;
+  margin-bottom: 40px;
+  -webkit-border-radius: 26px;
+  -moz-border-radius: 26px;
+  border-radius: 26px;
+  border: 8px solid #397caa;
 }
 .twitter-selector-container div.twitter-topic:hover {border-color: #fc9200; }
 .twitter-selector-container div.twitter-topic div {background-color: transparent !important;}
@@ -52,18 +53,59 @@ p.titulo-seccion {font-size: 3vw; color: white;}
 
 div.seleccion-hashtag{ padding-top: 6%;}
 
+@media (min-width: 1250px) and (max-width: 1280px) and (orientation: landscape) and(max-height: 700px){
+  .twitter-selector-container div.twitter-hashtag {
+    height: 230px !important;
+
+  }
+  .twitter-selector-container div.twitter-topic {
+    height: 230px !important;
+  }
+  div.seleccion-hashtag { padding-top: 3% !important } 
+
+}
+
 @media (max-width: 992px){
-    .twitter-selector-container div.check-switch{border:1px solid red; height:auto; clear:both; min-height:auto !important; padding-top:0; padding-left:40%; margin-bottom:20px;}
+    .twitter-selector-container div.check-switch-twitter{border:1px solid red; height:auto; clear:both; min-height:auto !important; padding-top:40px; padding-left:40%; margin-bottom:20px;}
 }
 
 @media (min-width: 992px) and (max-width: 1200px){
-	
+  
 }
 
-@media (max-width: 1024px){
-
+@media (max-width: 1024px) and (orientation: landscape){
+  .twitter-selector-container div.twitter-hashtag {
+    height: 250px !important;
+    
+  }
+  .twitter-selector-container div.twitter-topic {
+    height: 250px !important;
+  }
+  div.seleccion-hashtag { padding-top: 4% !important }  
+  
 }
 
-@media (max-width: 767px){
+@media (max-width: 992px) and (orientation: portrait) {
+    .template-content {         min-height: 91%;  padding: 0px 10px;}
+    .twitter-selector-container div {
+	 
+	  height: 38%;
+	  
+	}
+	div.check-switch-twitter { margin-bottom: 20px !important;}
+}
 
+/*@media (max-width: 480px)and (orientation: portrait) {
+  .twitter-selector-container div.twitter-topic div img, .twitter-selector-container div.twitter-hashtag div img {
+    width: 50px;
+  }
+}*/
+@media (max-width: 668px) {
+  .twitter-selector-container div.twitter-topic div img, .twitter-selector-container div.twitter-hashtag div img {
+    width: 50px;
+  }
+  div.seleccion-hashtag { font-size: 16px;}
+  .twitter-selector-container div { margin-top: 10px !important;}
+  .twitter-selector-container div.twitter-topic { margin-top: 10px !important;}
+  .twitter-selector-container div.check-switch-twitter { margin-top: 20px !important;}
 }

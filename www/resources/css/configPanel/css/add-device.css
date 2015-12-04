@@ -1,23 +1,23 @@
 .fullwidth-template {
-	/*background: url('http://detele.es/wp-content/uploads/2012/04/hay-una-cosa-que-te-quiero-decir-plato-jorge-javier-vazquez-2.jpg');*/
-	background-size: cover;
+    /*background: url('http://detele.es/wp-content/uploads/2012/04/hay-una-cosa-que-te-quiero-decir-plato-jorge-javier-vazquez-2.jpg');*/
+    background-size: cover;
 }
 
 .section-add-device {
-	text-align: center;
-	background: rgba(43, 69, 128, 0.8);
+    text-align: center;
+    background: rgba(43, 69, 128, 0.8);
 }
 .add-device-content {
-	background-color: transparent;
+    background-color: transparent;
     margin: auto !important;
-    float: none;	
-	height: 100% !important;
+    float: none;    
+    height: 100% !important;
 }
 .add-device-content  .qr-code-content { margin-top: 60px;}
 .add-device-content  .qr-code-content img { }
 .add-device-content  a {color: white; font-size: 3vw; margin-top: 10px;}
 .add-device-content .qr-code-toy {
-	right: 0;
+    right: 0;
     position: absolute;
     bottom: -40px;
     left: 0;
@@ -72,33 +72,37 @@
     animation-name: bounceInUp; 
 }
 
-@media (min-width: 992px) and (max-width: 1200px){
+/* responsive */
 
+@media (min-width: 1024px) and (max-width: 1280px) and (orientation: landscape){
+    .add-device-content .qr-code-toy {
+            bottom: 0px !important;
+    }
 }
 
 @media (max-width: 1024px) and (orientation: landscape){
-        .qr-code-toy img {width: 74%;}
-         .add-device-content img{width:74%}
-                
+        .add-device-content .qr-code-toy img {width: 74%;}
+        
 }
 
 @media (max-width: 1024px) and (orientation: portrait){
-         .qr-code-toy img {width: 100%;}
-        .add-device-content img{width:100%}
-
+        .add-device-content .qr-code-toy img {width: 100%;}
+        .template-content .template-content-center {     min-height: 100vh;}
+        
 }
 
 @media (max-width: 767px) and (orientation: portrait){
-         .qr-code-content img {width: 74%;}
-         .add-device-content img{width:74%;}
+        .add-device-content .qr-code-content img {width: 74%;}
+        .template-content .template-content-center {     min-height: 100vh;}
 }
 
 @media (max-width: 767px) and (orientation: landscape){
-         .qr-code-content img { width: 25%;}
-         .add-device-content img{width:25%;}
-
-        .qr-code-toy img {width: 54%;}
-        .add-device-content img{width:54%;} 
+        .add-device-content .qr-code-content img { width: 25%;}
+        .add-device-content .qr-code-toy img {width: 54%;}
+        .add-device-content .qr-code-content { margin-top: 5%; }
+        .template-content .template-content-center { min-height: 100vh; }
 }
 
-
+@media (max-width: 768px){
+    
+}

@@ -87,7 +87,22 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
           document.querySelector('x-media').play();
         }
       }
-    
+      
+      if(document.querySelector('#swContainer')){
+
+        
+       for(var i=0;i<components.length;i++){
+        if(document.querySelector('#swContainer').querySelector('#'+components[i].id)){
+         var node=document.querySelector('#'+components[i].id);
+         componentsContainer.appendChild(node);
+        
+        }
+      }
+        document.querySelector('#swContainer').parentNode.removeChild(document.querySelector('#swContainer'));
+        if(document.querySelector('x-media')){
+          document.querySelector('x-media').play();
+        }
+      }
 
       if(componentsContainer.querySelector('#arrows')){
         componentsContainer.removeChild(componentsContainer.querySelector('#arrows'));
@@ -106,6 +121,8 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
     }
     verticalMenu.render = function (cmps,show,resize){
 
+    document.body.style.backgroundColor='white';
+      document.body.style.padding='';
     var container=document.querySelector('#componentsContainer');
     container.style.display='inline-block';
     container.style.overflowX='';
@@ -312,6 +329,22 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
 
       }
       
+      if(document.querySelector('#swContainer')){
+
+        
+       for(var i=0;i<cmps.length;i++){
+        if(document.querySelector('#swContainer').querySelector('#'+cmps[i].id)){
+         var node=document.querySelector('#'+cmps[i].id);
+         componentsContainer.appendChild(node);
+        
+        }
+        }
+        document.querySelector('#swContainer').parentNode.removeChild(document.querySelector('#swContainer'));
+        if(document.querySelector('x-media')){
+          document.querySelector('x-media').play();
+        }
+      
+      }
 
       if(componentsContainer.querySelector('#arrows')){
         componentsContainer.removeChild(componentsContainer.querySelector('#arrows'));
