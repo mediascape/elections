@@ -269,7 +269,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
           fullScreenCmp.style.marginTop='0px';
           fullScreenCmp.style.backgroundColor='white';
           fullScreenCmp.style.zIndex='1';
-
+          fullScreenCmp.className="col-md-12 col-sm-12 col-xs-12 layout-fullwidth";
 
         usedHeight=0;
         for(var i=0;i<col_cmps;i++){
@@ -283,7 +283,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
           cmpsToColumn[i].style.backgroundColor='black';
           cmpsToColumn[i].style.zIndex='2';
           usedHeight=usedHeight+heights[2*i]+heights[2*i+1];
-
+          cmpsToColumn[i].className='right-content-panel';
 
 
         }
@@ -301,7 +301,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
         fullScreenCmp.style.marginTop='0px';
         fullScreenCmp.style.backgroundColor='white';
         fullScreenCmp.style.zIndex='1';
-
+        fullScreenCmp.className="col-md-12 col-sm-12 col-xs-12 layout-fullwidth";
         
         for(var i=0;i<col_cmps;i++){
 
@@ -313,7 +313,8 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
           cmpsToColumn[i].style.marginTop=20+(i*row_height)+(i*10)+'px';
           cmpsToColumn[i].style.backgroundColor='black';
           cmpsToColumn[i].style.zIndex='2';
-
+          cmpsToColumn[i].className='right-content-panel';
+          
 
         }
 

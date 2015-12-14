@@ -1259,6 +1259,7 @@ var qrSection=function(url){
 
 		
 
+
 		mediascape.association.createQRcode(url,qrdiv,(30*width/100),(30*width/100),'',(25*width/100),50);
 		
 		

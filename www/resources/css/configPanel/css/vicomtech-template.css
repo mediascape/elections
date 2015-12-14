@@ -59,6 +59,13 @@ font-weight:500;  text-transform:uppercase;  display: table; width:100%;  }
 .responsive-menu-button{padding:0; margin:0; position:absolute; width:48px; height:48px; top:0; right:0; z-index:9999999; display:none;}
 .responsive-menu-button button{display:block; width:48px; height:48px; background-color:#1E53BB; color:#fff; border:0; font-size:20px;}
 
+
+
+.right-content-panel{background-color:#397baa; border:5px solid #ccc; height:20vh; margin:2vh 0;
+box-shadow:0px 0px 10px rgba(0,0,0,0.5);}
+
+
+
 @media (min-width: 992px) and (max-width: 1200px){
     .menu-sidebar .sidebar-menu ul li a span i{font-size: 7vh;}
     .menu-sidebar .sidebar-menu ul li a span strong{font-size:inherit;}
