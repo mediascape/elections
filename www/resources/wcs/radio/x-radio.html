@@ -5,28 +5,34 @@
 <template>
 	<style >
 
-	#container{
-		background-color: #0A2533;
-		padding: 15px;
-	}
-	.content-detalle-radio .radio-component-panel{background-color:#000003; overflow:auto; border-radius:15px; padding:3%;}
-	.content-detalle-radio .radio-component-panel img{width:100%;}
-	.content-detalle-radio .radio-component-panel .logo-radio{background-color:#317da7; border-radius:15px;}
-	.content-detalle-radio .radio-component-panel .equal {padding-top:15px;}
+#container {
+	background-color: #0A2533;
+	padding: 15px;
+}
+.content-detalle-radio .radio-component-panel{background-color:#000003; overflow:auto; border-radius:15px; padding:3%;}
+.content-detalle-radio .radio-component-panel img{width:100%;}
+.content-detalle-radio .radio-component-panel .logo-radio{background-color:#317da7; border-radius:15px;}
+.content-detalle-radio .radio-component-panel .equal {padding-top:15px;}
 
-	.radio-component-panel-all .radio-title p{font-family: 'Montserrat', sans-serif; font-size:7vw; color:#ffffff; text-align:center;}
+.radio-component-panel-all .radio-title p{font-family: 'Montserrat', sans-serif; font-size:7vw; color:#ffffff; text-align:center;}
 
-	@media (max-width: 992px){
-	}
-	@media (max-width: 768px){
-	    .radio-component-panel-all .radio-title p{font-size:9vw;}
-	}
+@media (min-width: 992px){
+	 p{font-size:50px;}
+}
+@media (max-width: 768px){
+ p{font-size:large;}
+}
 
-	@media (max-width: 700px) and (orientation: landscape){
-	    .content-detalle-radio .radio-component-panel .logo-radio{width:50%; float:left;}
-	    .content-detalle-radio .radio-component-panel .equal {width:50%; float:right;}
-	    .radio-component-panel-all .radio-title p{font-size:8vw;}
-	}
+@media (max-width: 700px) and (orientation: landscape){
+    .logo-radio{width:50%; float:left;}
+    .equal {width:50%; float:right;}
+    p{font-size:large;}
+}
+@media (max-width: 700px) and (orientation: portrait){
+    .logo-radio{width:100%; float:none;}
+    .equal {width:100%; float:none;}
+    p{font-size:large;}
+}
 
 </style>
 

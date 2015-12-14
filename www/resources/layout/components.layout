@@ -57,7 +57,7 @@
 
 }
 #results{
-  order:1;
+  order:6;
   rwidth:460px;
   propx:460;
   propy:460;
@@ -73,7 +73,7 @@
 
 
 #graph1{  
-  order:6;
+  order:1;
   rwidth:400px;
   propx:400;
   propy:300;

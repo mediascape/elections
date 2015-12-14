@@ -6,7 +6,10 @@
 <dom-module id="x-graphic" >
 <template>
 <style>
-
+:host {
+    display: block;
+    
+  }
 #ext {
 	background-color: #0A2533;
 	padding: 15px;
@@ -62,54 +65,439 @@ div.logo-patidos img { width: 115px; background-color: #FFF; padding: 10px; -web
 
 /* responsive */
 
-@media (min-width: 768px) and (max-width: 1200px) and (orientation: portrait){
-    .content-progress{width:100% !important;}
-}
+
 
 @media (max-width: 1024px) and (orientation: landscape){
-	div.content-detalle-graphs {overflow:auto;}	
-	h1{font-size: 42px;text-transform: uppercase;}
-	h2{font-size: 25px;}
+	.content-progress{width:50% !important;padding-left:30px; margin-top:0px;}
+	.content-detalle-graphs {overflow:auto;}	
+	h1 {font-size: 32px; margin:0; float:left; color:#748c99;}
+    h2 { font-size: 32px;   margin-bottom:30px; float:right;}
+	.media-body{
+		vertical-align: middle;
+	}
+	#logo1{
+		margin-top: 19px;
+		width: 115px;
+		height:115px;
+	}	
+	#logo2{
+		margin-top: 19px;
+		width: 115px;
+		height:115px;
+	}
+	#logo3{
+		margin-top: 19px;
+		width: 115px;
+		height:115px;
+	}
+	#logo4{
+		margin-top: 19px;
+		width: 115px;
+		height:115px;
+	}
+	#logo5{
+		margin-top: 19px;
+		width: 115px;
+		height:115px;
+	}
+	#logo6{
+		margin-top: 19px;
+		width: 115px;
+		height:115px;
+	}
+	#ext{
+		zoom: 100%;
+	}
+	#last1{display:block;}
+	#last2{display:block;}
+	#last3{display:block;}
+	#last4{display:block;}
+	#last5{margin-top: 0px;}
+	#last6 {margin-top: 0px;}
 		
 }
+@media (min-width: 1025px) and (orientation: landscape){
+	.content-progress{width:50% !important; float:left; padding-left:30px; margin-top:0px;}
+	.content-detalle-graphs {overflow:auto;}	
+	.media-body{
+		vertical-align: middle;
+	}
+
+	h1 {font-size: 42px; margin:0; float:left; color:#748c99;}
+    h2 { font-size: 42px;   margin-bottom:30px; float:right;}
+	#logo1{
+		padding-top: 10px;
+		width: 115px;
+		height: 115px;
+	}	
+	#logo2{
+		padding-top: 10px;
+		width: 115px;
+		height: 115px;
+	}
+	#logo3{
+		padding-top: 10px;
+		width: 115px;
+		height: 115px;
+	}
+	#logo4{
+		padding-top: 10px;
+		width: 115px;
+		height: 115px;
+	}
+	#logo5{
+		padding-top: 10px;
+		width: 115px;
+		height: 115px;
+	}
+	#logo6{
+		padding-top: 10px;
+		width: 115px;
+		height: 115px;
+	}	
+	#ext{
+		zoom: 100%;
+	}
+	#last1{display:block;}
+	#last2{display:block;}
+	#last3{display:block;}
+	#last4{display:block;}
+	#last5{margin-top: 0px;}
+	#last6 {margin-top: 0px;}
+}
+
 
 @media (max-width: 1024px) and (orientation: portrait){
-	div.content-detalle-graphs {overflow:auto;}	
-	h1{font-size: 42px;text-transform: uppercase;}
-	h2{font-size: 25px;}	
+	.content-progress{width:100% !important;}
+	h1{font-size: 25px; margin:5px 0px;}
+	h2 { font-size: 20px;  margin:3px 10px; float:left;}
+	.media-body{
+		vertical-align: middle;
+	}
+	.content-detalle-graphs {overflow:auto;}
+    .content-progress{padding-left:0; margin-top:0px;}
+ 	#ext{
+		zoom: 77%;
+	}
+	#logo1 {
+       width: 60px;
+       height: 60px;
+	}
+	#logo2 {
+       width: 60px;
+       height: 60px;
+	}
+	#logo3 {
+       width: 60px;
+       height: 60px;
+	}
+	#logo4 {
+       width: 60px;
+       height: 60px;
+	}
+	#logo5 {
+       width: 60px;
+       height: 60px;
+	}
+	#logo6 {
+       width: 60px;
+       height: 60px;
+	}
+	#last1{display:block;}
+	#last2{display:block;} 
+	#last3{display:block;}
+	#last4{display:block;}
+	#last5{margin-top: 0px;}
+	#last6 {margin-top: 0px;}
 }
 
 @media (max-width: 767px) and (orientation: portrait){
-	div.logo-patidos img {
-		margin-top: 19px;
-		width: 75px;
-	}	
-	h1{font-size: 25px; margin:5px 0px; text-transform: uppercase;}
-	h2{font-size: 20px; margin:0; }
-	div.content-detalle-graphs {overflow:auto;}
+	.content-progress{width:100% !important;}
+	h1{font-size: 25px; margin:5px 0px;}
+	h2 { font-size: 20px;  margin:3px 10px; float:left;}
+	.media-body{
+		vertical-align: middle;
+	}
+	.content-detalle-graphs {overflow:auto;}
     .content-progress{padding-left:0; margin-top:0px;}
-    
-}
-
-@media (max-width: 767px) and (orientation: landscape){
-	div.logo-patidos img {
-		margin-top: 19px;
-		width: 75px;
-	}	
-	
-	div.content-detalle-graphs {overflow:auto;}
-    .content-progress{width:50% !important; float:left; padding-left:0; margin-top:0px;}
-    h1 {font-size: 25px; margin:0; float:left; text-transform: uppercase; }
-    h2 { font-size: 20px;  margin:3px 10px; float:left;}
-}
-
-@media (max-width: 400px) and (orientation: landscape){
-	#ext{
-		zoom: 75%;
+ 	#ext{
+		zoom: 77%;
 	}
-	div.logo-patidos img {
+	#logo1 {
        width: 60px;
+       height: 60px;
 	}
+	#logo2 {
+       width: 60px;
+       height: 60px;
+	}
+	#logo3 {
+       width: 60px;
+       height: 60px;
+	}
+	#logo4 {
+       width: 60px;
+       height: 60px;
+	}
+	#logo5 {
+       width: 60px;
+       height: 60px;
+	}
+	#logo6 {
+       width: 60px;
+       height: 60px;
+	}
+	#last1{display:block;}
+	#last2{display:block;} 
+	#last3{display:block;}
+	#last4{display:block;}
+	#last5{margin-top: 0px;}
+	#last6 {margin-top: 0px;}
+}
+@media (max-width: 767px) and (orientation: landscape){
+	.content-progress{width:100% !important;}
+	h1{font-size: 25px; margin:5px 0px;}
+	h2 { font-size: 20px;  margin:3px 10px; float:left;}
+	.media-body{
+		vertical-align: middle;
+	}
+	.content-detalle-graphs {overflow:auto;}
+    .content-progress{padding-left:0; margin-top:0px;}
+ 	#ext{
+		zoom: 77%;
+	}
+	#logo1 {
+       width: 60px;
+       height: 60px;
+	}
+	#logo2 {
+       width: 60px;
+       height: 60px;
+	}
+	#logo3 {
+       width: 60px;
+       height: 60px;
+	}
+	#logo4 {
+       width: 60px;
+       height: 60px;
+	}
+	#logo5 {
+       width: 60px;
+       height: 60px;
+	}
+	#logo6 {
+       width: 60px;
+       height: 60px;
+	}
+	#last1{display:block;}
+	#last2{display:block;} 
+	#last3{display:block;}
+	#last4{display:block;}
+	#last5{margin-top: 0px;}
+	#last6 {margin-top: 0px;}
+}
+
+@media (max-width: 667px) {
+	
+	.media-body{
+		vertical-align: middle;
+	}	
+	.content-detalle-graphs {overflow:auto;}
+    .content-progress{width:50% !important; float:left; padding-left:0; margin-top:0px;}
+    h1 {font-size: 25px; margin:0; float:left; }
+    h2 { font-size: 20px;  margin:3px 10px; float:left;}
+	#ext{
+		zoom: 60% !important;
+	}
+	#logo1 {
+       width: 60px;
+       height: 60px;
+	}
+	#logo2 {
+       width: 60px;
+       height: 60px;
+	}
+	#logo3 {
+       width: 60px;
+       height: 60px;
+	}
+	#logo4 {
+       width: 60px;
+       height: 60px;
+	}
+	#logo5 {
+       width: 60px;
+       height: 60px;
+	}
+	#logo6 {
+       width: 60px;
+       height: 60px;
+	}
+	#last1{display:block;}
+	#last2{display:block;}
+	#last3{display:block;}
+	#last4{display:block;}
+	#last5{margin-top: 0px;}
+	#last6 {margin-top: 0px;}
+}
+
+@media (max-width: 480px) and (orientation: landscape){
+	#ext{
+		zoom: 59% !important;
+	}
+	.media-body{
+		vertical-align: middle;
+	}
+	#logo1 {
+       width: 60px;
+       height: 60px;
+	}
+	#logo2 {
+       width: 60px;
+       height: 60px;
+	}
+	#logo3 {
+       width: 60px;
+       height: 60px;
+	}
+	#logo4 {
+       width: 60px;
+       height: 60px;
+	}
+	#logo5 {
+       width: 60px;
+       height: 60px;
+	}
+	#logo6 {
+       width: 60px;
+       height: 60px;
+	}
+	#last1{display:block;}
+	#last2{display:block;}
+	#last3{display:block;}
+	#last4{display:block;}
+	#last5{margin-top: 0px;}
+	#last6 {margin-top: 0px;}
+    .content-detalle-graphs{padding-left:10px;}
+}
+@media (max-width: 480px) and (orientation: landscape) and (max-height:220px) {
+	.media-body{
+		vertical-align: middle;
+	}
+	#logo1 {
+       width: 60px;
+       height: 60px;
+	}
+	#logo2 {
+       width: 60px;
+       height: 60px;
+	}
+	#logo3 {
+       width: 60px;
+       height: 60px;
+	}
+	#logo4 {
+       width: 60px;
+       height: 60px;
+	}
+	#logo5 {
+       width: 60px;
+       height: 60px;
+	}
+	#logo6 {
+       width: 60px;
+       height: 60px;
+	}
+	#last1{display:none;}
+	#last2{display:none;}
+    .content-detalle-graphs{padding-left:10px;}
+    #last3{display:block;}
+	#last4{display:block;}
+	#last5{margin-top: 0px;}
+	#last6 {margin-top: 0px;}
+}
+@media (max-width: 480px) and (orientation: landscape) and (max-height:180px) {
+	.media-body{
+		vertical-align: middle;
+	}
+
+	#logo1 {
+       width: 85px;
+       height: 85px;
+	}
+	#logo2 {
+       width: 85px;
+       height: 85px;
+	}
+	#logo3 {
+       width: 60px;
+       height: 60px;
+	}
+	#logo4 {
+       width: 60px;
+       height: 60px;
+	}
+	#logo5 {
+       width: 60px;
+       height: 60px;
+	}
+	#logo6 {
+       width: 60px;
+       height: 60px;
+	}
+	#last1{display:none;}
+	#last2{display:none;}
+	#last3{display:none;}
+	#last4{display:none;}
+	#last5{margin-top: 20px;}
+	#last6 {margin-top: 20px;}
+    .content-detalle-graphs{padding-left:10px;}
+}
+@media (max-width: 480px) and (orientation: portrait){
+
+	.content-progress{width:100%!important;padding-left:0px; margin-top:0px}
+	#ext{
+		zoom: 59% !important;
+	}
+
+	h1{font-size: 25px; margin:5px 0px;}
+	h2 { font-size: 25px;  margin:3px 10px; float:right;}
+	.media-body{
+		vertical-align: middle;
+	}
+	.content-detalle-graphs {overflow:auto;}
+    
+	#logo1 {
+       width: 60px;
+       height: 60px;
+	}
+	#logo2 {
+       width: 60px;
+       height: 60px;
+	}
+	#logo3 {
+       width: 60px;
+       height: 60px;
+	}
+	#logo4 {
+       width: 60px;
+       height: 60px;
+	}
+	#logo5 {
+       width: 60px;
+       height: 60px;
+	}
+	#logo6 {
+       width: 60px;
+       height: 60px;
+	}
+	#last1{display:block;}
+	#last2{display:block;} 
+	#last3{display:block;}
+	#last4{display:block;}
+	#last5{margin-top: 0px;}
+	#last6 {margin-top: 0px;}
 }
 
 
@@ -120,9 +508,9 @@ div.logo-patidos img { width: 115px; background-color: #FFF; padding: 10px; -web
 	<h1 id='placeName'>LUGAR</h1>
 	<h2 id='count'>ESCRUTINIO</h2>
 
-	<div class="media content-progress">
+	<div id='last6' class="media content-progress col-sm-6">
 					<div class="media-left logo-patidos">
-						<img id='logo1' class="media-object" src="detalle-graph/logo-psoe-transp.png" alt="psoe">
+						<img id='logo1' class="media-object" src="" alt="psoe">
 					</div>					
 					<div class="media-body content-progress-bars">
 							<div class="progress">
@@ -140,9 +528,9 @@ div.logo-patidos img { width: 115px; background-color: #FFF; padding: 10px; -web
 					</div>
 				</div>
 				<!-- cada progreso -->
-				<div class="media content-progress">
+				<div id='last5' class="media content-progress col-sm-6">
 					<div class="media-left logo-patidos">
-						<img id='logo2' class="media-object" src="detalle-graph/logo-PNV-transp.png" alt="psoe">
+						<img id='logo2' class="media-object" src="" alt="psoe">
 					</div>					
 					<div class="media-body content-progress-bars">
 							<div class="progress">
@@ -160,9 +548,9 @@ div.logo-patidos img { width: 115px; background-color: #FFF; padding: 10px; -web
 					</div>
 				</div>
 				<!-- cada progreso -->
-				<div class="media content-progress">
+				<div id='last4' class="media content-progress col-sm-6">
 					<div class="media-left logo-patidos">
-						<img id='logo3' class="media-object" src="detalle-graph/logo-Bildu-transp.png" alt="psoe">
+						<img id='logo3' class="media-object" src="" alt="psoe">
 					</div>					
 					<div class="media-body content-progress-bars">
 							<div class="progress">
@@ -180,9 +568,9 @@ div.logo-patidos img { width: 115px; background-color: #FFF; padding: 10px; -web
 					</div>
 				</div>
 				<!-- cada progreso -->
-				<div class="media content-progress">
+				<div id='last3' class="media content-progress col-sm-6">
 					<div class="media-left logo-patidos">
-						<img id='logo4' class="media-object" src="detalle-graph/logo-pp-transp.png" alt="psoe">
+						<img id='logo4' class="media-object" src="" alt="psoe">
 					</div>					
 					<div class="media-body content-progress-bars">
 							<div class="progress">
@@ -200,9 +588,9 @@ div.logo-patidos img { width: 115px; background-color: #FFF; padding: 10px; -web
 					</div>
 				</div>
 				<!-- cada progreso -->
-				<div class="media content-progress">
+				<div id='last2' class="media content-progress col-sm-6">
 					<div class="media-left logo-patidos">
-						<img id='logo5' class="media-object" src="detalle-graph/logo-podemos-transp.png" alt="psoe">
+						<img id='logo5' class="media-object" src="" alt="psoe">
 					</div>					
 					<div class="media-body content-progress-bars">
 							<div class="progress">
@@ -221,9 +609,9 @@ div.logo-patidos img { width: 115px; background-color: #FFF; padding: 10px; -web
 				</div>
 
 				<!-- cada progreso -->
-				<div class="media content-progress">
+				<div id='last1' class="media content-progress col-sm-6">
 					<div class="media-left logo-patidos">
-						<img id='logo6' class="media-object" src="detalle-graph/logo-podemos-transp.png" alt="psoe">
+						<img id='logo6' class="media-object" src="" alt="psoe">
 					</div>					
 					<div class="media-body content-progress-bars">
 							<div class="progress">
@@ -427,7 +815,7 @@ return {
 	updatePastBars:function(dataToShow){
 
 		for(var i=1;i<dataToShow.length;i++){
-			this.querySelector('#logo'+i).src="resources/images/icons/"+dataToShow[i].icon;
+			this.querySelector('#logo'+i).src="../resources/images/icons/"+dataToShow[i].icon;
 			this.querySelector('#num'+i+'year11').innerHTML=dataToShow[i][2011];
 			this.querySelector('#num'+i+'year11').style.color=dataToShow[i].color11;
 			this.querySelector('#bar'+i+'year11').style.backgroundColor=dataToShow[i].color11;
