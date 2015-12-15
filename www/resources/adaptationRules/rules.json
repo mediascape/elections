@@ -1,5 +1,6 @@
 {
     "name": "FileName: Multi-device adaptation behaviour descriptor for the multi-device adaptation engine",
+    "applicationAttributes":["route","msg"],
     "explicitRules": {
         "name": "explicit",
         "enabled": false,
@@ -263,7 +264,7 @@
                     "duplicable":false,
                     "needs":"none"
                 },
-                
+
                 {
                     "componentId": "graph",
                     "required": false,

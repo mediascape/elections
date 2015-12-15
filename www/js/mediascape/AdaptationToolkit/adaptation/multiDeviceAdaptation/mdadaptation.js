@@ -69,6 +69,7 @@ function($, applicationContext){
     var changeType = "ui";
     // the list to record the capabilities involved in the rule file
     var required_capability_list = [];
+    var rules = {};
 
     /*['battery', 'camera', 'deviceMotion', 'deviceOrientation', 'deviceType',
     'geolocation', 'language',
@@ -329,14 +330,11 @@ function($, applicationContext){
         // listen to the events that cause changes to the capabilities involved in the rule file
         var availableCapabilities = e.diff.capabilities;
 
-        console.log(availableCapabilities);
-        console.log(required_capability_list);
-
         if( availableCapabilities.hasOwnProperty(capability) == true && availableCapabilities[capability] === 'supported' ) {
           console.log('subscribe to the change of ' + capability + ' for agent id = ' + e.agentid);
           // subscribe the change of all demanded capabilities for remote agents
           e.agentContext.on(capability, function(key, value) {
-            console.log('capture a capability value change event key = ' + key + ' value = ' + value + ' from agent id = ' + e.agentid);
+            //console.log('capture a capability value change event key = ' + key + ' value = ' + value + ' from agent id = ' + e.agentid);
             if( key && value ) {
               var change = {};
               change['type'] = 'CAPABILITY_CHANGE';
@@ -364,8 +362,6 @@ function($, applicationContext){
 
     // the handler to process the change events from the application context
     var onAgentsChange = function (e){
-      console.log(e);
-      console.group("Agent change");
       if( e.agentContext == null ){
         var change = {};
         change['type'] = 'AGENT_LEFT';
@@ -390,7 +386,6 @@ function($, applicationContext){
         }
         else {
           console.log(e.key);
-          console.log("Agent value change");
           var change = {};
           change['type'] = 'VALUE_CHANGE';
           change['agentid'] = e.agentid;
@@ -418,9 +413,9 @@ function($, applicationContext){
 
 
     // initialize the loaded adaptation plugins with their associated rule inputs
-    var initPlugins = function(rules) {
+    var initPlugins = function(_rules) {
       var inputs = [];
-
+      rules = _rules;
       // explicit rule
       inputs.push(rules['explicitRules']);
 
@@ -459,8 +454,10 @@ function($, applicationContext){
 
   // parse the input json file to extract rules and constraints
   var loadJSONRules = function(file) {
+
     $.getJSON(file, function(rules){
       // set up for the personal adaptation to take care of user preference
+
       if( rules['userPreferences'].enabled == true ) {
         // add one new capability named "operation" to propagate the move/duplicate operations triggered by the user
         var instruments = {};
@@ -482,11 +479,17 @@ function($, applicationContext){
 
       // listen to the change events of the application context
       applicationContext.on('agentchange', onAgentsChange);
+      rules.applicationAttributes.forEach(function(at){
+        applicationContext.on(at,function(e){
+            var appAttributeEvent = new CustomEvent('appAttributeChange',{'detail':{key:e.key,value:e.value}});
+            document.dispatchEvent(appAttributeEvent);
+        });
+      });
       });
   };
 
   // get registed rules or plugins
-  this.getRules = function(file) {
+  this.getRules = function() {
     return rules;
   };
   /**
@@ -530,7 +533,6 @@ function($, applicationContext){
   };
   // Start point for shared context, must be start up at main app
   this.startApplicationContext = function (){
-    console.log("STARTING APPLICATION CONTEXT");
     var applicationID ="Mediascape";
     map = mediascape.mappingService({maxTimeout:6000});
     // Already exists a group
@@ -543,15 +545,13 @@ function($, applicationContext){
     }
     var _this = this;
     map.getGroupMapping(_this.GROUP_ID).then(function (data1) {
-      console.log("MAPPING");
-      if (!applicationContext) {
+       if (!applicationContext) {
         applicationContext = mediascape.applicationContext(data1.group,{
           autoClean: true,
         });
 
       }
       local_agent_id = applicationContext.getAgents().self.agentid;
-      console.log("mapping service READY/");
       var evt = new CustomEvent("applicationContext-ready", { "detail": "application context ready" });
       document.dispatchEvent(evt);
 
@@ -663,6 +663,9 @@ function($, applicationContext){
     else {
       console.warn("No change made it",agentId,cmpId,cmd);
     }
+  }
+  this.setAppAttribute= function(key,value){
+      applicationContext.setItem(key,value);
   }
 
 };
