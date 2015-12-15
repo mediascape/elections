@@ -163,6 +163,9 @@ window.addEventListener('components-ready',(function(_this){return function(){
               {
                 mediaFlags[j]=true;
               }
+              else {
+                return false;
+              }
             }
         }
         else if(and[j].indexOf('min-width')>-1){
@@ -171,7 +174,10 @@ window.addEventListener('components-ready',(function(_this){return function(){
               if (parseInt(currentWidth)>=width)
               {
                 mediaFlags[j]=true;
-              }           
+              }
+              else {
+                return false;
+              }
             }
         }
         if(and[j].indexOf("max-height")>-1){
@@ -182,6 +188,9 @@ window.addEventListener('components-ready',(function(_this){return function(){
               {
                 mediaFlags[j]=true;
               }
+              else {
+                return false;
+              }
             }
         }
         else if(and[j].indexOf('min-height')>-1){
@@ -190,7 +199,10 @@ window.addEventListener('components-ready',(function(_this){return function(){
               if (parseInt(currentHeight)>=height)
               {
                 mediaFlags[j]=true;
-              }           
+              }
+              else {
+                return false;
+              }
             }
         }
         else if(and[j].indexOf('min-aspect-ratio')>-1){
@@ -202,6 +214,9 @@ window.addEventListener('components-ready',(function(_this){return function(){
               {
                 mediaFlags[j]=true;
               }
+              else {
+                return false;
+              }
             }
         }
         else if(and[j].indexOf('orientation')>-1){
@@ -209,10 +224,16 @@ window.addEventListener('components-ready',(function(_this){return function(){
             if(parseInt(currentWidth)>=parseInt(currentHeight)){
               mediaFlags[j]=true;
             }
+            else {
+              return false;
+            }
           }
           else if(and[j].split('orientation:')[1].indexOf('portrait')>-1){
             if(parseInt(currentWidth)<parseInt(currentHeight)){
               mediaFlags[j]=true;
+            }
+            else {
+              return false;
             }
           }
         }
