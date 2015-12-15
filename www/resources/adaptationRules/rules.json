@@ -226,7 +226,7 @@
                 {
                     "componentId": "graph2",
                     "required": false,
-                    "bestfit": "biggestScreenSize",
+                    "bestfit": "touchable",
                     "movable": true,
                     "duplicable":false,
                     "needs":"none"
@@ -234,7 +234,7 @@
                 {
                     "componentId": "graph3",
                     "required": false,
-                    "bestfit": "biggestScreenSize",
+                    "bestfit": "touchable",
                     "movable": true,
                     "duplicable":false,
                     "needs":"none"
@@ -242,7 +242,7 @@
                 {
                     "componentId": "graph4",
                     "required": false,
-                    "bestfit": "biggestScreenSize",
+                    "bestfit": "touchable",
                     "movable": true,
                     "duplicable":false,
                     "needs":"none"

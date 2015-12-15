@@ -229,10 +229,8 @@ window.addEventListener('components-ready',(function(_this){return function(){
    for(var l=0;l<mediaRule.length;l++){
      for (var m = 0 ; m < mediaRule[l].cssRules.length; m++){
        var classes = mediaRule[l].cssRules[m].selectorText.split('.');
-       var selector = classes[0];
-       if (classes[0]!='')
-          obj[selector] = mediaRule[l].cssRules[m].cssText.split('{')[1].split('}')[0];
-       else continue;
+       var selector = (classes[0]==="" && classes.length>0)?classes[1]:classes[0]; 
+       if(mediaRule[l].cssRules[m].selectorText.indexOf('.')===0)selector='.'+selector;         
        var style = mediaRule[l].cssRules[m].style;
        var elem=[];
        elem =   this.querySelectorAll(''+selector);
