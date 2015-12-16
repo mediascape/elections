@@ -15,7 +15,6 @@
      done:false,
    },
    created:function(){
-   console.log('component-query created COMSTATUS');
    var self = this;
    var toObserve = this.impl ? this.impl :this;
    document.addEventListener ('contextUpdate',this.contextUpdate.bind(this));

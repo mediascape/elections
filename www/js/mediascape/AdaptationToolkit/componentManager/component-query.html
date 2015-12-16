@@ -27,7 +27,6 @@
      done:false,
    },
    created:function(){
-   console.log('component-query created');
    var self = this;
    var toObserve = this.impl ? this.impl :this;
    //this.done = true;
@@ -250,8 +249,8 @@ window.addEventListener('components-ready',(function(_this){return function(){
    for(var l=0;l<mediaRule.length;l++){
      for (var m = 0 ; m < mediaRule[l].cssRules.length; m++){
        var classes = mediaRule[l].cssRules[m].selectorText.split('.');
-       var selector = (classes[0]==="" && classes.length>0)?classes[1]:classes[0]; 
-       if(mediaRule[l].cssRules[m].selectorText.indexOf('.')===0)selector='.'+selector;         
+       var selector = (classes[0]==="" && classes.length>0)?classes[1]:classes[0];
+       if(mediaRule[l].cssRules[m].selectorText.indexOf('.')===0)selector='.'+selector;
        var style = mediaRule[l].cssRules[m].style;
        var elem=[];
        elem =   this.querySelectorAll(''+selector);

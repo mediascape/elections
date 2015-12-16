@@ -70,7 +70,7 @@ function($, applicationContext){
     // the list to record the capabilities involved in the rule file
     var required_capability_list = [];
     var rules = {};
-
+    var listeningAgents = [];
     /*['battery', 'camera', 'deviceMotion', 'deviceOrientation', 'deviceType',
     'geolocation', 'language',
     'microphone', 'navigatorProduct', 'onLine',
@@ -302,10 +302,14 @@ function($, applicationContext){
           }
         },this);
       }
-      mediascape.AdaptationToolkit.componentManager.core.setComponentsStatus(status);
-      var event = new CustomEvent("onComponentsChange", {"detail":{"type":"localChange","cmps":status,"agentid":change.agentid}});
-      document.dispatchEvent(event);
-      AE.notifyUpdateContext(context,"cmp_changed",change.agentid);
+      var statusBefore = mediascape.AdaptationToolkit.componentManager.core.getComponentsStatus();
+      var diff =  mediascape.AdaptationToolkit.Utils.getObjectDiff(statusBefore,status);
+      if (diff.length>0 || statusBefore.length===0 ){
+        mediascape.AdaptationToolkit.componentManager.core.setComponentsStatus(status);
+        var event = new CustomEvent("onComponentsChange", {"detail":{"type":"localChange","cmps":status,"agentid":change.agentid}});
+        document.dispatchEvent(event);
+        AE.notifyUpdateContext(context,"cmp_changed",change.agentid);
+      }
     }
 
     // update the shared context object
@@ -374,7 +378,8 @@ function($, applicationContext){
         notifiAgentChange('left',e.agentid)
       } else if( e.agentContext ) {
         console.log(e);
-        if (!e.diff.capabilities.hasOwnProperty("touchScreen")){
+
+        if (Object.keys(e.diff.capabilities).length === 0){
           console.log("Agent JOIN");
           var change = {};
           change['type'] = 'AGENT_JOIN';
@@ -386,6 +391,7 @@ function($, applicationContext){
         }
         else {
           console.log(e.key);
+
           var change = {};
           change['type'] = 'VALUE_CHANGE';
           change['agentid'] = e.agentid;
@@ -393,7 +399,6 @@ function($, applicationContext){
           change['key'] = e.key;
           change['capabilities'] = e.diff.capabilities;
           change['agentContext'] = e.agentContext;
-
           onUpdateContext(change);
         }
         subscribeAgentCapabilities(e);
