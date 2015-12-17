@@ -1661,7 +1661,7 @@ var trendingMap=function(){
 		p3.innerHTML='Map and trending topic';
 
 		var p4=document.createElement('p');
-		p4.innerHTML='Here you can activate the trending topic icon that will show <br/>the map with each zone and the politic party which have more tweets';
+		p4.innerHTML='Here you can activate a map showing the trending party of each region';
 
 		div5.appendChild(p3);
 		div5.appendChild(p4);
