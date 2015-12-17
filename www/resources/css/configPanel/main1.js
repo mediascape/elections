@@ -221,7 +221,7 @@ var ControlPanel= function (url){
 
 		var item6=new menuItem();
 		item6.setText('Graphics');
-		item6.setIcon('zmdi zmdi-view-quilt');
+		item6.setIcon('zmdi zmdi-equalizer');
 		item6.setSection('graphics');
 		menu1.addItem(item6);
 
