@@ -238,8 +238,6 @@ var ControlPanel= function (url){
 
 
 
-
-
 	}
 	this.addItem=function(item){
 		this.items.push(item);
@@ -824,6 +822,12 @@ var ControlPanel= function (url){
 				this.activeSection=sectionName;
 				this.activeDevice=this.selfID;
 			}
+			if(this.activeSection===''){
+			document.querySelector('#fullTemp').style.width='auto';
+			}
+			else{
+				document.querySelector('#fullTemp').style.width='100%';
+			}
 		}
 
 
@@ -905,10 +909,22 @@ var ControlPanel= function (url){
 	this.hide=function(){
 		document.querySelector('#fullTemp').style.display='none';
 		this.showing=false;
+		if(this.activeSection===''){
+			document.querySelector('#fullTemp').style.width='auto';
+		}
+		else{
+			document.querySelector('#fullTemp').style.width='100%';
+		}
 	}
 	this.show=function(){
 		document.querySelector('#fullTemp').style.display='block';
 		this.showing=true;
+		if(this.activeSection===''){
+			document.querySelector('#fullTemp').style.width='auto';
+		}
+		else{
+			document.querySelector('#fullTemp').style.width='100%';
+		}
 	}
 	this.controlPanel();
 }
@@ -1233,6 +1249,7 @@ var layoutSection=function(){
 	this.render=function(){
 		var div=document.createElement('div');
 		div.className='template-content-center';
+		div.id='layoutCont';
 		var layoutCol=document.createElement('div');
 		layoutCol.className="col-md-12 layout-columns";
 		var scope=this;
@@ -1253,15 +1270,20 @@ var qrSection=function(url){
 		var extDiv=document.createElement('div');
 		extDiv.className='template-content-center add-device-content';
 		var width=window.innerWidth ||document.documentElement.clientWidth ||document.body.clientWidth;
-		extDiv.style.width=width;
+		//extDiv.style.width=width;
 		var qrdiv=document.createElement('div');
 		qrdiv.className='qr-code-content';
 
+		if(width<767)leftMargin=35*width/100;
+        else leftMargin=25*width/100;
+        mediascape.association.createQRcode(url,qrdiv,(30*width/100),(30*width/100),'',leftMargin,50);
 		
+		/*
+			
 
+	
+		*/
 
-		mediascape.association.createQRcode(url,qrdiv,(30*width/100),(30*width/100),'',(25*width/100),50);
-		
 		
 		//var qrimg=document.createElement('img');
 		//qrimg.src="../resources/css/configPanel/img/qr/qrcode.png";
@@ -1452,7 +1474,7 @@ var camerasSection=function(){
 
 		var extDiv=document.createElement('div');
 		extDiv.className='template-content-center ';
-
+		extDiv.id='camerasCont';
 		var div1=document.createElement('div');
 		div1.className='col-md-12 layout-columns';
 
@@ -1878,7 +1900,7 @@ var radioSection=function(){
 	this.render=function(){
 		var div1=document.createElement('div');
 		div1.className='template-content-center';		
-
+		div1.id='radioCont';
 		div1.appendChild(this.radioComponent[0].render());
 
 		return div1;
@@ -2218,7 +2240,7 @@ var graph=function(){
 		
 
 		var div32=document.createElement('div');
-		div32.className='col-md-8 col-sm-8 col-xs-8';
+		div32.className='col-md-8 col-sm-8 col-xs-8 cityName';
 		var p5=document.createElement('p');
 		p5.className='text_ciudad';
 		p5.innerHTML=this.place;
@@ -2290,7 +2312,7 @@ var graphicSection=function(){
 	this.render=function(){
 		var div1=document.createElement('div');
 		div1.className='template-content-center';
-
+		div1.id='graphicCont';
 		var div2=document.createElement('div');
 		div2.className='col-md-12 layout-columns';
 

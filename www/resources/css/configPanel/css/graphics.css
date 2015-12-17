@@ -4,7 +4,7 @@
   font-size: 2em;
 }
 .clm_2_graph {
-  height: 100%;
+  /*height: 100%;*/
   padding-right: 15px;
   padding-left: 15px;
 }
@@ -123,7 +123,7 @@ div.emisora {
     border-radius: 25px;
     background-color: #5c7586;
     text-align: left;
-  height:90px;
+  height:70px;
 }
 p.text_ciudad {
   margin-top: 21px;
@@ -193,7 +193,7 @@ div.check-switch-graphics {
       padding-top: 10px !important;
     }
     .txt_titular { font-size: 20px !important; margin-top: 0px !important;}
-    div.check-switch-graphics { padding-top:10px;}
+    div.check-switch-graphics { padding-top:0px;margin-top: 2vh;}
     p.text_ciudad {
       font-size: 22px;
       line-height: 22px;
@@ -221,7 +221,8 @@ div.check-switch-graphics {
       clear: both !important;
     }
     .txt_titular { font-size: 20px; margin: 0px !important;}
-    div.check-switch-graphics { padding:0px; margin:0px;}
+
+    .check-switch-graphics { padding-top:0px; margin:0px;margin-top: 2vh;}
     .tab-pane { padding-bottom: 10px !important; }
     ul.nav-tabs li{width: 43%;}    
     .contenido_graphics{ 
@@ -270,6 +271,7 @@ div.check-switch-graphics {
       height: 53px !important;
       margin-top: 2px !important; 
     }
+    div.check-switch-graphics { width:auto; margin-top: 1.5vh;}
 
 }
 
@@ -282,7 +284,7 @@ div.check-switch-graphics {
         .clm_2_graph{padding-left:0px; padding-right:0px;}
         .data-information-section{padding-left:5px; padding-right:5px;} 
         div.content-emisoras  {padding:10px 10px 0px 10px;}    
-        div.emisora .bootstrap-switch{float:right; }
+        div.emisora.bootstrap-switch{float:right; }
     div.emisora div.switch-emisora.bilbao {padding-bottom: 15px; padding-top: 17px;}
     div.switch-emisora {}
     p.text_ciudad { margin-top: 16px;  padding-bottom: 9px; font-size:18px;}
@@ -290,6 +292,28 @@ div.check-switch-graphics {
       padding-top: 5px;
     }
         .layout-columns{padding:3px;}
+    div.check-switch-graphics { width:auto; margin-top: 1.5vh;}
+
+}
+@media (max-width: 470px) and (orientation: portrait) {
+    .tab-content>.active { padding-top: 10px;}
+    .txt_titular { font-size: 1em; text-transform:uppercase; font-weight:bold; line-height:16px; margin-top: 5px !important;}
+    span.comparative {display: none;} 
+    div.emisora {overflow:auto; height:auto; clear:both; padding-right: 9px; padding-left: 7px;}
+    .pastilla_ciudad {padding:1px; margin-top:10px; }
+        .clm_2_graph{padding-left:0px; padding-right:0px;}
+        .data-information-section{padding-left:5px; padding-right:5px;} 
+        div.content-emisoras  {padding:10px 10px 0px 10px;}    
+        div.emisora.bootstrap-switch{float:right; }
+    div.emisora div.switch-emisora.bilbao {padding-bottom: 15px; padding-top: 17px;}
+    div.switch-emisora {}
+    p.text_ciudad { margin-top: 16px;  padding-bottom: 9px; font-size:15px;}
+    p.text_ciudad.bilbao {
+      padding-top: 5px;
+    }
+        .layout-columns{padding:3px;}
+    div.check-switch-graphics { width:100px; margin-top: 2vh;}
+    .cityName{width:55%;}
 
 }
 
