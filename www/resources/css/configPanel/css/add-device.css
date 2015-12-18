@@ -4,9 +4,11 @@
 }
 
 .section-add-device {
-    text-align: center;
+    
     background: rgba(43, 69, 128, 0.8);
 }
+.qr-code-toy{text-align:center;}
+.qr-code-content{text-align:center;}
 .add-device-content {
     background-color: transparent;
     margin: auto !important;

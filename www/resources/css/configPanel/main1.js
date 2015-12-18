@@ -221,7 +221,7 @@ var ControlPanel= function (url){
 
 		var item6=new menuItem();
 		item6.setText('Graphics');
-		item6.setIcon('zmdi zmdi-view-quilt');
+		item6.setIcon('zmdi zmdi-equalizer');
 		item6.setSection('graphics');
 		menu1.addItem(item6);
 
@@ -233,8 +233,6 @@ var ControlPanel= function (url){
 
 
 		document.body.appendChild(this.render(''));
-
-
 
 
 
@@ -640,6 +638,19 @@ var ControlPanel= function (url){
 						}*/
 
 						//}
+						if(sections[i].name.indexOf(event.detail.agentid)===0 &&
+								sectionDiv[i].querySelector('#radioViewBut')!==null){
+							if(changes[j].newValue==='hide'){
+
+								sectionDiv[i].querySelector('#radioViewBut').src='../resources/css/configPanel/img/radio/Radio_btn_play.png';
+								sectionDiv[i].querySelector('#radioEq').src='../resources/css/configPanel/img/radio/Radio-animacion-off-estatico.png';
+
+							}
+							else if(changes[j].newValue==='show'){
+								sectionDiv[i].querySelector('#radioViewBut').src='../resources/css/configPanel/img/radio/Radio_btn_pausa.png';
+								sectionDiv[i].querySelector('#radioEq').src='../resources/css/configPanel/img/radio/animacion-ecualizador_transp.gif';
+							}
+						}
 						//Sound/mute
 						//else{
 						if(changes[j].newValue==='mutePlayer' || changes[j].newValue==='soundPlayer'){
@@ -824,6 +835,12 @@ var ControlPanel= function (url){
 				this.activeSection=sectionName;
 				this.activeDevice=this.selfID;
 			}
+			if(this.activeSection===''){
+			document.querySelector('#fullTemp').style.width='auto';
+			}
+			else{
+				document.querySelector('#fullTemp').style.width='100%';
+			}
 		}
 
 
@@ -905,10 +922,22 @@ var ControlPanel= function (url){
 	this.hide=function(){
 		document.querySelector('#fullTemp').style.display='none';
 		this.showing=false;
+		if(this.activeSection===''){
+			document.querySelector('#fullTemp').style.width='auto';
+		}
+		else{
+			document.querySelector('#fullTemp').style.width='100%';
+		}
 	}
 	this.show=function(){
 		document.querySelector('#fullTemp').style.display='block';
 		this.showing=true;
+		if(this.activeSection===''){
+			document.querySelector('#fullTemp').style.width='auto';
+		}
+		else{
+			document.querySelector('#fullTemp').style.width='100%';
+		}
 	}
 	this.controlPanel();
 }
@@ -1218,6 +1247,16 @@ var layout=function(){
 	}
 
 }
+var notificationSection=function(){
+	this.render=function(){
+		var div=document.createElement('div');
+		div.className='template-content-center add-device-ok';
+		var img1=document.createElement('img');
+		img1.src='./resources/css/configPanel/img/OK-new-device.png';
+		div.appendChild(img1);
+		return div;
+	}
+}
 
 var layoutSection=function(){
 	this.layouts=[];
@@ -1233,6 +1272,7 @@ var layoutSection=function(){
 	this.render=function(){
 		var div=document.createElement('div');
 		div.className='template-content-center';
+		div.id='layoutCont';
 		var layoutCol=document.createElement('div');
 		layoutCol.className="col-md-12 layout-columns";
 		var scope=this;
@@ -1253,24 +1293,13 @@ var qrSection=function(url){
 		var extDiv=document.createElement('div');
 		extDiv.className='template-content-center add-device-content';
 		var width=window.innerWidth ||document.documentElement.clientWidth ||document.body.clientWidth;
-		extDiv.style.width=width;
+		//extDiv.style.width=width;
 		var qrdiv=document.createElement('div');
 		qrdiv.className='qr-code-content';
 
-		
-
-
-		mediascape.association.createQRcode(url,qrdiv,(30*width/100),(30*width/100),'',(25*width/100),50);
-		
-		
-		//var qrimg=document.createElement('img');
-		//qrimg.src="../resources/css/configPanel/img/qr/qrcode.png";
-
-		//var p=document.createElement('p');
-		//p.innerHTML='www.paginaweb.com';
-
-		//qrdiv.appendChild(qrimg);
-		//qrdiv.appendChild(p);
+		if(width<767)leftMargin=35*width/100;
+        else leftMargin=25*width/100;
+        mediascape.association.createQRcode(url,qrdiv,(30*width/100),(30*width/100),'',leftMargin,50);
 
 		var animationdiv=document.createElement('div');
 		animationdiv.id='animated-example';
@@ -1452,7 +1481,7 @@ var camerasSection=function(){
 
 		var extDiv=document.createElement('div');
 		extDiv.className='template-content-center ';
-
+		extDiv.id='camerasCont';
 		var div1=document.createElement('div');
 		div1.className='col-md-12 layout-columns';
 
@@ -1639,7 +1668,7 @@ var trendingMap=function(){
 		p3.innerHTML='Map and trending topic';
 
 		var p4=document.createElement('p');
-		p4.innerHTML='Here you can activate the trending topic icon that will show <br/>the map with each zone and the politic party which have more tweets';
+		p4.innerHTML='Here you can activate a map showing the trending party of each region';
 
 		div5.appendChild(p3);
 		div5.appendChild(p4);
@@ -1744,7 +1773,7 @@ var radios=function(){
 			img1.src='../resources/css/configPanel/img/radio/animacion-ecualizador_transp.gif';
 		}
 		else{
-			img1.src='../resources/css/configPanel/img/radio/Radio-animacion-off-estático.png';
+			img1.src='../resources/css/configPanel/img/radio/Radio-animacion-off-estatico.png';
 		}
 		div10.appendChild(img1);
 
@@ -1878,7 +1907,7 @@ var radioSection=function(){
 	this.render=function(){
 		var div1=document.createElement('div');
 		div1.className='template-content-center';		
-
+		div1.id='radioCont';
 		div1.appendChild(this.radioComponent[0].render());
 
 		return div1;
@@ -2218,7 +2247,7 @@ var graph=function(){
 		
 
 		var div32=document.createElement('div');
-		div32.className='col-md-8 col-sm-8 col-xs-8';
+		div32.className='col-md-8 col-sm-8 col-xs-8 cityName';
 		var p5=document.createElement('p');
 		p5.className='text_ciudad';
 		p5.innerHTML=this.place;
@@ -2290,7 +2319,7 @@ var graphicSection=function(){
 	this.render=function(){
 		var div1=document.createElement('div');
 		div1.className='template-content-center';
-
+		div1.id='graphicCont';
 		var div2=document.createElement('div');
 		div2.className='col-md-12 layout-columns';
 

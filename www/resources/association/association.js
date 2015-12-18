@@ -76,7 +76,7 @@ define( ["jquery","qrcode"], function($) {
 						//urlElement.style.height="20px";
 						//urlElement.style.fontSize='30px';
 						//urlElement.style.textAlign='center';
-						urlElement.style.marginLeft='-20%';
+						//urlElement.style.marginLeft='33.33vw';
 						//urlElement.style.marginTop=marginTop+"px";
 						//urlElement.style.color='white';
 						associationCode.appendChild(urlElement);
