@@ -71,12 +71,13 @@ function($, applicationContext){
     var required_capability_list = [];
     var rules = {};
     var listeningAgents = [];
+    var agentStack = {};
     /*['battery', 'camera', 'deviceMotion', 'deviceOrientation', 'deviceType',
     'geolocation', 'language',
     'microphone', 'navigatorProduct', 'onLine',
     'orientation', 'platform', 'screenSize',
     'shake', 'userProximity', 'vibrate']; */
-
+    var firstTime = true;
     var plugins = [];
 
     // the callback functions to inform the others (e.g., UI engine) about the actions
@@ -177,31 +178,7 @@ function($, applicationContext){
     // called whenever a change happens to the shared context
     var updateContext = function(change) {
       var diff = null;
-      if (change.capability === "componentsStatus") diff = getChangeDiff(change.agentid,change.value);
-      if (diff != null ){
-        if (change.diff ) {diff = change.diff; change.capability ="componentsStatus"}
-        context.lastChange = {key:change.capability,value:change.value,diff:diff};
-        context.agentid = change.agentid;
-        if(diff[0])
-        if (diff[0].property === "customCmd" && UIChangeEvents.indexOf(diff[0].newValue) !== -1 ) changeType = "data";
-        else changeType = "ui";
-      }
-      else {
-        if ( change.capability !== "componentsStatus" )
-        {
-          context.lastChange = {key:change.capability,value:change.value,diff:null};
-          context.agentid = change.agentid;
-          changeType = "ui";
-        }
-      }
-      if( change.type === 'CAPABILITY_CHANGE' ) {
-
-        console.log('********************* capability change event **********************');
-        console.log(change,key);
-
-        var agent = getAgentById(change.agentid);
-        agent.capabilities[change.capability] = change.value;
-      } else if( change.type === 'AGENT_JOIN' ) {
+      if( change.type === 'AGENT_JOIN' ) {
         if( hasAgent(change.agentid) == false) {
           // new agent joined, add it into the list
           var cnt = addCounter(change.agentid);
@@ -238,6 +215,35 @@ function($, applicationContext){
       }
 
     };
+
+    var updateCapibilityContext = function(changes){
+
+              console.log('********************* capabilities change event **********************');
+              console.log(changes,key);
+              changes.forEach (function(change){
+                    var diff = null;
+                    if (change.capability === "componentsStatus") diff = getChangeDiff(change.agentid,change.value);
+                    if (diff != null ){
+                      if (change.diff ) {diff = change.diff; change.capability ="componentsStatus"}
+                      context.lastChange = {key:change.capability,value:change.value,diff:diff};
+                      context.agentid = change.agentid;
+                      if(diff[0])
+                      if (diff[0].property === "customCmd" && UIChangeEvents.indexOf(diff[0].newValue) !== -1 ) changeType = "data";
+                      else changeType = "ui";
+                    }
+                    else {
+                      if ( change.capability !== "componentsStatus" )
+                      {
+                        context.lastChange = {key:change.capability,value:change.value,diff:null};
+                        context.agentid = change.agentid;
+                        changeType = "ui";
+                      }
+                    }
+                    var agent = getAgentById(change.agentid);
+                    agent.capabilities[change.capability] = change.value;
+            });
+
+    }
 
     // react on the context change, the core function of the designed hybrid adaptation
     var hybridAdaptation = function(change) {
@@ -315,7 +321,8 @@ function($, applicationContext){
     // update the shared context object
     var onUpdateContext = function (change) {
       // adapt to the current context change
-      updateContext(change);
+      if (change.contextType === "agentChange") updateContext(change);
+      if (change.contextType === "capabilityChange") updateCapibilityContext(change);
       // Check if all capabilities are collected before shared with decision plugins
       var needInfoReady = context.agents.every (function(ag){
         if (ag.capabilities.hasOwnProperty('touchScreen') && ag.capabilities.hasOwnProperty('screenSize')) return true;
@@ -328,15 +335,17 @@ function($, applicationContext){
     // subscribe all demanded agent capabilities
     var subscribeAgentCapabilities = function(e) {
       console.log('subscribe agent capabilities',required_capability_list);
+      agentStack[e.agentid] = {contextType:'capabilityChange',time:new Date().getTime(),changes:[],oldtime:new Date().getTime()};
       for(var i=0; i<required_capability_list.length; i++){
         var capability = required_capability_list[i];
 
         // listen to the events that cause changes to the capabilities involved in the rule file
         var availableCapabilities = e.diff.capabilities;
 
-        if( availableCapabilities.hasOwnProperty(capability) == true && availableCapabilities[capability] === 'supported' ) {
+        if( availableCapabilities.hasOwnProperty(capability) == true  ) {
           console.log('subscribe to the change of ' + capability + ' for agent id = ' + e.agentid);
           // subscribe the change of all demanded capabilities for remote agents
+
           e.agentContext.on(capability, function(key, value) {
             //console.log('capture a capability value change event key = ' + key + ' value = ' + value + ' from agent id = ' + e.agentid);
             if( key && value ) {
@@ -355,8 +364,39 @@ function($, applicationContext){
                   mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAgents ()['self'].setItem('layoutEvent','');
                 }
               }
+              // Crear un pila para evitar sobre saturar el sistema
+             agentStack[e.agentid].time = new Date().getTime();
+             var timeDiff = Math.abs( agentStack[e.agentid].oldtime - agentStack[e.agentid].time );
+             console.log("TIME",timeDiff);
+             if (timeDiff > 600){
+                  clearTimeout(agentStack[e.agentid].timeout);
+                  agentStack[e.agentid].changes.contextType = "capabilityChange";
+                  agentStack[e.agentid].changes.push(change);
+                  onUpdateContext(agentStack[e.agentid].changes);
+                  agentStack[e.agentid].oldtime = new Date().getTime();
+                  console.log("STACK",agentStack[e.agentid].changes);
+                  agentStack[e.agentid].changes = [];
 
-              onUpdateContext(change);
+
+            }
+            // Asegurar que no se queda ningun cambio sin notificar.
+            else {
+                agentStack[e.agentid].changes.push(change);
+                agentStack[e.agentid].changes.contextType ="capabilityChange";
+                console.log("ADDED",agentStack[e.agentid].changes,new Date().getTime());
+                var _agentStack = agentStack;
+                var agentid =e.agentid;
+                console.log("timeout", !agentStack[e.agentid].timeout);
+                if (!agentStack[e.agentid].timeout)
+                     (function(_agentStack,agentid){
+                          _agentStack[agentid].timeout =  setTimeout(function(){
+                              _agentStack[agentid].oldtime = new Date().getTime();
+                              console.log("NO STACK",_agentStack[agentid].changes,_agentStack[agentid].oldtime,_agentStack[agentid].timeout);
+                              onUpdateContext(_agentStack[agentid].changes);
+                              _agentStack[e.agentid].timeout = undefined;
+                      },1000);})(agentStack,e.agentid);
+
+            }
             }
           }, e.agentid);
         }
@@ -371,40 +411,47 @@ function($, applicationContext){
         change['type'] = 'AGENT_LEFT';
         change['agentid'] = e.agentid;
         change['value'] = 'left';
-
-
+        change['contextType'] = 'agentChange'
         console.log('^^^^^^^^^^^^^^^^^^^^^^^' + e.agentid + 'left===============');
         onUpdateContext(change);
         notifiAgentChange('left',e.agentid)
       } else if( e.agentContext ) {
-        console.log(e);
-
-        if (Object.keys(e.diff.capabilities).length === 0){
-          console.log("Agent JOIN");
-          var change = {};
-          change['type'] = 'AGENT_JOIN';
-          change['agentid'] = e.agentid;
-          change['agentContext'] = e.agentContext;
-          change['value'] = 'joined';
-          onUpdateContext(change);
-          setTimeout(function () { notifiAgentChange('join',e.agentid)},1500);
-        }
-        else {
-          console.log(e.key);
-
           var change = {};
           change['type'] = 'VALUE_CHANGE';
           change['agentid'] = e.agentid;
           change['value'] = 'value_change';
           change['key'] = e.key;
+          change['contextType'] = 'agentChange'
           change['capabilities'] = e.diff.capabilities;
           change['agentContext'] = e.agentContext;
           onUpdateContext(change);
-        }
-        subscribeAgentCapabilities(e);
-      }
+          subscribeAgentCapabilities(e);
+          /**
+           Condicion para evitar incongruencia de appCtx cuando es el primer agent
+           Envia eventos diferentes.
+           **/
+          var ag = getAgentById(e.agentid);
+          if (Object.keys(e.diff.capabilities).length===0 && !ag.notified){
+                var agentid = e.agentid;
+                var capsReady = setInterval(function () {
+                  var ag = getAgentById(agentid);
+                  if (ag.capabilities)
+                    if (ag.capabilities['componentsStatus']){
+                        var cmpNum =mediascape.AdaptationToolkit.componentManager.core.getComponents().length;
+                        if (ag.capabilities['componentsStatus'].length === cmpNum && typeof ag.capabilities['componentsStatus'] !=="string")
+                           {
+                                clearInterval(capsReady);
+                                ag.notified = true;
+                                notifiAgentChange('join',e.agentid);
+                                console.log('^^^^^^^^^^^^^^^^^^^^^^^' + e.agentid + 'join===============');
+                        }
+                      }
+                },500);
+
+          }
       console.groupEnd();
     };
+  }
 
     // a callback function when the user confirms the operations
     var onUserOperation = function( actions ) {
