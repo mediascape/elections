@@ -638,6 +638,19 @@ var ControlPanel= function (url){
 						}*/
 
 						//}
+						if(sections[i].name.indexOf(event.detail.agentid)===0 &&
+								sectionDiv[i].querySelector('#radioViewBut')!==null){
+							if(changes[j].newValue==='hide'){
+
+								sectionDiv[i].querySelector('#radioViewBut').src='../resources/css/configPanel/img/radio/Radio_btn_play.png';
+								sectionDiv[i].querySelector('#radioEq').src='../resources/css/configPanel/img/radio/Radio-animacion-off-estatico.png';
+
+							}
+							else if(changes[j].newValue==='show'){
+								sectionDiv[i].querySelector('#radioViewBut').src='../resources/css/configPanel/img/radio/Radio_btn_pausa.png';
+								sectionDiv[i].querySelector('#radioEq').src='../resources/css/configPanel/img/radio/animacion-ecualizador_transp.gif';
+							}
+						}
 						//Sound/mute
 						//else{
 						if(changes[j].newValue==='mutePlayer' || changes[j].newValue==='soundPlayer'){
