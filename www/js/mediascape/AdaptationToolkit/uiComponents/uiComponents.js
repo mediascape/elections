@@ -502,22 +502,41 @@ define(
         this.ctrlPanel=new ControlPanel(url);
         this.ctrlPanel.hide();
 
-        window.addEventListener('resize',function(event){
-          if(document.querySelector('.qr-code-content')){
-            document.querySelector('.qr-code-content').parentNode.removeChild(document.querySelector('.qr-code-content'));
-            var width=window.innerWidth ||document.documentElement.clientWidth ||document.body.clientWidth;
-            var qrdiv1=document.createElement('div');
-            qrdiv1.className='qr-code-content';
-            var leftMargin='';
-            if(width<767)leftMargin=35*width/100;
-            else leftMargin=25*width/100;
-            mediascape.association.createQRcode(url,qrdiv1,(30*width/100),(30*width/100),'',leftMargin,50);
-            document.querySelector('.add-device-content').appendChild(qrdiv1);
-          }
-
-        });
-
         
+
+        var updateQR=_.debounce(function(event){
+            if(document.querySelector('.qr-code-content')){
+                document.querySelector('.qr-code-content').parentNode.removeChild(document.querySelector('.qr-code-content'));
+                var width=window.innerWidth ||document.documentElement.clientWidth ||document.body.clientWidth;
+                var qrdiv1=document.createElement('div');
+                qrdiv1.className='qr-code-content';
+                var leftMargin='';
+                if(width<767)leftMargin=35*width/100;
+                else leftMargin=25*width/100;
+                mediascape.association.createQRcode(url,qrdiv1,(30*width/100),(30*width/100),'',leftMargin,50);
+                document.querySelector('.add-device-content').appendChild(qrdiv1);  
+                          
+              }
+        },1100);
+        _.debounce = function(func, wait, immediate) {
+          var timeout;
+          return function() {
+            var context = this, args = arguments;
+            var later = function() {
+              timeout = null;
+              if (!immediate) func.apply(context, args);
+            };
+            var callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) func.apply(context, args);
+          };
+        };
+        
+
+        window.addEventListener('resize',updateQR,false);
+
+
 
           var scope=this;
           document.addEventListener('keydown',function(event){

@@ -1234,6 +1234,16 @@ var layout=function(){
 	}
 
 }
+var notificationSection=function(){
+	this.render=function(){
+		var div=document.createElement('div');
+		div.className='template-content-center add-device-ok';
+		var img1=document.createElement('img');
+		img1.src='./resources/css/configPanel/img/OK-new-device.png';
+		div.appendChild(img1);
+		return div;
+	}
+}
 
 var layoutSection=function(){
 	this.layouts=[];
@@ -1277,22 +1287,6 @@ var qrSection=function(url){
 		if(width<767)leftMargin=35*width/100;
         else leftMargin=25*width/100;
         mediascape.association.createQRcode(url,qrdiv,(30*width/100),(30*width/100),'',leftMargin,50);
-		
-		/*
-			
-
-	
-		*/
-
-		
-		//var qrimg=document.createElement('img');
-		//qrimg.src="../resources/css/configPanel/img/qr/qrcode.png";
-
-		//var p=document.createElement('p');
-		//p.innerHTML='www.paginaweb.com';
-
-		//qrdiv.appendChild(qrimg);
-		//qrdiv.appendChild(p);
 
 		var animationdiv=document.createElement('div');
 		animationdiv.id='animated-example';
@@ -1766,7 +1760,7 @@ var radios=function(){
 			img1.src='../resources/css/configPanel/img/radio/animacion-ecualizador_transp.gif';
 		}
 		else{
-			img1.src='../resources/css/configPanel/img/radio/Radio-animacion-off-estático.png';
+			img1.src='../resources/css/configPanel/img/radio/Radio-animacion-off-estatico.png';
 		}
 		div10.appendChild(img1);
 
