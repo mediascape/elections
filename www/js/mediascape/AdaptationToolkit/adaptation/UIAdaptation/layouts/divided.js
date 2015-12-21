@@ -311,7 +311,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
 
     divided.onResizeEvent=function(cmps){
       console.log("layout changed");
-      this.render();
+      this.render(cmps);
      
     }
     divided.unload = function(cpms){
