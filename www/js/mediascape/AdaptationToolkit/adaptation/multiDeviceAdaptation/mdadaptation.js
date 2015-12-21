@@ -365,6 +365,7 @@ function($, applicationContext){
                 }
               }
               // Crear un pila para evitar sobre saturar el sistema
+            if (rules.groupCapacities){
              agentStack[e.agentid].time = new Date().getTime();
              var timeDiff = Math.abs( agentStack[e.agentid].oldtime - agentStack[e.agentid].time );
              console.log("TIME",timeDiff);
@@ -398,6 +399,16 @@ function($, applicationContext){
 
             }
             }
+            // Do not agroup capacities
+            else {
+                 agentStack[e.agentid].changes.push(change);
+                 agentStack[e.agentid].changes.contextType ="capabilityChange";
+                 onUpdateContext(agentStack[e.agentid].changes);
+                 agentStack[e.agentid].changes=[];
+            }
+          }
+
+
           }, e.agentid);
         }
       }
