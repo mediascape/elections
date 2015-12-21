@@ -316,6 +316,34 @@ define(
               document.body.removeChild(panel);
             },time);
         }
+        this.connectedNotification=function(){
+          img=document.createElement('img');
+          img.id='conn';
+          img.src='../resources/images/Connected.png';
+          img.style.position="absolute";
+          img.style.bottom='5%';
+          img.style.right='5%';
+          img.style.zIndex="99999";
+          img.style.width="300px";
+          document.body.appendChild(img);
+            setTimeout(function(){
+              document.body.removeChild(document.querySelector('#conn'));
+            },5000);
+        }
+        this.disconnectedNotification=function(){
+          img=document.createElement('img');
+          img.id='disc';
+          img.src='../resources/images/Disconnected.png';
+          img.style.position="absolute";
+          img.style.bottom='5%';
+          img.style.right='5%';
+          img.style.zIndex="99999";
+          img.style.width="300px";
+          document.body.appendChild(img);
+            setTimeout(function(){
+              document.body.removeChild(document.querySelector('#disc'));
+            },3000);
+        }
         //Panel to move a component from one agent to another
         this.addMovablePanel = function (cmp){
 

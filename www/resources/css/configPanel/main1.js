@@ -252,6 +252,12 @@ var ControlPanel= function (url){
 	this.onAgentChange = function (event){
 
 		var container=document.querySelector('#fullTemp');
+		if(event.detail.status==='join'){
+	      mediascape.AdaptationToolkit.uiComponents.connectedNotification();
+	    }
+	    else if(event.detail.status==='left'){
+	      mediascape.AdaptationToolkit.uiComponents.disconnectedNotification();
+	    }
 		if (event.detail.status === "join"){
 			/* Gehitu gailua */
 			mediascape.AdaptationToolkit.uiComponents.ctrlPanel.selfID=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAgentId();
