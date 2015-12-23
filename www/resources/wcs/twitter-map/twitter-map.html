@@ -271,8 +271,11 @@ div.mensaje-twitter { font-size: 1.5vw; }
 
 				is:'twitter-map',
 			  behaviors:[ComponentQueryBehavior,ComponentStatusBehavior],
-				hostAttributes:{
-					prevTime:1432509468,
+				attributes:{
+					prevTime:{
+						type:Number,
+						value:1432509468
+					}
 				},
 				created: function() {
 					console.log('twitter-map created');
@@ -290,7 +293,7 @@ div.mensaje-twitter { font-size: 1.5vw; }
 					this.socket.on("connected", function() {
 						console.log("twitter-map Connected");
 
-						_this.socket.on('changed', function()
+						this.socket.on('changed', function()
 						{
 							arabaData = {
 								cont : 0,
