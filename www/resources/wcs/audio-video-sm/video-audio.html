@@ -101,6 +101,7 @@ Polymer({
 		}
 	},
 	smReady:function(e){
+		console.log("MOTION READY!!")
 		var _this = this;
 		this.sm = mediascape.AdaptationToolkit.SharedMotion();
 		var id = 0;
@@ -173,7 +174,6 @@ Polymer({
 		this.sm.mapp.motions.shared.update(0, 1);
 	},
 	customCmdReceived: function(data){
-			console.log("DATA",data);
 			if(data==='mutePlayer'){
 				this.mutePlayer();
 			}

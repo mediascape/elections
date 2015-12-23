@@ -19,7 +19,7 @@
 			background-size: 100%;
 			min-height: 90%;
 		}
-		div.logos-partidos { 
+		div.logos-partidos {
 			margin-top: 45px;
 			width: 80%;
 			margin-left: 134px;
@@ -61,11 +61,11 @@
 
 
 @media (max-width: 992px){
-    
+
 }
 
 @media (min-width: 992px) and (max-width: 1200px){
-	
+
 }
 @media (max-width: 1024px) and (orientation: landscape){
 div.mensaje-twitter { font-size: 1.5vw; }
@@ -91,11 +91,11 @@ div.mensaje-twitter { font-size: 1.5vw; }
 	div.detalle-logos-fila-2 span img {
 		width: 26%;
 		margin-left: -10px;
-	}	
+	}
 	div.detalle-logos-fila-2 span:before {
 		height: 55px;
 	}
-	
+
 	div.politic-party {
 		height: 250px;
 		text-align: center;
@@ -104,7 +104,7 @@ div.mensaje-twitter { font-size: 1.5vw; }
 	div.politic-party h2 { font-size: 3vw; padding-top: 5px;}
 	div.logo-party { text-align: center;}
 	div.politic-party img { width: 150px; }
-	h2.titulo-resp { margin-top: 35px;}		
+	h2.titulo-resp { margin-top: 35px;}
 }
 @media (max-width: 1024px) and (orientation: portrait){
 	div.mensaje-twitter { font-size: 1.5vw; }
@@ -130,11 +130,11 @@ div.mensaje-twitter { font-size: 1.5vw; }
 	div.detalle-logos-fila-2 span img {
 		width: 26%;
 		margin-left: -10px;
-	}	
+	}
 	div.detalle-logos-fila-2 span:before {
 		height: 55px;
 	}
-	
+
 	div.politic-party {
 		height: 306px;
 		text-align: center;
@@ -216,11 +216,11 @@ div.mensaje-twitter { font-size: 1.5vw; }
 	div.detalle-logos-fila-2 span img {
 		width: 26%;
 		margin-left: -10px;
-	}	
+	}
 	div.detalle-logos-fila-2 span:before {
 		height: 115px;
 	}
-	
+
 	div.politic-party {
 		height: 306px;
 		text-align: center;
@@ -232,60 +232,60 @@ div.mensaje-twitter { font-size: 1.5vw; }
 	h2.titulo-resp { margin-top: -20px;}
 }
 
-			
-			
+
+
 
 		</style>
 
-		<div class="template-all-layouts" id='map'>  
+		<div class="template-all-layouts" id='map'>
 		<div class="col-md-6 col-sm-6 layout-fullwidth">
                 <div class="col-md-12 content-detalle-twitter-mapa">
 					<div class="col-md-12 logos-partidos">
 						<div class="detalle-logos"><span><img id='bizkaiaLogo' src="detalle-twitter/logo-Bildu-transp.png"/></span></div>
 						<div class="detalle-logos"><span><img id='gipuzkoaLogo'src="detalle-twitter/logo-PNV-transp.png"/></span></div>
-						<div class="detalle-logos"><span><img id='nafarroaLogo' src="detalle-twitter/logo-podemos-transp.png"/></span></div>						
+						<div class="detalle-logos"><span><img id='nafarroaLogo' src="detalle-twitter/logo-podemos-transp.png"/></span></div>
 					</div>
 					<div class="col-md-12 logos-partidos segunda-fila">
 						<div class="detalle-logos-fila-2"><span><img id='arabaLogo' src="detalle-twitter/logo-Bildu-transp.png"/></span></div>
-					</div>	
+					</div>
 				</div>
 				<div class="col-md-12 politic-party">
 					<div class="col-md-4 col-sm-12"><h2>Trending Politic party:</h2></div>
 					<div class="col-md-4 col-sm-12 logo-party"><img id='hegoEuskalLogo' src="detalle-twitter/logo-PNV-transp.png" /></div>
 					<div class="col-md-4 col-sm-12"><h2 class="cont-tweets titulo-resp" id='tweetNum'>37.575 tweets</h2></div>
-				</div>				
+				</div>
             </div>
         </div>
-		
+
 	</template>
 </dom-module>
 	<script>
 		(function() {
 			Polymer.require = function(tag, deps, func) {
 				require(deps, function() {
-					Polymer(tag, func.apply(this, arguments));
+					Polymer(func.apply(Polymer, arguments));
 				});
 			};
 			Polymer.require('twitter-map',['tags','coords2','socketio'],function(tags,coords2,io){
 			return {
-				
+
 				is:'twitter-map',
-				behaviors:[ComponentQueryBehavior,ComponentStatusBehavior],
+			  behaviors:[ComponentQueryBehavior,ComponentStatusBehavior],
 				hostAttributes:{
 					prevTime:1432509468,
 				},
 				created: function() {
 					console.log('twitter-map created');
 					//instancia de socket en el lado cliente
-					
-				
+
+
 				},
 
 				ready: function() {
 					console.log('twitter-map ready');
 					var _this=this;
 
-					this.socket = io.connect('http://localhost/');
+				/*	this.socket = io.connect('http://localhost/');
 
 					this.socket.on("connected", function() {
 						console.log("twitter-map Connected");
@@ -430,13 +430,13 @@ div.mensaje-twitter { font-size: 1.5vw; }
 								partidoHumanista: 0,
 								pcpe: 0
 							};
-							
+
 						});
 
 						_this.socket.on('place', function(data)
 						{
 
-							
+
 							//Euskal Herria
 							if(_this.exist(data.text,gipuzkoa)||_this.exist(data.text,donostia)){
 								gipuzkoaData.cont=gipuzkoaData.cont+1;
@@ -762,18 +762,18 @@ div.mensaje-twitter { font-size: 1.5vw; }
 
 
 							var maxGipuzkoa = _this.calculateMax("Gipuzkoa");
-							if(maxGipuzkoa!=""){							
+							if(maxGipuzkoa!=""){
 								_this.$.gipuzkoaLogo.src = "./resources/images/twitter/"+maxGipuzkoa+"-logo.png";
 							}
 
 							var maxBizkaia = _this.calculateMax("Bizkaia");
 							if(maxBizkaia!=""){
-								_this.$.bizkaiaLogo.src = "./resources/images/twitter/"+maxBizkaia+"-logo.png";							
+								_this.$.bizkaiaLogo.src = "./resources/images/twitter/"+maxBizkaia+"-logo.png";
 							}
 
 							var maxAraba = _this.calculateMax("Araba");
 							if(maxAraba!=""){
-								_this.$.arabaLogo.src = "./resources/images/twitter/"+maxAraba+"-logo.png";		
+								_this.$.arabaLogo.src = "./resources/images/twitter/"+maxAraba+"-logo.png";
 							}
 
 							var maxNafarroa = _this.calculateMax("Nafarroa");
@@ -796,7 +796,7 @@ div.mensaje-twitter { font-size: 1.5vw; }
 						else {
 							alert("Shit! Socket.io didn't start!");
 						}
-					});
+					});*/
 				},
 
 				exist:function(term,list){
@@ -1137,11 +1137,10 @@ div.mensaje-twitter { font-size: 1.5vw; }
 									this.$.tweetNum.innerHTML=maximValue+' tweets';
 								return maximName;
 							}
-					
 
-					
+
+
 }
 	});
 		})();
 </script>
-

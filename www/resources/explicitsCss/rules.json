@@ -1,1 +1,1 @@
-{"rules":[{"condition":{"componentsNumber":10},"then":{"cssFile":"fourcomp.css"}}]}
+{"rules":[{"condition":{"componentsNumber":25},"then":{"cssFile":"fourcomp.css"}}]}
