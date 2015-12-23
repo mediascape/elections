@@ -264,15 +264,24 @@
                     "duplicable":false,
                     "needs":"none"
                 },
-
                 {
-                    "componentId": "graph",
+                    "componentId": "twitterViewer",
                     "required": false,
                     "bestfit": "biggestScreenSize",
                     "movable": true,
                     "duplicable":false,
                     "needs":"none"
-                }
+                },
+                {
+                    "componentId": "twitterMap",
+                    "required": false,
+                    "bestfit": "biggestScreenSize",
+                    "movable": true,
+                    "duplicable":false,
+                    "needs":"none"
+                },
+
+                
             ]
         },
         "affinitymatch": {

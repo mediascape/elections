@@ -33,7 +33,9 @@
     shake:'../resources/libs/shake',
     association:'/resources/association/association',
     domReady:'/resources/libs/domReady',
-    swiper:'../resources/css/configPanel/js/swiper.min'
+    swiper:'../resources/css/configPanel/js/swiper.min',
+    coords2:'/resources/libs/coords2',
+    tags:'/resources/libs/tags',
       },
     waitSeconds:25
   });

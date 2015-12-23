@@ -1,0 +1,233 @@
+
+<dom-module id="twitter-viewer" >
+	<template>
+		<style>
+
+		#twitter{
+			background-color: #0A2533;
+			padding: 15px;
+		}
+		div.content-detalle-twitter{
+			background-color: #173F56 !important;
+			margin: auto;
+			overflow: auto;
+			text-align: left;
+		}
+		div.content-tweets-title {
+			margin-top: 20px !important;
+			margin-bottom: 20px;
+			margin-left: 57px;
+		}
+		div.media-left{
+			float:left;
+		}
+		div.content-tweets-title img {width: 5vw; vertical-align: middle;}
+		div.content-tweets-title h2 {     
+			color: #91b5ce;
+		    font-size: 3vw;
+		    margin-top: 19px;
+		}
+
+		div.content-tweets {border-bottom: 1px dashed #55b2ff; width: 90%; margin: auto !important; padding-bottom: 25px; padding-top: 15px;}
+
+		div.avatar-twitter {
+			float:left;
+		}
+		div.avatar-twitter img {
+			width: 5.8vw;
+			-webkit-border-radius: 15px;
+			-moz-border-radius: 15px;
+			border-radius: 15px;
+		}
+		div.usuario-twitter { color: #FFF; font-size: 1vw; }
+		div.mensaje-twitter { color: #FFF; font-size: 0.9vw; }
+		div.mensaje-twitter a { color: #55b2ff !important; }
+
+		div.media-body,div.tweet_timestamp {
+			padding-left: 85px;
+		}
+
+
+		.tweet_time_link {
+			display: none;
+		}
+			
+
+			/*Viewer*/
+		
+		</style>
+		<div id="twitter" class="template-all-layouts ">
+			<div class='col-md-6 layout-fullwidth' style='height:97%;'>
+				<div id="result" class='col-md-12 content-detalle-twitter' style='height:100%;'>
+
+					<div class="media content-tweets-title">
+						  <div class="media-left">
+							<img class="media-object" src="twitter.png">
+						  </div>
+						  <div class="media-body">
+							<h2 class="media-heading">Twitter</h2>
+						  </div>
+					</div>				
+					<ul class='list' style="padding-left:0px; list-style-type: none; margin-bottom: 0px;"></ul>
+				</div>
+			</div>
+		</div>
+	</template>
+</dom-module>
+	<script>
+		(function() {
+			Polymer.require = function(tag, deps, func) {
+				require(deps, function() {
+					Polymer(tag, func.apply(this, arguments));
+				});
+			};
+			Polymer.require('twitter-viewer',['socketio'],function(io) {
+			 return {
+			 	is:'twitter-viewer',
+			 	behaviors:[ComponentQueryBehavior,ComponentStatusBehavior],
+			 	hostAttributes:{
+					prevTime:1432509468,
+					terms: 'Elecciones, elecciones, Hauteskundeak, hauteskundeak, eleccion, #elecciones24m, #24m, #L6elecciones,#eleccionesA3, #eleccion2015, hauteskundeak, elecciones, @hauteskundeak, #hauteskundeak2015, #Elecciones2015, #hauteskundeak15, #Elecciones15, #M24Donostia, #eleccionesVG, @Navarra2015, #Navarra24M, #24M, #M24Donostia, #EleccionesNA15, #Navarra24M, @PPopular, @PSOE, @vox_es, @UPyD, @ahorapodemos, @PartidoPACMA, @Equo, @CiudadanosCs, @webpcpe, @RecortesCero, @phumanista_esp, #UPyD, #PSOE, #PP, #BILDU, #Podemos, #HagamosHistoria24M, #VOX, #AhoraVOX, #Ciudadanos, #UPN, @PPvasco, @UPyDEuskadi, @Cs_Euskadi, @IrabaziEuskadi, @PES_PSE, @EzkerBatua, @ealkartasuna, @plaZFeminista, @PodemosEuskadi_, @ehbildu, @IkuneICP, @eajpnv, @PacmaEuskadi, @UdalBerri, @GastoriaVG, @hegasum, @IUEzker, @upn_navarra, @libertadnavarra, @SainNavarra, @RCN_NOK, Kike Fernández, @KikeFdzdePinedo, @arabaehbildu, @ehbilduaraba, Miren Larrion, @miren_larrion, @ehbildugasteiz, @EA_Araba, Ramiro González, @ramirogonza, @eajpnvaraba, @pnvjuntasaraba, Gorka Urtaran, @pnvgasteiz, @gorka__urtaran, Cristina González, @CristinaGnlz, @psealava, @PSEporAlava, Peio López De Munain, @porvitoria, @peiomunain_xvg, Javier De Andrés, @JavierdAndres, @PP_Juntas_Alava, Javier Maroto, @JavierMaroto, Koldo Martin, @KoldoPodemos, @PodemosVitoria, Ana Unibaso, @IkuneICP, Niko Gutiérrez, @Nik0Gutierrez, Ignacio Oñate, @Ignacionate, Miguel Angel Carrera, @MikelK10, Rodrigo Zamora, @Rodri_Zamora_Al, José Damían Garcia-Moreno, @josedamian1980, #IrabaziAlaba, @iu_araba, @EquoAraba, Óscar Fernández, @oskar_fm, @IrabaziGasteiz, @EQUO_VG, @EBgasteiz, Esaú Martín, @esaumartin, @vox_alava, #AhoraVOX, Adolfo Gago, @toohope, Vanesa Costa, Nerea Icuza, @icuza, Esther Saez de Argandoña, @unicaire, @GastoriaVG, Jorge Hinojal, @JorgeHiSo, @shgjorge, @hegasum, Diana Plaza, @RecortesCero, Xabier Olano, @Xabier_Olano_, @ehbildugipuzkoa, @alternatiba, @EA_Gipuzkoa, #gipuzkoarrokgaraile, Juankar Izagirre, @AlkateSS, @HiriBizia, @SortuDonostia, @EA_Donostia, #BILDU, @ehbildu, Markel Olano, @eajpnvgipuzkoa, @markelolano, @markelolano2015, Eneko Goia, @enekogoia2015, @DonostiaPNV, @pnvdonostia, @eajpnv, Denis Itxaso, @DenisItxaso, @PSEGIPUZKOA, Ernesto Gasco, @gasco63, Juan Carlos Cano, @PPGipuzkoa, @CanoAristoy, Miren Albistur, @MirenAlbistur, @PPdonostiarras, Juantxo Iturria, @juantxo_iturria, #BadaGaraia, #GipuzkoaAldatu, @podemosDonostia, Amaia Martín, @sybillacumas, @Irabazidonostia, #Podemos, #HagamosHistoria24M, Arantza González, @arantzagg, @IRABAZIGipuzkoa, @Irabazidonostia, @IUDonostia, @eQuoGipuzkoa, Manuel Aguirre, @Mccguirre, Arantza Aranzabal, @aranaranzabal, #donostiaUPyD, @votaUPyD, Jonathan Calvo, @joncalrue, Nicolás de Miguel, @NicodeMig, Josebe Iturrioz, @JosebeIturrioz, #AldaketaGorpuzteko, @plaZFeminista, Saioa Escolar, @Pacma_Gipuzkoa, @PacmaGipuzkoa, @PacmaEuskadi, Josu Unanue, @unanuejosu, @ehbildubizkaia, #bizkaitarrokgaraile, Aitziber Ibarbarriaga, @AitziIbaiba, @ehbildubilbo, @SortuBilbo, #BILDU, @EA_Bizkaia, Unai Rementeria, @urementeria, Juan María Aburto, @juanmariaburto, @AzalgorriBilbao, @eajpnvbilbao @eajpnv, Carlos Totorica, @PSEBizkaia, #CarlosTotorica, Alfonso Gil, @AlfonsoGil, @PSEBilbao, @GroupPES_Bilbao, Javier Ruiz, @JavierRuiz_PP, @PPBizkaia, Luis Eguiluz, @LuisEguiluz_pp, @PPdeBilbao, Asun Merino, @AsunPodemos, @PodemosBizkaia, Francisco Samir Lahdou, @PodemosBilbao, @PodemosBilbaoE, Xabier Jiménez, @Eljoventopo, #IrabaziBizkaia, @BilboIrabaziz, @IUBilbao, @EquoBizkaia, Roque Adrada, @RoqueAdrada, Javier Gabilondo, @JavierGabilondo, Santiago Sáinz, @Sainz_Robles, @Ciudadanos, David Pasarín, @davidpasarin, Patricia Gómez, @vox_vizcaya, Urko de Azumendi, @urkobilbao2015, @vox_bilbao, Carmen Muñoz, @CarmenMunozL, #BilbaoEnComun, @UdalBerri, @Equo, @iunida, @ALTER_info, JOSE MANUEL VÁZQUEZ RIOS, @phumanista_esp, Kepa Lozano, @KEPALOZANO, Goizane Rodríguez, @JusticiaPAT, Joseba Arroita, @IkuneICP, Sergio Saenz, @webpcpe, #24mvotapcpe, Uxue Barkos, @uxuebarkos, Itziar Gomez, @itziargomez, @GeroaBaiIrunea, @geroabai, #orainbai, @EAJPNVNafarroa, Javier Esparza, @JavierJesparza, @_navarrisimo, #Navarrisimo, #adelantenavarros, Enrique Maya, #Navarrisimo, #UPN, @upn_navarra, Ana Beltran, @abeltran_ana, @PPNavarra, Pablo Zalba, @PabloZalba, #Pamplona, #Navarra, @PPNavarra, #DespiertaPamplona, María Chivite, @mavichina, @PSNPSOE, Maite Esporrin, @maiteesporrin, @PamplonaPSN, @psnpsoe, #VotaPSOE, #VotaPSNPSOE, #EsporrinAlcaldesa, #ActivemosPamplona, Adolfo Araiz, @AdolfoAraiz, @EHbilduNafarroa, #Nafarrokgaraile, #nafarrokgaraile, Joseba Asiron, @josebaasiron, @EAnafarroa, Laura Pérez Ruano, @laperua, @Podemosnavarra, #EsAhora, #CambiaNavarra, Diego Paños, @diegopanos, #CambiaNavarra, @Cs_Navarra_, Iñaki Arana, #NavarraPideCambio, Miguel Zarranz, @miguelzarranz, @UPyD_Navarra, Damaso Crespo, @upyd_navarra, #LIBRES, Jose Miguel Nuin, @josemiguelnuin, @IzdaNavarra @EzkerraN, Mikel Iriarte, @libertadnavarra, David Marzo, @davidMarzo, @EquoNavarfarroa, #LaAlternativaVerde, #AukeraVerdea, @EquoNavarra, Maria Yazmina Larumbe, @PacmaNavarra, Daniel Fernández, #SuVozTuVoto, Luis Miguel Latasa, @SainNavarra, @PartidoSAIn, Samuel Valderrey, @SamuelValderrey, #VOTASAIn, Ramon Morcillo, @RCN_NOK, #marihuana, Edurne Eguino, @SoyEdurneNaiz, @EdurneEguino, @IUPamplona',
+					startVal:''
+				},
+
+				created: function() {
+					console.log('twitter created');
+				},
+
+				attached: function() {
+
+				},
+
+				ready: function() {
+					console.log('twitter ready');
+					var _this=this;
+					var element=this.shadowRoot;
+
+					//bind 'component-query' notifications with resize function
+					
+					//Open Socket for the communication with the server
+					this.socket = io.connect('http://localhost/');
+
+					//capture tweet events from the server through the socket
+					this.socket.on("connected", function() {
+						console.log("twitter Connected");
+
+						//bind 'motion-ready' notifications with resize function
+						document.addEventListener ('motion-ready',_this.smReady.bind(_this));
+
+						_this.socket.on('tweet', function(data)
+						{
+							//console.log("Tweets");
+							var text=data.text;
+
+							//detect tweets hashtags to make them clickables
+							for(var i=0;i<data.entities.hashtags.length;i++){
+								text=text.replace("#"+data.entities.hashtags[i].text,'<a href="https://twitter.com/hashtag/'+data.entities.hashtags[i].text+'?src=hash" class="twitter-hashtag"><s>#</s><b><strong>'+data.entities.hashtags[i].text+'</strong></b></a>');
+							}
+							//detect tweets user mentions to make them clickables
+							for(var i=0;i<data.entities.user_mentions.length;i++){
+								text=text.replace("@"+data.entities.user_mentions[i].screen_name, '<a href="https://twitter.com/'+data.entities.user_mentions[i].screen_name+'" class="twitter-atreply">@<b>'+data.entities.user_mentions[i].screen_name+'</b></a>');
+							}
+							//detect tweets urls to make them clickables
+							for(var i=0;i<data.entities.urls.length;i++){
+								text=text.replace(data.entities.urls[i].url, '<a href="'+data.entities.urls[i].url+'">'+data.entities.urls[i].url+'</a>');
+							}
+
+							//Get the number maximum of tweets able to visualize inside the div
+							var nodesNumbers = Math.floor((element.querySelector('#twitter').clientHeight-50)/125);
+
+							if(element.querySelector('#twitter').clientHeight>130){
+								if (element.querySelector('ul').childNodes.length>nodesNumbers){
+									var tot=element.querySelector('ul').childNodes.length-nodesNumbers;
+									for(var j=0;j<tot;j++){
+										element.querySelector('ul').removeChild(element.querySelector('ul').children[element.querySelector('ul').childNodes.length-1]);
+									}
+								}
+							}else{
+								element.querySelector('ul').innerHTML = '';
+							}
+
+							//Detect if the tweet is already in the list of tweets
+							var exist=false;
+							for(var i=0;i<element.querySelector('ul').childNodes.length;i++){
+								if(data.created_at.toString()===element.querySelector('ul').children[i].querySelector(".tweet_time_link").text&&data.text.toString()===element.querySelector('ul').children[i].querySelector(".tweet_text").innerHTML){
+									exist=true;
+								}
+							}
+							if(!exist){
+								if(element.querySelector('ul').childNodes.length>=nodesNumbers&&nodesNumbers>0) element.querySelector('ul').removeChild(element.querySelector('ul').children[nodesNumbers-1]);
+								element.querySelector('ul').insertAdjacentHTML('afterbegin',
+								'<li class="tweet-element"> \
+									<div class="media content-tweets"> \
+										<div class="media-left avatar-twitter"> \
+											<a href="https://twitter.com/'+data.user.screen_name+'"> \
+												<img class="media-object" src="'+data.user.profile_image_url+'" onerror="this.src = \'././resources/images/twitter/default.png\';"> </img> \
+											</a> \
+										</div> \
+										<div class="media-body"> \
+											<div class="usuario-twitter"><strong>'+data.user.screen_name+'</strong></div> \
+											<div class="mensaje-twitter">'+data.text+'</div> \
+										</div> \
+										<div class="tweet_timestamp"> \
+											<img class="stream_bluebird" src="././resources/images/twitter/bird_16_blue.png"></img> \
+											<span class="retweets" style="color:#C0C0C0">'+data.retweet_count+' retweets</span> \
+											<a href="http://twitter.com/'+data.user.screen_name+'/status/'+data.id_str+'" target="search" class="tweet_time_link">'+data.created_at+'</a> \
+											<img src="././resources/images/twitter/reply.png" class="imageof_reply"></img> \
+											<a href="http://twitter.com/intent/tweet?in_reply_to='+data.id_str+'" target="search" style="color:#C0C0C0;text-decoration: none;">Reply</a> \
+											<img src="././resources/images/twitter/retweet.png" class="imageof_retweet"></img> \
+											<a href="http://twitter.com/intent/retweet?tweet_id='+data.id_str+'" target="search" style="color:#C0C0C0;text-decoration: none;">Retweet</a> \
+											<img src="././resources/images/twitter/favorite.png" class="imageof_favorite"></img> \
+											<a href="http://twitter.com/intent/favorite?tweet_id='+data.id_str+'" target="search" style="color:#C0C0C0;text-decoration: none;">Favorite</a> \
+										</div> \
+									</div> \
+								</li>');
+							}
+						});
+
+				
+					});
+				},
+				
+				smReady:function(){
+					// Sharemotion objetua lortu
+					var _this=this;
+					this.sm = mediascape.AdaptationToolkit.SharedMotion();
+					// ebentuak entzun ta jaso
+					var handler = function (e) {
+						if(_this.startVal==='')_this.startVal=Math.round(e.pos);
+						
+						_this.timestamp=_this.prevTime+Math.round(e.pos);
+					};
+					this.sm.mapp.motions.shared.on("timeupdate", handler);
+				},
+				timestampChanged:function(){
+					//console.log("timestampChanged");
+					if(this.socket) {
+						var data={
+							timestamp:this.timestamp-this.startVal, //Pay atention to motion timestamp,
+							text:this.terms
+						}
+						this.socket.emit('time',data);
+					}
+				},
+				customCmdReceived: function(data){
+      				console.log("DATA",data);
+      				if(_this.socket){
+
+      					if(data==="") {
+      						_this.terms='Elecciones, elecciones, Hauteskundeak, hauteskundeak, eleccion, #elecciones24m, #24m, #L6elecciones,#eleccionesA3, #eleccion2015, hauteskundeak, elecciones, @hauteskundeak, #hauteskundeak2015, #Elecciones2015, #hauteskundeak15, #Elecciones15, #M24Donostia, #eleccionesVG, @Navarra2015, #Navarra24M, #24M, #M24Donostia, #EleccionesNA15, #Navarra24M, @PPopular, @PSOE, @vox_es, @UPyD, @ahorapodemos, @PartidoPACMA, @Equo, @CiudadanosCs, @webpcpe, @RecortesCero, @phumanista_esp, #UPyD, #PSOE, #PP, #BILDU, #Podemos, #HagamosHistoria24M, #VOX, #AhoraVOX, #Ciudadanos, #UPN, @PPvasco, @UPyDEuskadi, @Cs_Euskadi, @IrabaziEuskadi, @PES_PSE, @EzkerBatua, @ealkartasuna, @plaZFeminista, @PodemosEuskadi_, @ehbildu, @IkuneICP, @eajpnv, @PacmaEuskadi, @UdalBerri, @GastoriaVG, @hegasum, @IUEzker, @upn_navarra, @libertadnavarra, @SainNavarra, @RCN_NOK, Kike Fernández, @KikeFdzdePinedo, @arabaehbildu, @ehbilduaraba, Miren Larrion, @miren_larrion, @ehbildugasteiz, @EA_Araba, Ramiro González, @ramirogonza, @eajpnvaraba, @pnvjuntasaraba, Gorka Urtaran, @pnvgasteiz, @gorka__urtaran, Cristina González, @CristinaGnlz, @psealava, @PSEporAlava, Peio López De Munain, @porvitoria, @peiomunain_xvg, Javier De Andrés, @JavierdAndres, @PP_Juntas_Alava, Javier Maroto, @JavierMaroto, Koldo Martin, @KoldoPodemos, @PodemosVitoria, Ana Unibaso, @IkuneICP, Niko Gutiérrez, @Nik0Gutierrez, Ignacio Oñate, @Ignacionate, Miguel Angel Carrera, @MikelK10, Rodrigo Zamora, @Rodri_Zamora_Al, José Damían Garcia-Moreno, @josedamian1980, #IrabaziAlaba, @iu_araba, @EquoAraba, Óscar Fernández, @oskar_fm, @IrabaziGasteiz, @EQUO_VG, @EBgasteiz, Esaú Martín, @esaumartin, @vox_alava, #AhoraVOX, Adolfo Gago, @toohope, Vanesa Costa, Nerea Icuza, @icuza, Esther Saez de Argandoña, @unicaire, @GastoriaVG, Jorge Hinojal, @JorgeHiSo, @shgjorge, @hegasum, Diana Plaza, @RecortesCero, Xabier Olano, @Xabier_Olano_, @ehbildugipuzkoa, @alternatiba, @EA_Gipuzkoa, #gipuzkoarrokgaraile, Juankar Izagirre, @AlkateSS, @HiriBizia, @SortuDonostia, @EA_Donostia, #BILDU, @ehbildu, Markel Olano, @eajpnvgipuzkoa, @markelolano, @markelolano2015, Eneko Goia, @enekogoia2015, @DonostiaPNV, @pnvdonostia, @eajpnv, Denis Itxaso, @DenisItxaso, @PSEGIPUZKOA, Ernesto Gasco, @gasco63, Juan Carlos Cano, @PPGipuzkoa, @CanoAristoy, Miren Albistur, @MirenAlbistur, @PPdonostiarras, Juantxo Iturria, @juantxo_iturria, #BadaGaraia, #GipuzkoaAldatu, @podemosDonostia, Amaia Martín, @sybillacumas, @Irabazidonostia, #Podemos, #HagamosHistoria24M, Arantza González, @arantzagg, @IRABAZIGipuzkoa, @Irabazidonostia, @IUDonostia, @eQuoGipuzkoa, Manuel Aguirre, @Mccguirre, Arantza Aranzabal, @aranaranzabal, #donostiaUPyD, @votaUPyD, Jonathan Calvo, @joncalrue, Nicolás de Miguel, @NicodeMig, Josebe Iturrioz, @JosebeIturrioz, #AldaketaGorpuzteko, @plaZFeminista, Saioa Escolar, @Pacma_Gipuzkoa, @PacmaGipuzkoa, @PacmaEuskadi, Josu Unanue, @unanuejosu, @ehbildubizkaia, #bizkaitarrokgaraile, Aitziber Ibarbarriaga, @AitziIbaiba, @ehbildubilbo, @SortuBilbo, #BILDU, @EA_Bizkaia, Unai Rementeria, @urementeria, Juan María Aburto, @juanmariaburto, @AzalgorriBilbao, @eajpnvbilbao @eajpnv, Carlos Totorica, @PSEBizkaia, #CarlosTotorica, Alfonso Gil, @AlfonsoGil, @PSEBilbao, @GroupPES_Bilbao, Javier Ruiz, @JavierRuiz_PP, @PPBizkaia, Luis Eguiluz, @LuisEguiluz_pp, @PPdeBilbao, Asun Merino, @AsunPodemos, @PodemosBizkaia, Francisco Samir Lahdou, @PodemosBilbao, @PodemosBilbaoE, Xabier Jiménez, @Eljoventopo, #IrabaziBizkaia, @BilboIrabaziz, @IUBilbao, @EquoBizkaia, Roque Adrada, @RoqueAdrada, Javier Gabilondo, @JavierGabilondo, Santiago Sáinz, @Sainz_Robles, @Ciudadanos, David Pasarín, @davidpasarin, Patricia Gómez, @vox_vizcaya, Urko de Azumendi, @urkobilbao2015, @vox_bilbao, Carmen Muñoz, @CarmenMunozL, #BilbaoEnComun, @UdalBerri, @Equo, @iunida, @ALTER_info, JOSE MANUEL VÁZQUEZ RIOS, @phumanista_esp, Kepa Lozano, @KEPALOZANO, Goizane Rodríguez, @JusticiaPAT, Joseba Arroita, @IkuneICP, Sergio Saenz, @webpcpe, #24mvotapcpe, Uxue Barkos, @uxuebarkos, Itziar Gomez, @itziargomez, @GeroaBaiIrunea, @geroabai, #orainbai, @EAJPNVNafarroa, Javier Esparza, @JavierJesparza, @_navarrisimo, #Navarrisimo, #adelantenavarros, Enrique Maya, #Navarrisimo, #UPN, @upn_navarra, Ana Beltran, @abeltran_ana, @PPNavarra, Pablo Zalba, @PabloZalba, #Pamplona, #Navarra, @PPNavarra, #DespiertaPamplona, María Chivite, @mavichina, @PSNPSOE, Maite Esporrin, @maiteesporrin, @PamplonaPSN, @psnpsoe, #VotaPSOE, #VotaPSNPSOE, #EsporrinAlcaldesa, #ActivemosPamplona, Adolfo Araiz, @AdolfoAraiz, @EHbilduNafarroa, #Nafarrokgaraile, #nafarrokgaraile, Joseba Asiron, @josebaasiron, @EAnafarroa, Laura Pérez Ruano, @laperua, @Podemosnavarra, #EsAhora, #CambiaNavarra, Diego Paños, @diegopanos, #CambiaNavarra, @Cs_Navarra_, Iñaki Arana, #NavarraPideCambio, Miguel Zarranz, @miguelzarranz, @UPyD_Navarra, Damaso Crespo, @upyd_navarra, #LIBRES, Jose Miguel Nuin, @josemiguelnuin, @IzdaNavarra @EzkerraN, Mikel Iriarte, @libertadnavarra, David Marzo, @davidMarzo, @EquoNavarfarroa, #LaAlternativaVerde, #AukeraVerdea, @EquoNavarra, Maria Yazmina Larumbe, @PacmaNavarra, Daniel Fernández, #SuVozTuVoto, Luis Miguel Latasa, @SainNavarra, @PartidoSAIn, Samuel Valderrey, @SamuelValderrey, #VOTASAIn, Ramon Morcillo, @RCN_NOK, #marihuana, Edurne Eguino, @SoyEdurneNaiz, @EdurneEguino, @IUPamplona';
+      					}
+	      				else{
+
+	      					_this.terms=data;
+	      					element.querySelector('ul').innerHTML='';
+	      				}
+      				}      				
+ 				},
+			
+		}
+	});
+		})();
+	</script>
+
