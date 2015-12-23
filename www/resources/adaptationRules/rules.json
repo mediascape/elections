@@ -279,9 +279,9 @@
                     "movable": true,
                     "duplicable":false,
                     "needs":"none"
-                },
+                }
 
-                
+
             ]
         },
         "affinitymatch": {

@@ -548,7 +548,7 @@ function($, applicationContext){
             document.dispatchEvent(appAttributeEvent);
         });
       });
-      });
+    }).error(function() { alert("error parsing rule JSON"); });
   };
 
   // get registed rules or plugins

@@ -107,10 +107,10 @@
 					//bind 'component-query' notifications with resize function
 
 					//Open Socket for the communication with the server
-				//	this.socket = io.connect('http://localhost/');
+				this.socket = io.connect('http://localhost/');
 
 					//capture tweet events from the server through the socket
-			/*		this.socket.on("connected", function() {
+					this.socket.on("connected", function() {
 						console.log("twitter Connected");
 
 						//bind 'motion-ready' notifications with resize function
@@ -186,7 +186,7 @@
 						});
 
 
-					});*/
+					});
 				},
 
 				smReady:function(){
