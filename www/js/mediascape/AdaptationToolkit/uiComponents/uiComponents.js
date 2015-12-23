@@ -325,6 +325,8 @@ define(
           img.style.right='5%';
           img.style.zIndex="99999";
           img.style.width="300px";
+          img.style.border='5px solid #ccc';
+          img.style.boxShadow='0px 0px 10px rgba(0,0,0,0.5)';
           document.body.appendChild(img);
             setTimeout(function(){
               document.body.removeChild(document.querySelector('#conn'));
@@ -339,6 +341,8 @@ define(
           img.style.right='5%';
           img.style.zIndex="99999";
           img.style.width="300px";
+          img.style.border='5px solid #ccc';
+          img.style.boxShadow='0px 0px 10px rgba(0,0,0,0.5)';
           document.body.appendChild(img);
             setTimeout(function(){
               document.body.removeChild(document.querySelector('#disc'));
