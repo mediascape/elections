@@ -22,7 +22,7 @@
 			float:left;
 		}
 		div.content-tweets-title img {width: 5vw; vertical-align: middle;}
-		div.content-tweets-title h2 {     
+		div.content-tweets-title h2 {
 			color: #91b5ce;
 		    font-size: 3vw;
 		    margin-top: 19px;
@@ -51,10 +51,10 @@
 		.tweet_time_link {
 			display: none;
 		}
-			
+
 
 			/*Viewer*/
-		
+
 		</style>
 		<div id="twitter" class="template-all-layouts ">
 			<div class='col-md-6 layout-fullwidth' style='height:97%;'>
@@ -67,7 +67,7 @@
 						  <div class="media-body">
 							<h2 class="media-heading">Twitter</h2>
 						  </div>
-					</div>				
+					</div>
 					<ul class='list' style="padding-left:0px; list-style-type: none; margin-bottom: 0px;"></ul>
 				</div>
 			</div>
@@ -78,7 +78,7 @@
 		(function() {
 			Polymer.require = function(tag, deps, func) {
 				require(deps, function() {
-					Polymer(tag, func.apply(this, arguments));
+					Polymer(func.apply(Polymer, arguments));
 				});
 			};
 			Polymer.require('twitter-viewer',['socketio'],function(io) {
@@ -105,12 +105,12 @@
 					var element=this.shadowRoot;
 
 					//bind 'component-query' notifications with resize function
-					
+
 					//Open Socket for the communication with the server
-					this.socket = io.connect('http://localhost/');
+				//	this.socket = io.connect('http://localhost/');
 
 					//capture tweet events from the server through the socket
-					this.socket.on("connected", function() {
+			/*		this.socket.on("connected", function() {
 						console.log("twitter Connected");
 
 						//bind 'motion-ready' notifications with resize function
@@ -185,10 +185,10 @@
 							}
 						});
 
-				
-					});
+
+					});*/
 				},
-				
+
 				smReady:function(){
 					// Sharemotion objetua lortu
 					var _this=this;
@@ -196,7 +196,7 @@
 					// ebentuak entzun ta jaso
 					var handler = function (e) {
 						if(_this.startVal==='')_this.startVal=Math.round(e.pos);
-						
+
 						_this.timestamp=_this.prevTime+Math.round(e.pos);
 					};
 					this.sm.mapp.motions.shared.on("timeupdate", handler);
@@ -223,11 +223,10 @@
 	      					_this.terms=data;
 	      					element.querySelector('ul').innerHTML='';
 	      				}
-      				}      				
+      				}
  				},
-			
+
 		}
 	});
 		})();
 	</script>
-
