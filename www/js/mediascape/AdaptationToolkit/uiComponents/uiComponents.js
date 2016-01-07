@@ -880,7 +880,7 @@ define(
                 menuBar.style.height='30px';
                 menuBar.style.width='100%';
                 menuBar.style.opacity='0.6';
-                menuBar.style.position='relative';
+                menuBar.style.position='absolute';
                 menuBar.style.marginTop='-30px';
                 menuBar.style.zIndex=3;
                 menuBar.style.display='none';
@@ -892,6 +892,7 @@ define(
                 fullIcon.style.opacity='1';
                 fullIcon.style.float='right';
                 fullIcon.style.marginRight='15px';
+                fullIcon.style.position='relative';
 
                 fullIcon.addEventListener('click',function(e){
                   e.srcElement = e.srcElement || e.target;

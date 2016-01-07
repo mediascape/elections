@@ -302,6 +302,9 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
         fullScreenCmp.style.backgroundColor='white';
         fullScreenCmp.style.zIndex='1';
         fullScreenCmp.className="col-md-12 col-sm-12 col-xs-12 layout-fullwidth";
+
+
+        
         
         for(var i=0;i<col_cmps;i++){
 

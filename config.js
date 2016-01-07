@@ -23,7 +23,7 @@ config.auth = {
 
 // config for mongodb / mongoose
 config.mongoose = {
-    uri: 'mongodb://localhost/',
+    uri: 'mongodb://localhost/mediascape',
     options: {
         server: {
             socketOptions: {
