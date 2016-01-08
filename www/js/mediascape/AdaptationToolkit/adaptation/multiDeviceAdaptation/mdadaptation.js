@@ -308,8 +308,11 @@ function($, applicationContext){
           }
         },this);
       }
+      status = status || [];
       var statusBefore = mediascape.AdaptationToolkit.componentManager.core.getComponentsStatus();
-      var diff =  mediascape.AdaptationToolkit.Utils.getObjectDiff(statusBefore,status);
+      var diff = [];
+      if (statusBefore.length>0)
+        diff = mediascape.AdaptationToolkit.Utils.getObjectDiff(status,statusBefore);
       if (diff.length>0 || statusBefore.length===0 ){
         mediascape.AdaptationToolkit.componentManager.core.setComponentsStatus(status);
         var event = new CustomEvent("onComponentsChange", {"detail":{"type":"localChange","cmps":status,"agentid":change.agentid}});

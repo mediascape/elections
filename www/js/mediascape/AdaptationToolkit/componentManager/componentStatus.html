@@ -55,7 +55,7 @@
         });
         var AE =  mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation;
         if (customCmds.length>0)
-          if(event.agentid ===AE.getAgentId())
+          if(event.context.agentid ===AE.getAgentId())
             if (customCmds.length ===1 ){
                 if (customCmds[0].compId === this.getAttribute('compId'))
                 {
