@@ -16,6 +16,7 @@ var ControlPanel= function (url){
 	var camerasSect=null;
 	var graphicSect=null;
 	var radioSect=null
+	var twitterSect=null;
 	/* Kontruktorea gauza inizializatzen diren lekua */
 	this.controlPanel = function(){
 
@@ -113,6 +114,15 @@ var ControlPanel= function (url){
 		gasteizGraph.setPlace('VITORIA-GASTEIZ');
 		gasteizGraph.setID(c[0].getAttribute('compId'));
 
+		comp='twitterViewer';
+		c=cmps.filter(filterById);
+		var twV=new hashtag();		
+		twV.setID(c[0].getAttribute('compId'));
+
+		comp='twitterMap';
+		c=cmps.filter(filterById);
+		var twM=new trendingMap();		
+		twM.setID(c[0].getAttribute('compId'));
 
 
 		camerasSect=new camerasSection();
@@ -134,6 +144,10 @@ var ControlPanel= function (url){
 
 		radioSect=new radioSection();
 		radioSect.addComponent(radioComp);
+
+		twitterSect=new twitterSection();
+		twitterSect.addViewerComp(twV);
+		twitterSect.addMapComp(twM);
 
 		devBox=new deviceBox();
 		var lay1=new layout();
@@ -308,7 +322,7 @@ var ControlPanel= function (url){
 					dev1.setID(agCtx.agents[i].id);
 
 
-					var twitterSect=new twitterSection();
+					
 					
 
 
@@ -340,6 +354,9 @@ var ControlPanel= function (url){
 					var section4=new section();
 					section4.setName(agCtx.agents[i].id+'twitter');
 					section4.addItem(devBox);
+					twitterSect.setViewerViewStatus(agCtx.agents[i].id);
+					twitterSect.setViewerHTStatus(agCtx.agents[i].id);
+					twitterSect.setMapViewStatus(agCtx.agents[i].id);
 					section4.addItem(twitterSect);
 					this.addItem(section4);
 					container.appendChild(section4.render());
@@ -410,7 +427,7 @@ var ControlPanel= function (url){
 					dev1.setID(event.detail.agentid);
 
 
-					var twitterSect=new twitterSection();
+					
 					
 
 
@@ -443,6 +460,9 @@ var ControlPanel= function (url){
 					var section4=new section();
 					section4.setName(event.detail.agentid+'twitter');
 					section4.addItem(devBox);
+					twitterSect.setViewerViewStatus(event.detail.agentid);
+					twitterSect.setViewerHTStatus(event.detail.agentid);
+					twitterSect.setMapViewStatus(event.detail.agentid);
 					section4.addItem(twitterSect);
 					this.addItem(section4);
 					container.appendChild(section4.render());
@@ -476,7 +496,7 @@ var ControlPanel= function (url){
 				else{
 					dev1.setID(event.detail.agentid);
 
-					var twitterSect=new twitterSection();
+					
 					
 
 
@@ -501,6 +521,9 @@ var ControlPanel= function (url){
 					var section4=new section();
 					section4.setName(event.detail.agentid+'twitter');
 					section4.addItem(devBox);
+					twitterSect.setViewerViewStatus(event.detail.agentid);
+					twitterSect.setViewerHTStatus(event.detail.agentid);
+					twitterSect.setMapViewStatus(event.detail.agentid);
 					section4.addItem(twitterSect);
 					this.addItem(section4);
 					container.appendChild(section4.render());
@@ -714,6 +737,9 @@ var ControlPanel= function (url){
 								}
 
 							}
+						if(sections[i].name===event.detail.agentid+'twitter' && sectionDiv[i].querySelector('#htSelect')!==null){
+							sectionDiv[i].querySelector('#htSelect').value=changes[j].newValue;
+						}	
 
 					}
 				}
@@ -872,7 +898,17 @@ var ControlPanel= function (url){
 			}
 		}
 	}
+	this.changeHashtag=function(agentToChange,h){
+		var sections=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items;
+		var sectionNum=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items.length;
+		var sectionDiv=document.querySelector('#fullTemp').children;
+		for(var i=2;i<sectionNum;i++){
+			if(sections[i].name===agentToChange+'twitter'){
+				sectionDiv[i].querySelector('#htSelect').value=h;
+			}
+		}
 
+	}
 	this.changeTableYear=function(agentToChange,year){
 		var sections=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items;
 		var sectionNum=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items.length;
@@ -1599,6 +1635,15 @@ var camerasSection=function(){
 }
 
 var hashtag=function(){
+	this.setID=function(hId){
+		this.id=hId;
+	}
+	this.setViewStatus=function(stat){
+		this.viewStatus=stat;
+	}
+	this.setHTStatus=function(stat){
+		this.HTStatus=stat;
+	}
 	this.render=function(){
 		var hashtagDiv=document.createElement('div');
 		hashtagDiv.className='col-md-10 twitter-hashtag';
@@ -1622,14 +1667,16 @@ var hashtag=function(){
 		var select=document.createElement('select');
 		select.className='form-control select-hashtag';
 		select.addEventListener('change',this.sendHTclick.bind(this),true);
-
+		select.id='htSelect';
 		var HT=['','Elecciones',' elecciones',' Hauteskundeak',' hauteskundeak',' eleccion',' #elecciones24m',' #24m',' #L6elecciones','#eleccionesA3',' #eleccion2015',' hauteskundeak',' elecciones',' @hauteskundeak',' #hauteskundeak2015',' #Elecciones2015',' #hauteskundeak15',' #Elecciones15',' #M24Donostia',' #eleccionesVG',' @Navarra2015',' #Navarra24M',' #24M',' #M24Donostia',' #EleccionesNA15',' #Navarra24M',' @PPopular',' @PSOE',' @vox_es',' @UPyD',' @ahorapodemos',' @PartidoPACMA',' @Equo',' @CiudadanosCs',' @webpcpe',' @RecortesCero',' @phumanista_esp',' #UPyD',' #PSOE',' #PP',' #BILDU',' #Podemos',' #HagamosHistoria24M',' #VOX',' #AhoraVOX',' #Ciudadanos',' #UPN',' @PPvasco',' @UPyDEuskadi',' @Cs_Euskadi',' @IrabaziEuskadi',' @PES_PSE',' @EzkerBatua',' @ealkartasuna',' @plaZFeminista',' @PodemosEuskadi_',' @ehbildu',' @IkuneICP',' @eajpnv',' @PacmaEuskadi',' @UdalBerri',' @GastoriaVG',' @hegasum',' @IUEzker',' @upn_navarra',' @libertadnavarra',' @SainNavarra',' @RCN_NOK',' Kike Fernández',' @KikeFdzdePinedo',' @arabaehbildu',' @ehbilduaraba',' Miren Larrion',' @miren_larrion',' @ehbildugasteiz',' @EA_Araba',' Ramiro González',' @ramirogonza',' @eajpnvaraba',' @pnvjuntasaraba',' Gorka Urtaran',' @pnvgasteiz',' @gorka__urtaran',' Cristina González',' @CristinaGnlz',' @psealava',' @PSEporAlava',' Peio López De Munain',' @porvitoria',' @peiomunain_xvg',' Javier De Andrés',' @JavierdAndres',' @PP_Juntas_Alava',' Javier Maroto',' @JavierMaroto',' Koldo Martin',' @KoldoPodemos',' @PodemosVitoria',' Ana Unibaso',' @IkuneICP',' Niko Gutiérrez',' @Nik0Gutierrez',' Ignacio Oñate',' @Ignacionate',' Miguel Angel Carrera',' @MikelK10',' Rodrigo Zamora',' @Rodri_Zamora_Al',' José Damían Garcia-Moreno',' @josedamian1980',' #IrabaziAlaba',' @iu_araba',' @EquoAraba',' Óscar Fernández',' @oskar_fm',' @IrabaziGasteiz',' @EQUO_VG',' @EBgasteiz',' Esaú Martín',' @esaumartin',' @vox_alava',' #AhoraVOX',' Adolfo Gago',' @toohope',' Vanesa Costa',' Nerea Icuza',' @icuza',' Esther Saez de Argandoña',' @unicaire',' @GastoriaVG',' Jorge Hinojal',' @JorgeHiSo',' @shgjorge',' @hegasum',' Diana Plaza',' @RecortesCero',' Xabier Olano',' @Xabier_Olano_',' @ehbildugipuzkoa',' @alternatiba',' @EA_Gipuzkoa',' #gipuzkoarrokgaraile',' Juankar Izagirre',' @AlkateSS',' @HiriBizia',' @SortuDonostia',' @EA_Donostia',' #BILDU',' @ehbildu',' Markel Olano',' @eajpnvgipuzkoa',' @markelolano',' @markelolano2015',' Eneko Goia',' @enekogoia2015',' @DonostiaPNV',' @pnvdonostia',' @eajpnv',' Denis Itxaso',' @DenisItxaso',' @PSEGIPUZKOA',' Ernesto Gasco',' @gasco63',' Juan Carlos Cano',' @PPGipuzkoa',' @CanoAristoy',' Miren Albistur',' @MirenAlbistur',' @PPdonostiarras',' Juantxo Iturria',' @juantxo_iturria',' #BadaGaraia',' #GipuzkoaAldatu',' @podemosDonostia',' Amaia Martín',' @sybillacumas',' @Irabazidonostia',' #Podemos',' #HagamosHistoria24M',' Arantza González',' @arantzagg',' @IRABAZIGipuzkoa',' @Irabazidonostia',' @IUDonostia',' @eQuoGipuzkoa',' Manuel Aguirre',' @Mccguirre',' Arantza Aranzabal',' @aranaranzabal',' #donostiaUPyD',' @votaUPyD',' Jonathan Calvo',' @joncalrue',' Nicolás de Miguel',' @NicodeMig',' Josebe Iturrioz',' @JosebeIturrioz',' #AldaketaGorpuzteko',' @plaZFeminista',' Saioa Escolar',' @Pacma_Gipuzkoa',' @PacmaGipuzkoa',' @PacmaEuskadi',' Josu Unanue',' @unanuejosu',' @ehbildubizkaia',' #bizkaitarrokgaraile',' Aitziber Ibarbarriaga',' @AitziIbaiba',' @ehbildubilbo',' @SortuBilbo',' #BILDU',' @EA_Bizkaia',' Unai Rementeria',' @urementeria',' Juan María Aburto',' @juanmariaburto',' @AzalgorriBilbao',' @eajpnvbilbao @eajpnv',' Carlos Totorica',' @PSEBizkaia',' #CarlosTotorica',' Alfonso Gil',' @AlfonsoGil',' @PSEBilbao',' @GroupPES_Bilbao',' Javier Ruiz',' @JavierRuiz_PP',' @PPBizkaia',' Luis Eguiluz',' @LuisEguiluz_pp',' @PPdeBilbao',' Asun Merino',' @AsunPodemos',' @PodemosBizkaia',' Francisco Samir Lahdou',' @PodemosBilbao',' @PodemosBilbaoE',' Xabier Jiménez',' @Eljoventopo',' #IrabaziBizkaia',' @BilboIrabaziz',' @IUBilbao',' @EquoBizkaia',' Roque Adrada',' @RoqueAdrada',' Javier Gabilondo',' @JavierGabilondo',' Santiago Sáinz',' @Sainz_Robles',' @Ciudadanos',' David Pasarín',' @davidpasarin',' Patricia Gómez',' @vox_vizcaya',' Urko de Azumendi',' @urkobilbao2015',' @vox_bilbao',' Carmen Muñoz',' @CarmenMunozL',' #BilbaoEnComun',' @UdalBerri',' @Equo',' @iunida',' @ALTER_info',' JOSE MANUEL VÁZQUEZ RIOS',' @phumanista_esp',' Kepa Lozano',' @KEPALOZANO',' Goizane Rodríguez',' @JusticiaPAT',' Joseba Arroita',' @IkuneICP',' Sergio Saenz',' @webpcpe',' #24mvotapcpe',' Uxue Barkos',' @uxuebarkos',' Itziar Gomez',' @itziargomez',' @GeroaBaiIrunea',' @geroabai',' #orainbai',' @EAJPNVNafarroa',' Javier Esparza',' @JavierJesparza',' @_navarrisimo',' #Navarrisimo',' #adelantenavarros',' Enrique Maya',' #Navarrisimo',' #UPN',' @upn_navarra',' Ana Beltran',' @abeltran_ana',' @PPNavarra',' Pablo Zalba',' @PabloZalba',' #Pamplona',' #Navarra',' @PPNavarra',' #DespiertaPamplona',' María Chivite',' @mavichina',' @PSNPSOE',' Maite Esporrin',' @maiteesporrin',' @PamplonaPSN',' @psnpsoe',' #VotaPSOE',' #VotaPSNPSOE',' #EsporrinAlcaldesa',' #ActivemosPamplona',' Adolfo Araiz',' @AdolfoAraiz',' @EHbilduNafarroa',' #Nafarrokgaraile',' #nafarrokgaraile',' Joseba Asiron',' @josebaasiron',' @EAnafarroa',' Laura Pérez Ruano',' @laperua',' @Podemosnavarra',' #EsAhora',' #CambiaNavarra',' Diego Paños',' @diegopanos',' #CambiaNavarra',' @Cs_Navarra_',' Iñaki Arana',' #NavarraPideCambio',' Miguel Zarranz',' @miguelzarranz',' @UPyD_Navarra',' Damaso Crespo',' @upyd_navarra',' #LIBRES',' Jose Miguel Nuin',' @josemiguelnuin',' @IzdaNavarra @EzkerraN',' Mikel Iriarte',' @libertadnavarra',' David Marzo',' @davidMarzo',' @EquoNavarfarroa',' #LaAlternativaVerde',' #AukeraVerdea',' @EquoNavarra',' Maria Yazmina Larumbe',' @PacmaNavarra',' Daniel Fernández',' #SuVozTuVoto',' Luis Miguel Latasa',' @SainNavarra',' @PartidoSAIn',' Samuel Valderrey',' @SamuelValderrey',' #VOTASAIn',' Ramon Morcillo',' @RCN_NOK',' #marihuana',' Edurne Eguino',' @SoyEdurneNaiz',' @EdurneEguino',' @IUPamplona'];
 		for(var i=0;i<HT.length;i++){
 			var opt1=document.createElement('option');
 			opt1.innerHTML=HT[i];
-			//opt1.addEventListener('click',this.sendHTclick.bind(this),true);
+			opt1.value=HT[i];
+			opt1.addEventListener('click',this.sendHTclick.bind(this),true);
 			select.appendChild(opt1);
 		}
+		select.value=this.HTStatus;
 
 		div2.appendChild(p1);
 		div2.appendChild(p2);
@@ -1641,7 +1688,11 @@ var hashtag=function(){
 		var input1=document.createElement('input');
 		input1.type='checkbox';
 		input1.name='twitter-checkbox';
-		input1.checked=true;
+		input1.id='viewCheck'+this.id;
+		input1.checked=this.viewStatus;	
+		
+		div3.id='view'+this.id;
+		div3.addEventListener('click',this.viewClick.bind(this),true);
 
 		div3.appendChild(input1);
 		hashtagDiv.appendChild(div1);
@@ -1652,10 +1703,40 @@ var hashtag=function(){
 	this.sendHTclick=function(event){
 
 		var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
-		//mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,"compId0",event.srcElement.value);
+		mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,event.srcElement.value);
+		mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeHashtag(agentToChange,event.srcElement.value);
+	}
+	this.viewClick=function(event){
+		var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
+		var agents=agCtx.agents;
+		var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
+		var val=agentToChange;
+		function filterById(el){
+			if(el.id===val)return el;
+		}
+
+		var a=agents.filter(filterById);
+		var scope=this;
+		var b=a[0].capabilities.componentsStatus.filter(function(el,i){
+			if(el.compId===scope.id)return el;
+		});
+
+		console.log('viewClick');
+		if(b[0].show===true){
+			mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'hide');
+		}
+		else{
+			mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'show');
+		}
 	}
 }
 var trendingMap=function(){
+	this.setID=function(mapId){
+		this.id=mapId;
+	}
+	this.setViewStatus=function(stat){
+		this.viewStatus=stat;
+	}
 	this.render=function(){
 
 		var trending=document.createElement('div');
@@ -1685,8 +1766,10 @@ var trendingMap=function(){
 		var input2=document.createElement('input');
 		input2.type='checkbox';
 		input2.name='twitter-checkbox';
-		input2.checked=true;
-
+		input2.id='viewCheck'+this.id;
+		input2.checked=this.viewStatus;
+		div6.id='view'+this.id;
+		div6.addEventListener('click',this.viewClick.bind(this),true);
 		div6.appendChild(input2);
 		trending.appendChild(div4);
 		trending.appendChild(div5);
@@ -1694,9 +1777,41 @@ var trendingMap=function(){
 
 		return trending;
 	}
+	this.viewClick=function(event){
+		var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
+		var agents=agCtx.agents;
+		var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
+		var val=agentToChange;
+		function filterById(el){
+			if(el.id===val)return el;
+		}
+
+		var a=agents.filter(filterById);
+		var scope=this;
+		var b=a[0].capabilities.componentsStatus.filter(function(el,i){
+			if(el.compId===scope.id)return el;
+		});
+
+		console.log('viewClick');
+		if(b[0].show===true){
+			mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'hide');
+		}
+		else{
+			mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'show');
+		}
+	}
 }
 
 var twitterSection=function(){
+
+	this.viewerComp=[];
+	this.mapComp=[];
+	this.addViewerComp=function(c){
+		this.viewerComp.push(c);
+	}
+	this.addMapComp=function(c){
+		this.mapComp.push(c);
+	}
 	this.render=function(){
 
 		var extDiv=document.createElement('div');
@@ -1706,15 +1821,105 @@ var twitterSection=function(){
 		tselector.className='col-md-12 layout-columns twitter-selector-container';
 		//abstraer cada componente por separado? hashtag y trending map
 
-		var hashtagComp=new hashtag();
-		tselector.appendChild(hashtagComp.render());
+		
+		tselector.appendChild(this.viewerComp[0].render());
 
 
-		var trendingComp=new trendingMap();
-		tselector.appendChild(trendingComp.render());
+	
+		tselector.appendChild(this.mapComp[0].render());
 
 		extDiv.appendChild(tselector);
 		return extDiv;
+	}
+	this.setViewerViewStatus=function(agentID){
+
+		var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
+		var agents=agCtx.agents;
+		var agentToChange=agentID;
+
+		var a=agents.filter(function(el){
+			if(el.id===agentToChange)return el;
+		});
+		var scope=this;
+
+
+		var v=this.viewerComp[0].id;
+		b=a[0].capabilities.componentsStatus.filter(function(el){
+			if(el.compId===v)return el;
+		});
+
+
+		if(b[0].show===true){
+			this.viewerComp[0].setViewStatus(true);
+		}
+		else{
+			this.viewerComp[0].setViewStatus(false);
+		}
+
+	}
+	this.setViewerHTStatus=function(agentID){
+
+		var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
+		var agents=agCtx.agents;
+		var agentToChange=agentID;
+		var AllHT=['','Elecciones',' elecciones',' Hauteskundeak',' hauteskundeak',' eleccion',' #elecciones24m',' #24m',' #L6elecciones','#eleccionesA3',' #eleccion2015',' hauteskundeak',' elecciones',' @hauteskundeak',' #hauteskundeak2015',' #Elecciones2015',' #hauteskundeak15',' #Elecciones15',' #M24Donostia',' #eleccionesVG',' @Navarra2015',' #Navarra24M',' #24M',' #M24Donostia',' #EleccionesNA15',' #Navarra24M',' @PPopular',' @PSOE',' @vox_es',' @UPyD',' @ahorapodemos',' @PartidoPACMA',' @Equo',' @CiudadanosCs',' @webpcpe',' @RecortesCero',' @phumanista_esp',' #UPyD',' #PSOE',' #PP',' #BILDU',' #Podemos',' #HagamosHistoria24M',' #VOX',' #AhoraVOX',' #Ciudadanos',' #UPN',' @PPvasco',' @UPyDEuskadi',' @Cs_Euskadi',' @IrabaziEuskadi',' @PES_PSE',' @EzkerBatua',' @ealkartasuna',' @plaZFeminista',' @PodemosEuskadi_',' @ehbildu',' @IkuneICP',' @eajpnv',' @PacmaEuskadi',' @UdalBerri',' @GastoriaVG',' @hegasum',' @IUEzker',' @upn_navarra',' @libertadnavarra',' @SainNavarra',' @RCN_NOK',' Kike Fernández',' @KikeFdzdePinedo',' @arabaehbildu',' @ehbilduaraba',' Miren Larrion',' @miren_larrion',' @ehbildugasteiz',' @EA_Araba',' Ramiro González',' @ramirogonza',' @eajpnvaraba',' @pnvjuntasaraba',' Gorka Urtaran',' @pnvgasteiz',' @gorka__urtaran',' Cristina González',' @CristinaGnlz',' @psealava',' @PSEporAlava',' Peio López De Munain',' @porvitoria',' @peiomunain_xvg',' Javier De Andrés',' @JavierdAndres',' @PP_Juntas_Alava',' Javier Maroto',' @JavierMaroto',' Koldo Martin',' @KoldoPodemos',' @PodemosVitoria',' Ana Unibaso',' @IkuneICP',' Niko Gutiérrez',' @Nik0Gutierrez',' Ignacio Oñate',' @Ignacionate',' Miguel Angel Carrera',' @MikelK10',' Rodrigo Zamora',' @Rodri_Zamora_Al',' José Damían Garcia-Moreno',' @josedamian1980',' #IrabaziAlaba',' @iu_araba',' @EquoAraba',' Óscar Fernández',' @oskar_fm',' @IrabaziGasteiz',' @EQUO_VG',' @EBgasteiz',' Esaú Martín',' @esaumartin',' @vox_alava',' #AhoraVOX',' Adolfo Gago',' @toohope',' Vanesa Costa',' Nerea Icuza',' @icuza',' Esther Saez de Argandoña',' @unicaire',' @GastoriaVG',' Jorge Hinojal',' @JorgeHiSo',' @shgjorge',' @hegasum',' Diana Plaza',' @RecortesCero',' Xabier Olano',' @Xabier_Olano_',' @ehbildugipuzkoa',' @alternatiba',' @EA_Gipuzkoa',' #gipuzkoarrokgaraile',' Juankar Izagirre',' @AlkateSS',' @HiriBizia',' @SortuDonostia',' @EA_Donostia',' #BILDU',' @ehbildu',' Markel Olano',' @eajpnvgipuzkoa',' @markelolano',' @markelolano2015',' Eneko Goia',' @enekogoia2015',' @DonostiaPNV',' @pnvdonostia',' @eajpnv',' Denis Itxaso',' @DenisItxaso',' @PSEGIPUZKOA',' Ernesto Gasco',' @gasco63',' Juan Carlos Cano',' @PPGipuzkoa',' @CanoAristoy',' Miren Albistur',' @MirenAlbistur',' @PPdonostiarras',' Juantxo Iturria',' @juantxo_iturria',' #BadaGaraia',' #GipuzkoaAldatu',' @podemosDonostia',' Amaia Martín',' @sybillacumas',' @Irabazidonostia',' #Podemos',' #HagamosHistoria24M',' Arantza González',' @arantzagg',' @IRABAZIGipuzkoa',' @Irabazidonostia',' @IUDonostia',' @eQuoGipuzkoa',' Manuel Aguirre',' @Mccguirre',' Arantza Aranzabal',' @aranaranzabal',' #donostiaUPyD',' @votaUPyD',' Jonathan Calvo',' @joncalrue',' Nicolás de Miguel',' @NicodeMig',' Josebe Iturrioz',' @JosebeIturrioz',' #AldaketaGorpuzteko',' @plaZFeminista',' Saioa Escolar',' @Pacma_Gipuzkoa',' @PacmaGipuzkoa',' @PacmaEuskadi',' Josu Unanue',' @unanuejosu',' @ehbildubizkaia',' #bizkaitarrokgaraile',' Aitziber Ibarbarriaga',' @AitziIbaiba',' @ehbildubilbo',' @SortuBilbo',' #BILDU',' @EA_Bizkaia',' Unai Rementeria',' @urementeria',' Juan María Aburto',' @juanmariaburto',' @AzalgorriBilbao',' @eajpnvbilbao @eajpnv',' Carlos Totorica',' @PSEBizkaia',' #CarlosTotorica',' Alfonso Gil',' @AlfonsoGil',' @PSEBilbao',' @GroupPES_Bilbao',' Javier Ruiz',' @JavierRuiz_PP',' @PPBizkaia',' Luis Eguiluz',' @LuisEguiluz_pp',' @PPdeBilbao',' Asun Merino',' @AsunPodemos',' @PodemosBizkaia',' Francisco Samir Lahdou',' @PodemosBilbao',' @PodemosBilbaoE',' Xabier Jiménez',' @Eljoventopo',' #IrabaziBizkaia',' @BilboIrabaziz',' @IUBilbao',' @EquoBizkaia',' Roque Adrada',' @RoqueAdrada',' Javier Gabilondo',' @JavierGabilondo',' Santiago Sáinz',' @Sainz_Robles',' @Ciudadanos',' David Pasarín',' @davidpasarin',' Patricia Gómez',' @vox_vizcaya',' Urko de Azumendi',' @urkobilbao2015',' @vox_bilbao',' Carmen Muñoz',' @CarmenMunozL',' #BilbaoEnComun',' @UdalBerri',' @Equo',' @iunida',' @ALTER_info',' JOSE MANUEL VÁZQUEZ RIOS',' @phumanista_esp',' Kepa Lozano',' @KEPALOZANO',' Goizane Rodríguez',' @JusticiaPAT',' Joseba Arroita',' @IkuneICP',' Sergio Saenz',' @webpcpe',' #24mvotapcpe',' Uxue Barkos',' @uxuebarkos',' Itziar Gomez',' @itziargomez',' @GeroaBaiIrunea',' @geroabai',' #orainbai',' @EAJPNVNafarroa',' Javier Esparza',' @JavierJesparza',' @_navarrisimo',' #Navarrisimo',' #adelantenavarros',' Enrique Maya',' #Navarrisimo',' #UPN',' @upn_navarra',' Ana Beltran',' @abeltran_ana',' @PPNavarra',' Pablo Zalba',' @PabloZalba',' #Pamplona',' #Navarra',' @PPNavarra',' #DespiertaPamplona',' María Chivite',' @mavichina',' @PSNPSOE',' Maite Esporrin',' @maiteesporrin',' @PamplonaPSN',' @psnpsoe',' #VotaPSOE',' #VotaPSNPSOE',' #EsporrinAlcaldesa',' #ActivemosPamplona',' Adolfo Araiz',' @AdolfoAraiz',' @EHbilduNafarroa',' #Nafarrokgaraile',' #nafarrokgaraile',' Joseba Asiron',' @josebaasiron',' @EAnafarroa',' Laura Pérez Ruano',' @laperua',' @Podemosnavarra',' #EsAhora',' #CambiaNavarra',' Diego Paños',' @diegopanos',' #CambiaNavarra',' @Cs_Navarra_',' Iñaki Arana',' #NavarraPideCambio',' Miguel Zarranz',' @miguelzarranz',' @UPyD_Navarra',' Damaso Crespo',' @upyd_navarra',' #LIBRES',' Jose Miguel Nuin',' @josemiguelnuin',' @IzdaNavarra @EzkerraN',' Mikel Iriarte',' @libertadnavarra',' David Marzo',' @davidMarzo',' @EquoNavarfarroa',' #LaAlternativaVerde',' #AukeraVerdea',' @EquoNavarra',' Maria Yazmina Larumbe',' @PacmaNavarra',' Daniel Fernández',' #SuVozTuVoto',' Luis Miguel Latasa',' @SainNavarra',' @PartidoSAIn',' Samuel Valderrey',' @SamuelValderrey',' #VOTASAIn',' Ramon Morcillo',' @RCN_NOK',' #marihuana',' Edurne Eguino',' @SoyEdurneNaiz',' @EdurneEguino',' @IUPamplona'];
+		var a=agents.filter(function(el){
+			if(el.id===agentToChange)return el;
+		});
+		var scope=this;
+
+
+		var v=this.viewerComp[0].id;
+		b=a[0].capabilities.componentsStatus.filter(function(el){
+			if(el.compId===v)return el;
+		});
+
+
+		if(b[0].customCmd.length===0){
+			this.viewerComp[0].setHTStatus('');
+		}
+		else{
+			var last=-1;
+			for(var i=0;i<AllHT.length;i++){
+				if(b[0].customCmd.lastIndexOf(AllHT[i])>last){
+					last=b[0].customCmd.lastIndexOf(AllHT[i]);
+				}
+			}
+			if(last!==-1){
+				this.viewerComp[0].setHTStatus(b[0].customCmd[last]);
+			}
+			else{
+				this.viewerComp[0].setHTStatus('');
+			}
+
+		}
+
+	}
+	this.setMapViewStatus=function(agentID){
+
+		var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
+		var agents=agCtx.agents;
+		var agentToChange=agentID;
+
+		var a=agents.filter(function(el){
+			if(el.id===agentToChange)return el;
+		});
+		var scope=this;
+
+
+		var m=this.mapComp[0].id;
+		b=a[0].capabilities.componentsStatus.filter(function(el){
+			if(el.compId===m)return el;
+		});
+
+
+		if(b[0].show===true){
+			this.mapComp[0].setViewStatus(true);
+		}
+		else{
+			this.mapComp[0].setViewStatus(false);
+		}
+
 	}
 }
 
