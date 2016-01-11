@@ -455,7 +455,7 @@ Polymer({
 
 			var tdimg=document.createElement('td');
 			var img=document.createElement('img');
-			img.src="/resources/images/icons/"+results.results[time].places[where].parties[i].icon;
+			img.src="/resources/images/icons/table"+results.results[time].places[where].parties[i].icon;
 
 			img.className='imgClass';
 			img.style.width=this.$.actualdata.style.height;
@@ -502,7 +502,7 @@ Polymer({
 		for(var i=0;i<results.results[time].places[where].parties.length;i++){
 			var th=document.createElement('th');
 			var img=document.createElement('img');
-			img.src="/resources/images/icons/"+results.results[time].places[where].parties[i].icon;
+			img.src="/resources/images/icons/table/"+results.results[time].places[where].parties[i].icon;
 			img.style.width='30px';
 			th.appendChild(img);
 			th.style.padding='0em 0em';
@@ -547,7 +547,7 @@ Polymer({
 		for(var i=0;i<3;i++){
 			var th=document.createElement('th');
 			var img=document.createElement('img');
-			img.src="/resources/images/icons/"+results.results[time].places[where].parties[i].icon;
+			img.src="/resources/images/icons/table"+results.results[time].places[where].parties[i].icon;
 			img.style.width='30px';
 			th.appendChild(img);
 			th.style.padding='0em 0em';

@@ -126,7 +126,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
       document.body.style.padding='';
       var container=document.querySelector('#componentsContainer');
 
-      container.style.overflowX='';
+      container.style.overflow='hidden';
       container.style.display='inline-block';
       container.style.gridAutoFlow='';
       container.className='template-all-layouts';

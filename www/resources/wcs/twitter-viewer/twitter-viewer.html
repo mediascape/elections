@@ -405,7 +405,7 @@
 								div6.className='tweet_timestamp twitter-viewer';
 								div6.innerHTML='<img class="stream_bluebird" src="././resources/images/twitter/bird_16_blue.png"></img> \
 											<span class="retweets" style="color:#C0C0C0">'+data.retweet_count+' retweets</span> \
-											<a href="http://twitter.com/'+data.user.screen_name+'/status/'+data.id_str+'" target="search" class="tweet_time_link">'+data.created_at+'</a> \
+											<a href="http://twitter.com/'+data.user.screen_name+'/status/'+data.id_str+'" target="search" class="tweet_time_link">Sun May 24 23'+data.created_at.split('Sun May 24 21')[1]+'</a> \
 											<img src="././resources/images/twitter/reply.png" class="imageof_reply"></img> \
 											<a href="http://twitter.com/intent/tweet?in_reply_to='+data.id_str+'" target="search" style="color:#C0C0C0;text-decoration: none;">Reply</a> \
 											<img src="././resources/images/twitter/retweet.png" class="imageof_retweet"></img> \
@@ -419,31 +419,7 @@
 
 								_this.$.ulList.insertBefore(li,_this.$.ulList.firstChild);
 								
-								/*_this.$.ulList.insertAdjacentHTML('afterbegin',
-								'<li class="tweet-element"> \
-									<div class="media content-tweets"> \
-										<div class="media-left avatar-twitter"> \
-											<a href="https://twitter.com/'+data.user.screen_name+'"> \
-												<img class="media-object" src="'+data.user.profile_image_url+'" onerror="this.src = \'././resources/images/twitter/default.png\';"> </img> \
-											</a> \
-										</div> \
-										<div class="media-body"> \
-											<div class="usuario-twitter"><strong>'+data.user.screen_name+'</strong></div> \
-											<div class="mensaje-twitter">'+data.text+'</div> \
-										</div> \
-										<div class="tweet_timestamp"> \
-											<img class="stream_bluebird" src="././resources/images/twitter/bird_16_blue.png"></img> \
-											<span class="retweets" style="color:#C0C0C0">'+data.retweet_count+' retweets</span> \
-											<a href="http://twitter.com/'+data.user.screen_name+'/status/'+data.id_str+'" target="search" class="tweet_time_link">'+data.created_at+'</a> \
-											<img src="././resources/images/twitter/reply.png" class="imageof_reply"></img> \
-											<a href="http://twitter.com/intent/tweet?in_reply_to='+data.id_str+'" target="search" style="color:#C0C0C0;text-decoration: none;">Reply</a> \
-											<img src="././resources/images/twitter/retweet.png" class="imageof_retweet"></img> \
-											<a href="http://twitter.com/intent/retweet?tweet_id='+data.id_str+'" target="search" style="color:#C0C0C0;text-decoration: none;">Retweet</a> \
-											<img src="././resources/images/twitter/favorite.png" class="imageof_favorite"></img> \
-											<a href="http://twitter.com/intent/favorite?tweet_id='+data.id_str+'" target="search" style="color:#C0C0C0;text-decoration: none;">Favorite</a> \
-										</div> \
-									</div> \
-								</li>');*/
+								
 							}
 						});
 
