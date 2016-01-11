@@ -4,13 +4,13 @@
 		<style>
 #map {
 	background-color: #0A2533;
-	
+
 }
 
 
 /************** mapa **********************/
 
-.logos-partidos { 
+.logos-partidos {
 	position: relative;
 	margin-bottom: 20px;
 }
@@ -26,8 +26,8 @@
 	top:0;
 }
 
-.detalle-logo { 
-	padding: 0;	
+.detalle-logo {
+	padding: 0;
 }
 .detalle-logo span img {
 	width: 35%;
@@ -35,7 +35,7 @@
 	-webkit-border-radius: 15px;
 	-moz-border-radius: 15px;
 	border-radius: 15px;
-	box-shadow: 0px 0px 15px rgba(0,0,0,0.5);	
+	box-shadow: 0px 0px 15px rgba(0,0,0,0.5);
 }
 /* posicion de cada logo */
 .detalle-logo.logo-1 {
@@ -83,7 +83,7 @@
 		width: 65%;
 		position:relative;
 	}
-	
+
 	#bizkaiaLogo{
 		width:30%;
 	}
@@ -102,7 +102,7 @@
 	}
 	.logo-2 {
 		padding-top: 21%;
-	}	
+	}
 	.logo-4 {
 		text-align: left;
 		padding-top: 15%;
@@ -113,7 +113,7 @@
 	}
 	.politic-party {
 		height: 115px;
-		
+
 		padding-top: 5px !important;
 	}
 	#hegoEuskalLogo{ width: 100px; }
@@ -152,7 +152,7 @@
 	}
 	.logo-2 {
 		padding-top: 25%;
-	}	
+	}
 	.logo-4 {
 		text-align: left;
 		padding-top: 25%;
@@ -163,11 +163,11 @@
 	}
 	.politic-party {
 		height: 115px;
-		
+
 		padding-top: 5px !important;
 	}
 	#hegoEuskalLogo{ width: 100px; }
-	
+
 	.logos-partidos { display: block;}
 	#part1{
 		width:33%;
@@ -233,11 +233,11 @@
 	#part3{
 		width:33%;
 	}
-	
+
 }
 
 @media (max-width: 767px) and (orientation: landscape){
-	
+
 	.politic-party {
 		height: 130px;
 		text-align: center;
@@ -245,10 +245,10 @@
 
 	}
 	h2 { font-size: medium; padding-top: 5px !important;}
-	
+
 	.logo-party { text-align: center;}
-	
-	
+
+
 	.logos-partidos { display: block;}
 	#hegoEuskalLogo { width: 100px; }
 	#part1{
@@ -281,11 +281,11 @@
 	#part3{
 		width:100%;
 	}
-	
+
 }
 
 @media (max-width: 480px) and (min-height:235px) and (orientation: landscape){
-	.logos-partidos { display: none;}	
+	.logos-partidos { display: none;}
 	.politic-party {
 		height: 100%;
 		text-align: center;
@@ -307,7 +307,7 @@
 
 }
 @media (max-width: 480px) and (max-height:234px) and (orientation: landscape){
-	.logos-partidos { display: none;}	
+	.logos-partidos { display: none;}
 	.politic-party {
 		height: 100%;
 		text-align: center;
@@ -344,15 +344,15 @@
 							<div class="detalle-logo col-md-3 logo-3 col-sm-3 col-xs-3"><span><img id='gipuzkoaLogo' src="detalle-twitter/logo-podemos-transp.png"/></span></div>
 							<div class="detalle-logo col-md-3 logo-4 col-sm-3 col-xs-3"><span><img id='nafarroaLogo' src="detalle-twitter/logo-Bildu-transp.png"/></span></div>
 						</div>
-					</div>						
-	
+					</div>
+
 				</div>
 				<div class="col-md-12 politic-party">
-				
+
 					<div id='part1' class="col-md-4 col-sm-12 col-xs-12"><h2 id='text1'>Trending Politic party:</h2></div>
 					<div id='part2' class="col-md-4 col-sm-12 col-xs-12 logo-party"><img id='hegoEuskalLogo' src="detalle-twitter/logo-PNV-transp.png" /></div>
 					<div id='part3' class="col-md-4 col-sm-12 col-xs-12"><h2  class="cont-tweets titulo-resp" id='tweetNum'>37.575 tweets</h2></div>
-			
+
 				</div>
             </div>
         </div>
@@ -383,7 +383,7 @@
 
 
 				},
-				
+
 
 				ready: function() {
 					console.log('twitter-map ready');
@@ -909,10 +909,10 @@
 					// ebentuak entzun ta jaso
 					var handler = function (e) {
 						if(_this.startVal===-1)_this.startVal=Math.round(e.pos);
-						
+
 
 						_this.timestamp=_this.prevTime+Math.round(e.pos);
-				
+
 						_this.timestampChanged();
 					};
 					this.sm.mapp.motions.shared.on("timeupdate", handler);
@@ -921,7 +921,7 @@
 					//console.log("timestampChanged");
 					if(this.socket) {
 						var data={
-							timestamp:this.timestamp-this.startVal, 
+							timestamp:this.timestamp-this.startVal,
 							text:this.terms
 						}
 						this.socket.emit('time',data);

@@ -88,7 +88,7 @@ var ControlPanel= function (url){
 		var radioComp=new radios();
 		radioComp.setID(c[0].getAttribute('compId'));
 
-		
+
 
 		comp='graph1';
 		c=cmps.filter(filterById);
@@ -116,12 +116,12 @@ var ControlPanel= function (url){
 
 		comp='twitterViewer';
 		c=cmps.filter(filterById);
-		var twV=new hashtag();		
+		var twV=new hashtag();
 		twV.setID(c[0].getAttribute('compId'));
 
 		comp='twitterMap';
 		c=cmps.filter(filterById);
-		var twM=new trendingMap();		
+		var twM=new trendingMap();
 		twM.setID(c[0].getAttribute('compId'));
 
 
@@ -197,7 +197,7 @@ var ControlPanel= function (url){
 		layoutSect1.addLayout(lay8);
 		layoutSect1.addLayout(lay9);
 		qrSect=new qrSection(QRurl);
-		
+
 		//sidebar menu
 		var menu1=new menu();
 
@@ -301,29 +301,29 @@ var ControlPanel= function (url){
 				for(var i=0;i<agCtx.agents.length;i++){
 					var dev1=new device();
 					if(agCtx.agents[i].capabilities.platform.deviceType==='TV'){
-						
+
 						dev1.setIcon('TV_'+(agCtx.agents[i]._id+1)+'.png');
 					}
 					else if(agCtx.agents[i].capabilities.platform.deviceType==='desktop' || agCtx.agents[i].capabilities.platform.deviceType==='Desktop')
 					{
-						
+
 						dev1.setIcon('LAPTOP_'+(agCtx.agents[i]._id+1)+'.png');
 					}
 					else if(agCtx.agents[i].capabilities.platform.deviceType==='Tablet')
 					{
-						
+
 						dev1.setIcon('TABLET_'+(agCtx.agents[i]._id+1)+'.png');
 					}
 					else if(agCtx.agents[i].capabilities.platform.deviceType==='Mobile' || agCtx.agents[i].capabilities.platform.deviceType==='mobile')
 					{
-						
+
 						dev1.setIcon('MOVIL_'+(agCtx.agents[i]._id+1)+'.png');
 					}
 					dev1.setID(agCtx.agents[i].id);
 
 
-					
-					
+
+
 
 
 					if(i===0){
@@ -403,22 +403,22 @@ var ControlPanel= function (url){
 				*	  Desktop, tablet, mobile, tv
 				*/
 				if(event.detail.profile.deviceType==='TV'){
-					
+
 					dev1.setIcon('TV_'+(b[0]._id+1)+'.png');
 				}
 				else if(event.detail.profile.deviceType==='desktop' || event.detail.profile.deviceType==='Desktop')
 				{
-					
+
 					dev1.setIcon('LAPTOP_'+(b[0]._id+1)+'.png');
 				}
 				else if(event.detail.profile.deviceType==='Tablet')
 				{
-					
+
 					dev1.setIcon('TABLET_'+(b[0]._id+1)+'.png');
 				}
 				else if(event.detail.profile.deviceType==='mobile')
 				{
-			
+
 					dev1.setIcon('MOVIL_'+(b[0]._id+1)+'.png');
 				}
 
@@ -427,8 +427,8 @@ var ControlPanel= function (url){
 					dev1.setID(event.detail.agentid);
 
 
-					
-					
+
+
 
 
 
@@ -496,8 +496,8 @@ var ControlPanel= function (url){
 				else{
 					dev1.setID(event.detail.agentid);
 
-					
-					
+
+
 
 
 
@@ -647,7 +647,7 @@ var ControlPanel= function (url){
 
 					}
 					else if(changes[j].property==='customCmd'){
-						/*if(changes[j].newValue==='hide' || changes[j].newValue==='show'){
+						if(changes[j].newValue==='hide' || changes[j].newValue==='show'){
 							if(sections[i].name.indexOf(event.detail.agentid)===0 && sectionDiv[i].querySelector(selector)!==null){
 								// Show/hide commands
 								if(changes[j].newValue==='hide'){
@@ -664,9 +664,9 @@ var ControlPanel= function (url){
 
 								}
 							}
-						}*/
+						}
 
-						//}
+
 						if(sections[i].name.indexOf(event.detail.agentid)===0 &&
 								sectionDiv[i].querySelector('#radioViewBut')!==null){
 							if(changes[j].newValue==='hide'){
@@ -739,7 +739,7 @@ var ControlPanel= function (url){
 							}
 						if(sections[i].name===event.detail.agentid+'twitter' && sectionDiv[i].querySelector('#htSelect')!==null){
 							sectionDiv[i].querySelector('#htSelect').value=changes[j].newValue;
-						}	
+						}
 
 					}
 				}
@@ -1186,9 +1186,9 @@ var section=function(){
 }
 var device=function(){
 	this.icon='';
-	
 
-	
+
+
 	this.setIcon=function(icon){
 		this.icon=icon;
 	}
@@ -1207,7 +1207,7 @@ var device=function(){
 		a.appendChild(img1);
 
 
-		
+
 
 		div.appendChild(a);
 
@@ -1554,7 +1554,7 @@ var camerasSection=function(){
 		}
 
 		div4.appendChild(div5);
-		
+
 		div1.appendChild(div2);
 		div1.appendChild(div4);
 		extDiv.appendChild(div1);
@@ -1689,8 +1689,8 @@ var hashtag=function(){
 		input1.type='checkbox';
 		input1.name='twitter-checkbox';
 		input1.id='viewCheck'+this.id;
-		input1.checked=this.viewStatus;	
-		
+		input1.checked=this.viewStatus;
+
 		div3.id='view'+this.id;
 		div3.addEventListener('click',this.viewClick.bind(this),true);
 
@@ -1821,11 +1821,11 @@ var twitterSection=function(){
 		tselector.className='col-md-12 layout-columns twitter-selector-container';
 		//abstraer cada componente por separado? hashtag y trending map
 
-		
+
 		tselector.appendChild(this.viewerComp[0].render());
 
 
-	
+
 		tselector.appendChild(this.mapComp[0].render());
 
 		extDiv.appendChild(tselector);
@@ -1989,7 +1989,7 @@ var radios=function(){
 		div10.appendChild(img1);
 
 		div8.appendChild(div9);
-		div8.appendChild(div10);	
+		div8.appendChild(div10);
 
 		div6.appendChild(div7);
 		div6.appendChild(div8);
@@ -2025,7 +2025,7 @@ var radios=function(){
 		var div15=document.createElement('div');
 		div15.className='contenido-radio';
 
-		
+
 		var div16=document.createElement('div');
 		div16.className='emisoras';
 
@@ -2117,7 +2117,7 @@ var radioSection=function(){
 	}
 	this.render=function(){
 		var div1=document.createElement('div');
-		div1.className='template-content-center';		
+		div1.className='template-content-center';
 		div1.id='radioCont';
 		div1.appendChild(this.radioComponent[0].render());
 
@@ -2150,7 +2150,7 @@ var radioSection=function(){
 		}
 
 	}
-	
+
 }
 var table=function(){
 
@@ -2212,7 +2212,7 @@ var table=function(){
 			li1.className='';
 		}
 		li1.addEventListener('click',this.pastClick.bind(this),true);
-		
+
 		li1.innerHTML='<a href="#2011" aria-controls="2011" role="tab" data-toggle="tab"><img src="../resources/css/configPanel/img/graphics/icon_chart.png"/><br><span class="year-text">2011</span></a>'
 
 
@@ -2228,7 +2228,7 @@ var table=function(){
 		}
 		li2.addEventListener('click',this.presentClick.bind(this),true);
 		li2.innerHTML='<a href="#2012" aria-controls="2015" role="tab" data-toggle="tab"><img src="../resources/css/configPanel/img/graphics/icon_chart.png"/><br><span class="year-text">2015</span></a>';
-		
+
 		ul.appendChild(li1);
 		ul.appendChild(li2);
 
@@ -2455,7 +2455,7 @@ var graph=function(){
 		var div30=document.createElement('div');
 		div30.className='col-md-12 emisora';
 
-		
+
 
 		var div32=document.createElement('div');
 		div32.className='col-md-8 col-sm-8 col-xs-8 cityName';

@@ -1,7 +1,7 @@
 
 <dom-module id="twitter-viewer" >
 	<template>
-		<style>		
+		<style>
 
 
 	@media (min-width: 1024px){
@@ -34,9 +34,9 @@
 
 		.content-tweets{
 			border-bottom:1px dashed #55b2ff;
-			width: 90%; 
-			margin: auto !important; 
-			padding-bottom: 25px; 
+			width: 90%;
+			margin: auto !important;
+			padding-bottom: 25px;
 			padding-top: 15px;
 		}
 		.avatar-twitter {
@@ -51,7 +51,7 @@
 		.usuario-twitter{ color: #FFF; font-size: medium; }
 		.mensaje-twitter{ color: #FFF; font-size: small; }
 
-		
+
 
 		.tweet_timestamp {
 			font-size: small;
@@ -90,9 +90,9 @@
 
 		.content-tweets{
 			border-bottom:1px dashed #55b2ff;
-			width: 90%; 
-			margin: auto !important; 
-			padding-bottom: 25px; 
+			width: 90%;
+			margin: auto !important;
+			padding-bottom: 25px;
 			padding-top: 15px;
 		}
 		.avatar-twitter {
@@ -108,7 +108,7 @@
 		.mensaje-twitter{ color: #FFF; font-size: small; }
 
 
-		
+
 
 		.tweet_timestamp {
 			font-size: small;
@@ -147,9 +147,9 @@
 
 		.content-tweets{
 			border-bottom:1px dashed #55b2ff;
-			width: 90%; 
-			margin: auto !important; 
-			padding-bottom: 25px; 
+			width: 90%;
+			margin: auto !important;
+			padding-bottom: 25px;
 			padding-top: 15px;
 		}
 		.avatar-twitter {
@@ -165,7 +165,7 @@
 		.mensaje-twitter{ color: #FFF; font-size: small; }
 
 
-		
+
 
 		.tweet_timestamp {
 			font-size: xx-small;
@@ -200,9 +200,9 @@
 
 		.content-tweets{
 			border-bottom:1px dashed #55b2ff;
-			width: 90%; 
-			margin: auto !important; 
-			padding-bottom: 25px; 
+			width: 90%;
+			margin: auto !important;
+			padding-bottom: 25px;
 			padding-top: 15px;
 		}
 		.avatar-twitter {
@@ -218,7 +218,7 @@
 		.mensaje-twitter{ color: #FFF; font-size: xx-small; }
 
 
-		
+
 
 		.tweet_timestamp {
 			font-size: xx-small;
@@ -244,7 +244,7 @@
 					</div>
 					<ul class='list' id='ulList' style="padding-left:0px; list-style-type: none; margin-bottom: 0px;"></ul>
 				</div>
-			</div>			
+			</div>
 		</div>
 	</template>
 </dom-module>
@@ -302,7 +302,7 @@
 					console.log('twitter ready');
 					var _this=this;
 					var element=this.shadowRoot;
-					
+
 					//bind 'component-query' notifications with resize function
 
 					//Open Socket for the communication with the server
@@ -317,7 +317,7 @@
 
 						_this.socket.on('tweet', function(data)
 						{
-							
+
 							var text=data.text;
 
 							//detect tweets hashtags to make them clickables
@@ -356,7 +356,7 @@
 							}
 							if(!exist){
 								if(_this.$.ulList.childNodes.length>=nodesNumbers&&nodesNumbers>0) _this.$.ulList.removeChild(_this.$.ulList.children[nodesNumbers-1]);
-								
+
 								var li=document.createElement('li');
 								li.className='tweet-element twitter-viewer';
 
@@ -418,7 +418,7 @@
 
 
 								_this.$.ulList.insertBefore(li,_this.$.ulList.firstChild);
-								
+
 								/*_this.$.ulList.insertAdjacentHTML('afterbegin',
 								'<li class="tweet-element"> \
 									<div class="media content-tweets"> \
@@ -458,7 +458,7 @@
 					// ebentuak entzun ta jaso
 					var handler = function (e) {
 						if(_this.startVal===-1)_this.startVal=Math.round(e.pos);
-						
+
 
 						_this.timestamp=_this.prevTime+Math.round(e.pos);
 						if(_this.timestamp>=_this.val+3){
@@ -472,7 +472,7 @@
 					//console.log("timestampChanged");
 					if(this.socket) {
 						var data={
-							timestamp:this.timestamp-this.startVal, 
+							timestamp:this.timestamp-this.startVal,
 							text:this.terms
 						}
 						this.socket.emit('time',data);

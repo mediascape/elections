@@ -168,10 +168,11 @@ function($, applicationContext){
       localStatus = ag.capabilities.componentsStatus;
 
        if ( (obj.length != localStatus.length) || (localStatus ==="supported" || localStatus ==="undefined")){
-        return null;
+        return [];
       }
       else {
         var diff = mediascape.AdaptationToolkit.Utils.getObjectDiff(obj,localStatus);
+        if (diff.length ===0) diff = context.lastChange.diff;
        return diff;
       }
     }
@@ -238,6 +239,7 @@ function($, applicationContext){
                         context.agentid = change.agentid;
                         changeType = "ui";
                       }
+
                     }
                     var agent = getAgentById(change.agentid);
                     agent.capabilities[change.capability] = change.value;
@@ -277,6 +279,7 @@ function($, applicationContext){
         if (c.type === "SHOW") return document.querySelector("#"+c.component).getAttribute('compId');
         else return null;
       });
+      var statusBefore = mediascape.AdaptationToolkit.componentManager.core.getComponentsStatus()
       var AE = mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation;
       var me =AE.getLocalContext().agents.filter(function(ag){
         if (AE.getAgentId() ===ag.id) return true;
@@ -307,18 +310,20 @@ function($, applicationContext){
             return obj;
           }
         },this);
-      }
+
       status = status || [];
-      var statusBefore = mediascape.AdaptationToolkit.componentManager.core.getComponentsStatus();
       var diff = [];
-      if (statusBefore.length>0)
-        diff = mediascape.AdaptationToolkit.Utils.getObjectDiff(status,statusBefore);
+   if (statusBefore.length>0)
+        diff = getChangeDiff(change.agentid,status);
       if (diff.length>0 || statusBefore.length===0 ){
         mediascape.AdaptationToolkit.componentManager.core.setComponentsStatus(status);
         var event = new CustomEvent("onComponentsChange", {"detail":{"type":"localChange","cmps":status,"agentid":change.agentid}});
         document.dispatchEvent(event);
         AE.notifyUpdateContext(context,"cmp_changed",change.agentid);
       }
+    }else{
+      console.log("other agent change <<<<<><");
+    }
     }
 
     // update the shared context object
@@ -330,8 +335,11 @@ function($, applicationContext){
       var needInfoReady = context.agents.every (function(ag){
         if (ag.capabilities.hasOwnProperty('touchScreen') && ag.capabilities.hasOwnProperty('screenSize')) return true;
         else return false;
-      })
-     if (needInfoReady ) hybridAdaptation(change);
+      });
+     if (needInfoReady )
+      if (change.contextType === "capabilityChange" ) hybridAdaptation(change[0]);
+      else hybridAdaptation(change);
+
     };
 
 
