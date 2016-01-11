@@ -250,9 +250,8 @@ define(
       this.onComponentsChange = function (_cmps,cmds){
           // Filter only showing ones
           if (_cmps.actions ){
-          actualLayout.unload(cmps);
-          cmps = _cmps;
-          console.log(_cmps)
+
+
           cmps = _cmps.actions.filter(function(c){
               if (c.type==="SHOW") return true;
               else return false;
@@ -260,6 +259,7 @@ define(
           cmps = cmps.map(function(c){
               return document.querySelector("#"+c.component);
           });
+          //actualLayout.unload(cmps);
           if (This.layoutMode === This.LAYOUTMODE.ADAPTABLE){
             layoutIndex=0;
             actualLayout = This.findBestLayout(cmps)[layoutIndex];
@@ -847,7 +847,7 @@ define(
         window.dispatchEvent(event);
         for (var x = 0 ; x< cmps.length;x++)
             {
-                //cmps[x] = document.querySelector("#"+cmps[x].id);
+                cmps[x] = document.querySelector("#"+cmps[x].id);
                 cmps[x].updateNodes();
             }
         this.forceRedraw();
