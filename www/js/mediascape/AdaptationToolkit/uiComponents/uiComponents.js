@@ -521,7 +521,9 @@ define(
         var menuButtonP=document.createElement('p');
         menuButtonP.className='responsive-menu-button';
         menuButtonP.innerHTML=' <button type="button" data-toggle="offcanvas"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></button>';
-
+        menuButtonP.id='menuButtonP';
+        //menuButtonP.style.display='none';
+        
         document.body.appendChild(menuButtonP);
         $(document).ready(function() {
               $('[data-toggle=offcanvas]').click(function() {

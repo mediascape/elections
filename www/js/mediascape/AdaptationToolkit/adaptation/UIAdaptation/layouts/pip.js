@@ -264,12 +264,12 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
           //fullScreenCmp.style.gridColumn='1/span 3';
           fullScreenCmp.style.marginLeft='0px';
           fullScreenCmp.style.width=(width+10)+'px';
-          fullScreenCmp.style.height=(height+10)+'px';
+          fullScreenCmp.style.height=(height)+'px';
           //fullScreenCmp.style.gridRow='1/span '+heights.length;
           fullScreenCmp.style.marginTop='0px';
           fullScreenCmp.style.backgroundColor='white';
           fullScreenCmp.style.zIndex='1';
-          fullScreenCmp.className="col-md-12 col-sm-12 col-xs-12 layout-fullwidth";
+          fullScreenCmp.className="";
 
         usedHeight=0;
         for(var i=0;i<col_cmps;i++){
@@ -296,12 +296,12 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
         //fullScreenCmp.style.gridColumn='1/span 3';
         fullScreenCmp.style.marginLeft='0px';
         fullScreenCmp.style.width=(width+10)+'px';
-        fullScreenCmp.style.height=(height+10)+'px';
+        fullScreenCmp.style.height=(height)+'px';
         //fullScreenCmp.style.gridRow='1/span '+heights.length;
         fullScreenCmp.style.marginTop='0px';
         fullScreenCmp.style.backgroundColor='white';
         fullScreenCmp.style.zIndex='1';
-        fullScreenCmp.className="col-md-12 col-sm-12 col-xs-12 layout-fullwidth";
+        fullScreenCmp.className="";
 
 
         

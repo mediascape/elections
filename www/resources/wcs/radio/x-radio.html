@@ -7,7 +7,7 @@
 
 #container {
 	background-color: #0A2533;
-	padding: 15px;
+	padding: 5px;
 }
 .content-detalle-radio .radio-component-panel{background-color:#000003; overflow:auto; border-radius:15px; padding:3%;}
 .content-detalle-radio .radio-component-panel img{width:100%;}
@@ -22,35 +22,35 @@
 @media (min-width: 993px) and (orientation: landscape){
     .logo-radio{width:50%; float:left;}
     .equal {width:50%; float:right;}
-    p{font-size:50px;}
+    p{font-size:50px;display:block;}
 }
 @media (min-width: 993px) and (orientation: portrait){
     .logo-radio{width:100%; float:none;}
     .equal {width:100%; float:none;}
-    p{font-size:50px;}
+    p{font-size:50px;display:block;}
 
 }
 @media (max-width: 992px) and (orientation: landscape){
     .logo-radio{width:50%; float:left;}
     .equal {width:50%; float:right;}
-    p{font-size:50px;}
+    p{font-size:50px;display:block;}
 }
 @media (max-width: 992px) and (orientation: portrait){
     .logo-radio{width:100%; float:none;}
     .equal {width:100%; float:none;}
-    p{font-size:50px;}
+    p{font-size:50px;display:block;}
 
 }
 
 @media (max-width: 768px) and (orientation: landscape){
     .logo-radio{width:50%; float:left;}
     .equal {width:50%; float:right;}
-    p{font-size:large;}
+    p{font-size:large;display:block;}
 }
 @media (max-width: 768px) and (orientation: portrait){
     .logo-radio{width:100%; float:none;}
     .equal {width:100%; float:none;}
-    p{font-size:large;}
+    p{font-size:large;display:block;}
 }
 
 
@@ -63,13 +63,17 @@
 @media (max-width: 700px) and (orientation: portrait){
     .logo-radio{width:100%; float:none;}
     .equal {width:100%; float:none;}
-    p{font-size:large;}
+    p{font-size:large;display:block;}
+
+}
+@media (max-width:450px) and (max-height:130px){
+	p{display:none;}
 }
 
 </style>
 
 <div id='container' class="template-all-layouts ">  
-            <div class="col-md-12 layout-fullwidth content-detalle-radio">
+            <div class="col-md-12 layout-fullwidth content-detalle-radio" style='background-color:#173F56;'>
 				<div class="radio-component-panel-all">
                     <div class="radio-component-panel">
                         <div class="logo-radio col-md-6 col-sm-6">

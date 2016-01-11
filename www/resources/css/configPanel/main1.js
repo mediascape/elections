@@ -963,6 +963,7 @@ var ControlPanel= function (url){
 
 	this.hide=function(){
 		document.querySelector('#fullTemp').style.display='none';
+		document.querySelector('#menuButtonP').style.display='none';
 		this.showing=false;
 		if(this.activeSection===''){
 			document.querySelector('#fullTemp').style.width='auto';
@@ -973,6 +974,7 @@ var ControlPanel= function (url){
 	}
 	this.show=function(){
 		document.querySelector('#fullTemp').style.display='block';
+		document.querySelector('#menuButtonP').style.display='';
 		this.showing=true;
 		if(this.activeSection===''){
 			document.querySelector('#fullTemp').style.width='auto';
