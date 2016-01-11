@@ -267,7 +267,10 @@ function($, applicationContext){
         // notify the UI engine about which web components to display
         if( myactions && myactions.length && myactions.length > 0){
           var event = {"type": "FULL_UPDATE", "actions": myactions,agentid:change.agentid};
-          if (changeType === "ui") doCallbacks(event);
+          if (changeType === "ui"){
+              doCallbacks(event);
+              console.log("EVENT",event);
+          }
           // update componentStatus local and remote
          updateComponentStatus(event);
         }
@@ -329,6 +332,7 @@ function($, applicationContext){
     // update the shared context object
     var onUpdateContext = function (change) {
       // adapt to the current context change
+      var AE = mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation;
       if (change.contextType === "agentChange") updateContext(change);
       if (change.contextType === "capabilityChange") updateCapibilityContext(change);
       // Check if all capabilities are collected before shared with decision plugins
@@ -336,7 +340,7 @@ function($, applicationContext){
         if (ag.capabilities.hasOwnProperty('touchScreen') && ag.capabilities.hasOwnProperty('screenSize')) return true;
         else return false;
       });
-     if (needInfoReady )
+     if (needInfoReady && hasAgent(AE.getAgentId()))
       if (change.contextType === "capabilityChange" ) hybridAdaptation(change[0]);
       else hybridAdaptation(change);
 
