@@ -19,7 +19,7 @@
 .twitter-selector-container div.twitter-hashtag:hover {border-color:#fc9200; }
 .twitter-selector-container div.twitter-hashtag div {background: transparent !important; }
 .twitter-selector-container div.twitter-hashtag div img {width: 100%; padding-top: 3vh;}
-div.seleccion-hashtag { text-align: left !important; padding-top: 7vh; font-size: 2.2vh;}
+div.seleccion-hashtag { text-align: left !important; padding-top: 7vh; font-size: 2.2vh; z-index: 9999999;}
 div.seleccion-hashtag .select-hashtag {background-color: #dcf1ff; width: 65%;}
 p.titulo-seccion {font-size: 3vw; color: white;}
 /* switch */
@@ -114,7 +114,7 @@ div.seleccion-hashtag{ padding-top: 6%;}
   .twitter-selector-container div.twitter-topic div img, .twitter-selector-container div.twitter-hashtag div img {
     width: 50px;
   }
-  div.seleccion-hashtag { font-size: 16px;}
+  div.seleccion-hashtag { font-size: 12px;}
   .twitter-selector-container div { margin-top: 10px !important;}
   .twitter-selector-container div.twitter-topic { margin-top: 10px !important;}
   .twitter-selector-container div.check-switch-twitter { margin-top: 20px !important; padding-left: 34%;}

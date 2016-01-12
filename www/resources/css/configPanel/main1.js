@@ -1818,6 +1818,7 @@ var twitterSection=function(){
 
 		var extDiv=document.createElement('div');
 		extDiv.className='template-content-center';
+		extDiv.id='twCont';
 
 		var tselector=document.createElement('div');
 		tselector.className='col-md-12 layout-columns twitter-selector-container';
