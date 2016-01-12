@@ -738,7 +738,7 @@ define(
                   var img1=document.createElement('img');
                   img1.className='hito01';
                   img1.src='../resources/css/configPanel/img/controller/hito.jpg';
-                  img1.style.left=markers[i].progresspoint+'%';
+                  img1.style.left='calc('+markers[i].progresspoint+'% - '+i*5+'px)';
                    !function outer(i){
                       img1.addEventListener('click',function(event){
                         event.stopPropagation();
