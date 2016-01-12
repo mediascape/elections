@@ -307,7 +307,7 @@
 					//bind 'component-query' notifications with resize function
 
 					//Open Socket for the communication with the server
-					this.socket = io.connect('http://localhost/');
+					this.socket = io.connect('ws://localhost/');
 
 					//capture tweet events from the server through the socket
 					this.socket.on("connected", function() {
