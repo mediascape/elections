@@ -853,6 +853,12 @@ define(
         this.forceRedraw();
 
       }
+
+      this.updateUniqueComponent=function(c){
+        cmpToUpdate=document.querySelector('#'+c.id);
+        cmpToUpdate.updateNodes();
+        this.forceRedraw();
+      }
       // Trick for some render problem with webkit css grid layout render
       this.forceRedraw = function (){
         var disp = document.body.style.display;
