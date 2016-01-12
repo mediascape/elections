@@ -389,7 +389,7 @@
 					console.log('twitter-map ready');
 					var _this=this;
 
-				this.socket = io.connect('http://localhost/');
+				this.socket = io.connect('ws://localhost/');
 
 					this.socket.on("connected", function() {
 						console.log("twitter-map Connected");
