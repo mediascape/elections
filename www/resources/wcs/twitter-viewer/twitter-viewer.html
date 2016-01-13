@@ -1,7 +1,7 @@
 
 <dom-module id="twitter-viewer" >
 	<template>
-		<style>		
+		<style>
 
 
 	@media (min-width: 1024px){
@@ -34,9 +34,9 @@
 
 		.content-tweets{
 			border-bottom:1px dashed #55b2ff;
-			width: 90%; 
-			margin: auto !important; 
-			padding-bottom: 25px; 
+			width: 90%;
+			margin: auto !important;
+			padding-bottom: 25px;
 			padding-top: 15px;
 		}
 		.avatar-twitter {
@@ -51,7 +51,7 @@
 		.usuario-twitter{ color: #FFF; font-size: medium; }
 		.mensaje-twitter{ color: #FFF; font-size: small; }
 
-		
+
 
 		.tweet_timestamp {
 			font-size: small;
@@ -187,7 +187,7 @@
 		}
 		.content-tweets-title {
 			display:none;
-			
+
 		}
 		.media-left{
 			float:left;
@@ -201,9 +201,9 @@
 
 		.content-tweets{
 			border-bottom:0px dashed #55b2ff;
-			width: 90%; 
-			margin: auto !important; 
-			padding-bottom: 25px; 
+			width: 90%;
+			margin: auto !important;
+			padding-bottom: 25px;
 			padding-top: 15px;
 		}
 		.avatar-twitter {
@@ -219,7 +219,7 @@
 		.mensaje-twitter{ color: #FFF; font-size: xx-small; }
 
 
-		
+
 
 		.tweet_timestamp {
 			font-size: xx-small;
@@ -245,7 +245,7 @@
 					</div>
 					<ul class='list' id='ulList' style="padding-left:0px; list-style-type: none; margin-bottom: 0px;"></ul>
 				</div>
-			</div>			
+			</div>
 		</div>
 	</template>
 </dom-module>
@@ -303,11 +303,11 @@
 					console.log('twitter ready');
 					var _this=this;
 					var element=this.shadowRoot;
-					
+
 					//bind 'component-query' notifications with resize function
 
 					//Open Socket for the communication with the server
-					this.socket = io.connect('ws://localhost/');
+					this.socket = io.connect('/');
 
 					//capture tweet events from the server through the socket
 					this.socket.on("connected", function() {
@@ -318,7 +318,7 @@
 
 						_this.socket.on('tweet', function(data)
 						{
-							
+
 							var text=data.text;
 
 							//detect tweets hashtags to make them clickables
@@ -357,7 +357,7 @@
 							}
 							if(!exist){
 								if(_this.$.ulList.childNodes.length>=nodesNumbers&&nodesNumbers>0) _this.$.ulList.removeChild(_this.$.ulList.children[nodesNumbers-1]);
-								
+
 								var li=document.createElement('li');
 								li.className='tweet-element twitter-viewer';
 
