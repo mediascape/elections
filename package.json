@@ -12,7 +12,7 @@
         "express-session": "1.10.3",
         "log4js": "*",
         "mongodb": "2.0.15",
-        "mongoose": "4.0.0-rc2",
+        "mongoose": "4.0.3",
         "passport": "0.2.1",
         "passport-google-oauth": "0.1.5",
         "passport.socketio": "3.4.1",
