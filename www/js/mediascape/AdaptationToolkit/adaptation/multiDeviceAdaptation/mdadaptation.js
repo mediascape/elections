@@ -472,7 +472,7 @@ function($, applicationContext){
                                 console.log('^^^^^^^^^^^^^^^^^^^^^^^' + e.agentid + 'join===============');
                         }
                       }
-                },500);
+                },1000);
 
           }
       console.groupEnd();
