@@ -67,7 +67,7 @@ http://localhost
 
 ### For Developers
 
-It your interes is to develop, you must change the index.html file:
+Whether your interest is to make changes it would be appropriate not use minified version, so you must change the index.html file:
 
 ```html
 <!-- UNCOMMENT THIS FILES FOR DEV, FOR PROD COMMENT  -->
