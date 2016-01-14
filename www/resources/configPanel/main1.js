@@ -309,7 +309,7 @@ var ControlPanel= function (url){
 
 						dev1.setIcon('LAPTOP_'+(agCtx.agents[i]._id+1)+'.png');
 					}
-					else if(agCtx.agents[i].capabilities.platform.deviceType==='Tablet')
+					else if(agCtx.agents[i].capabilities.platform.deviceType==='Tablet' || agCtx.agents[i].capabilities.platform.deviceType==='tablet')
 					{
 
 						dev1.setIcon('TABLET_'+(agCtx.agents[i]._id+1)+'.png');
@@ -411,12 +411,12 @@ var ControlPanel= function (url){
 
 					dev1.setIcon('LAPTOP_'+(b[0]._id+1)+'.png');
 				}
-				else if(event.detail.profile.deviceType==='Tablet')
+				else if(event.detail.profile.deviceType==='Tablet' || event.detail.profile.deviceType==='tablet')
 				{
 
 					dev1.setIcon('TABLET_'+(b[0]._id+1)+'.png');
 				}
-				else if(event.detail.profile.deviceType==='mobile')
+				else if(event.detail.profile.deviceType==='mobile' || event.detail.profile.deviceType==='mobile')
 				{
 
 					dev1.setIcon('MOVIL_'+(b[0]._id+1)+'.png');
@@ -1024,21 +1024,6 @@ var menuItem = function (){
 		a.appendChild(span);
 		li.appendChild(a);
 
-		/*li.onclick=function(event){
-		var allLi=document.querySelectorAll('li');
-		for(var j=0;j<allLi.length;j++){
-		if(allLi[j].className==='active'){
-		allLi[j].className='';
-	}
-}
-
-li.className='active';
-if(document.querySelector('#fullTemp').querySelector('#panel')){
-document.querySelector('#fullTemp').removeChild(document.querySelector('#fullTemp').querySelector('#panel'));
-}
-var panel=eval(renderFunc);
-document.querySelector('#fullTemp').appendChild(panel);
-}*/
 return li;
 }
 this.onclick = function (event){
@@ -1205,7 +1190,7 @@ var device=function(){
 
 		var img1=document.createElement('img');
 		img1.src='../resources/css/configPanel/img/devices/'+this.icon;
-		//img1.style.width='20%';
+		
 		a.appendChild(img1);
 
 
@@ -1291,16 +1276,7 @@ var layout=function(){
 	}
 
 }
-var notificationSection=function(){
-	this.render=function(){
-		var div=document.createElement('div');
-		div.className='template-content-center add-device-ok';
-		var img1=document.createElement('img');
-		img1.src='./resources/css/configPanel/img/OK-new-device.png';
-		div.appendChild(img1);
-		return div;
-	}
-}
+
 
 var layoutSection=function(){
 	this.layouts=[];

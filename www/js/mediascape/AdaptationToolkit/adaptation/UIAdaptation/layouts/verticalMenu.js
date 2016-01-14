@@ -232,20 +232,10 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
       }(a);
       li.appendChild(a);
       ul.appendChild(li);
-      //ul.style.display='none';
 
     }
 
-    /*function ulHoverFunc(event){
-      ul.style.display='block';
-    }
-    function ulUnhoverFunc(event){
-      ul.style.display='none';
-    }
-    Polymer.addEventListener(div,'mouseover',ulHoverFunc,true);
-    Polymer.addEventListener(div,'mouseout',ulUnhoverFunc,true);
-    verticalMenu.listeners.push(ulHoverFunc);
-    verticalMenu.listeners.push(ulUnhoverFunc);*/
+    
     div.style.background='#004050';
     div.style.width='250px';
     div.style.margin='auto 0 auto';
@@ -254,7 +244,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
 
     div.appendChild(ul);
     document.body.appendChild(div);
-    mediascape.AdaptationToolkit.Adaptation.UIAdaptation.updateComponentQuery();
+    //mediascape.AdaptationToolkit.Adaptation.UIAdaptation.updateComponentQuery();
 
 
     }
