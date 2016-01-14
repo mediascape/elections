@@ -62,7 +62,7 @@ To access to application just open chrome/firefox with the following URL:
 ```
 http://localhost
 
-*** Note is use port 80, so may need to stop other webserver as such apache.
+*** Note, it uses port 80, so may need to stop other webserver may be listening on that port.
 ```
 
 ### For Developers
