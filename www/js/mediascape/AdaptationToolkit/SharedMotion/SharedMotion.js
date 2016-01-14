@@ -3,7 +3,7 @@ define (["msv","mcorp"],
     var mediaSync = mSync;
     var SharedMotion = function(){
       this.init = function(){
-          this.mapp = MCorp.app("5755267014547000624", {anon:true});
+          this.mapp = MCorp.app("2631039008064506367", {anon:true});
           this.mapp.cams = {};
           this.mapp.init();
           this.mapp.run =function (){

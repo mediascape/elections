@@ -625,16 +625,21 @@ define(
               };
             this.mapp.motions.shared.on("timeupdate", handler);
             var _this=this;
+            var velState=this.mapp.motions.shared.vel;
               setInterval(function(){
-                if (_this.mapp.motions.shared.vel == 0) {
+                if(_this.mapp.motions.shared.vel!=velState){
+                  if (_this.mapp.motions.shared.vel == 0) {
 
-                   img4.setAttribute('src','../resources/css/configPanel/img/controller/Play_activo.png');
-                   
-                 } else {
+                     img4.setAttribute('src','../resources/css/configPanel/img/controller/Play_activo.png');
+                     
+                   } else {
 
-                   img4.setAttribute('src','../resources/css/configPanel/img/controller/Pause_activo.png');
-                   
-                 }
+                     img4.setAttribute('src','../resources/css/configPanel/img/controller/Pause_activo.png');
+                     
+                   }
+                   velState=_this.mapp.motions.shared.vel;
+
+               }
               },1500);
               }
               catch (e) {console.log(e);}
@@ -645,6 +650,7 @@ define(
           if(img4.src.indexOf('Play_activo.png')>-1){
             img4.src="../resources/css/configPanel/img/controller/Pause_activo.png";
             this.mapp.motions.shared.update(null,1,0);
+
           }               
           else{
             img4.src="../resources/css/configPanel/img/controller/Play_activo.png";
