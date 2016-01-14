@@ -3,12 +3,19 @@ define (["msv","mcorp"],
     var mediaSync = mSync;
     var SharedMotion = function(){
       this.init = function(){
-          this.mapp = MCorp.app("5755267014547000624", {anon:true});
+          this.mapp = MCorp.app("4092171836865095034", {anon:true});
           this.mapp.cams = {};
           this.mapp.init();
+          var scope = this;
           this.mapp.run =function (){
           var event = new CustomEvent("motion-ready", {"detail":{"loaded":true}});
-          setTimeout(function(e){document.dispatchEvent(event);},5000);
+         //  setTimeout(function(e){document.dispatchEvent(event);},20000);
+         document.addEventListener('agentChange',function(e){
+              document.dispatchEvent(event);
+              document.removeEventListener('agentChange', arguments.callee);
+              scope.mapp.motions.shared.update(null, 1);
+          },false);
+
        }
      }
       //this.mapp.run = this.toRun.bind(this);
@@ -30,7 +37,7 @@ define (["msv","mcorp"],
             opts.mode ="skip";
             console.log(opts);
             scope.mapp.cams[id] = new mediascape.mediaSync().mediaSync(_video, scope.mapp.msvs.shared, opts);
-         }
+           }
          else
             throw new Error ("video without defined");
       }

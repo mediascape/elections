@@ -375,6 +375,11 @@
 					prevTime:{
 						type:Number,
 						value:1432509468
+					},
+					showing:{
+							type:Boolean,
+							value:false,
+
 					}
 				},
 				created: function() {
@@ -924,8 +929,15 @@
 							timestamp:this.timestamp-this.startVal,
 							text:this.terms
 						}
-						this.socket.emit('time',data);
+						if(this.showing) this.socket.emit('time',data);
 					}
+				},
+
+				unload:function(){
+						this.showing =false;
+				},
+				load:function(){
+					 this.showing =true;
 				},
 				exist:function(term,list){
 					for(var i=0;i<list.length;i++){

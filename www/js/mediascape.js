@@ -42,7 +42,8 @@
     configPanel:'../resources/configPanel/configPanel',
     classifie:'../resources/configPanel/js/classie',
     bootstrap:'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min',
-    bootstrap_swicth:'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/js/bootstrap-switch.min'
+    bootstrap_swicth:'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/js/bootstrap-switch.min',
+    webcomponetsPolyfill:'https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.17/webcomponents-lite.min'
       },
     waitSeconds:25
   });

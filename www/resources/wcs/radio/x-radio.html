@@ -72,7 +72,7 @@
 
 </style>
 
-<div id='container' class="template-all-layouts ">  
+<div id='container' class="template-all-layouts ">
             <div class="col-md-12 layout-fullwidth content-detalle-radio" style='background-color:#173F56;'>
 				<div class="radio-component-panel-all">
                     <div class="radio-component-panel">
@@ -81,13 +81,13 @@
                         </div>
                         <div class="equal col-md-6 col-sm-6">
                             <img src="animacion-ecualizador_transp.gif" />
-                        </div>                        
+                        </div>
                     </div>
                     <div class="radio-title col-md-12">
                         <p id='broadcaster_name'>Radio Euskadi</p>
                     </div>
                 </div>
-            </div>	
+            </div>
         </div>
         <audio id='radioAudio' src=''></audio>
 
@@ -107,7 +107,7 @@ Polymer({
 			file:{
 				 type:String,
 
-			},			
+			},
 			customCmd:{
 	        type:String,
 	        value:'',
@@ -122,7 +122,7 @@ Polymer({
 
 
 	},
-	
+
 	smReady:function(e){
 		var _this = this;
 		this.sm = mediascape.AdaptationToolkit.SharedMotion();
@@ -135,8 +135,8 @@ Polymer({
 			var cmpStatus = mediascape.AdaptationToolkit.componentManager.core.getComoponentsToShow();
 			if (cmpStatus) mediascape.AdaptationToolkit.Adaptation.UIAdaptation.onComponentsChange(cmpStatus);
 		},4000);
-			
-  	},	
+
+  	},
 
   	play:function(){
 		if (this.sm) this.sm.mapp.motions.shared.update(null, 1);
@@ -151,10 +151,10 @@ Polymer({
 	restart: function (){
 		this.sm.mapp.motions.shared.update(0, 1);
 	},
-	
+
 	customCmdReceived: function(data){
 			console.log("DATA",data);
-			
+
 	}
 });
  </script>

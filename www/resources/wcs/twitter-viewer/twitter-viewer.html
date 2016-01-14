@@ -271,6 +271,11 @@
 					value:1432509468,
 
 				},
+				showing:{
+						type:Boolean,
+						value:false
+
+				},
 				customCmd:{
 		            type:String,
 		            value:'',
@@ -442,7 +447,7 @@
 							_this.timestampChanged();
 						}
 					};
-					this.sm.mapp.motions.shared.on("timeupdate", handler);
+				  this.sm.mapp.motions.shared.on("timeupdate", handler);
 				},
 				timestampChanged:function(){
 					//console.log("timestampChanged");
@@ -451,7 +456,7 @@
 							timestamp:this.timestamp-this.startVal,
 							text:this.terms
 						}
-						this.socket.emit('time',data);
+						if (this.showing) 	this.socket.emit('time',data);
 					}
 				},
 				customCmdReceived: function(data){
@@ -469,6 +474,12 @@
 	      				}
       				}
  				},
+				unload:function(){
+						this.showing =false;
+				},
+				load:function(){
+					 this.showing =true;
+				}
 
 		}
 	});

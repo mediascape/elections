@@ -155,7 +155,7 @@
             "behaviour": [
                 {
                     "componentId": "video1",
-                    "required": true,
+                    "required": false,
                     "bestfit": "biggestScreenSize",
                     "movable": true,
                     "duplicable":false,
@@ -163,7 +163,7 @@
                 },
                 {
                     "componentId": "video2",
-                    "required": true,
+                    "required": false,
                     "bestfit": "touchable",
                     "movable": true,
                     "duplicable":false,

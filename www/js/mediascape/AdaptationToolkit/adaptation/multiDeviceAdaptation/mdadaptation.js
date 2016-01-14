@@ -72,6 +72,7 @@ function($, applicationContext){
     var rules = {};
     var listeningAgents = [];
     var agentStack = {};
+    var agentReady = false;
     /*['battery', 'camera', 'deviceMotion', 'deviceOrientation', 'deviceType',
     'geolocation', 'language',
     'microphone', 'navigatorProduct', 'onLine',
@@ -362,7 +363,7 @@ function($, applicationContext){
           // subscribe the change of all demanded capabilities for remote agents
 
           e.agentContext.on(capability, function(key, value) {
-            //console.log('capture a capability value change event key = ' + key + ' value = ' + value + ' from agent id = ' + e.agentid);
+            console.log('capture');
             if( key && value ) {
               var change = {};
               change['type'] = 'CAPABILITY_CHANGE';
@@ -460,14 +461,16 @@ function($, applicationContext){
           if (Object.keys(e.diff.capabilities).length===0 && !ag.notified){
                 var agentid = e.agentid;
                 var capsReady = setInterval(function () {
-                  var ag = getAgentById(agentid);
+                  console.log("checking if join ready");
                   if (ag.capabilities)
                     if (ag.capabilities['componentsStatus']){
+                        console.log("checking if join ready componentStatus exists");
                         var cmpNum =mediascape.AdaptationToolkit.componentManager.core.getComponents().length;
                         if (ag.capabilities['componentsStatus'].length === cmpNum && typeof ag.capabilities['componentsStatus'] !=="string")
                            {
                                 clearInterval(capsReady);
                                 ag.notified = true;
+                                agentReady = true;
                                 notifiAgentChange('join',e.agentid);
                                 console.log('^^^^^^^^^^^^^^^^^^^^^^^' + e.agentid + 'join===============');
                         }
@@ -612,7 +615,7 @@ function($, applicationContext){
   // Start point for shared context, must be start up at main app
   this.startApplicationContext = function (){
     var applicationID ="Mediascape";
-    map = mediascape.mappingService({maxTimeout:6000});
+    map = mediascape.mappingService({maxTimeout:8000});
     // Already exists a group
     if (mediascape.AdaptationToolkit.Utils.getUrlVar('group')) {
       this.GROUP_ID =mediascape.AdaptationToolkit.Utils.getUrlVar('group');
@@ -670,7 +673,7 @@ function($, applicationContext){
       var evt = new CustomEvent("agentChange",
       { "detail": {"status":status,"agentid":agentid,profile:profile}});
       document.dispatchEvent(evt);
-    },500);
+    },0);
   }
 
   // Change remote agent layout: name

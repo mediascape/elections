@@ -504,7 +504,7 @@ define(
       this.addControlPanel = function (url){
 
         var tab=document.createElement('img');
-        tab.src='../resources/css/configPanel/img/icono_MediaScape.png';
+        tab.src='../resources/configPanel/img/icono_MediaScape.png';
         document.body.appendChild(tab);
         tab.style.top=0;
         tab.style.left=0;
@@ -523,20 +523,20 @@ define(
         menuButtonP.innerHTML=' <button type="button" data-toggle="offcanvas"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></button>';
         menuButtonP.id='menuButtonP';
         //menuButtonP.style.display='none';
-        
+
         document.body.appendChild(menuButtonP);
         $(document).ready(function() {
               $('[data-toggle=offcanvas]').click(function() {
                 $('.menu-sidebar').toggleClass('active');
               });
-                      
+
         });
 
 
         this.ctrlPanel=new ControlPanel(url);
         this.ctrlPanel.hide();
 
-        
+
 
         var updateQR=_.debounce(function(event){
             if(document.querySelector('.qr-code-content')){
@@ -548,8 +548,8 @@ define(
                 if(width<767)leftMargin=35*width/100;
                 else leftMargin=25*width/100;
                 mediascape.association.createQRcode(url,qrdiv1,(30*width/100),(30*width/100),'',leftMargin,50);
-                document.querySelector('.add-device-content').appendChild(qrdiv1);  
-                          
+                document.querySelector('.add-device-content').appendChild(qrdiv1);
+
               }
         },1100);
         _.debounce = function(func, wait, immediate) {
@@ -566,7 +566,7 @@ define(
             if (callNow) func.apply(context, args);
           };
         };
-        
+
 
         window.addEventListener('resize',updateQR,false);
 
@@ -604,20 +604,20 @@ define(
         }
         var smReady=function(){
               try{
-              
-              
+
+
               if (!mediascape.AdaptationToolkit.Utils.getUrlVar('group')) this.mapp.motions.shared.update(0);
              if (this.mapp.motions.shared.vel == 0) {
 
-               img4.setAttribute('src','../resources/css/configPanel/img/controller/Play_activo.png');
-              
+               img4.setAttribute('src','../resources/configPanel/img/controller/Play_activo.png');
+
 
               } else {
 
-                img4.setAttribute('src','../resources/css/configPanel/img/controller/Pause_activo.png');
-                
+                img4.setAttribute('src','../resources/configPanel/img/controller/Pause_activo.png');
+
               }
-        
+
               var handler = function (e) {
                 div4.style.width=100*Math.round(e.pos)/1561+'%';
                 div8.innerHTML = prettyPrint(83869 +e.pos);
@@ -628,32 +628,32 @@ define(
               setInterval(function(){
                 if (_this.mapp.motions.shared.vel == 0) {
 
-                   img4.setAttribute('src','../resources/css/configPanel/img/controller/Play_activo.png');
-                   
+                   img4.setAttribute('src','../resources/configPanel/img/controller/Play_activo.png');
+
                  } else {
 
-                   img4.setAttribute('src','../resources/css/configPanel/img/controller/Pause_activo.png');
-                   
+                   img4.setAttribute('src','../resources/configPanel/img/controller/Pause_activo.png');
+
                  }
               },1500);
               }
               catch (e) {console.log(e);}
             }
 
-        playPause=function (){  
-          //play       
+        playPause=function (){
+          //play
           if(img4.src.indexOf('Play_activo.png')>-1){
-            img4.src="../resources/css/configPanel/img/controller/Pause_activo.png";
+            img4.src="../resources/configPanel/img/controller/Pause_activo.png";
             this.mapp.motions.shared.update(null,1,0);
-          }               
+          }
           else{
-            img4.src="../resources/css/configPanel/img/controller/Play_activo.png";
+            img4.src="../resources/configPanel/img/controller/Play_activo.png";
             this.mapp.motions.shared.update(null,0,0);
-          }     
-              
-          
+          }
+
+
         }
-        
+
 
         foward=function (){
             var time = this.mapp.motions.shared.query();
@@ -699,7 +699,7 @@ define(
 
         var sm=mediascape.AdaptationToolkit.SharedMotion();
         document.addEventListener('motion-ready',smReady.bind(sm),false);
-        
+
         markers=[{value:260,description:"EH Bildu, PSE comparecencia",progresspoint:260*100/1561},
           {value:690,description:'PNV comparecencia',progresspoint:690*100/1561},
           {value:780,description:"EH Bildu - Eizagirre",progresspoint:780*100/1561},
@@ -707,7 +707,7 @@ define(
           {value:1074,description:"Podemos Madrid comparecencia",progresspoint:1074*100/1561},
           {value:1302,description:"PP Euskadi comparecencia",progresspoint:1302*100/1561},
           {value:1404,description:"PP Madrid comparecencia",progresspoint:1404*100/1561}];
-        
+
 
 
         var nav=document.createElement('nav');
@@ -728,7 +728,7 @@ define(
 
               var div3=document.createElement('div');
               div3.className='barra_play';
-              
+
 
                 var div4=document.createElement('div');
                 div4.className='barra_play_estado';
@@ -737,12 +737,12 @@ define(
                 for(var i=0;i<markers.length;i++){
                   var img1=document.createElement('img');
                   img1.className='hito01';
-                  img1.src='../resources/css/configPanel/img/controller/hito.jpg';
+                  img1.src='../resources/configPanel/img/controller/hito.jpg';
                   img1.style.left='calc('+markers[i].progresspoint+'% - '+i*5+'px)';
                    !function outer(i){
                       img1.addEventListener('click',function(event){
                         event.stopPropagation();
-                        
+
                         sm.mapp.motions.shared.update(markers[i].value,1,0);
                         div4.style.width=markers[i].progresspoint+'%';
                         div8.innerHTML = prettyPrint(83869 +markers[i].value);
@@ -750,10 +750,10 @@ define(
                     }(i);
 
 
-                  div3.appendChild(img1);                  
-                }               
+                  div3.appendChild(img1);
+                }
                div3.addEventListener('click',function(event){
-              
+
                 var jumpValue=Math.round(event.offsetX*1561/div3.clientWidth);
                 sm.mapp.motions.shared.update(jumpValue,1,0);
                 div4.style.width=100*Math.round(jumpValue)/1561+'%';
@@ -773,24 +773,24 @@ define(
               img3.className='btn_r_izda';
               img3.width=111;
 
-              img3.src='../resources/css/configPanel/img/controller/rew_izda.png';
+              img3.src='../resources/configPanel/img/controller/rew_izda.png';
               img3.addEventListener('click',rewind.bind(sm));
               div6.appendChild(img3);
 
               var img4=document.createElement('img');
               img4.className='btn_stop';
               img4.width=69;
-              img4.src='../resources/css/configPanel/img/controller/Pause_activo.png';
+              img4.src='../resources/configPanel/img/controller/Pause_activo.png';
               img4.id='pauseBut';
               img4.addEventListener('click',playPause.bind(sm));
               div6.appendChild(img4);
 
-          
+
 
               var img6=document.createElement('img');
               img6.className='btn_r_dcha';
               img6.width=107;
-              img6.src='../resources/css/configPanel/img/controller/rew_dcha.png';
+              img6.src='../resources/configPanel/img/controller/rew_dcha.png';
               img6.addEventListener('click',foward.bind(sm));
               div6.appendChild(img6);
 
@@ -819,19 +819,19 @@ define(
 
             /* var img7=document.createElement('img');
              img7.className='cierre col-md-3';
-             img7.src='../resources/css/configPanel/img/controller/x_inactiva.png';
+             img7.src='../resources/configPanel/img/controller/x_inactiva.png';
              div10.appendChild(img7);*/
 
              /*var img8=document.createElement('img');
              img8.className='logo-mediascape visible-lg col-md-9';
-             img8.src='../resources/css/configPanel/img/controller/logo-Mediascape-apaisado.png';
+             img8.src='../resources/configPanel/img/controller/logo-Mediascape-apaisado.png';
              div10.appendChild(img8);*/
 
              //div5.appendChild(div10);
 
 
              div1.appendChild(div5);
-            
+
 
              nav.appendChild(div1);
 
@@ -840,27 +840,27 @@ define(
 
 
 
-             
 
 
 
 
 
 
-             var menuBottom = document.getElementById( 'cbp-spmenu-s4' ),       
-              showBottom = document.getElementById( 'showBottom' ),       
+
+             var menuBottom = document.getElementById( 'cbp-spmenu-s4' ),
+              showBottom = document.getElementById( 'showBottom' ),
               body = document.body;
-            
+
             showBottom.onclick = function() {
               classie.toggle( this, 'active' );
               classie.toggle( menuBottom, 'cbp-spmenu-open' );
               disableOther( 'showBottom' );
-            };      
+            };
 
-            function disableOther( button ) {       
+            function disableOther( button ) {
               if( button !== 'showBottom' ) {
                 classie.toggle( showBottom, 'disabled' );
-              }       
+              }
             }
 
 
