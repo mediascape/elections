@@ -300,11 +300,11 @@ var ControlPanel= function (url){
   			{
   				for(var i=0;i<agCtx.agents.length;i++){
   					var dev1=new device();
-  					if(agCtx.agents[i].capabilities.platform.deviceType==='TV'){
+          	if(agCtx.agents[i].capabilities.platform.deviceType==='TV'){
 
   						dev1.setIcon('TV_'+(agCtx.agents[i]._id+1)+'.png');
   					}
-  					else if(agCtx.agents[i].capabilities.platform.deviceType==='desktop' || agCtx.agents[i].capabilities.platform.deviceType==='Desktop')
+  					else if(agCtx.agents[i].capabilities.platform.deviceType.toLowerCase()==='desktop')
   					{
 
   						dev1.setIcon('LAPTOP_'+(agCtx.agents[i]._id+1)+'.png');
@@ -314,7 +314,7 @@ var ControlPanel= function (url){
 
   						dev1.setIcon('TABLET_'+(agCtx.agents[i]._id+1)+'.png');
   					}
-  					else if(agCtx.agents[i].capabilities.platform.deviceType==='Mobile' || agCtx.agents[i].capabilities.platform.deviceType==='mobile')
+  					else if(agCtx.agents[i].capabilities.platform.deviceType.toLowerCase()==='mobile')
   					{
 
   						dev1.setIcon('MOVIL_'+(agCtx.agents[i]._id+1)+'.png');
