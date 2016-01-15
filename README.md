@@ -53,7 +53,7 @@ initialize server:
 
 ```bash
 
-sudo nodejs index.js
+sudo nodejs index.js --max-old-space-size=8192
 
 ```
 To access to application just open chrome/firefox with the following URL:
