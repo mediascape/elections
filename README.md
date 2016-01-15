@@ -74,6 +74,7 @@ Whether your interest is to make changes it would be appropriate not use minifie
 
 <script  src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.17/webcomponents-lite.min.js"></script>
 <script async src="../resources/libs/require.js"></script>
+<script src="../resources/libs/loadingPanel.js"></script>
 <script async src="js/mediascape.js"></script>
 
 <!-- COMMET THIS ONE FOR DEV, FOR PROD UNCOMMENT-->
