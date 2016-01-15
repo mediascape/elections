@@ -406,7 +406,7 @@ var ControlPanel= function (url){
 
   					dev1.setIcon('TV_'+(b[0]._id+1)+'.png');
   				}
-  				else if(event.detail.profile.deviceType==='desktop' || event.detail.profile.deviceType==='Desktop')
+  				else if(event.detail.profile.deviceType.toLowerCase()==='desktop)
   				{
 
   					dev1.setIcon('LAPTOP_'+(b[0]._id+1)+'.png');
@@ -416,7 +416,7 @@ var ControlPanel= function (url){
 
   					dev1.setIcon('TABLET_'+(b[0]._id+1)+'.png');
   				}
-  				else if(event.detail.profile.deviceType==='mobile')
+  				else if(event.detail.profile.deviceType.toLowerCase()==='mobile')
   				{
 
   					dev1.setIcon('MOVIL_'+(b[0]._id+1)+'.png');
