@@ -45,7 +45,7 @@ font-weight:500;  text-transform:uppercase;  display: table; width:100%;  }
 .template-content .template-content-center{height:85%; overflow:hidden; padding:0; margin:0; clear:both;
 }
 .template-content .layout-columns{ margin-top:10px; background-color:rgba(23,63,86,0.95); padding-top:10px;}
-.layout-columns .boxlayout{margin:10px 0px; height:30%;}
+.layout-columns .boxlayout{margin:10px 0px; height:45%;}
 .layout-columns .boxlayout a{display:block; background-color:#255d7c; height:100%; text-align:center; padding:5%;}
 .layout-columns .boxlayout a.active, .layout-columns .boxlayout a:hover{background-color:#fc9200;}
 .layout-columns .boxlayout a img{height:100%; width:100%}

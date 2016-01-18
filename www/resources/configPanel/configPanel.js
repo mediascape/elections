@@ -153,13 +153,13 @@ var ControlPanel= function (url){
     twitterSect.addMapComp(twM);
 
     devBox=new deviceBox();
-    var lay1=new layout();
+    /*var lay1=new layout();
     lay1.setName('menu');
     lay1.setImage('../resources/configPanel/img/layouts/layout_01.png');
 
     var lay2=new layout();
     lay2.setName('spinner');
-    lay2.setImage('../resources/configPanel/img/layouts/layout_02.png');
+    lay2.setImage('../resources/configPanel/img/layouts/layout_02.png');*/
 
     var lay3=new layout();
     lay3.setName('pip');
@@ -169,7 +169,7 @@ var ControlPanel= function (url){
     lay4.setName('customGrid');
     lay4.setImage('../resources/configPanel/img/layouts/layout_10.png');
 
-    var lay5=new layout();
+    /*var lay5=new layout();
     lay5.setName('accordion');
     lay5.setImage('../resources/configPanel/img/layouts/layout_05.png');
 
@@ -179,7 +179,7 @@ var ControlPanel= function (url){
 
     var lay7=new layout();
     lay7.setName('horizontal');
-    lay7.setImage('../resources/configPanel/img/layouts/layout_09.png');
+    lay7.setImage('../resources/configPanel/img/layouts/layout_09.png');*/
 
     var lay8=new layout();
     lay8.setName('carousel');
@@ -190,13 +190,13 @@ var ControlPanel= function (url){
     lay9.setImage('../resources/configPanel/img/layouts/layout_06.png');
 
     layoutSect1=new layoutSection();
-    layoutSect1.addLayout(lay1);
-    layoutSect1.addLayout(lay2);
+    //layoutSect1.addLayout(lay1);
+    //layoutSect1.addLayout(lay2);
     layoutSect1.addLayout(lay3);
     layoutSect1.addLayout(lay4);
-    layoutSect1.addLayout(lay5);
-    layoutSect1.addLayout(lay6);
-    layoutSect1.addLayout(lay7);
+    //layoutSect1.addLayout(lay5);
+    //layoutSect1.addLayout(lay6);
+    //layoutSect1.addLayout(lay7);
     layoutSect1.addLayout(lay8);
     layoutSect1.addLayout(lay9);
     qrSect=new qrSection(QRurl);
@@ -1264,7 +1264,7 @@ var layout=function(){
 
   this.render=function(actLay){
     var div=document.createElement('div');
-    div.className="col-md-4 boxlayout";
+    div.className="col-md-6 boxlayout";
 
     var a=document.createElement('a');
     a.href='#';
