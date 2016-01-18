@@ -22,7 +22,7 @@ var ControlPanel= function (url){
 
 		var cmps=mediascape.AdaptationToolkit.componentManager.core.getComponents();
 		console.log('Konstruktorea');
-		//'../resources/css/configPanel/img/camara/logo_etb2.png'
+		//'../resources/configPanel/img/camara/logo_etb2.png'
 		var comp='video1';
 
 		function filterById(el){
@@ -33,7 +33,7 @@ var ControlPanel= function (url){
 		var cam1=new camera();
 		cam1.setID(c[0].getAttribute('compId'));
 		cam1.setName(c[0].id);
-		cam1.setImage('../resources/css/configPanel/img/camara/logo_etb2.png');
+		cam1.setImage('../resources/configPanel/img/camara/logo_etb2.png');
 
 
 		comp='video2';
@@ -41,42 +41,42 @@ var ControlPanel= function (url){
 		var cam2=new camera();
 		cam2.setID(c[0].getAttribute('compId'));
 		cam2.setName(c[0].id);
-		cam2.setImage('../resources/css/configPanel/img/camara/logo_bildu.png');
+		cam2.setImage('../resources/configPanel/img/camara/logo_bildu.png');
 
 		comp='video3';
 		c=cmps.filter(filterById);
 		var cam3=new camera();
 		cam3.setID(c[0].getAttribute('compId'));
 		cam3.setName(c[0].id);
-		cam3.setImage('../resources/css/configPanel/img/camara/logos_partidos_PNV_BLANCO.png');
+		cam3.setImage('../resources/configPanel/img/camara/logos_partidos_PNV_BLANCO.png');
 
 		/*comp='video4';
 		c=cmps.filter(filterById);
 		var cam4=new camera();
 		cam4.setID(c[0].getAttribute('compId'));
 		cam4.setName(c[0].id);
-		cam4.setImage('../resources/css/configPanel/img/camara/logo_sozialista.png');
+		cam4.setImage('../resources/configPanel/img/camara/logo_sozialista.png');
 
 		comp='video5';
 		c=cmps.filter(filterById);
 		var cam5=new camera();
 		cam5.setID(c[0].getAttribute('compId'));
 		cam5.setName(c[0].id);
-		cam5.setImage('../resources/css/configPanel/img/camara/logos_partidos_Populares_vascos_BLANCO.png');
+		cam5.setImage('../resources/configPanel/img/camara/logos_partidos_Populares_vascos_BLANCO.png');
 
 		comp='video6';
 		c=cmps.filter(filterById);
 		var cam6=new camera();
 		cam6.setID(c[0].getAttribute('compId'));
 		cam6.setName(c[0].id);
-		cam6.setImage('../resources/css/configPanel/img/camara/logos_partidos_Populares_genova_BLANCO.png');
+		cam6.setImage('../resources/configPanel/img/camara/logos_partidos_Populares_genova_BLANCO.png');
 
 		comp='video7';
 		c=cmps.filter(filterById);
 		var cam7=new camera();
 		cam7.setID(c[0].getAttribute('compId'));
 		cam7.setName(c[0].id);
-		cam7.setImage('../resources/css/configPanel/img/camara/logos_partidos_Podemos_BLANCO.png');*/
+		cam7.setImage('../resources/configPanel/img/camara/logos_partidos_Podemos_BLANCO.png');*/
 
 		comp='results';
 		c=cmps.filter(filterById);
@@ -152,39 +152,39 @@ var ControlPanel= function (url){
 		devBox=new deviceBox();
 		var lay1=new layout();
 		lay1.setName('menu');
-		lay1.setImage('../resources/css/configPanel/img/layouts/layout_01.png');
+		lay1.setImage('../resources/configPanel/img/layouts/layout_01.png');
 
 		var lay2=new layout();
 		lay2.setName('spinner');
-		lay2.setImage('../resources/css/configPanel/img/layouts/layout_02.png');
+		lay2.setImage('../resources/configPanel/img/layouts/layout_02.png');
 
 		var lay3=new layout();
 		lay3.setName('pip');
-		lay3.setImage('../resources/css/configPanel/img/layouts/layout_03.png');
+		lay3.setImage('../resources/configPanel/img/layouts/layout_03.png');
 
 		var lay4=new layout();
 		lay4.setName('customGrid');
-		lay4.setImage('../resources/css/configPanel/img/layouts/layout_10.png');
+		lay4.setImage('../resources/configPanel/img/layouts/layout_10.png');
 
 		var lay5=new layout();
 		lay5.setName('accordion');
-		lay5.setImage('../resources/css/configPanel/img/layouts/layout_05.png');
+		lay5.setImage('../resources/configPanel/img/layouts/layout_05.png');
 
 		var lay6=new layout();
 		lay6.setName('verticalMenu');
-		lay6.setImage('../resources/css/configPanel/img/layouts/layout_06.png');
+		lay6.setImage('../resources/configPanel/img/layouts/layout_06.png');
 
 		var lay7=new layout();
 		lay7.setName('horizontal');
-		lay7.setImage('../resources/css/configPanel/img/layouts/layout_09.png');
+		lay7.setImage('../resources/configPanel/img/layouts/layout_09.png');
 
 		var lay8=new layout();
 		lay8.setName('carousel');
-		lay8.setImage('../resources/css/configPanel/img/layouts/layout_08.png');
+		lay8.setImage('../resources/configPanel/img/layouts/layout_08.png');
 
 		var lay9=new layout();
 		lay9.setName('divided');
-		lay9.setImage('../resources/css/configPanel/img/layouts/layout_06.png');
+		lay9.setImage('../resources/configPanel/img/layouts/layout_06.png');
 
 		layoutSect1=new layoutSection();
 		layoutSect1.addLayout(lay1);
@@ -379,11 +379,7 @@ var ControlPanel= function (url){
 					this.addItem(section6);
 					container.appendChild(section6.render());
 
-					$("[name='twitter-checkbox']").bootstrapSwitch();
-					$("[name='set-graphic']").bootstrapSwitch();
-					$("[name='set-graphic-emisora']").bootstrapSwitch();
-					$("[name='set-camara']").bootstrapSwitch();
-					$("[name='set-graphic-camara']").bootstrapSwitch();
+					
 					devBox.addDevice(dev1);
 
 				}
@@ -484,11 +480,7 @@ var ControlPanel= function (url){
 					section6.addItem(graphicSect);
 					this.addItem(section6);
 					container.appendChild(section6.render());
-					$("[name='twitter-checkbox']").bootstrapSwitch();
-					$("[name='set-graphic']").bootstrapSwitch();
-					$("[name='set-graphic-emisora']").bootstrapSwitch();
-					$("[name='set-camara']").bootstrapSwitch();
-					$("[name='set-graphic-camara']").bootstrapSwitch();
+					
 
 
 
@@ -547,11 +539,7 @@ var ControlPanel= function (url){
 					container.appendChild(section6.render());
 
 
-					$("[name='twitter-checkbox']").bootstrapSwitch();
-					$("[name='set-graphic']").bootstrapSwitch();
-					$("[name='set-graphic-emisora']").bootstrapSwitch();
-					$("[name='set-camara']").bootstrapSwitch();
-					$("[name='set-camara-camara']").bootstrapSwitch();
+					
 
 				}
 				devBox.addDevice(dev1);
@@ -611,7 +599,7 @@ var ControlPanel= function (url){
 			for(var j=0;j<changes.length;j++){
 				for(var i=2;i<sectionNum;i++){
 					//if(changes[j].property==='show'){
-					var selector = '#view'+changes[j].compId;
+					var selector = '#viewCheck'+changes[j].compId;
 					if(changes[j].property==='show'){
 
 						if(sections[i].name.indexOf(event.detail.agentid)===0 &&
@@ -619,49 +607,43 @@ var ControlPanel= function (url){
 							// Show/hide commands
 							if(changes[j].newValue===false){
 
-								sectionDiv[i].querySelector(selector).children[0].className='bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-id-viewCheck'+changes[j].compId+' bootstrap-switch-animate bootstrap-switch-off';
-								sectionDiv[i].querySelector(selector).children[0].children[0].style.width='150px'
-								sectionDiv[i].querySelector(selector).children[0].children[0].style.marginLeft='-50px';
+								
+								sectionDiv[i].querySelector(selector).setAttribute('val',false);
 
 							}
 							else if(changes[j].newValue===true){
-								sectionDiv[i].querySelector(selector).children[0].className='bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-id-viewCheck'+changes[j].compId+' bootstrap-switch-animate bootstrap-switch-on';
-								sectionDiv[i].querySelector(selector).children[0].children[0].style.width='150px'
-								sectionDiv[i].querySelector(selector).children[0].children[0].style.marginLeft='0px';
-
+								
+								sectionDiv[i].querySelector(selector).setAttribute('val',true);
 							}
 						}
 						else if(sections[i].name.indexOf(event.detail.agentid)===0 &&
 								sectionDiv[i].querySelector('#radioViewBut')!==null){
 							if(changes[j].newValue===false){
 
-								sectionDiv[i].querySelector('#radioViewBut').src='../resources/css/configPanel/img/radio/Radio_btn_play.png';
-								sectionDiv[i].querySelector('#radioEq').src='../resources/css/configPanel/img/radio/Radio-animacion-off-estatico.png';
+								sectionDiv[i].querySelector('#radioViewBut').src='../resources/configPanel/img/radio/Radio_btn_play.png';
+								sectionDiv[i].querySelector('#radioEq').src='../resources/configPanel/img/radio/Radio-animacion-off-estatico.png';
 
 							}
 							else if(changes[j].newValue===true){
-								sectionDiv[i].querySelector('#radioViewBut').src='../resources/css/configPanel/img/radio/Radio_btn_pausa.png';
-								sectionDiv[i].querySelector('#radioEq').src='../resources/css/configPanel/img/radio/animacion-ecualizador_transp.gif';
+								sectionDiv[i].querySelector('#radioViewBut').src='../resources/configPanel/img/radio/Radio_btn_pausa.png';
+								sectionDiv[i].querySelector('#radioEq').src='../resources/configPanel/img/radio/animacion-ecualizador_transp.gif';
 							}
 						}
 
 					}
 					else if(changes[j].property==='customCmd'){
 						if(changes[j].newValue==='hide' || changes[j].newValue==='show'){
+							var selector = '#viewCheck'+changes[j].compId;
 							if(sections[i].name.indexOf(event.detail.agentid)===0 && sectionDiv[i].querySelector(selector)!==null){
 								// Show/hide commands
 								if(changes[j].newValue==='hide'){
 
-									sectionDiv[i].querySelector(selector).children[0].className='bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-id-viewCheck'+changes[j].compId+' bootstrap-switch-animate bootstrap-switch-off';
-									sectionDiv[i].querySelector(selector).children[0].children[0].style.width='150px'
-									sectionDiv[i].querySelector(selector).children[0].children[0].style.marginLeft='-50px';
-
+									
+									sectionDiv[i].querySelector(selector).setAttribute('val',false);
 								}
 								else if(changes[j].newValue==='show'){
-									sectionDiv[i].querySelector(selector).children[0].className='bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-id-viewCheck'+changes[j].compId+' bootstrap-switch-animate bootstrap-switch-on';
-									sectionDiv[i].querySelector(selector).children[0].children[0].style.width='150px'
-									sectionDiv[i].querySelector(selector).children[0].children[0].style.marginLeft='0px';
-
+								
+									sectionDiv[i].querySelector(selector).setAttribute('val',true);
 								}
 							}
 						}
@@ -671,30 +653,27 @@ var ControlPanel= function (url){
 								sectionDiv[i].querySelector('#radioViewBut')!==null){
 							if(changes[j].newValue==='hide'){
 
-								sectionDiv[i].querySelector('#radioViewBut').src='../resources/css/configPanel/img/radio/Radio_btn_play.png';
-								sectionDiv[i].querySelector('#radioEq').src='../resources/css/configPanel/img/radio/Radio-animacion-off-estatico.png';
+								sectionDiv[i].querySelector('#radioViewBut').src='../resources/configPanel/img/radio/Radio_btn_play.png';
+								sectionDiv[i].querySelector('#radioEq').src='../resources/configPanel/img/radio/Radio-animacion-off-estatico.png';
 
 							}
 							else if(changes[j].newValue==='show'){
-								sectionDiv[i].querySelector('#radioViewBut').src='../resources/css/configPanel/img/radio/Radio_btn_pausa.png';
-								sectionDiv[i].querySelector('#radioEq').src='../resources/css/configPanel/img/radio/animacion-ecualizador_transp.gif';
+								sectionDiv[i].querySelector('#radioViewBut').src='../resources/configPanel/img/radio/Radio_btn_pausa.png';
+								sectionDiv[i].querySelector('#radioEq').src='../resources/configPanel/img/radio/animacion-ecualizador_transp.gif';
 							}
 						}
 						//Sound/mute
 						//else{
 						if(changes[j].newValue==='mutePlayer' || changes[j].newValue==='soundPlayer'){
-							var selector = '#sound'+changes[j].compId;
+							var selector = '#soundCheck'+changes[j].compId;
 							if(sections[i].name.indexOf(event.detail.agentid)===0 && sectionDiv[i].querySelector(selector)!==null){
 								if(changes[j].newValue==='mutePlayer'){
-									sectionDiv[i].querySelector(selector).children[0].className='bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-id-soundCheck'+changes[j].compId+' bootstrap-switch-animate bootstrap-switch-off';
-									sectionDiv[i].querySelector(selector).children[0].children[0].style.width='150px'
-									sectionDiv[i].querySelector(selector).children[0].children[0].style.marginLeft='-50px';
+									
+									sectionDiv[i].querySelector(selector).setAttribute('val',false);
 								}
 								else if(changes[j].newValue==='soundPlayer'){
-									sectionDiv[i].querySelector(selector).children[0].className='bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-id-soundCheck'+changes[j].compId+' bootstrap-switch-animate bootstrap-switch-on';
-									sectionDiv[i].querySelector(selector).children[0].children[0].style.width='150px'
-									sectionDiv[i].querySelector(selector).children[0].children[0].style.marginLeft='0px';
-
+								
+									sectionDiv[i].querySelector(selector).setAttribute('val',true);
 								}
 							}
 						}
@@ -898,6 +877,7 @@ var ControlPanel= function (url){
 			}
 		}
 	}
+
 	this.changeHashtag=function(agentToChange,h){
 		var sections=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items;
 		var sectionNum=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items.length;
@@ -956,6 +936,34 @@ var ControlPanel= function (url){
 						opts[j].className='col-md-12 pastilla_ciudad';
 					}
 				}
+
+			}
+		}
+	}
+	this.changeSoundSwVal=function(agentToChange,cId,v){
+		var sections=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items;
+		var sectionNum=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items.length;
+		var sectionDiv=document.querySelector('#fullTemp').children;
+
+
+
+		for(var i=2;i<sectionNum;i++){
+			if(sections[i].name===agentToChange+'cameras'){
+				sectionDiv[i].querySelector('#soundCheck'+cId).setAttribute('val',v);				
+
+			}
+		}
+	}
+	this.changeViewSwVal=function(agentToChange,cId,v){
+		var sections=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items;
+		var sectionNum=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items.length;
+		var sectionDiv=document.querySelector('#fullTemp').children;
+
+
+
+		for(var i=2;i<sectionNum;i++){
+			if(sections[i].name.indexOf(event.detail.agentid)===0 && sectionDiv[i].querySelector(selector)!==null){
+				sectionDiv[i].querySelector('#viewCheck'+cId).setAttribute('val',v);				
 
 			}
 		}
@@ -1128,11 +1136,11 @@ var logoItem=function(){
 		li.className="vicomtechlogo-li";
 
 		var img1=document.createElement('img');
-		img1.src="../resources/css/configPanel/img/mediascape_logo.png";
+		img1.src="../resources/configPanel/img/mediascape_logo.png";
 
 		var img2=document.createElement('img');
 		img2.className='vicomtechlogo';
-		img2.src='../resources/css/configPanel/img/LogoVicomtech.png';
+		img2.src='../resources/configPanel/img/LogoVicomtech.png';
 
 		li.appendChild(img1);
 		li.appendChild(img2);
@@ -1189,7 +1197,7 @@ var device=function(){
 		a.href='#';
 
 		var img1=document.createElement('img');
-		img1.src='../resources/css/configPanel/img/devices/'+this.icon;
+		img1.src='../resources/configPanel/img/devices/'+this.icon;
 		
 		a.appendChild(img1);
 
@@ -1326,7 +1334,7 @@ var qrSection=function(url){
 		animationdiv.className='animated bounceInUp qr-code-toy';
 
 		var animationimg=document.createElement('img');
-		animationimg.src='../resources/css/configPanel/img/QR-manos_grande.png';
+		animationimg.src='../resources/configPanel/img/QR-manos_grande.png';
 
 		animationdiv.appendChild(animationimg);
 
@@ -1379,20 +1387,15 @@ var camera=function(){
 
 		div5.appendChild(i1);
 
-		var div6=document.createElement('div');
-		div6.className='col-md-8 col-sm-8 check-switch-camara';
-		var input1=document.createElement('input');
-		input1.type='checkbox';
-		input1.name='set-camara';
-		input1.checked=this.viewStatus;
-		input1.id='viewCheck'+this.id;
 
-		div6.appendChild(input1);
-		div6.id='view'+this.id;
-		div6.addEventListener('click',this.viewclick.bind(this),true);
+		var s2=document.createElement('paper-switch');
+		s2.id='viewCheck'+this.id;
+		s2.className='col-md-8 col-sm-8 check-switch-camara';
+		s2.setAttribute('val',this.viewStatus);
+		s2.addEventListener('click',this.viewclick.bind(this),true);
 
 		div4.appendChild(div5);
-		div4.appendChild(div6);
+		div4.appendChild(s2);
 
 		var div7=document.createElement('div');
 		div7.className='col-md-12';
@@ -1404,22 +1407,16 @@ var camera=function(){
 
 		div8.appendChild(i2);
 
-		var div9=document.createElement('div');
-		div9.className='col-md-8 col-sm-8 check-switch-vol';
-		var input2=document.createElement('input');
-		input2.type='checkbox';
-		input2.name='set-camara';
-		input2.checked=this.soundStatus;
+		
 
-		input2.id='soundCheck'+this.id;
-		div9.appendChild(input2);
-		div9.id='sound'+this.id;
-
-
-		div9.addEventListener('click',this.soundclick.bind(this),true);
+		var s1=document.createElement('paper-switch');
+		s1.id='soundCheck'+this.id;
+		s1.className='col-md-8 col-sm-8 check-switch-vol';
+		s1.setAttribute('val',this.soundStatus);
+		s1.addEventListener('click',this.soundclick.bind(this),true);
 
 		div7.appendChild(div8);
-		div7.appendChild(div9);
+		div7.appendChild(s1);
 		div3.appendChild(div4);
 		div3.appendChild(div7);
 
@@ -1428,6 +1425,7 @@ var camera=function(){
 		return div1;
 	}
 	this.viewclick=function(event){
+		event.preventDefault();
 		var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
 		var agents=agCtx.agents;
 		var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
@@ -1445,13 +1443,15 @@ var camera=function(){
 		console.log('viewClick');
 		if(b[0].show===true){
 			mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'hide');
+			mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeViewSwVal(agentToChange,this.id,false);
 		}
 		else{
 			mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'show');
+			mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeViewSwVal(agentToChange,this.id,true);
 		}
 	}
 	this.soundclick=function(event){
-
+		event.preventDefault();
 		var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
 		var agents=agCtx.agents;
 		var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
@@ -1472,11 +1472,11 @@ var camera=function(){
 		if(b[0].customCmd.lastIndexOf('mutePlayer')===-1 && b[0].customCmd.lastIndexOf('soundPlayer')===-1){
 				if(document.querySelector('#'+scope.name).ismuted==='false'){
 					mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'mutePlayer');
-
+					mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,this.id,false);
 				}
 				else{
 					mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'soundPlayer');
-
+					mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,this.id,true);
 				}
 
 		}
@@ -1484,9 +1484,11 @@ var camera=function(){
 			if(b[0].customCmd.lastIndexOf('mutePlayer') <b[0].customCmd.lastIndexOf('soundPlayer')){
 
 				mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'mutePlayer');
+				mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,this.id,false);
 			}
 			else{
 				mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'soundPlayer');
+				mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,this.id,true);
 			}
 		}
 	}
@@ -1627,9 +1629,9 @@ var hashtag=function(){
 		hashtagDiv.className='col-md-10 twitter-hashtag';
 
 		var div1=document.createElement('div');
-		div1.className='col-md-3 col-xs-3';
+		div1.className='col-md-3 col-xs-3 seleccionImg';
 		var img=document.createElement('img');
-		img.src='../resources/css/configPanel/img/hastag_consombra.png';
+		img.src='../resources/configPanel/img/hastag_consombra.png';
 		div1.appendChild(img);
 
 		var div2=document.createElement('div');
@@ -1660,22 +1662,18 @@ var hashtag=function(){
 		div2.appendChild(p2);
 		div2.appendChild(select);
 
-		var div3=document.createElement('div');
-		div3.className='col-md-3 check-switch-twitter';
+		
 
-		var input1=document.createElement('input');
-		input1.type='checkbox';
-		input1.name='twitter-checkbox';
-		input1.id='viewCheck'+this.id;
-		input1.checked=this.viewStatus;
 
-		div3.id='view'+this.id;
-		div3.addEventListener('click',this.viewClick.bind(this),true);
+		var s2=document.createElement('paper-switch');
+		s2.id='viewCheck'+this.id;
+		s2.className='col-md-3 check-switch-twitter';
+		s2.setAttribute('val',this.viewStatus);
+		s2.addEventListener('click',this.viewClick.bind(this),true);
 
-		div3.appendChild(input1);
 		hashtagDiv.appendChild(div1);
 		hashtagDiv.appendChild(div2);
-		hashtagDiv.appendChild(div3);
+		hashtagDiv.appendChild(s2);
 		return hashtagDiv;
 	}
 	this.sendHTclick=function(event){
@@ -1685,6 +1683,7 @@ var hashtag=function(){
 		mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeHashtag(agentToChange,event.srcElement.value);
 	}
 	this.viewClick=function(event){
+		event.preventDefault();
 		var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
 		var agents=agCtx.agents;
 		var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
@@ -1702,9 +1701,11 @@ var hashtag=function(){
 		console.log('viewClick');
 		if(b[0].show===true){
 			mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'hide');
+			mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeViewSwVal(agentToChange,this.id,false);
 		}
 		else{
 			mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'show');
+			mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeViewSwVal(agentToChange,this.id,true);
 		}
 	}
 }
@@ -1721,9 +1722,9 @@ var trendingMap=function(){
 		trending.className='col-md-10 twitter-topic';
 
 		var div4=document.createElement('div');
-		div4.className='col-md-3 col-xs-3';
+		div4.className='col-md-3 col-xs-3 seleccionImg';
 		var img2=document.createElement('img');
-		img2.src='../resources/css/configPanel/img/twitter_consombra.png';
+		img2.src='../resources/configPanel/img/twitter_consombra.png';
 		div4.appendChild(img2);
 
 		var div5=document.createElement('div');
@@ -1738,24 +1739,21 @@ var trendingMap=function(){
 		div5.appendChild(p3);
 		div5.appendChild(p4);
 
-		var div6=document.createElement('div');
-		div6.className='col-md-3 check-switch-twitter';
 
-		var input2=document.createElement('input');
-		input2.type='checkbox';
-		input2.name='twitter-checkbox';
-		input2.id='viewCheck'+this.id;
-		input2.checked=this.viewStatus;
-		div6.id='view'+this.id;
-		div6.addEventListener('click',this.viewClick.bind(this),true);
-		div6.appendChild(input2);
+		var s2=document.createElement('paper-switch');
+		s2.id='viewCheck'+this.id;
+		s2.className='col-md-3 check-switch-twitter';
+		s2.setAttribute('val',this.viewStatus);
+		s2.addEventListener('click',this.viewClick.bind(this),true);
+
 		trending.appendChild(div4);
 		trending.appendChild(div5);
-		trending.appendChild(div6);
+		trending.appendChild(s2);
 
 		return trending;
 	}
 	this.viewClick=function(event){
+		event.preventDefault();
 		var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
 		var agents=agCtx.agents;
 		var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
@@ -1773,9 +1771,11 @@ var trendingMap=function(){
 		console.log('viewClick');
 		if(b[0].show===true){
 			mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'hide');
+			mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeViewSwVal(agentToChange,this.id,false);
 		}
 		else{
 			mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'show');
+			mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeViewSwVal(agentToChange,this.id,true);
 		}
 	}
 }
@@ -1933,10 +1933,10 @@ var radios=function(){
 		img.id='radioViewBut';
 		img.width='150';
 		if(this.viewStatus===true){
-			img.src='../resources/css/configPanel/img/radio/Radio_btn_pausa.png';
+			img.src='../resources/configPanel/img/radio/Radio_btn_pausa.png';
 		}
 		else{
-			img.src='../resources/css/configPanel/img/radio/Radio_btn_play.png';
+			img.src='../resources/configPanel/img/radio/Radio_btn_play.png';
 		}
 		img.addEventListener('click',this.viewClick.bind(this),true);
 
@@ -1960,10 +1960,10 @@ var radios=function(){
 		img1.className='radio_ecualizador_img';
 		img1.id='radioEq';
 		if(this.viewStatus===true){
-			img1.src='../resources/css/configPanel/img/radio/animacion-ecualizador_transp.gif';
+			img1.src='../resources/configPanel/img/radio/animacion-ecualizador_transp.gif';
 		}
 		else{
-			img1.src='../resources/css/configPanel/img/radio/Radio-animacion-off-estatico.png';
+			img1.src='../resources/configPanel/img/radio/Radio-animacion-off-estatico.png';
 		}
 		div10.appendChild(img1);
 
@@ -1983,7 +1983,7 @@ var radios=function(){
 		div13.className='radio_logo_centrar';
 
 		var img3=document.createElement('img');
-		img3.src='../resources/css/configPanel/img/radio/logo_eitb.png';
+		img3.src='../resources/configPanel/img/radio/logo_eitb.png';
 		div13.appendChild(img3);
 		div12.appendChild(div13);
 
@@ -2017,7 +2017,7 @@ var radios=function(){
 
 		var img4=document.createElement('img');
 		img4.className='logo_emisora_img';
-		img4.src='../resources/css/configPanel/img/radio/logo_ser_blanco.png';
+		img4.src='../resources/configPanel/img/radio/logo_ser_blanco.png';
 		div18.appendChild(img4);
 
 		div17.appendChild(div18);
@@ -2031,7 +2031,7 @@ var radios=function(){
 
 		var img5=document.createElement('img');
 		img5.className='logo_emisora_img';
-		img5.src='../resources/css/configPanel/img/radio/logo_bbc_blanco.png';
+		img5.src='../resources/configPanel/img/radio/logo_bbc_blanco.png';
 		div20.appendChild(img5);
 
 		div19.appendChild(div20);
@@ -2046,7 +2046,7 @@ var radios=function(){
 
 		var img6=document.createElement('img');
 		img6.className='logo_emisora_img';
-		img6.src='../resources/css/configPanel/img/radio/logo_eitb_blanco.png';
+		img6.src='../resources/configPanel/img/radio/logo_eitb_blanco.png';
 		div22.appendChild(img6);
 
 		div21.appendChild(div22);
@@ -2082,9 +2082,11 @@ var radios=function(){
 		console.log('viewClick');
 		if(b[0].show===true){
 			mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'hide');
+		
 		}
 		else{
 			mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'show');
+			
 		}
 	}
 }
@@ -2158,20 +2160,16 @@ var table=function(){
 		div6.className='col-md-9 txt_titular';
 		div6.innerHTML='Table data information';
 
-		var div7=document.createElement('div');
-		div7.className='col-md-3 check-switch-graphics';
-		div7.addEventListener('click',this.viewclick.bind(this),true);
-		var input1=document.createElement('input');
-		input1.type='checkbox';
-		input1.name='set-graphic-emisora';
-		input1.id='viewCheck'+this.id;
-		input1.checked=this.viewStatus;
-		div7.id='view'+this.id;
+		
 
-		div7.appendChild(input1);
+		var s2=document.createElement('paper-switch');
+		s2.id='viewCheck'+this.id;
+		s2.className='col-md-3 check-switch-graphics';
+		s2.setAttribute('val',this.viewStatus);
+		s2.addEventListener('click',this.viewclick.bind(this),true);
 
 		div5.appendChild(div6);
-		div5.appendChild(div7);
+		div5.appendChild(s2);
 
 		var div8=document.createElement('div');
 		div8.className='col-md-12 tabs-graficos';
@@ -2192,7 +2190,7 @@ var table=function(){
 		}
 		li1.addEventListener('click',this.pastClick.bind(this),true);
 
-		li1.innerHTML='<a href="#2011" aria-controls="2011" role="tab" data-toggle="tab"><img src="../resources/css/configPanel/img/graphics/icon_chart.png"/><br><span class="year-text">2011</span></a>'
+		li1.innerHTML='<a href="#2011" aria-controls="2011" role="tab" data-toggle="tab"><img src="../resources/configPanel/img/graphics/icon_chart.png"/><br><span class="year-text">2011</span></a>'
 
 
 
@@ -2206,7 +2204,7 @@ var table=function(){
 			li2.className='';
 		}
 		li2.addEventListener('click',this.presentClick.bind(this),true);
-		li2.innerHTML='<a href="#2012" aria-controls="2015" role="tab" data-toggle="tab"><img src="../resources/css/configPanel/img/graphics/icon_chart.png"/><br><span class="year-text">2015</span></a>';
+		li2.innerHTML='<a href="#2012" aria-controls="2015" role="tab" data-toggle="tab"><img src="../resources/configPanel/img/graphics/icon_chart.png"/><br><span class="year-text">2015</span></a>';
 
 		ul.appendChild(li1);
 		ul.appendChild(li2);
@@ -2395,6 +2393,7 @@ var table=function(){
 		mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeTablePlace(agentToChange,event.currentTarget.id);
 	}
 	this.viewclick=function(event){
+		event.preventDefault();
 		var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
 		var agents=agCtx.agents;
 		var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
@@ -2412,9 +2411,11 @@ var table=function(){
 		console.log('viewClick');
 		if(b[0].show===true){
 			mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'hide');
+			mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeViewSwVal(agentToChange,this.id,false);
 		}
 		else{
 			mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'show');
+			mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeViewSwVal(agentToChange,this.id,true);
 		}
 	}
 
@@ -2452,27 +2453,22 @@ var graph=function(){
 
 		div32.appendChild(p5);
 
-		var div33=document.createElement('div');
-		div33.className='col-md-4 col-sm-4 col-xs-12 check-switch-graphics';
+		
 
-		var input3=document.createElement('input');
-		input3.type='checkbox';
-		input3.name='set-graphic-emisora';
-		input3.checked=this.viewStatus;
-		input3.id='viewCheck'+this.id;
-
-		div33.id='view'+this.id;
-		div33.addEventListener('click',this.viewclick.bind(this),true);
-
-		div33.appendChild(input3);
-
+		var s2=document.createElement('paper-switch');
+		s2.id='viewCheck'+this.id;
+		s2.className='col-md-4 col-sm-4 check-switch-graphics';
+		s2.setAttribute('val',this.viewStatus);
+		s2.addEventListener('click',this.viewclick.bind(this),true);
+		s2.style.position='absolute';
 
 		div30.appendChild(div32);
-		div30.appendChild(div33);
+		div30.appendChild(s2);
 		return div30;
 
 	}
 	this.viewclick=function(event){
+		event.preventDefault();
 		var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
 		var agents=agCtx.agents;
 		var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
@@ -2490,9 +2486,11 @@ var graph=function(){
 		console.log('viewClick');
 		if(b[0].show===true){
 			mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'hide');
+			mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeViewSwVal(agentToChange,this.id,false);
 		}
 		else{
 			mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'show');
+			mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeViewSwVal(agentToChange,this.id,true);
 		}
 	}
 }

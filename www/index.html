@@ -12,7 +12,7 @@
 <link href="../resources/configPanel/css/vicomtech-template.css" rel="stylesheet">
 <link href="../resources/configPanel/css/add-device.css" rel="stylesheet">
 <link href="../resources/configPanel/css/add-twitter.css" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/css/bootstrap2/bootstrap-switch.min.css" rel="stylesheet">
+
 <link href="../resources/configPanel/css/radio.css" rel="stylesheet">
 <link href="../resources/configPanel/css/graphics.css" rel="stylesheet">
 <link href="../resources/configPanel/css/camara.css" rel="stylesheet">
@@ -22,12 +22,12 @@
 <link href="../resources/css/carousel.css" rel="stylesheet">
 
 <!-- NEEDED SCRIPTS -->
-<!--<script  src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.17/webcomponents-lite.min.js"></script>
+<script  src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.17/webcomponents-lite.min.js"></script>
 <script async src="../resources/libs/require.js"></script>
 <script async src="js/mediascape.js"></script>
-<script src="../resources/libs/loadingPanel.js"></script>
--->
-<script src="dist/multideviceapplib.min.js"></script>
+<script src="../resources/libs/utils.js"></script>
+
+<!--<script src="dist/multideviceapplib.min.js"></script>-->
 
 
 
@@ -44,6 +44,7 @@
 <link rel="import" href="../resources/wcs/twitter-viewer/twitter-viewer.html">
 <link rel="import" href="../resources/wcs/twitter-map/twitter-map.html">
 <link href="../resources/configPanel/css/controller.css" rel="stylesheet">
+<link rel="import" href="../resources/configPanel/switch/paper-switch.html">
 <!-- WEBCOMPONETS END -->
 
 
@@ -105,7 +106,7 @@ document.addEventListener('adaptationToolkit-ready',function(data){
   <x-radio id='radio' file='/resources/media/RadioEuskadiSync.mp3' ></x-radio>
 
 
-<twitter-viewer id="twitterViewer"></twitter-viewer >
+<twitter-viewer id="twitterViewer"></twitter-viewer>
 <twitter-map id="twitterMap" language="es"></twitter-map>
 
 <!-- End of definition of each webcompoent -->
