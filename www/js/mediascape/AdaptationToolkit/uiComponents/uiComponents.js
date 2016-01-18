@@ -630,11 +630,11 @@ define(
                 if(_this.mapp.motions.shared.vel!=velState){
                   if (_this.mapp.motions.shared.vel == 0) {
 
-                     img4.setAttribute('src','../resources/css/configPanel/img/controller/Play_activo.png');
+                     img4.setAttribute('src','../resources/configPanel/img/controller/Play_activo.png');
                      
                    } else {
 
-                     img4.setAttribute('src','../resources/css/configPanel/img/controller/Pause_activo.png');
+                     img4.setAttribute('src','../resources/configPanel/img/controller/Pause_activo.png');
                      
                    }
                    velState=_this.mapp.motions.shared.vel;
