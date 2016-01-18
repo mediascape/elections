@@ -34,8 +34,7 @@
         debugger:'empty:',
         configPanel:'../resources/configPanel/configPanel',
         classifie:'../resources/configPanel/js/classie',
-        bootstrap:'empty:',
-        bootstrap_swicth:'empty:'
+        bootstrap:'empty:'       
         },
     include:['requireLib','webcomponetsPolyfill','loadingPanel','swiper'],
     out: "dist/multideviceapplib.min.js",

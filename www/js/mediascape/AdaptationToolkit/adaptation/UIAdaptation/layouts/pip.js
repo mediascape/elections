@@ -120,42 +120,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
 
       var scope=this;
       var timer1=0;
-      /*function holding(event){
-            //  event.preventDefault();
-              console.log(event.type);
-              var holdtime = 0;
-              var clicked=event.srcElement;
-              var rendered=true;
-              var _cmps = cmps;
-              function isUp (ev){
-
-                    scope.render(_cmps,rendered,clicked);
-
-              }
-
-              event.target.addEventListener('mouseup',isUp,true);
-              setTimeout(function(){
-                  event.target.removeEventListener('mouseup',isUp,true);
-              },500);
-
-
-      }*/
-     /*function holding(event){
-        var clicked=document.querySelector('#'+this.id.split('fullIcon')[1]);
-        var rendered=true;
-        var _cmps = cmps;
-        scope.render(_cmps,rendered,clicked);
-      }*/
-
-      /*for(var i=0;i<cmps.length;i++){
-        cmps[i].removeEventListener('hold',holding,true);
-
-      }
-      for(var i=0;i<cmps.length;i++){
-        cmps[i].addEventListener('hold',holding,true);
-        pip.listeners.push(holding);
-
-      }*/
+     
       mediascape.AdaptationToolkit.uiComponents.addMenuToCmps(cmps,true);
           
       
@@ -261,11 +226,9 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
          heights.push(height-total_height);
        
 
-          //fullScreenCmp.style.gridColumn='1/span 3';
           fullScreenCmp.style.marginLeft='0px';
           fullScreenCmp.style.width=(width+10)+'px';
-          fullScreenCmp.style.height=(height)+'px';
-          //fullScreenCmp.style.gridRow='1/span '+heights.length;
+          fullScreenCmp.style.height=(height)+'px';        
           fullScreenCmp.style.marginTop='0px';
           fullScreenCmp.style.backgroundColor='white';
           fullScreenCmp.style.zIndex='1';
@@ -274,11 +237,9 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
         usedHeight=0;
         for(var i=0;i<col_cmps;i++){
           
-          //cmpsToColumn[i].style.gridColumn='2/span 1';
           cmpsToColumn[i].style.marginLeft=a+'px';
           cmpsToColumn[i].style.width=b+'px';
           cmpsToColumn[i].style.height=heights[(2*i+1)];
-          //cmpsToColumn[i].style.gridRow=2*i+2;
           cmpsToColumn[i].style.marginTop=usedHeight+heights[2*i]+'px';
           cmpsToColumn[i].style.backgroundColor='black';
           cmpsToColumn[i].style.zIndex='2';
@@ -291,13 +252,10 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
 
       }
       else{
-        var row_height=parseInt((height-70)/(col_cmps))-10;
-        //container.style.gridTemplateRows='20px repeat('+col_cmps+','+row_height+'px 10px) 10px';
-        //fullScreenCmp.style.gridColumn='1/span 3';
+        var row_height=parseInt((height-70)/(col_cmps))-10;       
         fullScreenCmp.style.marginLeft='0px';
         fullScreenCmp.style.width=(width+10)+'px';
-        fullScreenCmp.style.height=(height)+'px';
-        //fullScreenCmp.style.gridRow='1/span '+heights.length;
+        fullScreenCmp.style.height=(height)+'px';        
         fullScreenCmp.style.marginTop='0px';
         fullScreenCmp.style.backgroundColor='white';
         fullScreenCmp.style.zIndex='1';
@@ -308,11 +266,10 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
         
         for(var i=0;i<col_cmps;i++){
 
-          //cmpsToColumn[i].style.gridColumn='2/span 1';
+   
           cmpsToColumn[i].style.marginLeft=a+'px';
           cmpsToColumn[i].style.width=b+'px';
-          cmpsToColumn[i].style.height=row_height+'px';
-          //cmpsToColumn[i].style.gridRow=2*i+2;
+          cmpsToColumn[i].style.height=row_height+'px';          
           cmpsToColumn[i].style.marginTop=20+(i*row_height)+(i*10)+'px';
           cmpsToColumn[i].style.backgroundColor='black';
           cmpsToColumn[i].style.zIndex='2';

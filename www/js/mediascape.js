@@ -17,8 +17,8 @@
           'socketio': {
               exports: 'io'
             },
-        "bootstrap" : { "deps" :['jquery'] },
-        "bootstrap_swicth" :{ "deps":['jquery','bootstrap']}
+        "bootstrap" : { "deps" :['jquery'] }
+        
 
     },
     paths: {
@@ -41,8 +41,7 @@
     tags:'/resources/libs/tags',
     configPanel:'../resources/configPanel/configPanel',
     classifie:'../resources/configPanel/js/classie',
-    bootstrap:'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min',
-    bootstrap_swicth:'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/js/bootstrap-switch.min',
+    bootstrap:'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min',   
     webcomponetsPolyfill:'https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.17/webcomponents-lite.min'
       },
     waitSeconds:25

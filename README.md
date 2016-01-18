@@ -7,13 +7,10 @@ You could see the video demonstration [here](https://www.youtube.com/watch?v=Ugn
 
 ## Prototype Description
 
-This project is based on mediascape libraries. Mediascape is an European project aims to simplify a multidevice interconected and synchronized application development. For more information you could check the project webpage.
-
-In this sense, this is a demostration of the capacibilities that mediascape library offers. The base of the demostration is a basque country elections live version. We recorded all information on the last basque country elections in other to replay-ed anytime.
-
+This project is based on mediascape libraries. Mediascape is an European project that aims to simplify the development of multi device interconnected and synchronized applications. For more information you could check the [project webpage](http://mediascapeproject.eu/).
+This is a demostration of the capabilities that mediascape library offers. The base of the demostration is a basque country elections live version. We recorded all information on the last basque country elections in other to replay-ed anytime.
 This prototype offers 5 different synchronized cameras located on different political-party home, and one more camera that is an EITB (basque broadcaster) emision. Also, offers a radio broadcaster signal synchronized with all content.Futhermore, it includes a twitter comments related with the content of the multimedia content and some twitter content analysis displaying on a map.
-
-Election data is displayed on differents planes, that are synchronized with the live content.
+Data related to elections is displayed on different panels, which are synchronized with the live content.
 
 ## Deploy the Prototype
 
@@ -56,7 +53,7 @@ initialize server:
 
 ```bash
 
-sudo nodejs index.js
+sudo nodejs index.js --max-old-space-size=8192
 
 ```
 To access to application just open chrome/firefox with the following URL:
@@ -65,18 +62,19 @@ To access to application just open chrome/firefox with the following URL:
 ```
 http://localhost
 
-*** Note is use port 80, so may need to stop other webserver as such apache.
+*** Note, it uses port 80, so may need to stop other webserver may be listening on that port.
 ```
 
 ### For Developers
 
-It your interes is to develop, you must change the index.html file:
+Whether your interest is to make changes it would be appropriate not use minified version, so you must change the index.html file:
 
 ```html
 <!-- UNCOMMENT THIS FILES FOR DEV, FOR PROD COMMENT  -->
 
 <script  src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.17/webcomponents-lite.min.js"></script>
 <script async src="../resources/libs/require.js"></script>
+<script src="../resources/libs/loadingPanel.js"></script>
 <script async src="js/mediascape.js"></script>
 
 <!-- COMMET THIS ONE FOR DEV, FOR PROD UNCOMMENT-->

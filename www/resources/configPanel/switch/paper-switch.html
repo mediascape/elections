@@ -1,0 +1,91 @@
+
+
+<dom-module id="paper-switch"  noscript>
+  <template>
+
+    <link href="paper-switch.css" rel="stylesheet">
+
+    <label class="label-switch">
+      <input type="checkbox" checked="{{val}}"></input>
+      <div id='caja' class="checkbox">
+      	<span id='nombre' style='padding-top:7px;font-family:"Helvetica"'></span>
+      	<div id='encendido' class='encendidoOn'></div>
+      	<div id='apagado' class='apagadoOff'></div>
+      </div>
+
+    </label>
+  </template>
+</dom-module>
+
+<script>
+Polymer({
+	is:'paper-switch',
+ 
+	properties:{
+			val:{
+				 type:String,
+				 
+				 observer:'valChanged'
+			}	
+			
+
+	},
+	ready:function(){
+		var _this=this;
+		if(this.val==='false'){
+			this.$.encendido.className='encendidoOff';
+			this.$.apagado.className='apagadoOn';
+			this.$.caja.style.background='#e5e5e5';
+			
+
+			this.$.nombre.innerHTML='OFF';
+			this.$.nombre.style.float='right';
+			this.$.nombre.style.paddingLeft='';
+			this.$.nombre.style.paddingRight='7px';
+			this.$.nombre.style.color='black';
+
+		}
+		else{
+			this.$.encendido.className='encendidoOn';
+			this.$.apagado.className='apagadoOff';
+			this.$.caja.style.background='rgb(26, 185, 26)';
+			this.$.nombre.innerHTML='ON';
+			this.$.nombre.style.float='left';
+			this.$.nombre.style.paddingLeft='10px';
+			this.$.nombre.style.paddingRight='';
+			this.$.nombre.style.color='white';
+		}
+		
+		
+
+	},
+	valChanged:function(){
+		if(this.val==='true'){
+			this.$.encendido.className='encendidoOn';
+			this.$.apagado.className='apagadoOff';
+			this.$.caja.style.background='rgb(26, 185, 26)';
+			this.$.nombre.innerHTML='ON';
+			this.$.nombre.style.float='left';
+			this.$.nombre.style.paddingLeft='10px';
+			this.$.nombre.style.paddingRight='';
+			this.$.nombre.style.color='white';
+			
+		
+		}
+		else{
+			this.$.encendido.className='encendidoOff';
+			this.$.apagado.className='apagadoOn';
+			this.$.caja.style.background='#e5e5e5';
+			this.$.nombre.innerHTML='OFF';
+			this.$.nombre.style.float='right';
+			this.$.nombre.style.paddingLeft='';
+			this.$.nombre.style.paddingRight='7px';
+			this.$.nombre.style.color='black';
+			
+		}
+
+	}
+	
+});
+ </script>
+

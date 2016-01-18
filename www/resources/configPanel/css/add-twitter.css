@@ -1,5 +1,13 @@
 
-.twitter-selector-container div {
+.twitter-hashtag{
+  margin: auto;
+  margin-top: 20px;
+  height: 43%;
+  background-color: white;
+  vertical-align: middle !important;
+}
+
+.twitter-topic{
   margin: auto;
   margin-top: 20px;
   height: 43%;
@@ -17,24 +25,18 @@
   border: 8px solid #99d5f2;
 }
 .twitter-selector-container div.twitter-hashtag:hover {border-color:#fc9200; }
-.twitter-selector-container div.twitter-hashtag div {background: transparent !important; }
+
+.twitter-selector-container div.seleccionImg{background: transparent ; }
 .twitter-selector-container div.twitter-hashtag div img {width: 100%; padding-top: 3vh;}
-div.seleccion-hashtag { text-align: left !important; padding-top: 7vh; font-size: 2.2vh; z-index: 9999999;}
+div.seleccion-hashtag { background: transparent ;text-align: left !important; padding-top: 7vh; font-size: 2.2vh; z-index: 9999999;}
 div.seleccion-hashtag .select-hashtag {background-color: #dcf1ff; width: 65%;}
 p.titulo-seccion {font-size: 3vw; color: white;}
 /* switch */
 .twitter-selector-container div.check-switch-twitter {
-  height: 250px !important;
-  border: 0 !important;
-  padding-top: 7vh;
+  
 } 
-.bootstrap-switch {border: none !important;}
-.bootstrap-switch-primary {
-    color: #FFF !important;
-    background-color: rgb(26, 185, 26) !important;
-    font-size: 14px !important; font-weight:bold;
-}
-.bootstrap-switch-label {background-color: white !important;}
+
+
 
 .twitter-selector-container div.twitter-topic{
   width: 100%;
@@ -48,7 +50,7 @@ p.titulo-seccion {font-size: 3vw; color: white;}
   border: 8px solid #397caa;
 }
 .twitter-selector-container div.twitter-topic:hover {border-color: #fc9200; }
-.twitter-selector-container div.twitter-topic div {background-color: transparent !important;}
+
 .twitter-selector-container div.twitter-topic div img {width: 80%; padding-top: 3vh;}
 
 div.seleccion-hashtag{ padding-top: 6%;}
@@ -64,35 +66,39 @@ div.seleccion-hashtag{ padding-top: 6%;}
   div.seleccion-hashtag { padding-top: 3% !important } 
 
 }
-
-@media (max-width: 992px){
-    .twitter-selector-container div.check-switch-twitter{border:1px solid red; height:auto; clear:both; min-height:auto !important; padding-top:40px; padding-left:40%; margin-bottom:20px;}
+@media(min-width:1025px){
+  .check-switch-twitter { position:absolute;left:75%;margin-top:0%;top:30%;}
 }
 
-@media (min-width: 992px) and (max-width: 1200px){
-  
-}
+
+
 
 @media (max-width: 1024px) and (orientation: landscape){
-  .twitter-selector-container div.twitter-hashtag {
+  .twitter-hashtag {
     height: 250px !important;
     
   }
-  .twitter-selector-container div.twitter-topic {
+  .twitter-topic {
     height: 250px !important;
   }
   div.seleccion-hashtag { padding-top: 4% !important }  
-  
+  .check-switch-twitter { position:absolute;top:0%;margin-top:25%;left:35%;}
 }
 
 @media (max-width: 992px) and (orientation: portrait) {
     .template-content {         min-height: 91%;  padding: 0px 10px;}
-    .twitter-selector-container div {
-	 
-	  height: 38%;
-	  
-	}
-	div.check-switch-twitter { margin-bottom: 20px !important;}
+    .twitter-hashtag{
+  
+  height: 38%;
+  
+}
+
+.twitter-topic{
+  
+  height: 38%;
+  
+}
+  .check-switch-twitter { position:relative;left:33%;margin-top:50%;top:30px;}
 }
 
 /*@media (max-width: 480px)and (orientation: portrait) {
@@ -105,9 +111,15 @@ div.seleccion-hashtag{ padding-top: 6%;}
     width: 50px;
   }
   div.seleccion-hashtag { font-size: 16px;}
-  .twitter-selector-container div { margin-top: 10px !important;}
+  .twitter-hashtag{  
+    margin-top:10px !important;  
+  }
+  .twitter-topic{      
+    margin-top:10px !important;      
+  }
+
   .twitter-selector-container div.twitter-topic { margin-top: 10px !important;}
-  .twitter-selector-container div.check-switch-twitter { margin-top: 20px !important;}
+  .check-switch-twitter { position:relative;left:33%;margin-top:50%;top:30px;}
 }
 
 @media (max-width: 400px) {
@@ -115,8 +127,13 @@ div.seleccion-hashtag{ padding-top: 6%;}
     width: 50px;
   }
   div.seleccion-hashtag { font-size: 12px;}
-  .twitter-selector-container div { margin-top: 10px !important;}
+  .twitter-hashtag{  
+      margin-top:10px !important;  
+    }
+    .twitter-topic{      
+      margin-top:10px !important;      
+    }
   .twitter-selector-container div.twitter-topic { margin-top: 10px !important;}
-  .twitter-selector-container div.check-switch-twitter { margin-top: 20px !important; padding-left: 34%;}
+ .check-switch-twitter { position:relative;left:33%;margin-top:50%;top:25px;}
   .seleccion-hashtag{z-index: 100;}
 }
