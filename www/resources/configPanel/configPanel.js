@@ -1604,8 +1604,17 @@ var camerasSection=function(){
 
       }
       else {
-        if(b[0].customCmd.lastIndexOf('mutePlayer') <b[0].customCmd.lastIndexOf('soundPlayer')){
+        if((b[0].customCmd.lastIndexOf('mutePlayer') <b[0].customCmd.lastIndexOf('soundPlayer') ) &&
+          (b[0].customCmd.lastIndexOf('mutePlayer')!==-1) && (b[0].customCmd.lastIndexOf('soundPlayer')!==-1)){
 
+          this.cameras[i].setSoundStatus(false);
+        }
+        else if((b[0].customCmd.lastIndexOf('mutePlayer')===-1) 
+          && (b[0].customCmd.lastIndexOf('soundPlayer')!==-1)){
+          this.cameras[i].setSoundStatus(true);
+        }
+        else if((b[0].customCmd.lastIndexOf('mutePlayer')!==-1) 
+          && (b[0].customCmd.lastIndexOf('soundPlayer')===-1)){
           this.cameras[i].setSoundStatus(false);
         }
         else{
