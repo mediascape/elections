@@ -35,7 +35,14 @@ function(){
             if (componentsStatus && componentsStatus !== "supported")
             for (c in componentsStatus){
                 if ( typeof componentsStatus[c] === 'object')
-                  if (componentsStatus[c].customCmd.length>0)
+                  if (componentsStatus[c].customCmd.length>0){
+                    if (AE.getApplicationContext().getItem('reset') === "true"){
+                          mediascape.AdaptationToolkit.Utils.removeFromArray(componentsStatus[c].customCmd,"hide");
+                          mediascape.AdaptationToolkit.Utils.removeFromArray(componentsStatus[c].customCmd,"show");
+                          setTimeout(function(){
+                              mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getApplicationContext().setItem('reset',"false");
+                          },2500);
+                     }
                      if ((componentsStatus[c].customCmd.lastIndexOf('show')!=-1 || componentsStatus[c].customCmd.lastIndexOf('hide')!=-1)
                         && componentsStatus[c].customCmd.lastIndexOf('show') >= componentsStatus[c].customCmd.lastIndexOf('hide')){
                        /*if (cmp.lproperties['duplicable']==="false")
@@ -53,6 +60,7 @@ function(){
 
                      }
                      //else return false;
+                  }
 
 
             }
