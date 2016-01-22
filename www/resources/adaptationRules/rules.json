@@ -159,7 +159,8 @@
                     "bestfit": "biggestScreenSize",
                     "movable": true,
                     "duplicable":false,
-                    "needs":"none"
+                    "needs":"none",
+                    "videoLimit":"main"
                 },
                 {
                     "componentId": "video2",
@@ -167,7 +168,8 @@
                     "bestfit": "touchable",
                     "movable": true,
                     "duplicable":false,
-                    "needs":"none"
+                    "needs":"none",
+                    "videoLimit":"other"
                 },
                 {
                     "componentId": "video3",
@@ -175,7 +177,8 @@
                     "bestfit": "biggestScreenSize",
                     "movable": true,
                     "duplicable":false,
-                    "needs":"none"
+                    "needs":"none",
+                    "videoLimit":"other"
                 },
                 {
                     "componentId": "video4",
@@ -183,7 +186,8 @@
                     "bestfit": "biggestScreenSize",
                     "movable": true,
                     "duplicable":false,
-                    "needs":"none"
+                    "needs":"none",
+                    "videoLimit":"other"
                 },
                 {
                     "componentId": "video5",
@@ -191,7 +195,8 @@
                     "bestfit": "biggestScreenSize",
                     "movable": true,
                     "duplicable":false,
-                    "needs":"none"
+                    "needs":"none",
+                    "videoLimit":"other"
                 },
                 {
                     "componentId": "video6",
@@ -199,7 +204,8 @@
                     "bestfit": "biggestScreenSize",
                     "movable": true,
                     "duplicable":false,
-                    "needs":"none"
+                    "needs":"none",
+                    "videoLimit":"other"
                 },
                 {
                     "componentId": "video7",
@@ -207,23 +213,18 @@
                     "bestfit": "biggestScreenSize",
                     "movable": true,
                     "duplicable":false,
-                    "needs":"none"
+                    "needs":"none",
+                    "videoLimit":"other"
                 },
-                {
-                    "componentId": "control",
-                    "required": false,
-                    "bestfit": "touchable",
-                    "movable": true,
-                    "duplicable":false,
-                    "needs":"none"
-                },
+
                 {
                     "componentId": "graph1",
                     "required": false,
                     "bestfit": "biggestScreenSize",
                     "movable": true,
                     "duplicable":false,
-                    "needs":"none"
+                    "needs":"none",
+                    "videoLimit":"none"
                 },
                 {
                     "componentId": "graph2",
@@ -231,7 +232,8 @@
                     "bestfit": "touchable",
                     "movable": true,
                     "duplicable":false,
-                    "needs":"none"
+                    "needs":"none",
+                    "videoLimit":"none"
                 },
                 {
                     "componentId": "graph3",
@@ -239,7 +241,8 @@
                     "bestfit": "touchable",
                     "movable": true,
                     "duplicable":false,
-                    "needs":"none"
+                    "needs":"none",
+                    "videoLimit":"none"
                 },
                 {
                     "componentId": "graph4",
@@ -247,7 +250,8 @@
                     "bestfit": "touchable",
                     "movable": true,
                     "duplicable":false,
-                    "needs":"none"
+                    "needs":"none",
+                    "videoLimit":"none"
                 },
                 {
                     "componentId": "results",
@@ -255,7 +259,8 @@
                     "bestfit": "biggestScreenSize",
                     "movable": true,
                     "duplicable":false,
-                    "needs":"none"
+                    "needs":"none",
+                    "videoLimit":"none"
                 },
                 {
                     "componentId": "radio",
@@ -263,7 +268,8 @@
                     "bestfit": "biggestScreenSize",
                     "movable": true,
                     "duplicable":false,
-                    "needs":"none"
+                    "needs":"none",
+                    "videoLimit":"none"
                 },
                 {
                     "componentId": "twitterViewer",
@@ -271,7 +277,8 @@
                     "bestfit": "biggestScreenSize",
                     "movable": true,
                     "duplicable":false,
-                    "needs":"none"
+                    "needs":"none",
+                    "videoLimit":"none"
                 },
                 {
                     "componentId": "twitterMap",
@@ -279,7 +286,8 @@
                     "bestfit": "biggestScreenSize",
                     "movable": true,
                     "duplicable":false,
-                    "needs":"none"
+                    "needs":"none",
+                    "videoLimit":"none"
                 }
 
 
