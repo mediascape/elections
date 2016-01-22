@@ -408,8 +408,8 @@
 											<img src="././resources/images/twitter/retweet.png" class="imageof_retweet"></img> \
 											<a style="color:#C0C0C0;text-decoration: none;">Retweet</a> \
 											<img src="././resources/images/twitter/favorite.png" class="imageof_favorite"></img> \
-											<a style="color:#C0C0C0;text-decoration: none;">Favorite</a>';
-											
+											<a style="color:#C0C0C0;text-decoration: none;">Favorite</a> \
+											<a>Sunday, 24 May '+_this.prettyPrint(_this.timestamp).split('days')[1]+'</a>';
 								div1.appendChild(div6);
 
 								li.appendChild(div1);
@@ -419,6 +419,23 @@
 								mediascape.AdaptationToolkit.Adaptation.UIAdaptation.updateUniqueComponent(_this);
 							}
 				},
+				prettyPrint:function(val){
+          		  // Convert time in seconds to X days, hours, minutes, seconds
+		          var days = Math.floor(val / (60 * 60 * 24));
+		          var hours = Math.floor((val - days * (60 * 60 * 24)) / (60 * 60));
+		          var mins = Math.floor((val - days * (60 * 60 * 24) - hours * (60 * 60)) / (60));
+		          var secs = Math.floor((val - days * (60 * 60 * 24) - hours * (60 * 60)) - mins * 60);
+		          var s = "";
+		          if (days > 1) s = days + " days ";
+		          else if (days > 0) s = days + " day ";
+		          if (hours > 1) s += hours + ":";
+		          else if (hours > 0) s += hours + ":";
+		          if (mins > 1) s += mins + ":";
+		          else if (mins > 0) s += mins + ":";
+		          if (secs > 9) s += secs + "  ";
+		          else s += "0"+secs ;
+		          return s;
+		        },
 				customCmdReceived: function(data){
 					var _this=this;
       				console.log("DATA",data);

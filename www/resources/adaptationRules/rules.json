@@ -165,7 +165,7 @@
                 {
                     "componentId": "video2",
                     "required": false,
-                    "bestfit": "touchable",
+                    "bestfit": "biggestScreenSize",
                     "movable": true,
                     "duplicable":false,
                     "needs":"none",
