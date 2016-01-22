@@ -45,6 +45,8 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
       componentsContainer.style.backgroundColor='';
       componentsContainer.style.perspective='';
        componentsContainer.className='';
+       componentsContainer.style.gridTemplateColumns='';
+       componentsContainer.style.gridTemplateRows='';
       if(document.querySelector('#layout_classes')!=null){
         document.head.removeChild(document.querySelector('#layout_classes'));
       }
@@ -186,6 +188,8 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
       componentsContainer.style.backgroundColor='';
       componentsContainer.style.perspective='';
        componentsContainer.className='';
+       componentsContainer.style.gridTemplateColumns='';
+       componentsContainer.style.gridTemplateRows='';
       if(document.querySelector('#layout_classes')!=null){
         document.head.removeChild(document.querySelector('#layout_classes'));
       }

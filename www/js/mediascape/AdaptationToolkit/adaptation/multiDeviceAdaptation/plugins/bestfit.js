@@ -29,6 +29,7 @@ function(){
                   c.adaptationBehaviour['required'] = p.required;
                   c.adaptationBehaviour['movable'] = p.movable;
                   c.adaptationBehaviour['duplicable'] = p.duplicable;
+                  c.adaptationBehaviour['videoLimit']=p.videoLimit;
               }
           })
       });
@@ -44,7 +45,7 @@ function(){
             if (ag.id ===  AE.getAgentId() ) return true;
             return false;
       })[0];
-
+      console.warn("agents",agents.length);
       try {
       var mediasNumb = 0;
       var agent = AE.getAgentId();
@@ -90,7 +91,7 @@ function(){
           mediascape.screenX = screen[1].screenX;
           mediascape.screenY = screen[1].screenY;
           myScreen =Math.round(Math.sqrt(Math.pow(
-              parseFloat(mediascape.screenX),2)+Math.pow(parseFloat(mediascape.screenX),2)));
+              parseFloat(mediascape.screenX),2)+Math.pow(parseFloat(mediascape.screenY),2)));
           myInteractivity = getCapability(me.capabilities,'touchable');
           // other agents that covers the needs
           otherAgents = otherAgents.filter(function(ag){
@@ -154,24 +155,84 @@ function(){
 
 
           if ((cmp.adaptationBehaviour['duplicable'] ==true && cmp.adaptationBehaviour['required'] ==true)&&
-              (result =="1" || result=="10" || result=="11"))
+              (result =="1" || result=="10" || result=="11") && cmp.nodeName.toLowerCase()!=='x-media')
                 return {type:"SHOW",component:cmp.getAttribute('id')};
           if ((cmp.adaptationBehaviour['duplicable'] ==false && cmp.adaptationBehaviour['required'] ==true)&&
-            (result =="1" || result=="11") && !moveToOtherAgent)
+            (result =="1" || result=="11") && !moveToOtherAgent && cmp.nodeName.toLowerCase()!=='x-media')
                 return {type:"SHOW",component:cmp.getAttribute('id')};
           if ((cmp.adaptationBehaviour['duplicable'] ==false && cmp.adaptationBehaviour['required'] ==true)&&
-                  (result =="1" || result=="11") && moveToOtherAgent)
+                  (result =="1" || result=="11") && moveToOtherAgent && cmp.nodeName.toLowerCase()!=='x-media')
                       return {type:"HIDE",component:cmp.getAttribute('id')};
           if ((cmp.adaptationBehaviour['duplicable'] ==true && cmp.adaptationBehaviour['required'] ==false)&&
-                    (result =="1" || result=="10" || result=="11")&& qualifiedAgentAndComponentToShow(me,cmp))
+                    (result =="1" || result=="10" || result=="11")&& qualifiedAgentAndComponentToShow(me,cmp)
+                    && cmp.nodeName.toLowerCase()!=='x-media')
                 return {type:"SHOW",component:cmp.getAttribute('id')};
           if ((cmp.adaptationBehaviour['duplicable'] ==false && cmp.adaptationBehaviour['required'] ==false)&&
-                    (result =="1" || result=="11") && !moveToOtherAgent && qualifiedAgentAndComponentToShow(me,cmp))
+                    (result =="1" || result=="11") && !moveToOtherAgent && qualifiedAgentAndComponentToShow(me,cmp)
+                    && cmp.nodeName.toLowerCase()!=='x-media')
                 return {type:"SHOW",component:cmp.getAttribute('id')};
           if ((cmp.adaptationBehaviour['duplicable'] ==false && cmp.adaptationBehaviour['required'] ==false)&&
-                        (result =="1" || result=="11") && moveToOtherAgent)  {
+                        (result =="1" || result=="11") && moveToOtherAgent && cmp.nodeName.toLowerCase()!=='x-media')  {
                           return {type:"HIDE",component:cmp.getAttribute('id')};
-                    }
+                        }
+
+
+
+
+          if(cmp.adaptationBehaviour['required'] ==true && cmp.nodeName.toLowerCase()==='x-media' 
+            && (result=="1" || result=="11") && cmp.adaptationBehaviour['videoLimit'].indexOf('main')!==-1){
+              return {type:"SHOW",component:cmp.getAttribute('id')};
+          }
+          if(cmp.adaptationBehaviour['required'] ==true && cmp.nodeName.toLowerCase()==='x-media' 
+            && (result=="1" || result=="11") && cmp.adaptationBehaviour['videoLimit'].indexOf('other')!==-1){
+              return {type:"HIDE",component:cmp.getAttribute('id')};
+          }
+          if(cmp.adaptationBehaviour['required'] ==true && cmp.nodeName.toLowerCase()==='x-media' 
+            && (result=="10" || result=="0") && cmp.adaptationBehaviour['videoLimit'].indexOf('other')!==-1){
+              return {type:"SHOW",component:cmp.getAttribute('id')};
+          }
+          if(cmp.adaptationBehaviour['required'] ==true && cmp.nodeName.toLowerCase()==='x-media' 
+            && (result=="10" || result=="0") && cmp.adaptationBehaviour['videoLimit'].indexOf('main')!==-1){
+              return {type:"HIDE",component:cmp.getAttribute('id')};
+          }
+
+          
+
+
+          if(cmp.adaptationBehaviour['required'] ==false && cmp.nodeName.toLowerCase()==='x-media' 
+            && (result=="1" || result=="11") && cmp.adaptationBehaviour['videoLimit'].indexOf('main')!==-1
+            &&qualifiedAgentAndComponentToShow(me,cmp)){
+              return {type:"SHOW",component:cmp.getAttribute('id')};
+          }
+          if(cmp.adaptationBehaviour['required'] ==false && cmp.nodeName.toLowerCase()==='x-media' 
+            && (result=="1" || result=="11") && cmp.adaptationBehaviour['videoLimit'].indexOf('other')!==-1
+            &&qualifiedAgentAndComponentToShow(me,cmp)){
+              return {type:"HIDE",component:cmp.getAttribute('id')};
+          }
+          if(cmp.adaptationBehaviour['required'] ==false && cmp.nodeName.toLowerCase()==='x-media' 
+            && (result=="10" || result=="0") && cmp.adaptationBehaviour['videoLimit'].indexOf('main')!==-1
+            &&qualifiedAgentAndComponentToShow(me,cmp)){
+              return {type:"HIDE",component:cmp.getAttribute('id')};
+          }
+          if(cmp.adaptationBehaviour['required'] ==false && cmp.nodeName.toLowerCase()==='x-media' 
+            && (result=="10" || result=="0") && cmp.adaptationBehaviour['videoLimit'].indexOf('other')!==-1
+            &&qualifiedAgentAndComponentToShow(me,cmp)){
+              return {type:"SHOW",component:cmp.getAttribute('id')};
+          }
+
+
+          /*if(cmp.nodeName.toLowerCase()==='x-media' && (result!="1" && result!="11") && 
+            cmp.adaptationBehaviour['videoLimit'].indexOf('other')!==-1){
+              return {type:"SHOW",component:cmp.getAttribute('id')};
+          }
+          if(cmp.nodeName.toLowerCase()==='x-media' && (result=="1" || result=="11") && 
+            cmp.adaptationBehaviour['videoLimit'].indexOf('other')!==-1){
+              return {type:"HIDE",component:cmp.getAttribute('id')};
+          }
+          if(cmp.nodeName.toLowerCase()==='x-media' && (result!="1" && result!="11") && 
+            cmp.adaptationBehaviour['videoLimit'].indexOf('main')!==-1){
+              return {type:"HIDE",component:cmp.getAttribute('id')};
+          }*/
 
           return {type:"HIDE",component:cmp.getAttribute('id')};
 
@@ -180,6 +241,9 @@ function(){
       catch (e){
         console.log(e);
       }
+
+      
+  
       // Check if media limitation of agent
     //  var videoLimit = mediascape.Agent.checkAgentLimitation('video');
     /*  if (videoLimit){

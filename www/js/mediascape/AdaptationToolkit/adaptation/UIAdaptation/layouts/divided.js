@@ -47,6 +47,8 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
       componentsContainer.style.backgroundColor='';
       componentsContainer.style.perspective='';
        componentsContainer.className='';
+       componentsContainer.style.gridTemplateColumns='';
+       componentsContainer.style.gridTemplateRows='';
       if(document.querySelector('#layout_classes')!=null){
         document.head.removeChild(document.querySelector('#layout_classes'));
       }
@@ -127,7 +129,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
       var container=document.querySelector('#componentsContainer');
 
       container.style.overflow='hidden';
-      container.style.display='inline-block';
+      container.style.display='block';
       container.style.gridAutoFlow='';
       container.className='template-all-layouts';
 
@@ -236,6 +238,8 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
       componentsContainer.style.backgroundColor='';
       componentsContainer.style.perspective='';
       componentsContainer.className='';
+      componentsContainer.style.gridTemplateColumns='';
+       componentsContainer.style.gridTemplateRows='';
       if(document.querySelector('#layout_classes')!=null){
         document.head.removeChild(document.querySelector('#layout_classes'));
       }

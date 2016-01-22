@@ -62,8 +62,7 @@ document.addEventListener('adaptationToolkit-ready',function(data){
         // IF want to apply to all device same layout it can be used as
         // UI.useLayout('accordion')
         // Device type that knows about: Desktop,Mobile,Tablet,Tv
-        UI.useLayout({deviceTypes:[{deviceType:'desktop',layout:'pip'},
-                     {deviceType:'Tablet',layout:'pip'}]});
+        UI.useLayout({deviceTypes:[{deviceType:'desktop',layout:'pip'},{deviceType:'Tablet',layout:'pip'},{deviceType:'Mobile',layout:'carousel'}]});
         var location = "http://"+window.location.host+window.location.pathname;
 
         document.addEventListener('applicationContext-ready',function(){
@@ -104,7 +103,7 @@ document.addEventListener('adaptationToolkit-ready',function(data){
   <x-radio id='radio' file='/resources/media/RadioEuskadiSync.mp3' ></x-radio>
 
 
-<twitter-viewer id="twitterViewer"></twitter-viewer >
+<twitter-viewer id="twitterViewer" ></twitter-viewer >
 <twitter-map id="twitterMap" language="es"></twitter-map>
 
 <!-- End of definition of each webcompoent -->

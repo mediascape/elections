@@ -233,8 +233,6 @@
 
 
 	</style>
-	<iron-ajax id="data" auto url="tweets.json" handleAs="json" last-response="{{tweetsResponse}}"></iron-ajax>
-
 		<div id="twitter" class="template-all-layouts " style='overflow:hidden;'>
 			<div  style='height:100%;'>
 				<div id="result" class='col-md-12 content-detalle-twitter' style='height:100%;'>
@@ -253,14 +251,21 @@
 	</template>
 </dom-module>
 	<script>
-		Polymer({
+		(function() {
+			Polymer.require = function(tag, deps, func) {
+				require(deps, function() {
+					Polymer(func.apply(Polymer, arguments));
+				});
+			};
+			Polymer.require('twitter-viewer',['socketio'],function(io) {
+			 return {
 			 	is:'twitter-viewer',
 			 	behaviors:[ComponentQueryBehavior,ComponentStatusBehavior],
 			 	properties:{
 					timestamp:{
 							type:Number,
 							value:0,
-							observer:'timestampChanged'
+
 				},
 				prevTime:{
 					type:Number,
@@ -290,9 +295,8 @@
 					type:Number,
 					value:1432509468
 				}
-			},
 
-			
+			},
 
 				created: function() {
 					console.log('twitter created');
@@ -303,42 +307,41 @@
 				},
 
 				ready: function() {
-					
+					console.log('twitter ready');
 					var _this=this;
 					var element=this.shadowRoot;
-					document.addEventListener ('motion-ready',this.smReady.bind(this));
-					this.tweetList={};
-					this.$.data.addEventListener("response",function(e){
-						_this.tweetList=e.detail.response;
-						_this.timestamp=1432509468;
-					});	
-				
 
-							
-						
-				},
+					//bind 'component-query' notifications with resize function
 
-				smReady:function(){
-					// Sharemotion objetua lortu
-					var _this=this;
-					this.sm = mediascape.AdaptationToolkit.SharedMotion();
-					// ebentuak entzun ta jaso
-					var handler = function (e) {
-						
-						_this.timestamp=_this.prevTime+Math.round(e.pos);
-						/*if(_this.timestamp>=_this.val+3){
-							_this.val=_this.timestamp;
-							_this.timestampChanged();
-						}*/
-					};
-				  this.sm.mapp.motions.shared.on("timeupdate", handler);
-				},
-				timestampChanged:function(){
-					//console.log("timestampChanged");
-					//Get the number maximum of tweets able to visualize inside the div
-					if(this.tweetList!==undefined){
-						var selectedTweet=(Math.floor(Math.random() * 10));
-						var _this=this;
+					//Open Socket for the communication with the server
+					this.socket = io.connect('/');
+
+					//capture tweet events from the server through the socket
+					this.socket.on("connected", function() {
+						console.log("twitter Connected");
+
+						//bind 'motion-ready' notifications with resize function
+						document.addEventListener ('motion-ready',_this.smReady.bind(_this));
+
+						_this.socket.on('tweet', function(data)
+						{
+							_this.style.overflow='hidden';
+							var text=data.text;
+
+							//detect tweets hashtags to make them clickables
+							for(var i=0;i<data.entities.hashtags.length;i++){
+								text=text.replace("#"+data.entities.hashtags[i].text,'<a href="https://twitter.com/hashtag/'+data.entities.hashtags[i].text+'?src=hash" class="twitter-hashtag"><s>#</s><b><strong>'+data.entities.hashtags[i].text+'</strong></b></a>');
+							}
+							//detect tweets user mentions to make them clickables
+							for(var i=0;i<data.entities.user_mentions.length;i++){
+								text=text.replace("@"+data.entities.user_mentions[i].screen_name, '<a href="https://twitter.com/'+data.entities.user_mentions[i].screen_name+'" class="twitter-atreply">@<b>'+data.entities.user_mentions[i].screen_name+'</b></a>');
+							}
+							//detect tweets urls to make them clickables
+							for(var i=0;i<data.entities.urls.length;i++){
+								text=text.replace(data.entities.urls[i].url, '<a href="'+data.entities.urls[i].url+'">'+data.entities.urls[i].url+'</a>');
+							}
+
+							//Get the number maximum of tweets able to visualize inside the div
 							var nodesNumbers = Math.floor((_this.$.twitter.clientHeight-50)/150);
 
 							if(_this.$.twitter.clientHeight>130){
@@ -353,8 +356,13 @@
 							}
 
 							//Detect if the tweet is already in the list of tweets
-							
-							
+							var exist=false;
+							for(var i=0;i<_this.$.ulList.childNodes.length;i++){
+								if(data.created_at.toString()===_this.$.ulList.children[i].querySelector(".tweet_time_link").text&&data.text.toString()===_this.$.ulList.children[i].querySelector(".mensaje-twitter").innerHTML){
+									exist=true;
+								}
+							}
+							if(!exist){
 								if(_this.$.ulList.childNodes.length>=nodesNumbers&&nodesNumbers>0) _this.$.ulList.removeChild(_this.$.ulList.children[nodesNumbers-1]);
 
 								var li=document.createElement('li');
@@ -367,12 +375,12 @@
 								div2.className='media-left avatar-twitter twitter-viewer';
 
 								var a1=document.createElement('a');
-								a1.href="https://twitter.com/"+_this.tweetList.tweets[selectedTweet].userName;
+								a1.href="https://twitter.com/"+data.user.screen_name;
 
 								var img1=document.createElement('img');
 								img1.className="media-object twitter-viewer user-img";	
 
-								img1.src='resources/wcs/twitter-viewer/userImages/'+_this.tweetList.tweets[selectedTweet].userImg;									
+								img1.src='resources/wcs/twitter-viewer/userImages/'+(Math.floor(Math.random() * 15) + 1)+'.jpeg';									
 
 								a1.appendChild(img1);
 								div2.appendChild(a1);
@@ -386,13 +394,13 @@
 								div4.className='usuario-twitter twitter-viewer';
 
 								var strong1=document.createElement('strong');
-								strong1.innerHTML=_this.tweetList.tweets[selectedTweet].userName;
+								strong1.innerHTML=data.user.screen_name;
 
 								div4.appendChild(strong1);
 
 								var div5=document.createElement('div');
 								div5.className='mensaje-twitter twitter-viewer ';
-								div5.innerHTML=_this.tweetList.tweets[selectedTweet].text;
+								div5.innerHTML=data.text;
 
 								div3.appendChild(div4);
 								div3.appendChild(div5);
@@ -402,14 +410,15 @@
 								var div6=document.createElement('div');
 								div6.className='tweet_timestamp twitter-viewer';
 								div6.innerHTML='<img class="stream_bluebird" src="././resources/images/twitter/bird_16_blue.png"></img> \
-											<span class="retweets" style="color:#C0C0C0">0 retweets</span> \
+											<span class="retweets" style="color:#C0C0C0">'+data.retweet_count+' retweets</span> \
+											<a href="http://twitter.com/'+data.user.screen_name+'/status/'+data.id_str+'" target="search" class="tweet_time_link">'+data.created_at+'</a> \
 											<img src="././resources/images/twitter/reply.png" class="imageof_reply"></img> \
-											<a style="color:#C0C0C0;text-decoration: none;">Reply</a> \
+											<a href="http://twitter.com/intent/tweet?in_reply_to='+data.id_str+'" target="search" style="color:#C0C0C0;text-decoration: none;">Reply</a> \
 											<img src="././resources/images/twitter/retweet.png" class="imageof_retweet"></img> \
-											<a style="color:#C0C0C0;text-decoration: none;">Retweet</a> \
+											<a href="http://twitter.com/intent/retweet?tweet_id='+data.id_str+'" target="search" style="color:#C0C0C0;text-decoration: none;">Retweet</a> \
 											<img src="././resources/images/twitter/favorite.png" class="imageof_favorite"></img> \
-											<a style="color:#C0C0C0;text-decoration: none;">Favorite</a>';
-											
+											<a href="http://twitter.com/intent/favorite?tweet_id='+data.id_str+'" target="search" style="color:#C0C0C0;text-decoration: none;">Favorite</a> \
+											<a>'+data.created_at.split('+')[0]+'</a>';
 								div1.appendChild(div6);
 
 								li.appendChild(div1);
@@ -418,6 +427,38 @@
 								_this.$.ulList.insertBefore(li,_this.$.ulList.firstChild);
 								mediascape.AdaptationToolkit.Adaptation.UIAdaptation.updateUniqueComponent(_this);
 							}
+						});
+
+
+					});
+				},
+
+				smReady:function(){
+					// Sharemotion objetua lortu
+					var _this=this;
+					this.sm = mediascape.AdaptationToolkit.SharedMotion();
+					// ebentuak entzun ta jaso
+					var handler = function (e) {
+						if(_this.startVal===-1)_this.startVal=Math.round(e.pos);
+
+
+						_this.timestamp=_this.prevTime+Math.round(e.pos);
+						if(_this.timestamp>=_this.val+3){
+							_this.val=_this.timestamp;
+							_this.timestampChanged();
+						}
+					};
+				  this.sm.mapp.motions.shared.on("timeupdate", handler);
+				},
+				timestampChanged:function(){
+					//console.log("timestampChanged");
+					if(this.socket) {
+						var data={
+							timestamp:this.timestamp,
+							text:this.terms
+						}
+						if (this.showing) this.socket.emit('time',data);
+					}
 				},
 				customCmdReceived: function(data){
 					var _this=this;
@@ -441,7 +482,7 @@
 					 this.showing =true;
 				}
 
-		
+		}
 	});
-		
+		})();
 	</script>

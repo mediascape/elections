@@ -359,7 +359,7 @@ define(
         var thereIsVideo=false;
         var i=0;
         while(i<_cmps.length){
-          if(_cmps[i].querySelector('video'))
+          if(_cmps[i].querySelector('x-media'))
           {
             thereIsVideo=true;
             break;
@@ -531,9 +531,9 @@ define(
                     }
                   }
                   else{
-                    if(componentsNumber<=3){
+                    if(componentsNumber<=2){
                       if(thereIsVideo){
-                        optimizedLayoutOrder.push(_this.getLayout('accordion'));
+                        optimizedLayoutOrder.push(_this.getLayout('divided'));
                         optimizedLayoutOrder.push(_this.getLayout('menu'));
                         optimizedLayoutOrder.push(_this.getLayout('horizontal'));
                         optimizedLayoutOrder.push(_this.getLayout('customGrid'));
@@ -543,12 +543,12 @@ define(
                         optimizedLayoutOrder.push(_this.getLayout('scrollHorizontal'));
                       }
                       else{
-                        optimizedLayoutOrder.push(_this.getLayout('accordion'));
+                        optimizedLayoutOrder.push(_this.getLayout('divided'));
                         optimizedLayoutOrder.push(_this.getLayout('accordion'));
                         optimizedLayoutOrder.push(_this.getLayout('menu'));
                         optimizedLayoutOrder.push(_this.getLayout('horizontal'));
                         optimizedLayoutOrder.push(_this.getLayout('customGrid'));
-                         optimizedLayoutOrder.push(_this.getLayout('spinner'));
+                        optimizedLayoutOrder.push(_this.getLayout('spinner'));
                         optimizedLayoutOrder.push(_this.getLayout('verticalMenu'));
                         optimizedLayoutOrder.push(_this.getLayout('scrollHorizontal'));
 
@@ -556,7 +556,7 @@ define(
                     }
                     else{
                       if(thereIsVideo){
-                        optimizedLayoutOrder.push(_this.getLayout('accordion'));
+                        optimizedLayoutOrder.push(_this.getLayout('pip'));
                         optimizedLayoutOrder.push(_this.getLayout('pip'));
                         optimizedLayoutOrder.push(_this.getLayout('accordion'));
                         optimizedLayoutOrder.push(_this.getLayout('horizontal'));
@@ -568,7 +568,7 @@ define(
                       }
                       else{
 
-                        optimizedLayoutOrder.push(_this.getLayout('accordion'));
+                        optimizedLayoutOrder.push(_this.getLayout('pip'));
                         optimizedLayoutOrder.push(_this.getLayout('pip'));
                         optimizedLayoutOrder.push(_this.getLayout('accordion'));
                         optimizedLayoutOrder.push(_this.getLayout('horizontal'));
@@ -759,7 +759,7 @@ define(
            //alert('tele '+inch_size+ ' '+ screenX+' '+screenY+' '+devicePixelRatio+' '+ mediascape.Agent.data.screensize[0].width+' '+mediascape.Agent.data.screensize[0].height);
 
 
-              if(componentsNumber<=3){
+              if(componentsNumber<=4){
                 if(thereIsVideo)
                 {
                   optimizedLayoutOrder.push(_this.getLayout('pip'));
@@ -773,7 +773,7 @@ define(
 
                 }
                 else{
-                  optimizedLayoutOrder.push(_this.getLayout('accordion'));
+                  optimizedLayoutOrder.push(_this.getLayout('pip'));
                   optimizedLayoutOrder.push(_this.getLayout('pip'));
                   optimizedLayoutOrder.push(_this.getLayout('menu'));
                   optimizedLayoutOrder.push(_this.getLayout('horizontal'));
@@ -786,7 +786,7 @@ define(
               }
               else{
                 if(thereIsVideo){
-                  optimizedLayoutOrder.push(_this.getLayout('customGrid'));
+                  optimizedLayoutOrder.push(_this.getLayout('divided'));
                   optimizedLayoutOrder.push(_this.getLayout('pip'));
                   optimizedLayoutOrder.push(_this.getLayout('menu'));
                   optimizedLayoutOrder.push(_this.getLayout('horizontal'));
@@ -796,7 +796,7 @@ define(
                   optimizedLayoutOrder.push(_this.getLayout('scrollHorizontal'));
                 }
                 else{
-                  optimizedLayoutOrder.push(_this.getLayout('accordion'));
+                  optimizedLayoutOrder.push(_this.getLayout('divided'));
                   optimizedLayoutOrder.push(_this.getLayout('pip'));
                   optimizedLayoutOrder.push(_this.getLayout('menu'));
                   optimizedLayoutOrder.push(_this.getLayout('horizontal'));
@@ -857,7 +857,7 @@ define(
       this.updateUniqueComponent=function(c){
         cmpToUpdate=document.querySelector('#'+c.id);
         cmpToUpdate.updateNodes();
-        this.forceRedraw();
+        //this.forceRedraw();
       }
       // Trick for some render problem with webkit css grid layout render
       this.forceRedraw = function (){
