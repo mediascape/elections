@@ -379,8 +379,10 @@
 
 								var img1=document.createElement('img');
 								img1.className="media-object twitter-viewer user-img";	
-
-								img1.src='resources/wcs/twitter-viewer/userImages/'+(Math.floor(Math.random() * 15) + 1)+'.jpeg';									
+								img1.src=data.user.profile_image_url;
+								img1.onerror=function(){
+									this.src = "././resources/images/twitter/default.png";
+								}								
 
 								a1.appendChild(img1);
 								div2.appendChild(a1);
