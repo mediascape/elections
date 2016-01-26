@@ -5,6 +5,59 @@ define(["mediascape/Discovery/discovery","mediascape/Agentcontext/agentcontext",
 		var ac = mediascape.agentContext;
 		var instruments = {};
 		var _this = this;
+
+		/****************************************************************************************************************
+		*
+		*	Screen Size
+		*
+		*		Calls mediascape.discovery.isPresent function to detect the presence of the screen size
+		*	agent, if the agent exists, the system sets the screenSize status as supported, unless it will
+		*	be set as unsupported. Then it will initialize screenSize value calling to mediascape.discovery.getExtra
+		*	and returning the size of the screen of the device and will define on and off functions to
+		*	subscribe to an event. This event will return the changes hapened on the size of the screen.
+		*
+		******************************************************************************************************************/
+
+		// Screen size
+
+		mediascape.discovery.isPresent("screensize").then(function(data){
+			console.log("screensizePresence");
+			console.log(data);
+			if(data.presence === true){
+
+				var instrument = {
+					init: function () {
+						this.setCapability("screenSize", "supported");
+						/*mediascape.discovery.getExtra("screensize").then(function(data){
+							ac.setItem("screenSize", data.extra);
+
+						});*/
+					},
+					on: function () {
+						mediascape.discovery.getExtra("screensize").then(function(data){
+							if (navigator.appVersion.indexOf('Panasonic')!=-1)
+								{
+									console.log("SCREENSIZE");
+									data.extra[1].screenX = "24";
+									data.extra[1].screenY = "18";
+									ac.setItem("screenSize", data.extra);
+								}
+						 else	{
+							 console.log("SCREENSIZE",data);
+							 ac.setItem("screenSize", data.extra);
+						 }
+
+					 }).catch(function(e){console.log(e);});
+					},
+					off: function () {
+					//	window.onresize = null;
+					}
+				}
+				ac.load({
+					"screenSize": instrument
+				});
+			}
+		});
 		/****************************************************************************************************************
 		*
 		*	Touch Screen
@@ -156,52 +209,7 @@ define(["mediascape/Discovery/discovery","mediascape/Agentcontext/agentcontext",
 			}
 		});*/
 
-		/****************************************************************************************************************
-		*
-		*	Screen Size
-		*
-		*		Calls mediascape.discovery.isPresent function to detect the presence of the screen size
-		*	agent, if the agent exists, the system sets the screenSize status as supported, unless it will
-		*	be set as unsupported. Then it will initialize screenSize value calling to mediascape.discovery.getExtra
-		*	and returning the size of the screen of the device and will define on and off functions to
-		*	subscribe to an event. This event will return the changes hapened on the size of the screen.
-		*
-		******************************************************************************************************************/
 
-		// Screen size
-
-		mediascape.discovery.isPresent("screensize").then(function(data){
-			if(data.presence === true){
-
-				var instrument = {
-					init: function () {
-						this.setCapability("screenSize", "supported");
-					/*	mediascape.discovery.getExtra("screensize").then(function(data){
-							ac.setItem("screenSize", data.extra);
-
-						});*/
-					},
-					on: function () {
-						mediascape.discovery.getExtra("screensize").then(function(data){
-							if (navigator.appVersion.indexOf('MK12')!=-1)
-								{
-									data.extra[1].screenX = "24";
-									data.extra[1].screenY = "18";
-									ac.setItem("screenSize", data.extra);
-								}
-						 else	ac.setItem("screenSize", data.extra);
-
-						});
-					},
-					off: function () {
-					//	window.onresize = null;
-					}
-				}
-				ac.load({
-					"screenSize": instrument
-				});
-			}
-		});
 
 		/****************************************************************************************************************
 		*

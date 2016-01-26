@@ -6,6 +6,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0"/>
 
+<!-- NEEDED SCRIPTS -->
+<!--<script src="js/mediascape/AdaptationToolkit/utils/hbbtvLibs/promise.min.js"></script>-->
+<script async src="../resources/libs/loadingPanel.js"></script>
+
+<script async src="../resources/libs/require.js"></script>
+<script async src="js/mediascape.js"></script>
+<!--<script async src="dist/multideviceapplib.min.js"></script>-->
+
+
 <link rel="stylesheet" type="text/css" href="../resources/css/style.css"/>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
 <link href="../resources/configPanel/css/material-design-iconic-font.min.css" rel="stylesheet">
@@ -16,16 +25,11 @@
 <link href="../resources/configPanel/css/radio.css" rel="stylesheet">
 <link href="../resources/configPanel/css/graphics.css" rel="stylesheet">
 <link href="../resources/configPanel/css/camara.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="../resources/css/style.css"/>
 <link rel="stylesheet" type="text/css" href="../resources/configPanel/css/animate.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.0/css/swiper.min.css">
 <link href="../resources/css/carousel.css" rel="stylesheet">
 
-<!-- NEEDED SCRIPTS -->
-<!--<script  src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.17/webcomponents-lite.min.js"></script>
-<script async src="../resources/libs/require.js"></script>
-<script async src="js/mediascape.js"></script>-->
-<script async src="dist/multideviceapplib.min.js"></script>
+
 
 
 
@@ -50,37 +54,30 @@
 
 
 <script>
-
-
 document.addEventListener('adaptationToolkit-ready',function(data){
+        if (mediascape.deviceType === "TV") initApp();
 
         var AE = mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation;
-        var rulesAE = "/resources/adaptationRules/rules.json"
         AE.startApplicationContext();
         var UI = mediascape.AdaptationToolkit.Adaptation.UIAdaptation;
         UI.init(data.detail.components,UI.LAYOUTMODE.STATIC);
         // IF want to apply to all device same layout it can be used as
         // UI.useLayout('accordion')
         // Device type that knows about: Desktop,Mobile,Tablet,Tv
-        UI.useLayout({deviceTypes:[{deviceType:'desktop',layout:'verticalMenu'},
-                     {deviceType:'Tablet',layout:'pip'}]});
+        UI.useLayout({deviceTypes:[{deviceType:'Desktop',layout:'pip'},
+                     {deviceType:'Tablet',layout:'pip'},{deviceType:'TV',layout:'divided'}]});
         var location = "http://"+window.location.host+window.location.pathname;
 
-        document.addEventListener('applicationContext-ready',function(){
+        document.addEventListener('applicationContext-ready',function(e){
+
             mediascape.AdaptationToolkit.uiComponents.addControlPanel(location+"?group="+AE.GROUP_ID);
             //mediascape.association.doAssociation('nws', 'mediascape', url, false).then(function(){});
+            var rulesAE = "/resources/adaptationRules/rules.json"
             AE.init(rulesAE, AE.getApplicationContext());
             AE.on('actionchange', UI.onComponentsChange);
             mediascape.AdaptationToolkit.uiComponents.addController();
-
-
-
-
-
-        });
-
-
-});
+        },true);
+},true);
 
 
 </script>
@@ -90,26 +87,28 @@ document.addEventListener('adaptationToolkit-ready',function(data){
  <!-- Definition of each webcompoent -->
   <x-media  id="video1" file="../resources/media/ETB2_new.mp4"  ismuted="true"></x-media>
   <x-media id="video2" file="../resources/media/Bildu_new.mp4"  ismuted="true"></x-media>
-<!--  <x-media id="video3"  file="../resources/media/EAJ_new.mp4"  ismuted="true"></x-media>-->
-<!--<x-media id="video4"  file="../resources/media/PSE_new.mp4"  ismuted="true"></x-media>-->
+  <x-media id="video3"  file="../resources/media/EAJ_new.mp4"  ismuted="true"></x-media>
+  <x-media id="video4"  file="../resources/media/PSE_new.mp4"  ismuted="true"></x-media>
   <x-media id="video5"  file="../resources/media/PPEUSKADI_new.mp4"  ismuted="true"></x-media>
-  <x-media id="video6"  file="../resources/media/PPGENOVA_new.mp4"  ismuted="true"></x-media>
-  <x-media id="video7"  file="../resources/media/PODEMOSMADRID_new.mp4"  ismuted="true"></x-media>
+  <!--<x-media id="video6"  file="../resources/media/PPGENOVA_new.mp4"  ismuted="true"></x-media>
+  <x-media id="video7"  file="../resources/media/PODEMOSMADRID_new.mp4"  ismuted="true"></x-media>-->
   <x-graphic id='graph1' place='Irunea' ></x-graphic>
   <x-graphic id='graph2' place='Bilbo' ></x-graphic>
   <x-graphic id='graph3' place='Donostia' ></x-graphic>
   <x-graphic id='graph4' place='Gasteiz' ></x-graphic>
 
   <x-table id='results'></x-table>
-  <x-radio id='radio' file='/resources/media/RadioEuskadiSync.mp3' ></x-radio>
+  <x-radio id='radio1' file='/resources/media/RadioEuskadiSync.mp3' ></x-radio>
 
 
 <twitter-viewer id="twitterViewer"></twitter-viewer >
 <twitter-map id="twitterMap" language="es"></twitter-map>
-
+<object id="video" type="video/broadcast" style="display:none;width:200px;height:100px;"></object>
+<object id="appmgr" type="application/oipfApplicationManager" style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px;"></object><object id="oipfcfg" type="application/oipfConfiguration" style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px;"></object>
 <!-- End of definition of each webcompoent -->
 <script>
 new loadingPanel('/resources/images/MediaScapelogo_gif-720.gif',10);
+
 </script>
 
 

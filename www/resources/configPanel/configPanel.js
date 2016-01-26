@@ -53,7 +53,7 @@ var ControlPanel= function (url){
     cam3.setName(c[0].id);
     cam3.setImage('../resources/configPanel/img/camara/logos_partidos_PNV_BLANCO.png');
 
-    /*comp='video4';
+    comp='video4';
     c=cmps.filter(filterById);
     var cam4=new camera();
     cam4.setID(c[0].getAttribute('compId'));
@@ -66,7 +66,7 @@ var ControlPanel= function (url){
     cam5.setID(c[0].getAttribute('compId'));
     cam5.setName(c[0].id);
     cam5.setImage('../resources/configPanel/img/camara/logos_partidos_Populares_vascos_BLANCO.png');
-
+/*
     comp='video6';
     c=cmps.filter(filterById);
     var cam6=new camera();
@@ -86,7 +86,7 @@ var ControlPanel= function (url){
     var resTable=new table();
     resTable.setID(c[0].getAttribute('compId'));
 
-    comp='radio';
+    comp='radio1';
     c=cmps.filter(filterById);
     var radioComp=new radios();
     radioComp.setID(c[0].getAttribute('compId'));
@@ -132,9 +132,9 @@ var ControlPanel= function (url){
     camerasSect.addCamera(cam1);
     camerasSect.addCamera(cam2);
     camerasSect.addCamera(cam3);
-    /*camerasSect.addCamera(cam4);
+    camerasSect.addCamera(cam4);
     camerasSect.addCamera(cam5);
-    camerasSect.addCamera(cam6);
+    /*camerasSect.addCamera(cam6);
     camerasSect.addCamera(cam7);*/
 
 
@@ -216,15 +216,13 @@ var ControlPanel= function (url){
     item2.setSection('layouts');
     menu1.addItem(item2);
 
-
-
     var item3=new menuItem();
     item3.setText('Cameras');
     item3.setIcon('zmdi zmdi-videocam');
     item3.setSection('cameras');
     menu1.addItem(item3);
 
-    var item4=new menuItem();
+   var item4=new menuItem();
     item4.setText('Twitter');
     item4.setIcon('zmdi zmdi-twitter');
     item4.setSection('twitter');
@@ -234,7 +232,7 @@ var ControlPanel= function (url){
     item5.setText('Radio');
     item5.setIcon('zmdi zmdi-radio');
     item5.setSection('radio');
-    menu1.addItem(item5);
+    menu1.addItem(item5)
 
     var item6=new menuItem();
     item6.setText('Graphics');
@@ -382,7 +380,7 @@ var ControlPanel= function (url){
           this.addItem(section6);
           container.appendChild(section6.render());
 
-          
+
           devBox.addDevice(dev1);
 
         }
@@ -483,7 +481,7 @@ var ControlPanel= function (url){
           section6.addItem(graphicSect);
           this.addItem(section6);
           container.appendChild(section6.render());
-          
+
 
 
 
@@ -542,7 +540,7 @@ var ControlPanel= function (url){
           container.appendChild(section6.render());
 
 
-          
+
 
         }
         devBox.addDevice(dev1);
@@ -610,12 +608,12 @@ var ControlPanel= function (url){
               // Show/hide commands
               if(changes[j].newValue===false){
 
-                
+
                 sectionDiv[i].querySelector(selector).setAttribute('val',false);
 
               }
               else if(changes[j].newValue===true){
-                
+
                 sectionDiv[i].querySelector(selector).setAttribute('val',true);
               }
             }
@@ -641,11 +639,11 @@ var ControlPanel= function (url){
                 // Show/hide commands
                 if(changes[j].newValue==='hide'){
 
-                  
+
                   sectionDiv[i].querySelector(selector).setAttribute('val',false);
                 }
                 else if(changes[j].newValue==='show'){
-                
+
                   sectionDiv[i].querySelector(selector).setAttribute('val',true);
                 }
               }
@@ -671,11 +669,11 @@ var ControlPanel= function (url){
               var selector = '#soundCheck'+changes[j].compId;
               if(sections[i].name.indexOf(event.detail.agentid)===0 && sectionDiv[i].querySelector(selector)!==null){
                 if(changes[j].newValue==='mutePlayer'){
-                  
+
                   sectionDiv[i].querySelector(selector).setAttribute('val',false);
                 }
                 else if(changes[j].newValue==='soundPlayer'){
-                
+
                   sectionDiv[i].querySelector(selector).setAttribute('val',true);
                 }
               }
@@ -952,7 +950,7 @@ var ControlPanel= function (url){
 
     for(var i=2;i<sectionNum;i++){
       if(sections[i].name===agentToChange+'cameras'){
-        sectionDiv[i].querySelector('#soundCheck'+cId).setAttribute('val',v);       
+        sectionDiv[i].querySelector('#soundCheck'+cId).setAttribute('val',v);
 
       }
     }
@@ -966,7 +964,7 @@ var ControlPanel= function (url){
 
     for(var i=2;i<sectionNum;i++){
       if(sections[i].name.indexOf(event.detail.agentid)===0 && sectionDiv[i].querySelector(selector)!==null){
-        sectionDiv[i].querySelector('#viewCheck'+cId).setAttribute('val',v);        
+        sectionDiv[i].querySelector('#viewCheck'+cId).setAttribute('val',v);
 
       }
     }
@@ -1002,6 +1000,7 @@ var menuItem = function (){
   this.text = "";
   this.icon='';
   this.aSection='';
+  this.id='';
 
   this.setText=function (text){
     this.text=text;
@@ -1012,10 +1011,17 @@ var menuItem = function (){
   this.setSection=function (aSection){
     this.aSection=aSection;
   }
+  this.getId = function(){
+    return this.aSection;
+  }
   this.render=function(){
     var li=document.createElement('li');
     li.addEventListener('click',this.onclick.bind(this));
-    li.id=this.aSection;
+  li.id=this.aSection;
+    li.tabindex=1;
+    li.onfocus=function(e){
+      window.alert("focus");
+    }
     if(this.aSection==='AddDevice'){
       li.className='options';
     }
@@ -1052,7 +1058,7 @@ var menu = function (){
     this.items.push(item);
   }
   this.render=function(){
-    var containerDiv=document.createElement('div');
+    var containerDiv=document.createElement('nav');
     containerDiv.className="col-md-2 col-sm-2 menu-sidebar fixed";
 
     //take the agent number which is related to the agentId
@@ -1073,8 +1079,11 @@ var menu = function (){
     var hide=new hideItem();
     ul.appendChild(hide.render());
 
-    this.items.forEach(function(it){
-      ul.appendChild(it.render());
+    this.items.forEach(function(it,i,its){
+      var itNode = it.render();
+    //  itNode.setAttribute("tabindex",""+i)
+      if (its.length > i+1) itNode.setAttribute("style",'nav-down:"#'+its[i+1].getId()+'"');
+      ul.appendChild( itNode);
     });
 
     var logo=new logoItem();
@@ -1201,7 +1210,7 @@ var device=function(){
 
     var img1=document.createElement('img');
     img1.src='../resources/configPanel/img/devices/'+this.icon;
-    
+
     a.appendChild(img1);
 
 
@@ -1410,7 +1419,7 @@ var camera=function(){
 
     div8.appendChild(i2);
 
-    
+
 
     var s1=document.createElement('paper-switch');
     s1.id='soundCheck'+this.id;
@@ -1665,7 +1674,7 @@ var hashtag=function(){
     div2.appendChild(p2);
     div2.appendChild(select);
 
-    
+
 
 
     var s2=document.createElement('paper-switch');
@@ -2085,11 +2094,11 @@ var radios=function(){
     console.log('viewClick');
     if(b[0].show===true){
       mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'hide');
-    
+
     }
     else{
       mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'show');
-      
+
     }
   }
 }
@@ -2163,7 +2172,7 @@ var table=function(){
     div6.className='col-md-9 txt_titular';
     div6.innerHTML='Table data information';
 
-    
+
 
     var s2=document.createElement('paper-switch');
     s2.id='viewCheck'+this.id;
@@ -2456,7 +2465,7 @@ var graph=function(){
 
     div32.appendChild(p5);
 
-    
+
 
     var s2=document.createElement('paper-switch');
     s2.id='viewCheck'+this.id;

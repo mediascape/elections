@@ -1,6 +1,6 @@
 {
     "name": "FileName: Multi-device adaptation behaviour descriptor for the multi-device adaptation engine",
-    "applicationAttributes":["route","msg"],
+    "applicationAttributes":["route","msg","reset"],
     "groupCapacities":false,
     "explicitRules": {
         "name": "explicit",
@@ -172,7 +172,7 @@
                 {
                     "componentId": "video3",
                     "required": false,
-                    "bestfit": "biggestScreenSize",
+                    "bestfit": "touchable",
                     "movable": true,
                     "duplicable":false,
                     "needs":"none"
@@ -180,7 +180,7 @@
                 {
                     "componentId": "video4",
                     "required": false,
-                    "bestfit": "biggestScreenSize",
+                    "bestfit": "touchable",
                     "movable": true,
                     "duplicable":false,
                     "needs":"none"
@@ -188,7 +188,7 @@
                 {
                     "componentId": "video5",
                     "required": false,
-                    "bestfit": "biggestScreenSize",
+                    "bestfit": "touchable",
                     "movable": true,
                     "duplicable":false,
                     "needs":"none"
@@ -196,7 +196,7 @@
                 {
                     "componentId": "video6",
                     "required": false,
-                    "bestfit": "biggestScreenSize",
+                    "bestfit": "touchable",
                     "movable": true,
                     "duplicable":false,
                     "needs":"none"
@@ -204,7 +204,7 @@
                 {
                     "componentId": "video7",
                     "required": false,
-                    "bestfit": "biggestScreenSize",
+                    "bestfit": "touchable",
                     "movable": true,
                     "duplicable":false,
                     "needs":"none"
@@ -258,7 +258,7 @@
                     "needs":"none"
                 },
                 {
-                    "componentId": "radio",
+                    "componentId": "radio1",
                     "required": false,
                     "bestfit": "biggestScreenSize",
                     "movable": true,

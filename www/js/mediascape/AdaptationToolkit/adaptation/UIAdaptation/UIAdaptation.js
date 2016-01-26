@@ -140,7 +140,9 @@ define(
                });
           if (!found) {
             // set default to accordion
-            layoutName = "accordion";
+            if (navigator.userAgent.toLowerCase().indexOf('hbbtv')!=-1) {
+                  layoutName="divided";
+            }else  layoutName = "accordion";
             console.warn ("Not layout found for device type: "+mediascape.deviceType +" Using default one");
 
           }
@@ -847,8 +849,9 @@ define(
         window.dispatchEvent(event);
         for (var x = 0 ; x< cmps.length;x++)
             {
-                cmps[x] = document.querySelector("#"+cmps[x].id);
-                cmps[x].updateNodes();
+              cmps[x] = document.querySelector("#"+cmps[x].id);
+              //console.log("#"+cmps[x].id);
+              if (cmps[x].updateNodes) cmps[x].updateNodes();
             }
         this.forceRedraw();
 
@@ -888,7 +891,7 @@ define(
           var dpi_y = document.getElementById('dpi').offsetHeight;
           var width = (screen.width/window.devicePixelRatio) / dpi_x;
           var height = (screen.height/window.devicePixelRatio) / dpi_y;
-          document.getElementById('dpi').remove();
+          document.body.removeChild(document.getElementById('dpi'));
           return JSON.parse('{"extra":[{"width":"'+widthPx+'","height":"'+heightPx+'"},{"screenX":"'+width+'","screenY":"'+height+'"}]}');
 
       }

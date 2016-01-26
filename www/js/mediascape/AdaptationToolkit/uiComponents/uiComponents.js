@@ -575,7 +575,7 @@ define(
           var scope=this;
           document.addEventListener('keydown',function(event){
 
-             if (event.keyCode === 16 ){
+             if (event.keyCode === 17 ){
                 if ( scope.ctrlPanel.showing) scope.ctrlPanel.hide();
                 else scope.ctrlPanel.show();
               }
@@ -631,11 +631,11 @@ define(
                   if (_this.mapp.motions.shared.vel == 0) {
 
                      img4.setAttribute('src','../resources/configPanel/img/controller/Play_activo.png');
-                     
+
                    } else {
 
                      img4.setAttribute('src','../resources/configPanel/img/controller/Pause_activo.png');
-                     
+
                    }
                    velState=_this.mapp.motions.shared.vel;
 
@@ -851,20 +851,20 @@ define(
 
 
 
-             var menuBottom = document.getElementById( 'cbp-spmenu-s4' ),       
-              showBottom = document.getElementById( 'showBottom' ),       
+             var menuBottom = document.getElementById( 'cbp-spmenu-s4' ),
+              showBottom = document.getElementById( 'showBottom' ),
               body = document.body;
-            
+
             showBottom.onclick = function() {
               classie.toggle( this, 'active' );
               classie.toggle( menuBottom, 'cbp-spmenu-open' );
               disableOther( 'showBottom' );
-            };      
+            };
 
-            function disableOther( button ) {       
+            function disableOther( button ) {
               if( button !== 'showBottom' ) {
                 classie.toggle( showBottom, 'disabled' );
-              }       
+              }
             }
 
 

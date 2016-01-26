@@ -59,6 +59,14 @@ define ([],
             })(objectA, objectB);
             return propertyChanges;
           }
+          this.removeFromArray = function remove(arr, what) {
+                var found = arr.indexOf(what);
+
+                while (found !== -1) {
+                    arr.splice(found, 1);
+                    found = arr.indexOf(what);
+                }
+        }
 
         return this;
       }

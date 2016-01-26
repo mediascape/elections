@@ -56,7 +56,7 @@ define(
                else return false;
             })
             if (!allreadyLoaded){
-            el.load();
+            //  if (el.load) el.load();
             var v = el.querySelector('video');
             if (v){
                v.src = el.getAttribute('file');
@@ -95,7 +95,7 @@ define(
       // Just hidden all at least
       this.unload = function (els) {
         els.forEach(function(el){
-          el.unload();
+        //  if (el.unload) el.unload();
           el.style.display="none";
 
             var v = el.querySelector('video');

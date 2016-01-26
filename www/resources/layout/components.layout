@@ -63,7 +63,7 @@
   propy:460;
   icon:../resources/images/icons_manag/table.png;
 }
-#radio{
+#radio1{
   order:5;
   rwidth:460px;
   propx:460;
@@ -72,7 +72,7 @@
 }
 
 
-#graph1{  
+#graph1{
   order:4;
   rwidth:400px;
   propx:400;
@@ -81,7 +81,7 @@
 
 }
 #graph2{
-  
+
   order:7;
   rwidth:400px;
   propx:400;
@@ -90,7 +90,7 @@
 
 }
 #graph3{
-  
+
   order:8;
   rwidth:400px;
   propx:400;
@@ -99,7 +99,7 @@
 
 }
 #graph4{
-  
+
   order:9;
   rwidth:400px;
   propx:400;
@@ -108,19 +108,19 @@
 
 }
 #twitterMap{
- 
+
   order:10;
   rwidth:390px;
   propx:16;
-  propy:9;  
+  propy:9;
   icon:../resources/images/icons_manag/trending.png;
 }
 
 #twitterViewer{
-  
+
   order:1;
   rwidth:450px;
   propx:16;
-  propy:9;  
+  propy:9;
   icon:../resources/images/icons_manag/twitter.png;
 }

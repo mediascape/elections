@@ -11,7 +11,7 @@ function(){
     // initialize the adaptation plugin
     this.init = function(rl, ctx) {
       console.log("=============bestfit=== [init]=================");
-      console.log(rl);
+      //console.log(rl);
 
       rule = rl;
       context = ctx;
@@ -32,10 +32,11 @@ function(){
               }
           })
       });
-     console.log(this.components);
+     console.log(this.components.length);
     };
 
     this.onChange = function( evt, ctx ) {
+      console.log("ONCHANGE");
       var AE = mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation;
       var agents = ctx.agents;
       context = ctx;
@@ -83,6 +84,7 @@ function(){
               return true;
           },this);
           // If needs false means that is not a good agent for cmp
+          console.log("before needs");
           if (!needs) return {type:"HIDE",component:cmp.getAttribute('id')};
 
           // Check my note related with a component
@@ -202,7 +204,7 @@ function(){
     },this);
     */
       decision.agent = agent;
-      console.log(decision);
+      console.log("DECISION",decision.actions[0]);
       return decision;
     }
      function getCapability  (ag,propertie){

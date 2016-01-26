@@ -52,8 +52,8 @@ define(
         this.parseComponents(file,layoutProp).then(function(cmps){
           console.log("PARSING",cmps);
           var event = new CustomEvent("adaptationToolkit-ready", {"detail":{"loaded":true,components:cmps}});
-
-          setTimeout(function(){document.dispatchEvent(event);},2000);
+          if (navigator.userAgent.toLowerCase().indexOf('hbbtv')!=-1)document.dispatchEvent(event);
+          else setTimeout(function(){document.dispatchEvent(event);},2000);
           _this.components = cmps;
         });
       }
@@ -82,15 +82,19 @@ define(
                         htmlelement.style.webkitUserSelect="none";
                     });
                     el.setAttribute('compId','compId'+i);
-                    data.forEach(function(properties){
-                        if (Object.keys(properties).indexOf(id)>-1) {
-                          el['lproperties'] = properties[id] ;
-                          if (el['lproperties'].movable === "true")
-                             mediascape.AdaptationToolkit.uiComponents.addMovablePanel(el);
 
+                     data.forEach(function(properties){
+                      if (Object.keys(properties).indexOf(id)>-1) {
+                        el = document.querySelector("#"+id);
+                        el.lproperties = new Object();
+                        var prop = properties[id];
+                        for (x in prop){
+                             el.lproperties[x] = prop[x];
+                              mediascape.AdaptationToolkit.uiComponents.addMovablePanel(el);
                         }
+                      }
+                  });
 
-                    });
 
                 // Inject component-query to each webcomponent
                 //  el.setAttribute('extends','component-query');
@@ -107,10 +111,12 @@ define(
         return promise;
       };
       this.getComponents = function (){
-        /*for (c in components){
-           components[c] = document.querySelector('#'+components[c].id);
-        }*/
-        return components;
+        for (c in components){
+
+            components[c] = document.querySelector('#'+components[c].id);
+
+         }
+         return components;
       }
       this.getComponentsStatus = function (){
         return componentStatus || [];

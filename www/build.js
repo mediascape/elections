@@ -11,7 +11,7 @@
     },
     paths:{
         requireLib:'../resources/libs/require',
-        webcomponetsPolyfill:'https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.17/webcomponents-lite.min',
+        webcomponents_lite:'https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.17/webcomponents-lite.min',
         loadingPanel:'../resources/libs/loadingPanel',
       	jquery:'empty:',
       	socketio:'empty:',
@@ -34,9 +34,11 @@
         debugger:'empty:',
         configPanel:'../resources/configPanel/configPanel',
         classifie:'../resources/configPanel/js/classie',
-        bootstrap:'empty:'       
+        bootstrap:'empty:',
+        webcomponentsmin:'empty:',
+        debugger:'empty:'
         },
-    include:['requireLib','webcomponetsPolyfill','loadingPanel','swiper'],
+    include:['requireLib','webcomponents_lite','loadingPanel','swiper'],
     out: "dist/multideviceapplib.min.js",
     removeCombined: true,
     has:{

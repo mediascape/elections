@@ -76,7 +76,7 @@
     transition: all 0.3s ease;
 
     margin-left: 0px;
-    
+
 }
 
 .encendidoOff {
@@ -86,7 +86,7 @@
     -o-transform: scale(0);
     transform: scale(0);
     margin-left:0px;
-    
+
 }
 .apagadoOff {
     content: ' ';
@@ -109,3 +109,11 @@
 
 }
 
+li:active {
+    border:1px solid orange;
+    background-color: orange; 
+}
+li:focus {
+    border:1px solid orange;
+    background-color: orange;
+}

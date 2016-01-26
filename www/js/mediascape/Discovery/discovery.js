@@ -1,4 +1,4 @@
-define( ["jquery","namedwebsockets"], function($,namedWebSockets) {
+define( ["jquery","namedwebsockets","promise"], function($,namedWebSockets) {
 	var networkWS=null;
 	var Discovery = function() {
 				this.connectNWS = function(serviceName) {
@@ -825,7 +825,7 @@ define( ["jquery","namedwebsockets"], function($,namedWebSockets) {
 									var dpi_y = document.getElementById('dpi').offsetHeight;
 									var width = (screen.width/window.devicePixelRatio) / dpi_x;
 									var height = (screen.height/window.devicePixelRatio) / dpi_y;
-									document.getElementById('dpi').remove();
+									document.body.removeChild(document.getElementById('dpi'));
 									resolve(JSON.parse('{"extra":[{"width":"'+widthPx+'","height":"'+heightPx+'"},{"screenX":"'+width+'","screenY":"'+height+'"}]}'));
 									mediascape.screenX = width;
 									mediascape.screenY = height;

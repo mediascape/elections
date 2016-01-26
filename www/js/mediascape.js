@@ -6,7 +6,7 @@
     rscript.onload = function() {
       init();
     };
-    rscript.src = "../resources/require.js";
+    rscript.src = "../resources/libs/require.js";
     document.head.appendChild( rscript );
     return;
   }
@@ -18,10 +18,15 @@
               exports: 'io'
             },
         "bootstrap" : { "deps" :['jquery'] }
-        
+
 
     },
     paths: {
+    promise:'mediascape/AdaptationToolkit/utils/hbbtvLibs/promise.min',
+    domReady:'/resources/libs/domReady',
+    webcomponentsHbbtv:'mediascape/AdaptationToolkit/utils/hbbtvAdapter',
+    webcomponents_lite:'https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.20/webcomponents-lite.min',
+    webcomponentsmin:'https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.20/webcomponents.min',
     underscore:'../resources/libs/underscore-min',
     namedwebsockets: 'mediascape/lib/namedwebsockets',
     jquery: 'http://code.jquery.com/jquery-2.1.4.min',
@@ -32,6 +37,7 @@
     '2015data':'../resources/libs/2015',
     qrcode:'mediascape/lib/qrcode.min',
     socketio: '/socket.io/socket.io',
+    'socket.io': 'http://192.168.10.2:8082/socket.io/socket.io',
     ui:'../resources/libs/jquery-ui',
     shake:'../resources/libs/shake',
     association:'/resources/association/association',
@@ -41,10 +47,13 @@
     tags:'/resources/libs/tags',
     configPanel:'../resources/configPanel/configPanel',
     classifie:'../resources/configPanel/js/classie',
-    bootstrap:'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min',   
-    webcomponetsPolyfill:'https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.17/webcomponents-lite.min'
+    bootstrap:'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min',
+    debugger:'http://192.168.10.2:8082/console.io',
+    hbbtvapp:'mediascape/AdaptationToolkit/utils/hbbtvLibs/hbbtvapp',
+    keycodes:'mediascape/AdaptationToolkit/utils/hbbtvLibs/keycodes'
+
       },
-    waitSeconds:25
+    waitSeconds:15
   });
 
   /**
@@ -83,7 +92,8 @@
         _this = Object.create( mediascape );
         var dontCall = ['sharedState', 'mappingService', 'applicationContext','mediaSync'];
       //  _this1 = Object.create( discovery );
-			for( var i=0; i<moduleList.length; ++i ){
+      console.log("fine0");
+    	for( var i=0; i<moduleList.length; ++i ){
 				var name = moduleList[ i ].__moduleName;
                  if (dontCall.indexOf(name) === -1) {
                      mediascape[name] = new moduleList[i](mediascape, "gq" + i, mediascape);
@@ -92,8 +102,10 @@
                  }
 
 			}
+      console.log("fine");
       var event = new CustomEvent("mediascape-modules-ready", {"detail":{"loaded":true}});
       document.dispatchEvent(event);
+
       return _this;
       };
 
@@ -112,11 +124,16 @@
       return mediascape;
     });
 /** All modules are ready so mediascape it can be started */
-  require([ "mediascape","configPanel","swiper"], function (mediascape,cp,sw) {
+  require(["promise","webcomponentsHbbtv","mediascape","configPanel","swiper","domReady!"], function (p,wcpol,mediascape,cp,sw,doc) {
     console.log("mediascape require");
-    if (document.readyState === "complete") mediascape.init();
-    else setTimeout(mediascape.init,2000);
+     mediascape.init();
+    /*if (document.readyState === "complete") mediascape.init();
+    else setTimeout(mediascape.init,2000);*/
 
 
   });
 }());
+
+require(["debugger"],function(dgb){
+  dgb.configure({});
+});

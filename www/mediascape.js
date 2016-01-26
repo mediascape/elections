@@ -39,12 +39,19 @@
     swiper:'https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.0/js/swiper.min',
     coords2:'/resources/libs/coords2',
     tags:'/resources/libs/tags',
+    webcomponentsHbbtv:'mediascape/AdaptationToolkit/utils/hbbtvAdapter',
+    webcomponents_lite:'/resources/wcs/bower_components/webcomponentsjs/webcomponents-lite.min',
+    webcomponentsmin:'https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.20/webcomponents.min',
+    debugger:'http://192.168.10.2:8082/console.io',
     configPanel:'../resources/configPanel/configPanel',
     classifie:'../resources/configPanel/js/classie',
     bootstrap:'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min',
     bootstrap_swicth:'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/js/bootstrap-switch.min'
       },
-    waitSeconds:25
+    waitSeconds:25,
+    has:{
+      debugger:false
+    }
   });
 
   /**
@@ -112,8 +119,9 @@
       return mediascape;
     });
 /** All modules are ready so mediascape it can be started */
-  require([ "mediascape","configPanel","swiper"], function (mediascape,cp,sw) {
+  require(["webcomponentsHbbtv", "mediascape","configPanel","swiper","debugger"], function (wcpol,mediascape,cp,sw,dgb) {
     console.log("mediascape require");
+    dgb.configure({});
     if (document.readyState === "complete") mediascape.init();
     else setTimeout(mediascape.init,2000);
 

@@ -3,7 +3,7 @@ define (["msv","mcorp"],
     var mediaSync = mSync;
     var SharedMotion = function(){
       this.init = function(){
-          this.mapp = MCorp.app("5755267014547000624", {anon:true});
+          this.mapp = MCorp.app("4092171836865095034", {anon:true});
           this.mapp.cams = {};
           this.mapp.init();
           var scope = this;
@@ -12,6 +12,7 @@ define (["msv","mcorp"],
          //  setTimeout(function(e){document.dispatchEvent(event);},20000);
          document.addEventListener('agentChange',function(e){
               document.dispatchEvent(event);
+              console.log("Motion ready event dispatch");
               document.removeEventListener('agentChange', arguments.callee);
               scope.mapp.motions.shared.update(null, 1);
           },false);

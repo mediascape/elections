@@ -4,6 +4,7 @@
 @import url(https://fonts.googleapis.com/css?family=Ubuntu:400,500,700);
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
 
+
 html, body{height:100%; min-height:100%; font-family: 'Ubuntu', sans-serif; font-size:14px; overflow-x:hidden;}
 .fullwidth-template{height:100%; min-height:100%;}
 
@@ -19,7 +20,7 @@ border-right:5px solid #174193;}
 .menu-sidebar .sidebar-menu ul li a{display: table; vertical-align: middle; color:#55b2ff; width:100%; height:100%; padding-left:10%; border-right:5px solid #2c6086; }
 .menu-sidebar .sidebar-menu ul li.options a{background-color:#2b5980; border-right:5px solid #204360;}
 .menu-sidebar .sidebar-menu ul li a span{display: table-cell; vertical-align: middle; }
-.menu-sidebar .sidebar-menu ul li a span i{font-weight:400; float:left; font-size:8vh; line-height:11vh; 
+.menu-sidebar .sidebar-menu ul li a span i{font-weight:400; float:left; font-size:8vh; line-height:11vh;
 min-width:3.5vw; text-align:center;}
 .menu-sidebar .sidebar-menu ul li a span strong{font-weight:400;  padding: 0px 0px 0px 15px; text-transform:uppercase;
 font-family: 'Montserrat', sans-serif; font-size:1.8vh; height:100%; display:block; float:left; vertical-align: middle;
@@ -41,7 +42,10 @@ font-weight:500;  text-transform:uppercase;  display: table; width:100%;  }
 .template-content .boxdevice.active div a{background-color:#55b2ff; color:#224f66;}
 .template-content .boxdevice div a:hover{background-color:#fc9200; color:#fff;}
 
-
+:active a {
+  background: #c68f50;
+  color: #ffffff;
+}
 .template-content .template-content-center{height:85%; overflow:hidden; padding:0; margin:0; clear:both;
 }
 .template-content .layout-columns{ margin-top:10px; background-color:rgba(23,63,86,0.95); padding-top:10px;}
@@ -71,14 +75,14 @@ box-shadow:0px 0px 10px rgba(0,0,0,0.5);}
     .menu-sidebar .sidebar-menu ul li a span strong{font-size:inherit;}
     .menu-sidebar .sidebar-menu ul li.vicomtechlogo-li{margin-top:10px; padding-top:5%;}
     .menu-sidebar .sidebar-menu ul li.vicomtechlogo-li img{float:none; width:60%; bottom:0;}
-    
+
 }
 @media(min-width:992px){
     .layout-columns{height:100%;}
 }
 
 @media (max-width: 992px){
-    .menu-sidebar {        
+    .menu-sidebar {
         -webkit-transition: all 0.25s ease-out;
         -moz-transition: all 0.25s ease-out;
         transition: all 0.25s ease-out;
@@ -104,7 +108,7 @@ box-shadow:0px 0px 10px rgba(0,0,0,0.5);}
 @media (max-width: 767px){
     .responsive-menu-button{display:block;}
     .template-content{width: 100%; float:none; height:auto; padding:0px 5px;}
-    .menu-sidebar {        
+    .menu-sidebar {
         -webkit-transition: all 0.25s ease-out;
         -moz-transition: all 0.25s ease-out;
         transition: all 0.25s ease-out;
@@ -131,4 +135,10 @@ box-shadow:0px 0px 10px rgba(0,0,0,0.5);}
     #graphicCont{height: auto;}
     #camerasCont{height: auto;}
     #twCont{height:auto;}
+}
+li:active {
+    border:1px solid orange;
+}
+li:focus {
+    border:1px solid orange;
 }

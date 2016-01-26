@@ -107,7 +107,7 @@
    this.observer = new MutationObserver(function(mutations,i) {
       var mutation = mutations[mutations.length-1];
      if (mutation.attributeName === 'style'){
-
+        // console.log(self.updateNodes);
          self.updateNodes();
          var event = new CustomEvent('resize', { 'detail': 'emulate' });
          window.dispatchEvent(event);
@@ -135,6 +135,7 @@ window.addEventListener('components-ready',(function(_this){return function(){
  // Whenever component style is changed update to correspondos @media
  updateNodes:function (){
    var applyinRule = false;
+   if (this.mediaList){
    var mediaRule = this.mediaList.filter(function(el,i){
      var currentWidth =/*this.style.width != ""? this.style.width:*/this.clientWidth;
      var currentHeight = /*this.style.height != ""? this.style.height:*/this.clientHeight;
@@ -271,6 +272,7 @@ window.addEventListener('components-ready',(function(_this){return function(){
        }
      }
    }
+ } // if media list exists
  },
  compareAspectRatio:function(elementRatio,queryRatio){
    var epsilon_full = 1.01;

@@ -1,3 +1,11 @@
+li:active {
+    border:1px solid orange;
+    background-color: orange;
+}
+li:focus {
+    border:1px solid orange;
+    background-color: orange;
+}
 .button {
 
             background-color: Transparent;
@@ -15,7 +23,7 @@
 
 @keyframes shrink{
       from {
-  
+
    left:100px;
  }
  to {
@@ -30,7 +38,7 @@
        left:0px;
  }
  to {
-  
+
    left:20px;
     }
 }
@@ -40,7 +48,7 @@
        height:0%;
  }
  to {
-  
+
    height:40%;
     }
 }
@@ -49,7 +57,7 @@
        height:40%;
  }
  to {
-  
+
     height:0%;
     }
 }
@@ -91,17 +99,17 @@
  }
  to {
       top:0%;
-      
+
     }
 }
 
 @keyframes DownIn{
  from {
        top:-100%;
-       
+
  }
  to {
-  
+
     top:0%;
 
     }
@@ -111,7 +119,7 @@
        top:0%;
  }
  to {
-  
+
     top:100%;
     }
 }
@@ -121,7 +129,7 @@
        transform:scale(0.5);
  }
  to {
-  
+
     transform:scale(1);
     }
 }
@@ -131,7 +139,7 @@
        transform:scale(1);
  }
  to {
-  
+
     transform:scale(0.7);
     }
 }

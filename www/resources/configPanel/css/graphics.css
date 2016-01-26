@@ -83,7 +83,7 @@ ul.nav-tabs li{
   text-align: center !important;
     margin-right: 18px;
     border-radius: 20px 20px 0px 0px;
-    background-color: #3d5f6b;  
+    background-color: #3d5f6b;
     width:43%;
 }
 ul.nav-tabs li:hover {background: #ff9b00; }
@@ -99,7 +99,7 @@ ul.nav-tabs li.active{
   /*height: 100%;*/
   background-color: #97c7e8;
   padding-bottom: 20px;
-  border-radius: 0px 0px 20px 20px;  
+  border-radius: 0px 0px 20px 20px;
 }
 .pastilla_ciudad {
   /*height: 100%;*/
@@ -143,10 +143,10 @@ img.imagen-emisora-peque { width: 100%; padding-top: 15px;}
 div.switch-emisora { padding-top: 25px;}
 /* switch */
 .check-switch-graphics {
-  
+
 
   margin-top: 2vh;
-} 
+}
 
 
 
@@ -158,10 +158,10 @@ div.switch-emisora { padding-top: 25px;}
       height: auto; overflow: auto;
     }
     .txt_titular { margin-top: 10px; font-size: 20px;}
-    
+
     div.switch-emisora {
       padding-top: 17px;
-    }   
+    }
     p.text_ciudad {
       font-size: 22px;
       line-height: 22px;
@@ -169,12 +169,36 @@ div.switch-emisora { padding-top: 25px;}
     .txt_ciudad { font-size: 20px !important;}
     span.year-text { font-size: 20px !important;}
     .data-information-section { margin-top: 2px; }
-    span.comparative {display: none;} 
+    span.comparative {display: none;}
     div.emisora {height: auto; overflow: auto; padding: 5px; }
     .tabs-graficos {
       padding-bottom: 15px;
-    } 
-    ul.nav-tabs li a img { display: none;}  
+    }
+    ul.nav-tabs li a img { display: none;}
+}
+@media (min-width: 1280px) and (orientation: landscape){
+
+    .data-information-section {
+      height: auto; overflow: auto;
+    }
+    .txt_titular { margin-top: 10px; font-size: 20px;}
+
+    div.switch-emisora {
+      padding-top: 17px;
+    }
+    p.text_ciudad {
+      font-size: 22px;
+      line-height: 22px;
+    }
+    .txt_ciudad { font-size: 20px !important;}
+    span.year-text { font-size: 20px !important;}
+    .data-information-section { margin-top: 2px; }
+    span.comparative {display: none;}
+    div.emisora {height: auto; overflow: auto; padding: 5px; }
+    .tabs-graficos {
+      padding-bottom: 15px;
+    }
+    ul.nav-tabs li a img { display: none;}
 }
 
 @media (max-width: 1024px) and (orientation: landscape){
@@ -195,13 +219,13 @@ div.switch-emisora { padding-top: 25px;}
     .txt_ciudad { font-size: 20px !important;}
     span.year-text { font-size: 20px !important;}
     .data-information-section { margin-top: 2px; }
-    span.comparative {display: none;} 
+    span.comparative {display: none;}
     div.emisora { }
     .pastilla_ciudad {  }
-   
+
     .tabs-graficos {
       padding-bottom: 15px;
-    } 
+    }
     ul.nav-tabs li a img { display: none;}
 }
 
@@ -218,14 +242,14 @@ div.switch-emisora { padding-top: 25px;}
 
     .check-switch-graphics { padding-top:0px; margin:0px;margin-top: 2vh;}
     .tab-pane { padding-bottom: 10px !important; }
-    ul.nav-tabs li{width: 43%;}    
-    .contenido_graphics{ 
+    ul.nav-tabs li{width: 43%;}
+    .contenido_graphics{
       padding-bottom: 10px;
       margin-bottom: 10px;
     }
     .content-emisora {
       margin-bottom: 20px;
-    } 
+    }
     p.text_ciudad {
       font-size: 20px;
       line-height: 26px;
@@ -236,7 +260,7 @@ div.switch-emisora { padding-top: 25px;}
     .data-information-section {
       height: auto; overflow: auto;
       }
-    span.comparative {display: none;} 
+    span.comparative {display: none;}
     div.emisora { height: auto; overflow: auto;}
     .pastilla_ciudad {  }
 }
@@ -247,7 +271,7 @@ div.switch-emisora { padding-top: 25px;}
     img.imagen-emisora-peque { width: 153%;}
     .switch-emisora { margin-top: 20px;}
     .txt_titular{font-size: 1em; text-transform:uppercase; font-weight:bold; line-height:16px; margin-top: 18px !important;}
-        .nav-tabs>li>a { padding:0;}    
+        .nav-tabs>li>a { padding:0;}
     span.year-text{font-size: 1.5em;}
     .pastilla_ciudad {padding: 0px; height: auto;}
     div.emisora {height: auto; overflow: auto;}
@@ -263,7 +287,7 @@ div.switch-emisora { padding-top: 25px;}
     ul.nav-tabs li a img {display: none;}
     .data-information-section {
       height: 53px !important;
-      margin-top: 2px !important; 
+      margin-top: 2px !important;
     }
     .check-switch-graphics {  margin-top: 1.5vh;}
 
@@ -272,13 +296,13 @@ div.switch-emisora { padding-top: 25px;}
 @media (max-width: 767px) and (orientation: portrait) {
     .tab-content>.active { padding-top: 10px;}
     .txt_titular { font-size: 1em; text-transform:uppercase; font-weight:bold; line-height:16px; margin-top: 5px !important;}
-    span.comparative {display: none;} 
+    span.comparative {display: none;}
     div.emisora {overflow:auto; height:auto; clear:both; padding-right: 9px; padding-left: 7px;}
     .pastilla_ciudad {padding:1px; margin-top:10px; }
         .clm_2_graph{padding-left:0px; padding-right:0px;}
-        .data-information-section{padding-left:5px; padding-right:5px;} 
-        div.content-emisoras  {padding:10px 10px 0px 10px;}    
-       
+        .data-information-section{padding-left:5px; padding-right:5px;}
+        div.content-emisoras  {padding:10px 10px 0px 10px;}
+
     div.emisora div.switch-emisora.bilbao {padding-bottom: 15px; padding-top: 17px;}
     div.switch-emisora {}
     p.text_ciudad { margin-top: 16px;  padding-bottom: 9px; font-size:18px;}
@@ -292,13 +316,13 @@ div.switch-emisora { padding-top: 25px;}
 @media (max-width: 470px) and (orientation: portrait) {
     .tab-content>.active { padding-top: 10px;}
     .txt_titular { font-size: 1em; text-transform:uppercase; font-weight:bold; line-height:16px; margin-top: 5px !important;}
-    span.comparative {display: none;} 
+    span.comparative {display: none;}
     div.emisora {overflow:auto; height:auto; clear:both; padding-right: 9px; padding-left: 7px;}
     .pastilla_ciudad {padding:1px; margin-top:10px; }
         .clm_2_graph{padding-left:0px; padding-right:0px;}
-        .data-information-section{padding-left:5px; padding-right:5px;} 
-        div.content-emisoras  {padding:10px 10px 0px 10px;}    
-        
+        .data-information-section{padding-left:5px; padding-right:5px;}
+        div.content-emisoras  {padding:10px 10px 0px 10px;}
+
     div.emisora div.switch-emisora.bilbao {padding-bottom: 15px; padding-top: 17px;}
     div.switch-emisora {}
     p.text_ciudad { margin-top: 16px;  padding-bottom: 9px; font-size:15px;}
@@ -310,4 +334,3 @@ div.switch-emisora { padding-top: 25px;}
     .cityName{width:55%;}
 
 }
-

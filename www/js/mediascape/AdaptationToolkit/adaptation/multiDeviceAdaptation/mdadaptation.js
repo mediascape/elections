@@ -166,16 +166,19 @@ function($, applicationContext){
       }
       else*/
       var ag = getAgentById(agentid);
-      localStatus = ag.capabilities.componentsStatus;
-
-       if ( (obj.length != localStatus.length) || (localStatus ==="supported" || localStatus ==="undefined")){
-        return [];
-      }
-      else {
-        var diff = mediascape.AdaptationToolkit.Utils.getObjectDiff(obj,localStatus);
-        if (diff.length ===0) diff = context.lastChange.diff;
-       return diff;
-      }
+      if (ag)
+         {
+           localStatus = ag.capabilities.componentsStatus;
+           if ( (obj.length != localStatus.length) || (localStatus ==="supported" || localStatus ==="undefined")){
+                return [];
+              }
+           else {
+                  var diff = mediascape.AdaptationToolkit.Utils.getObjectDiff(obj,localStatus);
+                  if (diff.length ===0) diff = context.lastChange.diff;
+                  return diff;
+            }
+          }
+          else return [];
     }
     // called whenever a change happens to the shared context
     var updateContext = function(change) {
@@ -244,6 +247,7 @@ function($, applicationContext){
                     }
                     var agent = getAgentById(change.agentid);
                     agent.capabilities[change.capability] = change.value;
+
             });
 
     }
@@ -259,6 +263,7 @@ function($, applicationContext){
       }
 
       // solve the conflicts in the decisions made by different adaptation plugins
+      console.log("before update componetsStatus",decisions.length,plugins);
       if(decisions.length > 0) {
         var actions = cleanConflict(decisions);
 
@@ -273,6 +278,7 @@ function($, applicationContext){
               console.log("EVENT",event);
           }
           // update componentStatus local and remote
+
          updateComponentStatus(event);
         }
       }
@@ -384,14 +390,14 @@ function($, applicationContext){
             if (rules.groupCapacities){
              agentStack[e.agentid].time = new Date().getTime();
              var timeDiff = Math.abs( agentStack[e.agentid].oldtime - agentStack[e.agentid].time );
-             console.log("TIME",timeDiff);
+          //   console.log("TIME",timeDiff);
              if (timeDiff > 600){
                   clearTimeout(agentStack[e.agentid].timeout);
                   agentStack[e.agentid].changes.contextType = "capabilityChange";
                   agentStack[e.agentid].changes.push(change);
                   onUpdateContext(agentStack[e.agentid].changes);
                   agentStack[e.agentid].oldtime = new Date().getTime();
-                  console.log("STACK",agentStack[e.agentid].changes);
+              //    console.log("STACK",agentStack[e.agentid].changes);
                   agentStack[e.agentid].changes = [];
 
 
@@ -400,7 +406,7 @@ function($, applicationContext){
             else {
                 agentStack[e.agentid].changes.push(change);
                 agentStack[e.agentid].changes.contextType ="capabilityChange";
-                console.log("ADDED",agentStack[e.agentid].changes,new Date().getTime());
+            //    console.log("ADDED",agentStack[e.agentid].changes,new Date().getTime());
                 var _agentStack = agentStack;
                 var agentid =e.agentid;
                 console.log("timeout", !agentStack[e.agentid].timeout);
@@ -434,14 +440,16 @@ function($, applicationContext){
     // the handler to process the change events from the application context
     var onAgentsChange = function (e){
       if( e.agentContext == null ){
+        resetComponentsStatusCmds();
         var change = {};
         change['type'] = 'AGENT_LEFT';
         change['agentid'] = e.agentid;
         change['value'] = 'left';
         change['contextType'] = 'agentChange'
         console.log('^^^^^^^^^^^^^^^^^^^^^^^' + e.agentid + 'left===============');
-        onUpdateContext(change);
-        notifiAgentChange('left',e.agentid)
+        setTimeout(function(){onUpdateContext(change);},500);
+        notifiAgentChange('left',e.agentid);
+
       } else if( e.agentContext ) {
           var change = {};
           change['type'] = 'VALUE_CHANGE';
@@ -453,6 +461,7 @@ function($, applicationContext){
           change['agentContext'] = e.agentContext;
           onUpdateContext(change);
           subscribeAgentCapabilities(e);
+          //setTimeout(function(){mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getApplicationContext().setItem('reset',"false");},4000);
           /**
            Condicion para evitar incongruencia de appCtx cuando es el primer agent
            Envia eventos diferentes.
@@ -460,19 +469,23 @@ function($, applicationContext){
           var ag = getAgentById(e.agentid);
           if (Object.keys(e.diff.capabilities).length===0 && !ag.notified){
                 var agentid = e.agentid;
+                resetComponentsStatusCmds();
                 var capsReady = setInterval(function () {
-                  console.log("checking if join ready");
+                  //console.log("checking if join ready");
                   if (ag.capabilities)
                     if (ag.capabilities['componentsStatus']){
-                        console.log("checking if join ready componentStatus exists");
+                      //  console.log("checking if join ready componentStatus exists");
+
                         var cmpNum =mediascape.AdaptationToolkit.componentManager.core.getComponents().length;
                         if (ag.capabilities['componentsStatus'].length === cmpNum && typeof ag.capabilities['componentsStatus'] !=="string")
                            {
+
                                 clearInterval(capsReady);
                                 ag.notified = true;
                                 agentReady = true;
                                 notifiAgentChange('join',e.agentid);
                                 console.log('^^^^^^^^^^^^^^^^^^^^^^^' + e.agentid + 'join===============');
+                                mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getApplicationContext().setItem('reset',"false");
                         }
                       }
                 },1000);
@@ -486,13 +499,28 @@ function($, applicationContext){
     var onUserOperation = function( actions ) {
        // deprecated
     };
+    this.setContext = function(_ctx){
+      context = _ctx;
+      var agent =getAgentById(mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAgentId());
+      var change = {};
+      change['type'] = 'CAPABILITY_CHANGE';
+      change['agentid'] = agent.id;
+      change['capability'] = 'componentsStatus';
+      change['value'] = agent.capabilities['componentsStatus'];
+      console.log('^^^^^^^^^^^^^^^^^^^^^^^' + agent.agentid + 'Reset comopnentsStatus===============');
+      hybridAdaptation(change);
 
+    }
     // install event listeners to trigger the popup dialog for users to specify how to move or duplicate the selected web component
     var hookPersonalAdaptationMenu = function (config){
        // deprecated
     };
 
-
+    var resetComponentsStatusCmds = function (){
+          console.log("RESETING!!!");
+          applicationContext.setItem('reset',"true");
+          //setTimeout(function(){mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getApplicationContext().setItem('reset',"false");},3000);
+    }
     // initialize the loaded adaptation plugins with their associated rule inputs
     var initPlugins = function(_rules) {
       var inputs = [];
@@ -518,15 +546,17 @@ function($, applicationContext){
           // initialize the plugin with the right input and put it into the plugin array
           plugin.init(temp, context);
           plugins.push(plugin);
-
+          console.log("initplugin1");
           // prepare the agent capability list demanded by enabled adaptation plugins
           for(var j = 0; j < temp.capabilities.length; j++) {
             if( required_capability_list.indexOf(temp.capabilities[j]) < 0 ) {
               required_capability_list.push(temp.capabilities[j]);
             }
           }
+          console.log("initplugin2");
         }
       }
+      console.log("initplugin3");
 
       // print out all demanded agent capabilities
 
@@ -556,11 +586,13 @@ function($, applicationContext){
       }
 
       // initialize all the adaptation plugins with the loaded rule inputs
+      console.log("hementxeeee");
       initPlugins(rules);
 
       // listen to the change events of the application context
       applicationContext.on('agentchange', onAgentsChange);
-      rules.applicationAttributes.forEach(function(at){
+     rules.applicationAttributes.forEach(function(at){
+
         applicationContext.on(at,function(e){
             var appAttributeEvent = new CustomEvent('appAttributeChange',{'detail':{key:e.key,value:e.value}});
             document.dispatchEvent(appAttributeEvent);
