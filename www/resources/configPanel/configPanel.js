@@ -86,7 +86,7 @@ var ControlPanel= function (url){
     var resTable=new table();
     resTable.setID(c[0].getAttribute('compId'));
 
-    comp='radio';
+    comp='radio1';
     c=cmps.filter(filterById);
     var radioComp=new radios();
     radioComp.setID(c[0].getAttribute('compId'));
@@ -132,10 +132,10 @@ var ControlPanel= function (url){
     camerasSect.addCamera(cam1);
     camerasSect.addCamera(cam2);
     camerasSect.addCamera(cam3);
-    /*camerasSect.addCamera(cam4);
-    camerasSect.addCamera(cam5);
-    camerasSect.addCamera(cam6);
-    camerasSect.addCamera(cam7);*/
+    //camerasSect.addCamera(cam4);
+    //camerasSect.addCamera(cam5);
+    //camerasSect.addCamera(cam6);
+    //camerasSect.addCamera(cam7);
 
 
     graphicSect=new graphicSection();

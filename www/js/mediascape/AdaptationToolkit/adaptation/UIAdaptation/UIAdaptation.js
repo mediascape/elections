@@ -660,7 +660,7 @@ define(
 
                 }
                 else{
-                  optimizedLayoutOrder.push(_this.getLayout('accordion'));
+                  optimizedLayoutOrder.push(_this.getLayout('divided'));
                   optimizedLayoutOrder.push(_this.getLayout('pip'));
                   optimizedLayoutOrder.push(_this.getLayout('menu'));
                   optimizedLayoutOrder.push(_this.getLayout('horizontal'));

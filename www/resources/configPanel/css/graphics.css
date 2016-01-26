@@ -176,6 +176,30 @@ div.switch-emisora { padding-top: 25px;}
     } 
     ul.nav-tabs li a img { display: none;}  
 }
+@media (min-width: 1280px) and (orientation: landscape){
+
+    .data-information-section {
+      height: auto; overflow: auto;
+    }
+    .txt_titular { margin-top: 10px; font-size: 20px;}
+    
+    div.switch-emisora {
+      padding-top: 17px;
+    }   
+    p.text_ciudad {
+      font-size: 22px;
+      line-height: 22px;
+    }
+    .txt_ciudad { font-size: 20px !important;}
+    span.year-text { font-size: 20px !important;}
+    .data-information-section { margin-top: 2px; }
+    span.comparative {display: none;} 
+    div.emisora {height: auto; overflow: auto; padding: 5px; }
+    .tabs-graficos {
+      padding-bottom: 15px;
+    } 
+    ul.nav-tabs li a img { display: none;}  
+}
 
 @media (max-width: 1024px) and (orientation: landscape){
     .data-information-section {

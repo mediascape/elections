@@ -155,7 +155,7 @@
             "behaviour": [
                 {
                     "componentId": "video1",
-                    "required": false,
+                    "required": true,
                     "bestfit": "biggestScreenSize",
                     "movable": true,
                     "duplicable":false,
@@ -220,7 +220,7 @@
                 {
                     "componentId": "graph1",
                     "required": false,
-                    "bestfit": "biggestScreenSize",
+                    "bestfit": "touchable",
                     "movable": true,
                     "duplicable":false,
                     "needs":"none",
@@ -229,7 +229,7 @@
                 {
                     "componentId": "graph2",
                     "required": false,
-                    "bestfit": "touchable",
+                    "bestfit": "smallestScreenSize",
                     "movable": true,
                     "duplicable":false,
                     "needs":"none",
@@ -238,7 +238,7 @@
                 {
                     "componentId": "graph3",
                     "required": false,
-                    "bestfit": "touchable",
+                    "bestfit": "smallestScreenSize",
                     "movable": true,
                     "duplicable":false,
                     "needs":"none",
@@ -247,7 +247,7 @@
                 {
                     "componentId": "graph4",
                     "required": false,
-                    "bestfit": "touchable",
+                    "bestfit": "smallestScreenSize",
                     "movable": true,
                     "duplicable":false,
                     "needs":"none",
@@ -256,16 +256,16 @@
                 {
                     "componentId": "results",
                     "required": false,
-                    "bestfit": "biggestScreenSize",
+                    "bestfit": "smallestScreenSize",
                     "movable": true,
                     "duplicable":false,
                     "needs":"none",
                     "videoLimit":"none"
                 },
                 {
-                    "componentId": "radio",
+                    "componentId": "radio1",
                     "required": false,
-                    "bestfit": "biggestScreenSize",
+                    "bestfit": "smallestScreenSize",
                     "movable": true,
                     "duplicable":false,
                     "needs":"none",
@@ -274,7 +274,7 @@
                 {
                     "componentId": "twitterViewer",
                     "required": false,
-                    "bestfit": "biggestScreenSize",
+                    "bestfit": "touchable",
                     "movable": true,
                     "duplicable":false,
                     "needs":"none",
@@ -283,7 +283,7 @@
                 {
                     "componentId": "twitterMap",
                     "required": false,
-                    "bestfit": "biggestScreenSize",
+                    "bestfit": "smallestScreenSize",
                     "movable": true,
                     "duplicable":false,
                     "needs":"none",
