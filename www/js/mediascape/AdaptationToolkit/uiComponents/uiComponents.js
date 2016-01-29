@@ -505,6 +505,7 @@ define(
 
         var tab=document.createElement('img');
         tab.src='../resources/configPanel/img/icono_MediaScape.png';
+        tab.id='panelTab';
         document.body.appendChild(tab);
         tab.style.top=0;
         tab.style.left=0;
@@ -514,7 +515,7 @@ define(
         var scope=this;
         tab.addEventListener('click',function(event){
           if ( scope.ctrlPanel.showing){ scope.ctrlPanel.hide();}
-            else scope.ctrlPanel.show();
+            else{scope.ctrlPanel.show();}
         });
 
 

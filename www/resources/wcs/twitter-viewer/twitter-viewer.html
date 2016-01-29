@@ -1,6 +1,9 @@
 <dom-module id="twitter-viewer" >
 	<template>
 		<style>
+		#result{
+			height:100%;
+		}
 	@media (min-width: 1024px){
 		#twitterCont{
 			background-color: #0A2533;
@@ -408,7 +411,7 @@
 								div1.appendChild(div6);
 								li.appendChild(div1);
 								_this.$.ulList.insertBefore(li,_this.$.ulList.firstChild);
-								if(mediascape.AdaptationToolkit!=undefined)
+								if(mediascape.AdaptationToolkit!==undefined)
 								mediascape.AdaptationToolkit.Adaptation.UIAdaptation.updateUniqueComponent(this);
 							}
 

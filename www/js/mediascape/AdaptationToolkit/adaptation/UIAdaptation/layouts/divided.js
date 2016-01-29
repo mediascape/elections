@@ -132,7 +132,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
       container.style.display='block';
       container.style.gridAutoFlow='';
       container.className='template-all-layouts';
-
+      container.style.height=window.innerHeight ||document.documentElement.clientHeight ||document.body.clientHeight;
 
       
       var ordered_cmps=[];
@@ -153,10 +153,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
       }
       else if(ordered_cmps.length===2){
         for(var i=0;i<ordered_cmps.length;i++){
-          
           ordered_cmps[i].className='col-md-6 layout-fullwidth';          
-  
-
         }
       }
       else if(ordered_cmps.length===3){
@@ -314,9 +311,9 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
     }
 
     divided.onResizeEvent=function(cmps){
-      console.log("layout changed");
+      //console.log("layout changed");
       this.render(cmps);
-     
+      
     }
     divided.unload = function(cpms){
 

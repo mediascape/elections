@@ -53,7 +53,7 @@ var ControlPanel= function (url){
     cam3.setName(c[0].id);
     cam3.setImage('../resources/configPanel/img/camara/logos_partidos_PNV_BLANCO.png');
 
-    /*comp='video4';
+    comp='video4';
     c=cmps.filter(filterById);
     var cam4=new camera();
     cam4.setID(c[0].getAttribute('compId'));
@@ -67,7 +67,7 @@ var ControlPanel= function (url){
     cam5.setName(c[0].id);
     cam5.setImage('../resources/configPanel/img/camara/logos_partidos_Populares_vascos_BLANCO.png');
 
-    comp='video6';
+    /*comp='video6';
     c=cmps.filter(filterById);
     var cam6=new camera();
     cam6.setID(c[0].getAttribute('compId'));
@@ -132,8 +132,8 @@ var ControlPanel= function (url){
     camerasSect.addCamera(cam1);
     camerasSect.addCamera(cam2);
     camerasSect.addCamera(cam3);
-    //camerasSect.addCamera(cam4);
-    //camerasSect.addCamera(cam5);
+    camerasSect.addCamera(cam4);
+    camerasSect.addCamera(cam5);
     //camerasSect.addCamera(cam6);
     //camerasSect.addCamera(cam7);
 
@@ -555,7 +555,7 @@ var ControlPanel= function (url){
         }
         mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSection(mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeSection,undefined);
       }
-
+      mediascape.AdaptationToolkit.uiComponents.ctrlPanel.hide();
 
     }
     else {
@@ -584,6 +584,7 @@ var ControlPanel= function (url){
 
 
     }
+    
   }
   document.addEventListener('agentChange',this.onAgentChange.bind(this));
 
