@@ -285,11 +285,11 @@
 			 	is:'twitter-viewer',
 			 	behaviors:[ComponentQueryBehavior,ComponentStatusBehavior],
 			 	properties:{
-					timestamp:{
+					/*timestamp:{
 							type:Number,
 							value:0,
 							observer:'timestampChanged'
-				},
+				},*/
 				prevTime:{
 					type:Number,
 					value:1432509468,
@@ -343,8 +343,16 @@
 					this.sm = mediascape.AdaptationToolkit.SharedMotion();
 					// ebentuak entzun ta jaso
 					var handler = function (e) {
-						
 						_this.timestamp=_this.prevTime+Math.round(e.pos);
+						if(_this.timestamp>=_this.val+3){
+							_this.val=_this.timestamp;
+							_this.timestampChanged();
+						}
+						if(_this.timestamp<=_this.val-3){
+							_this.val=_this.timestamp;
+							_this.timestampChanged();
+						}
+						
 						
 					};
 				  this.sm.mapp.motions.shared.on("timeupdate", handler);

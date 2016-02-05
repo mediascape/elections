@@ -201,6 +201,7 @@ div.switch-emisora { padding-top: 25px;}
     ul.nav-tabs li a img { display: none;}  
 }
 
+
 @media (max-width: 1024px) and (orientation: landscape){
     .data-information-section {
           height: 90px;
