@@ -23,6 +23,7 @@
 
 <!-- NEEDED SCRIPTS -->
 <script  src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.17/webcomponents-lite.min.js"></script>
+<script  src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script async src="../resources/libs/require.js"></script>
 <script async src="js/mediascape.js"></script>
 <!--<script async src="dist/multideviceapplib.min.js"></script>-->
@@ -67,7 +68,7 @@ document.addEventListener('adaptationToolkit-ready',function(data){
 
         document.addEventListener('applicationContext-ready',function(){
             mediascape.AdaptationToolkit.uiComponents.addControlPanel(location+"?group="+AE.GROUP_ID);
-            //mediascape.association.doAssociation('nws', 'mediascape', url, false).then(function(){});
+             mediascape.association.doAssociation('nws', 'mediascape', location+"?group="+AE.GROUP_ID, true).then();
             AE.init(rulesAE, AE.getApplicationContext());
             AE.on('actionchange', UI.onComponentsChange);
             mediascape.AdaptationToolkit.uiComponents.addController();

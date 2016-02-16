@@ -1328,10 +1328,11 @@ var qrSection=function(url){
     //extDiv.style.width=width;
     var qrdiv=document.createElement('div');
     qrdiv.className='qr-code-content';
+    qrdiv.id='qr-code-content';
 
     if(width<767)leftMargin=35*width/100;
         else leftMargin=25*width/100;
-        mediascape.association.createQRcode(url,qrdiv,(30*width/100),(30*width/100),'',leftMargin,50);
+        //mediascape.association.createQRcode(url,qrdiv,(30*width/100),(30*width/100),'',leftMargin,50);
 
     var animationdiv=document.createElement('div');
     animationdiv.id='animated-example';
@@ -1344,7 +1345,7 @@ var qrSection=function(url){
 
     extDiv.appendChild(qrdiv);
     extDiv.appendChild(animationdiv);
-
+    mediascape.association.doAssociation('qr','qr-code-content', url, true,(30*width/100),(30*width/100),leftMargin,50);
     return extDiv;
   }
 }
