@@ -17,8 +17,8 @@
           'socketio': {
               exports: 'io'
             },
-        "bootstrap" : { "deps" :['jquery'] }
-        
+        "bootstrap" : { "deps" :['jquery'] },
+        "bootstrap_swicth" :{ "deps":['jquery','bootstrap']}
 
     },
     paths: {
@@ -31,6 +31,8 @@
     d3:'../resources/libs/d3.v3.min',
     '2015data':'../resources/libs/2015',
     qrcode:'mediascape/lib/qrcode.min',
+    qrcodelib:'../resources/libs/qrcodelib',
+    webcodecam: '../resources/libs/WebCodeCam.min',
     socketio: '/socket.io/socket.io',
     ui:'../resources/libs/jquery-ui',
     shake:'../resources/libs/shake',
@@ -40,8 +42,10 @@
     coords2:'/resources/libs/coords2',
     tags:'/resources/libs/tags',
     configPanel:'../resources/configPanel/configPanel',
+    loadingPanel:'../resources/libs/loadingPanel',
     classifie:'../resources/configPanel/js/classie',
-    bootstrap:'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min',   
+    bootstrap:'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min',
+    bootstrap_swicth:'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/js/bootstrap-switch.min',
     webcomponetsPolyfill:'https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.17/webcomponents-lite.min'
       },
     waitSeconds:25
@@ -77,7 +81,7 @@
       var mediascape = {};
       var discovery= {};
 
-			var moduleList   = Array.prototype.slice.apply( arguments );
+       var moduleList   = Array.prototype.slice.apply( arguments );
       mediascape.init = function(options) {
         mediascapeOptions = {};
         _this = Object.create( mediascape );
