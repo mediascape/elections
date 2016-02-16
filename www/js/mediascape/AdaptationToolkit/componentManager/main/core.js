@@ -154,6 +154,15 @@ define(
                });
         });
       }
+      this.isLoaded = function(cmp){
+          if (componentStatus)
+          for (c in componentStatus){
+             if (componentStatus[c].selector === cmp.id)
+               if (componentStatus[c].show) return true;
+               else return false;
+          }
+         return false;
+      }
       this.setMenu = function (show){
          if (show){
             mediascape.AdaptationToolkit.uiComponents.showComponentMenu(components);

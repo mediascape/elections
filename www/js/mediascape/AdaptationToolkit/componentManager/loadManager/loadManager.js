@@ -58,7 +58,8 @@ define(
             if (!allreadyLoaded){
             el.load();
             var v = el.querySelector('video');
-            if (v){
+
+            if (v && v.src!=""){
                v.src = el.getAttribute('file');
                el.show = true;
                if (el.play) {
@@ -69,7 +70,7 @@ define(
              }
 
              var a = el.querySelector('audio');
-            if (a){
+            if (a && a.src!=""){
                a.src = el.getAttribute('file');
                el.show = true;
                if (el.play) {
@@ -99,12 +100,13 @@ define(
           el.style.display="none";
 
             var v = el.querySelector('video');
-            if (v) {
+            if (v && v.src!="") {
               v.src="";
               el.show = false;
+              console.warn("UNLOAD VIDEO",el.id);
             }
             var a = el.querySelector('audio');
-            if (a) {
+            if (a && a.src!="") {
               a.src="";
               el.show = false;
             }

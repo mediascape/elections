@@ -5,7 +5,7 @@
 <template>
 	<style >
 
-	
+
 
 	#container {
 	background-color: #0A2533;
@@ -59,7 +59,25 @@ Polymer({
 	ready: function() {
 		var _this = this;
 		document.addEventListener ('motion-ready',this.smReady.bind(this));
+		if(this.id.indexOf("video")>-1){
 
+			video=document.createElement('video');
+			video.id="player1"+_this.id;
+			video.style.width='100%';
+			video.style.height='100%';
+			video.style.backgroundColor='#173F56';
+		//	video.mute =true;
+			//if (_this.show)
+				video.src=_this.file;
+			if(this.ismuted==="true"){
+				video.muted=true;
+			}
+			video.preload = "auto";
+			this.$.container.appendChild(video);
+			video.addEventListener('ended', function () {
+					_this.restart();
+			});
+		}
 
 
 
@@ -136,30 +154,12 @@ Polymer({
 		},10000);
 		else
 		setTimeout(function(){
-			if(_this.id.indexOf("video")>-1){
 
-				video=document.createElement('video');
-				video.id="player1"+_this.id;
-				video.style.width='100%';
-				video.style.height='100%';
-				video.style.backgroundColor='#173F56';
-			//	video.mute =true;
-				//if (_this.show)
-					video.src=_this.file;
-				if(_this.ismuted==="true"){
-					video.muted=true;
-				}
-				video.preload = "auto";
-				_this.$.container.appendChild(video);
-				video.addEventListener('ended', function () {
-  					_this.restart();
-				});
-			}
 
 			_this.sm.addVideo (_this.querySelector('video'),id,_this.skew);
 		//	var cmpStatus = mediascape.AdaptationToolkit.componentManager.core.getComoponentsToShow();
 		//	if (cmpStatus) mediascape.AdaptationToolkit.Adaptation.UIAdaptation.onComponentsChange(cmpStatus);
-		},4000);
+	},0);
   },
 	play:function(){
 		if (this.sm) this.sm.mapp.motions.shared.update(null, 1);
