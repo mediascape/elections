@@ -280,7 +280,8 @@ define(
         // Filter only showing ones
         //cmps = cmds.filter(function(el){});
       event.srcElement =  event.srcElement || event.target;
-       if(prev_orientation!==undefined && prev_orientation!==''){
+      //orientation change is taken as a window resize because the layout is set by the user
+       /*if(prev_orientation!==undefined && prev_orientation!==''){
 
             if(prev_orientation !== event.srcElement.orientation  ){
 
@@ -307,14 +308,14 @@ define(
 
 
       else{
-         prev_orientation=event.srcElement.orientation;
+         prev_orientation=event.srcElement.orientation;*/
           // this.layout(cmps,'onResizeEvent');
           if (event.detail !="emulate")
           {
             console.log("RESIZING",event);
             this.layout(cmps,'onResizeEvent');
           }
-      }
+      //}
 
         /*
         if (event.detail !="emulate")

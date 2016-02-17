@@ -1148,7 +1148,10 @@ var logoItem=function(){
 
     li.appendChild(img1);
     li.appendChild(img2);
-
+    li.onclick=function(event){
+      mediascape.AdaptationToolkit.uiComponents.toggleFullScreen();
+    }
+    
     return li;
   }
 }
@@ -1449,10 +1452,17 @@ var camera=function(){
     if(b[0].show===true){
       mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'hide');
       mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeViewSwVal(agentToChange,this.id,false);
+
+      
+
     }
     else{
       mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'show');
       mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeViewSwVal(agentToChange,this.id,true);
+
+
+
+
     }
   }
   this.soundclick=function(event){
@@ -1475,25 +1485,33 @@ var camera=function(){
 
 
     if(b[0].customCmd.lastIndexOf('mutePlayer')===-1 && b[0].customCmd.lastIndexOf('soundPlayer')===-1){
-        if(document.querySelector('#'+scope.name).ismuted==='false'){
-          mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'mutePlayer');
-          mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,this.id,false);
+        if(document.querySelector('#'+scope.name).ismuted==='false' ){
+          
+            mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'mutePlayer');
+            mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,this.id,false);
+          
+
         }
         else{
+        
           mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'soundPlayer');
           mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,this.id,true);
+       
         }
 
     }
     else{
       if(b[0].customCmd.lastIndexOf('mutePlayer') <b[0].customCmd.lastIndexOf('soundPlayer')){
-
+       
         mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'mutePlayer');
         mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,this.id,false);
+       
       }
       else{
+        
         mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'soundPlayer');
         mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,this.id,true);
+      
       }
     }
   }
@@ -1595,14 +1613,17 @@ var camerasSection=function(){
 
 
       if(b[0].customCmd.lastIndexOf('mutePlayer')===-1 && b[0].customCmd.lastIndexOf('soundPlayer')===-1){
+        
         if(document.querySelector('#'+this.cameras[i].name).ismuted==='false'){
-          this.cameras[i].setSoundStatus(true);
+          this.cameras[i].setSoundStatus(true);  
 
         }
+        
         else{
           this.cameras[i].setSoundStatus(false);
 
         }
+
 
       }
       else {

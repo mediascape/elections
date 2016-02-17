@@ -201,7 +201,8 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
 
     }
     divided.onOrientationChange = function (cmps){
-      console.log("test");
+      
+      console.log("orientationChange");
     }
     divided.onLayoutChangeEvent = function (cmps){
       console.log("layout changed");
