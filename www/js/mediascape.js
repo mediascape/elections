@@ -6,7 +6,7 @@
     rscript.onload = function() {
       init();
     };
-    rscript.src = "../resources/require.js";
+    rscript.src = "../resources/libs/require.js";
     document.head.appendChild( rscript );
     return;
   }
