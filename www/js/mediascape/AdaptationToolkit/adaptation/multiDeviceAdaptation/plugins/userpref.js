@@ -43,6 +43,7 @@ function(){
                               mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getApplicationContext().setItem('reset',"false");
                           },2500);
                      }
+                     else {
                      if ((componentsStatus[c].customCmd.lastIndexOf('show')!=-1 || componentsStatus[c].customCmd.lastIndexOf('hide')!=-1)
                         && componentsStatus[c].customCmd.lastIndexOf('show') >= componentsStatus[c].customCmd.lastIndexOf('hide')){
                        /*if (cmp.lproperties['duplicable']==="false")
@@ -61,6 +62,7 @@ function(){
                      }
                      //else return false;
                   }
+                }
 
 
             }

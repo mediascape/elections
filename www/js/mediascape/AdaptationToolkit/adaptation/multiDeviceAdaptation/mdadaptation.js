@@ -4,7 +4,7 @@
 * with the sharedContext. This information is used to decide howto distribute all components
 * on the each device dependeing on the context. For this purpose, there is an plugin system
 * that implements different rules with different priority to decide the best distirbution. The
-* configuration file of the plugins is located at resources/adaotationRules/rules.json
+* configuration file of the plugins is located at resources/adaotationRules/rules.son
 *
 * @module mediascape/AdaptationToolkit/adaptation/multiDeviceAdaptation/mdadaptation
 * @requires mediascape/AdaptationToolkit/adaptation/multiDeviceAdaptation/plugins/explicit
@@ -323,7 +323,8 @@ function($, applicationContext){
 
       status = status || [];
       var diff = [];
-   if (statusBefore.length>0)
+   if (statusBefore.length>0 && hasAgent(change.agentid))
+        //if (!hasAgent(change.agentid)) change.agentid = me.id;
         diff = getChangeDiff(change.agentid,status);
       if (diff.length>0 || statusBefore.length===0 ){
         mediascape.AdaptationToolkit.componentManager.core.setComponentsStatus(status);
@@ -565,7 +566,9 @@ function($, applicationContext){
 
   // parse the input json file to extract rules and constraints
   var loadJSONRules = function(file) {
-
+    $.ajaxSetup({
+                cache: true
+      })
     $.getJSON(file, function(rules){
       // set up for the personal adaptation to take care of user preference
 
