@@ -323,14 +323,14 @@ function($, applicationContext){
 
       status = status || [];
       var diff = [];
-   if (statusBefore.length>0 && hasAgent(change.agentid))
-        //if (!hasAgent(change.agentid)) change.agentid = me.id;
-        diff = getChangeDiff(change.agentid,status);
+   if (statusBefore.length>0 )
+      //  if (!hasAgent(change.agentid)) change.agentid = me.id;
+        diff = getChangeDiff(me.id,status);
       if (diff.length>0 || statusBefore.length===0 ){
         mediascape.AdaptationToolkit.componentManager.core.setComponentsStatus(status);
-        var event = new CustomEvent("onComponentsChange", {"detail":{"type":"localChange","cmps":status,"agentid":change.agentid}});
+        var event = new CustomEvent("onComponentsChange", {"detail":{"type":"localChange","cmps":status,"agentid":me.id}});
         document.dispatchEvent(event);
-        AE.notifyUpdateContext(context,"cmp_changed",change.agentid);
+        AE.notifyUpdateContext(context,"cmp_changed",me.id);
       }
     }else{
       console.log("other agent change <<<<<><");
