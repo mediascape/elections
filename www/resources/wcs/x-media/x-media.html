@@ -68,7 +68,7 @@ Polymer({
 			video.style.backgroundColor='#173F56';
 		//	video.mute =true;
 			//if (_this.show)
-				video.src=_this.file;
+
 			if(this.ismuted==="true"){
 				video.muted=true;
 			}
@@ -154,12 +154,12 @@ Polymer({
 		},10000);
 		else
 		setTimeout(function(){
-
-
-			_this.sm.addVideo (_this.querySelector('video'),id,_this.skew);
+			 var video = _this.querySelector('video')
+			 video.src=_this.file;
+			_this.sm.addVideo (video,id,_this.skew);
 		//	var cmpStatus = mediascape.AdaptationToolkit.componentManager.core.getComoponentsToShow();
 		//	if (cmpStatus) mediascape.AdaptationToolkit.Adaptation.UIAdaptation.onComponentsChange(cmpStatus);
-	},0);
+	},4000);
   },
 	play:function(){
 		if (this.sm) this.sm.mapp.motions.shared.update(null, 1);
@@ -186,10 +186,10 @@ Polymer({
 				this.soundPlayer();
 			}
 			else if(data==='offSound'){
-				
+
 			}
 			else if(data==='onSound'){
-				
+
 			}
 	}
 });

@@ -354,7 +354,7 @@
 		display:block;
 	}
 	h2 { font-size: xx-large;}
-	
+
 	.logo-party { text-align: center;}
 	#hegoEuskalLogo{ width: 200px;}
 	#part1{
@@ -381,7 +381,7 @@
 	#text1{font-size: small;padding-top: 0px !important;}
 	#tweetNum{font-size: small;padding-top: 0px !important;}
 
-	
+
 	.logo-party { text-align: center;}
 	#hegoEuskalLogo{ width: 100px; }
 	#part1{
@@ -452,8 +452,8 @@
 	</template>
 </dom-module>
 	<script>
-		Polymer({			
-			
+		Polymer({
+
 
 				is:'twitter-map',
 			  behaviors:[ComponentQueryBehavior,ComponentStatusBehavior],
@@ -488,7 +488,7 @@
 					document.addEventListener ('motion-ready',this.smReady.bind(this));
 
 					var scope=this;
-					
+
 
 					this.mapResults={};
 					this.$.data.addEventListener("response",function(e){
@@ -497,7 +497,7 @@
 
 					});
 
-					
+
 				},
 				smReady:function(){
 					// Sharemotion objetua lortu
@@ -506,12 +506,13 @@
 					// ebentuak entzun ta jaso
 					var handler = function (e) {
 						_this.timestamp=1432509468+Math.round(e.pos);
-						
+
 					};
 					this.sm.mapp.motions.shared.on("timeupdate", handler);
 				},
 				timestampChanged:function(){
 					//console.log("timestampChanged");
+				 if (this.showing){
 					var interval=10;
 					var prev=this.time;
 					if(this.mapResults!==undefined){
@@ -534,7 +535,7 @@
 							}
 						}
 
-						if(prev!=this.time){								
+						if(prev!=this.time){
 							this.$.gipuzkoaLogo.src="./resources/images/twitter/"+this.calculateMax(this.mapResults.results[this.time].gipuzkoa)[0]+'-logo.png';
 							this.$.bizkaiaLogo.src="./resources/images/twitter/"+this.calculateMax(this.mapResults.results[this.time].bizkaia)[0]+'-logo.png';
 							this.$.arabaLogo.src="./resources/images/twitter/"+this.calculateMax(this.mapResults.results[this.time].araba)[0]+'-logo.png';
@@ -545,6 +546,7 @@
 
 
 					}
+				 }
 				},
 
 				unload:function(){
@@ -553,7 +555,7 @@
 				load:function(){
 					 this.showing =true;
 				},
-				
+
 				calculateMax:function(values){
 					var max=0;
 					var maxIndex=0;
