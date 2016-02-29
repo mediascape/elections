@@ -82,7 +82,7 @@ Polymer({
 
 
 
-			function toExecute(event){
+			/*function toExecute(event){
 				console.log('context updated');
 				if(mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAgentId()===event.detail.agentid){
 					for(var i=0;i<event.detail.context.agents.length;i++){
@@ -104,7 +104,7 @@ Polymer({
 
 			}
 
-			document.addEventListener('contextUpdate',toExecute.bind(this));
+			document.addEventListener('contextUpdate',toExecute.bind(this));*/
 
 
 		/*Polymer.addEventListener(document,'mute',function(){
@@ -184,6 +184,12 @@ Polymer({
 			}
 			else if(data==='soundPlayer'){
 				this.soundPlayer();
+			}
+			else if(data==='offSound'){
+				
+			}
+			else if(data==='onSound'){
+				
 			}
 	}
 });
