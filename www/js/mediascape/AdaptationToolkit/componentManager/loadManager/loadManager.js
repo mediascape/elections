@@ -103,7 +103,6 @@ define(
             if (v && v.src!="") {
               v.src="";
               el.show = false;
-              console.warn("UNLOAD VIDEO",el.id);
             }
             var a = el.querySelector('audio');
             if (a && a.src!="") {
