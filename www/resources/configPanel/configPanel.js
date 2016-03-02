@@ -385,7 +385,7 @@ var ControlPanel= function (url){
           this.addItem(section6);
           container.appendChild(section6.render());
 
-          
+
           devBox.addDevice(dev1);
 
         }
@@ -400,7 +400,7 @@ var ControlPanel= function (url){
       else{
         mediascape.AdaptationToolkit.uiComponents.ctrlPanel.selfID=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAgentId();
         var dev1=new device();
-        
+
         if(event.detail.profile.deviceType==='TV'){
 
           dev1.setIcon('TV_'+(b[0]._id+1)+'.png');
@@ -483,7 +483,7 @@ var ControlPanel= function (url){
           section6.addItem(graphicSect);
           this.addItem(section6);
           container.appendChild(section6.render());
-          
+
 
 
 
@@ -542,7 +542,7 @@ var ControlPanel= function (url){
           container.appendChild(section6.render());
 
 
-          
+
 
         }
         devBox.addDevice(dev1);
@@ -551,7 +551,7 @@ var ControlPanel= function (url){
         var sectionNum=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items.length;
         var sectionDiv=document.querySelector('#fullTemp').children;
         for(var i=2;i<sectionNum;i++){
-          
+
           if(sections[i].name.indexOf('cameras')>-1 && sections[i].name.indexOf(event.detail.agentid)===-1){
             var sectionToReplace=new section();
             sectionToReplace.setName(sections[i].name);
@@ -614,7 +614,7 @@ var ControlPanel= function (url){
 
 
     }
-    
+
   }
   document.addEventListener('agentChange',this.onAgentChange.bind(this));
 
@@ -641,26 +641,26 @@ var ControlPanel= function (url){
               // Show/hide commands
               if(changes[j].newValue===false){
 
-                
+
                 sectionDiv[i].querySelector(selector).setAttribute('val',false);
 
               }
               else if(changes[j].newValue===true){
-                
+
                 sectionDiv[i].querySelector(selector).setAttribute('val',true);
               }
             }
             else if(sections[i].name.indexOf(event.detail.agentid)===0 &&
-                sectionDiv[i].querySelector('#radioViewBut')!==null){
+                sectionDiv[i].querySelector('#radioViewBut'+changes[j].compId)!==null){
               if(changes[j].newValue===false){
 
-                sectionDiv[i].querySelector('#radioViewBut').src='../resources/configPanel/img/radio/Radio_btn_play.png';
-                sectionDiv[i].querySelector('#radioEq').src='../resources/configPanel/img/radio/Radio-animacion-off-estatico.png';
+                sectionDiv[i].querySelector('#radioViewBut'+changes[j].compId).setAttribute('src','../resources/configPanel/img/radio/Radio_btn_play.png');
+                sectionDiv[i].querySelector('#radioEq'+changes[j].compId).setAttribute('src','../resources/configPanel/img/radio/Radio-animacion-off-estatico.png');
 
               }
               else if(changes[j].newValue===true){
-                sectionDiv[i].querySelector('#radioViewBut').src='../resources/configPanel/img/radio/Radio_btn_pausa.png';
-                sectionDiv[i].querySelector('#radioEq').src='../resources/configPanel/img/radio/animacion-ecualizador_transp.gif';
+                sectionDiv[i].querySelector('#radioViewBut'+changes[j].compId).setAttribute('src','../resources/configPanel/img/radio/Radio_btn_pausa.png');
+                sectionDiv[i].querySelector('#radioEq'+changes[j].compId).setAttribute('src','../resources/configPanel/img/radio/animacion-ecualizador_transp.gif');
               }
             }
 
@@ -672,29 +672,30 @@ var ControlPanel= function (url){
                 // Show/hide commands
                 if(changes[j].newValue==='hide'){
 
-                  
+
                   sectionDiv[i].querySelector(selector).setAttribute('val',false);
                 }
                 else if(changes[j].newValue==='show'){
-                
+
                   sectionDiv[i].querySelector(selector).setAttribute('val',true);
                 }
+              }
+              else if(sections[i].name.indexOf(event.detail.agentid)===0 &&
+                sectionDiv[i].querySelector('#radioViewBut'+changes[j].compId)!==null){
+              if(changes[j].newValue==='hide'){
+
+                sectionDiv[i].querySelector('#radioViewBut'+changes[j].compId).setAttribute('src','../resources/configPanel/img/radio/Radio_btn_play.png');
+                sectionDiv[i].querySelector('#radioEq'+changes[j].compId).setAttribute('src','../resources/configPanel/img/radio/Radio-animacion-off-estatico.png');
+
+              }
+              else if(changes[j].newValue==='show'){
+                sectionDiv[i].querySelector('#radioViewBut'+changes[j].compId).setAttribute('src','../resources/configPanel/img/radio/Radio_btn_pausa.png');
+                sectionDiv[i].querySelector('#radioEq'+changes[j].compId).setAttribute('src','../resources/configPanel/img/radio/animacion-ecualizador_transp.gif');
               }
             }
 
 
-            if(sections[i].name.indexOf(event.detail.agentid)===0 &&
-                sectionDiv[i].querySelector('#radioViewBut')!==null){
-              if(changes[j].newValue==='hide'){
 
-                sectionDiv[i].querySelector('#radioViewBut').src='../resources/configPanel/img/radio/Radio_btn_play.png';
-                sectionDiv[i].querySelector('#radioEq').src='../resources/configPanel/img/radio/Radio-animacion-off-estatico.png';
-
-              }
-              else if(changes[j].newValue==='show'){
-                sectionDiv[i].querySelector('#radioViewBut').src='../resources/configPanel/img/radio/Radio_btn_pausa.png';
-                sectionDiv[i].querySelector('#radioEq').src='../resources/configPanel/img/radio/animacion-ecualizador_transp.gif';
-              }
             }
             //Sound/mute
             //else{
@@ -702,11 +703,11 @@ var ControlPanel= function (url){
               var selector = '#soundCheck'+changes[j].compId;
               if(sections[i].name.indexOf(event.detail.agentid)===0 && sectionDiv[i].querySelector(selector)!==null){
                 if(changes[j].newValue==='mutePlayer'){
-                  
+
                   sectionDiv[i].querySelector(selector).setAttribute('val',false);
                 }
                 else if(changes[j].newValue==='soundPlayer'){
-                
+
                   sectionDiv[i].querySelector(selector).setAttribute('val',true);
                 }
               }
@@ -715,11 +716,11 @@ var ControlPanel= function (url){
               var selector = '#soundCheck'+changes[j].compId;
               if(sections[i].name.indexOf(event.detail.agentid)===0 && sectionDiv[i].querySelector(selector)!==null){
                 if(changes[j].newValue==='offSound'){
-                  
+
                   sectionDiv[i].querySelector(selector).setAttribute('val',false);
                 }
                 else if(changes[j].newValue==='onSound'){
-                
+
                   sectionDiv[i].querySelector(selector).setAttribute('val',true);
                 }
               }
@@ -996,7 +997,7 @@ var ControlPanel= function (url){
 
     for(var i=2;i<sectionNum;i++){
       if(sections[i].name===agentToChange+'cameras'){
-        sectionDiv[i].querySelector('#soundCheck'+cId).setAttribute('val',v);       
+        sectionDiv[i].querySelector('#soundCheck'+cId).setAttribute('val',v);
 
       }
     }
@@ -1005,12 +1006,36 @@ var ControlPanel= function (url){
     var sections=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items;
     var sectionNum=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items.length;
     var sectionDiv=document.querySelector('#fullTemp').children;
-    
-    
+
+
 
     for(var i=2;i<sectionNum;i++){
       if(sections[i].name.indexOf(agentToChange)===0 && sectionDiv[i].querySelector('#viewCheck'+cId)!==null){
-        sectionDiv[i].querySelector('#viewCheck'+cId).setAttribute('val',v);        
+        sectionDiv[i].querySelector('#viewCheck'+cId).setAttribute('val',v);
+
+      }
+    }
+  }
+  this.changeRadioViewImgVal=function(agentToChange,cId,v){
+    var sections=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items;
+    var sectionNum=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items.length;
+    var sectionDiv=document.querySelector('#fullTemp').children;
+
+
+
+    for(var i=2;i<sectionNum;i++){
+      if(sections[i].name.indexOf(agentToChange)===0 && sectionDiv[i].querySelector('#radioViewBut'+cId)!==null){
+        if(v===false){
+
+          sectionDiv[i].querySelector('#radioViewBut'+cId).setAttribute('src','../resources/configPanel/img/radio/Radio_btn_play.png');
+          sectionDiv[i].querySelector('#radioEq'+cId).setAttribute('src','../resources/configPanel/img/radio/Radio-animacion-off-estatico.png');
+
+        }
+        else if(v===true){
+          sectionDiv[i].querySelector('#radioViewBut'+cId).setAttribute('src','../resources/configPanel/img/radio/Radio_btn_pausa.png');
+          sectionDiv[i].querySelector('#radioEq'+cId).setAttribute('src','../resources/configPanel/img/radio/animacion-ecualizador_transp.gif');
+        }
+
 
       }
     }
@@ -1195,7 +1220,7 @@ var logoItem=function(){
     li.onclick=function(event){
       mediascape.AdaptationToolkit.uiComponents.toggleFullScreen();
     }
-    
+
     return li;
   }
 }
@@ -1249,7 +1274,7 @@ var device=function(){
 
     var img1=document.createElement('img');
     img1.src='../resources/configPanel/img/devices/'+this.icon;
-    
+
     a.appendChild(img1);
 
 
@@ -1459,7 +1484,7 @@ var camera=function(){
 
     div8.appendChild(i2);
 
-    
+
 
     var s1=document.createElement('paper-switch');
     s1.id='soundCheck'+this.id;
@@ -1503,12 +1528,12 @@ var camera=function(){
           mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,scope.id,false);
         }
       }
-      else if(b[0].customCmd.lastIndexOf('mutePlayer') <b[0].customCmd.lastIndexOf('soundPlayer')){       
+      else if(b[0].customCmd.lastIndexOf('mutePlayer') <b[0].customCmd.lastIndexOf('soundPlayer')){
           mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,scope.id,'offSound');
           mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,scope.id,false);
       }
       },1000);
-      
+
 
 
 
@@ -1518,32 +1543,32 @@ var camera=function(){
       mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeViewSwVal(agentToChange,this.id,true);
 
       setTimeout(function(){
-      if(b[0].customCmd.lastIndexOf('offSound')===-1 && b[0].customCmd.lastIndexOf('mutePlayer')===-1 && 
+      if(b[0].customCmd.lastIndexOf('offSound')===-1 && b[0].customCmd.lastIndexOf('mutePlayer')===-1 &&
         b[0].customCmd.lastIndexOf('soundPlayer')===-1){
         if(document.querySelector('#'+scope.name).ismuted==='false'){
           mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,scope.id,'soundPlayer');
           mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,scope.id,true);
         }
-        
+
 
       }
       else if(b[0].customCmd.lastIndexOf('offSound')>b[0].customCmd.lastIndexOf('mutePlayer')){
         mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,scope.id,'onSound');
         mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,scope.id,true);
       }
-      else if(b[0].customCmd.lastIndexOf('offSound')!==-1 && b[0].customCmd.lastIndexOf('mutePlayer')===-1 && 
+      else if(b[0].customCmd.lastIndexOf('offSound')!==-1 && b[0].customCmd.lastIndexOf('mutePlayer')===-1 &&
         document.querySelector('#'+scope.name).ismuted!=='false'){
         mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,scope.id,'onSound');
-        mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,scope.id,true); 
+        mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,scope.id,true);
       }
-      else if(b[0].customCmd.lastIndexOf('offSound')===-1 && b[0].customCmd.lastIndexOf('mutePlayer')===-1 && 
+      else if(b[0].customCmd.lastIndexOf('offSound')===-1 && b[0].customCmd.lastIndexOf('mutePlayer')===-1 &&
         b[0].customCmd.lastIndexOf('soundPlayer')!==-1){
         mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,scope.id,'onSound');
           mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,scope.id,true);
       }
       },1000);
 
-  
+
 
 
     }
@@ -1570,32 +1595,32 @@ var camera=function(){
     if(b[0].show===true){
     if(b[0].customCmd.lastIndexOf('mutePlayer')===-1 && b[0].customCmd.lastIndexOf('soundPlayer')===-1){
         if(document.querySelector('#'+scope.name).ismuted==='false' ){
-          
+
             mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'mutePlayer');
             mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,this.id,false);
-          
+
 
         }
         else{
-        
+
           mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'soundPlayer');
           mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,this.id,true);
-       
+
         }
 
     }
     else{
       if(b[0].customCmd.lastIndexOf('mutePlayer') <b[0].customCmd.lastIndexOf('soundPlayer')){
-       
+
         mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'mutePlayer');
         mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,this.id,false);
-       
+
       }
       else{
-        
+
         mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'soundPlayer');
         mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,this.id,true);
-      
+
       }
     }
   }
@@ -1699,12 +1724,12 @@ var camerasSection=function(){
 
       if(b[0].customCmd.lastIndexOf('mutePlayer')===-1 && b[0].customCmd.lastIndexOf('soundPlayer')===-1
         && b[0].customCmd.lastIndexOf('offSound')===-1 && b[0].customCmd.lastIndexOf('onSound')===-1){
-        
+
         if(document.querySelector('#'+this.cameras[i].name).ismuted==='false' && b[0].show===true){
-          this.cameras[i].setSoundStatus(true);  
+          this.cameras[i].setSoundStatus(true);
 
         }
-        
+
         else{
           this.cameras[i].setSoundStatus(false);
 
@@ -1713,7 +1738,7 @@ var camerasSection=function(){
 
       }
       else {
-        
+
         if(b[0].customCmd.lastIndexOf('offSound')===-1 && b[0].customCmd.lastIndexOf('onSound')===-1){
 
           if((b[0].customCmd.lastIndexOf('mutePlayer') <b[0].customCmd.lastIndexOf('soundPlayer') ) &&
@@ -1728,20 +1753,20 @@ var camerasSection=function(){
 
             this.cameras[i].setSoundStatus(false);
           }
-          else if((b[0].customCmd.lastIndexOf('mutePlayer')===-1) 
+          else if((b[0].customCmd.lastIndexOf('mutePlayer')===-1)
             && (b[0].customCmd.lastIndexOf('soundPlayer')!==-1 && b[0].show===true)){
             this.cameras[i].setSoundStatus(true);
           }
-          else if((b[0].customCmd.lastIndexOf('mutePlayer')===-1) 
+          else if((b[0].customCmd.lastIndexOf('mutePlayer')===-1)
             && (b[0].customCmd.lastIndexOf('soundPlayer')!==-1 && b[0].show===false)){
             this.cameras[i].setSoundStatus(false);
 
           }
-          else if((b[0].customCmd.lastIndexOf('mutePlayer')!==-1) 
+          else if((b[0].customCmd.lastIndexOf('mutePlayer')!==-1)
             && (b[0].customCmd.lastIndexOf('soundPlayer')===-1)){
             this.cameras[i].setSoundStatus(false);
           }
-          
+
           else{
             if(b[0].show===true){
               this.cameras[i].setSoundStatus(true);
@@ -1749,24 +1774,24 @@ var camerasSection=function(){
           }
         }
         else{
-          
+
 
           if(b[0].customCmd.lastIndexOf('offSound')>b[0].customCmd.lastIndexOf('mutePlayer')){
             this.cameras[i].setSoundStatus(false);
           }
-          else if(b[0].customCmd.lastIndexOf('offSound')!==-1 && b[0].customCmd.lastIndexOf('mutePlayer')===-1 && 
+          else if(b[0].customCmd.lastIndexOf('offSound')!==-1 && b[0].customCmd.lastIndexOf('mutePlayer')===-1 &&
             document.querySelector('#'+scope.name).ismuted!=='false'){
-            this.cameras[i].setSoundStatus(false); 
+            this.cameras[i].setSoundStatus(false);
           }
 
 
 
         }
       }
-      
 
-      
-      
+
+
+
     }
 
   }
@@ -1820,7 +1845,7 @@ var hashtag=function(){
     div2.appendChild(p2);
     div2.appendChild(select);
 
-    
+
 
 
     var s2=document.createElement('paper-switch');
@@ -2088,15 +2113,15 @@ var radios=function(){
 
     var img=document.createElement('img');
     img.className="radio_btn_pausa";
-    img.id='radioViewBut';
+    img.id='radioViewBut'+this.id;
     img.width='150';
     if(this.viewStatus===true){
-      img.src='../resources/configPanel/img/radio/Radio_btn_pausa.png';
+      img.setAttribute('src','../resources/configPanel/img/radio/Radio_btn_pausa.png');
     }
     else{
-      img.src='../resources/configPanel/img/radio/Radio_btn_play.png';
+      img.setAttribute('src','../resources/configPanel/img/radio/Radio_btn_play.png');
     }
-    img.addEventListener('click',this.viewClick.bind(this),true);
+    img.addEventListener('click',this.viewClick.bind(this));
 
     div7.appendChild(img);
 
@@ -2116,12 +2141,12 @@ var radios=function(){
 
     var img1=document.createElement('img');
     img1.className='radio_ecualizador_img';
-    img1.id='radioEq';
+    img1.id='radioEq'+this.id;
     if(this.viewStatus===true){
-      img1.src='../resources/configPanel/img/radio/animacion-ecualizador_transp.gif';
+      img1.setAttribute('src','../resources/configPanel/img/radio/animacion-ecualizador_transp.gif');
     }
     else{
-      img1.src='../resources/configPanel/img/radio/Radio-animacion-off-estatico.png';
+      img1.setAttribute('src','../resources/configPanel/img/radio/Radio-animacion-off-estatico.png');
     }
     div10.appendChild(img1);
 
@@ -2223,6 +2248,7 @@ var radios=function(){
     return div2;
   }
   this.viewClick=function(event){
+    event.preventDefault();
     var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
     var agents=agCtx.agents;
     var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
@@ -2240,11 +2266,12 @@ var radios=function(){
     console.log('viewClick');
     if(b[0].show===true){
       mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'hide');
-    
+      mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeRadioViewImgVal(agentToChange,this.id,false);
     }
     else{
       mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'show');
-      
+      mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeRadioViewImgVal(agentToChange,this.id,true);
+
     }
   }
 }
@@ -2264,6 +2291,7 @@ var radioSection=function(){
 
   }
   this.setRadioViewStatus=function(agentID){
+
 
     var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
     var agents=agCtx.agents;
@@ -2318,7 +2346,7 @@ var table=function(){
     div6.className='col-md-9 txt_titular';
     div6.innerHTML='Table data information';
 
-    
+
 
     var s2=document.createElement('paper-switch');
     s2.id='viewCheck'+this.id;
@@ -2611,7 +2639,7 @@ var graph=function(){
 
     div32.appendChild(p5);
 
-    
+
 
     var s2=document.createElement('paper-switch');
     s2.id='viewCheck'+this.id;

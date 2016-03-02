@@ -326,7 +326,7 @@ function($, applicationContext){
    if (statusBefore.length>0 )
       //  if (!hasAgent(change.agentid)) change.agentid = me.id;
         diff = getChangeDiff(me.id,status);
-      if (diff.length>0 || statusBefore.length===0 ){
+      if (diff && (diff.length>0 || statusBefore.length===0 )){
         mediascape.AdaptationToolkit.componentManager.core.setComponentsStatus(status);
         var event = new CustomEvent("onComponentsChange", {"detail":{"type":"localChange","cmps":status,"agentid":me.id}});
         document.dispatchEvent(event);
