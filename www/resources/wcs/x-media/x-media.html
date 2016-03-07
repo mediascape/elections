@@ -147,6 +147,9 @@ Polymer({
 	load:function(){
 	     var video = this.querySelector('video')
 			 video.src = this.file;
+			 if(this.ismuted==="true"){
+				 video.muted=true;
+			 }
 	}
 });
  </script>

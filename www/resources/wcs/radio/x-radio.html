@@ -163,13 +163,16 @@ Polymer({
 
 	},
 	unload:function(){
-		 var video = this.querySelector('audio')
-		 video.src ="";
+		 var audio = this.querySelector('audio')
+		 audio.src ="";
 
 	},
 	load:function(){
-	     var video = this.querySelector('audio')
-			 video.src = this.file;
+	     var audio = this.querySelector('audio')
+			 audio.src = this.file;
+			 if(this.ismuted==="true"){
+				audio.muted=true;
+			}
 	}
 });
  </script>
