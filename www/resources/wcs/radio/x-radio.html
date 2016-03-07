@@ -113,7 +113,7 @@ Polymer({
 		        value:'',
 		        observer: 'customCmdReceived'
 		    }
-		   
+
 	},
 
 	ready: function() {
@@ -161,6 +161,15 @@ Polymer({
 	customCmdReceived: function(data){
 			console.log("DATA",data);
 
+	},
+	unload:function(){
+		 var video = this.querySelector('audio')
+		 video.src ="";
+
+	},
+	load:function(){
+	     var video = this.querySelector('audio')
+			 video.src = this.file;
 	}
 });
  </script>
