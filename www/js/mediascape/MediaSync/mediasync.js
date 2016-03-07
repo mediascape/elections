@@ -75,9 +75,9 @@ var MediaSync = function() {
     _options.loop = _options.loop || false;
     _options.target = _options.target * 2; // Start out coarse
     if (_options.remember === undefined){
-      _options.remember = true;
+      _options.remember = false;
     }
-    if (_options.debug) {
+    if (_options.debug || _options.remember === false) {
       localStorage.removeItem("mediascape_vpbr")
       _options.remember = false;
     }
@@ -85,11 +85,52 @@ var MediaSync = function() {
       _options.automute = true;
     }
     var _auto_muted = false;
-    var _motion = motion;
+
+
+    var onchange = function(e) {
+      _bad = 0;
+      _samples = [];
+      _last_skip = null;
+
+      // If we're paused, ignore
+      if (_stopped || _paused) {
+        return;
+      }
+
+      if (_update_func != undefined) {
+        _update_func(e);
+      } else {
+        console.log("WARNING: onchange but no update func yet");
+      }
+    }
+
+    var setMotion = function(motion) {
+      _bad = 0;
+      if (_motion) {
+        _motion.off("change", onchange);
+      }
+      _motion = motion;
+
+      // if motion is a timing object, we add some shortcuts
+      if (_motion.version == 3) {
+        _motion.__defineGetter__("pos", function() {return _motion.query().position});
+        _motion.__defineGetter__("vel", function() {return _motion.query().velocity});
+        _motion.__defineGetter__("acc", function() {return _motion.query().acceleration});
+      }
+
+      _motion.on("change", onchange);
+    };
+
     if (!motion) {
       console.log("WARNING: No motion has been set");
+    } else {
+      //setMotion(motion);
     }
+
+
     var _stopped = false;
+    var _paused = false;
+    var _motion;
 
     function onpaused() {
       if (_motion.vel == 1) {
@@ -97,6 +138,7 @@ var MediaSync = function() {
       }
     }
     function onplay() {
+      console.log("onplay");
       if (_motion.vel == 0) {
         elem.pause();
       }
@@ -106,9 +148,13 @@ var MediaSync = function() {
       stop();
     }
 
-    elem.addEventListener("paused", onpaused);
-    elem.addEventListener("play", onplay);
-    elem.addEventListener("error", onerror);
+    var pause = function(val) {
+      if (val == undefined) val = true;
+      _paused = val;
+      if (!_paused) {
+        onchange();
+      }
+    }
 
     var stop = function() {
       _stopped = true;
@@ -201,10 +247,10 @@ var MediaSync = function() {
 
     // onTimeChange handler for variable playback rate
     var update_func_playbackspeed = function(e) {
-      if (_stopped) {
+      if (_stopped || _paused) {
         return;
       }
-        var snapshot = _motion.query();
+        var snapshot = query();
         if (loop(snapshot.pos) == last_update) {
           return;
         }
@@ -247,7 +293,7 @@ var MediaSync = function() {
             // Stationary, we need to just jump
             var new_pos = loop(snapshot.pos + _options.skew);
             if (performance.now() - _last_bad > 150) {
-              _bad += 10;
+              //_bad += 10;
               _last_bad = performance.now();
               skip(new_pos);
             }
@@ -269,36 +315,25 @@ var MediaSync = function() {
 
           // Actual sync
           _dbg({type:"dbg", diff:diff, bad:_bad, vpbr:_vpbr});
-          function getRate(limit, suggested) {
-            //return _motion.vel + (diff*1000*diff*1000)/1000;
+          var getRate = function(limit, suggested) {
             return Math.min(_motion.vel+limit, Math.max(_motion.vel-limit, _motion.vel + suggested));
-            /*
-            var mult = 7;
-            if (limit < 1) mult = 5;
-            if (limit < 0.1) mult = 3;
-            if (limit < 0.025) mult = 2;
-            if (diff < 0) {
-              return Math.max(_motion.vel - limit, _motion.vel - mult*Math.pow(diff, 2));
-            }
-            return Math.min(_motion.vel + limit, _motion.vel + mult*Math.pow(diff, 2));
-            */
           }
 
           if (Math.abs(diff) > 1) {
             _samples = [];
             elem.playbackRate = getRate(1, diff*1.3); //Math.max(0, _motion.vel + (diff * 1.30));
             _dbg({type:"vpbr", level:"coarse", rate:elem.playbackRate});
-            _bad += 20;
+            _bad += 4;
           } else if (Math.abs(diff) > 0.5) {
             _samples = [];
             elem.playbackRate = getRate(0.5, diff*0.75);//Math.min(1.10, _motion.vel + (diff * 0.75));
             _dbg({type:"vpbr", level:"mid", rate:elem.playbackRate});
-            _bad += 10;
+            _bad += 2;
           } else if (Math.abs(diff) > 0.1) {
             _samples = [];
             elem.playbackRate = getRate(0.4, diff*0.75);//Math.min(1.10, _motion.vel + (diff * 0.75));
             _dbg({type:"vpbr", level:"midfine", rate:elem.playbackRate});
-            _bad += 6;
+            _bad += 1;
           } else if (Math.abs(diff) > 0.025) {
             _samples = [];
             elem.playbackRate = getRate(0.30, diff*0.60)//Math.min(1.015, _motion.vel + (diff * 0.30));
@@ -358,11 +393,11 @@ var MediaSync = function() {
     var last_diff;
     // timeUpdate handler for skip based sync
     var update_func_skip = function(ev) {
-      if (_stopped) {
+      if (_stopped || _paused) {
         return;
       }
 
-      var snapshot = _motion.query();
+      var snapshot = query();
       if (snapshot.vel > 0) {
         if (elem.paused) {
           elem.play();
@@ -466,10 +501,12 @@ var MediaSync = function() {
     }
 
     var _initialized = false;
-    function init() {
+    var init = function() {
       if (_initialized) return;
       _initialized = true;
-
+      if (_motion === undefined) {
+        setMotion(motion);
+      }
       if (localStorage && _options.remember) {
          if (localStorage["mediascape_vpbr"]) {
             var vpbr = JSON.parse(localStorage["mediascape_vpbr"]);
@@ -503,8 +540,10 @@ var MediaSync = function() {
     elem.addEventListener("playing", init);
 
     var _last_update_func;
+    var _poller;
     var _setUpdateFunc = function(func) {
       if (_last_update_func) {
+        clearInterval(_poller);
         elem.removeEventListener("timeupdate", _last_update_func);
         elem.removeEventListener("pause", _last_update_func);
         elem.removeEventListener("ended", _last_update_func);
@@ -522,24 +561,26 @@ var MediaSync = function() {
       }
     }
 
-    var onchange = function(e) {
-      _bad = 0;
-      _samples = [];
-      _last_skip = null;
-      if (_update_func != undefined) {
-        _update_func(e);
-      } else {
-        console.log("WARNING: onchange but no update func yet");
+    var query = function() {
+      // Handle both msvs and timing objects
+      if (_motion.version == 3) {
+        var q = _motion.query();
+        return {
+          pos: q.position,
+          vel: q.velocity,
+          acc: q.acceleration
+        }
       }
+      return _motion.query();
     }
-
+   /*
     var setMotion = function(motion) {
       _bad = 0;
       _motion.off("change", onchange);
       _motion = motion;
       _motion.on("change", onchange);
     };
-
+    */
     var setSkew = function(skew) {
       _options.skew = skew;
     }
@@ -674,8 +715,10 @@ var MediaSync = function() {
       getMethod: getMethod,
       setMotion: setMotion,
       stop: stop,
+      pause: pause,
       on: on,
-      off: off
+      off: off,
+      init:init
     };
     return API;
   }
