@@ -330,7 +330,7 @@ function($, applicationContext){
         mediascape.AdaptationToolkit.componentManager.core.setComponentsStatus(status);
         var event = new CustomEvent("onComponentsChange", {"detail":{"type":"localChange","cmps":status,"agentid":me.id}});
         document.dispatchEvent(event);
-        AE.notifyUpdateContext(context,"cmp_changed",me.id);
+        AE.notifyUpdateContext(context,"cmp_changed",change.agentid);
       }
     }else{
       console.log("other agent change <<<<<><");
