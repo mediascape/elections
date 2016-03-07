@@ -278,7 +278,8 @@ function($, applicationContext){
               console.log("EVENT",event);
           }
           // update componentStatus local and remote
-
+        var AE = mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation;
+        if (AE.getApplicationContext().getItem('reset')) event.agentid = AE.getAgentId();
          updateComponentStatus(event);
         }
       }
@@ -292,7 +293,7 @@ function($, applicationContext){
       var statusBefore = mediascape.AdaptationToolkit.componentManager.core.getComponentsStatus()
       var AE = mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation;
       var me =AE.getLocalContext().agents.filter(function(ag){
-        if (AE.getAgentId() ===ag.id) return true;
+        if (AE.getAgentId() ===ag.id && change.agentid === AE.getAgentId()) return true;
         else return false;
       })[0];
       if (me){
