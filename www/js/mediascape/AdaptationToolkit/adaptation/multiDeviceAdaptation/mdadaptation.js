@@ -47,7 +47,8 @@ function($, applicationContext){
   var plugin_modules = {};
   var localStatus = null;
   var moduleList = Array.prototype.slice.apply(arguments);
-  for(var i=2; i<moduleList.length; i++){
+  var i=2;
+  for( i=2; i<moduleList.length; i++){
     var name = moduleList[i].__moduleName;
     plugin_modules[name] = moduleList[i];
   }
@@ -331,9 +332,16 @@ function($, applicationContext){
         mediascape.AdaptationToolkit.componentManager.core.setComponentsStatus(status);
         var event = new CustomEvent("onComponentsChange", {"detail":{"type":"localChange","cmps":status,"agentid":me.id}});
         document.dispatchEvent(event);
-        AE.notifyUpdateContext(context,"cmp_changed",change.agentid);
+        AE.notifyUpdateContext(context,"cmp_changed",context.agentid);
       }
-    }else{
+    }else{ // Other agents
+      var otherAgent =AE.getLocalContext().agents.filter(function(ag){
+        if (ag.id === change.agentid ) return true;
+        else return false;
+      })[0];
+      var diff = getChangeDiff(change.agentid,otherAgent.capabilities['componentsStatus']);
+      var event = new CustomEvent("onComponentsChange", {"detail":{"type":"localChange","cmps":status,"agentid":me.id}});
+      document.dispatchEvent(event);
       console.log("other agent change <<<<<><");
     }
     }
@@ -360,7 +368,8 @@ function($, applicationContext){
     var subscribeAgentCapabilities = function(e) {
       console.log('subscribe agent capabilities',required_capability_list);
       agentStack[e.agentid] = {contextType:'capabilityChange',time:new Date().getTime(),changes:[],oldtime:new Date().getTime()};
-      for(var i=0; i<required_capability_list.length; i++){
+      var i =0;
+      for(i=0; i<required_capability_list.length; i++){
         var capability = required_capability_list[i];
 
         // listen to the events that cause changes to the capabilities involved in the rule file
@@ -531,7 +540,8 @@ function($, applicationContext){
       inputs.push(rules['explicitRules']);
 
       // implicit rules
-      for(var implicit in rules['implicitRules']){
+      var implicit = 0;
+      for( implicit in rules['implicitRules']){
         inputs.push(rules['implicitRules'][implicit]);
       }
 
@@ -539,7 +549,8 @@ function($, applicationContext){
       inputs.push(rules['userPreferences']);
 
       // initialize all plugins with their behavior specification
-      for(var i=0; i<inputs.length; i++) {
+      var i =0;
+      for ( i=0; i<inputs.length; i++) {
         var temp = inputs[i];
 
         if(temp.enabled == true) {
@@ -550,7 +561,8 @@ function($, applicationContext){
           plugins.push(plugin);
           console.log("initplugin1");
           // prepare the agent capability list demanded by enabled adaptation plugins
-          for(var j = 0; j < temp.capabilities.length; j++) {
+          var j = 0;
+          for (j = 0; j < temp.capabilities.length; j++) {
             if( required_capability_list.indexOf(temp.capabilities[j]) < 0 ) {
               required_capability_list.push(temp.capabilities[j]);
             }
@@ -762,12 +774,12 @@ function($, applicationContext){
         if (cmps.eventType!=="data")
             setTimeout(function(){
               onUpdateContext({type:"VALUE_CHANGE",agentid:agentId,diff:[{"property":"customCmd","newValue":cmd,compId:cmpId}]});
-            },200);
+            },0);
 
         setTimeout(function(){
           context.lastChange.diff = [{"property":"customCmd","newValue":cmd,compId:cmpId}];
           mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.notifyUpdateContext(context,"cmp_changed",agentId);
-        },800);
+        },0);
 
 
       }
