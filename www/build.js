@@ -29,7 +29,7 @@
         qrcodelib:'../resources/libs/qrcodelib',
         app:'../app',
         swiper:'empty:',
-        '2015data':'../resources/libs/2015',
+        data2015:'../resources/libs/2015',
         domReady:'../resources/libs/domReady',
         webcomponentsHbbtv:'mediascape/AdaptationToolkit/utils/hbbtvAdapter',
         webcomponents_lite:'/resources/wcs/bower_components/webcomponentsjs/webcomponents-lite.min',

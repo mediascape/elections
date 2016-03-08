@@ -11,7 +11,7 @@ define( ["jquery","qrcode","webcodecam","qrcodelib"], function($) {
 		*
 		*	mediascape.association.doAssociation()
 		*
-		*	Function that associates different devices. It uses as a association technology 
+		*	Function that associates different devices. It uses as a association technology
 		*	the technology passed as a parameter.
 		*
 		******************************************************************************************/
@@ -92,7 +92,7 @@ define( ["jquery","qrcode","webcodecam","qrcodelib"], function($) {
 				});
 			return p1;
 		}
-		
+
 		/*****************************************************************************************
 		*
 		*	mediascape.association.doAssociation('text', url, short)
@@ -119,8 +119,8 @@ define( ["jquery","qrcode","webcodecam","qrcodelib"], function($) {
 		*
 		*	mediascape.association.doAssociation('qr', "place", url, short[, width, height, marginLeft, marginTop])
 		*
-		*	Function that inserts a QR Code based in the url passed as a parameter. If the 
-		*	short element is true, then the url will be shorted before create the QR Code. 
+		*	Function that inserts a QR Code based in the url passed as a parameter. If the
+		*	short element is true, then the url will be shorted before create the QR Code.
 		*	The width and the height are optional values, by default their values are 160px.
 		*
 		******************************************************************************************/
@@ -185,7 +185,7 @@ define( ["jquery","qrcode","webcodecam","qrcodelib"], function($) {
 				var qrcode = new QRCode("qrcode", {
 					text: url,
 					width:width,
-					height:height, 
+					height:height,
 					colorDark : "#000000",
 					colorLight : "#ffffff",
 					correctLevel : QRCode.CorrectLevel.H
@@ -208,7 +208,7 @@ define( ["jquery","qrcode","webcodecam","qrcodelib"], function($) {
 		*
 		*	Function that creates an acoustic signal based on the url passed as a parameter
 		*	for the association of devices. The acoustic signal is based in the Frequency-shift
-		*	keying technology.If the short element is true, then the url will be shorted 
+		*	keying technology.If the short element is true, then the url will be shorted
 		*	before create the acoustic signal.
 		*
 		***********************************************************************************************/
@@ -376,9 +376,9 @@ define( ["jquery","qrcode","webcodecam","qrcodelib"], function($) {
 		*
 		*	mediascape.association.doAssociation('nws', nwsName, url, repeat)
 		*
-		*	Function that creates a connection via named web sockets proxy for the association 
+		*	Function that creates a connection via named web sockets proxy for the association
 		*	of devices. The nwsName defines the name of the channel that will be use to transmit
-		*	the url passed as a parameter. If the repeat element is true, then the url will be 
+		*	the url passed as a parameter. If the repeat element is true, then the url will be
 		*	emited every second.
 		*
 		***********************************************************************************************/
@@ -499,8 +499,8 @@ define( ["jquery","qrcode","webcodecam","qrcodelib"], function($) {
 		*
 		*	mediascape.association.doAssociation('shake', url)
 		*
-		*	Function that creates a trigger for the Shake&Go method that associates devices. The 
-		*	url parameter is the url of the multimedia multi-screen application defined for the 
+		*	Function that creates a trigger for the Shake&Go method that associates devices. The
+		*	url parameter is the url of the multimedia multi-screen application defined for the
 		*	association.
 		*
 		***********************************************************************************************/
@@ -584,8 +584,8 @@ define( ["jquery","qrcode","webcodecam","qrcodelib"], function($) {
 		*
 		*	mediascape.association.doAssociation('sync', url)
 		*
-		*	Function that creates a trigger for the sync method that associates devices. The 
-		*	url parameter is the url of the multimedia multi-screen application defined for the 
+		*	Function that creates a trigger for the sync method that associates devices. The
+		*	url parameter is the url of the multimedia multi-screen application defined for the
 		*	association.
 		*
 		***********************************************************************************************/
@@ -679,7 +679,7 @@ define( ["jquery","qrcode","webcodecam","qrcodelib"], function($) {
 		*
 		*	mediascape.association.doAssociation("qr", "qrCatcherPlace")
 		*
-		*	Function that creates a Qr Codes catcher for the association of devices. The second 
+		*	Function that creates a Qr Codes catcher for the association of devices. The second
 		*	parameter is the id of the html element where the QR code reader will be inserted.
 		*
 		***********************************************************************************************/
@@ -727,10 +727,10 @@ define( ["jquery","qrcode","webcodecam","qrcodelib"], function($) {
 											zoom: -1, // if zoom = -1, auto zoom for optimal resolution else int
 											beep: "audio/beep.mp3", // string, audio file location
 											autoBrightnessValue: false, // functional when value autoBrightnessValue is int
-											brightness: 0, // int 
+											brightness: 0, // int
 											grayScale: false, // false or true
-											contrast: 0, // int 
-											threshold: 0, // int 
+											contrast: 0, // int
+											threshold: 0, // int
 											sharpness: [], //or matrix, example for sharpness ->  [0, -1, 0, -1, 5, -1, 0, -1, 0]
 											resultFunction: function(resText, lastImageSrc) {
 												if(resText.indexOf('http://')!=-1||resText.indexOf('https://')!=-1) resolve(JSON.parse('{"response":"'+resText+'"}'));
@@ -756,7 +756,7 @@ define( ["jquery","qrcode","webcodecam","qrcodelib"], function($) {
 		*
 		*	mediascape.association.doAssociation("acoustic", "audioCatcherPlace")
 		*
-		*	Function that creates an acoustic catcher for the association of devices. The second 
+		*	Function that creates an acoustic catcher for the association of devices. The second
 		*	parameter is the id of the html element where the catched information will be shown.
 		*
 		***********************************************************************************************/
@@ -800,7 +800,7 @@ define( ["jquery","qrcode","webcodecam","qrcodelib"], function($) {
 								var analyser = audioCtx.createAnalyser();
 								var filter = audioCtx.createBiquadFilter();
 								filter.type = 'highpass';
-								filter.frequency.value = 3500; 
+								filter.frequency.value = 3500;
 								source.connect(filter);
 								filter.connect(analyser);
 
@@ -1015,7 +1015,7 @@ define( ["jquery","qrcode","webcodecam","qrcodelib"], function($) {
 		*
 		*	mediascape.association.doAssociation("nws", nwsName)
 		*
-		*	Function that creates a connection via named web sockets proxy for the association 
+		*	Function that creates a connection via named web sockets proxy for the association
 		*	of devices. The nwsName defines the name of the channel that will be use to catch
 		*	the url emited by the named web sockets trigger.
 		*
@@ -1054,9 +1054,9 @@ define( ["jquery","qrcode","webcodecam","qrcodelib"], function($) {
 		*
 		*	mediascape.association.doAssociation('shake', "qrCatcherPlace", "audioCatcherPlace")
 		*
-		*	Function that creates a catcher for the Shake&Go method that associates devices. 
-		*	"qrCatcherPlace" parameter is the id of the html element where the QR code reader 
-		*	will be inserted and "audioCatcherPlace" parameter is the id of the html element 
+		*	Function that creates a catcher for the Shake&Go method that associates devices.
+		*	"qrCatcherPlace" parameter is the id of the html element where the QR code reader
+		*	will be inserted and "audioCatcherPlace" parameter is the id of the html element
 		*	where the acoustic catched information will be shown.
 		*
 		***********************************************************************************************/
@@ -1093,7 +1093,7 @@ define( ["jquery","qrcode","webcodecam","qrcodelib"], function($) {
 																			if(data.response.indexOf('http://')!=-1||data.response.indexOf('https://')!=-1) resolve(JSON.parse('{"response":"'+data.response+'"}'));
 																			else console.log(data.response);
 																		});
-																		
+
 																		var args2 =["acoustic",args[2]];
 																		acousticAssociationCatcher(args2).then(function(data){
 																			if(data.response.indexOf('http://')!=-1||data.response.indexOf('https://')!=-1){
@@ -1107,7 +1107,7 @@ define( ["jquery","qrcode","webcodecam","qrcodelib"], function($) {
 																				},5000);
 																			}
 																		});
-																		
+
 																	},5000);
 																}
 															}

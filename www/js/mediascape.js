@@ -29,7 +29,7 @@
     mcorp:'http://www.mcorp.no/lib/mcorp-2.0',
     mediaSync:'mediascape/MediaSync/mediasync',
     d3:'../resources/libs/d3.v3.min',
-    '2015data':'../resources/libs/2015',
+    data2015:'../resources/libs/2015',
     qrcode:'mediascape/lib/qrcode.min',
     qrcodelib:'../resources/libs/qrcodelib',
     webcodecam: '../resources/libs/WebCodeCam.min',

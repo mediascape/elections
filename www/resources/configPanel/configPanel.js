@@ -1,7 +1,7 @@
 define('configPanel',['jquery','bootstrap','classifie'],
 function($,bootstrap){
 
-
+var JQuery = $;
 
 
 var ControlPanel= function (url){
