@@ -27,7 +27,7 @@
 </style>
 
 <div  id="container"  class='template-all-layouts'>
-	<video id={{ida}} preload mute src></video>
+	<video id='{{ida}}' preload mute src></video>
 </div>
 
 </template>
@@ -133,23 +133,24 @@ Polymer({
 				this.soundPlayer();
 			}
 			else if(data==='offSound'){
-
+				
 			}
 			else if(data==='onSound'){
-
+				this.soundPlayer();
 			}
 	},
 	unload:function(){
-		 var video = this.querySelector('video')
+		 var video = this.querySelector('video');
 		 video.src ="";
 
 	},
 	load:function(){
-	     var video = this.querySelector('video')
+	     var video = this.querySelector('video');
 			 video.src = this.file;
 			 if(this.ismuted==="true"){
 				 video.muted=true;
 			 }
+			 
 	}
 });
  </script>
