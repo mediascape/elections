@@ -64,6 +64,8 @@ http://localhost
 
 *** Note, it uses port 80, so may need to stop other webserver may be listening on that port.
 ```
+> **Media files are not part of this repository, those file could be downloaded from this [url](http://150.241.250.4:6676/election_demo/) and save them
+on this folder: [www/resource/media/](https://github.com/mediascape/elections/tree/master/www/resources/media)**
 
 ### For Developers
 
