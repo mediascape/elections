@@ -775,12 +775,12 @@ function($, applicationContext){
             setTimeout(function(){
               onUpdateContext({type:"VALUE_CHANGE",agentid:agentId,diff:[{"property":"customCmd","newValue":cmd,compId:cmpId}]});
             },0);
-
+/*
         setTimeout(function(){
           context.lastChange.diff = [{"property":"customCmd","newValue":cmd,compId:cmpId}];
           mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.notifyUpdateContext(context,"cmp_changed",agentId);
         },0);
-
+*/
 
       }
       else {
