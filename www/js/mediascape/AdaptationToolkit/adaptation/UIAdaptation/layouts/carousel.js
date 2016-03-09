@@ -47,6 +47,8 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
       componentsContainer.style.backgroundColor='';
       componentsContainer.style.perspective='';
        componentsContainer.className='';
+       componentsContainer.style.gridTemplateColumns='';
+       componentsContainer.style.gridTemplateRows='';
       if(document.querySelector('#layout_classes')!=null){
         document.head.removeChild(document.querySelector('#layout_classes'));
       }
@@ -126,10 +128,12 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
 
       document.body.style.backgroundColor='#0A2533';
       document.body.style.padding='15px 0px';
+      document.body.style.overflow='hidden';
       var container=document.querySelector('#componentsContainer');
       container.style.display='';
       container.style.overflowX='';
-      
+      var height = window.innerHeight ||document.documentElement.clientHeight ||document.body.clientHeight;
+      container.style.height=height;
 
 
 
@@ -222,6 +226,8 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
       componentsContainer.style.backgroundColor='';
       componentsContainer.style.perspective='';
        componentsContainer.className='';
+       componentsContainer.style.gridTemplateColumns='';
+       componentsContainer.style.gridTemplateRows='';
       if(document.querySelector('#layout_classes')!=null){
         document.head.removeChild(document.querySelector('#layout_classes'));
       }
@@ -312,8 +318,26 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
     }
     carousel.onResizeEvent=function(cmps){
 
+      if(document.querySelector('#swContainer')){
+
+        
+       for(var i=0;i<cmps.length;i++){
+        if(document.querySelector('#swContainer').querySelector('#'+cmps[i].id)){
+         var node=document.querySelector('#'+cmps[i].id);
+         componentsContainer.appendChild(node);
+        
+        }
+      }
+        document.querySelector('#swContainer').parentNode.removeChild(document.querySelector('#swContainer'));
+        if(document.querySelector('x-media')){
+          document.querySelector('x-media').play();
+        }
+      
+      }
+      this.render(cmps);
       
       mediascape.AdaptationToolkit.Adaptation.UIAdaptation.updateComponentQuery();
+
     }
     carousel.unload = function(cmps){
       carousel.listeners.forEach (function(listener){

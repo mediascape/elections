@@ -1,9 +1,9 @@
 /**
 * This layout organizes N components dividing the screen into equal size areas, one
-* for each component. The components will be ordered taking into account
+* for each component. The components will be ordered taking into account 
 * the priority from the left to the right and from top to the bottom. If it is not
 * possible to divide the screen into equal cells, it will be divided into a higher
-* number of cells and there will be empty cells.
+* number of cells and there will be empty cells. 
 
 * @module mediascape/AdaptationToolkit/adaptation/UIAdaptation/layouts/divided
 * @requires mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor
@@ -17,7 +17,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
     var divided = new LayoutConstructor('divided');
     divided.onComponentsChange = function (cmps){
         console.log("test");
-       this.cmps = cmps;
+        this.cmps = cmps;
       var components = mediascape.AdaptationToolkit.componentManager.core.getComponents();
       for(var i=0;i<components.length;i++){
         components[i].style.width='';
@@ -47,6 +47,8 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
       componentsContainer.style.backgroundColor='';
       componentsContainer.style.perspective='';
        componentsContainer.className='';
+       componentsContainer.style.gridTemplateColumns='';
+       componentsContainer.style.gridTemplateRows='';
       if(document.querySelector('#layout_classes')!=null){
         document.head.removeChild(document.querySelector('#layout_classes'));
       }
@@ -87,12 +89,12 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
 
       if(document.querySelector('#swContainer')){
 
-
+        
        for(var i=0;i<components.length;i++){
         if(document.querySelector('#swContainer').querySelector('#'+components[i].id)){
          var node=document.querySelector('#'+components[i].id);
          componentsContainer.appendChild(node);
-
+        
         }
       }
         document.querySelector('#swContainer').parentNode.removeChild(document.querySelector('#swContainer'));
@@ -100,7 +102,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
           document.querySelector('x-media').play();
         }
       }
-
+      
 
 
       if(componentsContainer.querySelector('#arrows')){
@@ -127,12 +129,12 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
       var container=document.querySelector('#componentsContainer');
 
       container.style.overflow='hidden';
-      container.style.display='inline-block';
+      container.style.display='block';
       container.style.gridAutoFlow='';
       container.className='template-all-layouts';
+      container.style.height=window.innerHeight ||document.documentElement.clientHeight ||document.body.clientHeight;
 
-
-
+      
       var ordered_cmps=[];
       ordered_cmps = cmps.sort(function(it1,it2){
       if (it1.lproperties.order > it2.lproperties.order) return 1;
@@ -145,64 +147,62 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
       if(ordered_cmps.length===1){
         for(var i=0;i<ordered_cmps.length;i++){
 
-          ordered_cmps[i].className='col-md-12 layout-fullwidth';
-
+          ordered_cmps[i].className='col-md-12 layout-fullwidth';          
+         
         }
       }
       else if(ordered_cmps.length===2){
         for(var i=0;i<ordered_cmps.length;i++){
-
-          ordered_cmps[i].className='col-md-6 layout-fullwidth';
-
-
+          ordered_cmps[i].className='col-md-6 layout-fullwidth';          
         }
       }
       else if(ordered_cmps.length===3){
         for(var i=0;i<ordered_cmps.length;i++){
-
+          
           ordered_cmps[i].className='col-md-6 layout-horizontal-divided';
-
+      
         }
       }
       else if(ordered_cmps.length===4){
         for(var i=0;i<ordered_cmps.length;i++){
 
           ordered_cmps[i].className='col-md-6 layout-horizontal-divided';
-
-
+          
+          
         }
       }
       else if(ordered_cmps.length===5){
         for(var i=0;i<ordered_cmps.length;i++){
-
+        
           ordered_cmps[i].className='col-md-4 layout-horizontal-divided';
-
-
+        
+          
         }
       }
       else if(ordered_cmps.length===6){
         for(var i=0;i<ordered_cmps.length;i++){
-
+        
           ordered_cmps[i].className='col-md-4 layout-horizontal-divided';
 
-
+          
         }
       }
       else{
         for(var i=0;i<ordered_cmps.length;i++){
-
-          ordered_cmps[i].className='col-md-4 layout-horizontal-three-divided';
-
-
+         
+          ordered_cmps[i].className='col-md-4 layout-horizontal-three-divided';          
+    
+     
         }
       }
 
-      mediascape.AdaptationToolkit.Adaptation.UIAdaptation.updateComponentQuery();
-
+    mediascape.AdaptationToolkit.Adaptation.UIAdaptation.updateComponentQuery();
+     
 
     }
     divided.onOrientationChange = function (cmps){
-      console.log("test");
+      
+      console.log("orientationChange");
     }
     divided.onLayoutChangeEvent = function (cmps){
       console.log("layout changed");
@@ -236,6 +236,8 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
       componentsContainer.style.backgroundColor='';
       componentsContainer.style.perspective='';
       componentsContainer.className='';
+      componentsContainer.style.gridTemplateColumns='';
+       componentsContainer.style.gridTemplateRows='';
       if(document.querySelector('#layout_classes')!=null){
         document.head.removeChild(document.querySelector('#layout_classes'));
       }
@@ -275,19 +277,19 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
 
       if(document.querySelector('#swContainer')){
 
-
+        
        for(var i=0;i<cmps.length;i++){
         if(document.querySelector('#swContainer').querySelector('#'+cmps[i].id)){
          var node=document.querySelector('#'+cmps[i].id);
          componentsContainer.appendChild(node);
-
+        
         }
         }
         document.querySelector('#swContainer').parentNode.removeChild(document.querySelector('#swContainer'));
         if(document.querySelector('x-media')){
           document.querySelector('x-media').play();
         }
-
+      
       }
 
 
@@ -310,9 +312,9 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
     }
 
     divided.onResizeEvent=function(cmps){
-      console.log("layout changed");
+      //console.log("layout changed");
       this.render(cmps);
-
+      
     }
     divided.unload = function(cpms){
 

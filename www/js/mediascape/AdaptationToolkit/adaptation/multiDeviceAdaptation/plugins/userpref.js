@@ -17,24 +17,6 @@ function(){
 
             config = cfg;
             context = ctx;
-            document.addEventListener('appAttributeChange',function(data){
-              /*
-               if (data.detail.key ==="reset" && data.detail.value==="true"){
-                  context.agents.forEach(function(ag){
-                    var cmpStatus = ag.capabilities['componentsStatus'];
-                    cmpStatus.forEach(function(cStatus){
-                        if(cStatus.customCmd)
-                          if (cStatus.customCmd.length>0){
-                              mediascape.AdaptationToolkit.Utils.removeFromArray(cStatus.customCmd,"hide");
-                              mediascape.AdaptationToolkit.Utils.removeFromArray(cStatus.customCmd,"show");
-                       }
-                  });
-                  })
-                  console.log("CONTEXT",context);
-                  setTimeout(function(){mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setContext(context);},1000);
-                }*/
-                  console.log('appAttributeChange',data);
-            });
         };
 
         // deal with the change events of the application context
@@ -60,7 +42,8 @@ function(){
                           setTimeout(function(){
                               mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getApplicationContext().setItem('reset',"false");
                           },2500);
-                    }
+                     }
+                     else {
                      if ((componentsStatus[c].customCmd.lastIndexOf('show')!=-1 || componentsStatus[c].customCmd.lastIndexOf('hide')!=-1)
                         && componentsStatus[c].customCmd.lastIndexOf('show') >= componentsStatus[c].customCmd.lastIndexOf('hide')){
                        /*if (cmp.lproperties['duplicable']==="false")
@@ -77,7 +60,9 @@ function(){
                         decision.actions.push({"type": "HIDE", "component": componentsStatus[c].selector});
 
                      }
-                   }//else return false;
+                     //else return false;
+                  }
+                }
 
 
             }

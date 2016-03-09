@@ -83,7 +83,7 @@ ul.nav-tabs li{
   text-align: center !important;
     margin-right: 18px;
     border-radius: 20px 20px 0px 0px;
-    background-color: #3d5f6b;
+    background-color: #3d5f6b;  
     width:43%;
 }
 ul.nav-tabs li:hover {background: #ff9b00; }
@@ -99,7 +99,7 @@ ul.nav-tabs li.active{
   /*height: 100%;*/
   background-color: #97c7e8;
   padding-bottom: 20px;
-  border-radius: 0px 0px 20px 20px;
+  border-radius: 0px 0px 20px 20px;  
 }
 .pastilla_ciudad {
   /*height: 100%;*/
@@ -143,10 +143,10 @@ img.imagen-emisora-peque { width: 100%; padding-top: 15px;}
 div.switch-emisora { padding-top: 25px;}
 /* switch */
 .check-switch-graphics {
-
+  
 
   margin-top: 2vh;
-}
+} 
 
 
 
@@ -158,10 +158,10 @@ div.switch-emisora { padding-top: 25px;}
       height: auto; overflow: auto;
     }
     .txt_titular { margin-top: 10px; font-size: 20px;}
-
+    
     div.switch-emisora {
       padding-top: 17px;
-    }
+    }   
     p.text_ciudad {
       font-size: 22px;
       line-height: 22px;
@@ -169,12 +169,12 @@ div.switch-emisora { padding-top: 25px;}
     .txt_ciudad { font-size: 20px !important;}
     span.year-text { font-size: 20px !important;}
     .data-information-section { margin-top: 2px; }
-    span.comparative {display: none;}
+    span.comparative {display: none;} 
     div.emisora {height: auto; overflow: auto; padding: 5px; }
     .tabs-graficos {
       padding-bottom: 15px;
-    }
-    ul.nav-tabs li a img { display: none;}
+    } 
+    ul.nav-tabs li a img { display: none;}  
 }
 @media (min-width: 1280px) and (orientation: landscape){
 
@@ -182,10 +182,10 @@ div.switch-emisora { padding-top: 25px;}
       height: auto; overflow: auto;
     }
     .txt_titular { margin-top: 10px; font-size: 20px;}
-
+    
     div.switch-emisora {
       padding-top: 17px;
-    }
+    }   
     p.text_ciudad {
       font-size: 22px;
       line-height: 22px;

@@ -113,7 +113,7 @@ define(
       this.getComponents = function (){
         for (c in components){
 
-            components[c] = document.querySelector('#'+components[c].id);
+            if ( components[c].id) components[c] = document.querySelector('#'+components[c].id);
 
          }
          return components;
@@ -159,6 +159,15 @@ define(
                       else return false;
                });
         });
+      }
+      this.isLoaded = function(cmp){
+          if (componentStatus)
+          for (c in componentStatus){
+             if (componentStatus[c].selector === cmp.id)
+               if (componentStatus[c].show) return true;
+               else return false;
+          }
+         return false;
       }
       this.setMenu = function (show){
          if (show){

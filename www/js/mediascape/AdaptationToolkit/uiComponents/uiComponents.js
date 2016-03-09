@@ -505,6 +505,7 @@ define(
 
         var tab=document.createElement('img');
         tab.src='../resources/configPanel/img/icono_MediaScape.png';
+        tab.id='panelTab';
         document.body.appendChild(tab);
         tab.style.top=0;
         tab.style.left=0;
@@ -514,7 +515,7 @@ define(
         var scope=this;
         tab.addEventListener('click',function(event){
           if ( scope.ctrlPanel.showing){ scope.ctrlPanel.hide();}
-            else scope.ctrlPanel.show();
+            else{scope.ctrlPanel.show();}
         });
 
 
@@ -544,11 +545,13 @@ define(
                 var width=window.innerWidth ||document.documentElement.clientWidth ||document.body.clientWidth;
                 var qrdiv1=document.createElement('div');
                 qrdiv1.className='qr-code-content';
+                qrdiv1.id='qr-code-content';
                 var leftMargin='';
                 if(width<767)leftMargin=35*width/100;
                 else leftMargin=25*width/100;
-                mediascape.association.createQRcode(url,qrdiv1,(30*width/100),(30*width/100),'',leftMargin,50);
+                
                 document.querySelector('.add-device-content').appendChild(qrdiv1);
+                mediascape.association.doAssociation('qr','qr-code-content', url, true,(30*width/100),(30*width/100),leftMargin,50);
 
               }
         },1100);
@@ -575,7 +578,7 @@ define(
           var scope=this;
           document.addEventListener('keydown',function(event){
 
-             if (event.keyCode === 17 ){
+             if (event.keyCode === 16 ){
                 if ( scope.ctrlPanel.showing) scope.ctrlPanel.hide();
                 else scope.ctrlPanel.show();
               }
@@ -631,11 +634,11 @@ define(
                   if (_this.mapp.motions.shared.vel == 0) {
 
                      img4.setAttribute('src','../resources/configPanel/img/controller/Play_activo.png');
-
+                     
                    } else {
 
                      img4.setAttribute('src','../resources/configPanel/img/controller/Pause_activo.png');
-
+                     
                    }
                    velState=_this.mapp.motions.shared.vel;
 
@@ -851,20 +854,20 @@ define(
 
 
 
-             var menuBottom = document.getElementById( 'cbp-spmenu-s4' ),
-              showBottom = document.getElementById( 'showBottom' ),
+             var menuBottom = document.getElementById( 'cbp-spmenu-s4' ),       
+              showBottom = document.getElementById( 'showBottom' ),       
               body = document.body;
-
+            
             showBottom.onclick = function() {
               classie.toggle( this, 'active' );
               classie.toggle( menuBottom, 'cbp-spmenu-open' );
               disableOther( 'showBottom' );
-            };
+            };      
 
-            function disableOther( button ) {
+            function disableOther( button ) {       
               if( button !== 'showBottom' ) {
                 classie.toggle( showBottom, 'disabled' );
-              }
+              }       
             }
 
 

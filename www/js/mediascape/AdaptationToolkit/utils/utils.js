@@ -59,7 +59,7 @@ define ([],
             })(objectA, objectB);
             return propertyChanges;
           }
-          this.removeFromArray = function remove(arr, what) {
+        this.removeFromArray = function remove(arr, what) {
                 var found = arr.indexOf(what);
 
                 while (found !== -1) {

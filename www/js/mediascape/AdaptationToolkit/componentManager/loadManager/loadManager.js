@@ -56,9 +56,10 @@ define(
                else return false;
             })
             if (!allreadyLoaded){
-            //  if (el.load) el.load();
+            if (el.load) el.load();
             var v = el.querySelector('video');
-            if (v){
+
+            if (v && v.src!=""){
                v.src = el.getAttribute('file');
                el.show = true;
                if (el.play) {
@@ -69,7 +70,7 @@ define(
              }
 
              var a = el.querySelector('audio');
-            if (a){
+            if (a && a.src!=""){
                a.src = el.getAttribute('file');
                el.show = true;
                if (el.play) {
@@ -95,16 +96,16 @@ define(
       // Just hidden all at least
       this.unload = function (els) {
         els.forEach(function(el){
-        //  if (el.unload) el.unload();
+          if (el.unload) el.unload();
           el.style.display="none";
 
             var v = el.querySelector('video');
-            if (v) {
+            if (v && v.src!="") {
               v.src="";
               el.show = false;
             }
             var a = el.querySelector('audio');
-            if (a) {
+            if (a && a.src!="") {
               a.src="";
               el.show = false;
             }

@@ -17,8 +17,8 @@
           'socketio': {
               exports: 'io'
             },
-        "bootstrap" : { "deps" :['jquery'] }
-
+        "bootstrap" : { "deps" :['jquery'] },
+        "bootstrap_swicth" :{ "deps":['jquery','bootstrap']}
 
     },
     paths: {
@@ -31,11 +31,13 @@
     namedwebsockets: 'mediascape/lib/namedwebsockets',
     jquery: 'http://code.jquery.com/jquery-2.1.4.min',
     msv:'http://www.mcorp.no/lib/msv-2.0',
-    mcorp:'http://www.mcorp.no/lib/mcorp-2.0',
+    mcorp:'http://www.mcorp.no/lib/mcorp-2.0a',
     mediaSync:'mediascape/MediaSync/mediasync',
     d3:'../resources/libs/d3.v3.min',
-    '2015data':'../resources/libs/2015',
+    data2015:'../resources/libs/2015',
     qrcode:'mediascape/lib/qrcode.min',
+    qrcodelib:'../resources/libs/qrcodelib',
+    webcodecam: '../resources/libs/WebCodeCam.min',
     socketio: '/socket.io/socket.io',
     'socket.io': 'http://192.168.10.2:8082/socket.io/socket.io',
     ui:'../resources/libs/jquery-ui',
@@ -46,6 +48,7 @@
     coords2:'/resources/libs/coords2',
     tags:'/resources/libs/tags',
     configPanel:'../resources/configPanel/configPanel',
+    loadingPanel:'../resources/libs/loadingPanel',
     classifie:'../resources/configPanel/js/classie',
     bootstrap:'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min',
     debugger:'http://192.168.10.2:8082/console.io',
@@ -132,8 +135,8 @@
 
 
   });
-}());
+  /*require(["debugger"],function(dgb){
+    dgb.configure({});
+  });*/
 
-require(["debugger"],function(dgb){
-  dgb.configure({});
-});
+}());

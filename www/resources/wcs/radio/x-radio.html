@@ -80,7 +80,7 @@
                             <img id="broadcaster_logo" src="Logo-Radio-Euskadi_BLANCO.png" />
                         </div>
                         <div class="equal col-md-6 col-sm-6">
-                            <!--<img src="animacion-ecualizador_transp.gif" />-->
+                            <img id="gifRadio" src="animacion-ecualizador_transp.gif" />
                         </div>
                     </div>
                     <div class="radio-title col-md-12">
@@ -109,17 +109,23 @@ Polymer({
 
 			},
 			customCmd:{
-	        type:String,
-	        value:'',
-	        observer: 'customCmdReceived'
-	    }
+		        type:String,
+		        value:'',
+		        observer: 'customCmdReceived'
+		    }
+
 	},
 
 	ready: function() {
 		var _this = this;
 		this.$.radioAudio.src=this.file;
 		document.addEventListener ('motion-ready',this.smReady.bind(this));
-
+		this.$.radioAudio.addEventListener('play',function(){
+			_this.$.gifRadio.src='../resources/configPanel/img/radio/animacion-ecualizador_transp.gif';
+		});
+		this.$.radioAudio.addEventListener('pause',function(){
+			_this.$.gifRadio.src='../resources/configPanel/img/radio/Radio-animacion-off-estatico.png';
+		});
 
 	},
 
@@ -155,6 +161,18 @@ Polymer({
 	customCmdReceived: function(data){
 			console.log("DATA",data);
 
+	},
+	unload:function(){
+		 var audio = this.querySelector('audio')
+		 audio.src ="";
+
+	},
+	load:function(){
+	     var audio = this.querySelector('audio')
+			 audio.src = this.file;
+			 if(this.ismuted==="true"){
+				audio.muted=true;
+			}
 	}
 });
  </script>

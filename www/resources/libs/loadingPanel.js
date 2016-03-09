@@ -18,7 +18,10 @@ var loadingPanel = function (centralImg,time,cb){
    img.style.width='50%';
    img.style.animationDelay="0s";
    div.appendChild(img);
-   
+   img.addEventListener('click',function(){
+      mediascape.AdaptationToolkit.uiComponents.toggleFullScreen();
+
+   });
    document.body.appendChild(div);
    setTimeout(function(){  document.body.removeChild(div);},time*1000);
 }

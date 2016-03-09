@@ -8,6 +8,7 @@ define( ["jquery","namedwebsockets","promise"], function($,namedWebSockets) {
 								console.log("connection namedWebSockets");
 								networkWS = NetworkWebSocket(serviceName);
 								networkWS.peersIds = [];
+								networkWS.emiter = false;
 
 								// Start
 								networkWS.onopen = function(evt) {
@@ -17,6 +18,7 @@ define( ["jquery","namedwebsockets","promise"], function($,namedWebSockets) {
 									console.log(networkWS);
 									console.log("Event");
 									console.log(evt);
+									networkWS.peersIds.push(networkWS.id);
 								};
 
 								networkWS.onconnect = function (event) {

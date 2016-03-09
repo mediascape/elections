@@ -52,6 +52,8 @@ function(LayoutConstructor){
     componentsContainer.style.backgroundColor='';
     componentsContainer.style.perspective='';
      componentsContainer.className='';
+     componentsContainer.style.gridTemplateColumns='';
+       componentsContainer.style.gridTemplateRows='';
     if(document.querySelector('#layout_classes')!=null){
       document.head.removeChild(document.querySelector('#layout_classes'));
     }
@@ -409,6 +411,8 @@ function(LayoutConstructor){
     componentsContainer.style.backgroundColor='';
     componentsContainer.style.perspective='';
      componentsContainer.className='';
+     componentsContainer.style.gridTemplateColumns='';
+       componentsContainer.style.gridTemplateRows='';
     if(document.querySelector('#layout_classes')!=null){
       document.head.removeChild(document.querySelector('#layout_classes'));
     }

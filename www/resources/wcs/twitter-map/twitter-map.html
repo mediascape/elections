@@ -76,7 +76,59 @@
 
 
 /* responsive */
+@media (min-width: 1280px) and (orientation: landscape) {
+	.logos-partidos { margin-bottom: 0px;}
+	#mapa {
+		width: 65%;
+		position:relative;
+	}
 
+	#bizkaiaLogo{
+		width:30%;
+	}
+	#gipuzkoaLogo{
+		width: 30%;
+	}
+	#arabaLogo{
+		width: 30%;
+	}
+	#nafarroaLogo{
+		width: 30%;
+	}
+
+	.logo-1 {
+		text-align: right;
+	}
+	.logo-2 {
+		padding-top: 21%;
+	}
+	.logo-4 {
+		text-align: left;
+		padding-top: 15%;
+	}
+	h2 {
+		font-size: 2.5vw;
+		padding-top: 0px;
+	}
+	.politic-party {
+		height: 115px;
+		display:block;
+		padding-top: 5px !important;
+	}
+	#hegoEuskalLogo{ width: 100px; }
+	.logos-partidos { display: block;}
+	#part1{
+		width:33%;
+	}
+	#part2{
+		width:33%;
+		text-align:center;
+	}
+	#part3{
+		width:33%;
+	}
+
+}
 @media (min-width: 1025px) and (max-width: 1280px) and (orientation: landscape) {
 	.logos-partidos { margin-bottom: 0px;}
 	#mapa {
@@ -113,7 +165,7 @@
 	}
 	.politic-party {
 		height: 115px;
-
+		display:block;
 		padding-top: 5px !important;
 	}
 	#hegoEuskalLogo{ width: 100px; }
@@ -163,7 +215,7 @@
 	}
 	.politic-party {
 		height: 115px;
-
+		display:block;
 		padding-top: 5px !important;
 	}
 	#hegoEuskalLogo{ width: 100px; }
@@ -213,6 +265,9 @@
 	#part3{
 		width:33%;
 	}
+	.politic-party{
+		display:block;
+	}
 }
 
 @media (max-width: 767px) and (orientation: portrait){
@@ -220,6 +275,7 @@
 	.politic-party {
 		height: 150px;
 		text-align: center;
+		display:block;
 	}
 	 h2 { font-size: large;}
 	.logo-party { text-align: center;}
@@ -236,12 +292,13 @@
 
 }
 
-@media (max-width: 767px) and (orientation: landscape){
+@media (max-width: 767px) and (orientation: landscape) and (max-height:450px){
 
 	.politic-party {
 		height: 130px;
 		text-align: center;
 		padding-top: 10px !important;
+		display:none;
 
 	}
 	h2 { font-size: medium; padding-top: 5px !important;}
@@ -261,6 +318,32 @@
 		width:33%;
 	}
 }
+@media (max-width: 767px) and (orientation: landscape) and (max-height:300px){
+
+	.politic-party {
+		height: 100%;
+		text-align: center;
+		padding-top: 10px !important;
+		display:block;
+
+	}
+	h2 { font-size: medium; padding-top: 5px !important;}
+
+	.logo-party { text-align: center;}
+
+
+	.logos-partidos { display: none;}
+	#hegoEuskalLogo { width: 100px; }
+	#part1{
+		width:33%;
+	}
+	#part2{
+		width:33%;
+	}
+	#part3{
+		width:33%;
+	}
+}
 
 @media (max-width: 480px) and (orientation: portrait){
 	.logos-partidos { display: none;}
@@ -268,10 +351,12 @@
 		height: 100%;
 		text-align: center;
 		padding-top: 10px !important;
+		display:block;
 	}
 	h2 { font-size: xx-large;}
+
 	.logo-party { text-align: center;}
-	#hegoEuskalLogo{ width: 200px; }
+	#hegoEuskalLogo{ width: 200px;}
 	#part1{
 		width:100%;
 	}
@@ -290,9 +375,12 @@
 		height: 100%;
 		text-align: center;
 		padding-top: 10px !important;
+		display:block;
 	}
+	#text1{font-size: small;padding-top: 0px !important;}
+	#tweetNum{font-size: small;padding-top: 0px !important;}
 
-	.politic-party h2 { font-size: small;padding-top: 0px !important;}
+
 	.logo-party { text-align: center;}
 	#hegoEuskalLogo{ width: 100px; }
 	#part1{
@@ -312,9 +400,12 @@
 		height: 100%;
 		text-align: center;
 		padding-top: 10px !important;
+		display:block;
 	}
 
-	.politic-party h2 { font-size: small;padding-top: 0px !important;}
+
+	#text1{font-size: small;padding-top: 0px !important;}
+	#tweetNum{font-size: small;padding-top: 0px !important;}
 	.logo-party { text-align: center;}
 	#hegoEuskalLogo{ width: 100px; }
 	#part1{
@@ -420,6 +511,7 @@
 				},
 				timestampChanged:function(){
 					//console.log("timestampChanged");
+				 if (this.showing){
 					var interval=10;
 					var prev=this.time;
 					if(this.mapResults!==undefined){
@@ -455,6 +547,7 @@
 
 
 					}
+				 }
 				},
 
 				unload:function(){

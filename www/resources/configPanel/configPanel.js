@@ -1,7 +1,7 @@
 define('configPanel',['jquery','bootstrap','classifie'],
 function($,bootstrap){
 
-
+var JQuery = $;
 
 
 var ControlPanel= function (url){
@@ -153,13 +153,13 @@ var ControlPanel= function (url){
     twitterSect.addMapComp(twM);
 
     devBox=new deviceBox();
-    var lay1=new layout();
+    /*var lay1=new layout();
     lay1.setName('menu');
     lay1.setImage('../resources/configPanel/img/layouts/layout_01.png');
 
     var lay2=new layout();
     lay2.setName('spinner');
-    lay2.setImage('../resources/configPanel/img/layouts/layout_02.png');
+    lay2.setImage('../resources/configPanel/img/layouts/layout_02.png');*/
 
     var lay3=new layout();
     lay3.setName('pip');
@@ -169,7 +169,7 @@ var ControlPanel= function (url){
     lay4.setName('customGrid');
     lay4.setImage('../resources/configPanel/img/layouts/layout_10.png');
 
-    var lay5=new layout();
+    /*var lay5=new layout();
     lay5.setName('accordion');
     lay5.setImage('../resources/configPanel/img/layouts/layout_05.png');
 
@@ -179,7 +179,7 @@ var ControlPanel= function (url){
 
     var lay7=new layout();
     lay7.setName('horizontal');
-    lay7.setImage('../resources/configPanel/img/layouts/layout_09.png');
+    lay7.setImage('../resources/configPanel/img/layouts/layout_09.png');*/
 
     var lay8=new layout();
     lay8.setName('carousel');
@@ -190,13 +190,13 @@ var ControlPanel= function (url){
     lay9.setImage('../resources/configPanel/img/layouts/layout_06.png');
 
     layoutSect1=new layoutSection();
-    layoutSect1.addLayout(lay1);
-    layoutSect1.addLayout(lay2);
+    //layoutSect1.addLayout(lay1);
+    //layoutSect1.addLayout(lay2);
     layoutSect1.addLayout(lay3);
     layoutSect1.addLayout(lay4);
-    layoutSect1.addLayout(lay5);
-    layoutSect1.addLayout(lay6);
-    layoutSect1.addLayout(lay7);
+    //layoutSect1.addLayout(lay5);
+    //layoutSect1.addLayout(lay6);
+    //layoutSect1.addLayout(lay7);
     layoutSect1.addLayout(lay8);
     layoutSect1.addLayout(lay9);
     qrSect=new qrSection(QRurl);
@@ -216,13 +216,15 @@ var ControlPanel= function (url){
     item2.setSection('layouts');
     menu1.addItem(item2);
 
+
+
     var item3=new menuItem();
     item3.setText('Cameras');
     item3.setIcon('zmdi zmdi-videocam');
     item3.setSection('cameras');
     menu1.addItem(item3);
 
-   var item4=new menuItem();
+    var item4=new menuItem();
     item4.setText('Twitter');
     item4.setIcon('zmdi zmdi-twitter');
     item4.setSection('twitter');
@@ -232,7 +234,7 @@ var ControlPanel= function (url){
     item5.setText('Radio');
     item5.setIcon('zmdi zmdi-radio');
     item5.setSection('radio');
-    menu1.addItem(item5)
+    menu1.addItem(item5);
 
     var item6=new menuItem();
     item6.setText('Graphics');
@@ -256,6 +258,9 @@ var ControlPanel= function (url){
   }
   this.addItem=function(item){
     this.items.push(item);
+  }
+  this.addItemPos=function(item,pos){
+    this.items.splice(pos,0,item);
   }
   this.removeItem=function(itemName){
     for(var i=0;i<this.items.length;i++){
@@ -549,11 +554,27 @@ var ControlPanel= function (url){
         var sectionNum=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items.length;
         var sectionDiv=document.querySelector('#fullTemp').children;
         for(var i=2;i<sectionNum;i++){
-          sectionDiv[i].replaceChild(devBox.render(),sectionDiv[i].children[0]);
+
+          if(sections[i].name.indexOf('cameras')>-1 && sections[i].name.indexOf(event.detail.agentid)===-1){
+            var sectionToReplace=new section();
+            sectionToReplace.setName(sections[i].name);
+            sectionToReplace.addItem(devBox);
+            camerasSect.setCamsViewStatus(sections[i].name.split('cameras')[0]);
+            camerasSect.setCamsSoundStatus(sections[i].name.split('cameras')[0]);
+            sectionToReplace.addItem(camerasSect);
+            this.removeItem(sections[i].name);
+
+            this.addItemPos(sectionToReplace,i);
+            container.replaceChild(sectionToReplace.render(),sectionDiv[i]);
+
+          }
+          else{
+            sectionDiv[i].replaceChild(devBox.render(),sectionDiv[i].children[0]);
+          }
         }
         mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSection(mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeSection,undefined);
       }
-
+      mediascape.AdaptationToolkit.uiComponents.ctrlPanel.hide();
 
     }
     else {
@@ -575,13 +596,28 @@ var ControlPanel= function (url){
 
         }
         else{
+          if(sections[i-removed].name.indexOf('cameras')>-1){
+            var sectionToReplace=new section();
+            sectionToReplace.setName(sections[i-removed].name);
+            sectionToReplace.addItem(devBox);
+            camerasSect.setCamsViewStatus(sections[i-removed].name.split('cameras')[0]);
+            camerasSect.setCamsSoundStatus(sections[i-removed].name.split('cameras')[0]);
+            sectionToReplace.addItem(camerasSect);
+            this.removeItem(sections[i-removed].name);
+
+            this.addItemPos(sectionToReplace,(i-removed));
+            container.replaceChild(sectionToReplace.render(),sectionDiv[i-removed]);
+
+          }
           sectionDiv[i-removed].replaceChild(devBox.render(),sectionDiv[i-removed].children[0]);
+
         }
       }
       mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSection(mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeSection,undefined);
 
 
     }
+
   }
   document.addEventListener('agentChange',this.onAgentChange.bind(this));
 
@@ -618,16 +654,16 @@ var ControlPanel= function (url){
               }
             }
             else if(sections[i].name.indexOf(event.detail.agentid)===0 &&
-                sectionDiv[i].querySelector('#radioViewBut')!==null){
+                sectionDiv[i].querySelector('#radioViewBut'+changes[j].compId)!==null){
               if(changes[j].newValue===false){
 
-                sectionDiv[i].querySelector('#radioViewBut').src='../resources/configPanel/img/radio/Radio_btn_play.png';
-                sectionDiv[i].querySelector('#radioEq').src='../resources/configPanel/img/radio/Radio-animacion-off-estatico.png';
+                sectionDiv[i].querySelector('#radioViewBut'+changes[j].compId).setAttribute('src','../resources/configPanel/img/radio/Radio_btn_play.png');
+                sectionDiv[i].querySelector('#radioEq'+changes[j].compId).setAttribute('src','../resources/configPanel/img/radio/Radio-animacion-off-estatico.png');
 
               }
               else if(changes[j].newValue===true){
-                sectionDiv[i].querySelector('#radioViewBut').src='../resources/configPanel/img/radio/Radio_btn_pausa.png';
-                sectionDiv[i].querySelector('#radioEq').src='../resources/configPanel/img/radio/animacion-ecualizador_transp.gif';
+                sectionDiv[i].querySelector('#radioViewBut'+changes[j].compId).setAttribute('src','../resources/configPanel/img/radio/Radio_btn_pausa.png');
+                sectionDiv[i].querySelector('#radioEq'+changes[j].compId).setAttribute('src','../resources/configPanel/img/radio/animacion-ecualizador_transp.gif');
               }
             }
 
@@ -647,21 +683,22 @@ var ControlPanel= function (url){
                   sectionDiv[i].querySelector(selector).setAttribute('val',true);
                 }
               }
-            }
-
-
-            if(sections[i].name.indexOf(event.detail.agentid)===0 &&
-                sectionDiv[i].querySelector('#radioViewBut')!==null){
+              else if(sections[i].name.indexOf(event.detail.agentid)===0 &&
+                sectionDiv[i].querySelector('#radioViewBut'+changes[j].compId)!==null){
               if(changes[j].newValue==='hide'){
 
-                sectionDiv[i].querySelector('#radioViewBut').src='../resources/configPanel/img/radio/Radio_btn_play.png';
-                sectionDiv[i].querySelector('#radioEq').src='../resources/configPanel/img/radio/Radio-animacion-off-estatico.png';
+                sectionDiv[i].querySelector('#radioViewBut'+changes[j].compId).setAttribute('src','../resources/configPanel/img/radio/Radio_btn_play.png');
+                sectionDiv[i].querySelector('#radioEq'+changes[j].compId).setAttribute('src','../resources/configPanel/img/radio/Radio-animacion-off-estatico.png');
 
               }
               else if(changes[j].newValue==='show'){
-                sectionDiv[i].querySelector('#radioViewBut').src='../resources/configPanel/img/radio/Radio_btn_pausa.png';
-                sectionDiv[i].querySelector('#radioEq').src='../resources/configPanel/img/radio/animacion-ecualizador_transp.gif';
+                sectionDiv[i].querySelector('#radioViewBut'+changes[j].compId).setAttribute('src','../resources/configPanel/img/radio/Radio_btn_pausa.png');
+                sectionDiv[i].querySelector('#radioEq'+changes[j].compId).setAttribute('src','../resources/configPanel/img/radio/animacion-ecualizador_transp.gif');
               }
+            }
+
+
+
             }
             //Sound/mute
             //else{
@@ -673,6 +710,19 @@ var ControlPanel= function (url){
                   sectionDiv[i].querySelector(selector).setAttribute('val',false);
                 }
                 else if(changes[j].newValue==='soundPlayer'){
+
+                  sectionDiv[i].querySelector(selector).setAttribute('val',true);
+                }
+              }
+            }
+            if(changes[j].newValue==='offSound' || changes[j].newValue==='onSound'){
+              var selector = '#soundCheck'+changes[j].compId;
+              if(sections[i].name.indexOf(event.detail.agentid)===0 && sectionDiv[i].querySelector(selector)!==null){
+                if(changes[j].newValue==='offSound'){
+
+                  sectionDiv[i].querySelector(selector).setAttribute('val',false);
+                }
+                else if(changes[j].newValue==='onSound'){
 
                   sectionDiv[i].querySelector(selector).setAttribute('val',true);
                 }
@@ -901,14 +951,16 @@ var ControlPanel= function (url){
       if(sections[i].name===agentToChange+'graphics'){
 
         if(year===2015){
-          sectionDiv[i].querySelector('#presentLI').className='active';
+          sectionDiv[i].querySelector('#presentLI').className='active';          
           sectionDiv[i].querySelector('#pastLI').className='';
+          sectionDiv[i].querySelector('#pastLI').style.border='5px solid #3d5f6b';
           sectionDiv[i].querySelector('#presentPanel').className='col-md-12 fade in tab-pane active';
           sectionDiv[i].querySelector('#pastPanel').className='col-md-12 fade in tab-pane ';
 
         }
         else if(year===2011){
           sectionDiv[i].querySelector('#presentLI').className='';
+          sectionDiv[i].querySelector('#presentLI').style.border='5px solid #3d5f6b';
           sectionDiv[i].querySelector('#pastLI').className='active';
           sectionDiv[i].querySelector('#presentPanel').className='col-md-12 fade in tab-pane ';
           sectionDiv[i].querySelector('#pastPanel').className='col-md-12 fade in tab-pane active';
@@ -963,8 +1015,32 @@ var ControlPanel= function (url){
 
 
     for(var i=2;i<sectionNum;i++){
-      if(sections[i].name.indexOf(event.detail.agentid)===0 && sectionDiv[i].querySelector(selector)!==null){
+      if(sections[i].name.indexOf(agentToChange)===0 && sectionDiv[i].querySelector('#viewCheck'+cId)!==null){
         sectionDiv[i].querySelector('#viewCheck'+cId).setAttribute('val',v);
+
+      }
+    }
+  }
+  this.changeRadioViewImgVal=function(agentToChange,cId,v){
+    var sections=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items;
+    var sectionNum=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items.length;
+    var sectionDiv=document.querySelector('#fullTemp').children;
+
+
+
+    for(var i=2;i<sectionNum;i++){
+      if(sections[i].name.indexOf(agentToChange)===0 && sectionDiv[i].querySelector('#radioViewBut'+cId)!==null){
+        if(v===false){
+
+          sectionDiv[i].querySelector('#radioViewBut'+cId).setAttribute('src','../resources/configPanel/img/radio/Radio_btn_play.png');
+          sectionDiv[i].querySelector('#radioEq'+cId).setAttribute('src','../resources/configPanel/img/radio/Radio-animacion-off-estatico.png');
+
+        }
+        else if(v===true){
+          sectionDiv[i].querySelector('#radioViewBut'+cId).setAttribute('src','../resources/configPanel/img/radio/Radio_btn_pausa.png');
+          sectionDiv[i].querySelector('#radioEq'+cId).setAttribute('src','../resources/configPanel/img/radio/animacion-ecualizador_transp.gif');
+        }
+
 
       }
     }
@@ -1014,13 +1090,19 @@ var menuItem = function (){
   this.getId = function(){
     return this.aSection;
   }
-  this.render=function(){
+  this.render=function(next,prev){
     var li=document.createElement('li');
     li.addEventListener('click',this.onclick.bind(this));
   li.id=this.aSection;
     li.tabindex=1;
-    li.onfocus=function(e){
+    var _this=this;
+    li.onfocus=function(event){
       window.alert("focus");
+      li.addEventListener('keyDown',function(event){
+        if(event.keyCode===17){
+          _this.onclick.bind(_this);
+        }
+      });
     }
     if(this.aSection==='AddDevice'){
       li.className='options';
@@ -1039,7 +1121,18 @@ var menuItem = function (){
     span.appendChild(strong);
 
     a.appendChild(span);
+    if(this.aSection==='AddDevice'){
+      li.className='options';
+      li.onfocus=function(){
+        a.style.backgroundColor='orange';
+      }
+      li.onblur=function(){
+        a.style.backgroundColor='#2b5980';
+      }
+    }
     li.appendChild(a);
+    li.tabIndex=1;
+    li.setAttribute('style','nav-down:#'+next+';nav-up:#'+prev+';');
 
 return li;
 }
@@ -1079,11 +1172,12 @@ var menu = function (){
     var hide=new hideItem();
     ul.appendChild(hide.render());
 
-    this.items.forEach(function(it,i,its){
-      var itNode = it.render();
-    //  itNode.setAttribute("tabindex",""+i)
-      if (its.length > i+1) itNode.setAttribute("style",'nav-down:"#'+its[i+1].getId()+'"');
-      ul.appendChild( itNode);
+    var _this=this;
+    this.items.forEach(function(it,i){
+      if((i!==_this.items.length-1) && (i!==0))ul.appendChild(it.render(_this.items[i+1].aSection,_this.items[i-1].aSection));     
+      else if((i!==_this.items.length-1) && (i===0)){ul.appendChild(it.render(_this.items[i+1].aSection,'hide'));}
+      else if((i===_this.items.length-1) && (i!==0)){ul.appendChild(it.render('hide',_this.items[i-1].aSection));}
+
     });
 
     var logo=new logoItem();
@@ -1119,7 +1213,7 @@ var hideItem=function(){
     var li=document.createElement('li');
     li.className='options';
     var a=document.createElement('a');
-    a.href='#';
+    //a.href='#';
 
 
     var span=document.createElement('span');
@@ -1133,6 +1227,15 @@ var hideItem=function(){
     span.appendChild(strong);
     a.appendChild(span);
     li.appendChild(a);
+    li.onfocus=function(event){
+      a.style.backgroundColor='orange'; 
+    }
+    li.onblur=function(){
+      a.style.backgroundColor='#2b5980';
+    }
+    li.id='hide';
+    li.tabIndex=1;
+    li.setAttribute('style','nav-down:#AddDevice;nav-up:#graphics;')
     li.onclick=function(event){
       mediascape.AdaptationToolkit.uiComponents.ctrlPanel.hide();
     }
@@ -1156,6 +1259,9 @@ var logoItem=function(){
 
     li.appendChild(img1);
     li.appendChild(img2);
+    li.onclick=function(event){
+      mediascape.AdaptationToolkit.uiComponents.toggleFullScreen();
+    }
 
     return li;
   }
@@ -1207,7 +1313,15 @@ var device=function(){
     div.addEventListener('click',this.onclick.bind(this));
     var a=document.createElement('a');
     a.href='#';
-
+    a.tabIndex=1;
+    
+    a.onfocus=function(){
+        div.style.border='solid 5px orange';
+      }
+      a.onblur=function(){
+        div.style.border='';
+      }
+      a.addEventListener('click',this.onclick.bind(this));
     var img1=document.createElement('img');
     img1.src='../resources/configPanel/img/devices/'+this.icon;
 
@@ -1274,7 +1388,7 @@ var layout=function(){
   this.render=function(actLay){
     var div=document.createElement('div');
     div.className="col-md-4 boxlayout";
-
+    div.tabIndex=1;
     var a=document.createElement('a');
     a.href='#';
     a.id=this.name+'Layout';
@@ -1287,6 +1401,7 @@ var layout=function(){
     img.addEventListener('click',this.onclick.bind(this));
     a.appendChild(img);
     div.appendChild(a);
+    div.addEventListener('click',this.onclick.bind(this));
     return div;
   }
   this.onclick=function(event){
@@ -1336,10 +1451,11 @@ var qrSection=function(url){
     //extDiv.style.width=width;
     var qrdiv=document.createElement('div');
     qrdiv.className='qr-code-content';
+    qrdiv.id='qr-code-content';
 
     if(width<767)leftMargin=35*width/100;
         else leftMargin=25*width/100;
-        mediascape.association.createQRcode(url,qrdiv,(30*width/100),(30*width/100),'',leftMargin,50);
+        //mediascape.association.createQRcode(url,qrdiv,(30*width/100),(30*width/100),'',leftMargin,50);
 
     var animationdiv=document.createElement('div');
     animationdiv.id='animated-example';
@@ -1352,7 +1468,7 @@ var qrSection=function(url){
 
     extDiv.appendChild(qrdiv);
     extDiv.appendChild(animationdiv);
-
+    mediascape.association.doAssociation('qr','qr-code-content', url, true,(30*width/100),(30*width/100),leftMargin,50);
     return extDiv;
   }
 }
@@ -1456,11 +1572,58 @@ var camera=function(){
     if(b[0].show===true){
       mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'hide');
       mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeViewSwVal(agentToChange,this.id,false);
+      setTimeout(function(){
+        if(b[0].customCmd.lastIndexOf('mutePlayer')===-1 && b[0].customCmd.lastIndexOf('soundPlayer')===-1){
+        if(document.querySelector('#'+scope.name).ismuted==='false' ){
+          mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,scope.id,'offSound');
+          mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,scope.id,false);
+        }
+      }
+      else if(b[0].customCmd.lastIndexOf('mutePlayer') <b[0].customCmd.lastIndexOf('soundPlayer')){
+          mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,scope.id,'offSound');
+          mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,scope.id,false);
+      }
+      },1000);
+
+
+
+
     }
     else{
       mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'show');
       mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeViewSwVal(agentToChange,this.id,true);
+
+      setTimeout(function(){
+      if(b[0].customCmd.lastIndexOf('offSound')===-1 && b[0].customCmd.lastIndexOf('mutePlayer')===-1 &&
+        b[0].customCmd.lastIndexOf('soundPlayer')===-1){
+        if(document.querySelector('#'+scope.name).ismuted==='false'){
+          mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,scope.id,'soundPlayer');
+          mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,scope.id,true);
+        }
+
+
+      }
+      else if(b[0].customCmd.lastIndexOf('offSound')>b[0].customCmd.lastIndexOf('mutePlayer')){
+        mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,scope.id,'onSound');
+        mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,scope.id,true);
+      }
+      else if(b[0].customCmd.lastIndexOf('offSound')!==-1 && b[0].customCmd.lastIndexOf('mutePlayer')===-1 &&
+        document.querySelector('#'+scope.name).ismuted!=='false'){
+        mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,scope.id,'onSound');
+        mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,scope.id,true);
+      }
+      else if(b[0].customCmd.lastIndexOf('offSound')===-1 && b[0].customCmd.lastIndexOf('mutePlayer')===-1 &&
+        b[0].customCmd.lastIndexOf('soundPlayer')!==-1){
+        mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,scope.id,'onSound');
+          mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,scope.id,true);
+      }
+      },1000);
+
+
+
+
     }
+
   }
   this.soundclick=function(event){
     event.preventDefault();
@@ -1480,15 +1643,20 @@ var camera=function(){
 
     console.log('soundClick');
 
-
+    if(b[0].show===true){
     if(b[0].customCmd.lastIndexOf('mutePlayer')===-1 && b[0].customCmd.lastIndexOf('soundPlayer')===-1){
-        if(document.querySelector('#'+scope.name).ismuted==='false'){
-          mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'mutePlayer');
-          mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,this.id,false);
+        if(document.querySelector('#'+scope.name).ismuted==='false' ){
+
+            mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'mutePlayer');
+            mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,this.id,false);
+
+
         }
         else{
+
           mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'soundPlayer');
           mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,this.id,true);
+
         }
 
     }
@@ -1497,12 +1665,16 @@ var camera=function(){
 
         mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'mutePlayer');
         mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,this.id,false);
+
       }
       else{
+
         mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'soundPlayer');
         mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,this.id,true);
+
       }
     }
+  }
   }
 }
 var camerasSection=function(){
@@ -1601,26 +1773,76 @@ var camerasSection=function(){
       });
 
 
-      if(b[0].customCmd.lastIndexOf('mutePlayer')===-1 && b[0].customCmd.lastIndexOf('soundPlayer')===-1){
-        if(document.querySelector('#'+this.cameras[i].name).ismuted==='false'){
+      if(b[0].customCmd.lastIndexOf('mutePlayer')===-1 && b[0].customCmd.lastIndexOf('soundPlayer')===-1
+        && b[0].customCmd.lastIndexOf('offSound')===-1 && b[0].customCmd.lastIndexOf('onSound')===-1){
+
+        if(document.querySelector('#'+this.cameras[i].name).ismuted==='false' && b[0].show===true){
           this.cameras[i].setSoundStatus(true);
 
         }
+
         else{
           this.cameras[i].setSoundStatus(false);
 
         }
+
 
       }
       else {
-        if(b[0].customCmd.lastIndexOf('mutePlayer') <b[0].customCmd.lastIndexOf('soundPlayer')){
 
-          this.cameras[i].setSoundStatus(false);
+        if(b[0].customCmd.lastIndexOf('offSound')===-1 && b[0].customCmd.lastIndexOf('onSound')===-1){
+
+          if((b[0].customCmd.lastIndexOf('mutePlayer') <b[0].customCmd.lastIndexOf('soundPlayer') ) &&
+            (b[0].customCmd.lastIndexOf('mutePlayer')!==-1) && (b[0].customCmd.lastIndexOf('soundPlayer')!==-1)
+            && b[0].show===true){
+
+            this.cameras[i].setSoundStatus(true);
+          }
+          else if((b[0].customCmd.lastIndexOf('mutePlayer') <b[0].customCmd.lastIndexOf('soundPlayer') ) &&
+            (b[0].customCmd.lastIndexOf('mutePlayer')!==-1) && (b[0].customCmd.lastIndexOf('soundPlayer')!==-1)
+            && b[0].show===false){
+
+            this.cameras[i].setSoundStatus(false);
+          }
+          else if((b[0].customCmd.lastIndexOf('mutePlayer')===-1)
+            && (b[0].customCmd.lastIndexOf('soundPlayer')!==-1 && b[0].show===true)){
+            this.cameras[i].setSoundStatus(true);
+          }
+          else if((b[0].customCmd.lastIndexOf('mutePlayer')===-1)
+            && (b[0].customCmd.lastIndexOf('soundPlayer')!==-1 && b[0].show===false)){
+            this.cameras[i].setSoundStatus(false);
+
+          }
+          else if((b[0].customCmd.lastIndexOf('mutePlayer')!==-1)
+            && (b[0].customCmd.lastIndexOf('soundPlayer')===-1)){
+            this.cameras[i].setSoundStatus(false);
+          }
+
+          else{
+            if(b[0].show===true){
+              this.cameras[i].setSoundStatus(true);
+            }
+          }
         }
         else{
-          this.cameras[i].setSoundStatus(true);
+
+
+          if(b[0].customCmd.lastIndexOf('offSound')>b[0].customCmd.lastIndexOf('mutePlayer')){
+            this.cameras[i].setSoundStatus(false);
+          }
+          else if(b[0].customCmd.lastIndexOf('offSound')!==-1 && b[0].customCmd.lastIndexOf('mutePlayer')===-1 &&
+            document.querySelector('#'+scope.name).ismuted!=='false'){
+            this.cameras[i].setSoundStatus(false);
+          }
+
+
+
         }
       }
+
+
+
+
     }
 
   }
@@ -1660,6 +1882,13 @@ var hashtag=function(){
     select.className='form-control select-hashtag';
     select.addEventListener('change',this.sendHTclick.bind(this),true);
     select.id='htSelect';
+    select.tabIndex=1;
+    select.onfocus=function(){
+      select.style.border='solid 5px orange';
+    }
+    select.onblur=function(){
+      select.style.border='';
+    }
     var HT=['','Elecciones',' elecciones',' Hauteskundeak',' hauteskundeak',' eleccion',' #elecciones24m',' #24m',' #L6elecciones','#eleccionesA3',' #eleccion2015',' hauteskundeak',' elecciones',' @hauteskundeak',' #hauteskundeak2015',' #Elecciones2015',' #hauteskundeak15',' #Elecciones15',' #M24Donostia',' #eleccionesVG',' @Navarra2015',' #Navarra24M',' #24M',' #M24Donostia',' #EleccionesNA15',' #Navarra24M',' @PPopular',' @PSOE',' @vox_es',' @UPyD',' @ahorapodemos',' @PartidoPACMA',' @Equo',' @CiudadanosCs',' @webpcpe',' @RecortesCero',' @phumanista_esp',' #UPyD',' #PSOE',' #PP',' #BILDU',' #Podemos',' #HagamosHistoria24M',' #VOX',' #AhoraVOX',' #Ciudadanos',' #UPN',' @PPvasco',' @UPyDEuskadi',' @Cs_Euskadi',' @IrabaziEuskadi',' @PES_PSE',' @EzkerBatua',' @ealkartasuna',' @plaZFeminista',' @PodemosEuskadi_',' @ehbildu',' @IkuneICP',' @eajpnv',' @PacmaEuskadi',' @UdalBerri',' @GastoriaVG',' @hegasum',' @IUEzker',' @upn_navarra',' @libertadnavarra',' @SainNavarra',' @RCN_NOK',' Kike Fernández',' @KikeFdzdePinedo',' @arabaehbildu',' @ehbilduaraba',' Miren Larrion',' @miren_larrion',' @ehbildugasteiz',' @EA_Araba',' Ramiro González',' @ramirogonza',' @eajpnvaraba',' @pnvjuntasaraba',' Gorka Urtaran',' @pnvgasteiz',' @gorka__urtaran',' Cristina González',' @CristinaGnlz',' @psealava',' @PSEporAlava',' Peio López De Munain',' @porvitoria',' @peiomunain_xvg',' Javier De Andrés',' @JavierdAndres',' @PP_Juntas_Alava',' Javier Maroto',' @JavierMaroto',' Koldo Martin',' @KoldoPodemos',' @PodemosVitoria',' Ana Unibaso',' @IkuneICP',' Niko Gutiérrez',' @Nik0Gutierrez',' Ignacio Oñate',' @Ignacionate',' Miguel Angel Carrera',' @MikelK10',' Rodrigo Zamora',' @Rodri_Zamora_Al',' José Damían Garcia-Moreno',' @josedamian1980',' #IrabaziAlaba',' @iu_araba',' @EquoAraba',' Óscar Fernández',' @oskar_fm',' @IrabaziGasteiz',' @EQUO_VG',' @EBgasteiz',' Esaú Martín',' @esaumartin',' @vox_alava',' #AhoraVOX',' Adolfo Gago',' @toohope',' Vanesa Costa',' Nerea Icuza',' @icuza',' Esther Saez de Argandoña',' @unicaire',' @GastoriaVG',' Jorge Hinojal',' @JorgeHiSo',' @shgjorge',' @hegasum',' Diana Plaza',' @RecortesCero',' Xabier Olano',' @Xabier_Olano_',' @ehbildugipuzkoa',' @alternatiba',' @EA_Gipuzkoa',' #gipuzkoarrokgaraile',' Juankar Izagirre',' @AlkateSS',' @HiriBizia',' @SortuDonostia',' @EA_Donostia',' #BILDU',' @ehbildu',' Markel Olano',' @eajpnvgipuzkoa',' @markelolano',' @markelolano2015',' Eneko Goia',' @enekogoia2015',' @DonostiaPNV',' @pnvdonostia',' @eajpnv',' Denis Itxaso',' @DenisItxaso',' @PSEGIPUZKOA',' Ernesto Gasco',' @gasco63',' Juan Carlos Cano',' @PPGipuzkoa',' @CanoAristoy',' Miren Albistur',' @MirenAlbistur',' @PPdonostiarras',' Juantxo Iturria',' @juantxo_iturria',' #BadaGaraia',' #GipuzkoaAldatu',' @podemosDonostia',' Amaia Martín',' @sybillacumas',' @Irabazidonostia',' #Podemos',' #HagamosHistoria24M',' Arantza González',' @arantzagg',' @IRABAZIGipuzkoa',' @Irabazidonostia',' @IUDonostia',' @eQuoGipuzkoa',' Manuel Aguirre',' @Mccguirre',' Arantza Aranzabal',' @aranaranzabal',' #donostiaUPyD',' @votaUPyD',' Jonathan Calvo',' @joncalrue',' Nicolás de Miguel',' @NicodeMig',' Josebe Iturrioz',' @JosebeIturrioz',' #AldaketaGorpuzteko',' @plaZFeminista',' Saioa Escolar',' @Pacma_Gipuzkoa',' @PacmaGipuzkoa',' @PacmaEuskadi',' Josu Unanue',' @unanuejosu',' @ehbildubizkaia',' #bizkaitarrokgaraile',' Aitziber Ibarbarriaga',' @AitziIbaiba',' @ehbildubilbo',' @SortuBilbo',' #BILDU',' @EA_Bizkaia',' Unai Rementeria',' @urementeria',' Juan María Aburto',' @juanmariaburto',' @AzalgorriBilbao',' @eajpnvbilbao @eajpnv',' Carlos Totorica',' @PSEBizkaia',' #CarlosTotorica',' Alfonso Gil',' @AlfonsoGil',' @PSEBilbao',' @GroupPES_Bilbao',' Javier Ruiz',' @JavierRuiz_PP',' @PPBizkaia',' Luis Eguiluz',' @LuisEguiluz_pp',' @PPdeBilbao',' Asun Merino',' @AsunPodemos',' @PodemosBizkaia',' Francisco Samir Lahdou',' @PodemosBilbao',' @PodemosBilbaoE',' Xabier Jiménez',' @Eljoventopo',' #IrabaziBizkaia',' @BilboIrabaziz',' @IUBilbao',' @EquoBizkaia',' Roque Adrada',' @RoqueAdrada',' Javier Gabilondo',' @JavierGabilondo',' Santiago Sáinz',' @Sainz_Robles',' @Ciudadanos',' David Pasarín',' @davidpasarin',' Patricia Gómez',' @vox_vizcaya',' Urko de Azumendi',' @urkobilbao2015',' @vox_bilbao',' Carmen Muñoz',' @CarmenMunozL',' #BilbaoEnComun',' @UdalBerri',' @Equo',' @iunida',' @ALTER_info',' JOSE MANUEL VÁZQUEZ RIOS',' @phumanista_esp',' Kepa Lozano',' @KEPALOZANO',' Goizane Rodríguez',' @JusticiaPAT',' Joseba Arroita',' @IkuneICP',' Sergio Saenz',' @webpcpe',' #24mvotapcpe',' Uxue Barkos',' @uxuebarkos',' Itziar Gomez',' @itziargomez',' @GeroaBaiIrunea',' @geroabai',' #orainbai',' @EAJPNVNafarroa',' Javier Esparza',' @JavierJesparza',' @_navarrisimo',' #Navarrisimo',' #adelantenavarros',' Enrique Maya',' #Navarrisimo',' #UPN',' @upn_navarra',' Ana Beltran',' @abeltran_ana',' @PPNavarra',' Pablo Zalba',' @PabloZalba',' #Pamplona',' #Navarra',' @PPNavarra',' #DespiertaPamplona',' María Chivite',' @mavichina',' @PSNPSOE',' Maite Esporrin',' @maiteesporrin',' @PamplonaPSN',' @psnpsoe',' #VotaPSOE',' #VotaPSNPSOE',' #EsporrinAlcaldesa',' #ActivemosPamplona',' Adolfo Araiz',' @AdolfoAraiz',' @EHbilduNafarroa',' #Nafarrokgaraile',' #nafarrokgaraile',' Joseba Asiron',' @josebaasiron',' @EAnafarroa',' Laura Pérez Ruano',' @laperua',' @Podemosnavarra',' #EsAhora',' #CambiaNavarra',' Diego Paños',' @diegopanos',' #CambiaNavarra',' @Cs_Navarra_',' Iñaki Arana',' #NavarraPideCambio',' Miguel Zarranz',' @miguelzarranz',' @UPyD_Navarra',' Damaso Crespo',' @upyd_navarra',' #LIBRES',' Jose Miguel Nuin',' @josemiguelnuin',' @IzdaNavarra @EzkerraN',' Mikel Iriarte',' @libertadnavarra',' David Marzo',' @davidMarzo',' @EquoNavarfarroa',' #LaAlternativaVerde',' #AukeraVerdea',' @EquoNavarra',' Maria Yazmina Larumbe',' @PacmaNavarra',' Daniel Fernández',' #SuVozTuVoto',' Luis Miguel Latasa',' @SainNavarra',' @PartidoSAIn',' Samuel Valderrey',' @SamuelValderrey',' #VOTASAIn',' Ramon Morcillo',' @RCN_NOK',' #marihuana',' Edurne Eguino',' @SoyEdurneNaiz',' @EdurneEguino',' @IUPamplona'];
     for(var i=0;i<HT.length;i++){
       var opt1=document.createElement('option');
@@ -1682,6 +1911,13 @@ var hashtag=function(){
     s2.className='col-md-3 check-switch-twitter';
     s2.setAttribute('val',this.viewStatus);
     s2.addEventListener('click',this.viewClick.bind(this),true);
+    s2.tabIndex=1;
+    s2.onfocus=function(){
+      s2.querySelector('#apagado').style.border='solid 5px orange';
+    }
+    s2.onblur=function(){
+      s2.querySelector('#apagado').style.border='';
+    }
 
     hashtagDiv.appendChild(div1);
     hashtagDiv.appendChild(div2);
@@ -1757,6 +1993,13 @@ var trendingMap=function(){
     s2.className='col-md-3 check-switch-twitter';
     s2.setAttribute('val',this.viewStatus);
     s2.addEventListener('click',this.viewClick.bind(this),true);
+    s2.tabIndex=1;
+    s2.onfocus=function(){
+      s2.querySelector('#apagado').style.border='solid 5px orange';
+    }
+    s2.onblur=function(){
+      s2.querySelector('#apagado').style.border='';
+    }
 
     trending.appendChild(div4);
     trending.appendChild(div5);
@@ -1942,15 +2185,22 @@ var radios=function(){
 
     var img=document.createElement('img');
     img.className="radio_btn_pausa";
-    img.id='radioViewBut';
+    img.id='radioViewBut'+this.id;
     img.width='150';
     if(this.viewStatus===true){
-      img.src='../resources/configPanel/img/radio/Radio_btn_pausa.png';
+      img.setAttribute('src','../resources/configPanel/img/radio/Radio_btn_pausa.png');
     }
     else{
-      img.src='../resources/configPanel/img/radio/Radio_btn_play.png';
+      img.setAttribute('src','../resources/configPanel/img/radio/Radio_btn_play.png');
     }
-    img.addEventListener('click',this.viewClick.bind(this),true);
+    div7.addEventListener('click',this.viewClick.bind(this),true);
+    div7.tabIndex=1;
+      div7.onfocus=function(){
+        img.style.border='solid 5px orange';
+      }
+      div7.onblur=function(){
+        img.style.border='';
+      }
 
     div7.appendChild(img);
 
@@ -1970,12 +2220,12 @@ var radios=function(){
 
     var img1=document.createElement('img');
     img1.className='radio_ecualizador_img';
-    img1.id='radioEq';
+    img1.id='radioEq'+this.id;
     if(this.viewStatus===true){
-      img1.src='../resources/configPanel/img/radio/animacion-ecualizador_transp.gif';
+      img1.setAttribute('src','../resources/configPanel/img/radio/animacion-ecualizador_transp.gif');
     }
     else{
-      img1.src='../resources/configPanel/img/radio/Radio-animacion-off-estatico.png';
+      img1.setAttribute('src','../resources/configPanel/img/radio/Radio-animacion-off-estatico.png');
     }
     div10.appendChild(img1);
 
@@ -2077,6 +2327,7 @@ var radios=function(){
     return div2;
   }
   this.viewClick=function(event){
+    event.preventDefault();
     var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
     var agents=agCtx.agents;
     var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
@@ -2094,10 +2345,11 @@ var radios=function(){
     console.log('viewClick');
     if(b[0].show===true){
       mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'hide');
-
+      mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeRadioViewImgVal(agentToChange,this.id,false);
     }
     else{
       mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'show');
+      mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeRadioViewImgVal(agentToChange,this.id,true);
 
     }
   }
@@ -2118,6 +2370,7 @@ var radioSection=function(){
 
   }
   this.setRadioViewStatus=function(agentID){
+
 
     var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
     var agents=agCtx.agents;
@@ -2200,6 +2453,19 @@ var table=function(){
     else{
       li1.className='';
     }
+    li1.tabIndex=1;
+    li1.onfocus=function(){
+      li1.style.border='solid 5px orange';
+    }
+    li1.onblur=function(){
+      if(li1.className==='active'){
+         li1.style.border='solid 5px #97c7e8';
+      }
+      else{       
+        li1.style.border='solid 5px #3d5f6b';
+      }
+      
+    }
     li1.addEventListener('click',this.pastClick.bind(this),true);
 
     li1.innerHTML='<a href="#2011" aria-controls="2011" role="tab" data-toggle="tab"><img src="../resources/configPanel/img/graphics/icon_chart.png"/><br><span class="year-text">2011</span></a>'
@@ -2214,6 +2480,18 @@ var table=function(){
     }
     else{
       li2.className='';
+    }
+    li2.tabIndex=1;
+    li2.onfocus=function(){
+      li2.style.border='solid 5px orange';
+    }
+    li2.onblur=function(){
+      if(li2.className==='active'){
+        li2.style.border='solid 5px #97c7e8';
+      }
+      else{
+        li2.style.border='solid 5px #3d5f6b';
+      }
     }
     li2.addEventListener('click',this.presentClick.bind(this),true);
     li2.innerHTML='<a href="#2012" aria-controls="2015" role="tab" data-toggle="tab"><img src="../resources/configPanel/img/graphics/icon_chart.png"/><br><span class="year-text">2015</span></a>';
@@ -2237,13 +2515,21 @@ var table=function(){
 
     var div11=document.createElement('div');
     div11.id='bilbo';
+    div11.addEventListener('click',this.placeClick.bind(this));
+    div11.tabIndex=1;
+    div11.onfocus=function(){
+      div11.style.backgroundColor='orange';
+    }
+    div11.onblur=function(){
+      div11.style.backgroundColor='#c7dcea';
+    }
     if(this.activePlace===div11.id){
       div11.className='col-md-12 pastilla_ciudad active';
     }
     else{
       div11.className='col-md-12 pastilla_ciudad';
     }
-    div11.addEventListener('click',this.placeClick.bind(this));
+    
 
     var div12=document.createElement('div');
     div12.className='txt_ciudad';
@@ -2255,6 +2541,13 @@ var table=function(){
     var div13=document.createElement('div');
     div13.id='donostia';
     div13.addEventListener('click',this.placeClick.bind(this));
+    div13.tabIndex=1;
+    div13.onfocus=function(){
+      div13.style.backgroundColor='orange';
+    }
+    div13.onblur=function(){
+      div13.style.backgroundColor='#c7dcea';
+    }
     if(this.activePlace===div13.id){
       div13.className='col-md-12 pastilla_ciudad active';
     }
@@ -2270,6 +2563,13 @@ var table=function(){
     var div15=document.createElement('div');
     div15.id='gasteiz';
     div15.addEventListener('click',this.placeClick.bind(this));
+    div15.tabIndex=1;
+    div15.onfocus=function(){
+      div15.style.backgroundColor='orange';
+    }
+    div15.onblur=function(){
+      div15.style.backgroundColor='#c7dcea';
+    }
     if(this.activePlace===div15.id){
       div15.className='col-md-12 pastilla_ciudad active';
     }
@@ -2285,6 +2585,13 @@ var table=function(){
     var div17=document.createElement('div');
     div17.id='irunea';
     div17.addEventListener('click',this.placeClick.bind(this));
+    div17.tabIndex=1;
+    div17.onfocus=function(){
+      div17.style.backgroundColor='orange';
+    }
+    div17.onblur=function(){
+      div17.style.backgroundColor='#c7dcea';
+    }
     if(this.activePlace===div17.id){
       div17.className='col-md-12 pastilla_ciudad active';
     }
@@ -2317,6 +2624,13 @@ var table=function(){
     var div20=document.createElement('div');
     div20.id='bilbo';
     div20.addEventListener('click',this.placeClick.bind(this));
+    div20.tabIndex=1;
+    div20.onfocus=function(){
+      div20.style.backgroundColor='orange';
+    }
+    div20.onblur=function(){
+      div20.style.backgroundColor='#c7dcea';
+    }
     if(this.activePlace===div20.id){
       div20.className='col-md-12 pastilla_ciudad active';
     }
@@ -2333,6 +2647,13 @@ var table=function(){
     var div22=document.createElement('div');
     div22.id='donostia';
     div22.addEventListener('click',this.placeClick.bind(this));
+     div22.tabIndex=1;
+    div22.onfocus=function(){
+      div22.style.backgroundColor='orange';
+    }
+    div22.onblur=function(){
+      div22.style.backgroundColor='#c7dcea';
+    }
     if(this.activePlace===div22.id){
       div22.className='col-md-12 pastilla_ciudad active';
     }
@@ -2348,6 +2669,13 @@ var table=function(){
     var div24=document.createElement('div');
     div24.id='gasteiz';
     div24.addEventListener('click',this.placeClick.bind(this));
+     div24.tabIndex=1;
+    div24.onfocus=function(){
+      div24.style.backgroundColor='orange';
+    }
+    div24.onblur=function(){
+      div24.style.backgroundColor='#c7dcea';
+    }
     if(this.activePlace===div24.id){
       div24.className='col-md-12 pastilla_ciudad active';
     }
@@ -2363,6 +2691,13 @@ var table=function(){
     var div26=document.createElement('div');
     div26.id='irunea';
     div26.addEventListener('click',this.placeClick.bind(this));
+     div26.tabIndex=1;
+    div26.onfocus=function(){
+      div26.style.backgroundColor='orange';
+    }
+    div26.onblur=function(){
+      div26.style.backgroundColor='#c7dcea';
+    }
     if(this.activePlace===div26.id){
       div26.className='col-md-12 pastilla_ciudad active';
     }
@@ -2473,7 +2808,13 @@ var graph=function(){
     s2.setAttribute('val',this.viewStatus);
     s2.addEventListener('click',this.viewclick.bind(this),true);
     s2.style.position='absolute';
-
+    s2.tabIndex=1;
+    s2.onfocus=function(){
+      s2.querySelector('#apagado').style.border='solid 5px orange';
+    }
+    s2.onblur=function(){
+      s2.querySelector('#apagado').style.border='';
+    }
     div30.appendChild(div32);
     div30.appendChild(s2);
     return div30;
