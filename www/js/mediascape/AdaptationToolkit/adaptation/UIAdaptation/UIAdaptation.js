@@ -271,8 +271,11 @@ define(
             //mediascape.AdaptationToolkit.uiComponents.infoPanel('Layout info','<p>Components Number: '+cmps.length+'</p><p> Rendering layout: '+actualLayout.name+'</p>','250px','1%','6%');
             This.updateComponentQuery();
       }
-    }
-      this.onPriorizeComponent=function(e){
+    },
+    this.onRemoteCommand = function(val){
+        actualLayout.onRemoteCommand(val);
+    },
+    this.onPriorizeComponent=function(e){
         var cmp=e.srcElement;
         if(actualLayout)actualLayout.onPriorizeComponent(cmp);
       }

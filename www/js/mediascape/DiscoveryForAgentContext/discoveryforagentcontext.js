@@ -294,7 +294,27 @@ define(["mediascape/Discovery/discovery","mediascape/Agentcontext/agentcontext",
 			ac.load({
 				"layoutStatus": layoutEventInstrument
 			});
+			var layoutParameterInstrument = {
+	 				init: function () {
+	 					this.setCapability("layoutParameter", "supported");
+	 					ac.setItem('layoutParameter','');
+	 					console.log("INIT INSTRUMENT");
 
+	 				},
+	 				on: function (){
+
+						document.addEventListener('onLayoutParameterChange',function(ev){
+							ac.setItem('layoutParameter',ev.detail);
+						});
+	 				},
+	 				off: function (){
+
+	 				}
+
+	 			};
+	 			ac.load({
+	 				"layoutParameter": layoutParameterInstrument
+	 			});
 		mediascape.discovery.isPresent("language").then(function(data){
 			if(data.presence){
 				var instrument = {

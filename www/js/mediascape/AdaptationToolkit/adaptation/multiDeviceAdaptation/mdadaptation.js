@@ -396,7 +396,12 @@ function($, applicationContext){
                   document.dispatchEvent(eventL);
                   mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAgents ()['self'].setItem('layoutEvent','');
                 }
-              }
+              }else   if (e.agentid === me && key === "layoutParameter"){
+                  if (value !="" && value !="supported"){
+                    mediascape.AdaptationToolkit.Adaptation.UIAdaptation.onRemoteCommand(value);
+
+                  }
+                }
               // Crear un pila para evitar sobre saturar el sistema
             if (rules.groupCapacities){
              agentStack[e.agentid].time = new Date().getTime();
@@ -796,6 +801,18 @@ function($, applicationContext){
   }
   this.setAppAttribute= function(key,value){
       applicationContext.setItem(key,value);
+  },
+  this.setLayoutParameter = function(agentId,parameter){
+        //onLayoutParameterChange
+        var agent = getAgentById(agentId);
+        if (agent.id === this.getAgentId()){
+          var evt = new CustomEvent("onLayoutParameterChange", { "detail": parameter});
+            document.dispatchEvent(evt);
+        }else{
+          agent.agentContext.setItem('layoutParameter',parameter);
+        }
+      /*  var evt = new CustomEvent("onLayoutParameterChange", { "detail": parameter});
+        document.dispatchEvent(evt);*/
   }
 
 };

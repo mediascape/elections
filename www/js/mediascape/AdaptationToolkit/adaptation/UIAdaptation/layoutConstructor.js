@@ -11,6 +11,9 @@ define(
       this.name = name;
       this.onComponentsChange =function(cmps){}
       this.onOrientationChange=function (cmps){}
+      this.onRemoteCommand=function (val){
+        console.log("Remote cmd",val);
+      }
       this.render= function render (cmps){}
 
       this.checkForImplementation=function(){
