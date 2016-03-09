@@ -1387,7 +1387,7 @@ var layout=function(){
 
   this.render=function(actLay){
     var div=document.createElement('div');
-    div.className="col-md-4 boxlayout";
+    div.className="col-md-6 boxlayout";
     div.tabIndex=1;
     var a=document.createElement('a');
     a.href='#';
@@ -1398,7 +1398,15 @@ var layout=function(){
 
     var img=document.createElement('img');
     img.src=this.image;
-    img.addEventListener('click',this.onclick.bind(this));
+
+    div.onfocus=function(){
+      div.style.border='solid 5px orange';
+    }
+    var _this=this;
+    div.onblur=function(){
+      div.style.border='';
+    }
+
     a.appendChild(img);
     div.appendChild(a);
     div.addEventListener('click',this.onclick.bind(this));
@@ -1521,6 +1529,13 @@ var camera=function(){
     s2.className='col-md-8 col-sm-8 check-switch-camara';
     s2.setAttribute('val',this.viewStatus);
     s2.addEventListener('click',this.viewclick.bind(this),true);
+    s2.tabIndex=1;
+    s2.onfocus=function(){
+      s2.querySelector('#apagado').style.border='solid 5px orange';
+    }
+    s2.onblur=function(){
+      s2.querySelector('#apagado').style.border='';
+    }
 
     div4.appendChild(div5);
     div4.appendChild(s2);
@@ -1542,6 +1557,13 @@ var camera=function(){
     s1.className='col-md-8 col-sm-8 check-switch-vol';
     s1.setAttribute('val',this.soundStatus);
     s1.addEventListener('click',this.soundclick.bind(this),true);
+    s1.tabIndex=1;
+    s1.onfocus=function(){
+      s1.querySelector('#apagado').style.border='solid 5px orange';
+    }
+    s1.onblur=function(){
+      s1.querySelector('#apagado').style.border='';
+    }
 
     div7.appendChild(div8);
     div7.appendChild(s1);
@@ -2432,7 +2454,14 @@ var table=function(){
     s2.className='col-md-3 check-switch-graphics';
     s2.setAttribute('val',this.viewStatus);
     s2.addEventListener('click',this.viewclick.bind(this),true);
-
+    s2.tabIndex=1;
+    s2.onfocus=function(){
+      s2.querySelector('#apagado').style.border='solid 5px orange';
+    }
+    s2.onblur=function(){
+      s2.querySelector('#apagado').style.border='';
+    }
+    
     div5.appendChild(div6);
     div5.appendChild(s2);
 
