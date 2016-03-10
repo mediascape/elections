@@ -175,7 +175,7 @@ function($, applicationContext){
               }
            else {
                   var diff = mediascape.AdaptationToolkit.Utils.getObjectDiff(obj,localStatus);
-                  if (diff.length ===0) diff = context.lastChange.diff;
+                  if (diff.length ===0) diff = [];//context.lastChange.diff;
                   return diff;
             }
           }
