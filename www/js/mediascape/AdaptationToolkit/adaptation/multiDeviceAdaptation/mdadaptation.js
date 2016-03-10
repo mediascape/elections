@@ -340,7 +340,7 @@ function($, applicationContext){
         else return false;
       })[0];
       var diff = getChangeDiff(change.agentid,otherAgent.capabilities['componentsStatus']);
-      var event = new CustomEvent("onComponentsChange", {"detail":{"type":"localChange","cmps":status,"agentid":me.id}});
+      var event = new CustomEvent("onComponentsChange", {"detail":{"type":"localChange","cmps":status,"agentid":otherAgent.id}});
       document.dispatchEvent(event);
       console.log("other agent change <<<<<><");
     }

@@ -55,8 +55,15 @@ define(
                if(cmp.id === el.id) return true;
                else return false;
             })
-            if (!allreadyLoaded){
-            if (el.load) el.load();
+
+            if (true){
+            if (el.load) {
+              el.load();
+            }
+            else {
+                el = document.querySelector('#'+el.id);
+                if (el.load) el.load();
+            }
             var v = el.querySelector('video');
 
             if (v && v.src!=""){
@@ -64,8 +71,8 @@ define(
                el.show = true;
                if (el.play) {
                 // el.pause();
-                 el.play();
-                 v.play();
+              //   el.play();
+              //   v.play();
                }
              }
 
@@ -75,8 +82,8 @@ define(
                el.show = true;
                if (el.play) {
                 // el.pause();
-                 el.play();
-                 a.play();
+              //   el.play();
+              //   a.play();
                }
              }
 
@@ -96,7 +103,13 @@ define(
       // Just hidden all at least
       this.unload = function (els) {
         els.forEach(function(el){
-          if (el.unload) el.unload();
+          if (el.unload) {
+            el.unload();
+          }
+          else {
+              el = document.querySelector('#'+el.id);
+              if (el.unload) el.unload();
+          }
           el.style.display="none";
 
             var v = el.querySelector('video');

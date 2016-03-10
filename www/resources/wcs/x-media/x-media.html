@@ -70,7 +70,6 @@ Polymer({
 		}
 	},
 	smReady:function(e){
-		console.log("XMEDIA SMREADY");
 		var video ="";
 		var _this = this;
 		this.sm = mediascape.AdaptationToolkit.SharedMotion();
@@ -101,17 +100,22 @@ Polymer({
 			var cmpStatus = mediascape.AdaptationToolkit.componentManager.core.getComoponentsToShow();
 			if (cmpStatus) mediascape.AdaptationToolkit.Adaptation.UIAdaptation.onComponentsChange(cmpStatus);
 		},10000);
-		else
+		else{
 		setTimeout(function(){
 			 var video = _this.querySelector('video')
-			// video.src=_this.file;
+			 //video.src=_this.file;
 			_this.sm.addVideo (video,id,_this.skew);
-		//	var cmpStatus = mediascape.AdaptationToolkit.componentManager.core.getComoponentsToShow();
-		//	if (cmpStatus) mediascape.AdaptationToolkit.Adaptation.UIAdaptation.onComponentsChange(cmpStatus);
+	  	 _this.play();
+			  var cmpStatus = mediascape.AdaptationToolkit.componentManager.core.getComoponentsToShow();
+				if (cmpStatus) mediascape.AdaptationToolkit.Adaptation.UIAdaptation.onComponentsChange(cmpStatus);
+				if (navigator.userAgent.toLowerCase().indexOf('hbbtv')!=-1) 	mediascape.AdaptationToolkit.Adaptation.UIAdaptation.useLayout('divided');
+
 	},4000);
-	if (mediascape.deviceType==="TV"){
+if (mediascape.deviceType==="TV" || navigator.userAgent.indexOf('hbbtv')>-1) {
+
 			function handler(e){
 				var time = _this.sm.mapp.motions.shared.query();
+			//	document.querySelector('#output').innerHTML = time.pos;
 				try {
 					  var video = _this.querySelector('video');
 						//video.currentTime = time /1000;
@@ -122,11 +126,13 @@ Polymer({
 				//	video.seek(time);
 				}
 				catch (e){
-					console.log(e+"error");
+
 				}
 			}
-			setInterval(handler,2000);
-			this.play();
+		//	setInterval(handler,2000);
+
+
+		}
 		}
   },
 	play:function(){
@@ -164,6 +170,7 @@ Polymer({
 	unload:function(){
 		 var video = this.querySelector('video');
 		 video.src ="";
+		 console.log("UNLOADING");
 
 	},
 	load:function(){
@@ -172,7 +179,9 @@ Polymer({
 			 if(this.ismuted==="true"){
 				 video.muted=true;
 			 }
-
+		this.play();
+			 //mediascape.AdaptationToolkit.Adaptation.UIAdaptation.useLayout('divided');
+				//mediascape.AdaptationToolkit.Adaptation.UIAdaptation.useLayout('divided');
 	}
 });
  </script>

@@ -3,20 +3,27 @@ define (["msv","mcorp"],
     var mediaSync = mSync;
     var SharedMotion = function(){
       this.init = function(){
+        try {
+
           this.mapp = MCorp.app("4092171836865095034", {anon:true});
           this.mapp.cams = {};
           this.mapp.init();
           var scope = this;
-          this.mapp.run =function (){
-          var event = new CustomEvent("motion-ready", {"detail":{"loaded":true}});
-         //  setTimeout(function(e){document.dispatchEvent(event);},20000);
-         document.addEventListener('agentChange',function(e){
-              document.dispatchEvent(event);
-              document.removeEventListener('agentChange', arguments.callee);
-              scope.mapp.motions.shared.update(null, 1);
-          },false);
+        }catch (e){
 
-       }
+        }
+          this.mapp.run =function (){
+
+              var event1 = new Event("motion-ready", {"detail":{"loaded":true}});
+             //  setTimeout(function(e){document.dispatchEvent(event);},20000);
+             document.addEventListener('agentChange',function(e){
+                  	if (navigator.userAgent.toLowerCase().indexOf('hbbtv')!=-1) setTimeout(function(){document.dispatchEvent(event1);},2000);
+                    else document.dispatchEvent(event1);
+                  document.removeEventListener('agentChange', arguments.callee);
+                  scope.mapp.motions.shared.update(null, 1);
+              },false);
+
+        }
      }
       //this.mapp.run = this.toRun.bind(this);
       this.addVideo = function (video,_id,_skew){
@@ -32,7 +39,7 @@ define (["msv","mcorp"],
             scope.mapp.msvs.shared.query();
             var opts = {};
             opts.skew = skew;
-            opts.target = 0.25
+            opts.target = 0.05;
             opts.debug=false;
             opts.mode ="skip";
             console.log(opts);
@@ -47,7 +54,7 @@ define (["msv","mcorp"],
       return this;
     }
     document.addEventListener('mediascape-modules-ready',function(){
-	  mediascape.AdaptationToolkit.SharedMotion().init();
+	       mediascape.AdaptationToolkit.SharedMotion().init();
     });
     SharedMotion.__moduleName = "SharedMotion";
     return SharedMotion;
