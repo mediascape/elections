@@ -354,11 +354,11 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
    
     }
     carousel.onRemoteCommand=function(parameter){
-      if(parameter==='next'){
+      if(parameter.type==='next'){
         console.log('next');
         mySwiper.slideNext();
       }
-      else if(parameter==='prev'){
+      else if(parameter.type==='prev'){
         console.log('prev');
         mySwiper.slidePrev();
         

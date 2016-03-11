@@ -293,6 +293,21 @@ var ControlPanel= function (url){
       var a=agents.filter(filterById);
 
       container.querySelector('#devNum').innerHTML=a[0]._id+1;
+
+      /*if(a[0].capabilities.platform.deviceType==='TV'){
+        container.querySelector('#devNum').src='../resources/configPanel/img/devices/TV_'+(a[0]._id+1)+'.png';
+      }
+      else if(a[0].capabilities.platform.deviceType.toLowerCase()==='desktop'){
+        container.querySelector('#devNum').src='../resources/configPanel/img/devices/LAPTOP_'+(a[0]._id+1)+'.png';
+      }
+      else if(a[0].capabilities.platform.deviceType.toLowerCase()==='Tablet'){
+        container.querySelector('#devNum').src='../resources/configPanel/img/devices/LAPTOP'+(a[0]._id+1)+'.png';
+      }
+      else if(a[0].capabilities.platform.deviceType.toLowerCase()==='mobile'){
+        container.querySelector('#devNum').src='../resources/configPanel/img/devices/MOVIL_'+(a[0]._id+1)+'.png';
+      }*/
+
+      
       mediascape.AdaptationToolkit.uiComponents.ctrlPanel.selfIDNum=a[0]._id+1;
 
       var val=event.detail.agentid;
@@ -783,6 +798,14 @@ var ControlPanel= function (url){
             else{
               sectionDiv[i].querySelector('#'+layoutList[j].name+'Layout').className='';
             }
+            if(event.detail.context.lastChange.value!=='carousel'){
+              sectionDiv[i].querySelector('#ctrlDiv').style.display='none';
+              
+            }
+            else{
+              sectionDiv[i].querySelector('#ctrlDiv').style.display='block';
+     
+            }
           }
         }
       }
@@ -920,6 +943,14 @@ var ControlPanel= function (url){
           }
           else{
             sectionDiv[i].querySelector('#'+layoutList[j].name+'Layout').className='';
+          }
+          if(layoutName!=='carousel'){
+            sectionDiv[i].querySelector('#ctrlDiv').style.display='none';
+          
+          }
+          else{
+            sectionDiv[i].querySelector('#ctrlDiv').style.display='block';
+           
           }
         }
       }
@@ -1169,6 +1200,10 @@ var devId=function(){
     div.className='mydevice';
     var p=document.createElement('p');
     p.innerHTML="device <strong id='devNum'>"+this.num+"</strong>";
+    /*var img=document.createElement('img');
+    img.src='';
+    img.id='devNum';*/
+
 
     div.appendChild(p);
 
@@ -1346,6 +1381,40 @@ var layout=function(){
       a.className='active';
     }
 
+    if(this.name==='carousel'){
+        var divctrl=document.createElement('div');
+        divctrl.id='ctrlDiv';
+        divctrl.style.position='absolute';
+        divctrl.style.bottom='10px';
+        divctrl.style.width='20%';
+        divctrl.style.left='40%';
+        var prev=document.createElement('img');
+        prev.src='../resources/images/Previous-256.png';
+        prev.style.width='30px';
+        prev.style.height='30px';       
+        prev.id='previous';
+        
+        var next=document.createElement('img');
+        next.src='../resources/images/Next-256.png';
+        next.style.width='30px';
+        next.style.height='30px';    
+        next.style.marginLeft='10px';
+        
+        next.id='next';
+        divctrl.appendChild(prev);
+        divctrl.appendChild(next);
+        a.appendChild(divctrl);
+        
+  
+        divctrl.style.display='none';
+        prev.addEventListener('click',this.prevClick.bind(this));
+        next.addEventListener('click',this.nextClick.bind(this));
+    }
+    
+    if(actLay==='carousel'){
+      divctrl.style.display='block';
+    }
+
     var img=document.createElement('img');
     img.src=this.image;
     img.addEventListener('click',this.onclick.bind(this));
@@ -1357,6 +1426,16 @@ var layout=function(){
     var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
     mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.changeAgentlayout(agentToChange,this.name);
     mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeLayout(agentToChange,this.name);
+  }
+  this.prevClick=function(event){
+    event.preventDefault();
+    var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
+    mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setLayoutParameter(agentToChange,{'type':'prev','time':event.timeStamp});
+  }
+  this.nextClick=function(event){
+    event.preventDefault();
+    var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
+    mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setLayoutParameter(agentToChange,{'type':'next','time':event.timeStamp});
   }
 
 }
