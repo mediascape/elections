@@ -245,7 +245,7 @@ function($, applicationContext){
                       {
                         context.lastChange = {key:change.capability,value:change.value,diff:null};
                         context.agentid = change.agentid;
-                        if (change.capability !== "layoutParameter") changeType ="data";
+                        if (change.capability === "layoutParameter") changeType ="data";
                         else changeType = "ui";
                       }
 
