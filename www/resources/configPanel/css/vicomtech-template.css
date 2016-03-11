@@ -11,6 +11,7 @@ html, body{height:100%; min-height:100%; font-family: 'Ubuntu', sans-serif; font
 z-index:999;  position:fixed;}
 .menu-sidebar .mydevice{background-color:#1e53bb; height:15%; text-align:center; color:#fff; display: table;  width:100%;
 border-right:5px solid #174193;}
+.menu-sidebar .mydevice img{width:50%;padding-top: 5%;position:relative;}
 .menu-sidebar .mydevice p{font-size:2.3vh; display: table-cell; vertical-align: middle; text-transform:uppercase; font-family: 'Ubuntu', sans-serif;}
 .menu-sidebar .mydevice p strong{font-size:8vh; font-weight:500;}
 .menu-sidebar .sidebar-menu{height:83%; }
