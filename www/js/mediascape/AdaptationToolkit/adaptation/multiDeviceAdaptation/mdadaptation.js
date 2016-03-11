@@ -245,8 +245,10 @@ function($, applicationContext){
                       {
                         context.lastChange = {key:change.capability,value:change.value,diff:null};
                         context.agentid = change.agentid;
+                        changeType = "ui";
+                        var AE = mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation;
+                        AE.notifyUpdateContext(context,"cmp_changed",context.agentid);
                         if (change.capability === "layoutParameter") changeType ="data";
-                        else changeType = "ui";
                       }
 
                     }
