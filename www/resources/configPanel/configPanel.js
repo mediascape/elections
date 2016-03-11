@@ -1377,9 +1377,7 @@ var layout=function(){
     var a=document.createElement('a');
     a.href='#';
     a.id=this.name+'Layout';
-    if(this.name===actLay){//jarri aktibatua dagoena
-      a.className='active';
-    }
+    
 
     if(this.name==='carousel'){
         var divctrl=document.createElement('div');
@@ -1410,10 +1408,13 @@ var layout=function(){
         prev.addEventListener('click',this.prevClick.bind(this));
         next.addEventListener('click',this.nextClick.bind(this));
     }
-    
-    if(actLay==='carousel'){
-      divctrl.style.display='block';
+    if(this.name===actLay){//jarri aktibatua dagoena
+      a.className='active';
+      if(actLay==='carousel'){
+       divctrl.style.display='block';
+      }
     }
+    
 
     var img=document.createElement('img');
     img.src=this.image;
