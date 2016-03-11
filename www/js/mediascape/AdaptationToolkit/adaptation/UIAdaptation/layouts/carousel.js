@@ -13,7 +13,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
     var carousel = new LayoutConstructor('carousel');
     carousel.listeners = [];
     var timers=[];
-    
+    var mySwiper;
     carousel.onComponentsChange = function (cmps){
         console.log("test");
     this.cmps = cmps;
@@ -150,7 +150,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
       div.innerHTML='<div id="wrapper" class="swiper-wrapper"></div><div class="swiper-pagination"></div>';
       componentsContainer.appendChild(div);
      
-      var mySwiper =  new Swiper('.swiper-container',{
+      mySwiper =  new Swiper('.swiper-container',{
       
         pagination: '.swiper-pagination',
         paginationClickable: true,
@@ -181,15 +181,20 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
         mySwiper.appendSlide(div);
         mySwiper.update(true);
       }
-      
-      
+
+      /*document.addEventListener('next',function(event){
+        mySwiper.slideNext();
+      });
+      document.addEventListener('prev',function(event){
+        mySwiper.slidePrev();
+      });
+      */
       if(document.querySelector('x-media')){
           document.querySelector('x-media').play();
         }
 
       mediascape.AdaptationToolkit.Adaptation.UIAdaptation.updateComponentQuery();
-
-
+      
 
     }
     carousel.onOrientationChange = function (cmps){
@@ -347,6 +352,17 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
         }
       },this);
    
+    }
+    carousel.onRemoteCommand=function(parameter){
+      if(parameter==='next'){
+        console.log('next');
+        mySwiper.slideNext();
+      }
+      else if(parameter==='prev'){
+        console.log('prev');
+        mySwiper.slidePrev();
+        
+      }
     }
 
 
