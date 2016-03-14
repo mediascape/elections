@@ -856,7 +856,7 @@ var ControlPanel= function (url){
         }
 
 
-        else if(sectionName!=='AddDevice' && device!==undefined){
+        else if(sectionName!=='AddDevice' && device!==undefined && device!=='same'){
           if(it.name===device+sectionName){
             document.querySelector('#fullTemp').children[i].style.display='block';
             var devNum=document.querySelector('#fullTemp').children[i].children[0].children;
@@ -876,22 +876,44 @@ var ControlPanel= function (url){
           }
         }
         else{
-
-          if(it.name===scope.selfID+sectionName){
-            document.querySelector('#fullTemp').children[i].style.display='block';
-            var devNum=document.querySelector('#fullTemp').children[i].children[0].children;
-            for(var j=0;j<devNum.length;j++){
-              if(devNum[j].id===scope.selfID){
-                devNum[j].className="col-md-"+(12/devNum.length)+" col-xs-"+(12/devNum.length)+" boxdevice active";
-              }
-              if(devNum[j].id===scope.activeDevice && scope.activeDevice!==scope.selfID){
-                devNum[j].className="col-md-"+(12/devNum.length)+" col-xs-"+(12/devNum.length)+" boxdevice";
+          if(device===undefined){
+            if(it.name===scope.selfID+sectionName){
+              document.querySelector('#fullTemp').children[i].style.display='block';
+              var devNum=document.querySelector('#fullTemp').children[i].children[0].children;
+              for(var j=0;j<devNum.length;j++){
+                if(devNum[j].id===scope.selfID){
+                  devNum[j].className="col-md-"+(12/devNum.length)+" col-xs-"+(12/devNum.length)+" boxdevice active";
+                }
+                if(devNum[j].id===scope.activeDevice && scope.activeDevice!==scope.selfID){
+                  devNum[j].className="col-md-"+(12/devNum.length)+" col-xs-"+(12/devNum.length)+" boxdevice";
+                }
               }
             }
+            if((it.name===scope.activeDevice+scope.activeSection || it.name==='AddDevice') && scope.activeSection!==sectionName)
+            {
+              document.querySelector('#fullTemp').children[i].style.display='none';
+            }
           }
-          if((it.name===scope.activeDevice+scope.activeSection || it.name==='AddDevice') && scope.activeSection!==sectionName)
-          {
-            document.querySelector('#fullTemp').children[i].style.display='none';
+          else if(device==='same'){
+            if(scope.activeDevice===''){
+              scope.activeDevice=scope.selfID;
+            }
+            if(it.name===scope.activeDevice+sectionName){
+              document.querySelector('#fullTemp').children[i].style.display='block';
+              var devNum=document.querySelector('#fullTemp').children[i].children[0].children;
+              for(var j=0;j<devNum.length;j++){
+                if(devNum[j].id===scope.activeDevice){
+                  devNum[j].className="col-md-"+(12/devNum.length)+" col-xs-"+(12/devNum.length)+" boxdevice active";
+                }
+                if(devNum[j].id!==scope.activeDevice){
+                  devNum[j].className="col-md-"+(12/devNum.length)+" col-xs-"+(12/devNum.length)+" boxdevice";
+                }
+              }
+            }
+            if((it.name===scope.activeDevice+scope.activeSection || it.name==='AddDevice') && scope.activeSection!==sectionName)
+            {
+              document.querySelector('#fullTemp').children[i].style.display='none';
+            }
           }
         }
 
@@ -909,13 +931,16 @@ var ControlPanel= function (url){
         document.querySelector('#'+sectionName).className='active';
       }
 
-      if(device!==undefined){
+      if(device!==undefined && device!=='same'){
         this.activeSection=sectionName;
         this.activeDevice=device;
       }
-      else{
+      else if(device===undefined){
         this.activeSection=sectionName;
         this.activeDevice=this.selfID;
+      }
+      else if(device==='same'){
+        this.activeSection=sectionName;
       }
       if(this.activeSection===''){
       document.querySelector('#fullTemp').style.width='auto';
@@ -1140,7 +1165,7 @@ return li;
 this.onclick = function (event){
   console.log(this.aSection);
 
-  mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSection(this.aSection,undefined);
+  mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSection(this.aSection,'same');
 
 
 }
