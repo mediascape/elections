@@ -636,11 +636,45 @@ var ControlPanel= function (url){
             camerasSect.setCamsSoundStatus(sections[i-removed].name.split('cameras')[0]);
             sectionToReplace.addItem(camerasSect);
             this.removeItem(sections[i-removed].name);
-
             this.addItemPos(sectionToReplace,(i-removed));
             container.replaceChild(sectionToReplace.render(),sectionDiv[i-removed]);
 
           }
+          else if(sections[i-removed].name.indexOf('twitter')>-1){
+            var sectionToReplace=new section();
+            sectionToReplace.setName(sections[i-removed].name);
+            sectionToReplace.addItem(devBox);
+            twitterSect.setViewerViewStatus(sections[i-removed].name.split('twitter')[0]);
+            twitterSect.setViewerHTStatus(sections[i-removed].name.split('twitter')[0]);
+            twitterSect.setMapViewStatus(sections[i-removed].name.split('twitter')[0]);            
+            sectionToReplace.addItem(twitterSect);
+            this.removeItem(sections[i-removed].name);
+            this.addItemPos(sectionToReplace,(i-removed));
+            container.replaceChild(sectionToReplace.render(),sectionDiv[i-removed]);
+          }
+          else if(sections[i-removed].name.indexOf('radio')>-1){
+            var sectionToReplace=new section();
+            sectionToReplace.setName(sections[i-removed].name);
+            sectionToReplace.addItem(devBox);
+            radioSect.setRadioViewStatus(sections[i-removed].name.split('radio')[0]);          
+            sectionToReplace.addItem(radioSect);
+            this.removeItem(sections[i-removed].name);
+            this.addItemPos(sectionToReplace,(i-removed));
+            container.replaceChild(sectionToReplace.render(),sectionDiv[i-removed]);
+          }
+          else if(sections[i-removed].name.indexOf('graphics')>-1){
+            var sectionToReplace=new section();
+            sectionToReplace.setName(sections[i-removed].name);
+            sectionToReplace.addItem(devBox);
+            graphicSect.setTableViewStatus(sections[i-removed].name.split('graphics')[0]);
+            graphicSect.setTableDataStatus(sections[i-removed].name.split('graphics')[0]);
+            graphicSect.setGraphsViewStatus(sections[i-removed].name.split('graphics')[0]);
+            sectionToReplace.addItem(graphicSect);
+            this.removeItem(sections[i-removed].name);
+            this.addItemPos(sectionToReplace,(i-removed));
+            container.replaceChild(sectionToReplace.render(),sectionDiv[i-removed]);
+          }
+
           sectionDiv[i-removed].replaceChild(devBox.render(),sectionDiv[i-removed].children[0]);
 
         }
