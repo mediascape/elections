@@ -11,6 +11,7 @@ var ControlPanel= function (url){
   this.activeDevice='';
   this.selfID='';
   this.selfIDNum='';
+  this.selfDev='';
   this.showing=true;
   var devBox=null;
   var QRurl=url;
@@ -292,19 +293,26 @@ var ControlPanel= function (url){
 
       var a=agents.filter(filterById);
 
-      container.querySelector('#devNum').innerHTML=a[0]._id+1;
+    
+        
+
+      //container.querySelector('#devNum').innerHTML=a[0]._id+1;
 
       /*if(a[0].capabilities.platform.deviceType==='TV'){
-        container.querySelector('#devNum').src='../resources/configPanel/img/devices/TV_'+(a[0]._id+1)+'.png';
+        
+        this.selfDev='../resources/configPanel/img/devices/TV_'+(a[0]._id+1)+'.png';
       }
       else if(a[0].capabilities.platform.deviceType.toLowerCase()==='desktop'){
-        container.querySelector('#devNum').src='../resources/configPanel/img/devices/LAPTOP_'+(a[0]._id+1)+'.png';
+        
+        this.selfDev='../resources/configPanel/img/devices/LAPTOP_'+(a[0]._id+1)+'.png';
       }
       else if(a[0].capabilities.platform.deviceType.toLowerCase()==='Tablet'){
-        container.querySelector('#devNum').src='../resources/configPanel/img/devices/LAPTOP'+(a[0]._id+1)+'.png';
+        
+        this.selfDev='../resources/configPanel/img/devices/TABLET_'+(a[0]._id+1)+'.png';
       }
       else if(a[0].capabilities.platform.deviceType.toLowerCase()==='mobile'){
-        container.querySelector('#devNum').src='../resources/configPanel/img/devices/MOVIL_'+(a[0]._id+1)+'.png';
+        
+        this.selfDev='../resources/configPanel/img/devices/MOVIL_'+(a[0]._id+1)+'.png';
       }*/
 
       
@@ -321,6 +329,7 @@ var ControlPanel= function (url){
       {
         for(var i=0;i<agCtx.agents.length;i++){
           var dev1=new device();
+
           if(agCtx.agents[i].capabilities.platform.deviceType==='TV'){
 
             dev1.setIcon('TV_'+(agCtx.agents[i]._id+1)+'.png');
@@ -339,6 +348,12 @@ var ControlPanel= function (url){
           {
 
             dev1.setIcon('MOVIL_'+(agCtx.agents[i]._id+1)+'.png');
+          }
+          if(agCtx.agents[i].id===mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAgentId()){
+            this.selfDev='../resources/configPanel/img/devices/'+dev1.icon;
+            document.querySelector('#devNum').setAttribute('src','../resources/configPanel/img/devices/'+dev1.icon);
+            document.querySelector('#tabDevId').setAttribute('src','../resources/configPanel/img/devices/'+dev1.icon);
+      
           }
           dev1.setID(agCtx.agents[i].id);
 
@@ -435,7 +450,12 @@ var ControlPanel= function (url){
 
           dev1.setIcon('MOVIL_'+(b[0]._id+1)+'.png');
         }
-
+        if(b[0].id===mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAgentId()){
+          this.selfDev='../resources/configPanel/img/devices/'+dev1.icon;
+          document.querySelector('#devNum').setAttribute('src','../resources/configPanel/img/devices/'+dev1.icon);
+          document.querySelector('#tabDevId').setAttribute('src','../resources/configPanel/img/devices/'+dev1.icon);
+        }
+        
         if(devBox.devices.length===0)
         {
           dev1.setID(event.detail.agentid);
@@ -1223,14 +1243,14 @@ var devId=function(){
   this.render=function(){
     var div=document.createElement('div');
     div.className='mydevice';
-    var p=document.createElement('p');
-    p.innerHTML="device <strong id='devNum'>"+this.num+"</strong>";
-    /*var img=document.createElement('img');
+    /*var p=document.createElement('p');
+    p.innerHTML="device <strong id='devNum'>"+this.num+"</strong>";*/
+    var img=document.createElement('img');
     img.src='';
-    img.id='devNum';*/
+    img.id='devNum';
 
 
-    div.appendChild(p);
+    div.appendChild(img);
 
     return div;
   }
@@ -1279,6 +1299,8 @@ var logoItem=function(){
     li.appendChild(img2);
     li.onclick=function(event){
       mediascape.AdaptationToolkit.uiComponents.toggleFullScreen();
+      document.querySelector('#devNum').setAttribute('src',mediascape.AdaptationToolkit.uiComponents.ctrlPanel.selfDev);
+      document.querySelector('#tabDevId').setAttribute('src',mediascape.AdaptationToolkit.uiComponents.ctrlPanel.selfDev);
     }
 
     return li;
@@ -1300,6 +1322,7 @@ var section=function(){
   }
 
   this.render=function(){
+    
     var div=document.createElement('div');
     if(this.name==='AddDevice'){
       div.className="col-md-10 col-md-offset-2 template-content section-add-device";
@@ -1498,11 +1521,14 @@ var layoutSection=function(){
 
 var qrSection=function(url){
   this.render=function(){
-
+    
     var extDiv=document.createElement('div');
     extDiv.className='template-content-center add-device-content';
     var width=window.innerWidth ||document.documentElement.clientWidth ||document.body.clientWidth;
     //extDiv.style.width=width;
+    if(document.querySelector('#qr-code-content')){
+      document.querySelector('.add-device-content').removeChild(document.querySelector('#qr-code-content'));
+    }
     var qrdiv=document.createElement('div');
     qrdiv.className='qr-code-content';
     qrdiv.id='qr-code-content';
@@ -2198,6 +2224,7 @@ var radios=function(){
     this.viewStatus=stat;
   }
   this.render=function(){
+
     var div2=document.createElement('div');
     div2.className='col-md-12 layout-columns';
 

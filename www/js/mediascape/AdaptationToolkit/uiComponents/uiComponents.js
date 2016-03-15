@@ -504,7 +504,7 @@ define(
       this.addControlPanel = function (url){
 
         var tab=document.createElement('img');
-        tab.src='../resources/configPanel/img/icono_MediaScape.png';
+        tab.src='../resources/configPanel/img/Tab.png';
         tab.id='panelTab';
         document.body.appendChild(tab);
         tab.style.top=0;
@@ -517,6 +517,7 @@ define(
           if ( scope.ctrlPanel.showing){ scope.ctrlPanel.hide();}
             else{scope.ctrlPanel.show();}
         });
+
 
 
         var menuButtonP=document.createElement('p');
@@ -536,8 +537,20 @@ define(
 
         this.ctrlPanel=new ControlPanel(url);
         this.ctrlPanel.hide();
-
-
+        var devImage=document.createElement('img');
+        devImage.id='tabDevId'; 
+        document.body.appendChild(devImage);
+        devImage.style.top=0;
+        devImage.style.left=0;
+        devImage.style.width='8%';
+        devImage.style.position='absolute';
+        devImage.style.zIndex=1000;
+        devImage.addEventListener('click',function(event){
+          if ( scope.ctrlPanel.showing){ scope.ctrlPanel.hide();}
+            else{scope.ctrlPanel.show();}
+        });
+        
+        
 
         var updateQR=_.debounce(function(event){
             if(document.querySelector('.qr-code-content')){
@@ -626,8 +639,12 @@ define(
                 div8.innerHTML = prettyPrint(83869 +e.pos);
 
               };
+
             this.mapp.motions.shared.on("timeupdate", handler);
             var _this=this;
+            document.querySelector('video').addEventListener('ended',function(){
+                _this.mapp.motions.shared.update(0, 1);
+              });
             var velState=this.mapp.motions.shared.vel;
               setInterval(function(){
                 if(_this.mapp.motions.shared.vel!=velState){
