@@ -181,6 +181,9 @@ define( ["jquery","qrcode","webcodecam","qrcodelib"], function($) {
 					var urlLinkObject=visualizeLink(shortedUrl);
 					associationCode.appendChild(urlLinkObject);
 				}
+				if(asociationElement.querySelector('#code')){
+					asociationElement.removeChild(asociationElement.querySelector('#code'));
+				}
 				asociationElement.appendChild(associationCode);
 				var qrcode = new QRCode("qrcode", {
 					text: url,

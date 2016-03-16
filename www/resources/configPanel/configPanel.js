@@ -19,7 +19,7 @@ var ControlPanel= function (url){
   var qrSect=null;
   var camerasSect=null;
   var graphicSect=null;
-  var radioSect=null
+  var radioSect=null;
   var twitterSect=null;
   /* Kontruktorea gauza inizializatzen diren lekua */
   this.controlPanel = function(){
@@ -293,28 +293,6 @@ var ControlPanel= function (url){
 
       var a=agents.filter(filterById);
 
-    
-        
-
-      //container.querySelector('#devNum').innerHTML=a[0]._id+1;
-
-      /*if(a[0].capabilities.platform.deviceType==='TV'){
-        
-        this.selfDev='../resources/configPanel/img/devices/TV_'+(a[0]._id+1)+'.png';
-      }
-      else if(a[0].capabilities.platform.deviceType.toLowerCase()==='desktop'){
-        
-        this.selfDev='../resources/configPanel/img/devices/LAPTOP_'+(a[0]._id+1)+'.png';
-      }
-      else if(a[0].capabilities.platform.deviceType.toLowerCase()==='Tablet'){
-        
-        this.selfDev='../resources/configPanel/img/devices/TABLET_'+(a[0]._id+1)+'.png';
-      }
-      else if(a[0].capabilities.platform.deviceType.toLowerCase()==='mobile'){
-        
-        this.selfDev='../resources/configPanel/img/devices/MOVIL_'+(a[0]._id+1)+'.png';
-      }*/
-
       
       mediascape.AdaptationToolkit.uiComponents.ctrlPanel.selfIDNum=a[0]._id+1;
 
@@ -426,6 +404,7 @@ var ControlPanel= function (url){
         for(var i=2;i<sectionNum;i++){
           sectionDiv[i].replaceChild(devBox.render(),sectionDiv[i].children[0]);
         }
+
       }
       else{
         mediascape.AdaptationToolkit.uiComponents.ctrlPanel.selfID=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAgentId();
@@ -525,12 +504,6 @@ var ControlPanel= function (url){
         }
         else{
           dev1.setID(event.detail.agentid);
-
-
-
-
-
-
           var section1=new section();
           section1.setName(event.detail.agentid+'layouts');
           section1.addItem(devBox);
@@ -1277,8 +1250,7 @@ var devId=function(){
   this.render=function(){
     var div=document.createElement('div');
     div.className='mydevice';
-    /*var p=document.createElement('p');
-    p.innerHTML="device <strong id='devNum'>"+this.num+"</strong>";*/
+    
     var img=document.createElement('img');
     img.src='';
     img.id='devNum';
