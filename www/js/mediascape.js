@@ -31,7 +31,7 @@
     namedwebsockets: 'mediascape/lib/namedwebsockets',
     jquery: 'http://code.jquery.com/jquery-2.1.4.min',
     msv:'http://www.mcorp.no/lib/msv-2.0',
-    mcorp:'http://www.mcorp.no/lib/mcorp-2.0a',
+    mcorp:'http://www.mcorp.no/lib/mcorp-2.0',
     mediaSync:'mediascape/MediaSync/mediasync',
     d3:'../resources/libs/d3.v3.min',
     data2015:'../resources/libs/2015',

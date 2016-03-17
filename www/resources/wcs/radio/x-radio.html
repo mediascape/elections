@@ -140,7 +140,7 @@ Polymer({
 			_this.sm.addVideo (_this.$.radioAudio,id,_this.skew);
 			var cmpStatus = mediascape.AdaptationToolkit.componentManager.core.getComoponentsToShow();
 			if (cmpStatus) mediascape.AdaptationToolkit.Adaptation.UIAdaptation.onComponentsChange(cmpStatus);
-		},4000);
+		},2000);
 
   	},
 
@@ -165,13 +165,19 @@ Polymer({
 	unload:function(){
 		 var audio = this.querySelector('audio')
 		 audio.src ="";
-
+		 audio.muted=false;
+		 audio.volume = 0.9;
 	},
 	load:function(){
 	     var audio = this.querySelector('audio')
 			 audio.src = this.file;
 			 if(this.ismuted==="true"){
 				audio.muted=true;
+				audio.volume = 0;
+			}
+			else {
+				audio.muted=false;
+				audio.volume = 0.9;
 			}
 	}
 });

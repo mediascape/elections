@@ -176,8 +176,8 @@ define(
 
           }
           else if (event === "onOrientationChange"){
-            mediascape.AdaptationToolkit.componentManager.loadManager.unload( mediascape.AdaptationToolkit.componentManager.core.getHiddenComponents(_cmps));
-            mediascape.AdaptationToolkit.componentManager.loadManager.load(_cmps);
+          //  mediascape.AdaptationToolkit.componentManager.loadManager.unload( mediascape.AdaptationToolkit.componentManager.core.getHiddenComponents(_cmps));
+          //  mediascape.AdaptationToolkit.componentManager.loadManager.load(_cmps);
             this.explicitLayout.onOrientationChange(_cmps,explicitRule);
 
           }
@@ -188,8 +188,8 @@ define(
           }
           else   if (event === "onLayoutChange")
           {
-            mediascape.AdaptationToolkit.componentManager.loadManager.unload( mediascape.AdaptationToolkit.componentManager.core.getHiddenComponents(_cmps));
-            mediascape.AdaptationToolkit.componentManager.loadManager.load(_cmps);
+            //mediascape.AdaptationToolkit.componentManager.loadManager.unload( mediascape.AdaptationToolkit.componentManager.core.getHiddenComponents(_cmps));
+            //mediascape.AdaptationToolkit.componentManager.loadManager.load(_cmps);
             this.explicitLayout.onLayoutChangeEvent(_cmps,explicitRule);
           }
           else {
@@ -211,8 +211,8 @@ define(
             //  actualLayout.render(_cmps);
           }
           else if (event === "onOrientationChange"){
-            mediascape.AdaptationToolkit.componentManager.loadManager.unload( mediascape.AdaptationToolkit.componentManager.core.getHiddenComponents(_cmps));
-            mediascape.AdaptationToolkit.componentManager.loadManager.load(_cmps);
+            //mediascape.AdaptationToolkit.componentManager.loadManager.unload( mediascape.AdaptationToolkit.componentManager.core.getHiddenComponents(_cmps));
+            //mediascape.AdaptationToolkit.componentManager.loadManager.load(_cmps);
             actualLayout.onOrientationChange(_cmps);
             //  actualLayout.render(_cmps);
           }
@@ -229,8 +229,8 @@ define(
           case this.LAYOUTMODE.ADAPTABLE:
           if (event === "onLayoutChange")
           {
-            mediascape.AdaptationToolkit.componentManager.loadManager.unload( mediascape.AdaptationToolkit.componentManager.core.getHiddenComponents(_cmps));
-            mediascape.AdaptationToolkit.componentManager.loadManager.load(_cmps);
+            //mediascape.AdaptationToolkit.componentManager.loadManager.unload( mediascape.AdaptationToolkit.componentManager.core.getHiddenComponents(_cmps));
+            //mediascape.AdaptationToolkit.componentManager.loadManager.load(_cmps);
             actualLayout.onLayoutChangeEvent(_cmps);
           }
           else if (event === "onComponentsChange"){
