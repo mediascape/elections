@@ -10,15 +10,15 @@
  */
 
 var config = require('./config');
+var fs = require( 'fs' );
+if ( !fs.existsSync( 'log' ) ) {
+        // Create the directory if it does not exist
+    fs.mkdirSync( 'log' );
+        //fs.writeFile('./log/backend.log', '', 'utf8');
+}
 
 var log4js = require('log4js');
 log4js.configure(config.logConfig);
-var fs = require( 'fs' );
-if ( !fs.existsSync( 'log' ) ) {
-	// Create the directory if it does not exist
-    fs.mkdirSync( 'log' );
-	//fs.writeFile('./log/backend.log', '', 'utf8');
-}
 var logger = log4js.getLogger('MediaScape');
 
 
