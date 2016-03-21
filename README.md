@@ -1,4 +1,4 @@
-## Elections prototype based on mediascape
+## Elections prototype based on mediascape **(HBBTV VERSION)**
 
 Vicomtech-IK4 is leading a prototype about a live TV show with elections, where the user will be able to consume across multiple devices different cameras, vote counting information, etc.
 
