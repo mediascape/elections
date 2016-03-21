@@ -56,7 +56,7 @@ define(
                else return false;
             })
 
-            if (true){
+            if (!allreadyLoaded){
             if (el.load) {
               el.load();
             }

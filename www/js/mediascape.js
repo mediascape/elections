@@ -33,6 +33,7 @@
     msv:'http://www.mcorp.no/lib/msv-2.0',
     mcorp:'http://www.mcorp.no/lib/mcorp-2.0',
     mediaSync:'mediascape/MediaSync/mediasync',
+    reverseMediaSync:'mediascape/MediaSync/reverseMediaSync',
     d3:'../resources/libs/d3.v3.min',
     data2015:'../resources/libs/2015',
     qrcode:'mediascape/lib/qrcode.min',
@@ -84,7 +85,7 @@
   ,"mediascape/Sharedstate/sharedstate","mediascape/Mappingservice/mappingservice",
   "mediascape/Agentcontext/agentcontext","mediascape/Applicationcontext/applicationcontext",
   "mediascape/DiscoveryForAgentContext/discoveryforagentcontext",'mediascape/DeviceProfile/deviceProfile',
-  'association','mediascape/MediaSync/mediasync'],
+  'association','mediascape/MediaSync/mediasync','mediascape/MediaSync/reverseMediaSync'],
   function(){
       var mediascape = {};
       var discovery= {};
@@ -93,7 +94,7 @@
       mediascape.init = function(options) {
         mediascapeOptions = {};
         _this = Object.create( mediascape );
-        var dontCall = ['sharedState', 'mappingService', 'applicationContext','mediaSync'];
+        var dontCall = ['sharedState', 'mappingService', 'applicationContext','mediaSync','reverseMediaSync'];
       //  _this1 = Object.create( discovery );
       console.log("fine0");
     	for( var i=0; i<moduleList.length; ++i ){

@@ -77,14 +77,19 @@ Polymer({
 		setTimeout(function(){
 			 var video = _this.querySelector('video')
 			 //video.src=_this.file;
-			_this.sm.addVideo (video,id,_this.skew);
-	  	 _this.play();
-			  var cmpStatus = mediascape.AdaptationToolkit.componentManager.core.getComoponentsToShow();
-				if (cmpStatus) mediascape.AdaptationToolkit.Adaptation.UIAdaptation.onComponentsChange(cmpStatus);
-				if (navigator.userAgent.toLowerCase().indexOf('hbbtv')!=-1) 	mediascape.AdaptationToolkit.Adaptation.UIAdaptation.useLayout('divided');
+ 			  if (navigator.userAgent.toLowerCase().indexOf('hbbtv')!=-1){
+				if  (mediascape.AdaptationToolkit.componentManager.core.isLoaded(_this)){
+						 video.src= _this.file;
+					  	_this.sm.addVideo (video,id,_this.skew);
+						  _this.sm.mapp.motions.shared.update(0, 1);
+
+				}
+			  }
+        else _this.sm.addVideo (video,id,_this.skew);
+        _this.play();
 
 	},4000);
-	if (navigator.userAgent.toLowerCase().indexOf('hbbtv')!=-1){
+/*	if (navigator.userAgent.toLowerCase().indexOf('hbbtv')!=-1){
 
 			function handler(e){
 				var time = _this.sm.mapp.motions.shared.query();
@@ -93,8 +98,8 @@ Polymer({
 					  var video = _this.querySelector('video');
 						//video.currentTime = time /1000;
 					try {
-					 //if (Math.abs(video.currentTime - time.pos+0.345)>1)
-						video.currentTime = time.pos+0.345;
+					 if (Math.abs(video.currentTime - time.pos+0.345)>1.2)
+						video.currentTime = time.pos+0.385;
 					}catch(e){}
 				//	if (video.playState!=2 || video.playState!=3 || video.playState!=4) video.play(1);
 				//	video.seek(time);
@@ -106,22 +111,28 @@ Polymer({
 			setInterval(handler,2000);
 
 
-		}
+		}*/
 
   },
 	play:function(){
 		if (this.sm) this.sm.mapp.motions.shared.update(null, 1);
 	},
-
-  start_volumeChanged:function(currentVol){
+	pause:function(){
+		if (this.sm) this.sm.mapp.motions.shared.update(null, 0);
+	},
+	start_volumeChanged:function(currentVol){
 		this.$.container.children[0].volume=parseInt(currentVol);
 	},
 
 	mutePlayer:function(){
 		this.$.container.children[0].muted=true;
+		this.$.container.children[0].volume = 0;
+		this.ismuted = true;
 	},
 	soundPlayer:function(){
 		this.$.container.children[0].muted=false;
+		this.$.container.children[0].volume=0.9;
+		this.ismuted = false;
 	},
 	restart: function (){
 		this.sm.mapp.motions.shared.update(0, 1);
@@ -135,7 +146,7 @@ Polymer({
 				this.soundPlayer();
 			}
 			else if(data==='offSound'){
-
+				this.mutePlayer();
 			}
 			else if(data==='onSound'){
 				this.soundPlayer();
@@ -149,21 +160,29 @@ Polymer({
 		 video.volumen =0;
 	},
 	load:function(){
+			 var _this = this;
 	     var video = this.querySelector('video');
+			 if (this.sm && !mediascape.AdaptationToolkit.SharedMotion().isVideoAdded(this.ida)){
+				 	this.sm.addVideo (video,this.ida,this.skew);
+			 }
 			 video.src = this.file;
 			 if(this.ismuted==="true"){
-				 video.muted=true;
+				  video.muted=true;
 				  video.volume =0;
 			 }
 			 else {
 				 	video.muted = false;
 					video.volume = 0.9;
 			 }
-			 	if (navigator.userAgent.toLowerCase().indexOf('hbbtv')!=-1)
-					{
-						this.play();
-						mediascape.AdaptationToolkit.Adaptation.UIAdaptation.useLayout('divided');
-					}
+			  if (navigator.userAgent.toLowerCase().indexOf('hbbtv')!=-1)
+					  {
+							setTimeout (function(){
+									_this.pause();
+									_this.play();
+								},1500);
+						}
+				else this.play();
+						//mediascape.AdaptationToolkit.Adaptation.UIAdaptation.useLayout('divided');
 				//mediascape.AdaptationToolkit.Adaptation.UIAdaptation.useLayout('divided');
 	}
 });
