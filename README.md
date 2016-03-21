@@ -109,4 +109,4 @@ This will genetare multideviceapplib.min.js at dist/ folder. On production, it i
 ```
 ### HBBTV Branch
 
-This prototype is also compatible with Hbbtv standard, it can be found under hbbtv_version branch. The roadmap is to merge both version in the short-term future.
+This prototype is also compatible with Hbbtv standard, it can be found under hbbtv_version branch. The roadmap is to merge both versions in the short-term future.
