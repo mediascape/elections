@@ -107,3 +107,6 @@ This will genetare multideviceapplib.min.js at dist/ folder. On production, it i
 /www/resources/wcs/ webcomponents folder
 /wwww/resources/configPanel Control panel to manage webcompoents and differents devices, developed only for this prototype.
 ```
+### HBBTV Branch
+
+This prototype is also compatible with Hbbtv standard, it can be found under hbbtv_version branch. The roadmap point out to merge both version in the short-term future.
