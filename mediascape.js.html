@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: mediascape.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: mediascape.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>//main javascript
+(function init() {
+  // If we need to load requirejs before loading butter, make it so
+  if ( typeof define === "undefined" ) {
+    var rscript = document.createElement( "script" );
+    rscript.onload = function() {
+      init();
+    };
+    rscript.src = "../resources/require.js";
+    document.head.appendChild( rscript );
+    return;
+  }
+  document.addEventListener('WebcomponentsReady',function(){console.log("&lt;&lt;&lt;&lt;&lt;&lt;WEBC READY!!!>>>&lt;&lt;")});
+  require.config({
+    baseUrl: '/js/',
+    shim: {
+          'socketio': {
+              exports: 'io'
+            }
+    },
+    paths: {
+    underscore:'../resources/libs/underscore-min',
+    namedwebsockets: 'mediascape/lib/namedwebsockets',
+    jquery: '../resources/libs/jquery-2.1.1.min',
+    msv:'http://www.mcorp.no/lib/msv-2.0',
+    mcorp:'http://www.mcorp.no/lib/mcorp-2.0',
+    magicui:'../resources/libs/magic-ui-2.0',
+    magic:'../resources/libs/magic-2.0',
+    d3:'../resources/libs/d3.v3.min',
+    '2015data':'../resources/libs/2015',
+    qrcode:'mediascape/lib/qrcode.min',
+    socketio: '/socket.io/socket.io',
+    ui:'../resources/libs/jquery-ui',
+    shake:'/resources/libs/shake',
+    association:'/resources/association/association',
+    domReady:'/resources/libs/domReady'
+      },
+    waitSeconds:25
+  });
+
+  /**
+ * mediascape collect all needed modules on mediascape object, accesible by mediascape
+ * javascript object. Once is ready fire a event mediascape-modules-ready
+ * @module mediascape
+ * @requires mediascape/AdaptationToolkit/AdaptationToolkit
+ * @requires mediascape/Discovery/discovery
+ * @requires mediascape/Sharedstate/sharedstate
+ * @requires mediascape/Mappingservice/mappingservice
+ * @requires mediascape/Agentcontext/agentcontext
+ * @requires mediascape/Applicationcontext/applicationcontext
+ * @requires mediascape/DiscoveryForAgentContext/discoveryforagentcontext
+ * @requires mediascape/DeviceProfile/deviceProfile
+ * @requires resources/association/association
+ *
+  */
+  /**
+  ^ Event emited to document listener when mediascape is ready.
+  * @event mediascape-modules-ready
+  * @param {Object} mediascape-modules-ready {"detail":{"loaded":true}}
+  */
+  // Start the main app logic.
+  define( "mediascape", [ "mediascape/AdaptationToolkit/AdaptationToolkit","mediascape/Discovery/discovery"
+  ,"mediascape/Sharedstate/sharedstate","mediascape/Mappingservice/mappingservice",
+  "mediascape/Agentcontext/agentcontext","mediascape/Applicationcontext/applicationcontext",
+  "mediascape/DiscoveryForAgentContext/discoveryforagentcontext",'mediascape/DeviceProfile/deviceProfile',
+  'association'],
+  function(){
+      var mediascape = {};
+      var discovery= {};
+
+			var moduleList   = Array.prototype.slice.apply( arguments );
+      mediascape.init = function(options) {
+        mediascapeOptions = {};
+        _this = Object.create( mediascape );
+        var dontCall = ['sharedState', 'mappingService', 'applicationContext'];
+      //  _this1 = Object.create( discovery );
+			for( var i=0; i&lt;moduleList.length; ++i ){
+				var name = moduleList[ i ].__moduleName;
+                 if (dontCall.indexOf(name) === -1) {
+                     mediascape[name] = new moduleList[i](mediascape, "gq" + i, mediascape);
+                 } else {
+                     mediascape[name] = moduleList[i];
+                 }
+
+			}
+      var event = new CustomEvent("mediascape-modules-ready", {"detail":{"loaded":true}});
+      document.dispatchEvent(event);
+      return _this;
+      };
+
+      mediascape.version = "0.0.1";
+      // See if we have any waiting init calls that happened before we loaded require.
+      if( window.ms ) {
+        var args = window.mediascape.__waiting;
+        delete window.mediascape;
+        if( args ) {
+          mediascape.init.apply( this, args );
+        }
+      }
+      window.mediascape = mediascape;
+
+      //return of ms object with discovery and features objects and its functions
+      return mediascape;
+    });
+/** All modules are ready so mediascape it can be started */
+  require([ "mediascape" ], function (mediascape) {
+    console.log("mediascape require");
+    if (document.readyState === "complete") mediascape.init();
+    else setTimeout(mediascape.init,2000);
+
+
+  });
+}());
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-mediascape.html">mediascape</a></li><li><a href="module-mediascape_AdaptationToolkit_adaptation_modules.html">mediascape/AdaptationToolkit/adaptation/modules</a></li><li><a href="module-mediascape_AdaptationToolkit_adaptation_multiDeviceAdaptation_mdadaptation.html">mediascape/AdaptationToolkit/adaptation/multiDeviceAdaptation/mdadaptation</a></li><li><a href="module-mediascape_AdaptationToolkit_adaptation_UIAdaptation_layoutConstructor.html">mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor</a></li><li><a href="module-mediascape_AdaptationToolkit_adaptation_UIAdaptation_layouts_pip.html">mediascape/AdaptationToolkit/adaptation/UIAdaptation/layouts/pip</a></li><li><a href="module-mediascape_AdaptationToolkit_adaptation_UIAdaptation_UIAdaptation.html">mediascape/AdaptationToolkit/adaptation/UIAdaptation/UIAdaptation</a></li><li><a href="module-mediascape_AdaptationToolkit_AdaptationToolkit.html">mediascape/AdaptationToolkit/AdaptationToolkit</a></li><li><a href="module-mediascape_AdaptationToolkit_componentManager_cssParser_cssParser.html">mediascape/AdaptationToolkit/componentManager/cssParser/cssParser</a></li><li><a href="module-mediascape_AdaptationToolkit_componentManager_loadManager_loadManager.html">mediascape/AdaptationToolkit/componentManager/loadManager/loadManager</a></li><li><a href="module-mediascape_AdaptationToolkit_componentManager_main_core.html">mediascape/AdaptationToolkit/componentManager/main/core</a></li><li><a href="module-mediascape_AdaptationToolkit_componentManager_modules.html">mediascape/AdaptationToolkit/componentManager/modules</a></li><li><a href="module-mediascape_AdaptationToolkit_uiComponents_uiComponents.html">mediascape/AdaptationToolkit/uiComponents/uiComponents</a></li></ul><h3>Classes</h3><ul><li><a href="module-mediascape_AdaptationToolkit_adaptation_multiDeviceAdaptation_mdadaptation-multiDeviceAdaptation.html">multiDeviceAdaptation</a></li><li><a href="module-mediascape_AdaptationToolkit_adaptation_UIAdaptation_UIAdaptation-UIAdaptation.html">UIAdaptation</a></li></ul><h3>Events</h3><ul><li><a href="module-mediascape_AdaptationToolkit_adaptation_multiDeviceAdaptation_mdadaptation.html#~event:applicationContext-ready">applicationContext-ready</a></li><li><a href="module-mediascape_AdaptationToolkit_adaptation_multiDeviceAdaptation_mdadaptation.html#~event:contextUpdate">contextUpdate</a></li><li><a href="module-mediascape_AdaptationToolkit_adaptation_multiDeviceAdaptation_mdadaptation.html#~event:layoutEvent">layoutEvent</a></li><li><a href="module-mediascape.html#~event:mediascape-modules-ready">mediascape-modules-ready</a></li><li><a href="module-mediascape_AdaptationToolkit_adaptation_multiDeviceAdaptation_mdadaptation.html#~event:onComponentsChange">onComponentsChange</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.3</a> on Mon Nov 23 2015 10:48:40 GMT+0100 (CET)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: componentManager/loadManager/loadManager.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: componentManager/loadManager/loadManager.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/*
+** Long Library Name:
+**      Adaptation toolkit Module
+**
+** Acronym and its version:
+**      Adaptation toolkit v1.0
+**
+** Copyright claim:
+**      Copyright ( C ) 2013-2014 Vicomtech-IK4 ( http://www.vicomtech.org/ ),
+**      all rights reserved.
+**
+** Authors (in alphabetical order):
+**      Ana Dominguez &lt;adominguez@vicomtech.org>
+**      Iñigo Tamayo &lt;itamayo@vicomteh.org>,
+**      Mikel Zorrila &lt;mzorrilla@vicomtech.org>,
+**
+** Description:
+**      Load manager offers functionality for load/unload resources of webcomponents and each
+**      resources.
+**
+** Development Environment:
+**      The software has-been Implemented in JavaScript, and tested in Chrome and firefox
+**      browsers.
+**
+** Dependencies:
+**      As accounts package depends on other libraries, the user must adhere to and
+**      keep in place any Licencing terms of those libraries:
+**              requirejs v2.1.14 (http://requirejs.org/)
+**
+** Licenses dependencies:
+**      License Agreement for requirejs:
+**              BSD 3-Clause license (http://opensource.org/licenses/BSD-3-Clause)
+**              MIT license (http://opensource.org/licenses/MIT)
+**
+*/
+/**
+* This module help to isolate the problem of load/unload resources related with the webcompoenents. The main
+* goal is to facilitate a simple way to achieve a better way to unload/load resources related content. On this
+* early version only take cares about multimedia resources. But it is ready to do it with other resources.
+* @module mediascape/AdaptationToolkit/componentManager/loadManager/loadManager
+*
+* @alias mediascape/AdaptationToolkit/componentManager/loadManager/loadManager
+*/
+
+define(
+  [
+  ],
+  function(){
+
+    var loadManager = function(){
+      var actualComponents = [];
+      /**
+       * Components to load, loads all resources related with the webcompoenents
+       * @function load
+       * @parameter webcomponents array
+       */
+      this.load = function (els) {
+          var allcmps = mediascape.AdaptationToolkit.componentManager.core.getComponents();
+          allcmps.forEach(function(el){
+            el.style.display="none";
+
+            //el.shadowRoot.host.style.width="400px";
+            //el.shadowRoot.host.style.height="400px";
+          });
+          els.forEach(function(el){
+            var allreadyLoaded = actualComponents.some(function(cmp){
+               if(cmp.id === el.id) return true;
+               else return false;
+            })
+            if (!allreadyLoaded){
+            var v = el.querySelector('video');
+            if (v){
+               v.src = el.getAttribute('file');
+               el.show = true;
+               if (el.play) {
+                // el.pause();
+                 el.play();
+                 v.play();
+               }
+             }
+            }
+             el.style.display="block";
+            //el.shadowRoot.host.style.width="400px";
+            //el.shadowRoot.host.style.height="400px";
+          });
+          actualComponents = els;
+      };
+      // Just hidden all at least
+      /**
+       * Components to unload, unloads all resources related with the webcompoenents
+       * @function unload
+       * @parameter webcomponents array
+       */
+      this.unload = function (els) {
+        els.forEach(function(el){
+
+          el.style.display="none";
+
+            var v = el.querySelector('video');
+            if (v) {
+              v.src="";
+              el.show = false;
+            }
+
+        //  el.shadowRoot.host.style.width="400px";
+        //  el.shadowRoot.host.style.height="400px";
+        actualComponents = actualComponents.filter(function(cmp){
+            if (cmp.id === el.id) return false;
+            else return true;
+        });
+        });
+
+      };
+
+    };
+    loadManager.__moduleName = "loadManager";
+    return loadManager;
+
+  });
+  Function.prototype.getBody =
+  function() {
+    // Get content between first { and last }
+    var m = this.toString().match(/\{([\s\S]*)\}/m)[1];
+    // Strip comments
+    return m.replace(/^\s*\/\/.*$/mg,'');
+  };
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-mediascape_AdaptationToolkit_adaptation_modules.html">mediascape/AdaptationToolkit/adaptation/modules</a></li><li><a href="module-mediascape_AdaptationToolkit_adaptation_multiDeviceAdaptation_mdadaptation.html">mediascape/AdaptationToolkit/adaptation/multiDeviceAdaptation/mdadaptation</a></li><li><a href="module-mediascape_AdaptationToolkit_adaptation_UIAdaptation_layoutConstructor.html">mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor</a></li><li><a href="module-mediascape_AdaptationToolkit_adaptation_UIAdaptation_layouts_pip.html">mediascape/AdaptationToolkit/adaptation/UIAdaptation/layouts/pip</a></li><li><a href="module-mediascape_AdaptationToolkit_adaptation_UIAdaptation_UIAdaptation.html">mediascape/AdaptationToolkit/adaptation/UIAdaptation/UIAdaptation</a></li><li><a href="module-mediascape_AdaptationToolkit_AdaptationToolkit.html">mediascape/AdaptationToolkit/AdaptationToolkit</a></li><li><a href="module-mediascape_AdaptationToolkit_componentManager_cssParser_cssParser.html">mediascape/AdaptationToolkit/componentManager/cssParser/cssParser</a></li><li><a href="module-mediascape_AdaptationToolkit_componentManager_loadManager_loadManager.html">mediascape/AdaptationToolkit/componentManager/loadManager/loadManager</a></li><li><a href="module-mediascape_AdaptationToolkit_componentManager_main_core.html">mediascape/AdaptationToolkit/componentManager/main/core</a></li><li><a href="module-mediascape_AdaptationToolkit_componentManager_modules.html">mediascape/AdaptationToolkit/componentManager/modules</a></li><li><a href="module-mediascape_AdaptationToolkit_uiComponents_uiComponents.html">mediascape/AdaptationToolkit/uiComponents/uiComponents</a></li></ul><h3>Classes</h3><ul><li><a href="module-mediascape_AdaptationToolkit_adaptation_multiDeviceAdaptation_mdadaptation-multiDeviceAdaptation.html">multiDeviceAdaptation</a></li><li><a href="module-mediascape_AdaptationToolkit_adaptation_UIAdaptation_UIAdaptation-UIAdaptation.html">UIAdaptation</a></li></ul><h3>Events</h3><ul><li><a href="module-mediascape_AdaptationToolkit_adaptation_multiDeviceAdaptation_mdadaptation.html#~event:applicationContext-ready">applicationContext-ready</a></li><li><a href="module-mediascape_AdaptationToolkit_adaptation_multiDeviceAdaptation_mdadaptation.html#~event:contextUpdate">contextUpdate</a></li><li><a href="module-mediascape_AdaptationToolkit_adaptation_multiDeviceAdaptation_mdadaptation.html#~event:layoutEvent">layoutEvent</a></li><li><a href="module-mediascape_AdaptationToolkit_adaptation_multiDeviceAdaptation_mdadaptation.html#~event:onComponentsChange">onComponentsChange</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.3</a> on Mon Jan 04 2016 09:35:16 GMT+0100 (CET)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
