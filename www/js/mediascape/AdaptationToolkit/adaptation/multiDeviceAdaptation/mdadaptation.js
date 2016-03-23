@@ -365,7 +365,8 @@ function($, applicationContext){
       });
      if (needInfoReady && hasAgent(AE.getAgentId()))
       if (change.contextType === "capabilityChange" ) hybridAdaptation(change[0]);
-      else hybridAdaptation(change);
+      else if (change.capability !== "layoutEvent")hybridAdaptation(change);
+
 
     };
 

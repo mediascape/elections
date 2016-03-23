@@ -11,7 +11,7 @@ function(){
     // initialize the adaptation plugin
     this.init = function(rl, ctx) {
       console.log("=============bestfit=== [init]=================");
-      console.log(rl);
+      //console.log(rl);
 
       rule = rl;
       context = ctx;
@@ -45,7 +45,7 @@ function(){
             if (ag.id ===  AE.getAgentId() ) return true;
             return false;
       })[0];
-      console.warn("agents",agents.length);
+
       try {
       var mediasNumb = 0;
       var agent = AE.getAgentId();
@@ -241,9 +241,6 @@ function(){
       catch (e){
         console.log(e);
       }
-
-      
-  
       // Check if media limitation of agent
     //  var videoLimit = mediascape.Agent.checkAgentLimitation('video');
     /*  if (videoLimit){
@@ -266,7 +263,7 @@ function(){
     },this);
     */
       decision.agent = agent;
-      console.log(decision);
+      console.log("DECISION",decision.actions[0]);
       return decision;
     }
      function getCapability  (ag,propertie){

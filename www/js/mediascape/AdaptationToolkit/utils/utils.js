@@ -67,6 +67,7 @@ define ([],
                     found = arr.indexOf(what);
                 }
         }
+
         return this;
       }
 
