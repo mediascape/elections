@@ -846,7 +846,7 @@ define(
       }
 
       this.updateComponentQuery = function (cmp){
-        var cmps = mediascape.AdaptationToolkit.componentManager.core.getComponents();
+        var cmps = mediascape.AdaptationToolkit.componentManager.core.getComoponentsToShow();
         var event = new CustomEvent('resize', { 'detail': 'emulate' });
         window.dispatchEvent(event);
         for (var x = 0 ; x< cmps.length;x++)
