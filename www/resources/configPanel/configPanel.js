@@ -13,6 +13,8 @@ var ControlPanel= function (url){
   this.selfIDNum='';
   this.selfDev='';
   this.showing=true;
+  this.enabled=true;
+  this.securityTime=2000;
   var devBox=null;
   var QRurl=url;
   var layoutSect1=null;
@@ -1146,6 +1148,13 @@ var ControlPanel= function (url){
       document.querySelector('#fullTemp').style.width='100%';
     }
   }
+  //security time between clicks
+  this.enableClicks=function(){
+    var scope=this;
+    setTimeout(function(){
+        scope.enabled=true;
+    },scope.securityTime);
+  }
   this.controlPanel();
 }
 
@@ -1478,9 +1487,13 @@ var layout=function(){
     return div;
   }
   this.onclick=function(event){
-    var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
-    mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.changeAgentlayout(agentToChange,this.name);
-    mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeLayout(agentToChange,this.name);
+    if(mediascape.AdaptationToolkit.uiComponents.ctrlPanel.enabled===true){
+      mediascape.AdaptationToolkit.uiComponents.ctrlPanel.enabled=false;
+      var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
+      mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.changeAgentlayout(agentToChange,this.name);
+      mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeLayout(agentToChange,this.name);
+      mediascape.AdaptationToolkit.uiComponents.ctrlPanel.enableClicks();
+    }
   }
   this.prevClick=function(event){
     event.preventDefault();
@@ -1639,103 +1652,123 @@ var camera=function(){
     return div1;
   }
   this.viewclick=function(event){
-    event.preventDefault();
-    var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
-    var agents=agCtx.agents;
-    var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
-    var val=agentToChange;
-    function filterById(el){
-      if(el.id===val)return el;
-    }
+    if(mediascape.AdaptationToolkit.uiComponents.ctrlPanel.enabled===true){
+      mediascape.AdaptationToolkit.uiComponents.ctrlPanel.enabled=false;
+      event.preventDefault();
+      var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
+      var agents=agCtx.agents;
+      var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
+      var val=agentToChange;
+      function filterById(el){
+        if(el.id===val)return el;
+      }
 
-    var a=agents.filter(filterById);
-    var scope=this;
-    var b=a[0].capabilities.componentsStatus.filter(function(el,i){
-      if(el.compId===scope.id)return el;
-    });
+      var a=agents.filter(filterById);
+      var scope=this;
+      var b=a[0].capabilities.componentsStatus.filter(function(el,i){
+        if(el.compId===scope.id)return el;
+      });
 
-    console.log('viewClick');
-    if(b[0].show===true){
-      mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'hide');
-      mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeViewSwVal(agentToChange,this.id,false);
-      setTimeout(function(){
-        if(b[0].customCmd.lastIndexOf('mutePlayer')===-1 && b[0].customCmd.lastIndexOf('soundPlayer')===-1){
-        if(document.querySelector('#'+scope.name).ismuted==='false' ){
-          mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,scope.id,'offSound');
-          mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,scope.id,false);
+      console.log('viewClick');
+      if(b[0].show===true){
+        mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'hide');
+        mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeViewSwVal(agentToChange,this.id,false);
+        setTimeout(function(){
+          if(b[0].customCmd.lastIndexOf('mutePlayer')===-1 && b[0].customCmd.lastIndexOf('soundPlayer')===-1){
+          if(document.querySelector('#'+scope.name).ismuted==='false' ){
+            mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,scope.id,'offSound');
+            mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,scope.id,false);
+          }
         }
+        else if(b[0].customCmd.lastIndexOf('mutePlayer') <b[0].customCmd.lastIndexOf('soundPlayer')){
+            mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,scope.id,'offSound');
+            mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,scope.id,false);
+        }
+        },1000);
+
+
+
+
       }
-      else if(b[0].customCmd.lastIndexOf('mutePlayer') <b[0].customCmd.lastIndexOf('soundPlayer')){
-          mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,scope.id,'offSound');
-          mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,scope.id,false);
-      }
-      },1000);
+      else{
+        mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'show');
+        mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeViewSwVal(agentToChange,this.id,true);
+
+        setTimeout(function(){
+        if(b[0].customCmd.lastIndexOf('offSound')===-1 && b[0].customCmd.lastIndexOf('mutePlayer')===-1 &&
+          b[0].customCmd.lastIndexOf('soundPlayer')===-1){
+          if(document.querySelector('#'+scope.name).ismuted==='false'){
+            mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,scope.id,'soundPlayer');
+            mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,scope.id,true);
+          }
 
 
-
-
-    }
-    else{
-      mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'show');
-      mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeViewSwVal(agentToChange,this.id,true);
-
-      setTimeout(function(){
-      if(b[0].customCmd.lastIndexOf('offSound')===-1 && b[0].customCmd.lastIndexOf('mutePlayer')===-1 &&
-        b[0].customCmd.lastIndexOf('soundPlayer')===-1){
-        if(document.querySelector('#'+scope.name).ismuted==='false'){
-          mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,scope.id,'soundPlayer');
+        }
+        else if(b[0].customCmd.lastIndexOf('offSound')>b[0].customCmd.lastIndexOf('mutePlayer')){
+          mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,scope.id,'onSound');
           mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,scope.id,true);
         }
-
-
-      }
-      else if(b[0].customCmd.lastIndexOf('offSound')>b[0].customCmd.lastIndexOf('mutePlayer')){
-        mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,scope.id,'onSound');
-        mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,scope.id,true);
-      }
-      else if(b[0].customCmd.lastIndexOf('offSound')!==-1 && b[0].customCmd.lastIndexOf('mutePlayer')===-1 &&
-        document.querySelector('#'+scope.name).ismuted!=='false'){
-        mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,scope.id,'onSound');
-        mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,scope.id,true);
-      }
-      else if(b[0].customCmd.lastIndexOf('offSound')===-1 && b[0].customCmd.lastIndexOf('mutePlayer')===-1 &&
-        b[0].customCmd.lastIndexOf('soundPlayer')!==-1){
-        mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,scope.id,'onSound');
+        else if(b[0].customCmd.lastIndexOf('offSound')!==-1 && b[0].customCmd.lastIndexOf('mutePlayer')===-1 &&
+          document.querySelector('#'+scope.name).ismuted!=='false'){
+          mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,scope.id,'onSound');
           mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,scope.id,true);
+        }
+        else if(b[0].customCmd.lastIndexOf('offSound')===-1 && b[0].customCmd.lastIndexOf('mutePlayer')===-1 &&
+          b[0].customCmd.lastIndexOf('soundPlayer')!==-1){
+          mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,scope.id,'onSound');
+            mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,scope.id,true);
+        }
+        },1000);
+
+
+
+
       }
-      },1000);
-
-
-
-
+      mediascape.AdaptationToolkit.uiComponents.ctrlPanel.enableClicks();
     }
-
   }
   this.soundclick=function(event){
-    event.preventDefault();
-    var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
-    var agents=agCtx.agents;
-    var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
-    var val=agentToChange;
-    function filterById(el){
-      if(el.id===val)return el;
-    }
+    if(mediascape.AdaptationToolkit.uiComponents.ctrlPanel.enabled===true){
+      mediascape.AdaptationToolkit.uiComponents.ctrlPanel.enabled=false;
+      event.preventDefault();
+      var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
+      var agents=agCtx.agents;
+      var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
+      var val=agentToChange;
+      function filterById(el){
+        if(el.id===val)return el;
+      }
 
-    var a=agents.filter(filterById);
-    var scope=this;
-    var b=a[0].capabilities.componentsStatus.filter(function(el,i){
-      if(el.compId===scope.id)return el;
-    });
+      var a=agents.filter(filterById);
+      var scope=this;
+      var b=a[0].capabilities.componentsStatus.filter(function(el,i){
+        if(el.compId===scope.id)return el;
+      });
 
-    console.log('soundClick');
+      console.log('soundClick');
 
-    if(b[0].show===true){
-    if(b[0].customCmd.lastIndexOf('mutePlayer')===-1 && b[0].customCmd.lastIndexOf('soundPlayer')===-1){
-        if(document.querySelector('#'+scope.name).ismuted==='false' ){
+      if(b[0].show===true){
+      if(b[0].customCmd.lastIndexOf('mutePlayer')===-1 && b[0].customCmd.lastIndexOf('soundPlayer')===-1){
+          if(document.querySelector('#'+scope.name).ismuted==='false' ){
 
-            mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'mutePlayer');
-            mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,this.id,false);
+              mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'mutePlayer');
+              mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,this.id,false);
 
+
+          }
+          else{
+
+            mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'soundPlayer');
+            mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,this.id,true);
+
+          }
+
+      }
+      else{
+        if(b[0].customCmd.lastIndexOf('mutePlayer') <b[0].customCmd.lastIndexOf('soundPlayer')){
+
+          mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'mutePlayer');
+          mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,this.id,false);
 
         }
         else{
@@ -1744,24 +1777,11 @@ var camera=function(){
           mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,this.id,true);
 
         }
-
-    }
-    else{
-      if(b[0].customCmd.lastIndexOf('mutePlayer') <b[0].customCmd.lastIndexOf('soundPlayer')){
-
-        mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'mutePlayer');
-        mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,this.id,false);
-
-      }
-      else{
-
-        mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'soundPlayer');
-        mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,this.id,true);
-
       }
     }
+    mediascape.AdaptationToolkit.uiComponents.ctrlPanel.enableClicks();
   }
-  }
+}
 }
 var camerasSection=function(){
   this.cameras=[];
@@ -1935,6 +1955,7 @@ var camerasSection=function(){
 }
 
 var hashtag=function(){
+ 
   this.setID=function(hId){
     this.id=hId;
   }
@@ -2003,29 +2024,34 @@ var hashtag=function(){
     mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeHashtag(agentToChange,event.srcElement.value);
   }
   this.viewClick=function(event){
-    event.preventDefault();
-    var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
-    var agents=agCtx.agents;
-    var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
-    var val=agentToChange;
-    function filterById(el){
-      if(el.id===val)return el;
-    }
+ 
+    if(mediascape.AdaptationToolkit.uiComponents.ctrlPanel.enabled===true){
+      mediascape.AdaptationToolkit.uiComponents.ctrlPanel.enabled=false;
+      event.preventDefault();
+      var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
+      var agents=agCtx.agents;
+      var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
+      var val=agentToChange;
+      function filterById(el){
+        if(el.id===val)return el;
+      }
 
-    var a=agents.filter(filterById);
-    var scope=this;
-    var b=a[0].capabilities.componentsStatus.filter(function(el,i){
-      if(el.compId===scope.id)return el;
-    });
+      var a=agents.filter(filterById);
+      var scope=this;
+      var b=a[0].capabilities.componentsStatus.filter(function(el,i){
+        if(el.compId===scope.id)return el;
+      });
 
-    console.log('viewClick');
-    if(b[0].show===true){
-      mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'hide');
-      mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeViewSwVal(agentToChange,this.id,false);
-    }
-    else{
-      mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'show');
-      mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeViewSwVal(agentToChange,this.id,true);
+      console.log('viewClick');
+      if(b[0].show===true){
+        mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'hide');
+        mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeViewSwVal(agentToChange,this.id,false);
+      }
+      else{
+        mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'show');
+        mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeViewSwVal(agentToChange,this.id,true);
+      }
+      mediascape.AdaptationToolkit.uiComponents.ctrlPanel.enableClicks();
     }
   }
 }
@@ -2073,29 +2099,33 @@ var trendingMap=function(){
     return trending;
   }
   this.viewClick=function(event){
-    event.preventDefault();
-    var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
-    var agents=agCtx.agents;
-    var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
-    var val=agentToChange;
-    function filterById(el){
-      if(el.id===val)return el;
-    }
+    if(mediascape.AdaptationToolkit.uiComponents.ctrlPanel.enabled===true){
+      mediascape.AdaptationToolkit.uiComponents.ctrlPanel.enabled=false;
+      event.preventDefault();
+      var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
+      var agents=agCtx.agents;
+      var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
+      var val=agentToChange;
+      function filterById(el){
+        if(el.id===val)return el;
+      }
 
-    var a=agents.filter(filterById);
-    var scope=this;
-    var b=a[0].capabilities.componentsStatus.filter(function(el,i){
-      if(el.compId===scope.id)return el;
-    });
+      var a=agents.filter(filterById);
+      var scope=this;
+      var b=a[0].capabilities.componentsStatus.filter(function(el,i){
+        if(el.compId===scope.id)return el;
+      });
 
-    console.log('viewClick');
-    if(b[0].show===true){
-      mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'hide');
-      mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeViewSwVal(agentToChange,this.id,false);
-    }
-    else{
-      mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'show');
-      mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeViewSwVal(agentToChange,this.id,true);
+      console.log('viewClick');
+      if(b[0].show===true){
+        mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'hide');
+        mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeViewSwVal(agentToChange,this.id,false);
+      }
+      else{
+        mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'show');
+        mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeViewSwVal(agentToChange,this.id,true);
+      }
+      mediascape.AdaptationToolkit.uiComponents.ctrlPanel.enableClicks();  
     }
   }
 }
@@ -2386,30 +2416,34 @@ var radios=function(){
     return div2;
   }
   this.viewClick=function(event){
-    event.preventDefault();
-    var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
-    var agents=agCtx.agents;
-    var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
-    var val=agentToChange;
-    function filterById(el){
-      if(el.id===val)return el;
-    }
+    if(mediascape.AdaptationToolkit.uiComponents.ctrlPanel.enabled===true){
+      mediascape.AdaptationToolkit.uiComponents.ctrlPanel.enabled=false;
+      event.preventDefault();
+      var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
+      var agents=agCtx.agents;
+      var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
+      var val=agentToChange;
+      function filterById(el){
+        if(el.id===val)return el;
+      }
 
-    var a=agents.filter(filterById);
-    var scope=this;
-    var b=a[0].capabilities.componentsStatus.filter(function(el,i){
-      if(el.compId===scope.id)return el;
-    });
+      var a=agents.filter(filterById);
+      var scope=this;
+      var b=a[0].capabilities.componentsStatus.filter(function(el,i){
+        if(el.compId===scope.id)return el;
+      });
 
-    console.log('viewClick');
-    if(b[0].show===true){
-      mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'hide');
-      mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeRadioViewImgVal(agentToChange,this.id,false);
-    }
-    else{
-      mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'show');
-      mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeRadioViewImgVal(agentToChange,this.id,true);
+      console.log('viewClick');
+      if(b[0].show===true){
+        mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'hide');
+        mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeRadioViewImgVal(agentToChange,this.id,false);
+      }
+      else{
+        mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'show');
+        mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeRadioViewImgVal(agentToChange,this.id,true);
 
+      }
+      mediascape.AdaptationToolkit.uiComponents.ctrlPanel.enableClicks();
     }
   }
 }
@@ -2717,29 +2751,33 @@ var table=function(){
     mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeTablePlace(agentToChange,event.currentTarget.id);
   }
   this.viewclick=function(event){
-    event.preventDefault();
-    var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
-    var agents=agCtx.agents;
-    var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
-    var val=agentToChange;
-    function filterById(el){
-      if(el.id===val)return el;
-    }
+    if(mediascape.AdaptationToolkit.uiComponents.ctrlPanel.enabled===true){
+      mediascape.AdaptationToolkit.uiComponents.ctrlPanel.enabled=false;
+      event.preventDefault();
+      var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
+      var agents=agCtx.agents;
+      var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
+      var val=agentToChange;
+      function filterById(el){
+        if(el.id===val)return el;
+      }
 
-    var a=agents.filter(filterById);
-    var scope=this;
-    var b=a[0].capabilities.componentsStatus.filter(function(el,i){
-      if(el.compId===scope.id)return el;
-    });
+      var a=agents.filter(filterById);
+      var scope=this;
+      var b=a[0].capabilities.componentsStatus.filter(function(el,i){
+        if(el.compId===scope.id)return el;
+      });
 
-    console.log('viewClick');
-    if(b[0].show===true){
-      mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'hide');
-      mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeViewSwVal(agentToChange,this.id,false);
-    }
-    else{
-      mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'show');
-      mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeViewSwVal(agentToChange,this.id,true);
+      console.log('viewClick');
+      if(b[0].show===true){
+        mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'hide');
+        mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeViewSwVal(agentToChange,this.id,false);
+      }
+      else{
+        mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'show');
+        mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeViewSwVal(agentToChange,this.id,true);
+      }
+      mediascape.AdaptationToolkit.uiComponents.ctrlPanel.enableClicks();
     }
   }
 
@@ -2792,29 +2830,33 @@ var graph=function(){
 
   }
   this.viewclick=function(event){
-    event.preventDefault();
-    var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
-    var agents=agCtx.agents;
-    var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
-    var val=agentToChange;
-    function filterById(el){
-      if(el.id===val)return el;
-    }
+    if(mediascape.AdaptationToolkit.uiComponents.ctrlPanel.enabled===true){
+      mediascape.AdaptationToolkit.uiComponents.ctrlPanel.enabled=false;
+      event.preventDefault();
+      var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
+      var agents=agCtx.agents;
+      var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
+      var val=agentToChange;
+      function filterById(el){
+        if(el.id===val)return el;
+      }
 
-    var a=agents.filter(filterById);
-    var scope=this;
-    var b=a[0].capabilities.componentsStatus.filter(function(el,i){
-      if(el.compId===scope.id)return el;
-    });
+      var a=agents.filter(filterById);
+      var scope=this;
+      var b=a[0].capabilities.componentsStatus.filter(function(el,i){
+        if(el.compId===scope.id)return el;
+      });
 
-    console.log('viewClick');
-    if(b[0].show===true){
-      mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'hide');
-      mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeViewSwVal(agentToChange,this.id,false);
-    }
-    else{
-      mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'show');
-      mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeViewSwVal(agentToChange,this.id,true);
+      console.log('viewClick');
+      if(b[0].show===true){
+        mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'hide');
+        mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeViewSwVal(agentToChange,this.id,false);
+      }
+      else{
+        mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'show');
+        mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeViewSwVal(agentToChange,this.id,true);
+      }
+      mediascape.AdaptationToolkit.uiComponents.ctrlPanel.enableClicks();
     }
   }
 }

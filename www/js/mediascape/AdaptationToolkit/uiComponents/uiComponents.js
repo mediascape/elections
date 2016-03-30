@@ -164,7 +164,7 @@ define(
               callback1.call();
               EnableButton.innerHTML='DISABLE';
               var resize=document.createElement('img');
-              resize.src='../resources/images/disable.png';
+              //resize.src='../resources/images/disable.png';
               resize.style.height='20px';
               resize.style.width='20px';
               EnableButton.appendChild(resize);
@@ -173,7 +173,7 @@ define(
               callback2.call();
               EnableButton.innerHTML='ENABLE ';
               var resize=document.createElement('img');
-              resize.src='../resources/images/resize.png';
+              //resize.src='../resources/images/resize.png';
               resize.style.height='20px';
               resize.style.width='20px';
               EnableButton.appendChild(resize);
@@ -200,7 +200,7 @@ define(
           EnableButton.style.cursor='pointer';
           EnableButton.style.lineHeight='24px';
           var resize=document.createElement('img');
-          resize.src='../resources/images/resize.png';
+          //resize.src='../resources/images/resize.png';
           resize.style.height='20px';
           resize.style.width='20px';
           EnableButton.appendChild(resize);
@@ -214,7 +214,7 @@ define(
             EnableButton.value='Off';
             EnableButton.innerHTML='ENABLE ';
             var resize=document.createElement('img');
-            resize.src='../resources/images/resize.png';
+            //resize.src='../resources/images/resize.png';
             resize.style.height='20px';
             resize.style.width='20px';
             EnableButton.appendChild(resize);
@@ -233,7 +233,7 @@ define(
           SaveButton.style.cursor='pointer';
           SaveButton.style.lineHeight='24px';
           var save=document.createElement('img');
-          save.src='../resources/images/save.png';
+          //save.src='../resources/images/save.png';
           save.style.height='20px';
           save.style.width='20px';
           SaveButton.appendChild(save);
@@ -667,30 +667,39 @@ define(
 
         playPause=function (){
           //play
-          if(img4.src.indexOf('Play_activo.png')>-1){
-            img4.src="../resources/configPanel/img/controller/Pause_activo.png";
-            this.mapp.motions.shared.update(null,1,0);
+          if(controllerClicksEnabled===true){
+            controllerClicksEnabled=false;
+            if(img4.src.indexOf('Play_activo.png')>-1){
+              img4.src="../resources/configPanel/img/controller/Pause_activo.png";
+              this.mapp.motions.shared.update(null,1,0);
+            }
+            else{
+              img4.src="../resources/configPanel/img/controller/Play_activo.png";
+              this.mapp.motions.shared.update(null,0,0);
+            }
+            enableControllerClicks();
           }
-          else{
-            img4.src="../resources/configPanel/img/controller/Play_activo.png";
-            this.mapp.motions.shared.update(null,0,0);
-          }
-
 
         }
 
 
         foward=function (){
+          if(controllerClicksEnabled===true){
+            controllerClicksEnabled=false;
             var time = this.mapp.motions.shared.query();
             time = findNextMarkerTime (time);
             this.mapp.motions.shared.update(time,1,0);
-
+            enableControllerClicks();
+          }
         }
         rewind=function (){
-
+          if(controllerClicksEnabled===true){
+            controllerClicksEnabled=false;
             var time = this.mapp.motions.shared.query();
             time = findPreviousMarkerTime (time);
             this.mapp.motions.shared.update(time,1,0);
+            enableControllerClicks();
+          }
         }
 
 
@@ -724,6 +733,13 @@ define(
 
         var sm=mediascape.AdaptationToolkit.SharedMotion();
         document.addEventListener('motion-ready',smReady.bind(sm),false);
+        var controllerClicksEnabled=true;
+        //security time to control the number of user requests
+        enableControllerClicks=function(){       
+          setTimeout(function(){
+            controllerClicksEnabled=true;
+          },2000);
+        }
 
         markers=[{value:260,description:"EH Bildu, PSE comparecencia",progresspoint:260*100/1561},
           {value:690,description:'PNV comparecencia',progresspoint:690*100/1561},
@@ -766,11 +782,14 @@ define(
                   img1.style.left='calc('+markers[i].progresspoint+'% - '+i*5+'px)';
                    !function outer(i){
                       img1.addEventListener('click',function(event){
-                        event.stopPropagation();
-
-                        sm.mapp.motions.shared.update(markers[i].value,1,0);
-                        div4.style.width=markers[i].progresspoint+'%';
-                        div8.innerHTML = prettyPrint(83869 +markers[i].value);
+                        if(controllerClicksEnabled===true){
+                          controllerClicksEnabled=false;
+                          event.stopPropagation();
+                          sm.mapp.motions.shared.update(markers[i].value,1,0);
+                          div4.style.width=markers[i].progresspoint+'%';
+                          div8.innerHTML = prettyPrint(83869 +markers[i].value);
+                          enableControllerClicks();
+                        }
                       });
                     }(i);
 
@@ -778,11 +797,14 @@ define(
                   div3.appendChild(img1);
                 }
                div3.addEventListener('click',function(event){
-
-                var jumpValue=Math.round(event.offsetX*1561/div3.clientWidth);
-                sm.mapp.motions.shared.update(jumpValue,1,0);
-                div4.style.width=100*Math.round(jumpValue)/1561+'%';
-                div8.innerHTML = prettyPrint(83869 +jumpValue);
+                if(controllerClicksEnabled===true){
+                  controllerClicksEnabled=false;
+                  var jumpValue=Math.round(event.offsetX*1561/div3.clientWidth);
+                  sm.mapp.motions.shared.update(jumpValue,1,0);
+                  div4.style.width=100*Math.round(jumpValue)/1561+'%';
+                  div8.innerHTML = prettyPrint(83869 +jumpValue);
+                  enableControllerClicks();
+                }
               });
 
               div2.appendChild(div3);
@@ -837,23 +859,7 @@ define(
               div7.appendChild(div9);
 
               div5.appendChild(div7);
-
-
-           /* var div10=document.createElement('div');
-            div10.className='logo_y_cierre col-lg-4 col-md-2 hidden-sm';*/
-
-            /* var img7=document.createElement('img');
-             img7.className='cierre col-md-3';
-             img7.src='../resources/configPanel/img/controller/x_inactiva.png';
-             div10.appendChild(img7);*/
-
-             /*var img8=document.createElement('img');
-             img8.className='logo-mediascape visible-lg col-md-9';
-             img8.src='../resources/configPanel/img/controller/logo-Mediascape-apaisado.png';
-             div10.appendChild(img8);*/
-
-             //div5.appendChild(div10);
-
+           
 
              div1.appendChild(div5);
 
