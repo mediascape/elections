@@ -134,12 +134,13 @@ Polymer({
 		this.sm = mediascape.AdaptationToolkit.SharedMotion();
 		var id = 0;
 		setTimeout(function(){
-			_this.$.radioAudio.addEventListener('ended', function () {
+			 var audio = _this.querySelector('audio')
+			 audio.addEventListener('ended', function () {
 					_this.restart();
 			});
-			_this.sm.addVideo (_this.$.radioAudio,id,_this.skew);
-			var cmpStatus = mediascape.AdaptationToolkit.componentManager.core.getComoponentsToShow();
-			if (cmpStatus) mediascape.AdaptationToolkit.Adaptation.UIAdaptation.onComponentsChange(cmpStatus);
+
+			_this.sm.addVideo (audio,id,_this.skew);
+
 		},4000);
 
   	},
