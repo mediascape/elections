@@ -36,7 +36,7 @@
 /**
 * This module help to isolate the problem of load/unload resources related with the webcompoenents. The main
 * goal is to facilitate a simple way to achieve a better way to unload/load resources related content. Webcompoents must
-*  implements load/unload functionality.
+* implements load/unload functionality.
 * @module mediascape/AdaptationToolkit/componentManager/loadManager/loadManager
 *
 * @alias mediascape/AdaptationToolkit/componentManager/loadManager/loadManager
