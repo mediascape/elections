@@ -24,7 +24,6 @@ var ControlPanel= function (url){
   this.controlPanel = function(){
 
     var cmps=mediascape.AdaptationToolkit.componentManager.core.getComponents();
-    console.log('Konstruktorea');
     //'../resources/configPanel/img/camara/logo_etb2.png'
     var comp='video1';
 
@@ -622,7 +621,7 @@ var ControlPanel= function (url){
   document.addEventListener('agentChange',this.onAgentChange.bind(this));
 
   this.onCtxUpdate=function(event){
-    console.log(event);
+
 
     var sections=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items;
     var sectionNum=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items.length;
@@ -951,7 +950,7 @@ var ControlPanel= function (url){
       if(sections[i].name===agentToChange+'graphics'){
 
         if(year===2015){
-          sectionDiv[i].querySelector('#presentLI').className='active';          
+          sectionDiv[i].querySelector('#presentLI').className='active';
           sectionDiv[i].querySelector('#pastLI').className='';
           sectionDiv[i].querySelector('#pastLI').style.border='5px solid #3d5f6b';
           sectionDiv[i].querySelector('#presentPanel').className='col-md-12 fade in tab-pane active';
@@ -1137,7 +1136,7 @@ var menuItem = function (){
 return li;
 }
 this.onclick = function (event){
-  console.log(this.aSection);
+
 
   mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSection(this.aSection,undefined);
 
@@ -1174,7 +1173,7 @@ var menu = function (){
 
     var _this=this;
     this.items.forEach(function(it,i){
-      if((i!==_this.items.length-1) && (i!==0))ul.appendChild(it.render(_this.items[i+1].aSection,_this.items[i-1].aSection));     
+      if((i!==_this.items.length-1) && (i!==0))ul.appendChild(it.render(_this.items[i+1].aSection,_this.items[i-1].aSection));
       else if((i!==_this.items.length-1) && (i===0)){ul.appendChild(it.render(_this.items[i+1].aSection,'hide'));}
       else if((i===_this.items.length-1) && (i!==0)){ul.appendChild(it.render('hide',_this.items[i-1].aSection));}
 
@@ -1228,7 +1227,7 @@ var hideItem=function(){
     a.appendChild(span);
     li.appendChild(a);
     li.onfocus=function(event){
-      a.style.backgroundColor='orange'; 
+      a.style.backgroundColor='orange';
     }
     li.onblur=function(){
       a.style.backgroundColor='#2b5980';
@@ -1314,7 +1313,7 @@ var device=function(){
     var a=document.createElement('a');
     a.href='#';
     a.tabIndex=1;
-    
+
     a.onfocus=function(){
         div.style.border='solid 5px orange';
       }
@@ -1590,7 +1589,6 @@ var camera=function(){
       if(el.compId===scope.id)return el;
     });
 
-    console.log('viewClick');
     if(b[0].show===true){
       mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'hide');
       mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeViewSwVal(agentToChange,this.id,false);
@@ -1663,7 +1661,7 @@ var camera=function(){
       if(el.compId===scope.id)return el;
     });
 
-    console.log('soundClick');
+
 
     if(b[0].show===true){
     if(b[0].customCmd.lastIndexOf('mutePlayer')===-1 && b[0].customCmd.lastIndexOf('soundPlayer')===-1){
@@ -1777,7 +1775,7 @@ var camerasSection=function(){
 
   }
   this.setCamsSoundStatus=function(agentID){
-    console.log('DENTRO');
+
     var agCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext();
     var agents=agCtx.agents;
     var agentToChange=agentID;
@@ -1968,7 +1966,7 @@ var hashtag=function(){
       if(el.compId===scope.id)return el;
     });
 
-    console.log('viewClick');
+
     if(b[0].show===true){
       mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'hide');
       mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeViewSwVal(agentToChange,this.id,false);
@@ -2045,7 +2043,7 @@ var trendingMap=function(){
       if(el.compId===scope.id)return el;
     });
 
-    console.log('viewClick');
+
     if(b[0].show===true){
       mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'hide');
       mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeViewSwVal(agentToChange,this.id,false);
@@ -2364,7 +2362,7 @@ var radios=function(){
       if(el.compId===scope.id)return el;
     });
 
-    console.log('viewClick');
+
     if(b[0].show===true){
       mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'hide');
       mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeRadioViewImgVal(agentToChange,this.id,false);
@@ -2461,7 +2459,7 @@ var table=function(){
     s2.onblur=function(){
       s2.querySelector('#apagado').style.border='';
     }
-    
+
     div5.appendChild(div6);
     div5.appendChild(s2);
 
@@ -2490,10 +2488,10 @@ var table=function(){
       if(li1.className==='active'){
          li1.style.border='solid 5px #97c7e8';
       }
-      else{       
+      else{
         li1.style.border='solid 5px #3d5f6b';
       }
-      
+
     }
     li1.addEventListener('click',this.pastClick.bind(this),true);
 
@@ -2558,7 +2556,7 @@ var table=function(){
     else{
       div11.className='col-md-12 pastilla_ciudad';
     }
-    
+
 
     var div12=document.createElement('div');
     div12.className='txt_ciudad';
@@ -2784,7 +2782,7 @@ var table=function(){
       if(el.compId===scope.id)return el;
     });
 
-    console.log('viewClick');
+
     if(b[0].show===true){
       mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'hide');
       mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeViewSwVal(agentToChange,this.id,false);
@@ -2865,7 +2863,7 @@ var graph=function(){
       if(el.compId===scope.id)return el;
     });
 
-    console.log('viewClick');
+
     if(b[0].show===true){
       mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,this.id,'hide');
       mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeViewSwVal(agentToChange,this.id,false);

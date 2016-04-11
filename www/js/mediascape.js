@@ -96,7 +96,7 @@
         _this = Object.create( mediascape );
         var dontCall = ['sharedState', 'mappingService', 'applicationContext','mediaSync','reverseMediaSync'];
       //  _this1 = Object.create( discovery );
-      console.log("fine0");
+
     	for( var i=0; i<moduleList.length; ++i ){
 				var name = moduleList[ i ].__moduleName;
                  if (dontCall.indexOf(name) === -1) {

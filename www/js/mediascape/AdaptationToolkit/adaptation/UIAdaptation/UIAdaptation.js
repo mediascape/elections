@@ -314,7 +314,6 @@ define(
           // this.layout(cmps,'onResizeEvent');
           if (event.detail !="emulate")
           {
-            console.log("RESIZING",event);
             this.layout(cmps,'onResizeEvent');
           }
       //}
@@ -334,7 +333,6 @@ define(
         //DECIDE WHICH LAYOUT USE; IT IS CALLED WHEN USER EVENT HAPPENS
 
         clearTimeout(activityTimer);
-        console.log (layoutIndex,cmps.length);
         actualLayout.unload(cmps);
         actualLayout = this.findBestLayout(cmps)[layoutIndex];
         this.layoutMode = this.LAYOUTMODE.ADAPTABLE;

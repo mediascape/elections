@@ -365,13 +365,11 @@ define(
                 var mouseupEvent = document.createEvent ('MouseEvents');
                 mouseupEvent.initEvent ('mouseup', true, true);
                 cmp.dispatchEvent(mouseupEvent);
-                console.log('mouseup');
+
             },false);
 
           cmp.addEventListener('holdpulse',function(event){
-              console.log("HOLDPULSE");
-
-              if (event.holdTime>1600){
+            if (event.holdTime>1600){
               var agents = mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAgents();
               var panel = document.createElement('div');
               panel.style.backgroundColor="white";
@@ -416,7 +414,6 @@ define(
                           //e.preventDefault();
                           //e.stopPropagation();
                           var agenttomoveid =e.srcElement.id;
-                          console.log(agenttomoveid);
                           document.body.removeChild(panel);
                           mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setComponentToAgent(agenttomoveid,cmp);
                         },false);
@@ -479,7 +476,6 @@ define(
                           //e.preventDefault();
                           //e.stopPropagation();
                           var agenttomoveid =e.srcElement.id;
-                          console.log(agenttomoveid);
                           document.body.removeChild(panel);
                           mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setComponentToAgent(agenttomoveid,cmp);
 
@@ -549,7 +545,7 @@ define(
                 var leftMargin='';
                 if(width<767)leftMargin=35*width/100;
                 else leftMargin=25*width/100;
-                
+
                 document.querySelector('.add-device-content').appendChild(qrdiv1);
                 mediascape.association.doAssociation('qr','qr-code-content', url, true,(30*width/100),(30*width/100),leftMargin,50);
 
@@ -634,11 +630,11 @@ define(
                   if (_this.mapp.motions.shared.vel == 0) {
 
                      img4.setAttribute('src','../resources/configPanel/img/controller/Play_activo.png');
-                     
+
                    } else {
 
                      img4.setAttribute('src','../resources/configPanel/img/controller/Pause_activo.png');
-                     
+
                    }
                    velState=_this.mapp.motions.shared.vel;
 
@@ -854,20 +850,20 @@ define(
 
 
 
-             var menuBottom = document.getElementById( 'cbp-spmenu-s4' ),       
-              showBottom = document.getElementById( 'showBottom' ),       
+             var menuBottom = document.getElementById( 'cbp-spmenu-s4' ),
+              showBottom = document.getElementById( 'showBottom' ),
               body = document.body;
-            
+
             showBottom.onclick = function() {
               classie.toggle( this, 'active' );
               classie.toggle( menuBottom, 'cbp-spmenu-open' );
               disableOther( 'showBottom' );
-            };      
+            };
 
-            function disableOther( button ) {       
+            function disableOther( button ) {
               if( button !== 'showBottom' ) {
                 classie.toggle( showBottom, 'disabled' );
-              }       
+              }
             }
 
 
@@ -905,7 +901,6 @@ define(
 
                 fullIcon.addEventListener('click',function(e){
                   e.srcElement = e.srcElement || e.target;
-                  console.log(e);
                   document.querySelector('#'+e.srcElement.id.split('fullIcon')[1]).fire('componentToFullscreen');
 
                 });

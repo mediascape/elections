@@ -43,74 +43,79 @@ define(
     var loadManager = function(){
       var actualComponents = [];
       this.load = function (els) {
-          var allcmps = mediascape.AdaptationToolkit.componentManager.core.getComponents();
-          allcmps.forEach(function(el){
-            el.style.display="none";
+        var allcmps = mediascape.AdaptationToolkit.componentManager.core.getComponents();
+        allcmps.forEach(function(el){
+          el.style.display="none";
 
-            //el.shadowRoot.host.style.width="400px";
-            //el.shadowRoot.host.style.height="400px";
-          });
-          els.forEach(function(el){
-            var allreadyLoaded = actualComponents.some(function(cmp){
-               if(cmp.id === el.id) return true;
-               else return false;
-            })
+          //el.shadowRoot.host.style.width="400px";
+          //el.shadowRoot.host.style.height="400px";
+        });
+        els.forEach(function(el){
+          var allreadyLoaded = actualComponents.some(function(cmp){
+            if(cmp.id === el.id) return true;
+            else return false;
+          })
 
-            if (!allreadyLoaded){
+          if (!allreadyLoaded){
             if (el.load) {
               el.load();
             }
             else {
-                el = document.querySelector('#'+el.id);
-                if (el.load) el.load();
+              el = document.querySelector('#'+el.id);
+              if (el.load) el.load();
             }
             var v = el.querySelector('video');
 
             if (v && v.src!=""){
-               v.src = el.getAttribute('file');
-               el.show = true;
-               if (el.play) {
+              v.src = el.getAttribute('file');
+              el.show = true;
+              if (el.play) {
                 // el.pause();
-              //   el.play();
-              //   v.play();
-               }
-             }
+                //   el.play();
+                //   v.play();
+              }
+            }
 
-             var a = el.querySelector('audio');
+            var a = el.querySelector('audio');
             if (a && a.src!=""){
-               a.src = el.getAttribute('file');
-               el.show = true;
-               if (el.play) {
+              a.src = el.getAttribute('file');
+              el.show = true;
+              if (el.play) {
                 // el.pause();
-              //   el.play();
-              //   a.play();
-               }
-             }
-
-
-
-
-
+                //   el.play();
+                //   a.play();
+              }
             }
 
 
-             el.style.display="block";
-            //el.shadowRoot.host.style.width="400px";
-            //el.shadowRoot.host.style.height="400px";
-          });
-          actualComponents = els;
+
+
+
+          }
+
+
+          el.style.display="block";
+          //el.shadowRoot.host.style.width="400px";
+          //el.shadowRoot.host.style.height="400px";
+        });
+        actualComponents = els;
       };
       // Just hidden all at least
       this.unload = function (els) {
         els.forEach(function(el){
-          if (el.unload) {
-            el.unload();
-          }
-          else {
+          var needToUnload = actualComponents.some(function(cmp){
+            if(cmp.id === el.id) return true;
+            else return false;
+          });
+          if (needToUnload){
+            if (el.unload) {
+              el.unload();
+            }
+            else {
               el = document.querySelector('#'+el.id);
               if (el.unload) el.unload();
-          }
-          el.style.display="none";
+            }
+            el.style.display="none";
 
             var v = el.querySelector('video');
             if (v && v.src!="") {
@@ -123,12 +128,13 @@ define(
               el.show = false;
             }
 
-        //  el.shadowRoot.host.style.width="400px";
-        //  el.shadowRoot.host.style.height="400px";
-        actualComponents = actualComponents.filter(function(cmp){
-            if (cmp.id === el.id) return false;
-            else return true;
-        });
+            //  el.shadowRoot.host.style.width="400px";
+            //  el.shadowRoot.host.style.height="400px";
+            actualComponents = actualComponents.filter(function(cmp){
+              if (cmp.id === el.id) return false;
+              else return true;
+            });
+          }
         });
 
       };

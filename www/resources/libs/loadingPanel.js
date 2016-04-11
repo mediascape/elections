@@ -23,9 +23,14 @@ var loadingPanel = function (centralImg,time,cb){
 
    });
    document.body.appendChild(div);
-   if (navigator.userAgent.indexOf('hbbtv')!=-1)
-      document.addEventListener("motion-ready",function(e){ document.body.removeChild(div);},true);
-   else setTimeout(function(){  document.body.removeChild(div);},time*1000);
+/*  if (navigator.userAgent.toLowerCase().indexOf('hbbtv')!=-1)
+      document.addEventListener("motion-ready",function(e){
+        var div1 = document.querySelector('#loadingPanel');
+        document.body.removeChild(div1);
+
+      },true);
+   else*/
+    setTimeout(function(){  document.body.removeChild(div);},time*1000);
 }
 document.addEventListener("keydown", function(e) {
   if (e.keyCode == 13) {

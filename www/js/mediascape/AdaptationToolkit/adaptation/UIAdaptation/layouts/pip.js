@@ -1,7 +1,7 @@
 /**
-* This layout organizes N components as picture in picture. The component with the 
-* lowest order will be shown in fullscreen and the others are placed with a reduced 
-* size following the aspect ratio when it is possible in a column at the right side 
+* This layout organizes N components as picture in picture. The component with the
+* lowest order will be shown in fullscreen and the others are placed with a reduced
+* size following the aspect ratio when it is possible in a column at the right side
 * of the screen and over the fullscreen component. When a component from the column
 * is clicked, it is changed to the fullscreen position replacing its position.
 
@@ -18,7 +18,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
     pip.listeners = [];
     var timers=[];
     pip.onComponentsChange = function (cmps){
-        console.log("test");
+
     this.cmps = cmps;
       var components = mediascape.AdaptationToolkit.componentManager.core.getComponents();
       for(var i=0;i<components.length;i++){
@@ -91,12 +91,12 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
       }
       if(document.querySelector('#swContainer')){
 
-        
+
        for(var i=0;i<components.length;i++){
         if(document.querySelector('#swContainer').querySelector('#'+components[i].id)){
          var node=document.querySelector('#'+components[i].id);
          componentsContainer.appendChild(node);
-        
+
         }
       }
         document.querySelector('#swContainer').parentNode.removeChild(document.querySelector('#swContainer'));
@@ -122,19 +122,19 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
 
       var scope=this;
       var timer1=0;
-     
+
       mediascape.AdaptationToolkit.uiComponents.addMenuToCmps(cmps,true);
-          
-      
+
+
       cmps.forEach(function(cmp,i){
          !function outer(i){
         cmp.removeEventListener('mousemove',activityFunc,true);
-        
+
         cmp.removeEventListener('mousemove',activityFunc,false);
         cmp.addEventListener('mousemove',activityFunc);
          pip.listeners.push(activityFunc);
           function activityFunc(e){
-          
+
           this.querySelector('#menuBar'+this.id).style.display='block';
           clearTimeout(timers[i]);
           var scope=this;
@@ -143,13 +143,13 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
           },3000);
         }
         }(i);
-         
-           
+
+
       });
-      
-      
-      
-       
+
+
+
+
 
 
 
@@ -158,7 +158,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
     pip.render = function (cmps,rendered,clicked){
       document.body.style.backgroundColor='white';
       document.body.style.padding='';
-      
+
       var container=document.querySelector('#componentsContainer');
       container.style.display='inline-block';
       container.style.overflowX='hidden';
@@ -226,11 +226,11 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
       }
       if(enough===true){
          heights.push(height-total_height);
-       
+
 
           fullScreenCmp.style.marginLeft='0px';
           fullScreenCmp.style.width=(width+10)+'px';
-          fullScreenCmp.style.height=(height)+'px';        
+          fullScreenCmp.style.height=(height)+'px';
           fullScreenCmp.style.marginTop='0px';
           fullScreenCmp.style.backgroundColor='white';
           fullScreenCmp.style.zIndex='1';
@@ -238,7 +238,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
 
         usedHeight=0;
         for(var i=0;i<col_cmps;i++){
-          
+
           cmpsToColumn[i].style.marginLeft=a+'px';
           cmpsToColumn[i].style.width=b+'px';
           cmpsToColumn[i].style.height=heights[(2*i+1)];
@@ -250,33 +250,33 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
 
 
         }
-        
+
 
       }
       else{
-        var row_height=parseInt((height-70)/(col_cmps))-10;       
+        var row_height=parseInt((height-70)/(col_cmps))-10;
         fullScreenCmp.style.marginLeft='0px';
         fullScreenCmp.style.width=(width+10)+'px';
-        fullScreenCmp.style.height=(height)+'px';        
+        fullScreenCmp.style.height=(height)+'px';
         fullScreenCmp.style.marginTop='0px';
         fullScreenCmp.style.backgroundColor='white';
         fullScreenCmp.style.zIndex='1';
         fullScreenCmp.className="";
 
 
-        
-        
+
+
         for(var i=0;i<col_cmps;i++){
 
-   
+
           cmpsToColumn[i].style.marginLeft=a+'px';
           cmpsToColumn[i].style.width=b+'px';
-          cmpsToColumn[i].style.height=row_height+'px';          
+          cmpsToColumn[i].style.height=row_height+'px';
           cmpsToColumn[i].style.marginTop=20+(i*row_height)+(i*10)+'px';
           cmpsToColumn[i].style.backgroundColor='black';
           cmpsToColumn[i].style.zIndex='2';
           cmpsToColumn[i].className='right-content-panel';
-          
+
 
         }
 
@@ -292,7 +292,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
 
     }
     pip.onLayoutChangeEvent = function (cmps){
-      console.log("layout changed");
+
      for(var i=0;i<cmps.length;i++){
         cmps[i].style.width='';
         cmps[i].style.height='';
@@ -367,21 +367,21 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
 
       if(document.querySelector('#swContainer')){
 
-        
+
        for(var i=0;i<cmps.length;i++){
         if(document.querySelector('#swContainer').querySelector('#'+cmps[i].id)){
          var node=document.querySelector('#'+cmps[i].id);
          componentsContainer.appendChild(node);
-        
+
         }
         }
         document.querySelector('#swContainer').parentNode.removeChild(document.querySelector('#swContainer'));
         if(document.querySelector('x-media')){
           document.querySelector('x-media').play();
         }
-      
+
       }
-      
+
 
       if(componentsContainer.querySelector('#arrows')){
         componentsContainer.removeChild(componentsContainer.querySelector('#arrows'));
@@ -441,17 +441,17 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
       }*/
 
       mediascape.AdaptationToolkit.uiComponents.addMenuToCmps(cmps,true);
-          
-      
+
+
       cmps.forEach(function(cmp,i){
       !function outer(i){
         cmp.removeEventListener('mousemove',activityFunc,true);
-        
+
         cmp.removeEventListener('mousemove',activityFunc,false);
         cmp.addEventListener('mousemove',activityFunc);
           pip.listeners.push(activityFunc);
           function activityFunc(e){
-          
+
           this.querySelector('#menuBar'+this.id).style.display='block';
           clearTimeout(timers[i]);
           var scope=this;
@@ -460,11 +460,11 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
           },3000);
         }
         }(i);
-       
-           
+
+
       });
-      
-      
+
+
 
 
     }
@@ -475,7 +475,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
         this.render(_cmps,rendered,clicked);
     }
     pip.onResizeEvent=function(cmps){
-      console.log("layout changed");
+
       var rendered=true;
       for(var i=0;i<cmps.length;i++){
         cmps[i].style.width='';
@@ -497,7 +497,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
       pip.listeners.forEach (function(listener){
       for(var i=0;i<cmps.length;i++){
         cmps[i].removeEventListener('mousemove',listener,true);
-        
+
         cmps[i].removeEventListener('mousemove',listener,false);
         clearTimeout(timers[i]);
       }

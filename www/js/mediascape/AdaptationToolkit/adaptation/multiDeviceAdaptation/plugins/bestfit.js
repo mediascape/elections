@@ -33,7 +33,7 @@ function(){
               }
           })
       });
-     console.log(this.components);
+
     };
 
     this.onChange = function( evt, ctx ) {
@@ -151,7 +151,7 @@ function(){
                 result = 1;
          }
           // Compare agents notes
-          console.log("result",result,moveToOtherAgent,qualifiedAgentAndComponentToShow(me,cmp),cmp.nodeName);
+        //  console.log("result",result,moveToOtherAgent,qualifiedAgentAndComponentToShow(me,cmp),cmp.nodeName);
 
 
           if ((cmp.adaptationBehaviour['duplicable'] ==true && cmp.adaptationBehaviour['required'] ==true)&&
@@ -179,57 +179,57 @@ function(){
 
 
 
-          if(cmp.adaptationBehaviour['required'] ==true && cmp.nodeName.toLowerCase()==='x-media' 
+          if(cmp.adaptationBehaviour['required'] ==true && cmp.nodeName.toLowerCase()==='x-media'
             && (result=="1" || result=="11") && cmp.adaptationBehaviour['videoLimit'].indexOf('main')!==-1){
               return {type:"SHOW",component:cmp.getAttribute('id')};
           }
-          if(cmp.adaptationBehaviour['required'] ==true && cmp.nodeName.toLowerCase()==='x-media' 
+          if(cmp.adaptationBehaviour['required'] ==true && cmp.nodeName.toLowerCase()==='x-media'
             && (result=="1" || result=="11") && cmp.adaptationBehaviour['videoLimit'].indexOf('other')!==-1){
               return {type:"HIDE",component:cmp.getAttribute('id')};
           }
-          if(cmp.adaptationBehaviour['required'] ==true && cmp.nodeName.toLowerCase()==='x-media' 
+          if(cmp.adaptationBehaviour['required'] ==true && cmp.nodeName.toLowerCase()==='x-media'
             && (result=="10" || result=="0") && cmp.adaptationBehaviour['videoLimit'].indexOf('other')!==-1){
               return {type:"SHOW",component:cmp.getAttribute('id')};
           }
-          if(cmp.adaptationBehaviour['required'] ==true && cmp.nodeName.toLowerCase()==='x-media' 
+          if(cmp.adaptationBehaviour['required'] ==true && cmp.nodeName.toLowerCase()==='x-media'
             && (result=="10" || result=="0") && cmp.adaptationBehaviour['videoLimit'].indexOf('main')!==-1){
               return {type:"HIDE",component:cmp.getAttribute('id')};
           }
 
-          
 
 
-          if(cmp.adaptationBehaviour['required'] ==false && cmp.nodeName.toLowerCase()==='x-media' 
+
+          if(cmp.adaptationBehaviour['required'] ==false && cmp.nodeName.toLowerCase()==='x-media'
             && (result=="1" || result=="11") && cmp.adaptationBehaviour['videoLimit'].indexOf('main')!==-1
             &&qualifiedAgentAndComponentToShow(me,cmp)){
               return {type:"SHOW",component:cmp.getAttribute('id')};
           }
-          if(cmp.adaptationBehaviour['required'] ==false && cmp.nodeName.toLowerCase()==='x-media' 
+          if(cmp.adaptationBehaviour['required'] ==false && cmp.nodeName.toLowerCase()==='x-media'
             && (result=="1" || result=="11") && cmp.adaptationBehaviour['videoLimit'].indexOf('other')!==-1
             &&qualifiedAgentAndComponentToShow(me,cmp)){
               return {type:"HIDE",component:cmp.getAttribute('id')};
           }
-          if(cmp.adaptationBehaviour['required'] ==false && cmp.nodeName.toLowerCase()==='x-media' 
+          if(cmp.adaptationBehaviour['required'] ==false && cmp.nodeName.toLowerCase()==='x-media'
             && (result=="10" || result=="0") && cmp.adaptationBehaviour['videoLimit'].indexOf('main')!==-1
             &&qualifiedAgentAndComponentToShow(me,cmp)){
               return {type:"HIDE",component:cmp.getAttribute('id')};
           }
-          if(cmp.adaptationBehaviour['required'] ==false && cmp.nodeName.toLowerCase()==='x-media' 
+          if(cmp.adaptationBehaviour['required'] ==false && cmp.nodeName.toLowerCase()==='x-media'
             && (result=="10" || result=="0") && cmp.adaptationBehaviour['videoLimit'].indexOf('other')!==-1
             &&qualifiedAgentAndComponentToShow(me,cmp)){
               return {type:"SHOW",component:cmp.getAttribute('id')};
           }
 
 
-          /*if(cmp.nodeName.toLowerCase()==='x-media' && (result!="1" && result!="11") && 
+          /*if(cmp.nodeName.toLowerCase()==='x-media' && (result!="1" && result!="11") &&
             cmp.adaptationBehaviour['videoLimit'].indexOf('other')!==-1){
               return {type:"SHOW",component:cmp.getAttribute('id')};
           }
-          if(cmp.nodeName.toLowerCase()==='x-media' && (result=="1" || result=="11") && 
+          if(cmp.nodeName.toLowerCase()==='x-media' && (result=="1" || result=="11") &&
             cmp.adaptationBehaviour['videoLimit'].indexOf('other')!==-1){
               return {type:"HIDE",component:cmp.getAttribute('id')};
           }
-          if(cmp.nodeName.toLowerCase()==='x-media' && (result!="1" && result!="11") && 
+          if(cmp.nodeName.toLowerCase()==='x-media' && (result!="1" && result!="11") &&
             cmp.adaptationBehaviour['videoLimit'].indexOf('main')!==-1){
               return {type:"HIDE",component:cmp.getAttribute('id')};
           }*/

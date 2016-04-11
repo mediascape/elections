@@ -6,7 +6,7 @@ define (["msv","mcorp"],
       this.init = function(){
         try {
 
-          this.mapp = MCorp.app("4092171836865095034", {anon:true});
+          this.mapp = MCorp.app("4092171836865095034", {anon:true, ssl:false});
           this.mapp.cams = {};
           this.mapp.init();
           var scope = this;
@@ -18,8 +18,9 @@ define (["msv","mcorp"],
               var event1 = new Event("motion-ready", {"detail":{"loaded":true}});
              //  setTimeout(function(e){document.dispatchEvent(event);},20000);
              document.addEventListener('agentChange',function(e){
-                    if (navigator.userAgent.toLowerCase().indexOf('hbbtv')!=-1) setTimeout(function(){document.dispatchEvent(event1);},3000);
-                    else document.dispatchEvent(event1);
+                    //if (navigator.userAgent.toLowerCase().indexOf('hbbtv')!=-1)
+                    setTimeout(function(){document.dispatchEvent(event1);},3000);
+                    //else document.dispatchEvent(event1);
                   document.removeEventListener('agentChange', arguments.callee);
                   scope.mapp.motions.shared.update(null, 1);
               },false);
@@ -44,7 +45,7 @@ define (["msv","mcorp"],
             opts.target = 0.1;
             opts.debug=false;
             //opts.mode ="auto";
-            console.log(opts);
+
             if (navigator.userAgent.toLowerCase().indexOf('hbbtv')!=-1){
                  var options = {skew:-0.345};
                  scope.mapp.cams[id] = new mediascape.reverseMediaSync(_video, scope.mapp.msvs.shared, options);

@@ -45,12 +45,10 @@ define(
       var components = [];
       var componentStatus = undefined;
       this.init = function (){
-        console.log("BARRUAN");
         var layoutProp=['order','rwidth','propx','propy','bestfit','required',"needs","duplicable","movable","icon"];
         var file='/resources/layout/components.layout';
         var _this = this;
         this.parseComponents(file,layoutProp).then(function(cmps){
-          console.log("PARSING",cmps);
           var event = new CustomEvent("adaptationToolkit-ready", {"detail":{"loaded":true,components:cmps}});
           if (navigator.userAgent.toLowerCase().indexOf('hbbtv')!=-1)document.dispatchEvent(event);
           else setTimeout(function(){document.dispatchEvent(event);},2000);
@@ -126,7 +124,6 @@ define(
       }
       this.checkComponentsReady = function(){
           var ready = components.every(function(cmp){
-                console.log(cmp.done);
                 return cmp.done;
           });
           if (ready){

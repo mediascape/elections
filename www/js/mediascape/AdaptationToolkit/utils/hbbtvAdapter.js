@@ -3,7 +3,6 @@ define(['promise'],
 
         var polyfill = navigator.userAgent.toLowerCase().indexOf('hbbtv')!=-1 ? 'webcomponents_lite': 'webcomponents_lite';
         require([polyfill],function(){
-          console.log("hbbtvloaded"+polyfill);
 
           if (navigator.userAgent.toLowerCase().indexOf('hbbtv')!==-1) {// Medans hbbtv
               require(["promise","keycodes","hbbtvapp"],function(p,keyc,hbbtvapp){

@@ -13,10 +13,10 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
     var carousel = new LayoutConstructor('carousel');
     carousel.listeners = [];
     var timers=[];
-    
+
     carousel.onComponentsChange = function (cmps){
-        console.log("test");
-    this.cmps = cmps;
+
+     this.cmps = cmps;
       var components = mediascape.AdaptationToolkit.componentManager.core.getComponents();
       for(var i=0;i<components.length;i++){
         components[i].style.width='';
@@ -89,12 +89,12 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
 
       if(document.querySelector('#swContainer')){
 
-        
+
        for(var i=0;i<components.length;i++){
         if(document.querySelector('#swContainer').querySelector('#'+components[i].id)){
          var node=document.querySelector('#'+components[i].id);
          componentsContainer.appendChild(node);
-        
+
         }
       }
         document.querySelector('#swContainer').parentNode.removeChild(document.querySelector('#swContainer'));
@@ -102,8 +102,8 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
           document.querySelector('x-media').play();
         }
       }
-      
-     
+
+
 
       if(componentsContainer.querySelector('#arrows')){
         componentsContainer.removeChild(componentsContainer.querySelector('#arrows'));
@@ -124,7 +124,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
     }
     carousel.render = function (cmps){
 
-      
+
 
       document.body.style.backgroundColor='#0A2533';
       document.body.style.padding='15px 0px';
@@ -142,25 +142,25 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
       if (it1.lproperties.order > it2.lproperties.order) return 1;
       else return -1;
       });
-   
+
 
       var div=document.createElement('div');
       div.className='swiper-container';
       div.id='swContainer';
       div.innerHTML='<div id="wrapper" class="swiper-wrapper"></div><div class="swiper-pagination"></div>';
       componentsContainer.appendChild(div);
-     
+
       var mySwiper =  new Swiper('.swiper-container',{
-      
+
         pagination: '.swiper-pagination',
         paginationClickable: true,
         effect: 'coverflow',
         grabCursor: true,
         centeredSlides: true,
-        slidesPerView:'auto',       
-       
+        slidesPerView:'auto',
+
         initialSlide:0,
-        
+
         coverflow: {
             rotate: 50,
             stretch: 0,
@@ -168,21 +168,21 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
             modifier: 1,
             slideShadows : false
         }
-        
-      }); 
 
-      for(var i=0;i<ordered_cmps.length;i++){    
-        var div=document.createElement('div'); 
+      });
 
-        div.className='swiper-slide';   
+      for(var i=0;i<ordered_cmps.length;i++){
+        var div=document.createElement('div');
+
+        div.className='swiper-slide';
         div.id='slide'+ordered_cmps[i].id;
         var node = document.querySelector("#"+ordered_cmps[i].id);
         div.appendChild(node);
         mySwiper.appendSlide(div);
         mySwiper.update(true);
       }
-      
-      
+
+
       if(document.querySelector('x-media')){
           document.querySelector('x-media').play();
         }
@@ -197,7 +197,6 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
 
     }
     carousel.onLayoutChangeEvent = function (cmps){
-      console.log("layout changed");
      for(var i=0;i<cmps.length;i++){
         cmps[i].style.width='';
         cmps[i].style.height='';
@@ -273,21 +272,21 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
 
       if(document.querySelector('#swContainer')){
 
-        
+
        for(var i=0;i<cmps.length;i++){
         if(document.querySelector('#swContainer').querySelector('#'+cmps[i].id)){
          var node=document.querySelector('#'+cmps[i].id);
          componentsContainer.appendChild(node);
-        
+
         }
       }
         document.querySelector('#swContainer').parentNode.removeChild(document.querySelector('#swContainer'));
         if(document.querySelector('x-media')){
           document.querySelector('x-media').play();
         }
-      
+
       }
-      
+
 
 
 
@@ -308,7 +307,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
         }
       }
        mediascape.AdaptationToolkit.Adaptation.UIAdaptation.updateComponentQuery();
-       
+
     }
     carousel.onPriorizeComponent=function(cmp){
         var clicked=cmp;
@@ -320,33 +319,33 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
 
       if(document.querySelector('#swContainer')){
 
-        
+
        for(var i=0;i<cmps.length;i++){
         if(document.querySelector('#swContainer').querySelector('#'+cmps[i].id)){
          var node=document.querySelector('#'+cmps[i].id);
          componentsContainer.appendChild(node);
-        
+
         }
       }
         document.querySelector('#swContainer').parentNode.removeChild(document.querySelector('#swContainer'));
         if(document.querySelector('x-media')){
           document.querySelector('x-media').play();
         }
-      
+
       }
       this.render(cmps);
-      
+
       mediascape.AdaptationToolkit.Adaptation.UIAdaptation.updateComponentQuery();
 
     }
     carousel.unload = function(cmps){
       carousel.listeners.forEach (function(listener){
         for(var i=0;i<cmps.length;i++){
-          
-          
+
+
         }
       },this);
-   
+
     }
 
 

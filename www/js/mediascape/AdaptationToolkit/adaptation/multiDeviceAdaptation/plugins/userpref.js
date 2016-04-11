@@ -67,7 +67,7 @@ function(){
 
             }
            }
-           console.log(decision);
+          // console.log(decision);
             return  decision;
 
         };

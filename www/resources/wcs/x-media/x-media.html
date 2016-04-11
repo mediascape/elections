@@ -80,15 +80,16 @@ Polymer({
  			  if (navigator.userAgent.toLowerCase().indexOf('hbbtv')!=-1){
 				if  (mediascape.AdaptationToolkit.componentManager.core.isLoaded(_this)){
 						 video.src= _this.file;
-					  	_this.sm.addVideo (video,id,_this.skew);
-						  _this.sm.mapp.motions.shared.update(0, 1);
-
+						 _this.sm.addVideo (video,id,_this.skew);
+						 setTimeout(function(){
+					  		_this.sm.mapp.motions.shared.update(0, 1);
+						},500);
 				}
 			  }
         else _this.sm.addVideo (video,id,_this.skew);
-        _this.play();
+      //  _this.play();
 
-	},4000);
+	},500);
 /*	if (navigator.userAgent.toLowerCase().indexOf('hbbtv')!=-1){
 
 			function handler(e){
@@ -138,7 +139,6 @@ Polymer({
 		this.sm.mapp.motions.shared.update(0, 1);
 	},
 	customCmdReceived: function(data){
-			console.log("DATA",data);
 			if(data==='mutePlayer'){
 				this.mutePlayer();
 			}
@@ -155,12 +155,13 @@ Polymer({
 	unload:function(){
 		 var video = this.querySelector('video');
 		 video.src ="";
-		 console.log("UNLOADING");
      video.mute = true;
 		 video.volumen =0;
+		 this.isActive = true;
 	},
 	load:function(){
 			 var _this = this;
+			 this.isActive = true;
 	     var video = this.querySelector('video');
 			 if (this.sm && !mediascape.AdaptationToolkit.SharedMotion().isVideoAdded(this.ida)){
 				 	this.sm.addVideo (video,this.ida,this.skew);
@@ -174,14 +175,12 @@ Polymer({
 				 	video.muted = false;
 					video.volume = 0.9;
 			 }
-			  if (navigator.userAgent.toLowerCase().indexOf('hbbtv')!=-1)
-					  {
-							setTimeout (function(){
-									_this.pause();
-									_this.play();
-								},1500);
-						}
-				else this.play();
+
+				if (video.paused)
+							_this.play();
+
+
+			//	else this.play();
 						//mediascape.AdaptationToolkit.Adaptation.UIAdaptation.useLayout('divided');
 				//mediascape.AdaptationToolkit.Adaptation.UIAdaptation.useLayout('divided');
 	}

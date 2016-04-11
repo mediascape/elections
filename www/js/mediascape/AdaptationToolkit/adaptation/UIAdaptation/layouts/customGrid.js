@@ -1,9 +1,9 @@
 
 
 /**
-* This layout organizes N components in a grid. Having each component a given 
-* preferred width, aspect ratio and the order, the screen is divided in cells 
-* of different sizes. The Grid layout iterates across the components with a 
+* This layout organizes N components in a grid. Having each component a given
+* preferred width, aspect ratio and the order, the screen is divided in cells
+* of different sizes. The Grid layout iterates across the components with a
 * priority-based order, and goes over the layout matrix from left to right and
 * from top to down, filling empty slots with unplaced components.
 
@@ -17,7 +17,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
 
     var customGrid = new LayoutConstructor('customGrid');
     customGrid.onComponentsChange = function (cmps){
-        console.log("test");
+
         this.cmps = cmps;
       var components = mediascape.AdaptationToolkit.componentManager.core.getComponents();
       for(var i=0;i<components.length;i++){
@@ -88,12 +88,12 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
 
       if(document.querySelector('#swContainer')){
 
-        
+
        for(var i=0;i<components.length;i++){
         if(document.querySelector('#swContainer').querySelector('#'+components[i].id)){
          var node=document.querySelector('#'+components[i].id);
          componentsContainer.appendChild(node);
-        
+
         }
       }
         document.querySelector('#swContainer').parentNode.removeChild(document.querySelector('#swContainer'));
@@ -101,7 +101,7 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
           document.querySelector('x-media').play();
         }
       }
-    
+
       if(componentsContainer.querySelector('#arrows')){
         componentsContainer.removeChild(componentsContainer.querySelector('#arrows'));
       }
@@ -213,7 +213,6 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
       console.log("test");
     }
     customGrid.onLayoutChangeEvent = function (cmps){
-      console.log("layout changed");
 
       for(var i=0;i<cmps.length;i++){
         cmps[i].style.width='';
@@ -280,22 +279,22 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
           document.querySelector('x-media').play();
         }
       }
-      
+
       if(document.querySelector('#swContainer')){
 
-        
+
        for(var i=0;i<cmps.length;i++){
         if(document.querySelector('#swContainer').querySelector('#'+cmps[i].id)){
          var node=document.querySelector('#'+cmps[i].id);
          componentsContainer.appendChild(node);
-        
+
         }
         }
         document.querySelector('#swContainer').parentNode.removeChild(document.querySelector('#swContainer'));
         if(document.querySelector('x-media')){
           document.querySelector('x-media').play();
         }
-      
+
       }
 
       if(componentsContainer.querySelector('#arrows')){
@@ -374,7 +373,6 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
     }
 
     customGrid.onResizeEvent=function(cmps){
-      console.log("layout changed");
       for(var i=0;i<cmps.length;i++){
         cmps[i].className='';
       }
