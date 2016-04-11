@@ -33,7 +33,14 @@
 **              MIT license (http://opensource.org/licenses/MIT)
 **
 */
-
+/**
+* This module help to isolate the problem of load/unload resources related with the webcompoenents. The main
+* goal is to facilitate a simple way to achieve a better way to unload/load resources related content. Webcompoents must
+*  implements load/unload functionality.
+* @module mediascape/AdaptationToolkit/componentManager/loadManager/loadManager
+*
+* @alias mediascape/AdaptationToolkit/componentManager/loadManager/loadManager
+*/
 
 define(
   [
@@ -42,62 +49,65 @@ define(
 
     var loadManager = function(){
       var actualComponents = [];
+      /**
+      * Components to load, loads all resources related with the webcompoenents
+      * @function load
+      * @parameter webcomponents array
+      */
       this.load = function (els) {
-          var allcmps = mediascape.AdaptationToolkit.componentManager.core.getComponents();
-          allcmps.forEach(function(el){
-            el.style.display="none";
-
-            //el.shadowRoot.host.style.width="400px";
-            //el.shadowRoot.host.style.height="400px";
-          });
-          els.forEach(function(el){
-            var allreadyLoaded = actualComponents.some(function(cmp){
-               if(cmp.id === el.id) return true;
-               else return false;
-            })
-            if (!allreadyLoaded){
+        var allcmps = mediascape.AdaptationToolkit.componentManager.core.getComponents();
+        allcmps.forEach(function(el){
+          el.style.display="none";
+        });
+        els.forEach(function(el){
+          var allreadyLoaded = actualComponents.some(function(cmp){
+            if(cmp.id === el.id) return true;
+            else return false;
+          })
+          if (!allreadyLoaded){
             el.load();
             var v = el.querySelector('video');
 
             if (v && v.src!=""){
-               v.src = el.getAttribute('file');
-               el.show = true;
-               if (el.play) {
+              v.src = el.getAttribute('file');
+              el.show = true;
+              if (el.play) {
                 // el.pause();
-                 el.play();
-                 v.play();
-               }
-             }
-
-             var a = el.querySelector('audio');
-            if (a && a.src!=""){
-               a.src = el.getAttribute('file');
-               el.show = true;
-               if (el.play) {
-                // el.pause();
-                 el.play();
-                 a.play();
-               }
-             }
-
-
-
-
-
+                el.play();
+                v.play();
+              }
             }
 
+            var a = el.querySelector('audio');
+            if (a && a.src!=""){
+              a.src = el.getAttribute('file');
+              el.show = true;
+              if (el.play) {
+                // el.pause();
+                el.play();
+                a.play();
+              }
+            }
 
-             el.style.display="block";
-            //el.shadowRoot.host.style.width="400px";
-            //el.shadowRoot.host.style.height="400px";
-          });
-          actualComponents = els;
+          }
+
+
+          el.style.display="block";
+
+        });
+        actualComponents = els;
       };
       // Just hidden all at least
       this.unload = function (els) {
+
         els.forEach(function(el){
-          el.unload();
-          el.style.display="none";
+          var needToUnload = actualComponents.some(function(cmp){
+            if(cmp.id === el.id) return true;
+            else return false;
+          })
+          if (needToUnload){
+            el.unload();
+            el.style.display="none";
 
             var v = el.querySelector('video');
             if (v && v.src!="") {
@@ -110,12 +120,11 @@ define(
               el.show = false;
             }
 
-        //  el.shadowRoot.host.style.width="400px";
-        //  el.shadowRoot.host.style.height="400px";
-        actualComponents = actualComponents.filter(function(cmp){
-            if (cmp.id === el.id) return false;
-            else return true;
-        });
+            actualComponents = actualComponents.filter(function(cmp){
+              if (cmp.id === el.id) return false;
+              else return true;
+            });
+          }
         });
 
       };
