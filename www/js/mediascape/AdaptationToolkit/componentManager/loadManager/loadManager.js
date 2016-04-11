@@ -97,7 +97,11 @@ define(
         });
         actualComponents = els;
       };
-      // Just hidden all at least
+      /**
+      * Components to unload, unloads all resources related with the webcompoenents
+      * @function unload
+      * @parameter webcomponents array
+      */
       this.unload = function (els) {
 
         els.forEach(function(el){
