@@ -107,6 +107,9 @@ This will genetare multideviceapplib.min.js at dist/ folder. On production, it i
 /www/resources/wcs/ webcomponents folder
 /wwww/resources/configPanel Control panel to manage webcompoents and differents devices, developed only for this prototype.
 ```
+
+**Important:** Since we browsers have an limitation of concurrent sockets per domain, it is extremely recommended split the different videos on different domains or different web servers, in order to have the best performance.
+
 ### HBBTV Branch
 
 This prototype is also compatible with Hbbtv standard, it can be found under [hbbtv_version branch](https://github.com/mediascape/elections/tree/hbbtv_version) . The roadmap is to merge both versions in the short-term future.
