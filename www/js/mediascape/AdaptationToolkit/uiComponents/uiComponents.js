@@ -645,8 +645,7 @@ define(
             }
 
         playPause=function (){
-          var dbg = document.querySelector('#debug2');
-          dbg.innerHTML += "PLAYPAUSE"
+
           if(img4.src.indexOf('Play_activo.png')>-1){
             img4.src="../resources/configPanel/img/controller/Pause_activo.png";
             this.mapp.motions.shared.update(null,1,0);
@@ -743,7 +742,9 @@ define(
                   var img1=document.createElement('img');
                   img1.className='hito01';
                   img1.src='../resources/configPanel/img/controller/hito.jpg';
-                  img1.style.left='calc('+markers[i].progresspoint+'% - '+i*5+'px)';
+                  var screenWidth = document.documentElement.clientWidth;
+                  pixels = markers[i].progresspoint*screenWidth/100;
+                  img1.style.left=pixels-i*5+'px';
                    !function outer(i){
                       img1.addEventListener('click',function(event){
                         event.stopPropagation();
