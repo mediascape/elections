@@ -26,8 +26,7 @@ sudo apt-get install -y nodejs
 Install mongodb:
 
 ``` bash
-sudo apt-get install -y mongodb-org
-
+sudo apt-get install -y mongodb
 ```
 Download source:
 
