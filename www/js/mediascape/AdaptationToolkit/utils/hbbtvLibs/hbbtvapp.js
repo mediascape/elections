@@ -14,64 +14,6 @@ function initApp() {
 
 document.addEventListener('keydown',function(e){
 
-  if (e.keyCode === KEY_NUM_1){
-    mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSection("AddDevice",undefined);
-
-  }
-  if (e.keyCode === KEY_NUM_2){
-    mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSection("layouts",undefined);
-
-  }
-  if (e.keyCode === KEY_NUM_3){
-    mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSection("cameras",undefined);
-
-  }
-  if (e.keyCode === KEY_NUM_4){
-    mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSection("twitter",undefined);
-
-  }
-  if (e.keyCode === KEY_NUM_6){
-    mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSection("graphics",undefined);
-
-  }
-  if (e.keyCode === KEY_NUM_5){
-    mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSection("radio",undefined);
-
-  }
-  if (e.keyCode === KEY_NUM_5){
-    mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSection("radio",undefined);
-
-  }
-  if (e.keyCode === KEY_NUM_7){
-      var me = mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAgentId();
-      mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.changeAgentlayout(me,"pip");
-      mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeLayout(me,"pip");
-
-  }
-  if (e.keyCode === KEY_NUM_8){
-      var me = mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAgentId();
-      mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.changeAgentlayout(me,"divided");
-      mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeLayout(me,"divided");
-
-  }
-  if (e.keyCode === KEY_NUM_9){
-      var me = mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAgentId();
-      mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.changeAgentlayout(me,"accordion");
-      mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeLayout(me,"accordion");
-
-  }
-/*  if (e.keyCode === KEY_RIGHT){
-      pointer.style.left=parseInt(pointer.style.left)+10;
-  }
-  if (e.keyCode === KEY_LEFT){
-      pointer.style.left=parseInt(pointer.style.left)-10;
-  }
-  if (e.keyCode === KEY_UP){
-      pointer.style.top=parseInt(pointer.style.top)-10;
-  }
-  if (e.keyCode === KEY_DOWN){
-      pointer.style.top=parseInt(pointer.style.top)+10;
-  }*/
   if(e.keyCode===KEY_UP){
     if(document.querySelector('#fullTemp').style.display==='none'){
       if(document.querySelector('#showBottom').className!=='active'){
@@ -91,46 +33,42 @@ document.addEventListener('keydown',function(e){
     }
   }
   if(e.keyCode===KEY_PLAY){
-    if(document.querySelector('#showBottom').className==='active'){
-      if(document.querySelector('#btn_stop').src.indexOf('Play')>-1){
-        var target=document.querySelector('#btn_stop');
-        var evt=new CustomEvent('click');
+
+      if(document.querySelector('.btn_stop').src.indexOf('Play')>-1){
+        var target=document.querySelector('.btn_stop');
+        var evt=new Event('click');
         target.dispatchEvent(evt);
       }
-    }
+
   }
   if(e.keyCode===KEY_PAUSE){
-    if(document.querySelector('#showBottom').className==='active'){
-      if(document.querySelector('#btn_stop').src.indexOf('Pause')>-1){
-        var target=document.querySelector('#btn_stop');
-        var evt=new CustomEvent('click');
+        var target=document.querySelector('#pauseBut');
+        var evt=new Event('click');
         target.dispatchEvent(evt);
-      }
-    }
+
   }
   if(e.keyCode===KEY_FWD){
-    if(document.querySelector('#showBottom').className==='active'){      
-        var target=document.querySelector('#btn_r_dcha');
-        var evt=new CustomEvent('click');
-        target.dispatchEvent(evt);      
-    }
+
+        var target=document.querySelector('.btn_r_dcha');
+        var evt=new Event('click');
+        target.dispatchEvent(evt);
+
   }
-  if(e.keyCode===KEY_FWD){
-    if(document.querySelector('#showBottom').className==='active'){      
-        var target=document.querySelector('#btn_r_izda');
-        var evt=new CustomEvent('click');
-        target.dispatchEvent(evt);      
-    }
+  if(e.keyCode===KEY_RWD){
+
+        var target=document.querySelector('.btn_r_izda');
+        var evt=new Event('click');
+        target.dispatchEvent(evt);
+
   }
   if (e.keyCode === KEY_BLUE){
-      var debug = document.querySelector('#debug');
       debug.scrollTop = debug.scrollHeight-60;
 
   }
   if(e.keyCode===KEY_GREEN){
      document.querySelector('#hide').focus();
   }
-  if(e.keyCode===KEY_RED){   
+  if(e.keyCode===KEY_RED){
 
     var scope = mediascape.AdaptationToolkit.uiComponents;
      try{
@@ -142,7 +80,7 @@ document.addEventListener('keydown',function(e){
   }
   if (e.keyCode === 16 || e.keyCode === 13 ){
       var evt = new CustomEvent("click");
-      var target = e.target || e.srcElement; 
+      var target = e.target || e.srcElement;
       target.dispatchEvent(evt);
   }
 

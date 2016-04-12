@@ -645,7 +645,8 @@ define(
             }
 
         playPause=function (){
-          //play
+          var dbg = document.querySelector('#debug2');
+          dbg.innerHTML += "PLAYPAUSE"
           if(img4.src.indexOf('Play_activo.png')>-1){
             img4.src="../resources/configPanel/img/controller/Pause_activo.png";
             this.mapp.motions.shared.update(null,1,0);

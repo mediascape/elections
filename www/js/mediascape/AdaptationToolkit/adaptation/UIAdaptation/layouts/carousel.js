@@ -82,9 +82,9 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
                                                     componentsContainer.querySelector('figure'));
         }
         componentsContainer.querySelector('figure').parentNode.removeChild(componentsContainer.querySelector('figure'));
-        if(document.querySelector('x-media')){
+      /*  if(document.querySelector('x-media')){
           document.querySelector('x-media').play();
-        }
+        }*/
       }
 
       if(document.querySelector('#swContainer')){
@@ -98,9 +98,9 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
         }
       }
         document.querySelector('#swContainer').parentNode.removeChild(document.querySelector('#swContainer'));
-        if(document.querySelector('x-media')){
+        /*if(document.querySelector('x-media')){
           document.querySelector('x-media').play();
-        }
+        }*/
       }
 
 
@@ -182,11 +182,11 @@ define(["mediascape/AdaptationToolkit/adaptation/UIAdaptation/layoutConstructor"
         mySwiper.update(true);
       }
 
-
+/*
       if(document.querySelector('x-media')){
           document.querySelector('x-media').play();
         }
-
+*/
       mediascape.AdaptationToolkit.Adaptation.UIAdaptation.updateComponentQuery();
 
 
