@@ -452,7 +452,7 @@ function($, applicationContext){
     // the handler to process the change events from the application context
     var onAgentsChange = function (e){
       if( e.agentContext == null ){
-        //resetComponentsStatusCmds();
+        resetComponentsStatusCmds();
         var change = {};
         change['type'] = 'AGENT_LEFT';
         change['agentid'] = e.agentid;
@@ -481,7 +481,7 @@ function($, applicationContext){
           var ag = getAgentById(e.agentid);
           if (Object.keys(e.diff.capabilities).length===0 && !ag.notified){
                 var agentid = e.agentid;
-              //  resetComponentsStatusCmds();
+                resetComponentsStatusCmds();
                 var capsReady = setInterval(function () {
                   //console.log("checking if join ready");
                   if (ag.capabilities)
