@@ -1,4 +1,4 @@
-define(['promise','calc'],
+define(['promise'],
    function () {
 
         var polyfill = navigator.userAgent.toLowerCase().indexOf('hbbtv')!=-1 ? 'webcomponents_lite': 'webcomponents_lite';

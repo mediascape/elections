@@ -54,8 +54,7 @@
     bootstrap:'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min',
     debugger:'http://192.168.10.2:8082/console.io',
     hbbtvapp:'mediascape/AdaptationToolkit/utils/hbbtvLibs/hbbtvapp',
-    keycodes:'mediascape/AdaptationToolkit/utils/hbbtvLibs/keycodes',
-    calc:'/resources/libs/calc.min'
+    keycodes:'mediascape/AdaptationToolkit/utils/hbbtvLibs/keycodes'
 
       },
     waitSeconds:15
