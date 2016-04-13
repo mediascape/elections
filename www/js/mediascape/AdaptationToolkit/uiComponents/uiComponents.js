@@ -742,9 +742,14 @@ define(
                   var img1=document.createElement('img');
                   img1.className='hito01';
                   img1.src='../resources/configPanel/img/controller/hito.jpg';
-                  var screenWidth = document.documentElement.clientWidth;
-                  pixels = markers[i].progresspoint*screenWidth/100;
-                  img1.style.left=pixels-i*5+'px';
+                  //var screenWidth = document.documentElement.clientWidth;
+                  //pixels = markers[i].progresspoint*screenWidth/100;
+                  //img1.style.left=markers[i].progresspoint+'%';
+                  //img1.style.marginRight=(i*5)+'px';
+                  var screenwidth=document.documentElement.clientWidth;
+                  var imgwidth=i*500/screenwidth;
+                  pixels = markers[i].progresspoint-imgwidth;
+                  img1.style.left=pixels+'%';
                    !function outer(i){
                       img1.addEventListener('click',function(event){
                         event.stopPropagation();
