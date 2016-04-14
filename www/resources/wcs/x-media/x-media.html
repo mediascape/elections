@@ -23,13 +23,20 @@
 
 
 	}
+	#loading {
+		position: absolute;
+		top:40%;
+		left:45%;
 
+}
 </style>
 
 <div  id="container"  class='template-all-layouts'>
 	<video id='{{ida}}' preload mute src></video>
 </div>
-
+<div id="loading">
+		<img src="/resources/images/buffering.gif"/>
+</div>
 </template>
 </dom-module>
 <!--<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>-->
@@ -72,6 +79,7 @@ Polymer({
 	smReady:function(e){
 		var _this = this;
 		this.sm = mediascape.AdaptationToolkit.SharedMotion();
+		this.sm.mapp.motions.shared.on("timeupdate", this.checkBuffer.bind(this));
 		var id = 0;
 
 		setTimeout(function(){
@@ -82,6 +90,15 @@ Polymer({
   },
 	play:function(){
 		if (this.sm) this.sm.mapp.motions.shared.update(null, 1);
+	},
+	checkBuffer:function(){
+			 var video = this.querySelector('video');
+			 if (video.paused && this.loaded){
+				   this.$.loading.style.display ="block"
+			 }
+			 else {
+				    this.$.loading.style.display ="none"
+			 }
 	},
 
   start_volumeChanged:function(currentVol){
@@ -114,10 +131,12 @@ Polymer({
 	unload:function(){
 		 var video = this.querySelector('video');
 		 video.src ="";
+		 this.loaded = false;
 
 	},
 	load:function(){
 	     var video = this.querySelector('video');
+			 this.loaded = true;
 			 video.src = this.file;
 			 if(this.ismuted==="true"){
 				 video.muted=true;

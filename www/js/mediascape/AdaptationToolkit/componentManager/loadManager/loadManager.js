@@ -66,28 +66,6 @@ define(
           })
           if (!allreadyLoaded){
             el.load();
-            var v = el.querySelector('video');
-
-            if (v && v.src!=""){
-              v.src = el.getAttribute('file');
-              el.show = true;
-              if (el.play) {
-                // el.pause();
-                el.play();
-                v.play();
-              }
-            }
-
-            var a = el.querySelector('audio');
-            if (a && a.src!=""){
-              a.src = el.getAttribute('file');
-              el.show = true;
-              if (el.play) {
-                // el.pause();
-                el.play();
-                a.play();
-              }
-            }
 
           }
 
@@ -111,19 +89,6 @@ define(
           })
           if (needToUnload){
             el.unload();
-            el.style.display="none";
-
-            var v = el.querySelector('video');
-            if (v && v.src!="") {
-              v.src="";
-              el.show = false;
-            }
-            var a = el.querySelector('audio');
-            if (a && a.src!="") {
-              a.src="";
-              el.show = false;
-            }
-
             actualComponents = actualComponents.filter(function(cmp){
               if (cmp.id === el.id) return false;
               else return true;

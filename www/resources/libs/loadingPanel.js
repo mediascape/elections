@@ -23,21 +23,18 @@ var loadingPanel = function (centralImg,time,cb){
 
    });
    document.body.appendChild(div);
-    
+   document.addEventListener("motion-ready",function(e){
+         var div1 = document.querySelector('#loadingPanel');
+         document.body.removeChild(div1);
+    },true);
 
-   setTimeout(function(){  
-    document.body.removeChild(div);
 
-    
 
-    },time*1000);
+
 }
 document.addEventListener("keydown", function(e) {
   if (e.keyCode == 13) {
     mediascape.AdaptationToolkit.uiComponents.toggleFullScreen();
-  
+
   }
 }, false);
-
-
-

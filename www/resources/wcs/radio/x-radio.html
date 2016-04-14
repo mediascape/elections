@@ -135,17 +135,13 @@ Polymer({
 		var id = 0;
 		setTimeout(function(){
 			 var audio = _this.querySelector('audio')
-			 audio.addEventListener('ended', function () {
-					_this.restart();
-			});
-
-			_this.sm.addVideo (audio,id,_this.skew);
+				_this.sm.addVideo (audio,id,_this.skew);
 
 		},4000);
 
   	},
 
-  	play:function(){
+  play:function(){
 		if (this.sm) this.sm.mapp.motions.shared.update(null, 1);
 	},
 
