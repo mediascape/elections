@@ -107,7 +107,7 @@ This will genetare multideviceapplib.min.js at dist/ folder. On production, it i
 /wwww/resources/configPanel Control panel to manage webcompoents and differents devices, developed only for this prototype.
 ```
 
-**Important:** Since web browsers have an limitation of concurrent sockets per domain, it is extremely recommended split the different videos on different domains or different web servers, in order to have the best performance.
+**Important:** Since web browsers have a limitation of concurrent sockets per domain, it is extremely recommended split the different videos on different domains or different web servers, in order to have the best performance.
 
 ### HBBTV Branch
 
