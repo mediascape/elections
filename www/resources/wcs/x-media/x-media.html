@@ -12,12 +12,14 @@
 	padding: 5px;
 	height:100%;
 }
+
 	@media (max-width:350px){
 		video{width:100%;height:100%;}
 
 
 
 	}
+
 	@media (min-width:351px){
 		video{width:100%;height:100%;}
 
@@ -32,16 +34,16 @@
 </style>
 
 <div  id="container"  class='template-all-layouts'>
-	<video id='{{ida}}' preload mute src></video>
+	<video id='{{ida}}'>
+		 <source src="http://etbvnogeo-lh.akamaihd.net/i/ETBEITBEUS_1@300391/index_0748_av-p.m3u8" type="application/x-mpegURL"/>
+	</video>
 </div>
-<div id="loading">
-		<img src="/resources/images/buffering.gif"/>
-</div>
+
 </template>
 </dom-module>
 <!--<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>-->
  <script>
-Polymer({
+ Polymer({
 	is:'x-media',
   behaviors:[ComponentQueryBehavior,ComponentStatusBehavior],
 	hostAttributes:{
@@ -63,7 +65,8 @@ Polymer({
 	        value:'',
 	        observer: 'customCmdReceived'
 	    },
-			ida:String
+			ida:String,
+			player:String
 	},
 
 	ready: function() {
@@ -79,12 +82,12 @@ Polymer({
 	smReady:function(e){
 		var _this = this;
 		this.sm = mediascape.AdaptationToolkit.SharedMotion();
-		this.sm.mapp.motions.shared.on("timeupdate", this.checkBuffer.bind(this));
+	//	this.sm.mapp.motions.shared.on("timeupdate", this.checkBuffer.bind(this));
 		var id = 0;
 
 		setTimeout(function(){
 			 var video = _this.querySelector('video')
-			_this.sm.addVideo (video,id,_this.skew);
+			//_this.sm.addVideo (video,id,_this.skew);
 
 	},4000);
   },
@@ -130,18 +133,37 @@ Polymer({
 	},
 	unload:function(){
 		 var video = this.querySelector('video');
-		 video.src ="";
+		 var vsrc =video.querySelector('source');
+		 video.id=this.ida;
+		 //this.$.container.appendChild(video)
+		// video.src ="";
 		 this.loaded = false;
 
 	},
 	load:function(){
 	     var video = this.querySelector('video');
 			 this.loaded = true;
-			 video.src = this.file;
-			 if(this.ismuted==="true"){
+			 var vsrc =video.querySelector('source')
+			// video.src = this.file;
+			 vsrc.src = this.file;
+			  if(this.ismuted==="true"){
 				 video.muted=true;
 			 }
+			 var options = {
+					 html5: {
+							 hlsjsConfig: {
+									 debug: true
+							 }
+					 }
+			 };
+			 this.player = videojs(video,options);
+			 this.player.qualityPickerPlugin();
+			 var divVideo = this.querySelector('#'+this.ida);
+			 divVideo.style.width="100%";
+			 divVideo.style.height="100%";
+			 this.player.play();
 
 	}
+
 });
  </script>

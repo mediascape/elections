@@ -1,0 +1,23 @@
+{
+  "name": "videojs-hls.js",
+  "author": {
+    "name": "StreamRoot",
+    "email": "contact@streamroot.io"
+  },
+  "version": "0.0.1",
+  "main": "./lib/main.js",
+  "publishConfig":{
+    "registry":"https://registry.npmjs.org/"
+  },
+  "dependencies": {
+    "hls.js": "^0.5.17",
+    "videojs-quality-picker": "^0.0.2"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-browserify": "4.0.1",
+    "grunt-contrib-uglify": "^1.0.0",
+    "matchdep": "0.3.0",
+    "video.js": "^5.8.0"
+  }
+}
