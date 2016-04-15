@@ -27,7 +27,6 @@
     webcomponentsHbbtv:'mediascape/AdaptationToolkit/utils/hbbtvAdapter',
     webcomponents_lite:'https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.20/webcomponents-lite.min',
     webcomponentsmin:'https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.20/webcomponents.min',
-    videohls:'/resources/libs/vjs-hls.min',
     underscore:'../resources/libs/underscore-min',
     namedwebsockets: 'mediascape/lib/namedwebsockets',
     jquery: 'http://code.jquery.com/jquery-2.1.4.min',
@@ -122,7 +121,7 @@
       return mediascape;
     });
 /** All modules are ready so mediascape it can be started */
-  require([ "mediascape","configPanel","swiper",'videohls'], function (mediascape,cp,sw,vjs) {
+  require([ "mediascape","configPanel","swiper"], function (mediascape,cp,sw) {
     console.log("mediascape require");
     if (document.readyState === "complete") mediascape.init();
     else setTimeout(mediascape.init,2000);
