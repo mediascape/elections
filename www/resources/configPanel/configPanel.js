@@ -319,7 +319,7 @@ var ControlPanel= function (url){
 
             dev1.setIcon('LAPTOP_'+(agCtx.agents[i]._id+1)+'.png');
           }
-          else if(agCtx.agents[i].capabilities.platform.deviceType==='Tablet')
+          else if(agCtx.agents[i].capabilities.platform.deviceType.toLowerCase()==='tablet')
           {
 
             dev1.setIcon('TABLET_'+(agCtx.agents[i]._id+1)+'.png');
@@ -421,7 +421,7 @@ var ControlPanel= function (url){
 
           dev1.setIcon('LAPTOP_'+(b[0]._id+1)+'.png');
         }
-        else if(event.detail.profile.deviceType==='Tablet')
+        else if(event.detail.profile.deviceType.toLowerCase()==='tablet')
         {
 
           dev1.setIcon('TABLET_'+(b[0]._id+1)+'.png');

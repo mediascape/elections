@@ -62,7 +62,7 @@ document.addEventListener('adaptationToolkit-ready',function(data){
         // IF want to apply to all device same layout it can be used as
         // UI.useLayout('accordion')
         // Device type that knows about: Desktop,Mobile,Tablet,Tv
-        UI.useLayout({deviceTypes:[{deviceType:'desktop',layout:'pip'},{deviceType:'Desktop',layout:'divided'},{deviceType:'Tablet',layout:'divided'},{deviceType:'Mobile',layout:'carousel'}]});
+        UI.useLayout({deviceTypes:[{deviceType:'desktop',layout:'pip',isMain:true},{deviceType:'desktop',layout:'divided',isMain:false},{deviceType:'Tablet',layout:'divided',isMain:true},{deviceType:'Tablet',layout:'divided',isMain:false},{deviceType:'Mobile',layout:'carousel',isMain:true},{deviceType:'Mobile',layout:'carousel',isMain:false}]});
         var location = "http://"+window.location.host+window.location.pathname;
 
         document.addEventListener('applicationContext-ready',function(){
@@ -90,8 +90,8 @@ document.addEventListener('adaptationToolkit-ready',function(data){
   <x-media  id="video1" file="/resources/media/ETB2_new.mp4"  ismuted="false"></x-media>
   <x-media id="video2" file="/resources/media/Bildu_new.mp4"  ismuted="true"></x-media>
   <x-media id="video3"  file="/resources/media/EAJ_new.mp4"  ismuted="true"></x-media>
-   <x-media id="video4"  file="http://192.168.10.4:81/html/resources/media/PSE_new_full.mp4"  ismuted="true"></x-media>
-  <x-media id="video5"  file="http://192.168.10.4:81/html/resources/media/PPEUSKADI_new_full.mp4"  ismuted="true"></x-media>
+   <x-media id="video4"  file="http://192.168.10.4:81/html/media/PSE_new_full.mp4"  ismuted="true"></x-media>
+  <x-media id="video5"  file="http://192.168.10.4:81/html/media/PPEUSKADI_new_full.mp4"  ismuted="true"></x-media>
   <!--<x-media id="video6"  file="../resources/media/PPGENOVA_new.mp4"  ismuted="true"></x-media>
   <x-media id="video7"  file="../resources/media/PODEMOSMADRID_new.mp4"  ismuted="true"></x-media>-->
   <x-graphic id='graph1' place='Irunea' ></x-graphic>

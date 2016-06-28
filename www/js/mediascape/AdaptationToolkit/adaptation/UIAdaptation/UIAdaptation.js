@@ -126,41 +126,96 @@ define(
         }
       }
       this.useLayout = function (layoutName){
-        // find the rule
+            // find the rule
         // Find out my layout according deviceProfile
-        if (typeof layoutName === "object" ){
-            // All device same layout
+        var _this=this;
+         if (typeof layoutName === "object" ){
+          var layoutTime=setInterval(function(){
+            
+            try{
+              if(mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext().agents[0].capabilities.componentsStatus.length>0){
+                clearInterval(layoutTime);
 
-               // Find out which layout reciprocate with the deviceType
-            var found =   layoutName.deviceTypes.some(function(deviceType){
-                 if(mediascape.deviceType === deviceType.deviceType){
-                    layoutName = deviceType.layout;
-                    return true;
-                 }
-               });
-          if (!found) {
-            // set default to accordion
-            layoutName = "accordion";
-            console.warn ("Not layout found for device type: "+mediascape.deviceType +" Using default one");
+               
+              // All device same layout
 
-          }
+                 // Find out which layout reciprocate with the deviceType
+              var found =   layoutName.deviceTypes.some(function(deviceType){
+                    var locCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext().agents[0].capabilities.componentsStatus;
+                    var val='video1';
+                    function filterById(el){
+                      if(el.id===val)return el;
+                    }
+
+                    var isMainVideo=cmps.filter(filterById);
+                    var val='video';
+                    var isBroadcastVideo=cmps.filter(filterById);
+                    if(isMainVideo.length>0){
+                      if(mediascape.deviceType === deviceType.deviceType && deviceType.isMain===true){
+                          layoutName = deviceType.layout;
+                          return true;
+                      }
+                    }
+                    else if(isBroadcastVideo.length>0){
+                      if(mediascape.deviceType === deviceType.deviceType && deviceType.isMain===true){
+                          layoutName = deviceType.layout;
+                          return true;
+                      }
+                    }
+                    else{
+                      if(mediascape.deviceType === deviceType.deviceType && deviceType.isMain===false){
+                          layoutName = deviceType.layout;
+                          return true;
+                      }
+                    }
+                 });
+            if (!found) {
+              // set default to accordion
+              layoutName = "pip";
+              console.warn ("Not layout found for device type: "+mediascape.deviceType +" Using default one");
+
+            }
 
 
+          
+
+          if (actualLayout) actualLayout.unload(cmps);
+          actualLayout = layouts.filter(function(el){
+            if (el.name == layoutName) return true;
+            else return false;
+          })[0];
+          if (!actualLayout) throw new Error ("There is no layout named: "+layoutName);
+          else  {
+                if (_this.layoutMode === _this.LAYOUTMODE.STATIC) {
+                  _this.layout(cmps,"onComponentsChange");
+                }
+                else  _this.layout(cmps,"onLayoutChange");
+                }
+              }
+            
+            }
+            catch(e){
+              console.log(e);
+            }
+                
+          },500);
         }
-
-        if (actualLayout) actualLayout.unload(cmps);
-        actualLayout = layouts.filter(function(el){
-          if (el.name == layoutName) return true;
-          else return false;
-        })[0];
-        if (!actualLayout) throw new Error ("There is no layout named: "+layoutName);
-        else  {
-              if (this.layoutMode === this.LAYOUTMODE.STATIC) {
-                this.layout(cmps,"onComponentsChange");
-              }
-              else  this.layout(cmps,"onLayoutChange");
-              }
-
+        else{
+          if (actualLayout) actualLayout.unload(cmps);
+          actualLayout = layouts.filter(function(el){
+            if (el.name == layoutName) return true;
+            else return false;
+          })[0];
+          if (!actualLayout) throw new Error ("There is no layout named: "+layoutName);
+          else  {
+                if (_this.layoutMode === _this.LAYOUTMODE.STATIC) {
+                  _this.layout(cmps,"onComponentsChange");
+                }
+                else  _this.layout(cmps,"onLayoutChange");
+                }
+              
+        }
+        
       }
 
       this.layout = function (_cmps,event){
