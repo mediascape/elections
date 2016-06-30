@@ -9,6 +9,7 @@ var ControlPanel= function (url){
   this.items=[];
   this.activeSection='';
   this.activeDevice='';
+  this.selfDev='';
   this.selfID='';
   this.selfIDNum='';
   this.showing=true;
@@ -324,6 +325,12 @@ var ControlPanel= function (url){
 
             dev1.setIcon('MOVIL_'+(agCtx.agents[i]._id+1)+'.png');
           }
+          if(agCtx.agents[i].id===mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAgentId()){
+            this.selfDev='../resources/configPanel/img/devices/'+dev1.icon;
+            document.querySelector('#devNum').setAttribute('src','../resources/configPanel/img/devices/'+dev1.icon);
+            document.querySelector('#tabDevId').setAttribute('src','../resources/configPanel/img/devices/'+dev1.icon);
+      
+          }
           dev1.setID(agCtx.agents[i].id);
 
 
@@ -422,7 +429,11 @@ var ControlPanel= function (url){
 
           dev1.setIcon('MOVIL_'+(b[0]._id+1)+'.png');
         }
-
+        if(b[0].id===mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAgentId()){
+           this.selfDev='../resources/configPanel/img/devices/'+dev1.icon;
+           document.querySelector('#devNum').setAttribute('src','../resources/configPanel/img/devices/'+dev1.icon);
+          document.querySelector('#tabDevId').setAttribute('src','../resources/configPanel/img/devices/'+dev1.icon);
+       }
         if(devBox.devices.length===0)
         {/* Agentid-a * event.detail.agentid*/
           dev1.setID(event.detail.agentid);
@@ -1096,7 +1107,7 @@ var menuItem = function (){
     li.tabindex=1;
     var _this=this;
     li.onfocus=function(event){
-      window.alert("focus");
+      
       li.addEventListener('keyDown',function(event){
         if(event.keyCode===17){
           _this.onclick.bind(_this);
@@ -1107,7 +1118,7 @@ var menuItem = function (){
       li.className='options';
     }
     var a=document.createElement('a');
-    a.href='#';
+    //a.href='#';
 
     var span=document.createElement('span');
 
@@ -1199,10 +1210,12 @@ var devId=function(){
   this.render=function(){
     var div=document.createElement('div');
     div.className='mydevice';
-    var p=document.createElement('p');
-    p.innerHTML="device <strong id='devNum'>"+this.num+"</strong>";
-
-    div.appendChild(p);
+    /*var p=document.createElement('p');
+    p.innerHTML="device <strong id='devNum'>"+this.num+"</strong>";*/
+    var img=document.createElement('img');
+    img.src='';
+    img.id='devNum';
+    div.appendChild(img);
 
     return div;
   }
@@ -1260,6 +1273,8 @@ var logoItem=function(){
     li.appendChild(img2);
     li.onclick=function(event){
       mediascape.AdaptationToolkit.uiComponents.toggleFullScreen();
+      document.querySelector('#devNum').setAttribute('src',mediascape.AdaptationToolkit.uiComponents.ctrlPanel.selfDev);
+      document.querySelector('#tabDevId').setAttribute('src',mediascape.AdaptationToolkit.uiComponents.ctrlPanel.selfDev);
     }
 
     return li;
@@ -1311,7 +1326,7 @@ var device=function(){
     var div=document.createElement('div');
     div.addEventListener('click',this.onclick.bind(this));
     var a=document.createElement('a');
-    a.href='#';
+    //a.href='#';
     a.tabIndex=1;
 
     a.onfocus=function(){
@@ -1389,7 +1404,7 @@ var layout=function(){
     div.className="col-md-6 boxlayout";
     div.tabIndex=1;
     var a=document.createElement('a');
-    a.href='#';
+    //a.href='#';
     a.id=this.name+'Layout';
     if(this.name===actLay){//jarri aktibatua dagoena
       a.className='active';
@@ -1456,6 +1471,9 @@ var qrSection=function(url){
     extDiv.className='template-content-center add-device-content';
     var width=window.innerWidth ||document.documentElement.clientWidth ||document.body.clientWidth;
     //extDiv.style.width=width;
+    if(document.querySelector('#qr-code-content')){
+      document.querySelector('.add-device-content').removeChild(document.querySelector('#qr-code-content'));
+    }
     var qrdiv=document.createElement('div');
     qrdiv.className='qr-code-content';
     qrdiv.id='qr-code-content';

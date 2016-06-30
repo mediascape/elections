@@ -12,6 +12,7 @@ html, body{height:100%; min-height:100%; font-family: 'Ubuntu', sans-serif; font
 z-index:999;  position:fixed;}
 .menu-sidebar .mydevice{background-color:#1e53bb; height:15%; text-align:center; color:#fff; display: table;  width:100%;
 border-right:5px solid #174193;}
+.menu-sidebar .mydevice img{width:50%;padding-top: 5%;position:relative;}
 .menu-sidebar .mydevice p{font-size:2.3vh; display: table-cell; vertical-align: middle; text-transform:uppercase; font-family: 'Ubuntu', sans-serif;}
 .menu-sidebar .mydevice p strong{font-size:8vh; font-weight:500;}
 .menu-sidebar .sidebar-menu{height:83%; }
@@ -49,7 +50,7 @@ font-weight:500;  text-transform:uppercase;  display: table; width:100%;  }
 .template-content .template-content-center{height:85%; overflow:hidden; padding:0; margin:0; clear:both;
 }
 .template-content .layout-columns{ margin-top:10px; background-color:rgba(23,63,86,0.95); padding-top:10px;}
-.layout-columns .boxlayout{margin:10px 0px; height:30%;}
+.layout-columns .boxlayout{margin:10px 0px; height:45%;}
 .layout-columns .boxlayout a{display:block; background-color:#255d7c; height:100%; text-align:center; padding:5%;}
 .layout-columns .boxlayout a.active, .layout-columns .boxlayout a:hover{background-color:#fc9200;}
 .layout-columns .boxlayout a img{height:100%; width:100%}
