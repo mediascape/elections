@@ -891,7 +891,12 @@ define(
           var width = (screen.width/window.devicePixelRatio) / dpi_x;
           var height = (screen.height/window.devicePixelRatio) / dpi_y;
           document.body.removeChild(document.getElementById('dpi'));
-          return JSON.parse('{"extra":[{"width":"'+widthPx+'","height":"'+heightPx+'"},{"screenX":"'+width+'","screenY":"'+height+'"}]}');
+          if(navigator.userAgent.toLowerCase().indexOf('hbbtv')!=-1){
+            return JSON.parse('{"extra":[{"width":"20000","height":"20000"},{"screenX":"20000","screenY":"20000"}]}');
+          }
+          else{
+            return JSON.parse('{"extra":[{"width":"'+widthPx+'","height":"'+heightPx+'"},{"screenX":"'+width+'","screenY":"'+height+'"}]}');
+          }
 
       }
       this.checkForExplicitRules = function (cmps,event){
