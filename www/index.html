@@ -63,8 +63,8 @@ document.addEventListener('adaptationToolkit-ready',function(data){
         // IF want to apply to all device same layout it can be used as
         // UI.useLayout('accordion')
         // Device type that knows about: Desktop,Mobile,Tablet,Tv
-        UI.useLayout({deviceTypes:[{deviceType:'Desktop',layout:'pip'},{deviceType:'desktop',layout:'pip'},
-                     {deviceType:'Tablet',layout:'pip'},{deviceType:'TV',layout:'divided'}]});
+        UI.useLayout({deviceTypes:[{deviceType:'Desktop',layout:'divided'},{deviceType:'desktop',layout:'divided'},
+                     {deviceType:'Tablet',layout:'divided'},{deviceType:'TV',layout:'pip'}]});
         var location = "http://"+window.location.host+window.location.pathname;
 
         document.addEventListener('applicationContext-ready',function(e){

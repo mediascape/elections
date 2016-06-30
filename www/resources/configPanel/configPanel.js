@@ -19,7 +19,7 @@ var ControlPanel= function (url){
   var qrSect=null;
   var camerasSect=null;
   var graphicSect=null;
-  var radioSect=null
+  var radioSect=null;
   var twitterSect=null;
   /* Kontruktorea gauza inizializatzen diren lekua */
   this.controlPanel = function(){
@@ -619,6 +619,40 @@ var ControlPanel= function (url){
             container.replaceChild(sectionToReplace.render(),sectionDiv[i-removed]);
 
           }
+           else if(sections[i-removed].name.indexOf('twitter')>-1){
+            var sectionToReplace=new section();
+            sectionToReplace.setName(sections[i-removed].name);
+            sectionToReplace.addItem(devBox);
+            twitterSect.setViewerViewStatus(sections[i-removed].name.split('twitter')[0]);
+            twitterSect.setViewerHTStatus(sections[i-removed].name.split('twitter')[0]);
+            twitterSect.setMapViewStatus(sections[i-removed].name.split('twitter')[0]);            
+            sectionToReplace.addItem(twitterSect);
+            this.removeItem(sections[i-removed].name);
+            this.addItemPos(sectionToReplace,(i-removed));
+            container.replaceChild(sectionToReplace.render(),sectionDiv[i-removed]);
+          }
+          else if(sections[i-removed].name.indexOf('radio')>-1){
+            var sectionToReplace=new section();
+            sectionToReplace.setName(sections[i-removed].name);
+            sectionToReplace.addItem(devBox);
+            radioSect.setRadioViewStatus(sections[i-removed].name.split('radio')[0]);          
+            sectionToReplace.addItem(radioSect);
+            this.removeItem(sections[i-removed].name);
+            this.addItemPos(sectionToReplace,(i-removed));
+            container.replaceChild(sectionToReplace.render(),sectionDiv[i-removed]);
+          }
+          else if(sections[i-removed].name.indexOf('graphics')>-1){
+            var sectionToReplace=new section();
+            sectionToReplace.setName(sections[i-removed].name);
+            sectionToReplace.addItem(devBox);
+            graphicSect.setTableViewStatus(sections[i-removed].name.split('graphics')[0]);
+            graphicSect.setTableDataStatus(sections[i-removed].name.split('graphics')[0]);
+            graphicSect.setGraphsViewStatus(sections[i-removed].name.split('graphics')[0]);
+            sectionToReplace.addItem(graphicSect);
+            this.removeItem(sections[i-removed].name);
+            this.addItemPos(sectionToReplace,(i-removed));
+            container.replaceChild(sectionToReplace.render(),sectionDiv[i-removed]);
+          }
           sectionDiv[i-removed].replaceChild(devBox.render(),sectionDiv[i-removed].children[0]);
 
         }
@@ -828,7 +862,7 @@ var ControlPanel= function (url){
     });
     return div;
   }
-  this.changeSection=function(sectionName,device){
+    this.changeSection=function(sectionName,device){
 
     var scope=this;
 
@@ -846,7 +880,7 @@ var ControlPanel= function (url){
         }
 
 
-        else if(sectionName!=='AddDevice' && device!==undefined){
+        else if(sectionName!=='AddDevice' && device!==undefined && device!=='same'){
           if(it.name===device+sectionName){
             document.querySelector('#fullTemp').children[i].style.display='block';
             var devNum=document.querySelector('#fullTemp').children[i].children[0].children;
@@ -866,22 +900,44 @@ var ControlPanel= function (url){
           }
         }
         else{
-
-          if(it.name===scope.selfID+sectionName){
-            document.querySelector('#fullTemp').children[i].style.display='block';
-            var devNum=document.querySelector('#fullTemp').children[i].children[0].children;
-            for(var j=0;j<devNum.length;j++){
-              if(devNum[j].id===scope.selfID){
-                devNum[j].className="col-md-"+(12/devNum.length)+" col-xs-"+(12/devNum.length)+" boxdevice active";
-              }
-              if(devNum[j].id===scope.activeDevice && scope.activeDevice!==scope.selfID){
-                devNum[j].className="col-md-"+(12/devNum.length)+" col-xs-"+(12/devNum.length)+" boxdevice";
+          if(device===undefined){
+            if(it.name===scope.selfID+sectionName){
+              document.querySelector('#fullTemp').children[i].style.display='block';
+              var devNum=document.querySelector('#fullTemp').children[i].children[0].children;
+              for(var j=0;j<devNum.length;j++){
+                if(devNum[j].id===scope.selfID){
+                  devNum[j].className="col-md-"+(12/devNum.length)+" col-xs-"+(12/devNum.length)+" boxdevice active";
+                }
+                if(devNum[j].id===scope.activeDevice && scope.activeDevice!==scope.selfID){
+                  devNum[j].className="col-md-"+(12/devNum.length)+" col-xs-"+(12/devNum.length)+" boxdevice";
+                }
               }
             }
+            if((it.name===scope.activeDevice+scope.activeSection || it.name==='AddDevice') && scope.activeSection!==sectionName)
+            {
+              document.querySelector('#fullTemp').children[i].style.display='none';
+            }
           }
-          if((it.name===scope.activeDevice+scope.activeSection || it.name==='AddDevice') && scope.activeSection!==sectionName)
-          {
-            document.querySelector('#fullTemp').children[i].style.display='none';
+          else if(device==='same'){
+            if(scope.activeDevice===''){
+              scope.activeDevice=scope.selfID;
+            }
+            if(it.name===scope.activeDevice+sectionName){
+              document.querySelector('#fullTemp').children[i].style.display='block';
+              var devNum=document.querySelector('#fullTemp').children[i].children[0].children;
+              for(var j=0;j<devNum.length;j++){
+                if(devNum[j].id===scope.activeDevice){
+                  devNum[j].className="col-md-"+(12/devNum.length)+" col-xs-"+(12/devNum.length)+" boxdevice active";
+                }
+                if(devNum[j].id!==scope.activeDevice){
+                  devNum[j].className="col-md-"+(12/devNum.length)+" col-xs-"+(12/devNum.length)+" boxdevice";
+                }
+              }
+            }
+            if((it.name===scope.activeDevice+scope.activeSection || it.name==='AddDevice') && scope.activeSection!==sectionName)
+            {
+              document.querySelector('#fullTemp').children[i].style.display='none';
+            }
           }
         }
 
@@ -899,13 +955,16 @@ var ControlPanel= function (url){
         document.querySelector('#'+sectionName).className='active';
       }
 
-      if(device!==undefined){
+      if(device!==undefined && device!=='same'){
         this.activeSection=sectionName;
         this.activeDevice=device;
       }
-      else{
+      else if(device===undefined){
         this.activeSection=sectionName;
         this.activeDevice=this.selfID;
+      }
+      else if(device==='same'){
+        this.activeSection=sectionName;
       }
       if(this.activeSection===''){
       document.querySelector('#fullTemp').style.width='auto';
@@ -1148,8 +1207,7 @@ return li;
 }
 this.onclick = function (event){
 
-
-  mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSection(this.aSection,undefined);
+ mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSection(this.aSection,'same'); 
 
 
 }
