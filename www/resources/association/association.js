@@ -185,14 +185,30 @@ define( ["jquery","qrcode","webcodecam","qrcodelib"], function($) {
 					asociationElement.removeChild(asociationElement.querySelector('#code'));
 				}
 				asociationElement.appendChild(associationCode);
-				var qrcode = new QRCode("qrcode", {
-					text: url,
-					width:width,
-					height:height,
-					colorDark : "#000000",
-					colorLight : "#ffffff",
-					correctLevel : QRCode.CorrectLevel.H
-				});
+				if(mediascape.deviceType.toLowerCase()==='mobile'){
+					var qrcode = new QRCode("qrcode", {
+						text: url,
+						width:width-10,
+						height:height-10,
+						colorDark : "#000000",
+						colorLight : "#ffffff",
+						correctLevel : QRCode.CorrectLevel.H
+
+					});
+					asociationElement.querySelector('#code').querySelector('img').style.border='solid white 10px';
+				}
+				else{
+					var qrcode = new QRCode("qrcode", {
+						text: url,
+						width:width-40,
+						height:height-40,
+						colorDark : "#000000",
+						colorLight : "#ffffff",
+						correctLevel : QRCode.CorrectLevel.H
+
+					});
+					asociationElement.querySelector('#code').querySelector('img').style.border='solid white 20px';
+				}
 				resolve(JSON.parse('{"response":"'+url+'"}'));
 			}
 
