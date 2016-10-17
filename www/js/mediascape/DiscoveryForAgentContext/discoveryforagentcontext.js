@@ -273,10 +273,21 @@ define(["mediascape/Discovery/discovery","mediascape/Agentcontext/agentcontext",
 		var layoutEventInstrument = {
 				init: function () {
 					this.setCapability("layoutStatus", "supported");
-					 document.addEventListener('applicationContext-ready',function (){ac.setItem('layoutStatus',mediascape.AdaptationToolkit.Adaptation.UIAdaptation.getActualLayout());});
-					document.addEventListener('layoutEvent',function(ev){
-						ac.setItem('layoutStatus',ev.detail.layoutName);
-					});
+					 
+					document.addEventListener('applicationContext-ready',function (){
+					 	var layoutTime=setInterval(function(){
+					 		try{
+						 		if(mediascape.AdaptationToolkit.Adaptation.UIAdaptation.getActualLayout()!==undefined){
+							 		ac.setItem('layoutStatus',mediascape.AdaptationToolkit.Adaptation.UIAdaptation.getActualLayout());
+							 		clearInterval(layoutTime);
+						 		}
+						 	}
+						 	catch(e){
+						 		console.log(e);
+						 	}
+					 	},500);
+					 	
+					 });
 					console.log("INIT LAYOUT STATUS INSTRUMENT");
 
 				},

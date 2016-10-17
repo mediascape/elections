@@ -319,7 +319,7 @@ var ControlPanel= function (url){
 
             dev1.setIcon('LAPTOP_'+(agCtx.agents[i]._id+1)+'.png');
           }
-          else if(agCtx.agents[i].capabilities.platform.deviceType==='Tablet')
+          else if(agCtx.agents[i].capabilities.platform.deviceType.toLowerCase()==='tablet')
           {
 
             dev1.setIcon('TABLET_'+(agCtx.agents[i]._id+1)+'.png');
@@ -421,7 +421,7 @@ var ControlPanel= function (url){
 
           dev1.setIcon('LAPTOP_'+(b[0]._id+1)+'.png');
         }
-        else if(event.detail.profile.deviceType==='Tablet')
+        else if(event.detail.profile.deviceType.toLowerCase()==='tablet')
         {
 
           dev1.setIcon('TABLET_'+(b[0]._id+1)+'.png');
@@ -1368,7 +1368,7 @@ var device=function(){
     var div=document.createElement('div');
     div.addEventListener('click',this.onclick.bind(this));
     var a=document.createElement('a');
-    a.href='#';
+    //a.href='#';
 
     var img1=document.createElement('img');
     img1.src='../resources/configPanel/img/devices/'+this.icon;
@@ -1438,7 +1438,7 @@ var layout=function(){
     div.className="col-md-6 boxlayout";
 
     var a=document.createElement('a');
-    a.href='#';
+    //a.href='#';
     a.id=this.name+'Layout';
     
 
