@@ -538,7 +538,7 @@ define(
         this.ctrlPanel=new ControlPanel(url);
         this.ctrlPanel.hide();
         var devImage=document.createElement('img');
-        devImage.id='tabDevId'; 
+        devImage.id='tabDevId';
         document.body.appendChild(devImage);
         devImage.style.top=0;
         devImage.style.left=0;
@@ -549,8 +549,8 @@ define(
           if ( scope.ctrlPanel.showing){ scope.ctrlPanel.hide();}
             else{scope.ctrlPanel.show();}
         });
-        
-        
+
+
 
         var updateQR=_.debounce(function(event){
             if(document.querySelector('.qr-code-content')){
@@ -562,7 +562,7 @@ define(
                 var leftMargin='';
                 if(width<767)leftMargin=35*width/100;
                 else leftMargin=25*width/100;
-                
+
                 document.querySelector('.add-device-content').appendChild(qrdiv1);
                 mediascape.association.doAssociation('qr','qr-code-content', url, true,(30*width/100),(30*width/100),leftMargin,50);
 
@@ -622,8 +622,8 @@ define(
               try{
 
 
-              if (!mediascape.AdaptationToolkit.Utils.getUrlVar('group')) this.mapp.motions.shared.update(0);
-             if (this.mapp.motions.shared.vel == 0) {
+              if (!mediascape.AdaptationToolkit.Utils.getUrlVar('group')) this.currentTime = 0;
+             if (this.playbackRate == 0) {
 
                img4.setAttribute('src','../resources/configPanel/img/controller/Play_activo.png');
 
@@ -635,29 +635,30 @@ define(
               }
 
               var handler = function (e) {
-                div4.style.width=100*Math.round(e.pos)/1561+'%';
-                div8.innerHTML = prettyPrint(83869 +e.pos);
+                console.log("Timing;",e);
+                div4.style.width=100*Math.round(e.target.currentTime)/1561+'%';
+                div8.innerHTML = prettyPrint(83869 +e.target.currentTime);
 
               };
 
-            this.mapp.motions.shared.on("timeupdate", handler);
+            this.addEventListener("timeupdate", handler);
             var _this=this;
             document.querySelector('video').addEventListener('ended',function(){
-                _this.mapp.motions.shared.update(0, 1);
+                _this.currentTime=0;
               });
-            var velState=this.mapp.motions.shared.vel;
+            var velState=this.playbackRate;
               setInterval(function(){
-                if(_this.mapp.motions.shared.vel!=velState){
-                  if (_this.mapp.motions.shared.vel == 0) {
+                if(_this.playbackRate!=velState){
+                  if (_this.playbackRate == 0) {
 
                      img4.setAttribute('src','../resources/configPanel/img/controller/Play_activo.png');
-                     
+
                    } else {
 
                      img4.setAttribute('src','../resources/configPanel/img/controller/Pause_activo.png');
-                     
+
                    }
-                   velState=_this.mapp.motions.shared.vel;
+                   velState=_this.playbackRate;
 
                }
               },1500);
@@ -671,11 +672,11 @@ define(
             controllerClicksEnabled=false;
             if(img4.src.indexOf('Play_activo.png')>-1){
               img4.src="../resources/configPanel/img/controller/Pause_activo.png";
-              this.mapp.motions.shared.update(null,1,0);
+              this.play();
             }
             else{
               img4.src="../resources/configPanel/img/controller/Play_activo.png";
-              this.mapp.motions.shared.update(null,0,0);
+              this.pause();
             }
             enableControllerClicks();
           }
@@ -686,18 +687,18 @@ define(
         foward=function (){
           if(controllerClicksEnabled===true){
             controllerClicksEnabled=false;
-            var time = this.mapp.motions.shared.query();
+            var time = this.query();
             time = findNextMarkerTime (time);
-            this.mapp.motions.shared.update(time,1,0);
+            this.currentTime=time;
             enableControllerClicks();
           }
         }
         rewind=function (){
           if(controllerClicksEnabled===true){
             controllerClicksEnabled=false;
-            var time = this.mapp.motions.shared.query();
+            var time = this.query();
             time = findPreviousMarkerTime (time);
-            this.mapp.motions.shared.update(time,1,0);
+            this.currenTime= time,1,0;
             enableControllerClicks();
           }
         }
@@ -731,11 +732,11 @@ define(
 
 
 
-        var sm=mediascape.AdaptationToolkit.SharedMotion();
+        var sm=mediascape.AdaptationToolkit.Motion.getController();
         document.addEventListener('motion-ready',smReady.bind(sm),false);
         var controllerClicksEnabled=true;
         //security time to control the number of user requests
-        enableControllerClicks=function(){       
+        enableControllerClicks=function(){
           setTimeout(function(){
             controllerClicksEnabled=true;
           },2000);
@@ -785,7 +786,7 @@ define(
                         if(controllerClicksEnabled===true){
                           controllerClicksEnabled=false;
                           event.stopPropagation();
-                          sm.mapp.motions.shared.update(markers[i].value,1,0);
+                          sm.currentTime=markers[i].value;
                           div4.style.width=markers[i].progresspoint+'%';
                           div8.innerHTML = prettyPrint(83869 +markers[i].value);
                           enableControllerClicks();
@@ -800,7 +801,7 @@ define(
                 if(controllerClicksEnabled===true){
                   controllerClicksEnabled=false;
                   var jumpValue=Math.round(event.offsetX*1561/div3.clientWidth);
-                  sm.mapp.motions.shared.update(jumpValue,1,0);
+                  sm.currentTime=jumpValue;
                   div4.style.width=100*Math.round(jumpValue)/1561+'%';
                   div8.innerHTML = prettyPrint(83869 +jumpValue);
                   enableControllerClicks();
@@ -859,7 +860,7 @@ define(
               div7.appendChild(div9);
 
               div5.appendChild(div7);
-           
+
 
              div1.appendChild(div5);
 
@@ -877,20 +878,20 @@ define(
 
 
 
-             var menuBottom = document.getElementById( 'cbp-spmenu-s4' ),       
-              showBottom = document.getElementById( 'showBottom' ),       
+             var menuBottom = document.getElementById( 'cbp-spmenu-s4' ),
+              showBottom = document.getElementById( 'showBottom' ),
               body = document.body;
-            
+
             showBottom.onclick = function() {
               classie.toggle( this, 'active' );
               classie.toggle( menuBottom, 'cbp-spmenu-open' );
               disableOther( 'showBottom' );
-            };      
+            };
 
-            function disableOther( button ) {       
+            function disableOther( button ) {
               if( button !== 'showBottom' ) {
                 classie.toggle( showBottom, 'disabled' );
-              }       
+              }
             }
 
 

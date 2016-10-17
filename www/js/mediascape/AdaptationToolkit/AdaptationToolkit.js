@@ -49,7 +49,7 @@ define(
 	[	"mediascape/AdaptationToolkit/adaptation/modules",
 		"mediascape/AdaptationToolkit/componentManager/modules",
 		"mediascape/AdaptationToolkit/uiComponents/uiComponents",
-		"mediascape/AdaptationToolkit/SharedMotion/SharedMotion",
+		"mediascape/AdaptationToolkit/Motion/motion",
 		"mediascape/AdaptationToolkit/utils/utils"
 
 	],
@@ -68,8 +68,8 @@ define(
 
 			for( var i=0; i<moduleList.length; ++i ){
 				var name = moduleList[ i ].__moduleName;
-				if (name==="SharedMotion") 	AdaptationToolkit[ name ] =  moduleList[ i ]
-				else AdaptationToolkit[ name ] = new moduleList[ i ]( AdaptationToolkit, "gq"+i, AdaptationToolkit );
+				/*if (name==="Motion") 	AdaptationToolkit[ name ] =  moduleList[ i ]
+				else */AdaptationToolkit[ name ] = new moduleList[ i ]( AdaptationToolkit, "gq"+i, AdaptationToolkit );
 				//modules.push( AdaptationToolkit[ name ] );
 
 
