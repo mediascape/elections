@@ -1,4 +1,4 @@
-define( ["jquery","qrcode","webcodecam","qrcodelib"], function($) {
+define( ["jquery","qrcode","qrcodelib"], function($) {
 	var Association = function() {
 		var freq;
 		var interval;
@@ -147,8 +147,7 @@ define( ["jquery","qrcode","webcodecam","qrcodelib"], function($) {
 							marginLeft=args[6];
 							marginTop=args[7];
 						}
-
-						if(short&&url.indexOf("bit.ly")==-1&&bitlyUser!=""&&bitlyPass!=""){
+					 if(short&&url.indexOf("bit.ly")==-1&&bitlyUser!=""&&bitlyPass!=""){
 							shortURL(url).then(function(data){
 								return visualizeQr(placeId,data.response,width,height,marginLeft,marginTop,true,resolve);
 							});

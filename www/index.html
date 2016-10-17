@@ -67,7 +67,6 @@ document.addEventListener('adaptationToolkit-ready',function(data){
 
         document.addEventListener('applicationContext-ready',function(){
             mediascape.AdaptationToolkit.uiComponents.addControlPanel(location+"?group="+AE.GROUP_ID);
-             mediascape.association.doAssociation('nws', 'mediascape', location+"?group="+AE.GROUP_ID, true).then();
             AE.init(rulesAE, AE.getApplicationContext());
             AE.on('actionchange', UI.onComponentsChange);
 

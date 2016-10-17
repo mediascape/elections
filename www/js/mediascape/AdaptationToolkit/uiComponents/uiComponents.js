@@ -564,7 +564,7 @@ define(
                 else leftMargin=25*width/100;
 
                 document.querySelector('.add-device-content').appendChild(qrdiv1);
-                mediascape.association.doAssociation('qr','qr-code-content', url, true,(30*width/100),(30*width/100),leftMargin,50);
+                mediascape.association.doAssociation('qr','qr-code-content', url, false,(30*width/100),(30*width/100),leftMargin,50);
 
               }
         },1100);
