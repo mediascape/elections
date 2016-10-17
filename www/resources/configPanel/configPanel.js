@@ -1368,7 +1368,7 @@ var device=function(){
     var div=document.createElement('div');
     div.addEventListener('click',this.onclick.bind(this));
     var a=document.createElement('a');
-    a.href='#';
+    //a.href='#';
 
     var img1=document.createElement('img');
     img1.src='../resources/configPanel/img/devices/'+this.icon;
@@ -1438,7 +1438,7 @@ var layout=function(){
     div.className="col-md-6 boxlayout";
 
     var a=document.createElement('a');
-    a.href='#';
+    //a.href='#';
     a.id=this.name+'Layout';
     
 

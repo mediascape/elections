@@ -70,11 +70,6 @@ Polymer({
 		var _this = this;
 		document.addEventListener ('motion-ready',this.smReady.bind(this));
 		this.ida = "player1"+this.id;
-	  var video = this.querySelector('video');
-		video.addEventListener('ended',function(e){
-				_this.fire("videoEnded");
-				_this.restart();
-		},false);
 	},
 	muteChanged:function(){
 		 if (this.mute === true){
@@ -83,22 +78,22 @@ Polymer({
 	},
 	smReady:function(e){
 		var _this = this;
-		this.sm = mediascape.AdaptationToolkit.Motion;
+		this.sm = mediascape.AdaptationToolkit.SharedMotion();
+		this.sm.mapp.motions.shared.on("timeupdate", this.checkBuffer.bind(this));
 		var id = 0;
-  	    var video =this.querySelector('video')
-		this.sm.controller = this.sm.addMedia (video);
-		this.sm.controller.addEventListener("timeupdate", this.checkBuffer.bind(this));
-    this.sm.controller.play();
-},
-	play:function(){
-		if (this.sm) this.sm.controller.play();
-	},
-  pause:function(){
-    if (this.sm) this.sm.controller.pause();
+
+		setTimeout(function(){
+			 var video = _this.querySelector('video')
+			_this.sm.addVideo (video,id,_this.skew);
+
+	},4000);
   },
+	play:function(){
+		if (this.sm) this.sm.mapp.motions.shared.update(null, 1);
+	},
 	checkBuffer:function(){
 			 var video = this.querySelector('video');
-			 if (this.sm.controller.paused && this.loaded){
+			 if (video.paused && this.loaded){
 				   this.$.loading.style.display ="block"
 			 }
 			 else {
@@ -117,8 +112,7 @@ Polymer({
 		this.$.container.children[0].muted=false;
 	},
 	restart: function (){
-		this.sm.controller.pause();
-    this.sm.controller.currentTime = 0;
+		this.sm.mapp.motions.shared.update(0, 1);
 	},
 	customCmdReceived: function(data){
 			if(data==='mutePlayer'){
@@ -142,14 +136,11 @@ Polymer({
 	},
 	load:function(){
 	     var video = this.querySelector('video');
-         var _this = this;
 			 this.loaded = true;
-			 this.pause();
 			 video.src = this.file;
 			 if(this.ismuted==="true"){
 				 video.muted=true;
 			 }
-			this.play();
 
 	}
 });

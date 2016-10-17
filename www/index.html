@@ -70,6 +70,11 @@ document.addEventListener('adaptationToolkit-ready',function(data){
              mediascape.association.doAssociation('nws', 'mediascape', location+"?group="+AE.GROUP_ID, true).then();
             AE.init(rulesAE, AE.getApplicationContext());
             AE.on('actionchange', UI.onComponentsChange);
+            mediascape.AdaptationToolkit.uiComponents.addController();
+
+
+
+
 
         });
 
@@ -77,22 +82,16 @@ document.addEventListener('adaptationToolkit-ready',function(data){
 });
 
 
-
 </script>
 </head>
 <body >
 
-  <x-media  id="video1" file="/resources/media/ETB2_new.mp4"  ismuted="true"></x-media>
+ <!-- Definition of each webcompoent -->
+  <x-media  id="video1" file="/resources/media/ETB2_new.mp4"  ismuted="false"></x-media>
   <x-media id="video2" file="/resources/media/Bildu_new.mp4"  ismuted="true"></x-media>
-<<<<<<< HEAD
-  <x-media id="video3"  file="http://192.168.10.12/media/EAJ_new.mp4"  ismuted="true"></x-media>
-  <x-media id="video4"  file="http://192.168.10.12/media/PSE_new_full.mp4"  ismuted="true"></x-media>
-  <x-media id="video5"  file="http://192.168.10.12/media/PPEUSKADI_new_full.mp4"  ismuted="true"></x-media>
-=======
   <x-media id="video3"  file="/resources/media/EAJ_new.mp4"  ismuted="true"></x-media>
-   <x-media id="video4"  file="http://192.168.10.4:81/html/media/PSE_new_full.mp4"  ismuted="true"></x-media>
-  <x-media id="video5"  file="http://192.168.10.4:81/html/media/PPEUSKADI_new_full.mp4"  ismuted="true"></x-media>
->>>>>>> parent of 8c55d5b... media elements url changed
+   <x-media id="video4"  file="/resources/media/PSE_new_full.mp4"  ismuted="true"></x-media>
+  <x-media id="video5"  file="/resources/media/PPEUSKADI_new_full.mp4"  ismuted="true"></x-media>
   <!--<x-media id="video6"  file="../resources/media/PPGENOVA_new.mp4"  ismuted="true"></x-media>
   <x-media id="video7"  file="../resources/media/PODEMOSMADRID_new.mp4"  ismuted="true"></x-media>-->
   <x-graphic id='graph1' place='Irunea' ></x-graphic>
@@ -101,11 +100,7 @@ document.addEventListener('adaptationToolkit-ready',function(data){
   <x-graphic id='graph4' place='Gasteiz' ></x-graphic>
 
   <x-table id='results'></x-table>
-<<<<<<< HEAD
-  <x-radio id='radio1' file='http://192.168.10.12/media/RadioEuskadiSync.mp3' ></x-radio>
-=======
-  <x-radio id='radio1' file='http://192.168.10.4:81/html/media/RadioEuskadiSync.mp3' ></x-radio>
->>>>>>> parent of 8c55d5b... media elements url changed
+  <x-radio id='radio1' file='/resources/media/RadioEuskadiSync.mp3' ></x-radio>
 
 
 <twitter-viewer id="twitterViewer" ></twitter-viewer >
