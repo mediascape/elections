@@ -41,7 +41,7 @@ define([
   **********************************************************************/
 var start = function (){
   var timingProvider = new SocketTimingProvider(
-    'ws://' + "192.168.10.2:8080"+"/" + mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.GROUP_ID);
+    'ws://' + window.location.hostname+":8080/" + mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.GROUP_ID);
   var timing = new TimingObject();
   timing.srcObject = timingProvider;
   controller = new TimingMediaController(timing);

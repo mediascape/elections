@@ -687,7 +687,7 @@ define(
         foward=function (){
           if(controllerClicksEnabled===true){
             controllerClicksEnabled=false;
-            var time = this.query();
+            var time = this.currentTime;
             time = findNextMarkerTime (time);
             this.currentTime=time;
             enableControllerClicks();
@@ -696,9 +696,9 @@ define(
         rewind=function (){
           if(controllerClicksEnabled===true){
             controllerClicksEnabled=false;
-            var time = this.query();
+            var time = this.currentTime;
             time = findPreviousMarkerTime (time);
-            this.currenTime= time,1,0;
+            this.currentTime= time;
             enableControllerClicks();
           }
         }
@@ -711,7 +711,7 @@ define(
                   else return -1;
             });
             var m1 = mSorted.sort(function(m1,m2){
-                if (m1.value<time.pos) return 1;
+                if (m1.value<time) return 1;
                 else return -1;
             });
             return m1[0].value;
@@ -720,13 +720,14 @@ define(
         findPreviousMarkerTime=function(time){
 
             var mSorted = markers.sort(function(a,b){
-                if (a.value<b.value) return 1;
+                if (a.value>b.value) return 1;
                 else return -1;
               });
               var m1 = mSorted.filter(function(m1){
-                if (m1.value+10<time.pos) return true;
-                else return false;
-              });
+               if (m1.value+10<time) return true;
+               else return false;
+             });
+
             return m1[0].value;
         }
 
