@@ -109,6 +109,14 @@ This will genetare multideviceapplib.min.js at dist/ folder. On production, it i
 
 **Important:** Since web browsers have an limitation of concurrent sockets per domain, it is extremely recommended split the different videos on different domains or different web servers, in order to have the best performance.
 
+### OFFLINE VERSION
+
+Dependency to third party server has been removed on this branch. To start up the application run.sh script must be called:
+
+```bash
+# sudo ./run.sh
+```
+
 ### HBBTV Branch
 
 This prototype is also compatible with Hbbtv standard, it can be found under [hbbtv_version branch](https://github.com/mediascape/elections/tree/hbbtv_version) . The roadmap is to merge both versions in the short-term future.

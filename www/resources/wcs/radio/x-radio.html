@@ -131,18 +131,21 @@ Polymer({
 
 	smReady:function(e){
 		var _this = this;
-		this.sm = mediascape.AdaptationToolkit.SharedMotion();
+		this.sm = mediascape.AdaptationToolkit.Motion;
 		var id = 0;
 		setTimeout(function(){
 			 var audio = _this.querySelector('audio')
-				_this.sm.addVideo (audio,id,_this.skew);
+				_this.sm.addMedia (audio,id,_this.skew);
 
 		},4000);
 
   	},
 
   play:function(){
-		if (this.sm) this.sm.mapp.motions.shared.update(null, 1);
+		if (this.sm) this.sm.controller.play();
+	},
+	pause:function(){
+		if (this.sm) this.sm.controller.pause();
 	},
 
 	muteRadio:function(){
@@ -152,11 +155,12 @@ Polymer({
 		this.$.radioAudio.muted=false;
 	},
 	restart: function (){
-		this.sm.mapp.motions.shared.update(0, 1);
+		this.sm.controller.currentTime = 0;
+		this.sm.controller.play();
 	},
 
 	customCmdReceived: function(data){
-			console.log("DATA",data);
+			//console.log("DATA",data);
 
 	},
 	unload:function(){
@@ -165,11 +169,13 @@ Polymer({
 
 	},
 	load:function(){
-	     var audio = this.querySelector('audio')
+	     var audio = this.querySelector('audio');
+			 this.pause();
 			 audio.src = this.file;
 			 if(this.ismuted==="true"){
 				audio.muted=true;
 			}
+			this.play();
 	}
 });
  </script>

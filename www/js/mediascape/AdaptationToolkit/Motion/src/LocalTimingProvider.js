@@ -13,7 +13,7 @@ if (typeof define !== 'function') {
 
 define(function (require) {
 
-  var Promise = require('promise');
+  //var Promise = require('promise');
   var AbstractTimingProvider = require('./AbstractTimingProvider');
   var StateVector = require('./StateVector');
   var isNull = require('./utils').isNull;

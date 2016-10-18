@@ -343,7 +343,7 @@ define(function (require) {
         wrappedEl.amortization = true;
         element.currentTime = wrappedEl.vector.position;
         element.playbackRate = wrappedEl.vector.velocity;
-        element.play();
+        if (element.src != window.location.href) element.play();
       }
       else {
         wrappedEl.vector = new StateVector({

@@ -502,13 +502,13 @@
 				smReady:function(){
 					// Sharemotion objetua lortu
 					var _this=this;
-					this.sm = mediascape.AdaptationToolkit.SharedMotion();
+					this.sm = mediascape.AdaptationToolkit.Motion;
 					// ebentuak entzun ta jaso
 					var handler = function (e) {
-						_this.timestamp=1432509468+Math.round(e.pos);
+						_this.timestamp=1432509468+Math.round(e.target.currentTime);
 
 					};
-					this.sm.mapp.motions.shared.on("timeupdate", handler);
+					this.sm.controller.addEventListener("timeupdate", handler);
 				},
 				timestampChanged:function(){
 					//console.log("timestampChanged");

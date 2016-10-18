@@ -1,0 +1,58 @@
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script>
+function checkDevice (){
+$.ajax({
+  method: "GET",
+  url: "checkDevice",
+  data: { agent: document.querySelector('#useragent').value }
+})
+  .done(function( msg ) {
+     document.querySelector('#result').innerHTML=msg;
+  });
+}
+function learn (){
+var e = document.getElementById("device");
+var device1 = e.options[e.selectedIndex].value;
+ document.querySelector("#panelLoading").style.display="block";
+$.ajax({
+  method: "GET",
+  url: "learn",
+  data: { agent: document.querySelector('#useragent').value, device: device1 }
+})
+  .done(function( msg ) {
+    alert( "Training done: " + msg );
+    document.querySelector("#panelLoading").style.display="none";
+  });
+}
+
+</script>
+</head>
+<body>
+<h2> Device Profiling </h2>
+<div>
+<div><textarea id="useragent" name="userAgent" placeholder="Type the user agent" style="height:150px;width:340px"></textarea>
+<button id="check" onclick="checkDevice()">Check Device Id</button>
+</div>
+<div id="resulti">Device type is:<div id="result"></div></div>
+<div>
+<h3> Isn't correct ?</h3>
+<div>
+<div id="panelLoading" style="width:100%;height:100%;position:absolute;top:0px;left:0px;z-index:999;background:black;opacity:0.6;color:white;;display:none;text-align:center;verticalAlign:center;align-content:center;padding-top:32%;">
+System is Learning please wait !
+</div>
+<select id="device" name="device" placeholder="Type the device type">
+<option value="Desktop">Desktop</option>
+<option value="Tablet">Tablet</option>
+<option value="Mobile">Mobile</option>
+<option value="TV">TV</option>
+</select>
+
+<button id="check" onclick="learn()">Learn</button>
+
+</div>
+</div>
+</div>
+</body>
+</html>

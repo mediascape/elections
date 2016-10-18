@@ -22,6 +22,7 @@
 
     },
     paths: {
+    'amdefine': 'mediascape/AdaptationToolkit/Motion/browser/amdefine',
     promise:'mediascape/AdaptationToolkit/utils/hbbtvLibs/promise.min',
     domReady:'/resources/libs/domReady',
     webcomponentsHbbtv:'mediascape/AdaptationToolkit/utils/hbbtvAdapter',
@@ -31,8 +32,7 @@
     namedwebsockets: 'mediascape/lib/namedwebsockets',
     jquery: 'http://code.jquery.com/jquery-2.1.4.min',
     'event-target': 'mediascape/AdaptationToolkit/Motion/node_modules/event-target/build/event-target.amd',
-    'websocket': 'mediascape/AdaptationToolkit/Motion/node_modules/websocket/lib/browser',
-    'promise': 'mediascape/AdaptationToolkit/Motion/node_modules/promise/lib/index',
+    'websocket': 'mediascape/AdaptationToolkit/Motion/node_modules/websocket/lib/WebSocketClient',
     mediaSync:'mediascape/MediaSync/mediasync',
     d3:'../resources/libs/d3.v3.min',
     data2015:'../resources/libs/2015',
