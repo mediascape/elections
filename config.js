@@ -6,7 +6,7 @@
  * @copyright 2014 Institut für Rundfunktechnik GmbH, All rights reserved.
  */
 
-
+var os = require('os')
 var config = {};
 
 
@@ -34,7 +34,7 @@ config.mongoose = {
 };
 
 // TableName used for mapping
-config.mappingPath = 'mappingTable'; 
+config.mappingPath = 'mappingTable';
 
 // config for express server
 config.express = {
@@ -64,5 +64,10 @@ config.logConfig = {
   ],
     replaceConsole: true
 };
+var networkInterfaces = os.networkInterfaces( );
+config.webhost = 'http://'+networkInterfaces['eth0'][0].address+'/';
+
+config.db.host = 'localhost';
+config.db.name = 'url_shortener';
 
 module.exports = config;

@@ -1267,6 +1267,20 @@ define( ["jquery","qrcode","qrcodelib"], function($) {
 					function(resolve,reject){
 						var deferred = $.Deferred();
 						if(bitlyPass!==""&&bitlyUser!==""){
+
+							 $.ajax({
+							    url: '/api/shorten',
+							    type: 'POST',
+							    dataType: 'JSON',
+							    data: {url: url},
+							    success: function(data){
+							        console.log('Shorten:'+data.shortUrl);
+							    }
+							  });
+							
+
+
+
 							$.ajax({
 								url:"http://api.bit.ly/v3/shorten",
 								data:{
