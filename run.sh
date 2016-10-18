@@ -14,7 +14,7 @@ node index.js &
 # Multumedia Sincronizazio zerbitzaria
 #######################################
 
-kill $(ps aux | grep 'node server.js' | awk '{print $2}')
+kill $(ps aux | grep 'node MotionServer/server/server.js' | awk '{print $2}')
 node MotionServer/server/server.js &
 
 #####################################
