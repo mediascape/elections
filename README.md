@@ -111,7 +111,7 @@ This will genetare multideviceapplib.min.js at dist/ folder. On production, it i
 
 ### OFFLINE VERSION
 
-Dependency to third party server is removed on this branch. To start up the application run.sh must be called:
+Dependency to third party server has been removed on this branch. To start up the application run.sh script must be called:
 
 ```bash
 # sudo ./run.sh
