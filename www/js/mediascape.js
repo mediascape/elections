@@ -30,7 +30,7 @@
     webcomponentsmin:'https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.20/webcomponents.min',
     underscore:'../resources/libs/underscore-min',
     namedwebsockets: 'mediascape/lib/namedwebsockets',
-    jquery: 'http://code.jquery.com/jquery-2.1.4.min',
+    jquery: '../resources/libs/jquery-2.1.1.min',
     'event-target': 'mediascape/AdaptationToolkit/Motion/node_modules/event-target/build/event-target.amd',
     'websocket': 'mediascape/AdaptationToolkit/Motion/node_modules/websocket/lib/WebSocketClient',
     mediaSync:'mediascape/MediaSync/mediasync',
@@ -44,15 +44,15 @@
     shake:'../resources/libs/shake',
     association:'/resources/association/association',
     domReady:'/resources/libs/domReady',
-    swiper:'https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.0/js/swiper.min',
+    swiper:'/resources/libs/swiper.min',
     coords2:'/resources/libs/coords2',
     tags:'/resources/libs/tags',
     configPanel:'../resources/configPanel/configPanel',
     loadingPanel:'../resources/libs/loadingPanel',
     classifie:'../resources/configPanel/js/classie',
-    bootstrap:'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min',
-    bootstrap_swicth:'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/js/bootstrap-switch.min',
-    webcomponetsPolyfill:'https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.17/webcomponents-lite.min'
+    bootstrap:'/resources/libs/bootstrap.min',
+    bootstrap_swicth:'/resources/libs/bootstrap-switch.min',
+    webcomponetsPolyfill:'/resources/libs/webcomponents-lite.min'
       },
     waitSeconds:25
   });

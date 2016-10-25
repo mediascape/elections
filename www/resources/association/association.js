@@ -161,6 +161,7 @@ define( ["jquery","qrcode","qrcodelib"], function($) {
 
 			function visualizeQr(placeId,url,width,height,marginLeft,marginTop,link,resolve){
 				var shortedUrl = url;
+				url='http://'+url.split('/')[2]+'/s/'+url.split('/')[3]
 				var asociationElement=document.getElementById(placeId);
 				var associationCode = document.createElement("div");
 				associationCode.id="code";
