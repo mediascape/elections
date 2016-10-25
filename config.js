@@ -65,7 +65,7 @@ config.logConfig = {
     replaceConsole: true
 };
 var networkInterfaces = os.networkInterfaces( );
-config.webhost = 'http://'+networkInterfaces['eth0'][0].address+'/';
+//config.webhost = 'http://'+networkInterfaces['eth0'][0].address+'/';
 config.webhost = "http://192.168.43.9/";
 config.db.host = 'localhost';
 config.db.name = 'url_shortener';
