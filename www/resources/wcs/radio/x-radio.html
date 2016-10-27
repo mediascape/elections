@@ -118,7 +118,6 @@ Polymer({
 
 	ready: function() {
 		var _this = this;
-		this.$.radioAudio.src=this.file;
 		document.addEventListener ('motion-ready',this.smReady.bind(this));
 		this.$.radioAudio.addEventListener('play',function(){
 			_this.$.gifRadio.src='../resources/configPanel/img/radio/animacion-ecualizador_transp.gif';
@@ -133,11 +132,9 @@ Polymer({
 		var _this = this;
 		this.sm = mediascape.AdaptationToolkit.Motion;
 		var id = 0;
-		setTimeout(function(){
-			 var audio = _this.querySelector('audio')
-				_this.sm.addMedia (audio,id,_this.skew);
+		var audio = _this.querySelector('audio')
+		this.sm.addMedia (audio);
 
-		},4000);
 
   	},
 
@@ -166,7 +163,7 @@ Polymer({
 	unload:function(){
 		 var audio = this.querySelector('audio')
 		 audio.src ="";
-
+		 this.loaded = false;
 	},
 	load:function(){
 	     var audio = this.querySelector('audio');

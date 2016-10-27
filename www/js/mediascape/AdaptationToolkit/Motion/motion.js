@@ -48,6 +48,10 @@ var start = function (){
   mediascape.AdaptationToolkit.uiComponents.addController();
   var event = new CustomEvent("motion-ready", {"detail":{"loaded":true}});
   document.dispatchEvent(event);
+ setInterval(function(){
+     var realTimeupdate = new CustomEvent('realTimeupdate',{'detail':{'currentTime':controller.currentTime}});
+     if (controller.currentTime) document.dispatchEvent(realTimeupdate);
+  },500);
 }
 var addMedia = function(media){
   controller.addMediaElement(media);
@@ -57,6 +61,7 @@ var addMedia = function(media){
     if (evt.value === 'open') {
        //  setTimeout(function(e){document.dispatchEvent(event);},20000);
         controller.play();
+
     }
   });
 

@@ -50,7 +50,7 @@ define(function (require) {
      */
     var timeupdateInterval = null;
     var startDispatchingTimeUpdateEvents = function () {
-      var frequency = 5;
+      var frequency = 10;
       if (timeupdateInterval) { return; }
 
       timeupdateInterval = setInterval(function () {

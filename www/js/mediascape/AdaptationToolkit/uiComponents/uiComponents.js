@@ -635,13 +635,12 @@ define(
               }
 
               var handler = function (e) {
-                console.log("Timing;",e);
-                div4.style.width=100*Math.round(e.target.currentTime)/1561+'%';
-                div8.innerHTML = prettyPrint(83869 +e.target.currentTime);
+                div4.style.width=100*Math.round(e.detail.currentTime)/1561+'%';
+                div8.innerHTML = prettyPrint(83869 +e.detail.currentTime);
 
               };
 
-            this.addEventListener("timeupdate", handler);
+            document.addEventListener("realTimeupdate", handler);
             var _this=this;
             document.querySelector('video').addEventListener('ended',function(){
                 _this.currentTime=0;
