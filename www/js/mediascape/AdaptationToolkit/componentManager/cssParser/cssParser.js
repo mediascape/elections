@@ -57,10 +57,12 @@ define(
             var ownStyleSheet=null;
 
             for (var x in appStyles){
-              if (appStyles[x].ownerNode)
-                if (appStyles[x].ownerNode.textContent.indexOf(localName)>-1)
+              if (appStyles[x].ownerNode){
+                var regex =  new RegExp("^.*?"+localName+"\\s.*$",'g')
+                if (appStyles[x].ownerNode.textContent.replace(/(\r\n|\n|\r)/gm,"").search(regex)>-1)
                   ownStyleSheet=appStyles[x];
                 }
+              }
                 /**
                 * Find which of them have media condition
                 *
