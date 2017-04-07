@@ -1,0 +1,2516 @@
+<script type="text/javascript" src="resources/js/elecciones/raphael.js"></script>
+   <script type="text/javascript" src="resources/js/elecciones/literales.js"></script>
+   <script type="text/javascript" src="resources/js/elecciones/g.raphael.js"></script>
+   <script type="text/javascript" src="resources/js/elecciones/paths.municipios.js"></script>
+
+
+
+
+
+<dom-module id="x-mapa" >
+<template>
+
+
+<style>
+#containerGeneral {
+	background-color: #0A2533;
+	padding: 5px;
+	height:100%;
+}
+#subContainer{
+	overflow:hidden;
+}
+
+@media(max-width:400px) and (min-height:331px) and (max-height: 499px){
+	#titleContainer{
+		font-size:small;
+		padding: 0;
+	}
+	#datosPorcentajes{
+		display:block;
+		color:#748c99;
+	}
+	#imgMapa{
+		width:50%;
+		margin-left: 25%;
+		height:50%;
+
+	}
+	#leyendaMapa{
+		display:none;
+		position:absolute;
+		top:30%;
+		color:#748c99;
+		left:65%;
+	}
+	#containerMapaExt{
+		margin-top:0;
+	}
+	.wgi_color_partido{
+		width:15px;
+		height:15px;
+	}
+	.liLeyenda{
+		font-size: 13px;
+		margin-bottom: 8px;
+	}
+}
+@media(max-width:400px) and (min-height:500px){
+	#titleContainer{
+		font-size:small;
+		padding: 0;
+	}
+	#datosPorcentajes{
+		display:block;
+		color:#748c99;
+	}
+	#imgMapa{
+		width:100%;
+		margin-left: 0%;
+		height:30%;
+
+	}
+	#leyendaMapa{
+		display:block;
+		position:absolute;
+		top:50%;
+		color:#748c99;
+		left:10%;
+	}
+	#containerMapaExt{
+		margin-top:0;
+	}
+	.wgi_color_partido{
+		width:15px;
+		height:15px;
+	}
+	.liLeyenda{
+		font-size: 13px;
+		margin-bottom: 8px;
+	}
+}
+@media(max-width: 400px) and (max-height: 169px) {
+	#titleContainer{
+		font-size:x-small;
+		padding: 0;
+	}
+	#datosPorcentajes{
+		display:none;
+		color:#748c99;
+	}
+	#imgMapa{
+		width:60%;
+		height:68%;
+		margin-left: 0%;
+	}
+	#leyendaMapa{
+		display:block;
+		position:absolute;
+		top:7%;
+		color:#748c99;
+		left:65%;
+
+	}
+	#containerMapaExt{
+		margin-top:-30;
+	}
+	.wgi_color_partido{
+		width:10px;
+		height:10px;
+	}
+	.liLeyenda{
+		font-size: 7px;
+		margin-bottom: 2px;
+	}
+}
+@media(max-width: 400px) and (max-height: 200px) and (min-height: 170px) {
+	#titleContainer{
+		font-size:small;
+		padding: 0;
+	}
+	#datosPorcentajes{
+		display:none;
+		color:#748c99;
+	}
+	#imgMapa{
+		width:60%;
+		height:50%;
+		margin-left: 0%;
+	}
+	#leyendaMapa{
+		display:block;
+		position:absolute;
+		top:15%;
+		color:#748c99;
+		left:65%;
+
+	}
+	#containerMapaExt{
+		margin-top:-20;
+	}
+	.wgi_color_partido{
+		width:10px;
+		height:10px;
+	}
+	.liLeyenda{
+		font-size: 10px;
+		margin-bottom: 2px;
+	}
+}
+@media(max-width: 400px) and (max-height: 330px) and (min-height: 201px) {
+	#titleContainer{
+		font-size:small;
+		padding: 0;
+	}
+	#datosPorcentajes{
+		display:none;
+		color:#748c99;
+	}
+	#imgMapa{
+		width:60%;
+		height:50%;
+		margin-left: 0%;
+	}
+	#leyendaMapa{
+		display:block;
+		position:absolute;
+		top:15%;
+		color:#748c99;
+		left:65%;
+
+	}
+	#containerMapaExt{
+		margin-top:-40;
+	}
+	.wgi_color_partido{
+		width:10px;
+		height:10px;
+	}
+	.liLeyenda{
+		font-size: 10px;
+		margin-bottom: 2px;
+	}
+}
+@media(min-width: 401px) and (max-width: 634px) and (min-height:600px){
+	#titleContainer{
+		font-size:small;
+		padding: 0;
+	}
+	#datosPorcentajes{
+		display:block;
+		color:#748c99;
+	}
+	#imgMapa{
+		width:100%;
+		height:50%;
+
+		margin-left: 0%;
+	}
+	#leyendaMapa{
+		display:block;
+		position:absolute;
+		top:60%;
+		color:#748c99;
+		left:10%;
+
+	}
+	#containerMapaExt{
+		margin-top:0;
+	}
+	.wgi_color_partido{
+		width:15px;
+		height:15px;
+	}
+	.liLeyenda{
+		font-size: 13px;
+		margin-bottom: 8px;
+	}
+}
+@media(min-width: 401px) and (max-width: 634px) and (orientation:landscape){
+	#titleContainer{
+		font-size:small;
+		padding: 0;
+	}
+	#datosPorcentajes{
+		display:block;
+		color:#748c99;
+	}
+	#imgMapa{
+		width:60%;
+		height:60%;
+
+		margin-left: 0%;
+	}
+	#leyendaMapa{
+		display:block;
+		position:absolute;
+		top:30%;
+		color:#748c99;
+		left:65%;
+
+	}
+	#containerMapaExt{
+		margin-top:0;
+	}
+	.wgi_color_partido{
+		width:15px;
+		height:15px;
+	}
+	.liLeyenda{
+		font-size: 13px;
+		margin-bottom: 8px;
+	}
+}
+@media(min-width: 401px) and (max-width: 634px) and (max-height: 200px) and (min-height: 151px) {
+	#titleContainer{
+		font-size:small;
+		padding: 0;
+	}
+	#datosPorcentajes{
+		display:none;
+		color:#748c99;
+	}
+	#imgMapa{
+		width:60%;
+		height:68%;
+		margin-left: 0%;
+	}
+	#leyendaMapa{
+		display:block;
+		position:absolute;
+		top:5%;
+		color:#748c99;
+		left:65%;
+
+	}
+	#containerMapaExt{
+		margin-top:20;
+	}
+	.wgi_color_partido{
+		width:10px;
+		height:10px;
+	}
+	.liLeyenda{
+		font-size: 7px;
+		margin-bottom: 2px;
+	}
+}
+@media(min-width: 401px) and (max-width: 415px) and (max-height: 150px) {
+	#titleContainer{
+		font-size:small;
+		padding: 0;
+	}
+	#datosPorcentajes{
+		display:none;
+		color:#748c99;
+	}
+	#imgMapa{
+		width:60%;
+		height:68%;
+		margin-left: 20%;
+	}
+	#leyendaMapa{
+		display:none;
+		position:absolute;
+		top:10%;
+		color:#748c99;
+		left:65%;
+
+	}
+	#containerMapaExt{
+		margin-top:0;
+	}
+	.wgi_color_partido{
+		width:10px;
+		height:10px;
+	}
+	.liLeyenda{
+		font-size: 10px;
+		margin-bottom: 2px;
+	}
+}
+@media(min-width: 416px) and (max-width: 634px) and (max-height: 150px) {
+	#titleContainer{
+		font-size:small;
+		padding: 0;
+	}
+	#datosPorcentajes{
+		display:none;
+		color:#748c99;
+	}
+	#imgMapa{
+		width:60%;
+		height:68%;
+		margin-left: 20%;
+	}
+	#leyendaMapa{
+		display:none;
+		position:absolute;
+		top:10%;
+		color:#748c99;
+		left:65%;
+
+	}
+	#containerMapaExt{
+		margin-top:0;
+	}
+	.wgi_color_partido{
+		width:10px;
+		height:10px;
+	}
+	.liLeyenda{
+		font-size: 10px;
+		margin-bottom: 2px;
+	}
+}
+@media(min-width: 401px) and (max-width:415px) and (min-height: 201px) and (max-height: 225px) {
+	#titleContainer{
+		font-size:small;
+		padding: 0;
+	}
+	#datosPorcentajes{
+		display:none;
+		color:#748c99;
+	}
+	#imgMapa{
+		width:60%;
+		height:68%;
+		margin-left: 0%;
+	}
+	#leyendaMapa{
+		display:block;
+		position:absolute;
+		top:10%;
+		color:#748c99;
+		left:65%;
+
+	}
+	#containerMapaExt{
+		margin-top:0;
+	}
+	.wgi_color_partido{
+		width:10px;
+		height:10px;
+	}
+	.liLeyenda{
+		font-size: 10px;
+		margin-bottom: 2px;
+	}
+}
+@media(min-width: 401px) and (max-width:415px) and (min-height: 346px) and (max-height: 415px) {
+	#titleContainer{
+		font-size:small;
+		padding: 0;
+	}
+	#datosPorcentajes{
+		display:block;
+		color:#748c99;
+	}
+	#imgMapa{
+		width:45%;
+		height:45%;
+		margin-left: 0%;
+	}
+	#leyendaMapa{
+		display:block;
+		position:absolute;
+		top:30%;
+		color:#748c99;
+		left:65%;
+
+	}
+	#containerMapaExt{
+		margin-top:0;
+	}
+	.wgi_color_partido{
+		width:15px;
+		height:15px;
+	}
+	.liLeyenda{
+		font-size: 13px;
+		margin-bottom: 8px;
+	}
+}
+@media(min-width: 401px) and (max-width:415px) and (min-height: 226px) and (max-height: 345px) {
+	#titleContainer{
+		font-size:small;
+		padding: 0;
+	}
+	#datosPorcentajes{
+		display:none;
+		color:#748c99;
+	}
+	#imgMapa{
+		width:60%;
+		height:68%;
+		margin-left: 0%;
+	}
+	#leyendaMapa{
+		display:block;
+		position:absolute;
+		top:10%;
+		color:#748c99;
+		left:65%;
+
+	}
+	#containerMapaExt{
+		margin-top:0;
+	}
+	.wgi_color_partido{
+		width:10px;
+		height:10px;
+	}
+	.liLeyenda{
+		font-size: 10px;
+		margin-bottom: 2px;
+	}
+}
+@media(min-width: 416px) and (max-width:634px) and (min-height: 201px) and (max-height: 345px) {
+	#titleContainer{
+		font-size:small;
+		padding: 0;
+	}
+	#datosPorcentajes{
+		display:none;
+		color:#748c99;
+	}
+	#imgMapa{
+		width:60%;
+		height:68%;
+		margin-left: 0%;
+	}
+	#leyendaMapa{
+		display:block;
+		position:absolute;
+		top:10%;
+		color:#748c99;
+		left:65%;
+
+	}
+	#containerMapaExt{
+		margin-top:0;
+	}
+	.wgi_color_partido{
+		width:10px;
+		height:10px;
+	}
+	.liLeyenda{
+		font-size: 10px;
+		margin-bottom: 2px;
+	}
+}
+@media(min-width: 635px) and (max-width:699px) and (max-height:500px){
+	#titleContainer{
+		font-size:medium;
+		padding: 0;
+	}
+	#datosPorcentajes{
+		display:block;
+		color:#748c99;
+	}
+	#imgMapa{
+		width:60%;
+		height:50%;
+
+		margin-left: 0%;
+	}
+	#leyendaMapa{
+		display:block;
+		position:absolute;
+		top:20%;
+		color:#748c99;
+		left:65%;
+
+	}
+	#containerMapaExt{
+		margin-top:0;
+	}
+	.wgi_color_partido{
+		width:18px;
+		height:18px;
+	}
+	.liLeyenda{
+		font-size: 15px;
+		margin-bottom: 10px;
+	}
+}
+@media(min-width: 635px) and (max-width:699px) and (min-height: 501px){
+	#titleContainer{
+		font-size:medium;
+		padding: 0;
+	}
+	#datosPorcentajes{
+		display:block;
+		color:#748c99;
+	}
+	#imgMapa{
+		width:60%;
+		height:60%;
+
+		margin-left: 0%;
+	}
+	#leyendaMapa{
+		display:block;
+		position:absolute;
+		top:30%;
+		color:#748c99;
+		left:65%;
+
+	}
+	#containerMapaExt{
+		margin-top:0;
+	}
+	.wgi_color_partido{
+		width:18px;
+		height:18px;
+	}
+	.liLeyenda{
+		font-size: 15px;
+		margin-bottom: 10px;
+	}
+}
+@media(min-width:700px) and (max-width: 900px) and (min-height:700px){
+	#titleContainer{
+		font-size:large;
+		padding: 0;
+
+	}
+	#datosPorcentajes{
+		display:block;
+		color:#748c99;
+	}
+	#imgMapa{
+		width:60%;
+		height:55%;
+
+		margin-left: 5%;
+	}
+	#leyendaMapa{
+		display:block;
+		position:absolute;
+		top:20%;
+		color:#748c99;
+		left:65%;
+
+	}
+	#containerMapaExt{
+		margin-top:0;
+	}
+	.wgi_color_partido{
+		width:18px;
+		height:18px;
+	}
+	.liLeyenda{
+		font-size: 20px;
+		margin-bottom: 10px;
+	}
+}
+@media(min-width:700px) and (max-width: 900px) and (max-height: 699px){
+	#titleContainer{
+		font-size:large;
+		padding: 0;
+
+	}
+	#datosPorcentajes{
+		display:block;
+		color:#748c99;
+	}
+	#imgMapa{
+		width:60%;
+		height:60%;
+
+		margin-left: 5%;
+	}
+	#leyendaMapa{
+		display:block;
+		position:absolute;
+		top:20%;
+		color:#748c99;
+		left:65%;
+
+	}
+	#containerMapaExt{
+		margin-top:0;
+	}
+	.wgi_color_partido{
+		width:18px;
+		height:18px;
+	}
+	.liLeyenda{
+		font-size: 20px;
+		margin-bottom: 10px;
+	}
+}
+@media(min-width:901px){
+	#titleContainer{
+		font-size:large;
+		padding: 0;
+	}
+	#datosPorcentajes{
+		display:block;
+		color:#748c99;
+	}
+	#imgMapa{
+		width:60%;
+		height:60%;
+
+		margin-left: 5%;
+	}
+	#leyendaMapa{
+		display:block;
+		position:absolute;
+		top:20%;
+		color:#748c99;
+		left:65%;
+
+	}
+	#containerMapaExt{
+		margin-top:0;
+	}
+	.wgi_color_partido{
+		width:18px;
+		height:18px;
+	}
+	.liLeyenda{
+		font-size: 20px;
+		margin-bottom: 10px;
+	}
+}
+
+
+
+</style>
+
+<iron-ajax id="data" auto url="" handleAs="json" last-response="{{response}}"></iron-ajax>
+
+<div id='containerGeneral' style='width:100%;height:100%;'>
+<div id='subContainer' style='background-color:#173F56;height:100%'>
+<div id='titulo' class='wgi_title_container' style='width:100%;background:#173F56;color:#748c99'>
+	<h2 class='wgi_title' id='titleContainer'></h2>
+</div>
+<div id='datosPorcentajes' class="wgi_datos" style='width:100%;background:#173F56;color:#748c99;'>
+	<div class="wgi_escrutado wgi_barra_porcentual">
+		<ul>
+			<li id='escrText'>Escrutado:</li>
+			
+			 <li class="percent" id="escrutado_percent"> </li>
+		</ul>
+	</div>
+	<p class="wgi_participacion wgi_barra_porcentual"><span id='actText'> Actualizado: </span><span id="actualizacion" class="percent wgi_participacion_container"></span>
+	</p>
+</div>
+
+<div class='wgi_iframe' id='contenido' style='width:100%;background:#173F56'>
+<div id='containerMapaExt'></div>
+<div id='leyendaMapa' class='wgi_leyenda_map' ></div>
+<div id="wgi_tip" style="position:absolute;border:1px solid gray;background-color:#fff;padding:0;margin:0;z-index:10000;max-width:500px;">
+</div>
+</div>
+</div>
+</div>
+</template>
+</dom-module>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>-->
+ <script>
+Polymer({
+	is:'x-mapa',
+  	 behaviors:[ComponentQueryBehavior,ComponentStatusBehavior],
+
+	properties:{
+		lang:{
+	        type:String,
+	        value:'eu'
+
+      	},
+      	lugar:{
+      		type:String,
+      		observer:'lugarChanged'
+      	},
+      	tipoEleccion:{
+      		type:String,
+      		observer:'tipoEleccionChanged',
+      		value:'A'
+      	},
+      	customCmd:{
+            type:String,
+            value:'',
+            observer: 'customCmdReceived'
+        }
+
+
+
+
+	},
+
+	ready: function(){
+
+		var _this=this;
+		/*var vals=[];
+		this.resultsData={};
+		this.partidos={};
+		this.municipios={};*/
+		this.listeners=[];
+		this.apiTimer='';
+		//this.mapContainerId=this.$.containerMapa.id;
+		this.leyendaContainerId=this.$.leyendaMapa.id;
+		this.escrutadoContainerId='escrutado';
+		//this.participacionContainerId=this.$.participacion.id;
+		this.actualizacionContainerId=this.$.actualizacion.id;
+		this.update=true;
+		this.codLugar={"zonas":[{"Z":1,"N":"Alava-Araba","O":28,"NE":"Araba","NC":"Alava","C":1984},{"Z":2,"N":"Vizcaya","O":28,"NE":"Bizkaia","NC":"Bizkaia","C":1984},{"Z":3,"N":"Guipuzcoa","O":28,"NE":"Gipuzkoa","NC":"Guipúzcoa","C":1984},{"Z":4,"N":"Navarra","O":28,"NE":"Nafarroa","NC":"Navarra","C":1984},{"Z":5,"N":"CAV-EAE","O":28,"NE":"EAE","NC":"CAV","C":1984},{"Z":6,"N":"Estado","O":28,"NE":"Estatua","NC":"Estado","C":1984}]};
+		//this.lugar='cav';
+		this.cod_zona = this.wgi_generales_name2cod(this.lugar);
+		/*this.tipoEleccion='C';
+		this.wgi_grafico;
+		this.mun = {},*/
+
+		//this.lang='es';
+
+
+		/*this.wgi_tipHtml = "";
+		this.wgi_over = false;*/
+		//this.emptyContainers();
+		//this.reqData();
+
+		var _this=this;
+
+		/*setInterval(function(){
+			_this.emptyContainers();
+			_this.reqData();
+		},30000);*/
+
+
+
+
+
+	},
+	emptyContainers:function(){
+
+		while(this.$.containerMapaExt.children.length>0){
+			this.$.containerMapaExt.removeChild(this.$.containerMapaExt.children[0]);
+		}
+		while(this.$.leyendaMapa.children.length>0){
+			this.$.leyendaMapa.removeChild(this.$.leyendaMapa.children[0]);
+		}
+
+		while(this.$.actualizacion.children.length>0){
+			this.$.actualizacion.innerHTML='';
+		}
+	},
+	reqData:function(){
+		var _this=this;
+		function datos(value){
+			return new Promise(function(resolve, reject) {
+
+				_this.$.data.addEventListener(value,listFunc);
+				_this.listeners.push(listFunc);
+				function listFunc(e){
+					var val=e.detail.response;
+					resolve(val);
+				}
+			});
+		}
+
+
+		_this.$.data.url="http://api.eitb.eus/data/hauteskundeak/2016/eae/mapatabla_"+_this.lugar+"_"+_this.tipoEleccion+"_2012.json";
+		datos("response").then(function(value){
+			_this.resultsData=value;
+			var cod_provincia = _this.wgi_generales_name2cod(_this.lugar);
+			var data_t = _this.wgi_findElement(value.totales, cod_provincia, "Z");
+			if(!data_t || data_t.E==='0' || data_t.E==='0.00' || data_t.E==='00'){
+				_this.showError();
+			}
+			else{
+				_this.$.data.url="http://api.eitb.eus/data/hauteskundeak/2016/eae/partidos_"+_this.tipoEleccion+"_2016.json";
+			}
+			datos("response").then(function(value1){
+				_this.partidos=value1;
+				if(_this.lugar==='cav'){
+					_this.$.data.url="http://api.eitb.eus/data/hauteskundeak/2016/eae/zonas_es_todas.json";
+				}				
+				else{
+					_this.$.data.url="http://api.eitb.eus/data/hauteskundeak/2016/eae/zonas_es_"+_this.lugar+".json";
+				}
+				datos("response").then(function(value2){
+					_this.municipios=value2;
+					_this.renderData(value,value1,value2);
+					if(_this.showing===true){
+						mediascape.AdaptationToolkit.Adaptation.UIAdaptation.updateUniqueComponent(_this);
+
+					}
+
+				},function(reject){
+					_this.showError();
+				});
+				datos('error').then(function(value){
+					_this.showError();
+				});
+			},function(reject){
+				_this.showError();
+			});
+			datos('error').then(function(value){
+				_this.showError();
+			});
+		},function(reject){
+			_this.showError();
+		});
+		datos('error').then(function(value){
+			_this.showError();
+		});
+
+
+	},
+	showError:function(){
+		this.emptyContainers();
+
+		var nombreLug=this.wgi_findElement(this.codLugar.zonas, this.cod_zona, "Z");
+    	if(this.lang==='eu' && this.tipoEleccion==='A'){
+    		var titulo='HAUTESKUNDE AUTONOMIKOAK '+nombreLug['NE']+'(E)N';
+    	}
+    	else if(this.lang==='es' && this.tipoEleccion==='A'){
+    		var titulo='ELECCIONES AUTONOMICAS EN '+nombreLug['NC'];
+    	}
+    	/*else if(this.lang==='eu' && this.tipoEleccion==='S'){
+    		var titulo='SENATURAKO HAUTESKUNDEAK '+nombreLug['NE']+'(E)N';
+    	}
+    	else if(this.lang==='es' && this.tipoEleccion==='S'){
+    		var titulo='ELECCIONES AL SENADO EN '+nombreLug['NC'];
+    	}*/
+ 		this.$.titleContainer.innerHTML=titulo;
+ 		this.$.datosPorcentajes.style.display='none';
+		var errorImage=document.createElement('img');
+		if(this.lang==='eu'){
+			errorImage.src='/resources/images/eskuragaiEz.png';
+		}
+		else{
+			errorImage.src='/resources/images/noDisponibles.png';
+		}
+		errorImage.style.width='40%';
+		errorImage.style.marginLeft='30%';
+		errorImage.style.marginTop='10px';
+		errorImage.style.border='5px solid #ccc';
+        errorImage.style.boxShadow='0px 0px 10px rgba(0,0,0,0.5)';
+		this.$.containerMapaExt.appendChild(errorImage);
+		if(this.lang==='es'){
+			this.$.escrText.innerHTML='Escrutado:';
+			this.$.actText.innerHTML='Actualizado:'
+		}
+		else if(this.lang==='eu'){
+			this.$.escrText.innerHTML='Zenbatua:';
+			this.$.actText.innerHTML='Eguneratuta:';
+		}
+
+	},
+	renderData:function(v1,v2,v3){
+		var totales = this.wgi_findElement(this.resultsData.totales, this.cod_zona, "Z");
+        var totales_otros = this.wgi_findOtherElements(this.resultsData.totales, this.cod_zona, "Z");
+        var partidos_list = this.wgi_findElements(this.resultsData.partidos, this.cod_zona, "Z");
+
+         this.wgi_sortElements(partidos_list, "ESC", "NV");
+         this.resultsData.partidos = partidos_list;
+
+         for (var i = 0; i < this.resultsData.partidos.length; i++) {
+            if (this.resultsData.partidos[i].DNV == null) {
+                this.resultsData.partidos[i].NVOTOS_ANTERIOR = null;
+            } else {
+                var dif_num_votos = this.resultsData.partidos[i].DNV;
+                this.resultsData.partidos[i].NVOTOS_ANTERIOR = this.resultsData.partidos[i].NV - dif_num_votos;
+            }
+        }
+
+        var nombreLug=this.wgi_findElement(this.codLugar.zonas, this.cod_zona, "Z");
+    	if(this.lang==='eu' && this.tipoEleccion==='A'){
+    		var titulo='HAUTESKUNDE AUTONOMIKOAK '+nombreLug['NE']+'(E)N';
+    	}
+    	else if(this.lang==='es' && this.tipoEleccion==='A'){
+    		var titulo='ELECCIONES AUTONÓMICAS EN '+nombreLug['NC'];
+    	}
+
+        var idioma = this.get_idioma();
+        /*var titulo     = this.resultsData["l"+ idioma + "1"] || "",
+            subtitulo  = this.resultsData["l"+ idioma + "2"] || "",
+            tipoEscano = this.resultsData["l"+ idioma + "3"] || "";*/
+         this.$.titleContainer.innerHTML=titulo;
+         var mapaDiv=document.createElement('div');
+         mapaDiv.id='containerMapa'+this.id;
+         if(this.querySelector('#containerMapa'+this.id)){
+         	this.$.containerMapaExt.removeChild(this.querySelector('#containerMapa'+this.id));
+         }
+         this.$.containerMapaExt.appendChild(mapaDiv);
+         this.pintaGrafico(this.lugar, this.municipios_zonas, 'containerMapa'+this.id);
+         if(this.querySelector('svg')!==null){
+         	this.querySelector('svg').id='imgMapa';
+         }
+
+         //set viewBox para las mediaqueries
+         if(this.querySelector('svg')){
+	         if(this.lugar==='cav'){
+	         	this.querySelector('svg').setAttribute('viewBox',"0 0 600 515");
+	         }
+	         else if(this.lugar==='estado'){
+	         	this.querySelector('svg').setAttribute('viewBox',"0 0 600 660");
+	         }
+	         else if(this.lugar==='alava'){
+	         	this.querySelector('svg').setAttribute('viewBox',"0 0 600 600");
+	         }
+	         else if(this.lugar==='guipuzcoa'){
+	         	this.querySelector('svg').setAttribute('viewBox',"0 0 600 425");
+	         }
+	         else if(this.lugar==='vizcaya'){
+	         	this.querySelector('svg').setAttribute('viewBox',"0 0 600 400");
+	         }
+	         else if(this.lugar==='navarra'){
+	         	this.querySelector('svg').setAttribute('viewBox',"0 0 600 620");
+	         }
+	     }
+         var _this=this;
+         if(this.lugar==='estado' || this.lugar==='cav'){
+
+         	this.wgi_generales_populate_prov(this.resultsData, this.wgi_grafico,this.mun, this.municipios.zonas,this.partidos.partido, function() {
+
+                        //_this.wgi_grafico.loading(false);
+
+                    },{
+                        'click': function() {
+
+                            var url = "";
+                            if (data != null) {
+                                var territorio = _this.lugar;
+
+                                if (lugar == "estado" || lugar == "cav") {
+                                    url = _this.wgi_generales_formarUrlMapa(_this.resultsData, null, _this.tipoEleccion);
+                                } else {
+                                    url = _this.wgi_generales_formarUrlMapa(_this.resultsData, territorio, _this.tipoEleccion);
+                                }
+
+                               // window.location = url;
+                            }
+                        }
+        	}, _this.tipoEleccion);
+
+         }
+         else{
+         	 this.wgi_generales_populate_mun(this.resultsData, this.wgi_grafico, this.mun, this.municipios.zonas, this.partidos.partido, function() {
+                        //_this.wgi_grafico.loading(false);
+
+                    },{
+                        'click': function() {
+
+                            var url = "";
+                            if (data != null) {
+                                var territorio = _this.lugar;
+
+                                if (lugar == "estado" || lugar == "cav") {
+                                    url = _this.wgi_generales_formarUrlMapa(_this.resultsData, null, _this.tipoEleccion);
+                                } else {
+                                    url = _this.wgi_generales_formarUrlMapa(_this.resultsData, territorio, _this.tipoEleccion);
+                                }
+
+                                //window.location = url;
+                            }
+                        }
+        	}, _this.tipoEleccion);
+         }
+
+        this.wgi_generales_pintar_leyenda(this.lugar, this.resultsData, this.leyendaContainerId, this.tipoEleccion, this.partidos.partido);
+
+
+
+            if (this.resultsData.totales.length == 0
+                || typeof this.resultsData.totales[0].E == "undefined"
+                || parseFloat(this.resultsData.totales[0].E) == 0) {
+                this.resultsData.totales = [{E: 0}];
+            }
+
+            if (parseFloat(this.resultsData.totales[0].E) == 0) {
+
+                this.resultsData.totales[0].PP = null;
+            }
+
+            this.wgi_generales_setEscrutado(this.lugar, this.resultsData, this.escrutadoContainerId);
+
+           //var data_participacion = {participacion: this.resultsData.totales[0].PP};
+            //this.wgi_generales_setParticipacion(data_participacion, this.participacionContainerId);
+
+           var data_actualizacion={actualizacion:this.resultsData.timestamp.split(' ')[1]};
+           this.wgi_generales_setActualizacion(data_actualizacion);
+
+
+	},
+	get_idioma:function(){
+    	return this.lang;
+	},
+	wgi_generales_setParticipacion:function(data, id)
+	{
+		var idioma = this.get_idioma();
+
+		if (data != null && typeof data.participacion != 'undefined')
+		{
+
+			if (data.participacion != null && !isNaN(data.participacion))
+			{
+				var participacion = parseInt(data.participacion);
+				participacion = Math.floor(participacion);
+
+				if (idioma == 'eu')
+				{
+					this.querySelector("#" + id).innerHTML="% " + participacion;
+				}
+				else
+				{
+					this.querySelector("#" + id).innerHTML=participacion + " %";
+				}
+
+			}
+			else
+			{
+				var participacion = '--';
+				this.querySelector("#" + id).innerHTML=participacion;
+			}
+		}
+	},
+	wgi_generales_setActualizacion:function(data)
+	{
+		
+
+		if (data != null && typeof data.actualizacion != 'undefined')
+		{
+
+			if (data.actualizacion != null)
+			{
+				var actualizacion = data.actualizacion;
+				this.$.actualizacion.innerHTML=actualizacion;
+				
+			}
+			else
+			{
+				var actualizacion = '--';
+				this.$.actualizacion.innerHTML=actualizacion;
+			}
+		}
+	},
+	wgi_generales_setEscrutado:function(region, data, id)
+	{
+		var idioma = this.get_idioma();
+		var cod_provincia = this.wgi_generales_name2cod(region);
+		var data_t = this.wgi_findElement(data, cod_provincia, "Z");
+
+		if (data_t == null)
+		{
+			data_t = data.totales[0];
+		}
+
+		if (data_t != null)
+		{
+	        //data_t.E = Math.floor(parseFloat(data_t.E));
+	       // data_t.E = parseFloat(data_t.E.replace(/,/, "."));
+
+			//this.querySelector("#" + id).style.width='0';
+		/*	this.querySelector("#" + id).animate(
+			{
+				width : data_t.E + "%"
+			}, 3000, 'swing');*/
+
+			if (idioma == 'eu')
+			{
+				this.querySelector("#" + id + "_percent").innerHTML="% " + data_t.E;
+			}
+			else
+			{
+				this.querySelector("#" + id + "_percent").innerHTML=data_t.E + " %";
+			}
+		}
+	},
+	wgi_generales_pintar_leyenda:function(lugar, data, container, tipo_eleccion, data_partidos)
+	{
+		if ( typeof data.totales != "undefined" && (data.totales.length == 0 || parseFloat(data.totales[0].E) == 0))
+		{
+			return false;
+		}
+
+		tipo_eleccion = tipo_eleccion || null;
+
+		var siglas, color, nombre;
+		var partidos = [];
+
+		for (var index in data.ganadores)
+		{
+			siglas = data.ganadores[index].S;
+
+			if (partidos.indexOf(siglas) == -1)
+			{
+				partidos.push(siglas);
+			}
+		}
+
+		partidos.sort();
+
+		var htmlLeyenda = "<ul><li class='liLeyenda' style='display:none;'><span class='wgi_color_partido' style='background-color:#fff; id='circulo>&nbsp;</span></li>";
+
+
+		for (var partido in partidos)
+		{
+			if ( typeof partidos[partido] == 'undefined' || typeof partidos[partido] === 'function')
+			{
+				continue;
+			}
+
+			if (( siglas = partidos[partido]) == null)
+				siglas = 'default';
+
+			//var data_partido_default = wgi_findElement(data_partidos, "default", "S"),
+			var data_partido_default = this.wgi_generales_getDataPartidoDefault(data_partidos), data_partido = this.wgi_findElement(data_partidos, siglas, "S");
+
+			if ( typeof data_partido == 'undefined' || data_partido == null)
+			{
+				siglas = 'default';
+				color=data_partido_default['C']
+				nombre = partidos[partido];
+			}
+			else
+			{
+				siglas = partidos[partido];
+				color=data_partido['C'];
+				nombre = data_partido['N'];
+			}
+
+			if (color == null)
+			{
+				color = data_partido_default['C'];
+			}
+
+			htmlLeyenda += '<li class="liLeyenda"><span class="wgi_color_partido" style="background-color:'+color+';" id="circulo'+partido+'">&nbsp;</span> ' + nombre + '</li>';
+		}
+		htmlLeyenda += "</ul>";
+
+		this.querySelector('#' + container).innerHTML=htmlLeyenda;
+
+
+		if (partidos.length)
+		{
+			if (lugar == 'alava')
+			{
+				this.querySelector("#" + container).style="margin-top:-150px;margin-bottom:45px;color:#748c99;";
+			}
+			else if (lugar == 'vizcaya')
+			{
+				this.querySelector("#" + container).style="margin-top:-150px;margin-bottom:75px;color:#748c99;";
+			}
+			else if (lugar == 'guipuzcoa')
+			{
+				this.querySelector("#" + container).style="margin-top:-40px;margin-bottom:40px;color:#748c99;";
+
+			}
+			else if (lugar == 'navarra')
+			{
+				this.querySelector("#" + container).style="margin-top:-200px;margin-bottom:100px;color:#748c99;";
+
+			}
+			else if (lugar == 'cav')
+			{
+				this.querySelector("#" + container).style="margin-top:-150px;margin-bottom:75px;color:#748c99;";
+
+			}
+		}
+	},
+	wgi_generales_formarUrlMapa:function(data, territorio, tipoEleccion)
+	{
+		var nombre = "";
+		if ( typeof data == "object")
+		{
+			var idioma = this.get_idioma();
+			var nombre_var = this.wgi_getVarNombreIdiomaApi(idioma);
+
+			nombre = data[nombre_var];
+			nombre = nombre.replace(/\//g, "-");
+			nombre = nombre.replace(/_/g, "-");
+			nombre = this.wgi_limpiarMunicipio(nombre);
+
+		}
+		else if ( typeof data == "string")
+		{
+			nombre = data;
+		}
+
+		// del api viene el nombre oficial (Álava - Araba), pero en el caso de Araba
+		// en la url no tiene que ir el nombre oficial. ES: alava / EU: araba
+		if (nombre == "alava-araba")
+		{
+			nombre = elec_lang("alava");
+		}
+
+		var ambito = "congreso";
+		if (tipoEleccion == "S")
+		{
+			ambito = "senado";
+		}
+
+		var url = "";
+		if (territorio == null)
+		{
+			url = this.wgi_getUrlVer_generales([elec_lang(ambito), nombre]);
+		}
+		else
+		{
+			url = this.wgi_getUrlVer_generales([elec_lang(ambito), elec_lang(territorio), nombre]);
+		}
+
+		return url;
+	},
+	wgi_getUrlVer_generales: function(params)
+	{
+		var url_ver = EITB.constants.server + "/{0}/" + elec_lang('url_elecciones') + "/" + elec_lang('wgi_url_generales_resultados');
+
+		for (var i = 1; i < params.length + 1; i++)
+		{
+			url_ver += "/{" + i + "}";
+		}
+
+		elidiomabuscador = this.get_idioma();
+		if (elidiomabuscador == "en" || elidiomabuscador == "fr")
+			elidiomabuscador = "es";
+
+		return url_ver.format(elidiomabuscador, params[0], params[1], params[2]);
+	},
+	wgi_generales_populate_prov:function(data, R,regions, regions_data, data_partidos, callback, events, tipo_eleccion)
+	{
+		callback = callback ||
+		function()
+		{
+		};
+		events = events ||
+		{
+		};
+		var current = null, color, siglas;
+
+		var _this=this;
+
+		tipo_eleccion = tipo_eleccion || null;
+
+		for (var provincia in regions)
+		{
+
+
+
+			(function(objeto, pro)
+			{
+
+				objeto[0].style.cursor = "pointer";
+
+				var tmp = provincia.split("_");
+				if (tmp[tmp.length - 1] == "1")
+				{
+					tmp.pop();
+					provincia = tmp.join('_');
+				}
+
+				var prov_data = _this.wgi_name2municipio(provincia, regions_data, "N");
+				objeto.data = prov_data;
+
+				if (prov_data != null)
+				{
+					var cod_zona = prov_data.Z;
+					objeto.data.PARTIDO_GANADOR = _this.wgi_findElement(data.ganadores, cod_zona, "Z");
+
+				}
+
+				//var cod_provincia = _this.wgi_generales_name2cod(provincia), prov_data = this.wgi_findElement(data, cod_provincia, "Z");
+				var strokeColor = "#fff";
+				if (objeto.data == null || objeto.data.PARTIDO_GANADOR == null)
+				{
+					color = "#fff";
+					strokeColor = "#000";
+				}
+				else{
+					if(objeto.data.PARTIDO_GANADOR!=null){
+				//var data_partido_default = wgi_findElement(data_partidos, "default", "S");
+						siglas = prov_data.PARTIDO_GANADOR.S;
+						var data_partido_default = _this.wgi_generales_getDataPartidoDefault(data_partidos);
+
+						var data_partido = _this.wgi_findElement(data_partidos, siglas, "S");
+
+						if ( typeof data_partido == 'undefined' || data_partido == null)
+						{
+							siglas='default';
+							color = data_partido_default['C'];
+						}
+						else
+						{
+							color = data_partido['C'];
+						}
+						if(color==null){
+							color = data_partido_default['C'];
+						}
+					}
+
+				}
+				if (tmp[0] == 'terreno')
+				{
+					strokeColor = "#ccc";
+					color = "#173F56";
+				}
+
+				if(provincia!=='canarias_borde'){
+					objeto.animate(
+					{
+						fill : color,
+						stroke : "#fff"
+					}, 500);
+					objeto.originalColor = color;
+				}
+				else{
+					objeto.animate(
+					{
+						fill : '#173F56',
+						stroke : "#fff"
+					}, 500);
+					objeto.originalColor = '#173F56';
+				}
+				R.safari();
+
+				objeto.hover(function()
+				{
+					var tmp = pro.split("_");
+					var clr = Raphael.rgb2hsb(objeto.originalColor);
+
+					if (objeto.data != null)
+					{
+						clr.b = .5;
+						_this.wgi_generales_addTipMun(objeto.data);
+					}
+
+
+					//current && regions[current].animate({fill: "#333", stroke: "#666"}, 500);
+					objeto.animate(
+					{
+						fill : Raphael.hsb2rgb(clr).hex,
+						stroke : "#666"
+					}, 500);
+
+					// R.safari();
+					current = provincia;
+				}, function()
+				{
+					var tmp = pro.split("_");
+
+					_this.wgi_hideTip();
+
+					var strokeColor = "#fff";
+					if (objeto.data == null || objeto.data.PARTIDO_GANADOR == null)
+					{
+						strokeColor = "#000";
+					}
+
+					if (tmp[0] == 'terreno')
+					{
+						strokeColor = "#ccc";
+					}
+
+					objeto.animate(
+					{
+						fill : objeto.originalColor,
+						stroke : strokeColor
+					}, 500);
+					R.safari();
+				});
+
+				for (var ev in events)
+				{
+					switch (ev)
+					{
+						case 'click':
+							objeto.click(events[ev]);
+							break;
+						case 'mouseover':
+							objeto.mouseover(events[ev]);
+							break;
+						case 'mouseout':
+							objeto.mouseout(events[ev]);
+							break;
+					}
+				}
+
+				objeto.move(_this.wgi_updateTipPosition.bind(_this));
+
+			})(regions[provincia], provincia);
+
+
+		}
+			callback.call();
+
+	},
+
+	wgi_generales_populate_mun:function(data, R, municipios, data_municipios, data_partidos, callback, events, tipo_eleccion)
+	{
+		var _this=this;
+		if (data == null || data.length == 0 || typeof data.totales == "undefined" || data.totales.length == 0)
+		{
+			R.loading('sin_datos_map');
+			return false;
+		}
+
+		if (parseFloat(data.totales[0].E) == 0)
+		{
+			R.loading('no_data_mapa_mun');
+			return false;
+		}
+
+		if (data.ganadores.length == 0)
+		{
+			R.loading('sin_datos_map');
+			return false;
+		}
+
+		var current = null, color, siglas;
+
+		callback = callback ||
+		function()
+		{
+		};
+		tipo_eleccion = tipo_eleccion || null;
+
+		var cod_zona = data.totales[0].Z;
+
+		for (var nombre in municipios)
+		{
+
+			(function(objeto, mun)
+			{
+				objeto[0].style.cursor = "pointer";
+
+				// Para los municipios que están partidos en 2 paths
+				// Al que viene con "_1" por detrás le ponemos los mismos
+				var tmp = nombre.split("_");
+				if (tmp[tmp.length - 1] == "1")
+				{
+					tmp.pop();
+					nombre = tmp.join('_');
+				}
+
+				var municipio_data = _this.wgi_name2municipio(nombre, data_municipios, "N");
+				objeto.data = municipio_data;
+
+				if (municipio_data != null)
+				{
+					var cod_zona = municipio_data.Z;
+					objeto.data.PARTIDO_GANADOR = _this.wgi_findElement(data.ganadores, cod_zona, "Z");
+				}
+
+				var strokeColor = "#fff";
+
+				if (objeto.data == null || objeto.data.PARTIDO_GANADOR == null)
+				{
+					color = "#173F56 ";
+					strokeColor = "#000";
+				}
+				else
+				{
+					if (objeto.data.PARTIDO_GANADOR != null)
+					{
+						siglas = objeto.data.PARTIDO_GANADOR.S;
+
+						//var data_partido_default = wgi_findElement(data_partidos, "default", "S"),
+						var data_partido_default = _this.wgi_generales_getDataPartidoDefault(data_partidos), data_partido = _this.wgi_findElement(data_partidos, siglas, "S");
+
+						if ( typeof data_partido == 'undefined' || data_partido == null)
+						{
+							siglas = 'default';
+							color = data_partido_default['C'];
+						}
+						else
+						{
+							color = data_partido['C'];
+						}
+
+						if (color == null)
+						{
+							color = data_partido_default['C'];
+						}
+					}
+				}
+
+				if (tmp[0] == 'terreno')
+				{
+					strokeColor = "#ccc";
+					color = "#173F56";
+				}
+
+				objeto.animate(
+				{
+					fill : color,
+					stroke : strokeColor
+				}, 500);
+				objeto.originalColor = color;
+				R.safari();
+
+				objeto.hover(function()
+				{
+					var tmp = mun.split("_");
+
+					var clr = Raphael.rgb2hsb(objeto.originalColor);
+
+					if (tmp[0] == "terreno")
+					{
+						if (tmp[1] == "trevino")
+						{
+							_this.wgi_generales_addTipMun(
+							{
+								N : elec_lang('wgi_trevino'),
+								NC : elec_lang('wgi_trevino'),
+								NE : elec_lang('wgi_trevino')
+							});
+						}
+						else if (tmp[1] == "vvtrucios")
+						{
+							_this.wgi_generales_addTipMun(
+							{
+								N : elec_lang('wgi_vvtrucios'),
+								NC : elec_lang('wgi_vvtrucios'),
+								NE : elec_lang('wgi_vvtrucios')
+							});
+						}
+						else
+						{
+							_this.wgi_generales_addTipMun(
+							{
+								N : elec_lang('wgi_zona_sin_datos'),
+								NC : elec_lang('wgi_zona_sin_datos'),
+								NE : elec_lang('wgi_zona_sin_datos')
+							});
+						}
+
+					}
+					else
+					{
+
+						if (objeto.data != null)
+						{
+							clr.b = .5;
+
+							_this.wgi_generales_addTipMun(objeto.data);
+						}
+					}
+
+					objeto.animate(
+					{
+						fill : Raphael.hsb2rgb(clr).hex,
+						stroke : "#666"
+					}, 500);
+
+					R.safari();
+					current = nombre;
+
+				}, function()
+				{
+					var tmp = mun.split("_");
+
+					_this.wgi_hideTip();
+
+					var strokeColor = "#fff";
+					if (objeto.data == null || objeto.data.PARTIDO_GANADOR == null)
+					{
+						strokeColor = "#173F56";
+					}
+
+					if (tmp[0] == 'terreno')
+					{
+						strokeColor = "#ccc";
+					}
+
+					objeto.animate(
+					{
+						fill : objeto.originalColor,
+						stroke : strokeColor
+					}, 500);
+					R.safari();
+				});
+
+				for (var ev in events)
+				{
+					switch (ev)
+					{
+						case 'click':
+							objeto.click(events[ev]);
+							break;
+						case 'mouseover':
+							objeto.mouseover(events[ev]);
+							break;
+						case 'mouseout':
+							objeto.mouseout(events[ev]);
+							break;
+					}
+				}
+
+				objeto.move(_this.wgi_updateTipPosition.bind(_this));
+
+			})(municipios[nombre], nombre);
+		}
+
+		callback.call();
+	},
+
+	wgi_name2municipio:function(value, collection, attrName)
+	{
+
+		for (var i = 0, len = collection.length; i < len; i++)
+		{
+
+			var collection_value = collection[i][attrName], collection_value_limpio = this.wgi_limpiarMunicipio(collection_value), collection_value_limpio_guiones = collection_value_limpio.replace(/-/g, "_");
+
+			if (value == collection_value_limpio || value == collection_value_limpio_guiones)
+			{
+				return collection[i];
+				break;
+			}
+		}
+		return null;
+	},
+	wgi_updateTipPosition:function(e)
+	{
+		if ( typeof e == 'undefined')
+			e = window.event;
+		e = jQuery.event.fix(e);
+		// si no en IE8 no tenemos pageX y pageY y no se ve el tooltip
+		this.$.wgi_tip.style.left=e.offsetX+20+'px';
+		this.$.wgi_tip.style.top=e.offsetY+80+'px';
+
+	},
+	wgi_hideTip: function()
+	{
+		this.$.wgi_tip.style.display='none';
+	},
+
+	wgi_generales_addTipMun:function(data)
+	{
+		this.wgi_tipHtml = this.wgi_generales_htmlMun(data);
+
+		//this.$.wgi_tip.stop();
+		this.$.wgi_tip.innerHTML=this.wgi_tipHtml;
+		this.$.wgi_tip.style.display='block';
+		this.$.wgi_tip.animate(
+		{
+			opacity : 1
+		});
+
+		this.wgi_over = true;
+	},
+	wgi_generales_htmlMun:function(municipio)
+	{
+		var idioma = this.get_idioma(), nombre_var = this.wgi_getVarNombreIdiomaApi(idioma), nombre_municipio = municipio[nombre_var];
+
+		var html = '<span class="wgi_municipio_tip">' + nombre_municipio + '</span>';
+
+		return html;
+	},
+	wgi_generales_getDataPartidoDefault:function(data_partidos)
+	{
+		var data_partido_default = this.wgi_findElement(data_partidos, "default", "S");
+
+		if (data_partido_default == null)
+		{
+
+			data_partido_default =
+			{
+				"ID" : 1,
+				"C" : "#C3C3C2",
+				"L" : "",
+				"I" : "",
+				"N" : "default",
+				"NR" : "Default",
+				"S" : "default"
+			};
+		}
+
+		return data_partido_default;
+	},
+	pintaGrafico:function(lugar, municipios, containerId) {
+
+            //this.querySelector("#" + containerId).empty();
+
+            var sizes = this.getGraficoSizes(lugar);
+
+            this.wgi_grafico = Raphael(containerId, sizes.width, sizes.height);
+             var attr_grafico = {
+		            fill: "#FFF",
+		            stroke: "#000",
+		            "stroke-width": .5,
+		            "stroke-linejoin": "round"
+		        };
+
+            if (lugar == 'cav') {
+
+               this. wgi_generales_cav_map(this.mun, this.wgi_grafico, attr_grafico, sizes.escala, sizes.escala, sizes.centerX, sizes.centerY, sizes.translateX, sizes.translateY);
+
+            } else if (lugar == 'estado') {
+
+                this.wgi_generales_spain_prov_map(this.municipios.zonas,this.mun, this.wgi_grafico, attr_grafico, sizes.escala, sizes.escala, sizes.centerX, sizes.centerY);
+
+            } else {
+
+
+                this.wgi_generales_mun_map(lugar, this.municipios.zonas, this.mun, this.wgi_grafico, attr_grafico, sizes.escala, sizes.escala, sizes.centerX, sizes.centerY, sizes.translateX, sizes.translateY);
+
+            }
+
+            this.resizeGrafico(sizes);
+
+            //wgi_grafico.loading(false).loading('recargando_mapa');
+    },
+    resizeGrafico:function(sizes) {
+
+
+
+                this.wgi_grafico.setSize(this.clientWidth, this.clientHeight);
+
+
+    },
+    wgi_generales_cav_map:function(muns, container, attr, scaleX, scaleY, centerX, centerY, translateX, translateY)
+	{
+		if (scaleX == null)
+			scaleX = 1;
+		if (scaleY == null)
+			scaleY = 1;
+		if (centerX == null)
+			centerX = 0;
+		if (centerY == null)
+			centerY = 0;
+
+		if (translateX == null)
+			translateX = 0;
+		if (translateY == null)
+			translateY = 0;
+
+		var translateString = "t" + translateX + "," + translateY;
+
+		var cav = container.set();
+
+		var paths_provincias_cav = paths.provincia.cav;
+
+
+		for (var p in paths_provincias_cav)
+		{
+
+
+
+			cav.push(muns[p] = container.path(paths_provincias_cav[p]).attr(attr).transform(translateString).scale(scaleX, scaleY, centerX, centerY));
+
+			cav.push(muns[p]);
+		}
+
+		container.cav = cav;
+
+		return container;
+	},
+    wgi_generales_spain_prov_map: function(prov, muns, container, attr, scaleX, scaleY, centerX, centerY)
+	{
+		if (scaleX == null)
+			scaleX = 1;
+		if (scaleY == null)
+			scaleY = 1;
+		if (centerX == null)
+			centerX = 0;
+		if (centerY == null)
+			centerY = 0;
+
+
+		var attr_borde =
+		{
+			fill : "none",
+			stroke : "#666",
+			"stroke-width" : 1,
+			"stroke-linejoin" : "round"
+		};
+
+
+
+
+
+		var estado = container.set();
+
+		var paths_provincias = paths.estado;
+
+
+		for (var provincia in paths_provincias)
+		{
+
+				estado.push(muns[provincia] = container.path(paths_provincias[provincia]).attr(attr).scale(scaleX, scaleY, centerX, centerY));
+
+				estado.push(muns[provincia]);
+
+		}
+
+		/*prov.a_coruna = container.path(paths.estado.a_coruna).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.a_coruna.color = Raphael.getColor();
+		prov.pontevedra = container.path(paths.estado.pontevedra).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.pontevedra.color = Raphael.getColor();
+		prov.lugo = container.path(paths.estado.lugo).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.lugo.color = Raphael.getColor();
+		prov.ourense = container.path(paths.estado.ourense).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.ourense.color = Raphael.getColor();
+		prov.asturias = container.path(paths.estado.asturias).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.asturias.color = Raphael.getColor();
+		prov.cantabria = container.path(paths.estado.cantabria).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.cantabria.color = Raphael.getColor();
+		prov.zamora = container.path(paths.estado.zamora).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.zamora.color = Raphael.getColor();
+		prov.salamanca = container.path(paths.estado.salamanca).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.salamanca.color = Raphael.getColor();
+		prov.avila = container.path(paths.estado.avila).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.avila.color = Raphael.getColor();
+		prov.valladolid = container.path(paths.estado.valladolid).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.valladolid.color = Raphael.getColor();
+		prov.palencia = container.path(paths.estado.palencia).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.palencia.color = Raphael.getColor();
+		prov.madrid = container.path(paths.estado.madrid).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.madrid.color = Raphael.getColor();
+		prov.segovia = container.path(paths.estado.segovia).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.segovia.color = Raphael.getColor();
+		prov.soria = container.path(paths.estado.soria).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.soria.color = Raphael.getColor();
+		//prov.la_rioja = container.path(paths.estado.la_rioja).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		//prov.la_rioja.color = Raphael.getColor();
+		prov.huesca = container.path(paths.estado.huesca).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.huesca.color = Raphael.getColor();
+		prov.navarra = container.path(paths.estado.navarra).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.navarra.color = Raphael.getColor();
+		prov.lleida = container.path(paths.estado.lleida).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.lleida.color = Raphael.getColor();
+		prov.barcelona = container.path(paths.estado.barcelona).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.barcelona.color = Raphael.getColor();
+		prov.leon = container.path(paths.estado.leon).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.leon.color = Raphael.getColor();
+		prov.tarragona = container.path(paths.estado.tarragona).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.tarragona.color = Raphael.getColor();
+		prov.girona = container.path(paths.estado.girona).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.girona.color = Raphael.getColor();
+		prov.gipuzkoa = container.path(paths.estado.gipuzkoa).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.gipuzkoa.color = Raphael.getColor();
+		prov.bizkaia = container.path(paths.estado.bizkaia).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.bizkaia.color = Raphael.getColor();
+		prov.araba = container.path(paths.estado.araba).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.araba.color = Raphael.getColor();
+		prov.guadalajara = container.path(paths.estado.guadalajara).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.guadalajara.color = Raphael.getColor();
+		prov.castellon = container.path(paths.estado.castellon).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.castellon.color = Raphael.getColor();
+		prov.teruel = container.path(paths.estado.teruel).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.teruel.color = Raphael.getColor();
+		prov.cuenca = container.path(paths.estado.cuenca).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.cuenca.color = Raphael.getColor();
+		prov.valencia = container.path(paths.estado.valencia).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.valencia.color = Raphael.getColor();
+		prov.alicante = container.path(paths.estado.alicante).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.alicante.color = Raphael.getColor();
+		prov.murcia = container.path(paths.estado.murcia).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.murcia.color = Raphael.getColor();
+		prov.albacete = container.path(paths.estado.albacete).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.albacete.color = Raphael.getColor();
+		prov.ciudad_real = container.path(paths.estado.ciudad_real).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.ciudad_real.color = Raphael.getColor();
+		prov.almeria = container.path(paths.estado.almeria).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.almeria.color = Raphael.getColor();
+		prov.granada = container.path(paths.estado.granada).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.granada.color = Raphael.getColor();
+		prov.jaen = container.path(paths.estado.jaen).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.jaen.color = Raphael.getColor();
+		prov.cadiz = container.path(paths.estado.cadiz).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.cadiz.color = Raphael.getColor();
+		prov.huelva = container.path(paths.estado.huelva).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.huelva.color = Raphael.getColor();
+		prov.sevilla = container.path(paths.estado.sevilla).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.sevilla.color = Raphael.getColor();
+		prov.badajoz = container.path(paths.estado.badajoz).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.badajoz.color = Raphael.getColor();
+		prov.cordoba = container.path(paths.estado.cordoba).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.cordoba.color = Raphael.getColor();
+		prov.malaga = container.path(paths.estado.malaga).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.malaga.color = Raphael.getColor();
+		prov.toledo = container.path(paths.estado.toledo).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.toledo.color = Raphael.getColor();
+		prov.zaragoza = container.path(paths.estado.zaragoza).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.zaragoza.color = Raphael.getColor();
+		prov.burgos = container.path(paths.estado.burgos).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.burgos.color = Raphael.getColor();
+		prov.palencia = container.path(paths.estado.palencia).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.palencia.color = Raphael.getColor();
+		prov.caceres = container.path(paths.estado.caceres).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.caceres.color = Raphael.getColor();
+		prov.baleares = container.path(paths.estado.baleares).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.baleares.color = Raphael.getColor();
+		prov.canarias_borde = container.path(paths.estado.canarias_borde).attr(attr_borde).scale(scaleX, scaleY, centerX, centerY);
+		prov.canarias_borde.color = Raphael.getColor();
+		prov.las_palmas = container.path(paths.estado.las_palmas).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.las_palmas.color = Raphael.getColor();
+		prov.tenerife = container.path(paths.estado.tenerife).attr(attr).scale(scaleX, scaleY, centerX, centerY);
+		prov.tenerife.color = Raphael.getColor();*/
+
+		return container;
+	},
+
+    wgi_generales_mun_map:function(lugar, zonas, muns, container, attr, scaleX, scaleY, centerX, centerY, translateX, translateY)
+	{
+		if (scaleX == null)
+			scaleX = 1;
+		if (scaleY == null)
+			scaleY = 1;
+		if (centerX == null)
+			centerX = 0;
+		if (centerY == null)
+			centerY = 0;
+
+		if (translateX == null)
+			translateX = 0;
+		if (translateY == null)
+			translateY = 0;
+
+		var translateString = "t" + translateX + "," + translateY;
+
+		var provincia = container.set();
+
+		var paths_municipios = paths.municipios.cav;
+		if (lugar == 'navarra')
+		{
+			paths_municipios = paths.municipios.nafarroa;
+		}
+
+		for (var municipio in paths_municipios)
+		{
+
+			var en_idioma = false;
+			if (this.wgi_generales_enHerrialde(municipio, zonas, en_idioma) || lugar == 'navarra')
+			{
+
+				provincia.push(muns[municipio] = container.path(paths_municipios[municipio]).attr(attr).transform(translateString).scale(scaleX, scaleY, centerX, centerY));
+
+				provincia.push(muns[municipio]);
+			}
+		}
+
+		// Terrenos
+		// No vienen en el GET, los metemos manualmente
+
+		if (lugar == 'alava' || lugar == 'cav')
+		{
+			provincia.push(muns["terreno_badaia"] = container.path(paths_municipios["terreno_badaia"]).attr(attr).transform(translateString).scale(scaleX, scaleY, centerX, centerY));
+			provincia.push(muns["terreno_entzia"] = container.path(paths_municipios["terreno_entzia"]).attr(attr).transform(translateString).scale(scaleX, scaleY, centerX, centerY));
+			provincia.push(muns["terreno_comunidad"] = container.path(paths_municipios["terreno_comunidad"]).attr(attr).transform(translateString).scale(scaleX, scaleY, centerX, centerY));
+			provincia.push(muns["terreno_trevino"] = container.path(paths_municipios["terreno_trevino"]).attr(attr).transform(translateString).scale(scaleX, scaleY, centerX, centerY));
+		}
+
+		if (lugar == 'vizcaya' || lugar == 'cav')
+		{
+			provincia.push(muns["terreno_vvtrucios"] = container.path(paths_municipios["terreno_vvtrucios"]).attr(attr).transform(translateString).scale(scaleX, scaleY, centerX, centerY));
+		}
+
+		if (lugar == 'guipuzcoa' || lugar == 'cav')
+		{
+			provincia.push(muns["terreno_enirio_aralar"] = container.path(paths_municipios["terreno_enirio_aralar"]).attr(attr).transform(translateString).scale(scaleX, scaleY, centerX, centerY));
+			provincia.push(muns["terreno_parzoneria"] = container.path(paths_municipios["terreno_parzoneria"]).attr(attr).transform(translateString).scale(scaleX, scaleY, centerX, centerY));
+		}
+
+		container[lugar] = lugar;
+
+		return container;
+	},
+	wgi_generales_enHerrialde:function(municipio, herrialde, en_idioma)
+	{
+		if (en_idioma == null)
+			en_idioma = true;
+
+		if (en_idioma)
+		{
+			var idioma = this.get_idioma(), nombre_var = this.wgi_getVarNombreIdiomaApi(idioma);
+		}
+		else
+		{
+			var nombre_var = "N";
+		}
+
+		for (var i in herrialde)
+		{
+			if ( typeof herrialde[i] == "undefined" || typeof herrialde[i] == "function")
+			{
+				continue;
+			}
+
+			var municipio_nombre = herrialde[i][nombre_var], municipio_limpio = this.wgi_limpiarMunicipio(municipio_nombre), municipio_limpio_guiones = municipio_limpio.replace(/-/g, "_");
+
+			if (municipio == municipio_limpio || municipio == municipio_limpio_guiones)
+			{
+
+				return true;
+			}
+		}
+		return false;
+	},
+	wgi_limpiarMunicipio:function(mun)
+	{
+		var nombre = mun.toLowerCase();
+
+		//nombre = nombre.replace(/ /g, "_");
+		nombre = nombre.replace(/ /g, "-");
+		//nombre = nombre.replace(/-/g, "_");
+		nombre = nombre.replace(/\//g, "-");
+		//nombre = nombre.replace(/\//g, "_");
+		nombre = nombre.replace(/ñ/g, "n");
+		nombre = nombre.replace(/á/g, "a");
+		nombre = nombre.replace(/é/g, "e");
+		nombre = nombre.replace(/í/g, "i");
+		nombre = nombre.replace(/ó/g, "o");
+		nombre = nombre.replace(/ú/g, "u");
+		nombre = nombre.replace(/ü/g, "u");
+		//nombre = nombre.replace(/\(/g, "_");
+		nombre = nombre.replace(/\(/g, "-");
+		//nombre = nombre.replace(/\)/g, "_");
+		nombre = nombre.replace(/\)/g, "-");
+
+		return nombre;
+	},
+	wgi_getVarNombreIdiomaApi:function(idioma)
+	{
+		var idioma_nombre;
+
+		switch (idioma)
+		{
+			case 'es':
+				idioma_nombre = 'C';
+				break;
+			case 'eu':
+				idioma_nombre = 'E';
+				break;
+			default:
+				idioma_nombre = 'C';
+		}
+
+		return 'N' + idioma_nombre;
+	},
+    getGraficoSizes:function(lugar) {
+
+            var sizes = {
+                escala: "",
+                width : "",
+                height : "",
+                centerX: "",
+                centerY: "",
+                translateX: "",
+                translateY: "",
+                widthProportion: "",
+                heightProportion: ""
+            };
+
+
+            if (lugar == 'alava') {
+
+                sizes.width = 600;
+                sizes.height = 600;
+                sizes.escala = 1.1;
+
+                sizes.centerX = 0;
+                sizes.centerY = 0;
+                sizes.translateX = -50;
+                sizes.translateY = -125;
+
+                sizes.widthProportion = .9;
+                sizes.heightProportion = .85;
+
+            } else if (lugar == 'vizcaya') {
+
+                sizes.width = 600;
+                sizes.height = 400;
+                sizes.escala = 1.2;
+
+                sizes.centerX = 0;
+                sizes.centerY = 0;
+                sizes.translateX = null;
+                sizes.translateY = null;
+
+                sizes.widthProportion = .9;
+                sizes.heightProportion = .75;
+
+            } else if (lugar == 'guipuzcoa') {
+
+                sizes.width = 600;
+                sizes.height = 425;
+                sizes.escala = 1.3;
+
+                sizes.centerX = 0;
+                sizes.centerY = 0;
+                sizes.translateX = -450;
+                sizes.translateY = -35;
+
+                sizes.widthProportion = 1;
+                sizes.heightProportion = .85;
+
+            } else if (lugar == 'navarra') {
+
+                sizes.width = 600;
+                sizes.height = 620;
+                sizes.escala = .7;
+
+                sizes.centerX = 0;
+                sizes.centerY = 0;
+                sizes.translateX = 50;
+                sizes.translateY = 20;
+
+                sizes.widthProportion = .9;
+                sizes.heightProportion = .9;
+
+            } else if (lugar == 'cav') {
+
+                sizes.width = 600;
+                sizes.height = 515;
+                sizes.escala = .6;
+
+                sizes.centerX = 0;
+                sizes.centerY = 0;
+                sizes.translateX = 0;
+                sizes.translateY = 0;
+
+                sizes.widthProportion = .9;
+                sizes.heightProportion = .9;
+
+            } else if (lugar == 'estado') {
+
+                sizes.width = 600;
+                sizes.height = 660;
+                sizes.escala = 1.2;
+
+                sizes.centerX = 0;
+                sizes.centerY = 0;
+                sizes.translateX = 0;
+                sizes.translateY = 0;
+                sizes.widthProportion = .9;
+                sizes.heightProportion = .85;
+
+                /*if (isInIframe && $element.parents(".wgi_iframe").width() >= 610) {
+
+                    sizes.widthProportion = .65;
+                    sizes.heightProportion = .65;
+
+                }*/
+            }
+
+            return sizes;
+    },
+
+
+
+
+
+
+	wgi_sortElements:function(collection, attrName1, attrName2)
+	{
+	    collection.sort(function(a, b)
+		{
+	        if (attrName2 != null) {
+
+	            return parseFloat(b[attrName1]) - parseFloat(a[attrName1]) || parseFloat(b[attrName2]) - parseFloat(a[attrName2]);
+
+	        } else {
+	            return parseFloat(b[attrName1]) - parseFloat(a[attrName1]);
+	        }
+		});
+	},
+	wgi_findElements:function(collection, value, attrName)
+	{
+		var new_colecction = [];
+		for (var i = 0, len = collection.length; i < len; i++)
+		{
+			var collection_value = collection[i][attrName];
+			if (collection_value == value)
+			{
+				new_colecction.push(collection[i]);
+			}
+		}
+		return new_colecction;
+	},
+	wgi_findElement:function(collection, value, attrName)
+	{
+		for (var i = 0, len = collection.length; i < len; i++)
+		{
+			var collection_value = collection[i][attrName];
+			if (collection_value == value)
+			{
+				return collection[i];
+			}
+		}
+		return null;
+	},
+	wgi_findOtherElements:function(collection, value, attrName)
+	{
+		var new_colecction = [];
+		for (var i = 0, len = collection.length; i < len; i++)
+		{
+			var collection_value = collection[i][attrName];
+			if (collection_value != value)
+			{
+				new_colecction.push(collection[i]);
+			}
+		}
+		return new_colecction;
+	},
+	wgi_generales_name2cod:function(name)
+	{
+		var valores = [];
+		valores["araba"] = 1;
+		valores["alava"] = 1;
+
+		valores["bizkaia"] = 2;
+		valores["vizcaya"] = 2;
+
+		valores["gipuzkoa"] = 3;
+		valores["guipuzcoa"] = 3;
+
+		valores["navarra"] = 4;
+		valores["nafarroa"] = 4;
+
+		valores["cav"] = 5;
+		valores["eae"] = 5;
+
+		valores["estado"] = 6;
+
+
+
+
+
+		return valores[name] || null;
+	},
+	customCmdReceived: function(data){
+		if(data.indexOf('lugar')>-1){
+			this.cod_zona=data.split('lugar')[1];
+			
+			if(data.split('lugar')[1][0]==='1'){
+				this.lugar='';
+				this.lugar='alava';				
+			}
+			else if(data.split('lugar')[1][0]==='2'){
+				this.lugar='';
+				this.lugar='vizcaya';				
+			}
+			else if(data.split('lugar')[1][0]==='3'){
+				this.lugar='';
+				this.lugar='guipuzcoa';				
+			}
+			else if(data.split('lugar')[1][0]==='4'){
+				this.lugar='';
+				this.lugar='navarra';				
+			}
+			else if(data.split('lugar')[1][0]==='5'){
+				this.lugar='';
+				this.lugar='cav';			
+			}
+			else if(data.split('lugar')[1][0]==='6'){
+				this.lugar='';
+				this.lugar='estado';				
+			}
+		}
+		else if(data.indexOf('maptipo')>-1){
+			this.tipoEleccion=data.split('maptipo')[1];
+		}
+
+
+	},
+	tipoEleccionChanged:function(){
+
+		if(this.showing===true){
+			var _this=this;
+			var vals=[];
+			this.resultsData={};
+			this.partidos={};
+			this.municipios={};
+			//this.cod_zona = this.wgi_generales_name2cod(this.lugar);
+
+			this.wgi_grafico;
+			this.mun = {};
+			if(this.lang!=='eu' && this.lang!== 'es'){
+				if(mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')==='es' || 
+					mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')==='eu'){
+					this.lang=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language');
+				}
+				else{
+					if(window.location.search.indexOf('?lang')>-1){
+			          this.lang=window.location.search.split('?lang=')[1];
+			       }else{
+			          this.lang='eu'; 
+			       }
+				}
+				
+			}
+
+
+			this.wgi_tipHtml = "";
+			this.wgi_over = false;
+			this.emptyContainers();
+			this.$.data.url='';
+			this.listeners.forEach (function(listener){			      
+		        _this.$.data.removeEventListener('response',listener,true);
+		        _this.$.data.removeEventListener('response',listener,false);
+		        _this.$.data.removeEventListener('error',listener,true);
+			    _this.$.data.removeEventListener('error',listener,false);
+		      
+		    },this);
+			this.reqData();
+		}
+
+	},
+	appAttributeChange:function(event){
+		if(this.showing===true){
+			if(event.detail.value==='es' || event.detail.value==='eu'){
+				var _this=this;
+				var vals=[];
+				this.resultsData={};
+				this.partidos={};
+				this.municipios={};
+				//this.cod_zona = this.wgi_generales_name2cod(this.lugar);
+
+				if(event.detail.value==='es'){
+					this.$.escrText.innerHTML='Escrutado:';
+					this.$.actText.innerHTML='Actualizado:'
+				}
+				else if(event.detail.value==='eu'){
+					this.$.escrText.innerHTML='Zenbatua:';
+					this.$.actText.innerHTML='Eguneratuta:';
+				}
+
+				this.wgi_grafico;
+				this.mun = {};
+				this.lang=event.detail.value;
+
+
+				this.wgi_tipHtml = "";
+				this.wgi_over = false;
+				this.emptyContainers();
+				this.$.data.url='';
+				this.listeners.forEach (function(listener){			      
+			        _this.$.data.removeEventListener('response',listener,true);
+			        _this.$.data.removeEventListener('response',listener,false);
+			        _this.$.data.removeEventListener('error',listener,true);
+				    _this.$.data.removeEventListener('error',listener,false);
+			      
+			    },this);
+				this.reqData();
+			}
+		}
+	},
+	lugarChanged:function(){
+		if(this.showing===true){
+			var _this=this;
+			var vals=[];
+			this.resultsData={};
+			this.partidos={};
+			this.municipios={};
+			//this.cod_zona = this.wgi_generales_name2cod(this.lugar);
+
+			this.wgi_grafico;
+			this.mun = {};
+			if(this.lang!=='eu' && this.lang!== 'es'){
+				if(mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')==='es' || 
+					mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')==='eu'){
+					this.lang=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language');
+				}
+				else{
+					if(window.location.search.indexOf('?lang')>-1){
+			          this.lang=window.location.search.split('?lang=')[1];
+			       }else{
+			          this.lang='eu'; 
+			       }
+				}
+				
+			}
+
+
+			this.wgi_tipHtml = "";
+			this.wgi_over = false;
+			this.emptyContainers();
+			this.$.data.url='';
+			this.listeners.forEach (function(listener){			      
+		        _this.$.data.removeEventListener('response',listener,true);
+		        _this.$.data.removeEventListener('response',listener,false);
+		        _this.$.data.removeEventListener('error',listener,true);
+			    _this.$.data.removeEventListener('error',listener,false);
+		      
+		    },this);
+			this.reqData();
+		}
+
+
+
+	},
+	load:function(){
+		this.showing =true;
+		var _this=this;
+		var vals=[];
+		this.resultsData={};
+		this.partidos={};
+		this.municipios={};
+		//this.cod_zona = this.wgi_generales_name2cod(this.lugar);
+
+		this.wgi_grafico;
+		this.mun = {};
+		if(this.lang!=='eu' && this.lang!== 'es'){
+			if(mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')==='es' || 
+				mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')==='eu'){
+				this.lang=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language');
+			}
+			else{
+				if(window.location.search.indexOf('?lang')>-1){
+		          this.lang=window.location.search.split('?lang=')[1];
+		       }else{
+		          this.lang='eu'; 
+		       }
+			}
+			
+		}
+
+
+		this.wgi_tipHtml = "";
+		this.wgi_over = false;
+		this.emptyContainers();
+		this.listeners.forEach (function(listener){			      
+		        _this.$.data.removeEventListener('response',listener,true);
+		        _this.$.data.removeEventListener('response',listener,false);
+		        _this.$.data.removeEventListener('error',listener,true);
+		        _this.$.data.removeEventListener('error',listener,false);
+		      
+		 },this);
+		this.$.data.url='';
+		this.reqData();
+		setTimeout(function(){
+			if(_this.showing===true){
+
+				_this.apiTimer=setInterval(function(){
+					if(this.lang!=='eu' && this.lang!== 'es'){
+						if(mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')==='es' || 
+							mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')==='eu'){
+							this.lang=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language');
+						}
+						else{
+							if(window.location.search.indexOf('?lang')>-1){
+					          this.lang=window.location.search.split('?lang=')[1];
+					       }else{
+					          this.lang='eu'; 
+					       }
+						}
+						
+					}
+					_this.emptyContainers();
+					_this.listeners.forEach (function(listener){			      
+					        _this.$.data.removeEventListener('response',listener,true);
+					        _this.$.data.removeEventListener('response',listener,false);
+					        _this.$.data.removeEventListener('error',listener,true);
+					        _this.$.data.removeEventListener('error',listener,false);
+					      
+					 },_this);
+					_this.$.data.url='';
+					_this.reqData();
+				},30000);
+			}
+		},30000);
+	},
+	unload:function(){
+		this.showing =false;
+		clearInterval(this.apiTimer);
+	}
+
+});
+ </script>

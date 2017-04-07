@@ -1,0 +1,1286 @@
+
+<dom-module name="twitter-map" >
+	<template>
+		<style>
+#map {
+	background-color: #0A2533;
+
+}
+
+
+/************** mapa **********************/
+
+.logos-partidos {
+	position: relative;
+	margin-bottom: 20px;
+}
+.detalle-mapa {text-align: center;}
+.detalle-mapa img {
+	margin-top: 10%;
+	width: 90%;
+	margin: auto;
+}
+.logo-container {
+	position: absolute;
+	padding-top:2%;
+	top:0;
+}
+
+.detalle-logo {
+	padding: 0;
+}
+.detalle-logo span img {
+	width: 35%;
+	background-color: white;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	box-shadow: 0px 0px 15px rgba(0,0,0,0.5);
+}
+/* posicion de cada logo */
+.detalle-logo.logo-1 {
+	text-align: center;
+	padding-top: 3%;
+}
+.detalle-logo.logo-2 {
+	text-align: left;
+	padding-top: 30%;
+}
+.detalle-logo.logo-3 {
+	text-align: left;
+
+}
+.detalle-logo.logo-4 {
+	text-align: center;
+	padding-top: 20%;
+}
+
+
+
+/* politic party */
+.politic-party {
+	background-color: #22536B !important;
+	margin-bottom: 20px;
+}
+.politic-party h2 {
+	color: #91b5ce;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: bold;
+	font-size: 4vw;
+	padding-top: 15%;
+}
+.politic-party img {width: 75%;}
+.cont-tweets {
+	color: #55b2ff !important;
+}
+
+
+/* responsive */
+
+@media (min-width: 1025px) and (max-width: 1280px) and (orientation: landscape) {
+	.logos-partidos { margin-bottom: 0px;}
+	#mapa {
+		width: 65%;
+		position:relative;
+	}
+
+	#bizkaiaLogo{
+		width:30%;
+	}
+	#gipuzkoaLogo{
+		width: 30%;
+	}
+	#arabaLogo{
+		width: 30%;
+	}
+	#nafarroaLogo{
+		width: 30%;
+	}
+
+	.logo-1 {
+		text-align: right;
+	}
+	.logo-2 {
+		padding-top: 21%;
+	}
+	.logo-4 {
+		text-align: left;
+		padding-top: 15%;
+	}
+	h2 {
+		font-size: 2.5vw;
+		padding-top: 0px;
+	}
+	.politic-party {
+		height: 115px;
+
+		padding-top: 5px !important;
+	}
+	#hegoEuskalLogo{ width: 100px; }
+	.logos-partidos { display: block;}
+	#part1{
+		width:33%;
+	}
+	#part2{
+		width:33%;
+	}
+	#part3{
+		width:33%;
+	}
+
+}
+
+@media (max-width: 1024px) and (orientation: landscape){
+
+	#mapa {
+		width: 80%;
+	}
+	#bizkaiaLogo{
+		width:30%;
+	}
+	#gipuzkoaLogo{
+		width: 30%;
+	}
+	#arabaLogo{
+		width: 30%;
+	}
+	#nafarroaLogo{
+		width: 30%;
+	}
+	.logo-1 {
+		text-align: center;
+	}
+	.logo-2 {
+		padding-top: 25%;
+	}
+	.logo-4 {
+		text-align: left;
+		padding-top: 25%;
+	}
+	h2 {
+		font-size: large;
+		padding-top: 0px;
+	}
+	.politic-party {
+		height: 115px;
+
+		padding-top: 5px !important;
+	}
+	#hegoEuskalLogo{ width: 100px; }
+
+	.logos-partidos { display: block;}
+	#part1{
+		width:33%;
+	}
+	#part2{
+		width:33%;
+	}
+	#part3{
+		width:33%;
+	}
+}
+
+@media (max-width: 1024px) and (orientation: portrait){
+	#mapa {
+		width: 95%;
+	}
+	#bizkaiaLogo{
+		width:35%;
+	}
+	#gipuzkoaLogo{
+		width: 35%;
+	}
+	#arabaLogo{
+		width: 35%;
+	}
+	#nafarroaLogo{
+		width: 35%;
+	}
+	.politic-party {
+		height: 100%;
+		text-align: center;
+	}
+	h2 { font-size: large; padding-top: 5px;}
+	.logo-party { text-align: center;}
+	#hegoEuskalLogo{ width: 180px; }
+	.logos-partidos { display: block;}
+	#part1{
+		width:33%;
+	}
+	#part2{
+		width:33%;
+	}
+	#part3{
+		width:33%;
+	}
+}
+
+@media (max-width: 767px) and (orientation: portrait){
+	.logos-partidos { display: block;}
+	.politic-party {
+		height: 150px;
+		text-align: center;
+	}
+	 h2 { font-size: large;}
+	.logo-party { text-align: center;}
+	#hegoEuskalLogo { width: 130px; }
+	#part1{
+		width:33%;
+	}
+	#part2{
+		width:33%;
+	}
+	#part3{
+		width:33%;
+	}
+
+}
+
+@media (max-width: 767px) and (orientation: landscape){
+
+	.politic-party {
+		height: 130px;
+		text-align: center;
+		padding-top: 10px !important;
+
+	}
+	h2 { font-size: medium; padding-top: 5px !important;}
+
+	.logo-party { text-align: center;}
+
+
+	.logos-partidos { display: block;}
+	#hegoEuskalLogo { width: 100px; }
+	#part1{
+		width:33%;
+	}
+	#part2{
+		width:33%;
+	}
+	#part3{
+		width:33%;
+	}
+}
+
+@media (max-width: 480px) and (orientation: portrait){
+	.logos-partidos { display: none;}
+	.politic-party {
+		height: 100%;
+		text-align: center;
+		padding-top: 10px !important;
+	}
+	h2 { font-size: xx-large;}
+	.logo-party { text-align: center;}
+	#hegoEuskalLogo{ width: 200px; }
+	#part1{
+		width:100%;
+	}
+	#part2{
+		width:100%;
+	}
+	#part3{
+		width:100%;
+	}
+
+}
+
+@media (max-width: 480px) and (min-height:235px) and (orientation: landscape){
+	.logos-partidos { display: none;}
+	.politic-party {
+		height: 100%;
+		text-align: center;
+		padding-top: 10px !important;
+	}
+
+	.politic-party h2 { font-size: small;padding-top: 0px !important;}
+	.logo-party { text-align: center;}
+	#hegoEuskalLogo{ width: 100px; }
+	#part1{
+		width:100%;
+	}
+	#part2{
+		width:100%;
+	}
+	#part3{
+		width:100%;
+	}
+
+}
+@media (max-width: 480px) and (max-height:234px) and (orientation: landscape){
+	.logos-partidos { display: none;}
+	.politic-party {
+		height: 100%;
+		text-align: center;
+		padding-top: 10px !important;
+	}
+
+	.politic-party h2 { font-size: small;padding-top: 0px !important;}
+	.logo-party { text-align: center;}
+	#hegoEuskalLogo{ width: 100px; }
+	#part1{
+		width:33%;
+	}
+	#part2{
+		width:33%;
+	}
+	#part3{
+		width:33%;
+	}
+
+}
+
+
+
+		</style>
+
+		<div class="template-all-layouts" id='map'>
+		<div class="col-md-12 col-sm-12 layout-fullwidth componente-mapa">
+                <div class="col-md-12 content-detalle-twitter-mapa">
+					<div class="logos-partidos">
+						<div class="detalle-mapa"><img id='mapa' src="detalle-twitter/mapa_suelto.png"/></div>
+						<div class="logo-container" style='width:100%'>
+							<div class="detalle-logo col-md-3 logo-1 col-sm-3 col-xs-3"><span><img id='bizkaiaLogo' src="detalle-twitter/logo-Bildu-transp.png"/></span></div>
+							<div class="detalle-logo col-md-3 logo-2 col-sm-3 col-xs-3"><span><img id='arabaLogo'src="detalle-twitter/logo-PNV-transp.png"/></span></div>
+							<div class="detalle-logo col-md-3 logo-3 col-sm-3 col-xs-3"><span><img id='gipuzkoaLogo' src="detalle-twitter/logo-podemos-transp.png"/></span></div>
+							<div class="detalle-logo col-md-3 logo-4 col-sm-3 col-xs-3"><span><img id='nafarroaLogo' src="detalle-twitter/logo-Bildu-transp.png"/></span></div>
+						</div>
+					</div>
+
+				</div>
+				<div class="col-md-12 politic-party">
+
+					<div id='part1' class="col-md-4 col-sm-12 col-xs-12"><h2 id='text1'>Trending Politic party:</h2></div>
+					<div id='part2' class="col-md-4 col-sm-12 col-xs-12 logo-party"><img id='hegoEuskalLogo' src="detalle-twitter/logo-PNV-transp.png" /></div>
+					<div id='part3' class="col-md-4 col-sm-12 col-xs-12"><h2  class="cont-tweets titulo-resp" id='tweetNum'>0 tweets</h2></div>
+
+				</div>
+            </div>
+        </div>
+
+	</template>
+</dom-module>
+	<script>
+		(function() {
+			Polymer.require = function(tag, deps, func) {
+				require(deps, function() {
+					Polymer(func.apply(Polymer, arguments));
+				});
+			};
+			Polymer.require('twitter-map',['tags','coords2','socketio'],function(tags,coords2,io){
+			return {
+
+				is:'twitter-map',
+			  behaviors:[ComponentQueryBehavior,ComponentStatusBehavior],
+				attributes:{
+					prevTime:{
+						type:Number,
+						value:1432509468
+					},
+					showing:{
+							type:Boolean,
+							value:false,
+
+					}
+				},
+				created: function() {
+					console.log('twitter-map created');
+					//instancia de socket en el lado cliente
+
+
+				},
+
+
+				ready: function() {
+					console.log('twitter-map ready');
+					var _this=this;
+
+				this.socket = io.connect('/');
+
+					this.socket.on("connected", function() {
+						console.log("twitter-map Connected");
+
+						_this.socket.on('changed', function()
+						{
+							arabaData = {
+								cont : 0,
+								ehbildu : 0,
+								pnv : 0,
+								pse : 0,
+								pp : 0,
+								podemos : 0,
+								ikune : 0,
+								upyd : 0,
+								ciudadanos : 0,
+								irabazi : 0,
+								vox : 0
+							};
+
+							gasteizData = {
+								cont : 0,
+								ehbildu : 0,
+								pnv : 0,
+								pse : 0,
+								pp : 0,
+								ongiEtorri : 0,
+								escanosBlancos : 0,
+								ciudadanos : 0,
+								upyd : 0,
+								vox : 0,
+								irabazi : 0,
+								gastoria : 0,
+								sumando : 0,
+								recortesCero : 0
+							};
+							bizkaiaData = {
+								cont:0,
+								ehbildu: 0,
+								pnv: 0,
+								pse: 0,
+								pp: 0,
+								podemos: 0,
+								irabazi: 0,
+								upyd: 0,
+								ciudadanos: 0,
+								vox: 0,
+								udalberri: 0,
+								ph: 0,
+								pacma: 0,
+								ikune: 0,
+								pcpe: 0
+							};
+							bilboData = {
+								cont:0,
+								ehbildu: 0,
+								pnv: 0,
+								pse: 0,
+								pp: 0,
+								podemos: 0,
+								pacma: 0,
+								ciudadnos: 0,
+								upyd: 0,
+								udalberri: 0,
+								partidoHumanista: 0,
+								vox: 0
+							};
+							gipuzkoaData = {
+								cont:0,
+								ehbildu: 0,
+								pnv: 0,
+								pse: 0,
+								pp: 0,
+								podemos: 0,
+								irabazi: 0,
+								ciudadanos: 0
+							};
+							donostiData = {
+								cont:0,
+								ehbildu: 0,
+								pnv: 0,
+								pse: 0,
+								pp: 0,
+								podemos: 0,
+								plaz: 0,
+								upyd: 0,
+								ciudadanos: 0,
+								pacma: 0
+							};
+							nafarroaData = {
+								cont: 0,
+								gbai: 0,
+								upn: 0,
+								pp: 0,
+								psn: 0,
+								ehbildu: 0,
+								podemos: 0,
+								ciudadanos: 0,
+								upyd: 0,
+								ei: 0,
+								libertadNavarra: 0,
+								equo: 0,
+								pacma: 0,
+								sain: 0,
+								rcnNok: 0
+							};
+							irunaData = {
+								cont:0,
+								gbai: 0,
+								upn:0,
+								psn: 0,
+								ehbildu: 0,
+								ei: 0,
+								upyd: 0,
+								pp: 0,
+								sain: 0,
+								podemos: 0,
+								ciudadanos: 0,
+								pacma: 0
+							};
+
+							euskadiData = {
+								cont: 0,
+								ehbildu: 0,
+								pnv: 0,
+								pse: 0,
+								pp: 0,
+								podemos: 0,
+								ikune: 0,
+								upyd: 0,
+								ciudadanos: 0,
+								irabazi: 0,
+								vox: 0,
+								ongiEtorri: 0,
+								ei: 0,
+								gastoria: 0,
+								sumando: 0,
+								recortesCero: 0,
+								plaz: 0,
+								pacma: 0,
+								udalberri: 0,
+								partidoHumanista: 0,
+								pcpe: 0
+							};
+
+						});
+
+						_this.socket.on('place', function(data)
+						{
+
+
+							//Euskal Herria
+							if(_this.exist(data.text,gipuzkoa)||_this.exist(data.text,donostia)){
+								gipuzkoaData.cont=gipuzkoaData.cont+1;
+							}
+							if(_this.exist(data.text,donostia)){
+								donostiData.cont=donostiData.cont+1;
+							}
+							if(_this.exist(data.text,bizkaia)||_this.exist(data.text,bilbo)){
+								bizkaiaData.cont=bizkaiaData.cont+1;
+							}
+							if(_this.exist(data.text,bilbo)){
+								bilboData.cont=bilboData.cont+1;
+							}
+							if(_this.exist(data.text,araba)||_this.exist(data.text,gasteiz)){
+								arabaData.cont=arabaData.cont+1;
+							}
+							if(_this.exist(data.text,gasteiz)){
+								gasteizData.cont=gasteizData.cont+1;
+							}
+							if(_this.exist(data.text,nafarroa)||_this.exist(data.text,iruna)){
+								nafarroaData.cont=nafarroaData.cont+1;
+							}
+							if(_this.exist(data.text,iruna)){
+								irunaData.cont=irunaData.cont+1;
+							}
+
+							//Euskadi
+							if(_this.exist(data.text,bilduEuskadi)){
+								euskadiData.cont=euskadiData.cont+1;
+								euskadiData.ehbildu=euskadiData.ehbildu+1;
+							}
+							if(_this.exist(data.text,pnvEuskadi)){
+								euskadiData.cont=euskadiData.cont+1;
+								euskadiData.pnv=euskadiData.pnv+1;
+							}
+							if(_this.exist(data.text,pseEuskadi)){
+								euskadiData.cont=euskadiData.cont+1;
+								euskadiData.pse=euskadiData.pse+1;
+							}
+							if(_this.exist(data.text,ppEuskadi)){
+								euskadiData.cont=euskadiData.cont+1;
+								euskadiData.pp=euskadiData.pp+1;
+							}
+							if(_this.exist(data.text,podemosEuskadi)){
+								euskadiData.cont=euskadiData.cont+1;
+								euskadiData.podemos=euskadiData.podemos+1;
+							}
+							if(_this.exist(data.text,ikuneEuskadi)){
+								euskadiData.cont=euskadiData.cont+1;
+								euskadiData.ikune=euskadiData.ikune+1;
+							}
+							if(_this.exist(data.text,upydEuskadi)){
+								euskadiData.cont=euskadiData.cont+1;
+								euskadiData.upyd=euskadiData.upyd+1;
+							}
+							if(_this.exist(data.text,ciudadanosEuskadi)){
+								euskadiData.cont=euskadiData.cont+1;
+								euskadiData.ciudadanos=euskadiData.ciudadanos+1;
+							}
+							if(_this.exist(data.text,irabaziEuskadi)){
+								euskadiData.cont=euskadiData.cont+1;
+								euskadiData.irabazi=euskadiData.irabazi+1;
+							}
+							if(_this.exist(data.text,voxEuskadi)){
+								euskadiData.cont=euskadiData.cont+1;
+								euskadiData.vox=euskadiData.vox+1;
+							}
+							if(_this.exist(data.text,ongiEtorriEuskadi)){
+								euskadiData.cont=euskadiData.cont+1;
+								euskadiData.ongiEtorri=euskadiData.ongiEtorri+1;
+							}
+							if(_this.exist(data.text,eiEuskadi)){
+								euskadiData.cont=euskadiData.cont+1;
+								euskadiData.ei=euskadiData.ei+1;
+							}
+							if(_this.exist(data.text,gastoriaEuskadi)){
+								euskadiData.cont=euskadiData.cont+1;
+								euskadiData.gastoria=euskadiData.gastoria+1;
+							}
+							if(_this.exist(data.text,sumandoEuskadi)){
+								euskadiData.cont=euskadiData.cont+1;
+								euskadiData.sumando=euskadiData.sumando+1;
+							}
+							if(_this.exist(data.text,recortesCeroEuskadi)){
+								euskadiData.cont=euskadiData.cont+1;
+								euskadiData.recortesCero=euskadiData.recortesCero+1;
+							}
+							if(_this.exist(data.text,plazEuskadi)){
+								euskadiData.cont=euskadiData.cont+1;
+								euskadiData.plaz=euskadiData.plaz+1;
+							}
+							if(_this.exist(data.text,pacmaEuskadi)){
+								euskadiData.cont=euskadiData.cont+1;
+								euskadiData.pacma=euskadiData.pacma+1;
+							}
+							if(_this.exist(data.text,udalberriEuskadi)){
+								euskadiData.cont=euskadiData.cont+1;
+								euskadiData.udalberri=euskadiData.udalberri+1;
+							}
+							if(_this.exist(data.text,partidoHumanistaEuskadi)){
+								euskadiData.partidoHumanista=euskadiData.partidoHumanista+1;
+							}
+							if(_this.exist(data.text,pcpeEuskadi)){
+								euskadiData.cont=euskadiData.cont+1;
+								euskadiData.pcpe=euskadiData.pcpe+1;
+							}
+
+							//Nafarroa
+							if(_this.exist(data.text,bilduNafarroa)){
+								nafarroaData.cont=nafarroaData.cont+1;
+								nafarroaData.ehbildu=nafarroaData.ehbildu+1;
+							}
+							if(_this.exist(data.text,gbaiNafarroa)){
+								nafarroaData.cont=nafarroaData.cont+1;
+								nafarroaData.gbai=nafarroaData.gbai+1;
+							}
+							if(_this.exist(data.text,psnNafarroa)){
+								nafarroaData.cont=nafarroaData.cont+1;
+								nafarroaData.psn=nafarroaData.psn+1;
+							}
+							if(_this.exist(data.text,ppNafarroa)){
+								nafarroaData.cont=nafarroaData.cont+1;
+								nafarroaData.pp=nafarroaData.pp+1;
+							}
+							if(_this.exist(data.text,podemosNafarroa)){
+								nafarroaData.cont=nafarroaData.cont+1;
+								nafarroaData.podemos=nafarroaData.podemos+1;
+							}
+							if(_this.exist(data.text,libertadNavarraNafarroa)){
+								nafarroaData.cont=nafarroaData.cont+1;
+								nafarroaData.libertadNavarra=nafarroaData.libertadNavarra+1;
+							}
+							if(_this.exist(data.text,upydNafarroa)){
+								nafarroaData.cont=nafarroaData.cont+1;
+								nafarroaData.upyd=nafarroaData.upyd+1;
+							}
+							if(_this.exist(data.text,ciudadanosNafarroa)){
+								nafarroaData.cont=nafarroaData.cont+1;
+								nafarroaData.ciudadanos=nafarroaData.ciudadanos+1;
+							}
+							if(_this.exist(data.text,equoNafarroa)){
+								nafarroaData.cont=nafarroaData.cont+1;
+								nafarroaData.equo=nafarroaData.equo+1;
+							}
+							if(_this.exist(data.text,pacmaNafarroa)){
+								nafarroaData.cont=nafarroaData.cont+1;
+								nafarroaData.pacma=nafarroaData.pacma+1;
+							}
+							if(_this.exist(data.text,sainNafarroa)){
+								nafarroaData.cont=nafarroaData.cont+1;
+								nafarroaData.sain=nafarroaData.sain+1;
+							}
+							if(_this.exist(data.text,eiEuskadi)){
+								nafarroaData.cont=nafarroaData.cont+1;
+								nafarroaData.ei=nafarroaData.ei+1;
+							}
+							if(_this.exist(data.text,rcnNokNafarroa)){
+								nafarroaData.cont=nafarroaData.cont+1;
+								nafarroaData.rcnNok=nafarroaData.rcnNok+1;
+							}
+
+							//Gipuzkoa
+							if(_this.exist(data.text,bilduGipuzkoa)){
+								gipuzkoaData.cont=gipuzkoaData.cont+1;
+								gipuzkoaData.ehbildu=gipuzkoaData.ehbildu+1;
+							}
+							if(_this.exist(data.text,pnvGipuzkoa)){
+								gipuzkoaData.cont=gipuzkoaData.cont+1;
+								gipuzkoaData.pnv=gipuzkoaData.pnv+1;
+							}
+							if(_this.exist(data.text,pseGipuzkoa)){
+								gipuzkoaData.cont=gipuzkoaData.cont+1;
+								gipuzkoaData.pse=gipuzkoaData.pse+1;
+							}
+							if(_this.exist(data.text,ppGipuzkoa)){
+								gipuzkoaData.cont=gipuzkoaData.cont+1;
+								gipuzkoaData.pp=gipuzkoaData.pp+1;
+							}
+							if(_this.exist(data.text,podemosGipuzkoa)){
+								gipuzkoaData.cont=gipuzkoaData.cont+1;
+								gipuzkoaData.podemos=gipuzkoaData.podemos+1;
+							}
+							if(_this.exist(data.text,upydGipuzkoa)){
+								gipuzkoaData.cont=gipuzkoaData.cont+1;
+								gipuzkoaData.upyd=gipuzkoaData.upyd+1;
+							}
+							if(_this.exist(data.text,ciudadanosGipuzkoa)){
+								gipuzkoaData.cont=gipuzkoaData.cont+1;
+								gipuzkoaData.ciudadanos=gipuzkoaData.ciudadanos+1;
+							}
+							if(_this.exist(data.text,irabaziGipuzkoa)){
+								gipuzkoaData.cont=gipuzkoaData.cont+1;
+								gipuzkoaData.irabazi=gipuzkoaData.irabazi+1;
+							}
+							if(_this.exist(data.text,pacmaNafarroa)){
+								gipuzkoaData.cont=gipuzkoaData.cont+1;
+								gipuzkoaData.pacma=gipuzkoaData.pacma+1;
+							}
+							if(_this.exist(data.text,plazGipuzkoa)){
+								gipuzkoaData.cont=gipuzkoaData.cont+1;
+								gipuzkoaData.plaz=gipuzkoaData.plaz+1;
+							}
+
+							//Bizkaia
+							if(_this.exist(data.text,bilduBizkaia)){
+								bizkaiaData.cont=bizkaiaData.cont+1;
+								bizkaiaData.ehbildu=bizkaiaData.ehbildu+1;
+							}
+							if(_this.exist(data.text,pnvBizkaia)){
+								bizkaiaData.cont=bizkaiaData.cont+1;
+								bizkaiaData.pnv=bizkaiaData.pnv+1;
+							}
+							if(_this.exist(data.text,pseBizkaia)){
+								bizkaiaData.cont=bizkaiaData.cont+1;
+								bizkaiaData.pse=bizkaiaData.pse+1;
+							}
+							if(_this.exist(data.text,ppBizkaia)){
+								bizkaiaData.cont=bizkaiaData.cont+1;
+								bizkaiaData.pp=bizkaiaData.pp+1;
+							}
+							if(_this.exist(data.text,podemosBizkaia)){
+								bizkaiaData.cont=bizkaiaData.cont+1;
+								bizkaiaData.podemos=bizkaiaData.podemos+1;
+							}
+							if(_this.exist(data.text,irabaziBizkaia)){
+								bizkaiaData.cont=bizkaiaData.cont+1;
+								bizkaiaData.irabazi=bizkaiaData.irabazi+1;
+							}
+							if(_this.exist(data.text,upydBizkaia)){
+								bizkaiaData.cont=bizkaiaData.cont+1;
+								bizkaiaData.upyd=bizkaiaData.upyd+1;
+							}
+							if(_this.exist(data.text,ciudadanosBizkaia)){
+								bizkaiaData.cont=bizkaiaData.cont+1;
+								bizkaiaData.ciudadanos=bizkaiaData.ciudadanos+1;
+							}
+							if(_this.exist(data.text,udalberriBizkaia)){
+								bizkaiaData.cont=bizkaiaData.cont+1;
+								bizkaiaData.udalberri=bizkaiaData.udalberri+1;
+							}
+							if(_this.exist(data.text,pacmaBizkaia)){
+								bizkaiaData.cont=bizkaiaData.cont+1;
+								bizkaiaData.pacma=bizkaiaData.pacma+1;
+							}
+							if(_this.exist(data.text,voxBizkaia)){
+								bizkaiaData.cont=bizkaiaData.cont+1;
+								bizkaiaData.vox=bizkaiaData.vox+1;
+							}
+							if(_this.exist(data.text,ikuneBizkaia)){
+								bizkaiaData.cont=bizkaiaData.cont+1;
+								bizkaiaData.ikune=bizkaiaData.ikune+1;
+							}
+							if(_this.exist(data.text,partidoHumanistaBilbo)){
+								bizkaiaData.cont=bizkaiaData.cont+1;
+								bilbaoData.partidoHumanista=bilbaoData.partidoHumanista+1;
+							}
+							if(_this.exist(data.text,pcpeBizkaia)){
+								bizkaiaData.cont=bizkaiaData.cont+1;
+								bilboData.pcpe=bizkaiaData.pcpe+1;
+							}
+
+							//Araba
+							if(_this.exist(data.text,bilduAraba)){
+								arabaData.cont=arabaData.cont+1;
+								arabaData.ehbildu=arabaData.ehbildu+1;
+							}
+							if(_this.exist(data.text,pnvAraba)){
+								arabaData.cont=arabaData.cont+1;
+								arabaData.pnv=arabaData.pnv+1;
+							}
+							if(_this.exist(data.text,pseAraba)){
+								arabaData.cont=arabaData.cont+1;
+								arabaData.pse=arabaData.pse+1;
+							}
+							if(_this.exist(data.text,ppAraba)){
+								arabaData.cont=arabaData.cont+1;
+								arabaData.pp=arabaData.pp+1;
+							}
+							if(_this.exist(data.text,podemosAraba)){
+								arabaData.cont=arabaData.cont+1;
+								arabaData.podemos=arabaData.podemos+1;
+							}
+							if(_this.exist(data.text,irabaziAraba)){
+								arabaData.cont=arabaData.cont+1;
+								arabaData.irabazi=arabaData.irabazi+1;
+							}
+							if(_this.exist(data.text,upydAraba)){
+								arabaData.cont=arabaData.cont+1;
+								arabaData.upyd=arabaData.upyd+1;
+							}
+							if(_this.exist(data.text,ciudadanosAraba)){
+								arabaData.cont=arabaData.cont+1;
+								arabaData.ciudadanos=arabaData.ciudadanos+1;
+							}
+							if(_this.exist(data.text,voxAraba)){
+								arabaData.cont=arabaData.cont+1;
+								arabaData.vox=arabaData.vox+1;
+							}
+							if(_this.exist(data.text,ikuneAraba)){
+								arabaData.cont=arabaData.cont+1;
+								arabaData.ikune=arabaData.ikune+1;
+							}
+							if(_this.exist(data.text,ongiEtorriGasteiz)){
+								arabaData.cont=arabaData.cont+1;
+								arabaData.ongiEtorri=arabaData.ongiEtorri+1;
+							}
+							if(_this.exist(data.text,escanosBlancosGasteiz)){
+								arabaData.cont=arabaData.cont+1;
+								gasteizData.escanosBlancos=gasteizData.escanosBlancos+1;
+							}
+							if(_this.exist(data.text,gastoriaGasteiz)){
+								arabaData.cont=arabaData.cont+1;
+								gasteizData.gastoria=gasteizData.gastoria+1;
+							}
+							if(_this.exist(data.text,sumandoGasteiz)){
+								arabaData.cont=arabaData.cont+1;
+								gasteizData.sumando=gasteizData.sumando+1;
+							}
+							if(_this.exist(data.text,recortesCeroGasteiz)){
+								arabaData.cont=arabaData.cont+1;
+								gasteizData.recortesCero=gasteizData.recortesCero+1;
+							}
+
+
+							var maxGipuzkoa = _this.calculateMax("Gipuzkoa");
+							if(maxGipuzkoa!=""){
+								_this.$.gipuzkoaLogo.src = "./resources/images/twitter/"+maxGipuzkoa+"-logo.png";
+							}
+
+							var maxBizkaia = _this.calculateMax("Bizkaia");
+							if(maxBizkaia!=""){
+								_this.$.bizkaiaLogo.src = "./resources/images/twitter/"+maxBizkaia+"-logo.png";
+							}
+
+							var maxAraba = _this.calculateMax("Araba");
+							if(maxAraba!=""){
+								_this.$.arabaLogo.src = "./resources/images/twitter/"+maxAraba+"-logo.png";
+							}
+
+							var maxNafarroa = _this.calculateMax("Nafarroa");
+							if(maxNafarroa!=""){
+								_this.$.nafarroaLogo.src = "./resources/images/twitter/"+maxNafarroa+"-logo.png";
+							}
+							var maxHegoEuskal = _this.calculateMax("Hego Euskal Herria");
+							if(maxHegoEuskal!=""){
+								_this.$.hegoEuskalLogo.src = "./resources/images/twitter/"+maxHegoEuskal+"-logo.png";
+
+							}
+						});
+
+
+						if(_this.socket) {
+							console.log("Get Previous Tweets");
+							console.log(_this.prevTime);
+							_this.socket.emit('start', _this.prevTime);
+						}
+						else {
+							alert("Shit! Socket.io didn't start!");
+						}
+					});
+				},
+				smReady:function(){
+					// Sharemotion objetua lortu
+					var _this=this;
+					this.sm = mediascape.AdaptationToolkit.SharedMotion();
+					// ebentuak entzun ta jaso
+					var handler = function (e) {
+						if(_this.startVal===-1)_this.startVal=Math.round(e.pos);
+
+
+						_this.timestamp=_this.prevTime+Math.round(e.pos);
+
+						_this.timestampChanged();
+					};
+					this.sm.mapp.motions.shared.on("timeupdate", handler);
+				},
+				timestampChanged:function(){
+					//console.log("timestampChanged");
+					if(this.socket) {
+						var data={
+							timestamp:this.timestamp,
+							text:this.terms
+						}
+						if(this.showing) this.socket.emit('time',data);
+					}
+				},
+
+				unload:function(){
+						this.showing =false;
+				},
+				load:function(){
+					 this.showing =true;
+				},
+				exist:function(term,list){
+					for(var i=0;i<list.length;i++){
+						if(term.indexOf(list[i])!=-1) return true;
+					}
+					return false;
+				},
+				calculateMax:function(province){
+					var maximName = "";
+					var maximValue = 0;
+					if(province.indexOf("Gipuzkoa")!=-1){
+						if(gipuzkoaData.ehbildu>=maximValue && gipuzkoaData.ehbildu!=0){
+							maximName="ehbildu";
+							maximValue=gipuzkoaData.ehbildu;
+						}
+						if(gipuzkoaData.pnv>=maximValue && gipuzkoaData.pnv!=0){
+							maximName="pnv";
+							maximValue=gipuzkoaData.pnv;
+						}
+						if(gipuzkoaData.pp>=maximValue && gipuzkoaData.pp!=0){
+							maximName="pp";
+							maximValue=gipuzkoaData.pp;
+						}
+						if(gipuzkoaData.pse>=maximValue && gipuzkoaData.pse!=0){
+							maximName="pse";
+							maximValue=gipuzkoaData.pse;
+						}
+						if(gipuzkoaData.podemos>=maximValue && gipuzkoaData.podemos!=0){
+							maximName="podemos";
+							maximValue=gipuzkoaData.podemos;
+						}
+						if(gipuzkoaData.upyd>=maximValue && gipuzkoaData.upyd!=0){
+							maximName="upyd";
+							maximValue=gipuzkoaData.upyd;
+						}
+						if(gipuzkoaData.ciudadanos>=maximValue && gipuzkoaData.ciudadanos!=0){
+							maximName="ciudadanos";
+							maximValue=gipuzkoaData.ciudadanos;
+						}
+						if(gipuzkoaData.irabazi>=maximValue && gipuzkoaData.irabazi!=0){
+							maximName="irabazi";
+							maximValue=gipuzkoaData.irabazi;
+						}
+						if(gipuzkoaData.plaz>=maximValue && gipuzkoaData.plaz!=0){
+							maximName="plaz";
+							maximValue=gipuzkoaData.plaz;
+						}
+						if(gipuzkoaData.pacma>=maximValue && gipuzkoaData.pacma!=0){
+							maximName="pacma";
+							maximValue=gipuzkoaData.pacma;
+						}
+					}else if(province.indexOf("Bizkaia")!=-1){
+							if(bizkaiaData.ehbildu>=maximValue && bizkaiaData.ehbildu!=0){
+								maximName="ehbildu";
+								maximValue=bizkaiaData.ehbildu;
+							}
+							if(bizkaiaData.pnv>=maximValue && bizkaiaData.pnv!=0){
+								maximName="pnv";
+								maximValue=bizkaiaData.pnv;
+							}
+							if(bizkaiaData.pp>=maximValue && bizkaiaData.pp!=0){
+								maximName="pp";
+								maximValue=bizkaiaData.pp;
+							}
+							if(bizkaiaData.pse>=maximValue && bizkaiaData.pse!=0){
+								maximName="pse";
+								maximValue=bizkaiaData.pse;
+							}
+							if(bizkaiaData.podemos>=maximValue && bizkaiaData.podemos!=0){
+								maximName="podemos";
+								maximValue=bizkaiaData.podemos;
+							}
+							if(bizkaiaData.upyd>=maximValue && bizkaiaData.upyd!=0){
+								maximName="upyd";
+								maximValue=bizkaiaData.upyd;
+							}
+							if(bizkaiaData.ciudadanos>=maximValue && bizkaiaData.ciudadanos!=0){
+								maximName="ciudadanos";
+								maximValue=bizkaiaData.ciudadanos;
+							}
+							if(bizkaiaData.irabazi>=maximValue && bizkaiaData.irabazi!=0){
+								maximName="irabazi";
+								maximValue=bizkaiaData.irabazi;
+							}
+							if(bizkaiaData.ikune>=maximValue && bizkaiaData.ikune!=0){
+								maximName="ikune";
+								maximValue=bizkaiaData.ikune;
+							}
+							if(bizkaiaData.pacma>=maximValue && bizkaiaData.pacma!=0){
+								maximName="pacma";
+								maximValue=bizkaiaData.pacma;
+							}
+							if(bizkaiaData.vox>=maximValue && bizkaiaData.vox!=0){
+								maximName="vox";
+								maximValue=bizkaiaData.vox;
+							}
+							if(bizkaiaData.udalberri>=maximValue && bizkaiaData.udalberri!=0){
+								maximName="udalberri";
+								maximValue=bizkaiaData.udalberri;
+							}
+							if(bizkaiaData.pcpe>=maximValue && bizkaiaData.pcpe!=0){
+								maximName="pcpe";
+								maximValue=bizkaiaData.pcpe;
+							}
+							if(bizkaiaData.partidoHumanista>maximValue && bizkaiaData.partidoHumanista!=0){
+								maximName="partidoHumanista";
+								maximValue=bizkaiaData.partidoHumanista;
+							}
+						}else if(province.indexOf("Araba")!=-1){
+								if(arabaData.ehbildu>=maximValue && arabaData.ehbildu!=0){
+									maximName="ehbildu";
+									maximValue=arabaData.ehbildu;
+								}
+								if(arabaData.pnv>=maximValue && arabaData.pnv!=0){
+									maximName="pnv";
+									maximValue=arabaData.pnv;
+								}
+								if(arabaData.pp>=maximValue && arabaData.pp!=0){
+									maximName="pp";
+									maximValue=arabaData.pp;
+								}
+								if(arabaData.pse>=maximValue && arabaData.pse!=0){
+									maximName="pse";
+									maximValue=arabaData.pse;
+								}
+								if(arabaData.podemos>=maximValue && arabaData.podemos!=0){
+									maximName="podemos";
+									maximValue=arabaData.podemos;
+								}
+								if(arabaData.upyd>=maximValue && arabaData.upyd!=0){
+									maximName="upyd";
+									maximValue=arabaData.upyd;
+								}
+								if(arabaData.ciudadanos>=maximValue && arabaData.ciudadanos!=0){
+									maximName="ciudadanos";
+									maximValue=arabaData.ciudadanos;
+								}
+								if(arabaData.irabazi>=maximValue && arabaData.irabazi!=0){
+									maximName="irabazi";
+									maximValue=arabaData.irabazi;
+								}
+								if(arabaData.ikune>=maximValue && arabaData.ikune!=0){
+									maximName="ikune";
+									maximValue=arabaData.ikune;
+								}
+								if(arabaData.ongiEtorri>=maximValue && arabaData.ongiEtorri!=0){
+									maximName="ongiEtorri";
+									maximValue=arabaData.ongiEtorri;
+								}
+								if(arabaData.vox>=maximValue && arabaData.vox!=0){
+									maximName="vox";
+									maximValue=arabaData.vox;
+								}
+								if(arabaData.escanosBlancos>=maximValue && arabaData.escanosBlancos!=0){
+									maximName="escanosBlancos";
+									maximValue=arabaData.escanosBlancos;
+								}
+								if(arabaData.gastoria>=maximValue && arabaData.gastoria!=0){
+									maximName="gastoria";
+									maximValue=arabaData.gastoria;
+								}
+								if(arabaData.sumando>=maximValue && arabaData.sumando!=0){
+									maximName="sumando";
+									maximValue=arabaData.sumando;
+								}
+								if(arabaData.recortesCero>=maximValue && arabaData.recortesCero!=0){
+									maximName="recortesCero";
+									maximValue=arabaData.recortesCero;
+								}
+							}else if(province.indexOf("Nafarroa")!=-1){
+									if(nafarroaData.ehbildu>=maximValue && nafarroaData.ehbildu!=0){
+										maximName="ehbildu";
+										maximValue=nafarroaData.ehbildu;
+									}
+									if(nafarroaData.gbai>=maximValue && nafarroaData.gbai!=0){
+										maximName="gbai";
+										maximValue=nafarroaData.gbai;
+									}
+									if(nafarroaData.pp>=maximValue && nafarroaData.pp!=0){
+										maximName="pp";
+										maximValue=nafarroaData.pp;
+									}
+									if(nafarroaData.pse>=maximValue && nafarroaData.pse!=0){
+										maximName="pse";
+										maximValue=nafarroaData.pse;
+									}
+									if(nafarroaData.podemos>=maximValue && nafarroaData.podemos!=0){
+										maximName="podemos";
+										maximValue=nafarroaData.podemos;
+									}
+									if(nafarroaData.upyd>=maximValue && nafarroaData.upyd!=0){
+										maximName="upyd";
+										maximValue=nafarroaData.upyd;
+									}
+									if(nafarroaData.ciudadanos>=maximValue && nafarroaData.ciudadanos!=0){
+										maximName="ciudadanos";
+										maximValue=nafarroaData.ciudadanos;
+									}
+									if(nafarroaData.ei>=maximValue && nafarroaData.ei!=0){
+										maximName="ei";
+										maximValue=nafarroaData.ei;
+									}
+									if(nafarroaData.upn>maximValue && nafarroaData.upn!=0){
+										maximName="upn";
+										maximValue=nafarroaData.upn;
+									}
+									if(nafarroaData.libertadNavarra>=maximValue && nafarroaData.libertadNavarra!=0){
+										maximName="libertadNavarra";
+										maximValue=nafarroaData.libertadNavarra;
+									}
+									if(nafarroaData.equo>=maximValue && nafarroaData.equo!=0){
+										maximName="equo";
+										maximValue=nafarroaData.equo;
+									}
+									if(nafarroaData.pacma>=maximValue && nafarroaData.pacma!=0){
+										maximName="pacma";
+										maximValue=nafarroaData.pacma;
+									}
+									if(nafarroaData.sain>=maximValue && nafarroaData.sain!=0){
+										maximName="sain";
+										maximValue=nafarroaData.sain;
+									}
+									if(nafarroaData.rcnNok>=maximValue && nafarroaData.rcnNok!=0){
+										maximName="rcnNok";
+										maximValue=nafarroaData.rcnNok;
+									}
+								} else if(province.indexOf("Hego Euskal Herria")!=-1){
+										if(euskadiData.ehbildu+nafarroaData.ehbildu>=maximValue && euskadiData.ehbildu!=0){
+											maximName="ehbildu";
+											maximValue=euskadiData.ehbildu+nafarroaData.ehbildu;
+										}
+										if(euskadiData.pnv>=maximValue && euskadiData.pnv!=0){
+											maximName="pnv";
+											maximValue=euskadiData.pnv;
+										}
+										if(euskadiData.pp+nafarroaData.pp>=maximValue && euskadiData.pp!=0){
+											maximName="pp";
+											maximValue=euskadiData.pp+nafarroaData.pp;
+										}
+										if(euskadiData.pse+nafarroaData.pse>=maximValue && euskadiData.pse!=0){
+											maximName="pse";
+											maximValue=uskadiData.pse+nafarroaData.pse;
+										}
+										if(euskadiData.podemos+nafarroaData.podemos>=maximValue && euskadiData.podemos!=0){
+											maximName="podemos";
+											maximValue=euskadiData.podemos+nafarroaData.podemos;
+										}
+										if(euskadiData.upyd+nafarroaData.upyd>=maximValue && euskadiData.upyd!=0){
+											maximName="upyd";
+											maximValue=euskadiData.upyd+nafarroaData.upyd;
+										}
+										if(euskadiData.ciudadanos+nafarroaData.ciudadanos>=maximValue && euskadiData.ciudadanos!=0){
+											maximName="ciudadanos";
+											maximValue=euskadiData.ciudadanos+nafarroaData.ciudadanos;
+										}
+										if(euskadiData.irabazi>=maximValue && euskadiData.irabazi!=0){
+											maximName="irabazi";
+											maximValue=euskadiData.irabazi;
+										}
+										if(euskadiData.ikune>=maximValue && euskadiData.ikune!=0){
+											maximName="ikune";
+											maximValue=euskadiData.ikune;
+										}
+										if(euskadiData.ongiEtorri>=maximValue && euskadiData.ongiEtorri!=0){
+											maximName="ongiEtorri";
+											maximValue=euskadiData.ongiEtorri;
+										}
+										if(euskadiData.vox>=maximValue && euskadiData.vox!=0){
+											maximName="vox";
+											maximValue=euskadiData.vox;
+										}
+										if(euskadiData.escanosBlancos>=maximValue && euskadiData.escanosBlancos!=0){
+											maximName="escanosBlancos";
+											maximValue=euskadiData.escanosBlancos;
+										}
+										if(euskadiData.gastoria>=maximValue && euskadiData.gastoria!=0){
+											maximName="gastoria";
+											maximValue=euskadiData.gastoria;
+										}
+										if(euskadiData.sumando>=maximValue && euskadiData.sumando!=0){
+											maximName="sumando";
+											maximValue=euskadiData.sumando;
+										}
+										if(euskadiData.recortesCero>=maximValue && euskadiData.recortesCero!=0){
+											maximName="recortesCero";
+											maximValue=euskadiData.recortesCero;
+										}
+										if(euskadiData.udalberri>=maximValue && euskadiData.udalberri!=0){
+											maximName="udalberri";
+											maximValue=euskadiData.udalberri;
+										}
+										if(euskadiData.pcpe>=maximValue && euskadiData.pcpe!=0){
+											maximName="pcpe";
+											maximValue=euskadiData.pcpe;
+										}
+										if(euskadiData.partidoHumanista>maximValue && euskadiData.partidoHumanista!=0){
+											maximName="partidoHumanista";
+											maximValue=euskadiData.partidoHumanista;
+										}
+										if(nafarroaData.upn>maximValue && nafarroaData.upn!=0){
+											maximName="upn";
+											maximValue=nafarroaData.upn;
+										}
+										if(nafarroaData.libertadNavarra>=maximValue && nafarroaData.libertadNavarra!=0){
+											maximName="libertadNavarra";
+											maximValue=nafarroaData.libertadNavarra;
+										}
+										if(nafarroaData.equo>=maximValue && nafarroaData.equo!=0){
+											maximName="equo";
+											maximValue=nafarroaData.equo;
+										}
+										if(nafarroaData.pacma+euskadiData.pacma>=maximValue && nafarroaData.pacma!=0 && euskadiData.pacma!=0){
+											maximName="pacma";
+											maximValue=nafarroaData.pacma+euskadiData.pacma;
+										}
+										if(nafarroaData.sain>=maximValue && nafarroaData.sain!=0){
+											maximName="sain";
+											maximValue=nafarroaData.sain;
+										}
+										if(nafarroaData.ei>=maximValue && nafarroaData.ei!=0){
+											maximName="ei";
+											maximValue=nafarroaData.ei;
+										}
+										if(nafarroaData.rcnNok>=maximValue && nafarroaData.rcnNok!=0){
+											maximName="rcnNok";
+											maximValue=nafarroaData.rcnNok;
+										}
+										if(nafarroaData.gbai>=maximValue && nafarroaData.gbai!=0){
+											maximName="gbai";
+											maximValue=nafarroaData.gbai;
+										}
+										if(euskadiData.plaz>=maximValue && euskadiData.plaz!=0){
+											maximName="plaz";
+											maximValue=euskadiData.plaz;
+										}
+									}
+									this.$.tweetNum.innerHTML=maximValue+' tweets';
+								return maximName;
+							}
+
+
+
+}
+	});
+		})();
+</script>

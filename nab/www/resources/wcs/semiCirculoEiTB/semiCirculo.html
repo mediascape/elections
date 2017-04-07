@@ -1,0 +1,4356 @@
+<script type="text/javascript" src="../mapaEiTB/resources/js/elecciones/raphael.js"></script>
+   <script type="text/javascript" src="../mapaEiTB/resources/js/elecciones/literales.js"></script>
+   <script type="text/javascript" src="../mapaEiTB/resources/js/elecciones/g.raphael.js"></script>
+   <script type="text/javascript" src="../mapaEiTB/resources/js/elecciones/paths.municipios.js"></script>
+
+
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+
+
+<dom-module id="x-semicirculo" >
+<template>
+<link href="/resources/wcs/mapaEiTB/resources/css/externos-1460538345.css" media="all" type="text/css" rel="stylesheet"/>
+<link href="/resources/wcs/mapaEiTB/resources/css/elecciones-1460545991.css" media="all" type="text/css" rel="stylesheet"/>
+<link href="/resources/wcs/mapaEiTB/resources/css/elecciones_sub-1460545991.css" media="all" type="text/css" rel="stylesheet"/>
+
+
+<style >
+#containerGeneral {
+	background-color: #0A2533;
+	padding: 5px;
+	height:100%;
+	overflow:hidden;
+}
+#mayoriaDiv{
+	height: 50px;
+}
+@media(min-width: 1028px){
+	#imgSemi{
+		width:100%;
+		height:80%;
+	}
+	#contenido{
+		top:10%;
+		position: relative;
+		background-color:#173F56;
+		width:100%;
+	}
+	#mayoriaDiv{
+		position: absolute;
+		top: 40%;
+		color:#748c99;
+		display: block;
+		height: 50px;
+	}
+	#resumenDatos{
+		color:#748c99;
+		position: absolute;
+		top: 30;
+		left:35%;
+		display:block;
+	}
+	.wgi_generales_resumen_grafico_container{
+		position:absolute;
+		top:0;
+	}
+	#tablaResultados{
+		column-count:1;
+		width:200px;
+		
+	}
+	#tableContainer{
+		left:10%;
+		position: relative;
+		display:table;
+		top:30;
+	}
+	li{
+		font-size:14px;
+	}
+	.wgi_escrutado{
+		font-size:16px;
+	}
+	.wgi_participacion{
+		margin-top:0px;
+	}
+	td{
+		font-size:15px;
+	}
+	#titulo{
+		font-size:large;
+		left: 10%;
+		position:relative;
+		color:#748c99;
+		padding:0;
+	}
+	#titleContainerError{
+		font-size:large;
+	}
+	#graficoContainer{
+		left:40%;
+		position:relative;
+		top:130;
+
+	}
+}
+@media(max-width: 1027px) and (min-width: 1000px){
+	#imgSemi{
+		width:80%;
+		height:60%;
+	}
+	#contenido{
+		top:10%;
+		position: relative;
+		background-color:#173F56;
+		width:100%;
+	}
+	#mayoriaDiv{
+		position: absolute;
+		top: 40%;
+		color:#748c99;
+		display: block;
+		height: 50px;
+	}
+	#resumenDatos{
+		color:#748c99;
+		position: absolute;
+		top: 30;
+		left:40%;
+		display:block;
+	}
+	.wgi_generales_resumen_grafico_container{
+		position:absolute;
+		top:0;
+	}
+	#tablaResultados{
+		column-count:1;
+		width:200px;
+		
+	}
+	li{
+		font-size:14px;
+	}
+	.wgi_escrutado{
+		font-size:16px;
+	}
+	.wgi_participacion{
+		margin-top:0px;
+	}
+	#tableContainer{
+		left:10%;
+		position: relative;
+		display:table;
+		top:30;
+	}
+	td{
+		font-size:15px;
+	}
+	#titulo{
+		font-size:large;
+		left: 10%;
+		position:relative;
+		color:#748c99;
+		padding:0;
+	}
+	#titleContainerError{
+		font-size:large;
+	}
+	#graficoContainer{
+		left:40%;
+		position:relative;
+		top:130;
+
+
+	}
+}
+@media(max-width: 999px) and (min-width: 651px){
+	#imgSemi{
+		width:60%;
+		height:50%;
+	}
+	#contenido{
+		top:10%;
+		position: relative;
+		background-color:#173F56;
+		width:100%;
+	}
+	#mayoriaDiv{
+		position: absolute;
+		top: 40%;
+		color:#748c99;
+		display: block;
+		height: 50px;
+	}
+	#resumenDatos{
+		color:#748c99;
+		position: absolute;
+		top: 20;
+		left:45%;
+		display:block;
+	}
+	.wgi_generales_resumen_grafico_container{
+		position:absolute;
+		top:0;
+	}
+	#tablaResultados{
+		column-count:1;
+		width:200px;	
+	}
+	#tableContainer{
+		left:10%;
+		position: relative;
+		display:table;
+		top:0;
+	}
+	li{
+		font-size:14px;
+	}
+	.wgi_escrutado{
+		font-size:16px;
+	}
+	.wgi_participacion{
+		margin-top:0px;
+	}
+	td{
+		font-size:15px;
+	}
+	#titulo{
+		font-size:large;
+		left: 10%;
+		position:relative;
+		color:#748c99;
+		padding:0;
+	}
+	#titleContainerError{
+		font-size:large;
+	}
+	#graficoContainer{
+		left:40%;
+		position:relative;
+		top:90;
+	}
+}
+@media(max-width: 999px) and (min-width: 800px){
+	#imgSemi{
+		width:70%;
+		height:30%;
+	}
+	#contenido{
+		top:10%;
+		position: relative;
+		background-color:#173F56;
+		width:100%;
+	}
+	#mayoriaDiv{
+		position: absolute;
+		top: 40%;
+		color:#748c99;
+		display: block;
+		height: 50px;
+	}
+	#resumenDatos{
+		color:#748c99;
+		position: absolute;
+		top: 20;
+		left:45%;
+		display:block;
+	}
+	li{
+		font-size:14px;
+	}
+	.wgi_escrutado{
+		font-size:16px;
+	}
+	.wgi_participacion{
+		margin-top:0px;
+	}
+	td{
+		font-size:15px;
+	}
+	#tablaResultados{
+		column-count:1;
+		width:200px;
+	}
+	#tableContainer{
+		left:10%;
+		position: relative;
+		top:30;
+		display:table;
+	}
+	.wgi_generales_resumen_grafico_container{
+		position:absolute;
+		top:0;
+	}
+	#titulo{
+		font-size:large;
+		left: 10%;
+		position:relative;
+		color:#748c99;
+		padding:0;
+	}
+	#titleContainerError{
+		font-size:large;
+	}
+	#graficoContainer{
+		left:40%;
+		top: 80;
+		position: relative;
+	}
+}
+@media(max-width: 999px) and (min-width: 800px) and (min-height: 1000px){
+	#imgSemi{
+		width:80%;
+		height:50%;
+	}
+	#contenido{
+		top:10%;
+		position: relative;
+		background-color:#173F56;
+		width:100%;
+	}
+	#mayoriaDiv{
+		position: absolute;
+		top: 40%;
+		color:#748c99;
+		display: block;
+		height: 50px;
+	}
+	#resumenDatos{
+		color:#748c99;
+		position: absolute;
+		top: 30;
+		left:37%;
+		display:block;
+	}
+	.wgi_generales_resumen_grafico_container{
+		position:absolute;
+		top:0;
+	}
+	#tablaResultados{
+		column-count:1;
+		width:200px;	
+	}
+	#tableContainer{
+		left:10%;
+		position: relative;
+		display:table;
+		top:20;
+	}
+	li{
+		font-size:14px;
+	}
+	.wgi_escrutado{
+		font-size:16px;
+	}
+	.wgi_participacion{
+		margin-top:0px;
+	}
+	td{
+		font-size:15px;
+	}
+	#titulo{
+		font-size:large;
+		left: 10%;
+		position:relative;
+		color:#748c99;
+		padding:0;
+	}
+	#titleContainerError{
+		font-size:large;
+	}
+	#graficoContainer{
+		left:40%;
+		top: 110;
+		position: relative;
+	}
+}
+@media(max-width: 999px) and (min-width: 800px) and (max-height:549px){
+	#imgSemi{
+		width:100%;
+		height:70%;
+	}
+	#contenido{
+		top:10%;
+		position: relative;
+		background-color:#173F56;
+		width:100%;
+	}
+	#mayoriaDiv{
+		position: absolute;
+		top: 43%;
+		color:#748c99;
+		display: block;
+		height: 50px;
+	}
+	#resumenDatos{
+		color:#748c99;
+		position: absolute;
+		top: 0%;
+		left:45%;
+		display:block;
+	}
+	.wgi_generales_resumen_grafico_container{
+		position:absolute;
+		top:0;
+	}
+	#tablaResultados{
+		column-count:1;
+		width:200px;
+	}
+	#tableContainer{
+		left:10%;
+		position: relative;
+		display:table;
+		top:0;
+	}
+	li{
+		font-size:14px;
+	}
+	.wgi_escrutado{
+		font-size:16px;
+	}
+	.wgi_participacion{
+		margin-top:0px;
+	}
+	td{
+		font-size:15px;
+	}
+	#titulo{
+		font-size:large;
+		left: 10%;
+		position:relative;
+		color:#748c99;
+		padding:0;
+	}
+	#titleContainerError{
+		font-size:large;
+	}
+	#graficoContainer{
+		left:40%;
+		top: 60;
+		position: relative;
+	}
+}
+@media(max-width: 799px) and (min-width: 651px) and (min-height: 550px){
+	#imgSemi{
+		width:60%;
+		height:60%;
+	}
+	#contenido{
+		top:10%;
+		position: relative;
+		background-color:#173F56;
+		width:100%;
+	}
+	#mayoriaDiv{
+		position: absolute;
+		top: 43%;
+		color:#748c99;
+		display: block;
+		height: 50px;
+	}
+	.wgi_generales_resumen_grafico_container{
+		position:absolute;
+		top:0;
+	}
+	#resumenDatos{
+		color:#748c99;
+		position: absolute;
+		top: 20;
+		left:45%;
+		display:block;
+	}
+	#tablaResultados{
+		column-count:1;
+		width:200px;
+	}
+	#tableContainer{
+		left:10%;
+		position: relative;
+		display:table;
+		top:20;
+	}
+	li{
+		font-size:14px;
+	}
+	.wgi_escrutado{
+		font-size:16px;
+	}
+	.wgi_participacion{
+		margin-top:0px;
+	}
+	td{
+		font-size:15px;
+	}
+	#titulo{
+		font-size:large;
+		left: 10%;
+		position:relative;
+		color:#748c99;
+		padding:0;
+	}
+	#titleContainerError{
+		font-size:large;
+	}
+	#graficoContainer{
+		left:40%;
+		top: 20;
+		position: relative;
+	}
+}
+@media(max-width: 650px) and (min-width: 600px) and (max-height:499px) and (min-height: 325px){
+	#imgSemi{
+		width:60%;
+		height:50%;
+	}
+	#contenido{
+		top:10%;
+		position: relative;
+		background-color:#173F56;
+		width:100%;
+	}
+	#mayoriaDiv{
+		position: absolute;
+		top: 43%;
+		color:#748c99;
+		display: block;
+		height: 50px;
+	}
+	#resumenDatos{
+		color:#748c99;
+		position: absolute;
+		top: 20;
+		left:10%;
+		display:block;
+	}
+	.wgi_generales_resumen_grafico_container{
+		position:absolute;
+		top:0;
+	}
+	#tablaResultados{
+		column-count:1;
+		width:200px;
+	}
+	#tableContainer{
+		left:10%;
+		position: relative;
+		display:table;
+		top:70;
+	}
+	li{
+		font-size:14px;
+	}
+	.wgi_escrutado{
+		font-size:16px;
+	}
+	.wgi_participacion{
+		margin-top:0px;
+	}
+	td{
+		font-size:15px;
+	}
+	#titulo{
+		font-size:medium;
+		left: 10%;
+		position:relative;
+		color:#748c99;
+		padding:0;
+	}
+	#titleContainerError{
+		font-size:medium;
+	}
+	#graficoContainer{
+		position: relative;
+		left:40%;
+		top: 75;
+	}
+}
+@media(max-width: 650px) and (min-width: 600px) and (min-height: 200px) and (max-height: 324px){
+	#imgSemi{
+		width:60%;
+		height:100%;
+	}
+	#contenido{
+		top:0%;
+		position: relative;
+		background-color:#173F56;
+		width:100%;
+		height: 100%;
+	}
+	#mayoriaDiv{
+		position: absolute;
+		top: 43%;
+		color:#748c99;
+		display: none;
+		height: 50px;
+	}
+	#resumenDatos{
+		color:#748c99;
+		position: absolute;
+		top: 5%;
+		left:40%;
+		display:block;
+	}
+	.wgi_generales_resumen_grafico_container{
+		position:absolute;
+		top:0;
+	}
+	#tablaResultados{
+		column-count:1;
+		width:200px;
+		
+	}
+	#tableContainer{
+		left:2%;
+		top:25px;
+		position: relative;
+		display:table;
+	}
+	li{
+		font-size:14px;
+	}
+	.wgi_escrutado{
+		font-size:16px;
+	}
+	.wgi_participacion{
+		margin-top:0px;
+	}
+	td{
+		font-size:15px;
+	}
+	#titulo{
+		font-size:small;
+		left: 2%;
+		top:5%;
+		position:absolute;
+		color:#748c99;
+		padding:0;
+	}
+	#titleContainerError{
+		font-size:small;
+	}
+	#graficoContainer{
+		position: relative;
+		left:40%;
+		top: 80;
+	}
+}
+@media(max-width: 650px) and (min-width: 600px) and (max-height: 159px) {
+	#imgSemi{
+		width:100%;
+		height:200%;
+	}
+	#contenido{
+		top:0%;
+		position: relative;
+		background-color:#173F56;
+		width:100%;
+		height: 100%;
+	}
+	#mayoriaDiv{
+		position: absolute;
+		top: 42%;
+		color:#748c99;
+		display: none;
+		height: 50px;
+	}
+	#resumenDatos{
+		color:#748c99;
+		position: absolute;
+		top: 50%;
+		left:40%;
+		display:none;
+	}
+	.wgi_generales_resumen_grafico_container{
+		position:absolute;
+		top:0;
+	}
+	#tablaResultados{
+		column-count:1;
+		width:200px;
+
+		
+	}
+	#tableContainer{
+		left:10%;
+		top:20%;
+		position: absolute;
+		display: table;
+	}
+	li{
+		font-size:14px;
+	}
+	.wgi_escrutado{
+		font-size:16px;
+	}
+	.wgi_participacion{
+		margin-top:0px;
+	}
+	td{
+		font-size:12px;
+	}
+	#titulo{
+		font-size:small;
+		left: 2%;
+		top:5%;
+		position:absolute;
+		color:#748c99;
+		padding:0;
+	}
+	#titleContainerError{
+		font-size:small;
+	}
+	#graficoContainer{
+		position: relative;
+		left:40%;
+		top:10;
+	}
+}
+@media(max-width: 650px) and (min-width: 600px) and (max-height: 199px) and (min-height: 160px){
+	#imgSemi{
+		width:100%;
+		height:150%;
+	}
+	#contenido{
+		top:0%;
+		position: relative;
+		background-color:#173F56;
+		width:100%;
+		height: 100%;
+	}
+	#mayoriaDiv{
+		position: absolute;
+		top: 43%;
+		color:#748c99;
+		display: none;
+		height: 50px;
+	}
+	#resumenDatos{
+		color:#748c99;
+		position: absolute;
+		top: 50%;
+		left:40%;
+		display:none;
+	}
+	.wgi_generales_resumen_grafico_container{
+		position:absolute;
+		top:0;
+	}
+	#tablaResultados{
+
+		column-count:1;
+		width:200px;
+		
+	}
+	#tableContainer{
+		left:10%;
+		top:20%;
+		position: absolute;
+		display: table;
+	}
+	li{
+		font-size:14px;
+	}
+	.wgi_escrutado{
+		font-size:16px;
+	}
+	.wgi_participacion{
+		margin-top:0px;
+	}
+	td{
+		font-size:12px;
+	}
+	#titulo{
+		font-size:small;
+		left: 2%;
+		top:5%;
+		position:absolute;
+		color:#748c99;
+		padding:0;
+	}
+	#titleContainerError{
+		font-size:small;
+	}
+	#graficoContainer{
+		position: relative;
+		left:40%;
+		top:20;
+	}
+}
+@media(max-width: 650px) and (min-width: 600px) and (min-height: 500px) and (max-height:799px){
+	#imgSemi{
+		width:60%;
+		height:60%;
+	}
+	#contenido{
+		top:10%;
+		position: relative;
+		background-color:#173F56;
+		width:100%;
+	}
+	#mayoriaDiv{
+		position: absolute;
+		top: 43%;
+		color:#748c99;
+		display: block;
+		height: 50px;
+	}
+	#resumenDatos{
+		color:#748c99;
+		position: absolute;
+		top: 20;
+		left:10%;
+		display:block;
+	}
+	.wgi_generales_resumen_grafico_container{
+		position:absolute;
+		top:0;
+	}
+	#tablaResultados{
+		column-count:1;
+		width:200px;
+		
+	}
+	#tableContainer{
+		left:10%;
+		position: relative;
+		display:table;
+		top:70;
+	}
+	li{
+		font-size:14px;
+	}
+	.wgi_escrutado{
+		font-size:16px;
+	}
+	.wgi_participacion{
+		margin-top:0px;
+	}
+	td{
+		font-size:15px;
+	}
+	#titulo{
+		font-size:medium;
+		left: 10%;
+		position:relative;
+		color:#748c99;
+		padding:0;
+	}
+	#titleContainerError{
+		font-size:medium;
+	}
+	#graficoContainer{
+		left:50%;
+		top: 30;
+		position: relative;
+	}
+}
+@media(max-width: 650px) and (min-width: 600px) and (min-height: 800px){
+	#imgSemi{
+		width:60%;
+		height:30%;
+	}
+	#contenido{
+		top:10%;
+		position: relative;
+		background-color:#173F56;
+		width:100%;
+	}
+	#mayoriaDiv{
+		position: absolute;
+		top: 43%;
+		color:#748c99;
+		display: block;
+		height: 50px;
+	}
+	#resumenDatos{
+		color:#748c99;
+		position: absolute;
+		top: 20;
+		left:45%;
+		display:block;
+	}
+	.wgi_generales_resumen_grafico_container{
+		position:absolute;
+		top:0;
+	}
+	#tablaResultados{
+		column-count:1;
+		width:200px;
+		
+	}
+	#tableContainer{
+		left:10%;
+		position: relative;
+		display:table;
+		top:20;
+	}
+	li{
+		font-size:14px;
+	}
+	.wgi_escrutado{
+		font-size:16px;
+	}
+	.wgi_participacion{
+		margin-top:0px;
+	}
+	td{
+		font-size:15px;
+	}
+	#titulo{
+		font-size:medium;
+		left: 10%;
+		position:relative;
+		color:#748c99;
+		padding:0;
+	}
+	#titleContainerError{
+		font-size:medium;
+	}
+	#graficoContainer{
+		left:40%;
+		top: 100;
+		position: relative;
+	}
+}
+@media(max-width: 599px) and (min-width: 425px) and (max-height: 324px) {
+	#imgSemi{
+		width:60%;
+		height:50%;
+	}
+	#contenido{
+		top:10%;
+		position: relative;
+		background-color:#173F56;
+		width:100%;
+	}
+	#mayoriaDiv{
+		position: absolute;
+		top: 43%;
+		color:#748c99;
+		display: block;
+		height: 50px;
+	}
+	#resumenDatos{
+		color:#748c99;
+		position: absolute;
+		top: 80%;
+		left:10%;
+		display:block;
+	}
+	#tablaResultados{
+		column-count:1;
+		width:200px;
+		
+	}
+	#tableContainer{
+		left:10%;
+		position: relative;
+		display:none;
+	}
+	li{
+		font-size:14px;
+	}
+	.wgi_escrutado{
+		font-size:16px;
+	}
+	.wgi_participacion{
+		margin-top:0px;
+	}
+	td{
+		font-size:12px;
+	}
+	#titulo{
+		font-size:small;
+		left: 10%;
+		position:relative;
+		color:#748c99;
+		padding:0;
+	}
+	#titleContainerError{
+		font-size:small;
+	}
+	#graficoContainer{
+		left:35%;
+		position: absolute;
+	}
+}
+@media(max-width: 599px) and (min-width: 425px) and (max-height: 499px) and (min-height: 325px){
+	#imgSemi{
+		width:60%;
+		height:50%;
+	}
+	#contenido{
+		top:10%;
+		position: relative;
+		background-color:#173F56;
+		width:100%;
+	}
+	#mayoriaDiv{
+		position: absolute;
+		top: 43%;
+		color:#748c99;
+		display: block;
+		height: 50px;
+	}
+	#resumenDatos{
+		color:#748c99;
+		position: absolute;
+		top: 15;
+		left:5%;
+		display:block;
+	}
+	#tablaResultados{
+		column-count:1;
+    	-moz-column-count:1;
+    	-webkit-column-count:1;
+		width:200px;
+		
+		
+	}
+	#tableContainer{
+		left:3%;
+		position: relative;
+		display:table;
+		top:80;
+	}
+	li{
+		font-size:14px;
+	}
+	.wgi_escrutado{
+		font-size:16px;
+	}
+	.wgi_participacion{
+		margin-top:0px;
+	}
+	td{
+		font-size:12px;
+	}
+	.wgi_generales_resumen_grafico_container{
+		position:absolute;
+		top:0;
+	}
+	#titulo{
+		font-size:small;
+		left: 5%;
+		position:relative;
+		color:#748c99;
+		padding:0;
+	}
+	#titleContainerError{
+		font-size:small;
+	}
+	#graficoContainer{
+		left:58%;
+		position: relative;
+		top:80;
+	}
+}
+@media(max-width: 599px) and (min-width: 425px) and (min-height: 200px) and (max-height: 324px){
+	#imgSemi{
+		width:60%;
+		height:100%;
+	}
+	#contenido{
+		top:0%;
+		position: relative;
+		background-color:#173F56;
+		width:100%;
+		height: 100%;
+	}
+	#mayoriaDiv{
+		position: absolute;
+		top: 43%;
+		color:#748c99;
+		display: none;
+		height: 50px;
+	}
+	#resumenDatos{
+		color:#748c99;
+		position: absolute;
+		top: 10%;
+		left:3%;
+		display:block;
+	}
+	.wgi_generales_resumen_grafico_container{
+		position:absolute;
+		top:0;
+	}
+	#tablaResultados{
+		column-count:1;
+		width:200px;
+		
+	}
+	#tableContainer{
+		left:3%;
+		top:90;
+		position: absolute;
+		display:table;
+	}
+	li{
+		font-size:14px;
+	}
+	.wgi_escrutado{
+		font-size:16px;
+	}
+	.wgi_participacion{
+		margin-top:0px;
+	}
+	td{
+		font-size:12px;
+	}
+	#titulo{
+		font-size:small;
+		left: 2%;
+		top:5%;
+		position:absolute;
+		color:#748c99;
+		padding:0;
+	}
+	#titleContainerError{
+		font-size:small;
+	}
+	#graficoContainer{
+		position: relative;
+		left:55%;
+		top: 70;
+	}
+}
+@media(max-width: 599px) and (min-width: 425px) and (max-height: 159px) and (min-height: 120px) {
+	#imgSemi{
+		width:50%;
+		height:180%;
+	}
+	#contenido{
+		top:0%;
+		position: relative;
+		background-color:#173F56;
+		width:100%;
+		height: 100%;
+	}
+	#mayoriaDiv{
+		position: absolute;
+		top: 43%;
+		color:#748c99;
+		display: none;
+		height: 50px;
+	}
+	#resumenDatos{
+		color:#748c99;
+		position: absolute;
+		top: 50%;
+		left:40%;
+		display:none;
+	}
+	.wgi_generales_resumen_grafico_container{
+		position:absolute;
+		top:0;
+	}
+	#tablaResultados{
+		column-count:1;
+		width:200px;
+		
+	}
+	#tableContainer{
+		left:2%;
+		top:20;
+		position: relative;
+		display: table;
+	}
+	li{
+		font-size:14px;
+	}
+	.wgi_escrutado{
+		font-size:16px;
+	}
+	.wgi_participacion{
+		margin-top:0px;
+	}
+	td{
+		font-size:12px;
+	}
+	#titulo{
+		font-size:small;
+		left: 2%;
+		top:5%;
+		position:absolute;
+		color:#748c99;
+		padding:0;
+	}
+	#titleContainerError{
+		font-size:small;
+	}
+	#graficoContainer{
+		position: relative;
+		left:52%;
+		top:10;
+	}
+}
+@media(max-width: 599px) and (min-width: 425px) and (max-height: 119px) {
+	#imgSemi{
+		width:50%;
+		height:180%;
+	}
+	#contenido{
+		top:0%;
+		position: relative;
+		background-color:#173F56;
+		width:100%;
+		height: 100%;
+	}
+	#mayoriaDiv{
+		position: absolute;
+		top: 43%;
+		color:#748c99;
+		display: none;
+		height: 50px;
+	}
+	#resumenDatos{
+		color:#748c99;
+		position: absolute;
+		top: 50%;
+		left:40%;
+		display:none;
+	}
+	.wgi_generales_resumen_grafico_container{
+		position:absolute;
+		top:0;
+	}
+	#tablaResultados{
+		column-count:1;
+		width:200px;
+		
+	}
+	li{
+		font-size:14px;
+	}
+	.wgi_escrutado{
+		font-size:16px;
+	}
+	.wgi_participacion{
+		margin-top:0px;
+	}
+	td{
+		font-size:10px;
+	}
+	#tableContainer{
+		left:2%;
+		top:15;
+		position: relative;
+		display: table;
+	}
+	#titulo{
+		font-size:small;
+		left: 2%;
+		top:5%;
+		position:absolute;
+		color:#748c99;
+		padding:0;
+	}
+	#titleContainerError{
+		font-size:small;
+	}
+	#graficoContainer{
+		position: relative;
+		left:52%;
+		top:10;
+	}
+}
+@media(max-width: 599px) and (min-width: 425px) and (max-height: 199px) and (min-height: 160px){
+	#imgSemi{
+		width:100%;
+		height:150%;
+	}
+	#contenido{
+		top:0%;
+		position: relative;
+		background-color:#173F56;
+		width:100%;
+		height: 100%;
+	}
+	#mayoriaDiv{
+		position: absolute;
+		top: 43%;
+		color:#748c99;
+		display: none;
+		height: 50px;
+	}
+	#resumenDatos{
+		color:#748c99;
+		position: absolute;
+		top: 50%;
+		left:40%;
+		display:none;
+	}
+	.wgi_generales_resumen_grafico_container{
+		position:absolute;
+		top:0;
+	}
+	#tablaResultados{
+		column-count:1;
+		width:200px;	
+	}
+	#tableContainer{
+		left:10%;
+		top:10%;
+		position: absolute;
+		display: none;
+	}
+	li{
+		font-size:14px;
+	}
+	.wgi_escrutado{
+		font-size:16px;
+	}
+	.wgi_participacion{
+		margin-top:0px;
+	}
+	td{
+		font-size:12px;
+	}
+	#titulo{
+		font-size:small;
+		left: 2%;
+		top:5%;
+		position:absolute;
+		color:#748c99;
+		padding:0;
+	}
+	#titleContainerError{
+		font-size:small;
+	}
+	#graficoContainer{
+		position: relative;
+		left:25%;
+		top:20;
+	}
+}
+@media(max-width: 459px) and (min-width: 425px) and (min-height: 500px){
+	#imgSemi{
+		width:60%;
+		height:30%;
+	}
+	#contenido{
+		top:10%;
+		position: relative;
+		background-color:#173F56;
+		width:100%;
+	}
+	#mayoriaDiv{
+		position: absolute;
+		top: 42%;
+		color:#748c99;
+		display: block;
+		height: 50px;
+	}
+	#resumenDatos{
+		color:#748c99;
+		position: absolute;
+		top: 10;
+		left:45%;
+		display:block;
+	}
+	#tablaResultados{
+		column-count:1;
+		width:200px;
+		
+	}
+	#tableContainer{
+		left:10%;
+		position: relative;
+	}
+	li{
+		font-size:14px;
+	}
+	.wgi_escrutado{
+		font-size:16px;
+	}
+	.wgi_participacion{
+		margin-top:0px;
+	}
+	td{
+		font-size:15px;
+	}
+	#titulo{
+		font-size:medium;
+		left: 10%;
+		position:relative;
+		color:#748c99;
+		padding:0;
+	}
+	#titleContainerError{
+		font-size:medium;
+	}
+	#graficoContainer{
+		left:35%;
+		top: 30%;
+		position: absolute;
+	}
+}
+@media(max-width: 599px) and (min-width: 460px) and (min-height: 500px){
+	#imgSemi{
+		width:60%;
+		height:30%;
+	}
+	#contenido{
+		top:10%;
+		position: relative;
+		background-color:#173F56;
+		width:100%;
+	}
+	#mayoriaDiv{
+		position: absolute;
+		top: 42%;
+		color:#748c99;
+		display: block;
+		height: 50px;
+	}
+	#resumenDatos{
+		color:#748c99;
+		position: absolute;
+		top: 0%;
+		left:45%;
+		display:block;
+	}
+	#tablaResultados{
+		column-count:1;
+		width:200px;
+		
+	}
+	#tableContainer{
+		left:10%;
+		position: relative;
+	}
+	li{
+		font-size:14px;
+	}
+	.wgi_escrutado{
+		font-size:16px;
+	}
+	.wgi_participacion{
+		margin-top:0px;
+	}
+	td{
+		font-size:15px;
+	}
+	#titulo{
+		font-size:medium;
+		left: 10%;
+		position:relative;
+		color:#748c99;
+		padding:0;
+	}
+	#titleContainerError{
+		font-size:medium;
+	}
+	#graficoContainer{
+		left:35%;
+		top: 30%;
+		position: absolute;
+	}
+}
+@media(max-width: 380px) and (min-width:330px) and (min-height: 200px) and (max-height: 250px){
+	#imgSemi{
+		width:60%;
+		height:100%;
+	}
+	#contenido{
+		top:0%;
+		position: relative;
+		background-color:#173F56;
+		width:100%;
+		height: 100%;
+	}
+	#mayoriaDiv{
+		position: absolute;
+		top: 42%;
+		color:#748c99;
+		display: none;
+		height: 50px;
+	}
+	#resumenDatos{
+		color:#748c99;
+		position: absolute;
+		top: 20;
+		left:2%;
+		display:block;
+	}
+	.wgi_generales_resumen_grafico_container{
+		position:absolute;
+		top:0;
+	}
+	#tablaResultados{
+		column-count:1;
+		width:180px;
+		
+	}
+	#tableContainer{
+		left:2%;
+		top:80;
+		position: absolute;
+		display:table;
+	}
+	li{
+		font-size:14px;
+	}
+	.wgi_escrutado{
+		font-size:16px;
+	}
+	.wgi_participacion{
+		margin-top:0px;
+	}
+	td{
+		font-size:10px;
+	}
+	#titulo{
+		font-size:small;
+		left: 2%;
+		top:5%;
+		position:absolute;
+		color:#748c99;
+		padding:0;
+	}
+	#titleContainerError{
+		font-size:small;
+	}
+	#graficoContainer{
+		position: relative;
+		left:85%;
+		top: 80;
+	}
+}
+@media(max-width: 415px) and (min-width:381px) and (min-height: 200px) and (max-height: 250px){
+	#imgSemi{
+		width:60%;
+		height:100%;
+	}
+	#contenido{
+		top:0%;
+		position: relative;
+		background-color:#173F56;
+		width:100%;
+		height: 100%;
+	}
+	#mayoriaDiv{
+		position: absolute;
+		top: 42%;
+		color:#748c99;
+		display: none;
+		height: 50px;
+	}
+	#resumenDatos{
+		color:#748c99;
+		position: absolute;
+		top: 15;
+		left:2%;
+		display:block;
+	}
+	#tablaResultados{
+		column-count:1;
+		width:200px;
+		
+	}
+	#tableContainer{
+		left:2%;
+		top:80;
+		position: absolute;
+		display:table;
+	}
+	li{
+		font-size:14px;
+	}
+	.wgi_escrutado{
+		font-size:16px;
+	}
+	.wgi_participacion{
+		margin-top:0px;
+	}
+	td{
+		font-size:15px;
+	}
+	.wgi_generales_resumen_grafico_container{
+		position:absolute;
+		top:0;
+	}
+	#titulo{
+		font-size:small;
+		left: 2%;
+		top:5%;
+		position:absolute;
+		color:#748c99;
+		padding:0;
+	}
+	#titleContainerError{
+		font-size:small;
+	}
+	#graficoContainer{
+		position: relative;
+		left:165;
+		top: 40;
+	}
+}
+@media(max-width: 424px) and (min-width:416px) and (min-height: 200px) and (max-height: 250px){
+	#imgSemi{
+		width:60%;
+		height:100%;
+	}
+	#contenido{
+		top:0%;
+		position: relative;
+		background-color:#173F56;
+		width:100%;
+		height: 100%;
+	}
+	#mayoriaDiv{
+		position: absolute;
+		top: 42%;
+		color:#748c99;
+		display: none;
+		height: 50px;
+	}
+	#resumenDatos{
+		color:#748c99;
+		position: absolute;
+		top: 10%;
+		left:2%;
+		display:block;
+	}
+	#tablaResultados{
+		column-count:1;
+		width:200px;
+		
+	}
+	li{
+		font-size:14px;
+	}
+	.wgi_escrutado{
+		font-size:16px;
+	}
+	.wgi_participacion{
+		margin-top:0px;
+	}
+	td{
+		font-size:15px;
+	}
+	#tableContainer{
+		left:2%;
+		top:40%;
+		position: absolute;
+		display:table;
+	}
+	.wgi_generales_resumen_grafico_container{
+		position:absolute;
+		top:0;
+	}
+	#titulo{
+		font-size:small;
+		left: 2%;
+		top:5%;
+		position:absolute;
+		color:#748c99;
+		padding:0;
+	}
+	#titleContainerError{
+		font-size:small;
+	}
+	#graficoContainer{
+		position: relative;
+		left:55%;
+		top: 60;
+	}
+}
+@media(max-width: 415px) and (min-width:330px) and (min-height: 251px) and (max-height: 300px){
+	#imgSemi{
+		width:60%;
+		height:100%;
+	}
+	#contenido{
+		top:0%;
+		position: relative;
+		background-color:#173F56;
+		width:100%;
+		height: 100%;
+	}
+	#mayoriaDiv{
+		position: absolute;
+		top: 42%;
+		color:#748c99;
+		display: none;
+		height: 50px;
+	}
+	#resumenDatos{
+		color:#748c99;
+		position: absolute;
+		top: 30;
+		left:2%;
+		display:block;
+	}
+	.wgi_generales_resumen_grafico_container{
+		position:absolute;
+		top:0;
+	}
+	#tablaResultados{
+		column-count:1;
+		width:180px;
+	}
+	li{
+		font-size:14px;
+	}
+	.wgi_escrutado{
+		font-size:16px;
+	}
+	.wgi_participacion{
+		margin-top:0px;
+	}
+	td{
+		font-size:10px;
+	}
+	#tableContainer{
+		left:2%;
+		top:100;
+		position: absolute;
+		display:table;
+	}
+	#titulo{
+		font-size:small;
+		left: 2%;
+		top:5%;
+		position:absolute;
+		color:#748c99;
+		padding:0;
+	}
+	#titleContainerError{
+		font-size:small;
+	}
+	#graficoContainer{
+		position: relative;
+		left:90%;
+		top: 80;
+	}
+}
+@media(max-width: 424px) and (min-width:416px) and (min-height: 251px) and (max-height: 300px){
+	#imgSemi{
+		width:60%;
+		height:100%;
+	}
+	#contenido{
+		top:0%;
+		position: relative;
+		background-color:#173F56;
+		width:100%;
+		height: 100%;
+	}
+	#mayoriaDiv{
+		position: absolute;
+		top: 42%;
+		color:#748c99;
+		display: none;
+		height: 50px;
+	}
+	#resumenDatos{
+		color:#748c99;
+		position: absolute;
+		top: 20;
+		left:5%;
+		display:block;
+	}
+	.wgi_generales_resumen_grafico_container{
+		position:absolute;
+		top:0;
+	}
+	#tablaResultados{
+		column-count:1;
+		width:200px;
+		
+	}
+	#tableContainer{
+		left:5%;
+		top:100;
+		position: absolute;
+		display:table;
+	}
+	li{
+		font-size:14px;
+	}
+	.wgi_escrutado{
+		font-size:16px;
+	}
+	.wgi_participacion{
+		margin-top:0px;
+	}
+	td{
+		font-size:15px;
+	}
+	#titulo{
+		font-size:small;
+		left: 5%;
+		top:5%;
+		position:absolute;
+		color:#748c99;
+		padding:0;
+	}
+	#titleContainerError{
+		font-size:small;
+	}
+	#graficoContainer{
+		position: relative;
+		left:58%;
+		top: 50;
+	}
+}
+@media(max-width: 424px) and (min-width:330px) and (max-height: 159px) and (min-height: 140px){
+	#imgSemi{
+		width:60%;
+		height:200%;
+	}
+	#contenido{
+		top:0%;
+		position: relative;
+		background-color:#173F56;
+		width:100%;
+		height: 100%;
+	}
+	#mayoriaDiv{
+		position: absolute;
+		top: 42%;
+		color:#748c99;
+		display: none;
+		height: 50px;
+	}
+	#resumenDatos{
+		color:#748c99;
+		position: absolute;
+		top: 10px;
+		left:2%;
+		display:block;
+	}
+	.wgi_generales_resumen_grafico_container{
+		position:absolute;
+		top:0;
+	}
+	#tableContainer{
+		left:5px;
+		top:40%;
+		position: absolute;
+		display: table;
+		
+
+	}
+	#tablaResultados{
+		column-count:1;
+		width:200px;
+
+		
+	}
+	li{
+		font-size:10px;
+	}
+	.wgi_escrutado{
+		font-size:8px;
+	}
+	.wgi_participacion{
+		margin-top:-5px;
+	}
+	td{
+		font-size:12px;
+	}
+	#titulo{
+		font-size:small;
+		left: 2%;
+		top:5%;
+		position:absolute;
+		color:#748c99;
+		padding:0;
+	}
+	#titleContainerError{
+		font-size:small;
+	}
+	#graficoContainer{
+		position:relative;
+		left:55%;
+		top:15;
+	}
+}
+@media(max-width: 424px) and (min-width:330px) and (max-height: 139px) and (min-height: 110px){
+	#imgSemi{
+		width:60%;
+		height:200%;
+	}
+	#contenido{
+		top:0%;
+		position: relative;
+		background-color:#173F56;
+		width:100%;
+		height: 100%;
+	}
+	#mayoriaDiv{
+		position: absolute;
+		top: 42%;
+		color:#748c99;
+		display: none;
+		height: 50px;
+	}
+	#resumenDatos{
+		color:#748c99;
+		position: absolute;
+		top: 10px;
+		left:2%;
+		display:none;
+	}
+	.wgi_generales_resumen_grafico_container{
+		position:absolute;
+		top:0;
+	}
+	#tableContainer{
+		left:5px;
+		top:20%;
+		position: absolute;
+		display: table;
+		
+
+	}
+	#tablaResultados{
+		column-count:1;
+		width:200px;
+
+		
+	}
+	li{
+		font-size:14px;
+	}
+	.wgi_escrutado{
+		font-size:16px;
+	}
+	.wgi_participacion{
+		margin-top:0px;
+	}
+	td{
+		font-size:12px;
+	}
+	#titulo{
+		font-size:small;
+		left: 2%;
+		top:5%;
+		position:absolute;
+		color:#748c99;
+		padding:0;
+	}
+	#titleContainerError{
+		font-size:small;
+	}
+	#graficoContainer{
+		position:relative;
+		left:55%;
+		top:15;
+	}
+}
+@media(max-width: 424px) and (min-width:330px) and (max-height: 109px)  {
+	#imgSemi{
+		width:60%;
+		height:200%;
+	}
+	#contenido{
+		top:0%;
+		position: relative;
+		background-color:#173F56;
+		width:100%;
+		height: 100%;
+	}
+	#mayoriaDiv{
+		position: absolute;
+		top: 42%;
+		color:#748c99;
+		display: none;
+		height: 50px;
+	}
+	#resumenDatos{
+		color:#748c99;
+		position: absolute;
+		top: 50%;
+		left:40%;
+		display:none;
+	}
+	.wgi_generales_resumen_grafico_container{
+		position:absolute;
+		top:0;
+	}
+	#tableContainer{
+		left:5px;
+		top:20%;
+		position: absolute;
+		display: table;
+		
+
+	}
+	#tablaResultados{
+		column-count:1;
+		width:200px;
+
+		
+	}
+	li{
+		font-size:14px;
+	}
+	.wgi_escrutado{
+		font-size:16px;
+	}
+	.wgi_participacion{
+		margin-top:0px;
+	}
+	td{
+		font-size:10px;
+	}
+	#titulo{
+		font-size:small;
+		left: 2%;
+		top:5%;
+		position:absolute;
+		color:#748c99;
+		padding:0;
+	}
+	#titleContainerError{
+		font-size:small;
+	}
+	#graficoContainer{
+		position:relative;
+		left:55%;
+		top:15;
+	}
+}
+@media(max-width: 424px) and (min-width:330px) and (max-height: 199px) and (min-height: 160px){
+	#imgSemi{
+		width:80%;
+		height:120%;
+	}
+	#contenido{
+		top:0%;
+		position: relative;
+		background-color:#173F56;
+		width:100%;
+		height: 100%;
+	}
+	#mayoriaDiv{
+		position: absolute;
+		top: 42%;
+		color:#748c99;
+		display: none;
+		height: 50px;
+	}
+	#resumenDatos{
+		color:#748c99;
+		position: absolute;
+		top: 10px;
+		left:2%;
+		display:block;
+	}
+	.wgi_generales_resumen_grafico_container{
+		position:absolute;
+		top:0;
+	}
+	#tablaResultados{
+		column-count:1;
+		width:200px;
+		
+	}
+	li{
+		font-size:10px;
+	}
+	.wgi_escrutado{
+		font-size:8px;
+	}
+	.wgi_participacion{
+		margin-top:-5px;
+	}
+	td{
+		font-size:12px;
+	}
+	#tableContainer{
+		left:2%;
+		top:40%;
+		position: absolute;
+		display: table;
+	}
+	#titulo{
+		font-size:small;
+		left: 2%;
+		top:5%;
+		position:absolute;
+		color:#748c99;
+		padding:0;
+	}
+	#titleContainerError{
+		font-size:small;
+	}
+	#graficoContainer{
+		position: relative;
+		left:160;
+		top:50;
+	}
+}
+@media(max-width: 424px) and (min-width:330px) and (min-height: 371px) and (max-height:619px){
+	#imgSemi{
+		width:60%;
+		height:35%;
+	}
+	#contenido{
+		top:0%;
+		position: relative;
+		background-color:#173F56;
+		width:100%;
+	}
+	#mayoriaDiv{
+		position: absolute;
+		top: 50%;
+		color:#748c99;
+		display: block;
+		height: 50px;
+	}
+	#resumenDatos{
+		color:#748c99;
+		position: absolute;
+		top: 20;
+		left:2%;
+		display:block;
+	}
+	.wgi_generales_resumen_grafico_container{
+		position:absolute;
+		top:0;
+	}
+	#tablaResultados{
+		column-count:1;
+		width:200px;
+		
+	}
+	#tableContainer{
+		left:2%;
+		top:100;
+		position: absolute;
+		display:table;
+
+	}
+	li{
+		font-size:14px;
+	}
+	.wgi_escrutado{
+		font-size:16px;
+	}
+	.wgi_participacion{
+		margin-top:0px;
+	}
+	td{
+		font-size:12px;
+	}
+	#titulo{
+		font-size:small;
+		left: 10%;
+		top:2%;
+		position:absolute;
+		color:#748c99;
+		padding:0;
+	}
+	#titleContainerError{
+		font-size:small;
+	}
+	#graficoContainer{
+		position: relative;
+		left:172;
+		top:80;
+	}
+}
+@media(max-width: 415px) and (min-width:330px) and (max-height: 370px) and (min-height:301px){
+	#imgSemi{
+		width:60%;
+		height:50%;
+	}
+	#contenido{
+		top:0%;
+		position: relative;
+		background-color:#173F56;
+		width:100%;
+	}
+	#mayoriaDiv{
+		position: absolute;
+		top: 50%;
+		color:#748c99;
+		display: block;
+		height: 50px;
+	}
+	#resumenDatos{
+		color:#748c99;
+		position: absolute;
+		top: 15;
+		left:5%;
+		display:block;
+	}
+	#tablaResultados{
+		column-count:1;
+		width:180px;
+		
+	}
+	#tableContainer{
+		left:5%;
+		top:90;
+		position: absolute;
+		display:table;
+	}
+	li{
+		font-size:14px;
+	}
+	.wgi_escrutado{
+		font-size:16px;
+	}
+	.wgi_participacion{
+		margin-top:0px;
+	}
+	td{
+		font-size:10px;
+	}
+	.wgi_generales_resumen_grafico_container{
+		position:absolute;
+		top:0;
+	}
+	#titulo{
+		font-size:small;
+		left: 5%;
+		top:2%;
+		position:absolute;
+		color:#748c99;
+		padding:0;
+	}
+	#titleContainerError{
+		font-size:small;
+	}
+	#graficoContainer{
+		position: relative;
+		left:165;
+		top:100;
+	}
+}
+@media(max-width: 424px) and (min-width:416px) and (max-height: 370px) and (min-height:301px){
+	#imgSemi{
+		width:60%;
+		height:35%;
+	}
+	#contenido{
+		top:0%;
+		position: relative;
+		background-color:#173F56;
+		width:100%;
+	}
+	#mayoriaDiv{
+		position: absolute;
+		top: 50%;
+		color:#748c99;
+		display: block;
+		height: 50px;
+	}
+	#resumenDatos{
+		color:#748c99;
+		position: absolute;
+		top: 15;
+		left:5%;
+		display:block;
+	}
+	#tablaResultados{
+		column-count:1;
+		width:200px;
+		
+	}
+	#tableContainer{
+		left:5%;
+		top:80;
+		position: absolute;
+		display:table;
+	}
+	li{
+		font-size:14px;
+	}
+	.wgi_escrutado{
+		font-size:16px;
+	}
+	.wgi_participacion{
+		margin-top:0px;
+	}
+	td{
+		font-size:12px;
+	}
+	.wgi_generales_resumen_grafico_container{
+		position:absolute;
+		top:0;
+	}
+	#titulo{
+		font-size:small;
+		left: 5%;
+		top:2%;
+		position:absolute;
+		color:#748c99;
+		padding:0;
+	}
+	#titleContainerError{
+		font-size:small;
+	}
+	#graficoContainer{
+		position: relative;
+		left:55%;
+		top:80;
+	}
+}
+@media(max-width: 415px) and (min-width:330px) and (min-height: 620px){
+	#imgSemi{
+		width:60%;
+		height:20%;
+	}
+	#contenido{
+		top:0%;
+		position: relative;
+		background-color:#173F56;
+		width:100%;
+	}
+	#mayoriaDiv{
+		position: absolute;
+		top: 60%;
+		color:#748c99;
+		display: block;
+		height: 50px;
+	}
+	#resumenDatos{
+		color:#748c99;
+		position: absolute;
+		top: 20;
+		left:2%;
+		display:block;
+	}
+	.wgi_generales_resumen_grafico_container{
+		position:absolute;
+		top:0;
+	}
+	#tablaResultados{
+		column-count:1;
+		width:200px;
+		
+	}
+	#tableContainer{
+		left:2%;
+		top:100;
+		position: absolute;
+		display:table;
+	}
+	li{
+		font-size:14px;
+	}
+	.wgi_escrutado{
+		font-size:16px;
+	}
+	.wgi_participacion{
+		margin-top:0px;
+	}
+	td{
+		font-size:10px;
+	}
+	#titulo{
+		font-size:medium;
+		left: 10%;
+		top:5%;
+		position:absolute;
+		color:#748c99;
+		padding:0;
+	}
+	#titleContainerError{
+		font-size:medium;
+	}
+	#graficoContainer{
+		position: relative;
+		left:93%;
+		top:100;
+	}
+}
+@media(max-width: 424px) and (min-width:416px) and (min-height: 620px){
+	#imgSemi{
+		width:60%;
+		height:20%;
+	}
+	#contenido{
+		top:0%;
+		position: relative;
+		background-color:#173F56;
+		width:100%;
+	}
+	#mayoriaDiv{
+		position: absolute;
+		top: 50%;
+		color:#748c99;
+		display: block;
+		height: 50px;
+	}
+	#resumenDatos{
+		color:#748c99;
+		position: absolute;
+		top: 25;
+		left:5%;
+		display:block;
+	}
+	.wgi_generales_resumen_grafico_container{
+		position:absolute;
+		top:0;
+	}
+	#tablaResultados{
+		column-count:1;
+		width:200px;
+		
+	}
+	#tableContainer{
+		left:5%;
+		top:100;
+		position: absolute;
+		display:table;
+	}
+	li{
+		font-size:14px;
+	}
+	.wgi_escrutado{
+		font-size:16px;
+	}
+	.wgi_participacion{
+		margin-top:0px;
+	}
+	td{
+		font-size:10px;
+	}
+	#titulo{
+		font-size:medium;
+		left: 5%;
+		top:0;
+		position:absolute;
+		color:#748c99;
+		padding:0;
+	}
+	#titleContainerError{
+		font-size:medium;
+	}
+	#graficoContainer{
+		position: relative;
+		left:55%;
+		top:100;
+	}
+}
+@media(max-width: 329px) and (min-height:401px){
+	#imgSemi{
+		width:60%;
+		height:20%;
+	}
+	#contenido{
+		top:0%;
+		position: relative;
+		background-color:#173F56;
+		width:100%;
+	}
+	#mayoriaDiv{
+		position: absolute;
+		top: 40%;
+		color:#748c99;
+		display: block;
+		height: 50px;
+	}
+	#resumenDatos{
+		color:#748c99;
+		position: absolute;
+		top: 30;
+		left:2%;
+		display:block;
+	}
+	.wgi_generales_resumen_grafico_container{
+		position:absolute;
+		top:0;
+	}
+	#tablaResultados{
+		column-count:1;
+		width:180px;
+		
+	}
+	#tableContainer{
+		left:2%;
+		top:100;
+		position: absolute;
+		display:table;
+
+	}
+	li{
+		font-size:14px;
+	}
+	.wgi_escrutado{
+		font-size:16px;
+	}
+	.wgi_participacion{
+		margin-top:0px;
+	}
+	td{
+		font-size:10px;
+	}
+	#titulo{
+		font-size:medium;
+		left: 10%;
+		top:5%;
+		position:absolute;
+		color:#748c99;
+		padding:0;
+	}
+	#titleContainerError{
+		font-size:medium;
+	}
+	#graficoContainer{
+		position: relative;
+		left:95%;
+		top:120;
+	}
+}
+@media(max-width: 329px) and (max-height:400px) and (min-height:200px){
+	#imgSemi{
+		width:60%;
+		height:100%;
+	}
+	#contenido{
+		top:0%;
+		position: relative;
+		background-color:#173F56;
+		width:100%;
+		height: 100%;
+	}
+	#mayoriaDiv{
+		position: absolute;
+		top: 42%;
+		color:#748c99;
+		display: none;
+		height: 50px;
+	}
+	#resumenDatos{
+		color:#748c99;
+		position: absolute;
+		top: 10;
+		left:2%;
+		display:block;
+	}
+	.wgi_generales_resumen_grafico_container{
+		position:absolute;
+		top:0;
+	}
+	#tablaResultados{
+		column-count:1;
+		width:180px;
+		
+	}
+	#tableContainer{
+		left:2%;
+		top:80;
+		position: absolute;
+		display:table;
+	}
+	li{
+		font-size:14px;
+	}
+	.wgi_escrutado{
+		font-size:16px;
+	}
+	.wgi_participacion{
+		margin-top:0px;
+	}
+	td{
+		font-size:10px;
+	}
+	#titulo{
+		font-size:small;
+		left: 2%;
+		top:5%;
+		position:absolute;
+		color:#748c99;
+		padding:0;
+	}
+	#titleContainerError{
+		font-size:small;
+	}
+	#graficoContainer{
+		position: relative;
+		left:95%;
+		top: 80;
+	}
+}
+@media(max-width: 329px) and (max-height:400px) and (max-height:199px){
+	#imgSemi{
+		width:60%;
+		height:100%;
+	}
+	#contenido{
+		top:0%;
+		position: relative;
+		background-color:#173F56;
+		width:100%;
+		height: 100%;
+	}
+	#mayoriaDiv{
+		position: absolute;
+		top: 42%;
+		color:#748c99;
+		display: none;
+		height: 50px;
+	}
+	#resumenDatos{
+		color:#748c99;
+		position: absolute;
+		top: 20%;
+		left:5%;
+		display:none;
+	}
+	#tablaResultados{
+		column-count:1;
+		width:180px;
+	}
+	#tableContainer{
+		left:2%;
+		top:30;
+		position: absolute;
+		display:table;
+	}
+	li{
+		font-size:14px;
+	}
+	.wgi_escrutado{
+		font-size:16px;
+	}
+	.wgi_participacion{
+		margin-top:0px;
+	}
+	td{
+		font-size:10px;
+	}
+	.wgi_generales_resumen_grafico_container{
+		position:absolute;
+		top:0;
+	}
+	#titulo{
+		font-size:small;
+		left: 2%;
+		top:5%;
+		position:absolute;
+		color:#748c99;
+		padding:0;
+	}
+	#titleContainerError{
+		font-size:small;
+	}
+	#graficoContainer{
+		position: relative;
+		left:90%;
+		top: 40;
+	}
+}
+</style>
+
+<iron-ajax id="data" auto url="" handleAs="json" last-response="{{response}}"></iron-ajax>
+
+
+<div id='containerGeneral'>
+	<div id='subContainer' style='background-color:#173F56;height:100%'>
+		<div id='tituloError' class='wgi_title_container' style='width:100%;background:#173F56;color:#748c99'>
+			<h2 class='wgi_title' id='titleContainerError'></h2>
+		</div>
+	<div id='contenido' style='position:relative;'>
+<div id='containerSemiCirculo' class=' wgi_generales_resumen_grafico_tarta' ></div>
+
+<p id='pCargando' style='display:none;color:#748c99;font-size:15px;text-align:center;'></p>
+
+<div class="wgi_datos wgi_resumen_datos" id="resumenDatos" style="color:#748c99;" >
+ <div  class="wgi_escrutado wgi_barra_porcentual"> 
+ 	<ul> 
+ 		<li id="escrText"></li> 
+ 		<li class="percent wgi_escrutado_container" id="escrutadoPerc"> </li> 
+ 	</ul> 
+ </div> 
+ <div class="wgi_participacion wgi_barra_porcentual"> 
+ 	<ul> 
+ 		<li id="actText"></li> 
+ 		<li class="percent wgi_participacion_container" id="actualizacion"> </li> 
+ 	</ul> </div> 
+ </div> 
+</div>
+
+<!--<div id="wgi_tip" style="position:absolute;border:1px solid gray;background-color:#fff;padding:0;margin:0;z-index:10000;max-width:500px;"><div/>-->
+</div>
+</div>
+</div>
+
+
+
+</template>
+</dom-module>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>-->
+ <script>
+Polymer({
+	is:'x-semicirculo',
+  	behaviors:[ComponentQueryBehavior,ComponentStatusBehavior],
+	properties:{
+		lang:{
+	        type:String,
+	        value:'eu'
+      	},
+      	lugar:{
+      		type:String,
+      		observer:'lugarChanged'
+      	},
+      	tipoEleccion:{
+      		type:String,
+      		observer:'tipoEleccionChanged',
+      		value:'A'
+      	},
+      	customCmd:{
+            type:String,
+            value:'',
+            observer: 'customCmdReceived'
+        }
+	},
+	ready: function(){
+		var _this=this;
+		this.listeners=[];
+		this.apiTimer='';
+		//this.resultsData={};
+		//this.partidos={};
+		//this.lugar='cav';
+		this.cod_zona = this.wgi_generales_name2cod(this.lugar);
+		//this.tipoEleccion='C';
+		this.wgi_grafico;
+		this.mun = {},
+		this.codLugar={"zonas":[{"Z":1,"N":"Alava-Araba","O":28,"NE":"Araba","NC":"Alava","C":1984},{"Z":2,"N":"Vizcaya","O":28,"NE":"Bizkaia","NC":"Bizkaia","C":1984},{"Z":3,"N":"Guipuzcoa","O":28,"NE":"Gipuzkoa","NC":"Guipúzcoa","C":1984},{"Z":4,"N":"Navarra","O":28,"NE":"Nafarroa","NC":"Navarra","C":1984},{"Z":5,"N":"CAV-EAE","O":28,"NE":"EAE","NC":"CAV","C":1984},{"Z":6,"N":"Estado","O":28,"NE":"Estatua","NC":"Estado","C":1984}]};
+		this.containerSemiCirculoId=this.$.containerSemiCirculo.id;
+		//this.lang='eu';
+		/*setInterval(function(){
+			_this.emptyContainers();
+			_this.reqData();
+		},30000);*/
+		
+	},
+	emptyContainers:function(){
+		while(this.$.containerSemiCirculo.children.length>0){
+			this.$.containerSemiCirculo.removeChild(this.$.containerSemiCirculo.children[0]);
+		}
+		this.$.tituloError.style.display='none';
+	},
+	reqData:function(){
+		var _this=this;
+		function datos(value){
+			return new Promise(function(resolve, reject) {
+				_this.$.data.addEventListener(value,listFunc);
+				_this.listeners.push(listFunc);
+				function listFunc(e){
+					var val=e.detail.response;
+					resolve(val);
+				}
+			});
+		}
+
+		if(this.lugar==='cav'){
+			_this.$.data.url="http://api.eitb.eus/data/hauteskundeak/2016/eae/resumen_general_"+_this.tipoEleccion+"_2012.json";
+			datos("response").then(function(value){
+				_this.resultsData=value;
+				var cod_provincia = _this.wgi_generales_name2cod(_this.lugar);
+				var data_t = _this.wgi_findElement(value.totales, cod_provincia, "Z");
+				var data_p = _this.wgi_findElement(value.partidos,cod_provincia,'Z');
+				if(!data_t || data_t.E==='0' || data_t.E==='0.00' || data_t.E==='00'){
+					_this.showError();
+				}
+				else if(data_p===null){
+					_this.showError();
+				}
+				else{			
+					_this.$.data.url="http://api.eitb.eus/data/hauteskundeak/2016/eae/partidos_"+_this.tipoEleccion+"_2016.json";
+				}	
+				datos("response").then(function(value1){
+					_this.partidos=value1;
+					_this.renderData(value,value1);
+					var legCirc=_this.querySelectorAll('circle');
+					var legText=_this.querySelectorAll('text');
+					for(var i=0;i<legCirc.length;i++){
+						legCirc[i].style.display='none';
+						legText[i].style.display='none';
+					}
+					if(_this.showing===true){
+						setTimeout(function(){
+							mediascape.AdaptationToolkit.Adaptation.UIAdaptation.updateUniqueComponent(_this);
+						},750);
+					}
+				},function(reject){
+					_this.showError();
+				});
+				datos('error').then(function(value){
+					_this.showError();
+				});
+			},function(reject){
+				_this.showError();
+			});
+			datos('error').then(function(value){
+				_this.showError();
+			});
+		}
+		else{
+			_this.$.data.url="http://api.eitb.eus/data/hauteskundeak/2016/eae/mapatabla_"+_this.lugar+"_"+_this.tipoEleccion+"_2012.json";
+			datos("response").then(function(value){
+				_this.resultsData=value;
+				var cod_provincia = _this.wgi_generales_name2cod(_this.lugar);
+				var data_t = _this.wgi_findElement(value.totales, cod_provincia, "Z");
+				var data_p = _this.wgi_findElement(value.partidos,cod_provincia,'Z');
+				if(!data_t || data_t.E==='0' || data_t.E==='0.00' || data_t.E==='00'){
+					_this.showError();
+				}
+				else if(data_p===null){
+					_this.showError();
+				}
+				else{			
+					_this.$.data.url="http://api.eitb.eus/data/hauteskundeak/2016/eae/partidos_"+_this.tipoEleccion+"_2016.json";
+				}	
+				datos("response").then(function(value1){
+					_this.partidos=value1;
+					_this.renderData(value,value1);
+					var legCirc=_this.querySelectorAll('circle');
+					var legText=_this.querySelectorAll('text');
+					for(var i=0;i<legCirc.length;i++){
+						legCirc[i].style.display='none';
+						legText[i].style.display='none';
+					}
+					if(_this.showing===true){
+						setTimeout(function(){
+							mediascape.AdaptationToolkit.Adaptation.UIAdaptation.updateUniqueComponent(_this);
+						},750);
+					}
+				},function(reject){
+					_this.showError();
+				});
+				datos('error').then(function(value){
+					_this.showError();
+				});
+			},function(reject){
+				_this.showError();
+			});
+			datos('error').then(function(value){
+				_this.showError();
+			});
+		}
+	},
+	showError:function(){
+		this.emptyContainers();
+
+		var nombreLug=this.wgi_findElement(this.codLugar.zonas, this.cod_zona, "Z");
+    	if(this.lang==='eu' && this.tipoEleccion==='A'){
+    		var titulo='HAUTESKUNDE AUTONOMIKOAK '+nombreLug['NE']+'(E)N';
+    	}
+    	else if(this.lang==='es' && this.tipoEleccion==='A'){
+    		var titulo='ELECCIONES AUTONÓMICAS EN '+nombreLug['NC'];
+    	}
+    	/*else if(this.lang==='eu' && this.tipoEleccion==='S'){
+    		var titulo='SENATURAKO HAUTESKUNDEAK '+nombreLug['NE']+'(E)N';
+    	}
+    	else if(this.lang==='es' && this.tipoEleccion==='S'){
+    		var titulo='ELECCIONES AL SENADO EN '+nombreLug['NC'];
+    	}*/
+ 		this.$.titleContainerError.innerHTML=titulo;
+ 		this.$.tituloError.style.display='block';
+
+ 		this.$.resumenDatos.style.display='none';
+
+
+		var errorImage=document.createElement('img');
+		if(this.lang==='eu'){
+			errorImage.src='/resources/images/eskuragaiEz.png';
+		}
+		else{
+			errorImage.src='/resources/images/noDisponibles.png';
+		}
+		errorImage.style.width='40%';
+		errorImage.style.marginLeft='30%';
+		errorImage.style.marginTop='10px';
+		errorImage.style.border='5px solid #ccc';
+        errorImage.style.boxShadow='0px 0px 10px rgba(0,0,0,0.5)';
+		this.$.containerSemiCirculo.appendChild(errorImage);
+
+	},
+	renderData:function(v1,v2){
+		this.$.containerSemiCirculo.style.display='none';
+		var _this=this;
+		if(this.$.resumenDatos.style.display==='block'){
+			this.$.resumenDatos.style.display='none';
+			setTimeout(function(){
+				_this.$.resumenDatos.style.display='block';
+			},2000);
+		}		
+		
+		var pCargando=document.createElement('p');
+		if(this.lang==='eu'){
+			this.$.pCargando.innerHTML='Datuak eguneratzen...';
+		}
+		else if(this.lang==='es'){
+			this.$.pCargando.innerHTML='Actualizando datos...';
+		}
+		this.$.pCargando.style.display='block';
+		
+
+		setTimeout(function(){
+			_this.$.containerSemiCirculo.style.display='block';
+			_this.$.pCargando.style.display='none';
+			
+
+		},2000);
+		
+	    var resumen = this.resultsData,
+        data_partidos = this.partidos.partido;
+        if (resumen == null || Object.keys(resumen).length == 0) {
+            resumen = {
+                totales: [],
+                partidos : []
+            };
+        }
+        if (typeof resumen.totales == "undefined") {
+            resumen.totales = [];
+        }
+        if (typeof resumen.partidos == "undefined") {
+            resumen.partidos = [];
+        }
+        var zonas    = resumen.totales,
+            partidos = resumen.partidos;
+        for (var i=0; i<zonas.length; i++) {
+            var codZona = zonas[i].Z;
+            zonas[i].partidos = [];
+            for (var j=0; j<partidos.length; j++) {
+                if (partidos[j].Z == codZona) {
+                    zonas[i].partidos.push(partidos[j]);
+                }
+            }
+            this.wgi_sortElements(zonas[i].partidos, "ESC", "NV");
+            var partido_ganador = this.wgi_findElement(resumen.ganadores, codZona, "Z");
+            if (resumen.ganadores.length > 0 && partido_ganador != null) {
+                zonas[i].PARTIDO_GANADOR = partido_ganador.S;
+            } else {
+                zonas[i].PARTIDO_GANADOR = null;
+            }
+        }
+     	 var data_zona = this.wgi_findElement(zonas, this.cod_zona, "Z");
+     	 if (data_zona == null || Object.keys(data_zona).length == 0) {
+            data_zona = {
+                PP: null,
+                E: 0,
+                partidos : []
+            };
+        }
+        if (typeof data_zona.PP == "undefined") {
+            data_zona.PP = null;
+        }
+        if (typeof data_zona.E == "undefined") {
+            data_zona.E = 0;
+        }
+        if (typeof data_zona.partidos == "undefined") {
+            data_zona.partidos = [];
+        }
+        var data_participacion = {participacion: data_zona.PP};
+            if (Math.floor(parseFloat(data_zona.E)) == 0) {
+                data_participacion.participacion = null;
+        }
+        //var idioma = this.get_idioma();
+        /*var titulo     = this.resultsData["l"+ idioma + "1"] || "",
+            subtitulo  = this.resultsData["l"+ idioma + "2"] || "",
+            tipoEscano = this.resultsData["l"+ idioma + "3"] || "";
+         this.$.titleContainer.innerHTML=titulo;*/
+       	var mayoria = data_zona.M || "";
+       	
+       	 if(this.lang==='es'){
+       	 	if(this.tipoEleccion==='A'){
+       	 		var te='Resultados en ';
+       	 	}
+       	 	else if(this.tipoEleccion==='S'){
+       	 		var te='Senado en ';
+       	 	}
+			var escr='Escrutado:';
+			var act='Actualizado:';
+			if(this.lugar==='alava'){
+				var lu='Alava';
+			}
+			else if(this.lugar==='vizcaya'){
+				var lu='Bizkaia';
+			}
+			else if(this.lugar==='guipuzcoa'){
+				var lu='Guipuzcoa';
+			}
+			else if(this.lugar==='navarra'){
+				var lu='Navarra';
+			}
+			else if(this.lugar==='cav'){
+				var lu='CAV';
+			}
+			else if(this.lugar=='estado'){
+				var lu='España';
+			}
+			var may='Mayoría absoluta';
+			esc='escaños';
+		}
+		else if(this.lang==='eu'){
+			var escr='Zenbatua:';
+			var act='Eguneratuta:';
+			if(this.tipoEleccion==='A'){
+       	 		var te='Emaitzak ';
+       	 	}
+       	 	else if(this.tipoEleccion==='S'){
+       	 		var te='Senatua ';
+       	 	}
+			if(this.lugar==='alava'){
+				var lu='Araban';
+			}
+			else if(this.lugar==='vizcaya'){
+				var lu='Bizkaian';
+			}
+			else if(this.lugar==='guipuzcoa'){
+				var lu='Gipuzkoan';
+			}
+			else if(this.lugar==='navarra'){
+				var lu='Nafarroan';
+			}
+			else if(this.lugar==='cav'){
+				var lu='EAEn';
+			}
+			else if(this.lugar=='estado'){
+				var lu='Espainian';
+			}
+			var may='Gehiengo osoa';
+			var esc='eserleku';
+		}
+		this.$.escrText.innerHTML=escr;
+		this.$.actText.innerHTML=act;
+       	 var markup_tarta='<h2 id="titulo" class="wgi_title" style="color:#748c99;" >'+te+lu+'</h2> <div class="wgi_resumen_map_datos_container"> <div class="wgi_generales_resumen_tabla_container" id="tableContainer"> <div class="wgi_tabla_resumen" id="tablaResultados"></div> </div> <div class="wgi_generales_resumen_grafico_container wgi_generales_resumen_grafico_container_ancho"> <div class="wgi_generales_resumen_pie_container" id="graficoContainer" style="color:#748c99;" > <div class="wgi_generales_resumen_grafico" id="resumenGrafico'+this.id+'""></div> <div class="wgi_pie_mayoria" id="mayoriaDiv"> <p id="mayoriap" class="wgi_pie_mayoria_escanos">'+mayoria+' '+esc+'</p> <p id="mayoriap1">'+may+'</p> </div> </div>  </div> <div class="wgi_clearfix"></div> </div> <div class="wgi_resumen_links_container"></div>';
+       	if (!String.prototype.templateFormat)
+		{
+			String.prototype.templateFormat = function(args)
+			{
+				var newStr = this;
+				for (var key in args)
+				{
+					var expr = new RegExp('{' + key + '}', 'g');
+					newStr = newStr.replace(expr, args[key]);
+				}
+				return newStr;
+			};
+		}
+ 		var result = markup_tarta.templateFormat({
+            //titulo: nombre[this.lugar],
+            lugar: this.lugar,
+            //url   : link_url[lugar],
+            //url_texto: link_texto[lugar],
+            mayoria: mayoria
+        });
+        this.querySelector('#'+this.containerSemiCirculoId).innerHTML=result;
+        this.pintaGrafico(this.lugar, 'resumenGrafico'+this.id);
+        if(this.querySelector('svg')!==null){
+        	this.querySelector('svg').setAttribute('viewBox',"0 0 800 800");
+        	this.querySelector('svg').id='imgSemi';
+        }
+        var mostrar_mayoria = false,
+        es_anterior     = false;
+        if (this.lugar == 'estado') {
+            this.querySelector(".wgi_pie_mayoria").style.display= "initial";
+            this.querySelector('#mayoriap').style.display='block';
+            this.querySelector('#mayoriap1').style.display='block';
+            mostrar_mayoria = true;
+        }
+        else{
+        	this.querySelector('#mayoriap').style.display='none';
+        	this.querySelector('#mayoriap1').style.display='none';
+        }
+        var pie_width = 400,
+            pie_height = 400,
+            pie_radius = 400,
+            pie_innerRadius = 450/3;
+        var mostrar_escanos = '',
+            mostrar_porcentaje = '',
+            mostrar_votos_actuales = '',
+            mostrar_votos_anteriores = '';
+        this.wgi_generales_populate_pie(zonas, this.lugar, this.wgi_grafico, pie_width, pie_height, pie_radius, pie_innerRadius, function () {
+            //wgi_grafico[lugar].loading(false);
+            _this.wgi_generales_pintar_tabla_peque(_this.lugar, zonas, 'tablaResultados',_this.tipoEleccion, data_partidos);
+        }, false, this.tipo_eleccion, null, data_partidos, es_anterior, mostrar_mayoria, mostrar_escanos, mostrar_porcentaje, mostrar_votos_actuales);
+         this.wgi_generales_setEscrutadoPeque(this.lugar, zonas, 'escrutadoPerc');
+         //this.wgi_generales_setParticipacion(data_participacion, 'participacionPerc');
+         
+         var data_actualizacion={actualizacion:this.resultsData.timestamp.split(' ')[1]};
+         this.wgi_generales_setActualizacion(data_actualizacion);
+
+
+            /*if (this.resultsData.totales.length == 0
+                || typeof this.resultsData.totales[0].E == "undefined"
+                || parseFloat(this.resultsData.totales[0].E) == 0) {
+                this.resultsData.totales = [{E: 0}];
+            }
+            if (parseFloat(this.resultsData.totales[0].E) == 0) {
+                this.resultsData.totales[0].PP = null;
+            }
+            this.wgi_generales_setEscrutado(this.lugar, this.resultsData, this.escrutadoContainerId);
+           var data_participacion = {participacion: this.resultsData.totales[0].PP};
+            this.wgi_generales_setParticipacion(data_participacion, this.participacionContainerId);
+      */
+	},
+	
+	wgi_generales_setActualizacion:function(data)
+	{
+		
+
+		if (data != null && typeof data.actualizacion != 'undefined')
+		{
+
+			if (data.actualizacion != null)
+			{
+				var actualizacion = data.actualizacion;
+				this.$.actualizacion.innerHTML=actualizacion;
+				
+			}
+			else
+			{
+				var actualizacion = '--';
+				this.$.actualizacion.innerHTML=actualizacion;
+			}
+		}
+	},
+	wgi_generales_setEscrutadoPeque: function(region, data, id)
+	{
+		var idioma = this.get_idioma();
+		var cod_provincia = this.wgi_generales_name2cod(region);
+		var data_t = this.wgi_findElement(data, cod_provincia, "Z");
+		if (data_t != null)
+		{
+			if (data_t.E == "100,0")
+			{
+				data_t.E = "100";
+			}
+	       // data_t.E = parseFloat(data_t.E.replace(/,/, "."));
+			//data_t.E = Math.floor(parseFloat(data_t.E));
+			if (idioma == 'eu')
+			{
+				this.querySelector("#" + id).innerHTML="% " + data_t.E;
+			}
+			else
+			{
+				this.querySelector("#" + id).innerHTML=data_t.E + " %";
+			}
+		}
+	},
+	wgi_generales_pintar_tabla_peque:function(lugar, data, container, tipo_eleccion, data_partidos)
+	{
+		if (data == null || data.length == 0)
+		{
+			return false;
+		}
+		var cod_lugar = this.wgi_generales_name2cod(lugar), prov_data = this.wgi_findElement(data, cod_lugar, "Z");
+		if (prov_data == null)
+		{
+			prov_data = data;
+		}
+		if (prov_data == null)
+		{
+			return false;
+		}
+		if (prov_data.partidos.length == 0)
+		{
+			return false;
+		}
+		var partidos = prov_data.partidos;
+		tipo_eleccion = tipo_eleccion || null;
+		var tbl_html = '<table cellpadding="3" cellspacing="0" class="wgi_generales_tabla wgi_generales_tabla_resumen">';
+		
+		/*tbl_html += '<tr>';
+		if (tipo_eleccion == 'S')
+		{
+			tbl_html += '<th style="color:#748c99;"  scope="col">' + elec_lang(this.lang,'senadores') + '</th>';
+		}
+		else
+		{
+			tbl_html += '<th style="color:#748c99;"  scope="col">' + elec_lang(this.lang,'wgi_parlamentarios') + '</th>';
+		}
+		tbl_html += '</tr>';*/
+		var image;
+		var siglas;
+		var contador = 0;
+		var contador1=0;
+		for (var partido in partidos)
+		{
+			if (contador < 10 && partidos[partido].ESC >= 0)
+			{
+				if (( siglas = partidos[partido].S) == null)
+					siglas = 'default';
+				//var data_partido_default = wgi_findElement(data_partidos, "default", "S"),
+				var data_partido_default = this.wgi_generales_getDataPartidoDefault(data_partidos), data_partido = this.wgi_findElement(data_partidos, siglas, "S");
+				if ( typeof data_partido == 'undefined' || data_partido == null)
+				{
+					image = data_partido_default['I'];
+				}
+				else
+				{
+					image = data_partido['I'];
+				}
+				if (image == null)
+				{
+					image = data_partido_default['I'];
+				}
+				if (partidos[partido].ESC > 0 )
+				{
+					contador1++;
+					var diferencia_calculada = partidos[partido].DESC;
+					var diferencia = this.wgi_generales_diferenciaPartidoAnt(diferencia_calculada);
+					if(contador1%2!==0){
+						tbl_html += '<tr>';
+					tbl_html += '<td class="nombre_partido"><img src="http://www.eitb.eus' + image + '" alt="' + siglas + '" class="wgi_logo_tabla_small" />' + partidos[partido].ESC + ' <span class="diferencia ' + diferencia.clase + '">' + diferencia.cantidad + '</span></td>';
+					}
+					else{
+						tbl_html += '<td class="nombre_partido"><img src="http://www.eitb.eus' + image + '" alt="' + siglas + '" class="wgi_logo_tabla_small" />' + partidos[partido].ESC + ' <span class="diferencia ' + diferencia.clase + '">' + diferencia.cantidad + '</span></td>';
+					tbl_html += '</tr>';
+					}					
+							
+				}
+			}
+			
+			contador++;
+		}
+		if(contador1%2!==0){
+			tbl_html+='</td>';
+		}
+		tbl_html += '</table>';
+		this.querySelector("#" + container).innerHTML=tbl_html;
+
+
+
+	},
+	get_idioma:function(){
+    	return this.lang;
+	},
+	wgi_generales_populate_pie:function(data, lugar, pie, width, height, radius, innerRadius, callback, legend, tipo_eleccion, mayoria, data_partidos, es_anterior, mostrar_mayoria)
+	{
+		var _this=this;
+		if (data == null || data.length == 0)
+		{
+			//pie.loading("sin_datos_pie");
+			return false;
+		}
+		if (width == null)
+			width = 320;
+		if (height == null)
+			height = 240;
+		if (radius == null)
+			radius = 200;
+		if (innerRadius == null)
+			innerRadius = radius / 3;
+		callback = callback ||
+		function()
+		{
+		};
+		if (legend == null || legend == undefined)
+		{
+			legend = true;
+		}
+		if (mostrar_mayoria == null)
+		{
+			mostrar_mayoria = true;
+		}
+		tipo_eleccion = tipo_eleccion || null;
+		var params, pie_data, partidos_list;
+		var cod_lugar = this.wgi_generales_name2cod(lugar);
+		var prov_data = this.wgi_findElement(data, cod_lugar, "Z");
+		if (prov_data == null)
+		{
+			prov_data = data;
+		}
+		if (prov_data == null)
+		{
+			//pie.loading("sin_datos_pie");
+			return false;
+		}
+		if ( typeof prov_data.E != "undefined" && parseFloat(prov_data.E) == 0)
+		{
+			//pie.loading("no_data_pie");
+			return false;
+		}
+		if (es_anterior)
+		{
+			partidos_list = prov_data.anteriores;
+		}
+		else
+		{
+			partidos_list = prov_data.partidos;
+		}
+		if ( typeof partidos_list == "undefined" || partidos_list.length == 0)
+		{
+			//pie.loading("sin_datos_pie");
+			return false;
+		}
+		pie_data = this.wgi_generales_getPieData(partidos_list, tipo_eleccion, data_partidos);
+		if (!legend)
+		{
+			params =
+			{	
+				values : pie_data.serie,
+				legend : pie_data.legend,
+				colors : pie_data.color,
+				images:pie_data.image,
+				callback : callback,
+				legendheader : ''
+			};
+		}
+		else
+		{
+			params =
+			{
+				values : pie_data.serie,
+				legend : pie_data.legend,
+				colors : pie_data.color,
+				images:pie_data.image,
+				callback : callback,
+				legendheader : ""
+			};
+		}
+		function SemiPieChart(ow, cx, cy, r, innerRadius, values, opts)
+		{
+			ow.customAttributes.segmento = function(x, y, r, innerRadius, a1, a2, color)
+			{
+				var ir = innerRadius || r / 3, flag = (a2 - a1) > 180, clr = (a2 - a1) / 360;
+				color = color || "hsb(" + clr + ", .75, .8)";
+				a1 = (a1 % 360) * Math.PI / 180;
+				a2 = (a2 % 360) * Math.PI / 180;
+				var cosStart = Math.cos(a1), sinStart = Math.sin(a1), cosEnd = Math.cos(a2), sinEnd = Math.sin(a2);
+				return {
+					'path' : [["M", x + r * cosStart, y + r * sinStart], ["A", r, r, 0, +flag, 1, x + r * cosEnd, y + r * sinEnd], ["L", x + ir * cosEnd, y + ir * sinEnd], ["A", ir, ir, 0, +flag, 0, x + ir * cosStart, y + ir * sinStart], ["z"]],
+					'fill' : color
+				};
+			};
+			function animate(ms, callback)
+			{
+				callback = callback ||
+				function()
+				{
+				};
+				callback.call(this);
+				var start = 180, val;
+				for ( i = 0; i < ii; i++)
+				{
+					val = 180 / total * data[i];
+					paths[i].animate(
+					{
+						segmento : [cx, cy, r, innerRadius, start, start += val, opts.colors[i]]
+					}, ms || 1500, "bounce");
+					paths[i].angle = start - val / 2;
+				}
+			}
+			opts = opts ||
+			{
+			};
+			var data = values, paths = ow.set(), chart = ow.set(), total, start, covers = ow.set();
+			//bg = ow.circle(200, 200, 0).attr({stroke: "#fff", "stroke-width": 4});
+			chart.covers = covers;
+			data = data.sort(function(a, b)
+			{
+				return b - a;
+			});
+			total = 0;
+			for (var i = 0, ii = data.length; i < ii; i++)
+			{
+				total += data[i];
+			}
+			start = 180;
+			for ( i = 0; i < ii; i++)
+			{
+				var val = 180 / total * data[i];
+				(function(i, val)
+				{
+					var p = ow.path().attr(
+					{
+						segmento : [cx, cy, 1, 0, start, start + val, opts.colors[i]],
+						stroke : "#fff"
+
+
+						
+					});
+					//ow.image('http://www.eitb.eus'+opts.images[i],cx+cx*Math.cos(start),cy-cy*Math.sin(start), 100, 100);					
+
+					paths.push(p);
+					covers.push(p);
+				})(i, val);
+				start += val;
+			}
+			//bg.animate({r: r}, 1000, "bounce");
+			animate(1000, opts.callback);
+			this.animate = function(d, ms, callback)
+			{
+				data = d;
+				data = data.sort(function(a, b)
+				{
+					return b - a;
+				});
+				total = 0;
+				for (var i = 0, ii = data.length; i < ii; i++)
+				{
+					total += data[i];
+				}
+				animate(ms, callback);
+			};
+			this.hover = function(fin, fout)
+			{
+				fout = fout ||
+				function()
+				{
+				};
+				var that = this;
+				for (var i = 0; i < ii; i++)
+				{
+					(function(sector)
+					{
+						sector.cx = cx;
+						sector.cy = cy;
+						sector.mouseout(function()
+						{
+							fout.call(this, cx, cy);
+						});
+						sector.mouseover(function()
+						{
+							fin.call(this, cx, cy);
+						});
+					})(paths[i]);
+				}
+				return this;
+			};
+			this.mouseover = function(fin)
+			{
+				var that = this;
+				for (var i = 0; i < ii; i++)
+				{
+					(function(sector)
+					{
+						sector.cx = cx;
+						sector.cy = cy;
+						sector.mouseover(function()
+						{
+							fin.call(this, cx, cy);
+						});
+					})(paths[i]);
+				}
+				return this;
+			};
+			this.mouseout = function(fin)
+			{
+				var that = this;
+				for (var i = 0; i < ii; i++)
+				{
+					(function(sector)
+					{
+						sector.cx = cx;
+						sector.cy = cy;
+						sector.mouseout(function()
+						{
+							fin.call(this, cx, cy);
+						});
+					})(paths[i]);
+				}
+				return this;
+			};
+			this.move = function(fin)
+			{
+				var that = this;
+				for (var i = 0; i < ii; i++)
+				{
+					(function(sector)
+					{
+						sector.cx = cx;
+						sector.cy = cy;
+						sector.mousemove(function(e)
+						{
+							fin.apply(sector, [e]);
+						});
+					})(paths[i]);
+				}
+				return this;
+			};
+			// x: where label could be put
+			// y: where label could be put
+			// value: value to show
+			// total: total number to count %
+			this.each = function(f)
+			{
+				var that = this;
+				for (var i = 0; i < ii; i++)
+				{
+					(function(sector)
+					{
+						sector.cx = cx;
+						sector.cy = cy;
+						f.call(sector);
+					})(paths[i]);
+				}
+				return this;
+			};
+			this.click = function(f)
+			{
+				var that = this;
+				for (var i = 0; i < ii; i++)
+				{
+					(function(sector)
+					{
+						sector.cx = cx;
+						sector.cy = cy;
+						sector.click(function()
+						{
+							f.call(this);
+						});
+					})(paths[i]);
+				}
+				return this;
+			};
+			this.inject = function(element)
+			{
+				element.insertBefore(covers[0]);
+			};
+			this.drawHalf = function()
+			{
+				var y = cy - r - 15;
+				var x = cx;
+				var h = r + y + 20;
+				ow.path('M' + x + ',' + y + 'V' + h);
+				var t = ow.text(x, y + h + 20, elec_lang(this.lang,"mayoria_absoluta") + " \n176 " + elec_lang(this.lang,"escanos"));
+				return this;
+			};
+			var legend = function(labels, otherslabel, mark, dir)
+			{
+				var x = cx + r + r / 5, y = 30, h = y + 10;
+				labels = labels || [];
+				dir = (dir && dir.toLowerCase && dir.toLowerCase()) || "east";
+				mark = ow[mark && mark.toLowerCase()] || "disc";
+				chart.labels = ow.set();
+				for (var i = 0; i < data.length; i++)
+				{
+					var clr = paths[i].attr("fill"), j = values[i].order, txt;
+					values[i].others && (labels[j] = otherslabel || "Others");
+					labels[j] = Raphael.g.labelise(labels[i], values[i], total);
+					if (values[i] > 0)
+					{
+						chart.labels.push(ow.set());
+						chart.labels[i].push(ow[mark](x + 5, h, 5).attr(
+						{
+							fill : clr,
+							stroke : "none"
+						}));
+						chart.labels[i].push( txt = ow.text(x + 20, h, labels[j] || values[i]).attr(Raphael.g.txtattr).attr(
+						{
+							fill : opts.legendcolor || "#000",
+							"text-anchor" : "start"
+						}));
+						covers[i].label = chart.labels[i];
+					}
+					h += txt.getBBox().height * 1.2;
+				}
+				var bb = chart.labels.getBBox(), tr = {
+				east: [0, 0],
+				west: [-bb.width - 2 * r - 20, -bb.height / 2],
+				north: [-r - bb.width / 2, -r - bb.height - 10],
+				south: [-r - bb.width / 2, r + 10]
+				}[dir];
+				chart.labels.translate.apply(chart.labels, tr);
+				chart.push(chart.labels);
+				if (opts.legendheader)
+				{
+					txt = ow.text(x + 20, 10, opts.legendheader).attr(Raphael.g.txtattr).attr(
+					{
+						fill : opts.legendcolor || "#000",
+						"text-anchor" : "start"
+					});
+					ow.path('M' + x + ',' + 25 + 'H' + (x + 140));
+				}
+			};
+			if (opts.legend)
+			{
+				legend(opts.legend, opts.legendothers, opts.legendmark, opts.legendpos);
+			}
+			//this.push(paths, covers);
+			this.covers = covers;
+			return this;
+		};
+		var F = function()
+		{
+		};
+		F.prototype = Raphael.g;
+		SemiPieChart.prototype = SemiPieChart.prototype = new F;
+		Raphael.fn.semipiechart = function(cx, cy, r, innerRadius, values, opts)
+		{
+			return new SemiPieChart(this, cx, cy, r, innerRadius, values, opts);
+		};
+		var p = pie.semipiechart(width, height, radius, innerRadius, pie_data.serie, params);
+		p.hover(function()
+		{
+			this[0].style.cursor = "pointer";
+			if (this.label != undefined)
+			{
+				_this.wgi_generales_addTipPartido(lugar, data, this.label[1], tipo_eleccion, es_anterior, data_partidos);
+				this.stop().animate(
+				{
+					transform : "s0.9 0.9 " + (this.cx) + " " + (this.cy)
+				}, 500, "bounce");
+				if (this.label)
+				{
+					if (this.label[0] != undefined)
+					{
+						this.label[0].stop();
+						this.label[0].animate(
+						{
+							transform : "t0,0,s1.5 1.5," + this.label[0].attrs.cx + "," + this.label[0].attrs.cy
+						}, 500, "bounce");
+						this.label[1].attr(
+						{
+							"font-weight" : 800
+						});
+					}
+				}
+			}
+		}, function()
+		{
+			_this.wgi_hideTip();
+			this.stop().animate(
+			{
+				transform : ""
+			}, 500, "bounce");
+			if (this.label)
+			{
+				if (this.label[0] != undefined)
+				{
+					this.label[0].stop();
+					this.label[0].animate(
+					{
+						transform : ""
+					}, 500, "bounce");
+					this.label[1].attr(
+					{
+						"font-weight" : 400
+					});
+				}
+			}
+		});
+		p.move(_this.wgi_updateTipPosition.bind(_this));
+		if (mostrar_mayoria)
+		{
+			var line_height_mayoria = radius - innerRadius;
+			pie.path("M" + width + ",0 L" + width + "," + line_height_mayoria).attr(
+			{
+				"stroke-dasharray" : "-.",
+				"stroke-width" : "2",
+				"stroke" : "#000",
+				"stroke-linecap" : "round",
+				"stroke-linejoin" : "round",
+				"stroke-miterlimit" : "2",
+				"stroke-opacity" : "1"
+			}).toFront();
+		}
+		return p;
+	},
+	wgi_generales_getSiglasFromLabel:function(label)
+	{
+		if (label != undefined)
+		{
+			var txt = label.attrs.text;
+			var tmp = txt.split(/\d\s/);
+			var cab = tmp.shift();
+			if (tmp.length == 0)
+				tmp.push(cab);
+			return tmp.join(" ");
+		}
+	},
+	wgi_generales_addTipPartido: function(lugar, data, label, tipo_eleccion, anterior, data_partidos)
+	{
+		if ( typeof (label) != 'string')
+			label = this.wgi_generales_getSiglasFromLabel(label);
+		var cod_zona = this.wgi_generales_name2cod(lugar), zona = this.wgi_findElement(data, cod_zona, "Z");
+		if (zona == null)
+		{
+			zona = data;
+		}
+		if (anterior)
+		{
+			var data_partido = this.wgi_findElement(zona.anteriores, label, "S");
+		}
+		else
+		{
+			var data_partido = this.wgi_findElement(zona.partidos, label, "S");
+		}
+		if (data_partido == null)
+		{
+			return;
+		}
+		var wgi_tipHtml = this.wgi_generales_htmlPartido(data_partido, tipo_eleccion, data_partidos);
+		//wgi_tip.stop();
+		//this.$.wgi_tip.innerHTML=wgi_tipHtml;
+		//this.$.wgi_tip.style.display='block';
+		/*this.$.wgi_tip.animate(
+		{
+			opacity : 1
+		});*/
+		wgi_over = true;
+	},
+	wgi_generales_htmlPartido:function(partido, tipo_eleccion, data_partidos)
+	{
+		tipo_eleccion = tipo_eleccion || null;
+		var wgi_lang_pg = this.get_idioma();
+		var image, siglas, nombre;
+		if (( siglas = partido.S) == null)
+			siglas = 'default';
+		//var data_partido_default = wgi_findElement(data_partidos, "default", "S"),
+		var data_partido_default = this.wgi_generales_getDataPartidoDefault(data_partidos), data_partido = this.wgi_findElement(data_partidos, siglas, "S");
+		if ( typeof data_partido == 'undefined' || data_partido == null)
+		{
+			image = data_partido_default['L'];
+			nombre = partido.S;
+		}
+		else
+		{
+			image = data_partido['L'];
+			nombre = data_partido['N'];
+		}
+		if (image == null)
+		{
+			image = data_partido_default['L'];
+		}
+		var html = '<div class="wgi_partido_tip">';
+		html += '<p class="nombre_partido">' + nombre.toUpperCase() + '</p>';
+		if (partido.ESC >= 0)
+		{
+			html += "<p>" + partido.ESC + " " + elec_lang(this.lang,'escanos_tarta') + "</p>";
+		}
+		if ( typeof partido.PV != 'undefined')
+		{
+			html += "<p>" + partido.NV + " " + elec_lang(this.lang,'wgi_votos_tooltip_tarta') + "</p>";
+			var pvotos = partido.PV;
+			if (pvotos == 0)
+				pvotos = partido.PV;
+			if (wgi_lang_pg == 'eu')
+			{
+				html += "<p>%" + pvotos + "</p>";
+			}
+			else
+			{
+				html += "<p>" + pvotos + "%</p>";
+			}
+		}
+		html += "</div>";
+		return html;
+	},
+	wgi_hideTip: function()
+	{
+		//this.$.wgi_tip.style.display='none';
+	},
+	wgi_updateTipPosition:function(e)
+	{
+		if ( typeof e == 'undefined')
+			e = window.event;
+		e = jQuery.event.fix(e);
+		// si no en IE8 no tenemos pageX y pageY y no se ve el tooltip
+		//this.$.wgi_tip.style.left=e.offsetX+20+'px';
+		//this.$.wgi_tip.style.top=e.offsetY+20+'px';
+	},
+	wgi_generales_getPieData : function(partidos, tipo_eleccion, data_partidos)
+	{
+		tipo_eleccion = tipo_eleccion || null;
+		var serie_pie = new Array(),legend_pie = new Array(), color_pie = new Array(),image_pie = new Array();
+		var color, image, siglas, nombre;
+		for (var partido in partidos)
+		{
+			if (partidos[partido].ESC >= 0)
+			{
+				if (( siglas = partidos[partido].S) == null)
+					siglas = 'default';
+				//var data_partido_default = wgi_findElement(data_partidos, "default", "S"),
+				var data_partido_default = this.wgi_generales_getDataPartidoDefault(data_partidos), data_partido = this.wgi_findElement(data_partidos, siglas, "S");
+				if ( typeof data_partido == 'undefined' || data_partido == null)
+				{
+					siglas = 'default';
+					color = data_partido_default['C'];
+					image = data_partido_default['I'];
+					nombre = partidos[partido]['S'];
+				}
+				else
+				{
+					siglas = partidos[partido]['S'];
+					color = data_partido['C'];
+					image = data_partido['I'];
+					nombre = data_partido['N'];
+				}
+				if (image == null)
+				{
+					image = data_partido_default['I'];
+				}
+				if (color == null)
+				{
+					color = data_partido_default['C'];
+				}
+				if (partidos[partido].ESC > 0)
+				{
+					serie_pie.push(parseInt(partidos[partido].ESC));
+					legend_pie.push("### " + partidos[partido].S.replace(/\./g, ""));
+					color_pie.push(color);
+					image_pie.push(image);
+				}
+				partidos[partido]['PV'] = Math.floor(parseFloat(partidos[partido].PV));
+				var miles = new RegExp("(-?[0-9]+)([0-9]{3})");
+				var separador_miles = ".";
+				var resulta = partidos[partido].NV.toString();
+				while (miles.test(resulta))
+				{
+					resulta = resulta.replace(miles, "$1" + separador_miles + "$2");
+				}
+				partidos[partido].NV = resulta;
+			}
+		}
+		return {
+			serie : serie_pie,
+			legend : legend_pie,
+			color : color_pie,
+			image: image_pie
+		};
+	},
+	wgi_generales_getDataPartidoDefault:function(data_partidos)
+	{
+		var data_partido_default = this.wgi_findElement(data_partidos, "default", "S");
+		if (data_partido_default == null)
+		{
+			data_partido_default =
+			{
+				"ID" : 1,
+				"C" : "#C3C3C2",
+				"L" : "",
+				"I" : "",
+				"N" : "default",
+				"NR" : "Default",
+				"S" : "default"
+			};
+		}
+		return data_partido_default;
+	},
+	pintaGrafico:function(lugar, containerId) {
+       // if (lugar == 'cav' || lugar == 'estado') {
+            this.wgi_grafico = Raphael(containerId, 800, 800);
+            var spinner_color = "#ccc";
+            //wgi_grafico[lugar].loading('recargando_tarta', spinner_color);
+        /*} else { // alava, vizcaya, guipuzcoa, navarra
+            var sizes = this.getGraficoSizes(lugar);
+            this.wgi_grafico = Raphael(containerId, sizes.width, sizes.height);
+            var attr_grafico = {
+	            fill: "#FFF",
+	            stroke: "#000",
+	            "stroke-width": .5,
+	            "stroke-linejoin": "round"
+        	};
+            this.wgi_generales_prov_map(lugar, this.mun, this.wgi_grafico, attr_grafico, sizes.escala, sizes.escala, sizes.centerX, sizes.centerY, sizes.translateX, sizes.translateY);
+            //wgi_grafico[lugar].loading('recargando_mapa_small');
+        }*/
+    },
+    wgi_generales_prov_map : function(lugar, muns, container, attr, scaleX, scaleY, centerX, centerY, translateX, translateY)
+	{
+		if (scaleX == null)
+			scaleX = 1;
+		if (scaleY == null)
+			scaleY = 1;
+		if (centerX == null)
+			centerX = 0;
+		if (centerY == null)
+			centerY = 0;
+		if (translateX == null)
+			translateX = 0;
+		if (translateY == null)
+			translateY = 0;
+		var translateString = "t" + translateX + "," + translateY;
+		var provincia = container.set();
+		var nombre_path = lugar;
+		if (lugar != "navarra")
+		{
+			if (lugar == "alava")
+			{
+				nombre_path = "araba";
+			}
+			if (lugar == "vizcaya")
+			{
+				nombre_path = "bizkaia";
+			}
+			if (lugar == "guipuzcoa")
+			{
+				nombre_path = "gipuzkoa";
+			}
+			muns[lugar] = container.path(paths.provincia.cav[nombre_path]).attr(attr).transform(translateString).scale(scaleX, scaleY, centerX, centerY);
+		}
+		else
+		{
+			muns[lugar] = container.path(paths.navarra).attr(attr).transform(translateString).scale(scaleX, scaleY, centerX, centerY);
+		}
+		provincia.push(muns[lugar]);
+		container.provincia = provincia;
+		return container;
+	},
+    getGraficoSizes:function(lugar) {
+            var sizes = {
+                escala: "",
+                width : "",
+                height : "",
+                centerX: "",
+                centerY: "",
+                translateX: "",
+                translateY: "",
+                widthProportion: "",
+                heightProportion: ""
+            };
+            if (lugar == 'alava') {
+                sizes.width = 120;
+                sizes.height = 100;
+                sizes.escala = .15;
+                sizes.centerX = 0;
+                sizes.centerY = 0;
+                sizes.translateX = -15;
+                sizes.translateY = -30;
+            } else if (lugar == 'vizcaya') {
+                sizes.width = 140;
+                sizes.height = 100;
+                sizes.escala = .18;
+                sizes.centerX = 0;
+                sizes.centerY = 0;
+                sizes.translateX = 0;
+                sizes.translateY = 10;
+            } else if (lugar == 'guipuzcoa') {
+                sizes.width = 120;
+                sizes.height = 100;
+                sizes.escala = .18;
+                sizes.centerX = 0;
+                sizes.centerY = 0;
+                sizes.translateX = -85;
+                sizes.translateY = 0;
+            } else if (lugar == 'navarra') {
+                sizes.width = 110;
+                sizes.height = 110;
+                sizes.escala = 1;
+                sizes.centerX = 0;
+                sizes.centerY = 0;
+                sizes.translateX = -330;
+                sizes.translateY = -40;
+            }
+            return sizes;
+    },
+	wgi_generales_setParticipacion:function(data, id)
+	{
+		var idioma = this.get_idioma();
+		if (data != null && typeof data.participacion != 'undefined')
+		{
+			if (data.participacion != null && !isNaN(data.participacion))
+			{
+				var participacion = parseInt(data.participacion);
+				participacion = Math.floor(participacion);
+				if (idioma == 'eu')
+				{
+					this.querySelector("#" + id).innerHTML="% " + participacion;
+				}
+				else
+				{
+					this.querySelector("#" + id).innerHTML=participacion + " %";
+				}
+			}
+			else
+			{
+				var participacion = '--';
+				this.querySelector("#" + id).innerHTML=participacion;
+			}
+		}
+	},
+	wgi_generales_setEscrutado:function(region, data, id)
+	{
+		var idioma = this.get_idioma();
+		var cod_provincia = this.wgi_generales_name2cod(region);
+		var data_t = this.wgi_findElement(data, cod_provincia, "Z");
+		if (data_t == null)
+		{
+			data_t = data.totales[0];
+		}
+		if (data_t != null)
+		{
+	        //data_t.E = Math.floor(parseFloat(data_t.E));
+	        //data_t.E = parseFloat(data_t.E.replace(/,/, "."));
+			this.querySelector("#" + id).style.width='0';
+			this.querySelector("#" + id).animate(
+			{
+				width : data_t.E + "%"
+			}, 3000, 'swing');
+			if (idioma == 'eu')
+			{
+				this.querySelector("#" + id + "_percent").innerHTML="% " + data_t.E;
+			}
+			else
+			{
+				this.querySelector("#" + id + "_percent").innerHTML=data_t.E + " %";
+			}
+		}
+	},
+	wgi_generales_diferenciaPartidoAnt: function(diferencia_calc)
+	{
+		var diferencia =
+		{
+			"cantidad" : "",
+			"clase" : ""
+		};
+		diferencia.cantidad = Math.abs(diferencia_calc);
+		if (diferencia_calc < 0)
+		{
+			diferencia.clase = "diferencia_down";
+		}
+		else if (diferencia_calc > 0)
+		{
+			diferencia.clase = "diferencia_up";
+		}
+		else
+		{
+			diferencia.cantidad = "=";
+			diferencia.clase = "diferencia_igual";
+		}
+		return diferencia;
+	},
+	wgi_name2municipio:function(value, collection, attrName)
+	{
+		for (var i = 0, len = collection.length; i < len; i++)
+		{
+			var collection_value = collection[i][attrName], collection_value_limpio = this.wgi_limpiarMunicipio(collection_value), collection_value_limpio_guiones = collection_value_limpio.replace(/-/g, "_");
+			if (value == collection_value_limpio || value == collection_value_limpio_guiones)
+			{
+				return collection[i];
+				break;
+			}
+		}
+		return null;
+	},
+	wgi_generales_getDataPartidoDefault:function(data_partidos)
+	{
+		var data_partido_default = this.wgi_findElement(data_partidos, "default", "S");
+		if (data_partido_default == null)
+		{
+			data_partido_default =
+			{
+				"ID" : 1,
+				"C" : "#C3C3C2",
+				"L" : "",
+				"I" : "",
+				"N" : "default",
+				"NR" : "Default",
+				"S" : "default"
+			};
+		}
+		return data_partido_default;
+	},
+	wgi_limpiarMunicipio:function(mun)
+	{
+		var nombre = mun.toLowerCase();
+		//nombre = nombre.replace(/ /g, "_");
+		nombre = nombre.replace(/ /g, "-");
+		//nombre = nombre.replace(/-/g, "_");
+		nombre = nombre.replace(/\//g, "-");
+		//nombre = nombre.replace(/\//g, "_");
+		nombre = nombre.replace(/ñ/g, "n");
+		nombre = nombre.replace(/á/g, "a");
+		nombre = nombre.replace(/é/g, "e");
+		nombre = nombre.replace(/í/g, "i");
+		nombre = nombre.replace(/ó/g, "o");
+		nombre = nombre.replace(/ú/g, "u");
+		nombre = nombre.replace(/ü/g, "u");
+		//nombre = nombre.replace(/\(/g, "_");
+		nombre = nombre.replace(/\(/g, "-");
+		//nombre = nombre.replace(/\)/g, "_");
+		nombre = nombre.replace(/\)/g, "-");
+		return nombre;
+	},
+	wgi_getVarNombreIdiomaApi:function(idioma)
+	{
+		var idioma_nombre;
+		switch (idioma)
+		{
+			case 'es':
+				idioma_nombre = 'C';
+				break;
+			case 'eu':
+				idioma_nombre = 'E';
+				break;
+			default:
+				idioma_nombre = 'C';
+		}
+		return 'N' + idioma_nombre;
+	},
+	wgi_sortElements:function(collection, attrName1, attrName2)
+	{
+	    collection.sort(function(a, b)
+		{
+	        if (attrName2 != null) {
+	            return parseFloat(b[attrName1]) - parseFloat(a[attrName1]) || parseFloat(b[attrName2]) - parseFloat(a[attrName2]);
+	        } else {
+	            return parseFloat(b[attrName1]) - parseFloat(a[attrName1]);
+	        }
+		});
+	},
+	wgi_findElements:function(collection, value, attrName)
+	{
+		var new_colecction = [];
+		for (var i = 0, len = collection.length; i < len; i++)
+		{
+			var collection_value = collection[i][attrName];
+			if (collection_value == value)
+			{
+				new_colecction.push(collection[i]);
+			}
+		}
+		return new_colecction;
+	},
+	wgi_findElement:function(collection, value, attrName)
+	{
+		for (var i = 0, len = collection.length; i < len; i++)
+		{
+			var collection_value = collection[i][attrName];
+			if (collection_value == value)
+			{
+				return collection[i];
+			}
+		}
+		return null;
+	},
+	wgi_findOtherElements:function(collection, value, attrName)
+	{
+		var new_colecction = [];
+		for (var i = 0, len = collection.length; i < len; i++)
+		{
+			var collection_value = collection[i][attrName];
+			if (collection_value != value)
+			{
+				new_colecction.push(collection[i]);
+			}
+		}
+		return new_colecction;
+	},
+	wgi_generales_name2cod:function(name)
+	{
+		var valores = [];
+		valores["araba"] = 1;
+		valores["alava"] = 1;
+		valores["bizkaia"] = 2;
+		valores["vizcaya"] = 2;
+		valores["gipuzkoa"] = 3;
+		valores["guipuzcoa"] = 3;
+		valores["navarra"] = 4;
+		valores["nafarroa"] = 4;
+		valores["cav"] = 5;
+		valores["eae"] = 5;
+		valores["estado"] = 6;
+		return valores[name] || null;
+	},
+	customCmdReceived: function(data){
+		if(data.indexOf('pielug')>-1){
+			this.cod_zona=data.split('pielug')[1];
+			if(data.split('pielug')[1][0]==='1'){
+				this.lugar='';
+				this.lugar='alava';
+			}
+			else if(data.split('pielug')[1][0]==='2'){
+				this.lugar='';
+				this.lugar='vizcaya';
+			}
+			else if(data.split('pielug')[1][0]==='3'){
+				this.lugar='';
+				this.lugar='guipuzcoa';
+			}
+			else if(data.split('pielug')[1][0]==='4'){
+				this.lugar='';
+				this.lugar='navarra';
+			}
+			else if(data.split('pielug')[1][0]==='5'){
+				this.lugar='';
+				this.lugar='cav';
+			}
+			else if(data.split('pielug')[1][0]==='6'){
+				this.lugar='';
+				this.lugar='estado';
+			}
+		}
+		else if(data.indexOf('pietipo')>-1){
+			this.tipoEleccion=data.split('pietipo')[1];
+		}
+	},
+	appAttributeChange:function(event){
+		if(this.showing===true){
+			if(event.detail.value==='es' || event.detail.value==='eu'){
+				console.log('cambiado');
+				var _this=this;
+				var vals=[];
+				this.resultsData={};
+				this.partidos={};
+				//this.cod_zona = this.wgi_generales_name2cod(this.lugar);
+				//this.tipoEleccion='C';
+				this.wgi_grafico;
+				this.mun = {},
+				this.lang=event.detail.value;
+				this.wgi_tipHtml = "";
+				this.wgi_over = false;
+				this.emptyContainers();
+				this.listeners.forEach (function(listener){			      
+			        _this.$.data.removeEventListener('response',listener,true);
+			        _this.$.data.removeEventListener('response',listener,false);
+			        _this.$.data.removeEventListener('error',listener,true);
+				    _this.$.data.removeEventListener('error',listener,false);
+			      
+			    },this);
+			    this.$.data.url='';
+				this.reqData();
+			}
+		}
+	},
+	tipoEleccionChanged:function(){
+		if(this.showing===true){
+			console.log('cambiado');
+			var _this=this;
+			var vals=[];
+			this.resultsData={};
+			this.partidos={};
+			//this.cod_zona = this.wgi_generales_name2cod(this.lugar);
+			//this.tipoEleccion='C';
+			this.wgi_grafico;
+			this.mun = {};
+			if(this.lang!=='eu' && this.lang!== 'es'){
+				if(mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')==='es' || 
+					mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')==='eu'){
+					this.lang=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language');
+				}
+				else{
+					if(window.location.search.indexOf('?lang')>-1){
+			          this.lang=window.location.search.split('?lang=')[1];
+			       }else{
+			          this.lang='eu'; 
+			       }
+				}
+				
+			}
+			this.wgi_tipHtml = "";
+			this.wgi_over = false;
+			this.emptyContainers();
+			this.$.data.url='';
+			this.listeners.forEach (function(listener){			      
+		        _this.$.data.removeEventListener('response',listener,true);
+		        _this.$.data.removeEventListener('response',listener,false);
+		        _this.$.data.removeEventListener('error',listener,true);
+			    _this.$.data.removeEventListener('error',listener,false);
+		      
+		    },this);
+			this.reqData();
+		}
+	},
+	lugarChanged:function(){
+		if(this.showing===true){
+			var _this=this;
+			var vals=[];
+			this.resultsData={};
+			this.partidos={};
+			//this.cod_zona = this.wgi_generales_name2cod(this.lugar);
+			//this.tipoEleccion='C';
+			this.wgi_grafico;
+			this.mun = {};
+			if(this.lang!=='eu' && this.lang!== 'es'){
+				if(mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')==='es' || 
+					mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')==='eu'){
+					this.lang=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language');
+				}
+				else{
+					if(window.location.search.indexOf('?lang')>-1){
+			          this.lang=window.location.search.split('?lang=')[1];
+			       }else{
+			          this.lang='eu'; 
+			       }
+				}
+				
+			}
+			this.wgi_tipHtml = "";
+			this.wgi_over = false;
+			this.emptyContainers();
+			this.$.data.url='';
+			this.listeners.forEach (function(listener){			      
+		        _this.$.data.removeEventListener('response',listener,true);
+		        _this.$.data.removeEventListener('response',listener,false);
+		        _this.$.data.removeEventListener('error',listener,true);
+			    _this.$.data.removeEventListener('error',listener,false);
+		      
+		    },this);
+			this.reqData();
+		}
+	},
+	load:function(){
+		this.showing =true;
+		
+		var _this=this;
+		var vals=[];
+		this.resultsData={};
+		this.partidos={};
+		//this.cod_zona = this.wgi_generales_name2cod(this.lugar);
+		//this.tipoEleccion='C';
+		this.wgi_grafico;
+		this.mun = {};
+		if(this.lang!=='eu' && this.lang!== 'es'){
+			if(mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')==='es' || 
+				mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')==='eu'){
+				this.lang=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language');
+			}
+			else{
+				if(window.location.search.indexOf('?lang')>-1){
+		          this.lang=window.location.search.split('?lang=')[1];
+		       }else{
+		          this.lang='eu'; 
+		       }
+			}
+			
+		}
+		this.wgi_tipHtml = "";
+		this.wgi_over = false;
+		this.emptyContainers();
+		this.listeners.forEach (function(listener){			      
+		        _this.$.data.removeEventListener('response',listener,true);
+		        _this.$.data.removeEventListener('response',listener,false);
+		        _this.$.data.removeEventListener('error',listener,true);
+		        _this.$.data.removeEventListener('error',listener,false);
+		      
+		 },this);
+		this.$.data.url='';
+		this.reqData();
+		setTimeout(function(){
+			if(_this.showing===true){
+				_this.apiTimer=setInterval(function(){
+					if(this.lang!=='eu' && this.lang!== 'es'){
+						if(mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')==='es' || 
+							mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')==='eu'){
+							this.lang=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language');
+						}
+						else{
+							if(window.location.search.indexOf('?lang')>-1){
+					          this.lang=window.location.search.split('?lang=')[1];
+					       }else{
+					          this.lang='eu'; 
+					       }
+						}
+						
+					}
+					_this.emptyContainers();
+					_this.$.data.url='';
+					_this.listeners.forEach (function(listener){			      
+					        _this.$.data.removeEventListener('response',listener,true);
+					        _this.$.data.removeEventListener('response',listener,false);
+					        _this.$.data.removeEventListener('error',listener,true);
+					        _this.$.data.removeEventListener('error',listener,false);
+					      
+					 },_this);
+					
+					_this.reqData();
+				},30000);
+			}
+		},30000);
+		
+	},
+	unload:function(){
+		this.showing =false;
+		clearInterval(this.apiTimer);
+
+	}
+});
+ </script>

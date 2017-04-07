@@ -1,0 +1,144 @@
+<style>
+.onoffswitch {
+    position: relative; width: 90px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #999999; border-radius: 20px;
+}
+.onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+    content: "ON";
+    padding-left: 10px;
+    background-color: #34A7C1; color: #FFFFFF;
+}
+.onoffswitch-inner:after {
+    content: "OFF";
+    padding-right: 10px;
+    background-color: #EEEEEE; color: #999999;
+    text-align: right;
+}
+.onoffswitch-switch {
+    display: block; width: 18px; margin: 6px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 56px;
+    border: 2px solid #999999; border-radius: 20px;
+    transition: all 0.3s ease-in 0s;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px;
+}
+</style>
+<div>
+Pasahitza: <input type="password" id="pass"/>
+</div>
+<p>PNV
+<div class="onoffswitch">
+    <input type="checkbox" name="pnv" class="onoffswitch-checkbox" id="pnv" checked>
+    <label class="onoffswitch-label" for="pnv">
+        <span class="onoffswitch-inner"></span>
+        <span class="onoffswitch-switch"></span>
+    </label>
+</div>
+</p>
+<p>EH BILDU
+<div class="onoffswitch">
+    <input type="checkbox" name="bildu" class="onoffswitch-checkbox" id="bildu" checked>
+    <label class="onoffswitch-label" for="bildu">
+        <span class="onoffswitch-inner"></span>
+        <span class="onoffswitch-switch"></span>
+    </label>
+</div>
+</p>
+<p>PSE
+<div class="onoffswitch">
+    <input type="checkbox" name="pse" class="onoffswitch-checkbox" id="pse" checked>
+    <label class="onoffswitch-label" for="pse">
+        <span class="onoffswitch-inner"></span>
+        <span class="onoffswitch-switch"></span>
+    </label>
+</div>
+</p>
+<p>PP
+<div class="onoffswitch">
+    <input type="checkbox" name="pp" class="onoffswitch-checkbox" id="pp" checked>
+    <label class="onoffswitch-label" for="pp">
+        <span class="onoffswitch-inner"></span>
+        <span class="onoffswitch-switch"></span>
+    </label>
+</div>
+</p>
+<p>Podemos
+<div class="onoffswitch">
+    <input type="checkbox" name="podemos" class="onoffswitch-checkbox" id="podemos" checked>
+    <label class="onoffswitch-label" for="podemos">
+        <span class="onoffswitch-inner"></span>
+        <span class="onoffswitch-switch"></span>
+    </label>
+</div>
+</p>
+<script>
+//var servers = ["52.57.88.79","52.57.87.188","52.57.87.41"];
+var servers = ['eitb.mediascapeproject.eu'];
+document.addEventListener('DOMContentLoaded',function(){
+ var xhttp = new XMLHttpRequest();
+ xhttp.open("GEt", "/getCameraStatus", true);
+ xhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+       var cameras = JSON.parse( this.responseText);
+       console.log(cameras);
+       for (c in cameras)
+	{
+		if (cameras[c]=="on")
+			document.querySelector('#'+c).checked = true;
+		else 
+			 document.querySelector('#'+c).checked = false;
+
+	}
+  }
+};
+xhttp.send();
+ 
+
+});
+document.querySelector('#pnv').addEventListener('click',changeCamera);
+document.querySelector('#bildu').addEventListener('click',changeCamera);
+document.querySelector('#pse').addEventListener('click',changeCamera);
+document.querySelector('#pp').addEventListener('click',changeCamera);
+document.querySelector('#podemos').addEventListener('click',changeCamera);
+function changeCamera (evt){
+
+  if (document.querySelector("#pass").value =="") {
+    window.alert("Pasahitza sartu");return;
+  }
+  else pass = document.querySelector("#pass").value;
+  if (!evt.target.checked) evt.target.value = "off";
+  else evt.target.value = "on";
+  console.log(evt.target.value);
+  console.log(evt.target.id);
+  status = evt.target.value;
+  servers.forEach(function(server){
+ 	 var xhttp = new XMLHttpRequest();
+	  xhttp.open("POST", "http://"+server+"/setCamera", true);
+	  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	  xhttp.send("camera="+evt.target.id+"&status="+status+"&pass="+pass);
+	});
+}
+
+</script>

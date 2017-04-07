@@ -1,0 +1,15 @@
+{
+  "name": "twitter-streaming-node",
+  "version": "0.0.1",
+  "author": "ialberdi",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "3.4.3",
+    "twitter": "*",
+    "socket.io":"*",
+    "mongoose":"*"
+  }
+}

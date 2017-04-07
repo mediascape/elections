@@ -1,0 +1,323 @@
+
+
+.wrapper {
+  padding: 3% 3% 0%;
+}
+._2_columnas_clm_izda {
+  padding-right: 0px;
+  padding-left: 20px;
+}
+.web_component_izda {
+  display: inline-block;
+  /*height: 100%;*/
+  background-color: #dee8ef;
+}
+
+.nombre_ciudad {
+  color: rgba(255, 255, 255, 0.26);
+  font-size: 1em;
+}
+.titulo_porcentaje {
+  font-size: 2em;
+}
+.clm_2 {
+
+  padding-right: 15px;
+  padding-left: 15px;
+}
+.contenido-radio{
+  margin-right: 0px;
+  margin-left: 0px;
+  border-radius: 20px;
+  background-color: #2e89b7;
+}
+.radio_row1 {
+  padding-bottom: 15px;
+}
+.boton_play_pause {
+  width: 35%;
+  height: 200px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  float: left;
+  border-radius: 15px;
+  background-color: #56b0ff;
+}
+.boton_play_pause:active {
+  border-radius: 15px;
+  background-color: #ea7728;
+  color: #544f4c;
+}
+.boton_play_pause:focus {
+  background-color: #ea7728;
+}
+.radio_ecualizador {
+  width: 100%;
+  margin-top: 71px;
+  margin-right: 0px;
+  padding-right: 26px;
+  float: none;
+  clear: none;
+}
+.ecualizador_img {
+  position: static;
+  left: 0px;
+  top: 0px;
+  margin-top: 25px;
+  padding-right: 20px;
+  padding-left: 16px;
+  float: left;
+  text-align: center;
+}
+.radio_nombre_emisora {
+  float: left;
+  font-size: 3em;
+}
+.radio_nombre_emisora_txt {
+  position: absolute;
+  margin-top: 34px;
+  margin-right: 24px;
+  margin-bottom: 1px;
+  /*background-color: rgba(0, 153, 255, 0.29);*/
+  color: white;
+  font-size: 0.7em;
+  font-weight: 700;
+}
+.separador_horizontal {
+  height: 9px;
+  clear: left;
+  background-color: #173f56;
+}
+.radio_logo_emisora {
+  /*height: 100%;*/
+  margin-top: 20px;
+  margin-right: 20px;
+  margin-left: 20px;
+  border-radius: 22px;
+  background-color: white;
+}
+.emisoras {
+  padding: 20px 20px 2px;
+  border-radius: 20px;
+  background-color: #375364;
+}
+.emisora_logo {
+  margin-bottom: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  border-radius: 25px;
+  background-color: #919191;
+}
+.emisora_logo:hover {
+  box-shadow: #233545 0px 0px 16px 2px;
+}
+.emisora_logo.selected {
+  background-color: #3fb0dd;
+}
+.emisora_logo.selected:hover {
+  background-color: #5896ae;
+}
+.logo_emisora_blanco {
+  position: static;
+  margin-top: 0px;
+  padding-right: 0px;
+  opacity: 0.36;
+  text-align: left;
+}
+.logo_emisora_p {
+  margin-bottom: 22px;
+  border-radius: 25px;
+  background-color: #5c7586;
+  text-align: center;
+}
+.logo_emisora_p:hover {
+  background-color: #3e96d0;
+}
+.logo_emisora_img {
+  opacity: 0.17;
+  -webkit-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  transform: scale(0.95);
+}
+.logo_emisora_img:hover {
+  opacity: 1;
+}
+.radio_btn_pausa {
+  margin: 20px;
+  width:80%;
+}
+.radio_ecualizador_centrar {
+  margin-top: 43px;
+  margin-right: 34px;
+}
+.radio_ecualizador_centrar  img{width:100%; margin-top:32px;}
+.radio_logo_play {
+  text-align: center;
+}
+.radio_logo_centrar {
+  text-align: center;
+}
+
+.radio_logo_centrar img {
+    width: 60%;
+}
+.logo_emisora_img{width: 60%;}
+
+.slider-panel{padding:10px 30px; overflow:auto; clear:both;}
+.slider-panel i{color:#fff; float:left; font-size:50px;}
+.slider-panel #slider{width:90%; float:right; margin:20px 0px;}
+.slider-panel #slider .ui-corner-all{border-radius: 0;}
+.slider-panel #slider.ui-widget-content{border:0; background-image:none; background-color:#499ECA;}
+.slider-panel #slider .ui-widget-header {
+    border: 0; background-image:none; background-color:#F37300;   
+}
+.slider-panel #slider .ui-state-default, .slider-panel #slider.ui-widget-content .ui-state-default, .slider-panel #slider .ui-widget-header .ui-state-default {
+    border: 1px solid #F86100; background-image:none; background-color:#F37300; 
+}
+.slider-panel #slider.ui-slider .ui-slider-handle {  width: 1.7em;  height: 1.7em;     top: -.5em;}
+
+/* responsive */
+
+@media (min-width: 992px) and (max-width: 1200px){
+  .clm_2 {
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+  .clm_2.izda {
+    padding-right: 20px;
+    padding-left: 0px;
+  }
+
+  .boton_play_pause {
+    width: 45%;
+    height: 150px;
+    margin-top: 21px;
+    margin-bottom: 20px;
+  }
+  .radio_ecualizador {
+    margin-top: 40px;
+  }
+  .ecualizador_img {
+    position: absolute;
+    margin-top: 60px;
+    margin-right: 0px;
+    margin-left: 184px;
+  }
+  .radio_nombre_emisora_txt {
+    margin-top: 13px;
+    margin-right: 18px;
+    float: right;
+    clear: none;
+    font-size: 0.5em;
+  }
+  .radio_btn_pausa {
+    width: 65%;
+    margin-top: 16px;
+    margin-bottom: 15px;
+    margin-left: 16px;
+  }
+  .radio_ecualizador_centrar {
+    margin-top: 42px;
+    margin-bottom: 12px;
+  }
+}
+
+@media (max-width: 1024px) and (orientation: landscape){
+.radio_ecualizador_centrar img {
+    width: 128%;
+    margin-top: 20px;
+}
+    
+}
+
+@media (max-width: 1024px) and (orientation: portrait){
+    .radio_ecualizador_centrar img {
+      width: 100%;
+      margin-top: 38px;
+    }
+}
+
+@media (max-width: 767px) and (orientation: portrait){
+ .clm_2.izda {
+    padding-right: 0px;
+  }
+  .radio_btn_pausa {
+    width: 100% !important;
+  }
+  .radio_ecualizador {
+    clear: both;
+  }
+  .ecualizador_img {
+    margin-right: 23px;
+    padding-right: 0px;
+    text-align: center;
+  }
+  .radio_nombre_emisora_txt {
+  margin-top:17px !important;
+    margin-right: 28px;
+    font-size: 0.7em;
+  }
+  .logo_emisora_img {
+    width: 100%;
+  }
+  .radio_ecualizador_centrar img {
+  margin-top: 61px;
+  }
+}
+
+@media (max-width: 767px) and (orientation: landscape){
+  .clm_2 {
+    margin-bottom: 20px;
+  }
+  .clm_2.izda {
+    padding-right: 0px;
+  }
+  .radio_ecualizador {
+    width: 91%;
+    margin-top: 49px;
+    margin-bottom: 19px;
+    font-size: 0.4em;
+    text-align: center;
+  }
+  .ecualizador_img {
+    margin-top: 54px;
+    margin-right: 0px;
+    margin-left: 301px;
+    padding-right: 0px;
+    padding-left: 0px;
+    opacity: 1;
+  }
+  .radio_nombre_emisora {
+    text-align: left;
+  }
+  .radio_nombre_emisora_txt {
+    display: block;
+    margin-top: 21px;
+   
+    margin-left: 20px;
+    float: left;
+    font-size: 0.9em;
+    text-align: left;
+  }
+  .radio_btn_pausa {
+    margin: 20px;
+  width: 50%;
+  }
+  .radio_ecualizador_centrar {
+    width: 76% !important;
+    text-align: center;
+  }
+  .radio_ecualizador_img {
+    width: 88%;
+  margin-top: 30px;
+  }
+
+}
+@media (max-width: 767px){
+    .clm_2{padding-left:0px;}
+    .slider-panel i { font-size: 40px;}
+    .slider-panel #slider { width: 85%;  margin-top: 15px;}
+}

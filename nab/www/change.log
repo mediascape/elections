@@ -1,0 +1,4 @@
+version: 0.0.1
+AdaptionEngine: Nec modifyied by Vicomtech
+UIAdaptation: Sinple control panel (components status control, layout local change, association with qrcode)
+Dependecies: Polymer 1.0, css-grid-layout (chrome flag:webplatform active)

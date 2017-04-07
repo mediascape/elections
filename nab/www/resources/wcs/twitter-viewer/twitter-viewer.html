@@ -1,0 +1,467 @@
+<dom-module id="twitter-viewer" >
+	<template>
+		<style>
+		#result{
+			height:100%;
+		}
+	@media (min-width: 1024px){
+		#twitterCont{
+			background-color: #0A2533;
+			padding: 5px;
+		}
+		.content-detalle-twitter{
+			background-color: #173F56 !important;
+			margin: auto;
+			overflow: hidden;
+			text-align: left;
+		}
+		.content-tweets-title {
+			display:block;
+			margin-top: 20px !important;
+			margin-bottom: 20px;
+			margin-left: 57px;
+			width:90%;
+		}
+		.media-left{
+			float:left;
+		}
+		#bird{width: 100px; vertical-align: middle;}
+		h2 {
+			color: #91b5ce;
+		    font-size: xx-large;
+		    margin-top: 19px;
+		}
+		.content-tweets{
+			border-bottom:1px dashed #55b2ff;
+			width: 90%;
+			margin: auto !important;
+			padding-bottom: 25px;
+			padding-top: 15px;
+		}
+		.avatar-twitter {
+			float:left;
+		}
+		.user-img{
+			width: 75px;
+			-webkit-border-radius: 15px;
+			-moz-border-radius: 15px;
+			border-radius: 15px;
+		}
+		.usuario-twitter{ color: #FFF; font-size: medium; }
+		.mensaje-twitter{ color: #FFF; font-size: small; }
+		.tweet_timestamp {
+			font-size: small;
+		}
+		.tweet_time_link {
+			display: none;
+		}
+	}
+	@media (max-width: 1023px) and (min-width:481px){
+		#twitterCont{
+			background-color: #0A2533;
+			padding: 5px;
+		}
+		.content-detalle-twitter{
+			background-color: #173F56 !important;
+			margin: auto;
+			overflow: hidden;
+			text-align: left;
+		}
+		.content-tweets-title {
+			display:block;
+			margin-top: 20px !important;
+			margin-bottom: 20px;
+			margin-left: 57px;
+			width:90%;
+		}
+		.media-left{
+			float:left;
+		}
+		#bird{width: 75px; vertical-align: middle;}
+		h2 {
+			color: #91b5ce;
+		    font-size: xx-large;
+		    margin-top: 19px;
+		}
+		.content-tweets{
+			border-bottom:1px dashed #55b2ff;
+			width: 90%;
+			margin: auto !important;
+			padding-bottom: 25px;
+			padding-top: 15px;
+		}
+		.avatar-twitter {
+			float:left;
+		}
+		.user-img{
+			width: 75px;
+			-webkit-border-radius: 15px;
+			-moz-border-radius: 15px;
+			border-radius: 15px;
+		}
+		.usuario-twitter{ color: #FFF; font-size: medium; }
+		.mensaje-twitter{ color: #FFF; font-size: small; }
+		.tweet_timestamp {
+			font-size: small;
+		}
+		.tweet_time_link {
+			display: none;
+		}
+	}
+	@media (max-width: 480px) and (min-height:171px) and (max-height: 250px){
+		#twitterCont{
+			background-color: #0A2533;
+			padding: 5px;
+		}
+		.content-detalle-twitter{
+			background-color: #173F56 !important;
+			margin: auto;
+			overflow: hidden;
+			text-align: left;
+		}
+		.content-tweets-title {
+			display:none;
+			margin-top: 20px !important;
+			margin-bottom: 20px;
+			margin-left: 57px;
+			width:90%;
+		}
+		.media-left{
+			float:left;
+		}
+		#bird{width: 55px; vertical-align: middle;}
+		 h2 {
+			color: #91b5ce;
+		    font-size: xxx-large;
+		    margin-top: 16px;
+		}
+		.content-tweets{
+			border-bottom:1px dashed #55b2ff;
+			width: 90%;
+			margin: auto !important;
+			padding-bottom: 25px;
+			padding-top: 15px;
+		}
+		.avatar-twitter {
+			float:left;
+		}
+		.user-img{
+			width: 50px;
+			-webkit-border-radius: 15px;
+			-moz-border-radius: 15px;
+			border-radius: 15px;
+		}
+		.usuario-twitter{ color: #FFF; font-size: medium; }
+		.mensaje-twitter{ color: #FFF; font-size: small; }
+		.tweet_timestamp {
+			font-size: xx-small;
+		}
+		.tweet_time_link {
+			display: none;
+		}
+	}
+	@media (max-width: 480px) and (min-height:251px){
+		#twitterCont{
+			background-color: #0A2533;
+			padding: 5px;
+		}
+		.content-detalle-twitter{
+			background-color: #173F56 !important;
+			margin: auto;
+			overflow: hidden;
+			text-align: left;
+		}
+		.content-tweets-title {
+			display:block;
+			margin-top: 20px !important;
+			margin-bottom: 20px;
+			margin-left: 57px;
+			width:90%;
+		}
+		.media-left{
+			float:left;
+		}
+		#bird{width: 55px; vertical-align: middle;}
+		 h2 {
+			color: #91b5ce;
+		    font-size: xxx-large;
+		    margin-top: 16px;
+		}
+		.content-tweets{
+			border-bottom:1px dashed #55b2ff;
+			width: 90%;
+			margin: auto !important;
+			padding-bottom: 25px;
+			padding-top: 15px;
+		}
+		.avatar-twitter {
+			float:left;
+		}
+		.user-img{
+			width: 50px;
+			-webkit-border-radius: 15px;
+			-moz-border-radius: 15px;
+			border-radius: 15px;
+		}
+		.usuario-twitter{ color: #FFF; font-size: medium; }
+		.mensaje-twitter{ color: #FFF; font-size: small; }
+		.tweet_timestamp {
+			font-size: xx-small;
+		}
+		.tweet_time_link {
+			display: none;
+		}
+	}
+	@media (max-width: 480px) and (max-height:170px){
+		#twitterCont{
+			background-color: #0A2533;
+			padding: 5px;
+		}
+		.content-detalle-twitter{
+			background-color: #173F56 !important;
+			margin: auto;
+			overflow: hidden;
+			text-align: left;
+		}
+		.content-tweets-title {
+			display:none;
+		}
+		.media-left{
+			float:left;
+		}
+		#bird{width: 55px; vertical-align: middle;}
+		 h2 {
+			color: #91b5ce;
+		    font-size: large;
+		    margin-top: 19px;
+		}
+		.content-tweets{
+			border-bottom:0px dashed #55b2ff;
+			width: 90%;
+			margin: auto !important;
+			padding-bottom: 25px;
+			padding-top: 30px;
+		}
+		.avatar-twitter {
+			float:left;
+		}
+		.user-img{
+			width: 40px;
+			-webkit-border-radius: 15px;
+			-moz-border-radius: 15px;
+			border-radius: 15px;
+		}
+		.usuario-twitter{ color: #FFF; font-size: xx-small; }
+		.mensaje-twitter{ color: #FFF; font-size: xx-small; }
+		.tweet_timestamp {
+			font-size: xx-small;
+		}
+		.tweet_time_link {
+			display: none;
+		}
+	}
+	</style>
+	<iron-ajax id="data" auto url="tweets.json" handleAs="json" last-response="{{tweetsResponse}}"></iron-ajax>
+
+		<div id="twitterCont" class="template-all-layouts " style='overflow:hidden;'>
+			<div  style='height:100%;'>
+				<div id="result" class='col-md-12 content-detalle-twitter' style='height:100%;'>
+					<div class="media content-tweets-title">
+						  <div class="media-left">
+							<img id= 'bird' class="media-object" src="twitter.png">
+						  </div>
+						  <div class="media-body">
+							<h2 class="media-heading">Twitter</h2>
+						  </div>
+					</div>
+					<ul class='list' id='ulList' style="padding-left:0px; list-style-type: none; margin-bottom: 0px;"></ul>
+				</div>
+			</div>
+		</div>
+	</template>
+</dom-module>
+	<script>
+		Polymer({
+			 	is:'twitter-viewer',
+			 	behaviors:[ComponentQueryBehavior,ComponentStatusBehavior],
+			 	properties:{
+					/*timestamp:{
+							type:Number,
+							value:0,
+							observer:'timestampChanged'
+				},*/
+				prevTime:{
+					type:Number,
+					value:1432509468,
+				},
+				showing:{
+						type:Boolean,
+						value:false
+				},
+				customCmd:{
+		            type:String,
+		            value:'',
+		            observer: 'customCmdReceived'
+		        },
+				terms:{
+					type:String,
+					value:'Elecciones, elecciones, Hauteskundeak, hauteskundeak, eleccion, #elecciones24m, #24m, #L6elecciones,#eleccionesA3, #eleccion2015, hauteskundeak, elecciones, @hauteskundeak, #hauteskundeak2015, #Elecciones2015, #hauteskundeak15, #Elecciones15, #M24Donostia, #eleccionesVG, @Navarra2015, #Navarra24M, #24M, #M24Donostia, #EleccionesNA15, #Navarra24M, @PPopular, @PSOE, @vox_es, @UPyD, @ahorapodemos, @PartidoPACMA, @Equo, @CiudadanosCs, @webpcpe, @RecortesCero, @phumanista_esp, #UPyD, #PSOE, twee#PP, #BILDU, #Podemos, #HagamosHistoria24M, #VOX, #AhoraVOX, #Ciudadanos, #UPN, @PPvasco, @UPyDEuskadi, @Cs_Euskadi, @IrabaziEuskadi, @PES_PSE, @EzkerBatua, @ealkartasuna, @plaZFeminista, @PodemosEuskadi_, @ehbildu, @IkuneICP, @eajpnv, @PacmaEuskadi, @UdalBerri, @GastoriaVG, @hegasum, @IUEzker, @upn_navarra, @libertadnavarra, @SainNavarra, @RCN_NOK, Kike Fernández, @KikeFdzdePinedo, @arabaehbildutwee, @ehbilduaraba, Miren Larrion, @miren_larrion, @ehbildugasteiz, @EA_Araba, Ramiro González, @ramirogonza, @eajpnvaraba, @pnvjuntasaraba, Gorka Urtaran, @pnvgasteiz, @gorka__urtaran, Cristina González, @CristinaGnlz, @psealava, @PSEporAlava, Peio López De Munain, @porvitoria, @peiomunain_xvg, Javier De Andrés, @JavierdAndres, @PP_Juntas_Alava, Javier Maroto, @JavierMaroto, Koldo Martin, @KoldoPodemos, @PodemosVitoria, Ana Unibaso, @IkuneICP, Niko Gutiérrez, @Nik0Gutierrez, Ignacio Oñate, @Ignacionate, Miguel Angel Carrera, @MikelK10, Rodrigo Zamora, @Rodri_Zamora_Al, José Damían Garcia-Moreno, @josedamian1980, #IrabaziAlaba, @iu_araba, @EquoAraba, Óscar Fetweernández, @oskar_fm, @IrabaziGasteiz, @EQUO_VG, @EBgasteiz, Esaú Martín, @esaumartin, @vox_alava, #AhoraVOX, Adolfo Gago, @toohope, Vanesa Costa, Nerea Icuza, @icuza, Esther Saez de Argandoña, @unicaire, @GastoriaVG, Jorge Hinojal, @JorgeHiSo, @shgjorge, @hegasum, Diana Plaza, @RecortesCero, Xabier Olano, @Xabier_Olano_, @ehbildugipuzkoa, @alternatiba, @EA_Gipuzkoa, #gipuzkoarrokgaraile, Juankar Izagirre, @AlkateSS, @HiriBizia, @SortuDonostia, @EA_Donostia, #BILDU, @ehbildu, Markel Olano, @eajpnvgipuzkoa, @markelolano, @markelolano2015, Eneko Goia, @enekogoia2015, @DonostiaPNV, @pnvdonostia, @eajpnv, Denis Itxaso, @DenisItxaso, @PSEGIPUZKOA, Ernesto Gasco, @gasco63, Juan Carlos Cano, @PPGipuzkoa, @CanoAristoy, Miren Albistur, @MirenAlbistur, @PPdonostiarras, Juantxo Iturria, @juantxo_iturria, #BadaGaraia, #GipuzkoaAldatu, @podemosDonostia, Amaia Martín, @sybillacumas, @Irabazidonostia, #Podemos, #HagamosHistoria24M, Arantza González, @arantzagg, @IRABAZIGipuzkoa, @Irabazidonostia, @IUDonostia, @eQuoGipuzkoa, Manuel Aguirre, @Mccguirre, Arantza Aranzabal, @aranaranzabal, #donostiaUPyD, @votaUPyD, Jonathan Calvo, @joncalrue, Nicolás de Miguel, @NicodeMig, Josebe Iturrioz, @JosebeIturrioz, #AldaketaGorpuzteko, @plaZFeminista, Saioa Escolar, @Pacma_Gipuzkoa, @PacmaGipuzkoa, @PacmaEuskadi, Josu Unanue, @unanuejosu, @ehbildubizkaia, #bizkaitarrokgaraile, Aitziber Ibarbarriaga, @AitziIbaiba, @ehbildubilbo, @SortuBilbo, #BILDU, @EA_Bizkaia, Unai Rementeria, @urementeria, Juan María Aburto, @juanmariaburto, @AzalgorriBilbao, @eajpnvbilbao @eajpnv, Carlos Totorica, @PSEBizkaia, #CarlosTotorica, Alfonso Gil, @AlfonsoGil, @PSEBilbao, @GroupPES_Bilbao, Javier Ruiz, @JavierRuiz_PP, @PPBizkaia, Luis Eguiluz, @LuisEguiluz_pp, @PPdeBilbao, Asun Merino, @AsunPodemos, @PodemosBizkaia, Francisco Samir Lahdou, @PodemosBilbao, @PodemosBilbaoE, Xabier Jiménez, @Eljoventopo, #IrabaziBizkaia, @BilboIrabaziz, @IUBilbao, @EquoBizkaia, Roque Adrada, @RoqueAdrada, Javier Gabilondo, @JavierGabilondo, Santiago Sáinz, @Sainz_Robles, @Ciudadanos, David Pasarín, @davidpasarin, Patricia Gómez, @vox_vizcaya, Urko de Azumendi, @urkobilbao2015, @vox_bilbao, Carmen Muñoz, @CarmenMunozL, #BilbaoEnComun, @UdalBerri, @Equo, @iunida, @ALTER_info, JOSE MANUEL VÁZQUEZ RIOS, @phumanista_esp, Kepa Lozano, @KEPALOZANO, Goizane Rodríguez, @JusticiaPAT, Joseba Arroita, @IkuneICP, Sergio Saenz, @webpcpe, #24mvotapcpe, Uxue Barkos, @uxuebarkos, Itziar Gomez, @itziargomez, @GeroaBaiIrunea, @geroabai, #orainbai, @EAJPNVNafarroa, Javier Esparza, @JavierJesparza, @_navarrisimo, #Navarrisimo, #adelantenavarros, Enrique Maya, #Navarrisimo, #UPN, @upn_navarra, Ana Beltran, @abeltran_ana, @PPNavarra, Pablo Zalba, @PabloZalba, #Pamplona, #Navarra, @PPNavarra, #DespiertaPamplona, María Chivite, @mavichina, @PSNPSOE, Maite Esporrin, @maiteesporrin, @PamplonaPSN, @psnpsoe, #VotaPSOE, #VotaPSNPSOE, #EsporrinAlcaldesa, #ActivemosPamplona, Adolfo Araiz, @AdolfoAraiz, @EHbilduNafarroa, #Nafarrokgaraile, #nafarrokgaraile, Joseba Asiron, @josebaasiron, @EAnafarroa, Laura Pérez Ruano, @laperua, @Podemosnavarra, #EsAhora, #CambiaNavarra, Diego Paños, @diegopanos, #CambiaNavarra, @Cs_Navarra_, Iñaki Arana, #NavarraPideCambio, Miguel Zarranz, @miguelzarranz, @UPyD_Navarra, Damaso Crespo, @upyd_navarra, #LIBRES, Jose Miguel Nuin, @josemiguelnuin, @IzdaNavarra @EzkerraN, Mikel Iriarte, @libertadnavarra, David Marzo, @davidMarzo, @EquoNavarfarroa, #LaAlternativaVerde, #AukeraVerdea, @EquoNavarra, Maria Yazmina Larumbe, @PacmaNavarra, Daniel Fernández, #SuVozTuVoto, Luis Miguel Latasa, @SainNavarra, @PartidoSAIn, Samuel Valderrey, @SamuelValderrey, #VOTASAIn, Ramon Morcillo, @RCN_NOK, #marihuana, Edurne Eguino, @SoyEdurneNaiz, @EdurneEguino, @IUPamplona',
+				},
+
+				startVal:{
+					type:Number,
+					value:-1
+				},
+				val:{
+					type:Number,
+					value:1432509468
+				}
+			},
+
+				created: function() {
+					console.log('twitter created');
+				},
+				attached: function() {
+				},
+				ready: function() {
+					this.showing = false;
+					var _this=this;
+					var element=this.shadowRoot;
+					document.addEventListener ('motion-ready',this.smReady.bind(this));
+					this.tweetList={};
+					this.$.data.addEventListener("response",function(e){
+						_this.tweetList=e.detail.response;
+						_this.timestamp=1432509468;
+					});
+
+
+
+				},
+				smReady:function(){
+					// Sharemotion objetua lortu
+					var _this=this;
+					this.sm = mediascape.AdaptationToolkit.Motion;
+					// ebentuak entzun ta jaso
+					var handler = function (e) {
+						_this.timestamp=_this.prevTime+Math.round(e.target.currentTime);
+						if(_this.timestamp>=_this.val+3){
+							_this.val=_this.timestamp;
+							_this.timestampChanged();
+						}
+						if(_this.timestamp<=_this.val-3){
+							_this.val=_this.timestamp;
+							_this.timestampChanged();
+						}
+
+
+					};
+				  this.sm.controller.addEventListener("timeupdate", handler);
+				},
+				timestampChanged:function(){
+					//console.log("timestampChanged");
+					//Get the number maximum of tweets able to visualize inside the div
+         if(this.showing)
+					if(this.tweetList!==undefined){
+						var selectedTweet=(Math.floor(Math.random() * 35));
+						var _this=this;
+							var nodesNumbers = Math.floor((_this.$.twitterCont.clientHeight-50)/150);
+							if(_this.$.twitterCont.clientHeight>130){
+								if (_this.$.ulList.childNodes.length>nodesNumbers){
+									var tot=_this.$.ulList.childNodes.length-nodesNumbers;
+									for(var j=0;j<tot;j++){
+										_this.$.ulList.removeChild(_this.$.ulList.children[_this.$.ulList.childNodes.length-1]);
+									}
+								}
+							}else{
+								_this.$.ulList.innerHTML = '';
+							}
+							//Detect if the tweet is already in the list of tweets
+
+
+								if(_this.$.ulList.childNodes.length>=nodesNumbers&&nodesNumbers>0) _this.$.ulList.removeChild(_this.$.ulList.children[nodesNumbers-1]);
+								var li=document.createElement('li');
+								li.className='tweet-element twitter-viewer';
+								var div1=document.createElement('div');
+								div1.className='content-tweets twitter-viewer';
+								var div2=document.createElement('div');
+								div2.className='media-left avatar-twitter twitter-viewer';
+								var a1=document.createElement('a');
+								a1.href="https://twitter.com/"+_this.tweetList.tweets[selectedTweet].userName;
+								var img1=document.createElement('img');
+								img1.className="media-object twitter-viewer user-img";
+								img1.src='resources/wcs/twitter-viewer/userImages/'+_this.tweetList.tweets[selectedTweet].userImg;
+								a1.appendChild(img1);
+								div2.appendChild(a1);
+								div1.appendChild(div2);
+								var div3=document.createElement('div');
+								div3.className='media-body twitter-viewer';
+								var div4=document.createElement('div');
+								div4.className='usuario-twitter twitter-viewer';
+								var strong1=document.createElement('strong');
+								strong1.innerHTML=_this.tweetList.tweets[selectedTweet].userName;
+								div4.appendChild(strong1);
+								var div5=document.createElement('div');
+								div5.className='mensaje-twitter twitter-viewer ';
+								div5.innerHTML=_this.tweetList.tweets[selectedTweet].text;
+								div3.appendChild(div4);
+								div3.appendChild(div5);
+								div1.appendChild(div3);
+								var div6=document.createElement('div');
+								div6.className='tweet_timestamp twitter-viewer';
+								div6.innerHTML='<img class="stream_bluebird" src="././resources/images/twitter/bird_16_blue.png"></img> \
+											<span class="retweets" style="color:#C0C0C0">0 retweets</span> \
+											<img src="././resources/images/twitter/reply.png" class="imageof_reply"></img> \
+											<a style="color:#C0C0C0;text-decoration: none;">Reply</a> \
+											<img src="././resources/images/twitter/retweet.png" class="imageof_retweet"></img> \
+											<a style="color:#C0C0C0;text-decoration: none;">Retweet</a> \
+											<img src="././resources/images/twitter/favorite.png" class="imageof_favorite"></img> \
+											<a style="color:#C0C0C0;text-decoration: none;">Favorite</a> \
+											<a style="margin-left:10px;">Sunday, 24 May '+_this.prettyPrint(_this.timestamp).split('days')[1]+'</a>';
+								div1.appendChild(div6);
+								li.appendChild(div1);
+								_this.$.ulList.insertBefore(li,_this.$.ulList.firstChild);
+								if(mediascape.AdaptationToolkit!==undefined)
+								mediascape.AdaptationToolkit.Adaptation.UIAdaptation.updateUniqueComponent(this);
+							}
+
+				},
+				prettyPrint:function(val){
+          		  // Convert time in seconds to X days, hours, minutes, seconds
+		          var days = Math.floor(val / (60 * 60 * 24));
+		          var hours = Math.floor((val - days * (60 * 60 * 24)) / (60 * 60));
+		          var mins = Math.floor((val - days * (60 * 60 * 24) - hours * (60 * 60)) / (60));
+		          var secs = Math.floor((val - days * (60 * 60 * 24) - hours * (60 * 60)) - mins * 60);
+		          var s = "";
+		          if (days > 1) s = days + " days ";
+		          else if (days > 0) s = days + " day ";
+		          if (hours > 1) s += hours + ":";
+		          else if (hours > 0) s += hours + ":";
+		          if (mins > 1) s += mins + ":";
+		          else if (mins > 0) s += mins + ":";
+		          if (secs > 9) s += secs + "  ";
+		          else s += "0"+secs ;
+		          return s;
+		        },
+				customCmdReceived: function(data){
+					var _this=this;
+      				console.log("DATA",data);
+      				if(_this.socket){
+      					if(data==="") {
+      						_this.terms='Elecciones, elecciones, Hauteskundeak, hauteskundeak, eleccion, #elecciones24m, #24m, #L6elecciones,#eleccionesA3, #eleccion2015, hauteskundeak, elecciones, @hauteskundeak, #hauteskundeak2015, #Elecciones2015, #hauteskundeak15, #Elecciones15, #M24Donostia, #eleccionesVG, @Navarra2015, #Navarra24M, #24M, #M24Donostia, #EleccionesNA15, #Navarra24M, @PPopular, @PSOE, @vox_es, @UPyD, @ahorapodemos, @PartidoPACMA, @Equo, @CiudadanosCs, @webpcpe, @RecortesCero, @phumanista_esp, #UPyD, #PSOE, #PP, #BILDU, #Podemos, #HagamosHistoria24M, #VOX, #AhoraVOX, #Ciudadanos, #UPN, @PPvasco, @UPyDEuskadi, @Cs_Euskadi, @IrabaziEuskadi, @PES_PSE, @EzkerBatua, @ealkartasuna, @plaZFeminista, @PodemosEuskadi_, @ehbildu, @IkuneICP, @eajpnv, @PacmaEuskadi, @UdalBerri, @GastoriaVG, @hegasum, @IUEzker, @upn_navarra, @libertadnavarra, @SainNavarra, @RCN_NOK, Kike Fernández, @KikeFdzdePinedo, @arabaehbildu, @ehbilduaraba, Miren Larrion, @miren_larrion, @ehbildugasteiz, @EA_Araba, Ramiro González, @ramirogonza, @eajpnvaraba, @pnvjuntasaraba, Gorka Urtaran, @pnvgasteiz, @gorka__urtaran, Cristina González, @CristinaGnlz, @psealava, @PSEporAlava, Peio López De Munain, @porvitoria, @peiomunain_xvg, Javier De Andrés, @JavierdAndres, @PP_Juntas_Alava, Javier Maroto, @JavierMaroto, Koldo Martin, @KoldoPodemos, @PodemosVitoria, Ana Unibaso, @IkuneICP, Niko Gutiérrez, @Nik0Gutierrez, Ignacio Oñate, @Ignacionate, Miguel Angel Carrera, @MikelK10, Rodrigo Zamora, @Rodri_Zamora_Al, José Damían Garcia-Moreno, @josedamian1980, #IrabaziAlaba, @iu_araba, @EquoAraba, Óscar Fernández, @oskar_fm, @IrabaziGasteiz, @EQUO_VG, @EBgasteiz, Esaú Martín, @esaumartin, @vox_alava, #AhoraVOX, Adolfo Gago, @toohope, Vanesa Costa, Nerea Icuza, @icuza, Esther Saez de Argandoña, @unicaire, @GastoriaVG, Jorge Hinojal, @JorgeHiSo, @shgjorge, @hegasum, Diana Plaza, @RecortesCero, Xabier Olano, @Xabier_Olano_, @ehbildugipuzkoa, @alternatiba, @EA_Gipuzkoa, #gipuzkoarrokgaraile, Juankar Izagirre, @AlkateSS, @HiriBizia, @SortuDonostia, @EA_Donostia, #BILDU, @ehbildu, Markel Olano, @eajpnvgipuzkoa, @markelolano, @markelolano2015, Eneko Goia, @enekogoia2015, @DonostiaPNV, @pnvdonostia, @eajpnv, Denis Itxaso, @DenisItxaso, @PSEGIPUZKOA, Ernesto Gasco, @gasco63, Juan Carlos Cano, @PPGipuzkoa, @CanoAristoy, Miren Albistur, @MirenAlbistur, @PPdonostiarras, Juantxo Iturria, @juantxo_iturria, #BadaGaraia, #GipuzkoaAldatu, @podemosDonostia, Amaia Martín, @sybillacumas, @Irabazidonostia, #Podemos, #HagamosHistoria24M, Arantza González, @arantzagg, @IRABAZIGipuzkoa, @Irabazidonostia, @IUDonostia, @eQuoGipuzkoa, Manuel Aguirre, @Mccguirre, Arantza Aranzabal, @aranaranzabal, #donostiaUPyD, @votaUPyD, Jonathan Calvo, @joncalrue, Nicolás de Miguel, @NicodeMig, Josebe Iturrioz, @JosebeIturrioz, #AldaketaGorpuzteko, @plaZFeminista, Saioa Escolar, @Pacma_Gipuzkoa, @PacmaGipuzkoa, @PacmaEuskadi, Josu Unanue, @unanuejosu, @ehbildubizkaia, #bizkaitarrokgaraile, Aitziber Ibarbarriaga, @AitziIbaiba, @ehbildubilbo, @SortuBilbo, #BILDU, @EA_Bizkaia, Unai Rementeria, @urementeria, Juan María Aburto, @juanmariaburto, @AzalgorriBilbao, @eajpnvbilbao @eajpnv, Carlos Totorica, @PSEBizkaia, #CarlosTotorica, Alfonso Gil, @AlfonsoGil, @PSEBilbao, @GroupPES_Bilbao, Javier Ruiz, @JavierRuiz_PP, @PPBizkaia, Luis Eguiluz, @LuisEguiluz_pp, @PPdeBilbao, Asun Merino, @AsunPodemos, @PodemosBizkaia, Francisco Samir Lahdou, @PodemosBilbao, @PodemosBilbaoE, Xabier Jiménez, @Eljoventopo, #IrabaziBizkaia, @BilboIrabaziz, @IUBilbao, @EquoBizkaia, Roque Adrada, @RoqueAdrada, Javier Gabilondo, @JavierGabilondo, Santiago Sáinz, @Sainz_Robles, @Ciudadanos, David Pasarín, @davidpasarin, Patricia Gómez, @vox_vizcaya, Urko de Azumendi, @urkobilbao2015, @vox_bilbao, Carmen Muñoz, @CarmenMunozL, #BilbaoEnComun, @UdalBerri, @Equo, @iunida, @ALTER_info, JOSE MANUEL VÁZQUEZ RIOS, @phumanista_esp, Kepa Lozano, @KEPALOZANO, Goizane Rodríguez, @JusticiaPAT, Joseba Arroita, @IkuneICP, Sergio Saenz, @webpcpe, #24mvotapcpe, Uxue Barkos, @uxuebarkos, Itziar Gomez, @itziargomez, @GeroaBaiIrunea, @geroabai, #orainbai, @EAJPNVNafarroa, Javier Esparza, @JavierJesparza, @_navarrisimo, #Navarrisimo, #adelantenavarros, Enrique Maya, #Navarrisimo, #UPN, @upn_navarra, Ana Beltran, @abeltran_ana, @PPNavarra, Pablo Zalba, @PabloZalba, #Pamplona, #Navarra, @PPNavarra, #DespiertaPamplona, María Chivite, @mavichina, @PSNPSOE, Maite Esporrin, @maiteesporrin, @PamplonaPSN, @psnpsoe, #VotaPSOE, #VotaPSNPSOE, #EsporrinAlcaldesa, #ActivemosPamplona, Adolfo Araiz, @AdolfoAraiz, @EHbilduNafarroa, #Nafarrokgaraile, #nafarrokgaraile, Joseba Asiron, @josebaasiron, @EAnafarroa, Laura Pérez Ruano, @laperua, @Podemosnavarra, #EsAhora, #CambiaNavarra, Diego Paños, @diegopanos, #CambiaNavarra, @Cs_Navarra_, Iñaki Arana, #NavarraPideCambio, Miguel Zarranz, @miguelzarranz, @UPyD_Navarra, Damaso Crespo, @upyd_navarra, #LIBRES, Jose Miguel Nuin, @josemiguelnuin, @IzdaNavarra @EzkerraN, Mikel Iriarte, @libertadnavarra, David Marzo, @davidMarzo, @EquoNavarfarroa, #LaAlternativaVerde, #AukeraVerdea, @EquoNavarra, Maria Yazmina Larumbe, @PacmaNavarra, Daniel Fernández, #SuVozTuVoto, Luis Miguel Latasa, @SainNavarra, @PartidoSAIn, Samuel Valderrey, @SamuelValderrey, #VOTASAIn, Ramon Morcillo, @RCN_NOK, #marihuana, Edurne Eguino, @SoyEdurneNaiz, @EdurneEguino, @IUPamplona';
+      					}
+	      				else{
+	      					_this.terms=data;
+	      					_this.$.ulList.innerHTML='';
+	      				}
+      				}
+ 				},
+				unload:function(){
+						this.showing =false;
+				},
+				load:function(){
+					 this.showing =true;
+				}
+
+	});
+
+	</script>

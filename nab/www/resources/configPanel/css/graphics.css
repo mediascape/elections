@@ -1,0 +1,593 @@
+
+.titulo_porcentaje {
+  font-size: 2em;
+}
+.clm_2_graph {
+  /*height: 100%;*/
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.contenido_graphics {
+  /*height: 100%;*/
+  margin-right: 0px;
+  margin-left: 0px;
+  border-radius: 20px;
+  background-color: #2e89b7;
+  overflow:auto;
+  padding-top: 10px;
+}
+
+.txt_ciudad {
+  margin: 20px;
+  color: #1e6299;
+  font-size: 2em;
+}
+.pastilla_ciudad.active{
+  border: 8px none #ff9b00;
+  background-color: white;
+  box-shadow: #fc751b 0px 0px 0px 7px inset;
+}
+.pastilla_ciudad {
+  margin-top: 20px;
+  padding: 1px;
+  border-radius: 20px;
+  background-color: #c7dcea;
+}
+.pastilla_ciudad:hover {
+  border: 8px none #ff9b00;
+  background-color: white;
+  box-shadow: #fc751b 0px 0px 0px 7px inset;
+}
+
+.txt_ciudad_2011_2015 {
+  margin-top: 17px;
+  color: #b2d2e2;
+  font-size: 3em;
+  text-align: left;
+}
+
+.ciudades_fila {
+  padding: 20px;
+}
+
+.switch_div {
+  padding: 19px;
+}
+.switch_img {
+  margin: 0px 20px 0px 0px;
+  float: right;
+}
+.txt_titular {
+  position: static;
+  margin-top: 25px;
+  color: #afd2d6;
+  font-size: 2em;
+  line-height: 35px;
+}
+
+/* tabs seccion izquierda */
+
+.nav-tabs { border-bottom: none !important;}
+.nav-tabs>li>a {border: none !important;}
+.data-information-section {
+  height: 90px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.tabs-graficos {
+  margin: 0 !important;
+}
+span.year-text {color: white; font-size: 2em; font-weight: bold;}
+ul.nav-tabs li{
+  text-align: center !important;
+    margin-right: 18px;
+    border-radius: 20px 20px 0px 0px;
+    background-color: #3d5f6b;  
+    width:43%;
+}
+ul.nav-tabs li:hover {background: #ff9b00; }
+ul.nav-tabs li a img { width: 25% !important;}
+ul.nav-tabs li.active{
+    border-radius: 20px 20px 0px 0px;
+    background-color: #97c7e8 !important;
+}
+.nav-tabs>li>a, .nav-tabs>li>a:focus, .nav-tabs>li>a:hover {border: none !important; background-color: transparent !important;}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {border: none !important; background-color: transparent !important;}
+/* contenido de los tabs */
+.tab-pane {
+  /*height: 100%;*/
+  background-color: #97c7e8;
+  padding-bottom: 20px;
+  border-radius: 0px 0px 20px 20px;  
+}
+.pastilla_ciudad {
+  /*height: 100%;*/
+  max-height: 100%;
+  border-radius: 20px;
+  background-color: #c7dcea;
+}
+
+
+
+/* emisora columna derecha */
+div.content-emisoras {
+    /*height: 100%;*/
+    padding: 20px 20px 2px;
+    border-radius: 20px;
+    background-color: #375364;
+  overflow: auto;
+}
+div.emisora {
+  margin-bottom: 22px;
+    border-radius: 25px;
+    background-color: #5c7586;
+    text-align: left;
+  height:70px;
+}
+div.tabla {
+  margin-bottom: 22px;
+    border-radius: 25px;
+    background-color: #97c7e8;
+    text-align: left;
+  height: auto;
+}
+p.text_ciudad {
+  margin-top: 21px;
+  padding-bottom: 14px;
+  color: white;
+  font-size: 3vh;
+  line-height: 21px;
+  text-align: left;
+}
+span.comparative {
+  font-size: 2vh;
+  margin-top: 13px !important;
+  color: #d4e5f1 !important;
+  text-align: left !important;
+}
+img.imagen-emisora-peque { width: 100%; padding-top: 15px;}
+div.switch-emisora { padding-top: 25px;}
+/* switch */
+.check-switch-graphics {
+  
+
+  margin-top: 2vh;
+} 
+.check-switch-eitb{
+  margin-top:2vh;
+}
+.check-switch-eitb-pie{
+  margin-top:2vh;
+}
+
+.lugarSelect{
+  width:150px;
+  margin-left:15px;
+  margin-bottom: 10px;
+  margin-top:10px;
+
+}
+.tableSelect{
+  width:150px;
+  margin-left:15px;
+  margin-bottom: 10px;
+  margin-top:10px;
+
+}
+.pieSelect{
+  width:150px;
+  margin-left:15px;
+  margin-bottom: 10px;
+  margin-top:10px;
+
+}
+
+/* responsive */
+
+@media (min-width: 1025px) and (max-width: 1280px) and (orientation: landscape) and (max-height: 798px){
+
+    .data-information-section {
+      height: auto; overflow: auto;
+    }
+    .txt_titular { margin-top: 10px; font-size: 20px;}
+    
+    div.switch-emisora {
+      padding-top: 17px;
+    }   
+    p.text_ciudad {
+      font-size: 22px;
+      line-height: 22px;
+    }
+    .txt_ciudad { font-size: 20px !important;}
+    span.year-text { font-size: 20px !important;}
+    .data-information-section { margin-top: 2px; }
+    span.comparative {display: none;} 
+    div.emisora {height: auto; overflow: auto; padding: 5px; }
+     div.tabla {height: auto; overflow: auto; padding: 5px; }
+    .tabs-graficos {
+      padding-bottom: 15px;
+    } 
+    .check-switch-eitb { padding-top:0px;margin-top: 8vh;position:relative;float:right;}
+    .check-switch-eitb-pie { padding-top:0px;margin-top: 2vh;position:relative;}
+    ul.nav-tabs li a img { display: none;}  
+    .congreso-senado{
+      margin-left:70%;
+      margin-top:-10%;
+      width:25%;
+    }
+}
+@media (min-width: 1025px) and (max-width: 1280px) and (orientation: landscape) and (min-height: 799px){
+
+    .data-information-section {
+      height: auto; overflow: auto;
+    }
+    .txt_titular { margin-top: 10px; font-size: 20px;}
+    
+    div.switch-emisora {
+      padding-top: 17px;
+    }   
+    p.text_ciudad {
+      font-size: 22px;
+      line-height: 22px;
+    }
+    .txt_ciudad { font-size: 20px !important;}
+    span.year-text { font-size: 20px !important;}
+    .data-information-section { margin-top: 2px; }
+    span.comparative {display: none;} 
+    div.emisora {height: auto; overflow: auto; padding: 5px; }
+     div.tabla {height: auto; overflow: auto; padding: 5px; }
+    .tabs-graficos {
+      padding-bottom: 15px;
+    } 
+    .check-switch-eitb { padding-top:0px;margin-top: 2vh;position:relative;float:inherit;}
+    .check-switch-eitb-pie { padding-top:0px;margin-top: 2vh;position:relative;}
+    ul.nav-tabs li a img { display: none;}  
+    .congreso-senado{
+      margin-left:70%;
+      margin-top:-10%;
+      width:25%;
+    }
+}
+@media (min-width: 1281px) and (max-width:1400px) and (orientation: landscape){
+
+    .data-information-section {
+      height: auto; overflow: auto;
+    }
+    .txt_titular { margin-top: 10px; font-size: 20px;}
+    
+    div.switch-emisora {
+      padding-top: 17px;
+    }   
+    p.text_ciudad {
+      font-size: 22px;
+      line-height: 22px;
+    }
+    .txt_ciudad { font-size: 20px !important;}
+    span.year-text { font-size: 20px !important;}
+    .data-information-section { margin-top: 2px; }
+    span.comparative {display: none;} 
+    div.emisora {height: auto; overflow: auto; padding: 5px; }
+    div.tabla {height: 120px; overflow: auto; padding: 5px; }
+    .tabs-graficos {
+      padding-bottom: 15px;
+    } 
+    .check-switch-eitb { padding-top:0px;margin-top: 8vh;position:absolute;float:inherit;}
+    .check-switch-eitb-pie { padding-top:0px;margin-top: 2vh;position:absolute;}
+    ul.nav-tabs li a img { display: none;}  
+    .congreso-senado{
+      margin-left:10%;
+      margin-top:0%;
+      width:25%;
+    }
+}
+@media (min-width: 1401px) and (orientation: landscape){
+
+    .data-information-section {
+      height: auto; overflow: auto;
+    }
+    .txt_titular { margin-top: 10px; font-size: 20px;}
+    
+    div.switch-emisora {
+      padding-top: 17px;
+    }   
+    p.text_ciudad {
+      font-size: 22px;
+      line-height: 22px;
+    }
+    .txt_ciudad { font-size: 20px !important;}
+    span.year-text { font-size: 20px !important;}
+    .data-information-section { margin-top: 2px; }
+    span.comparative {display: none;} 
+    div.emisora {height: auto; overflow: auto; padding: 5px; }
+    div.tabla {height: 120px; overflow: auto; padding: 5px; }
+    .tabs-graficos {
+      padding-bottom: 15px;
+    } 
+    .check-switch-eitb { padding-top:0px;margin-top: 6vh;position:absolute;float:inherit;}
+    .check-switch-eitb-pie { padding-top:0px;margin-top: 2vh;position:absolute;}
+    ul.nav-tabs li a img { display: none;}  
+    .congreso-senado{
+      margin-left:10%;
+      margin-top:0%;
+      width:25%;
+    }
+}
+
+
+@media (max-width: 1024px) and (orientation: landscape){
+    .data-information-section {
+          height: 90px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    div.tab-content div.tab-pane.active{
+      padding-top: 10px !important;
+    }
+    .txt_titular { font-size: 20px !important; margin-top: 0px !important;}
+    .check-switch-graphics { padding-top:0px;margin-top: 2vh;}
+    .check-switch-eitb { padding-top:0px;margin-top: 2vh;position:absolute;float:inherit;}
+    .check-switch-eitb-pie { padding-top:0px;margin-top: 2vh;position:absolute;}
+    p.text_ciudad {
+      font-size: 22px;
+      line-height: 22px;
+    }
+    .txt_ciudad { font-size: 20px !important;}
+    span.year-text { font-size: 20px !important;}
+    .data-information-section { margin-top: 2px; }
+    span.comparative {display: none;} 
+    div.emisora { }
+    .pastilla_ciudad {  }
+   
+    .tabs-graficos {
+      padding-bottom: 15px;
+    } 
+    div.tabla { height: 120px;}
+    .pastilla_ciudad {  }
+   
+    .tabs-graficos {
+      padding-bottom: 15px;
+    } 
+    ul.nav-tabs li a img { display: none;}
+    .congreso-senado{
+      margin-left:70%;
+      margin-top:-20%;
+      width:25%;
+    }
+}
+
+@media (max-width: 1024px) and (orientation: portrait){
+    div.tab-content div.tab-pane.active{
+      padding-top: 10px !important;
+    }
+    .nav-tabs {
+      border-bottom: none !important;
+      /*margin-bottom: -20px !important;*/
+      clear: both !important;
+    }
+    .txt_titular { font-size: 20px; margin: 0px !important;}
+
+    .check-switch-graphics { padding-top:0px; margin:0px;margin-top: 2vh;}
+    .check-switch-eitb { padding-top:0px; margin:0px;margin-top: 2vh;position:absolute;float:inherit;}
+    .check-switch-eitb-pie { padding-top:0px; margin:0px;margin-top: 2vh;position:absolute;}
+    .tab-pane { padding-bottom: 10px !important; }
+    ul.nav-tabs li{width: 43%;}    
+    .contenido_graphics{ 
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+    }
+    .content-emisora {
+      margin-bottom: 20px;
+    } 
+    p.text_ciudad {
+      font-size: 20px;
+      line-height: 26px;
+    }
+    .txt_ciudad { font-size: 19px !important;}
+    span.year-text { font-size: 21px !important;}
+    ul.nav-tabs li a img {display: none;}
+    .data-information-section {
+      height: auto; overflow: auto;
+      }
+    span.comparative {display: none;} 
+    div.emisora { height: auto; overflow: auto;}
+    div.tabla { height: auto; overflow: auto;}
+    .pastilla_ciudad {  }
+}
+
+@media (max-width: 850px) and (orientation: portrait){
+    div.tab-content div.tab-pane.active{
+      padding-top: 10px !important;
+    }
+    .nav-tabs {
+      border-bottom: none !important;
+      /*margin-bottom: -20px !important;*/
+      clear: both !important;
+    }
+    .txt_titular { font-size: 20px; margin: 0px !important;}
+
+    .check-switch-graphics { padding-top:0px; margin:0px;margin-top: 2vh;}
+    .check-switch-eitb { padding-top:0px; margin:0px;margin-top: 5vh;position:absolute;float:inherit;}
+    .check-switch-eitb-pie { padding-top:0px; margin:0px;margin-top: 4vh;position:absolute;}
+    .tab-pane { padding-bottom: 10px !important; }
+    ul.nav-tabs li{width: 43%;}    
+    .contenido_graphics{ 
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+    }
+    .content-emisora {
+      margin-bottom: 20px;
+    } 
+    p.text_ciudad {
+      font-size: 20px;
+      line-height: 26px;
+    }
+    .txt_ciudad { font-size: 19px !important;}
+    span.year-text { font-size: 21px !important;}
+    ul.nav-tabs li a img {display: none;}
+    .data-information-section {
+      height: auto; overflow: auto;
+    }
+    span.comparative {display: none;} 
+    div.emisora { height: auto; overflow: auto;}
+    div.tabla { height: 120px; overflow: auto;}
+    .pastilla_ciudad {  }
+    .congreso-senado{
+      margin-left:10%;
+      margin-top:0%;
+      width:25%;
+    }
+    
+}
+
+@media (max-width: 767px) and (orientation: landscape) {
+    p.text_ciudad {font-size: 19px; }
+    span.comparative {font-size: 3vh;}
+    img.imagen-emisora-peque { width: 153%;}
+    .switch-emisora { margin-top: 20px;}
+    .txt_titular{font-size: 1em; text-transform:uppercase; font-weight:bold; line-height:16px; margin-top: 18px !important;}
+        .nav-tabs>li>a { padding:0;}    
+    span.year-text{font-size: 1.5em;}
+    .pastilla_ciudad {padding: 0px; height: auto;}
+    div.emisora {height: auto; overflow: auto;}
+    div.tabla {height: 120px; overflow: auto;}
+    .emisoras {text-align: center;}
+    div.switch-emisora {padding: 0px; margin:0px; margin-top: 15px;}
+        .tab-content>.active {
+            display: block;
+            overflow: auto;
+           padding-left:5px; padding-right:5px;
+        }
+    .txt_ciudad { font-size: 19px !important; line-height:19px; padding: 15px;}
+    span.year-text { font-size: 21px !important;}
+    ul.nav-tabs li a img {display: none;}
+    .data-information-section {
+      height: 53px !important;
+      margin-top: 2px !important; 
+    }
+    .check-switch-graphics {  margin-top: 1.5vh;}
+    .check-switch-eitb {  margin-top: 10%;position:absolute;float:inherit;}
+    .check-switch-eitb-pie {  margin-top: 10%;position:absolute;}
+    .congreso-senado{
+      margin-left:10%;
+      margin-top:0%;
+      width:25%;
+    }
+
+}
+
+@media (max-width: 767px) and (orientation: portrait) {
+    .tab-content>.active { padding-top: 10px;}
+    .txt_titular { font-size: 1em; text-transform:uppercase; font-weight:bold; line-height:16px; margin-top: 5px !important;}
+    span.comparative {display: none;} 
+    div.emisora {overflow:auto; height:auto; clear:both; padding-right: 9px; padding-left: 7px;}
+     div.tabla {overflow:auto; height:auto; clear:both; padding-right: 9px; padding-left: 7px;}
+    .pastilla_ciudad {padding:1px; margin-top:10px; }
+        .clm_2_graph{padding-left:0px; padding-right:0px;}
+        .data-information-section{padding-left:5px; padding-right:5px;} 
+        div.content-emisoras  {padding:10px 10px 0px 10px;}    
+       
+    div.emisora div.switch-emisora.bilbao {padding-bottom: 15px; padding-top: 17px;}
+    div.switch-emisora {}
+    p.text_ciudad { margin-top: 16px;  padding-bottom: 9px; font-size:18px;}
+    p.text_ciudad.bilbao {
+      padding-top: 5px;
+    }
+        .layout-columns{padding:3px;}
+    .check-switch-graphics { padding-top:0px; margin:0px; margin-top: 1.5vh;}
+    .check-switch-eitb { padding-top:0px; margin:0px; margin-top: 1.5vh;position:absolute;float:inherit;}
+    .check-switch-eitb-pie { padding-top:0px; margin:0px; margin-top: 1.5vh;position:absolute;}
+    .congreso-senado{
+      margin-left:70%;
+      margin-top:-20%;
+      width:25%;
+    }
+
+}
+@media (min-width:400px) and (max-width: 470px) and (orientation: portrait) {
+    .tab-content>.active { padding-top: 10px;}
+    .txt_titular { font-size: 1em; text-transform:uppercase; font-weight:bold; line-height:16px; margin-top: 5px !important;}
+    span.comparative {display: none;} 
+    div.emisora {overflow:auto; height:auto; clear:both; padding-right: 9px; padding-left: 7px;}
+    div.tabla {overflow:hidden; height:120px; clear:both; padding-right: 9px; padding-left: 7px;}
+    .pastilla_ciudad {padding:1px; margin-top:10px; }
+        .clm_2_graph{padding-left:0px; padding-right:0px;}
+        .data-information-section{padding-left:5px; padding-right:5px;} 
+        div.content-emisoras  {padding:10px 10px 0px 10px;}    
+        
+    div.emisora div.switch-emisora.bilbao {padding-bottom: 15px; padding-top: 17px;}
+    div.switch-emisora {}
+    p.text_ciudad { margin-top: 16px;  padding-bottom: 9px; font-size:15px;}
+    p.text_ciudad.bilbao {
+      padding-top: 5px;
+    }
+        .layout-columns{padding:3px;}
+    .check-switch-graphics {  margin-top: 2vh;}
+    .check-switch-eitb {  margin-top: 9vh;position:absolute;float:inherit;}
+    .check-switch-eitb-pie {  margin-top: 5vh;position:absolute;}
+    .cityName{width:55%;}
+    .congreso-senado{
+      margin-left:10%;
+      margin-top:10;
+      width:25%;
+    }
+
+}
+@media (max-width: 400px) and (min-width:350px) and (orientation: portrait) {
+    .tab-content>.active { padding-top: 10px;}
+    .txt_titular { font-size: 1em; text-transform:uppercase; font-weight:bold; line-height:16px; margin-top: 5px !important;}
+    span.comparative {display: none;} 
+    div.emisora {overflow:auto; height:auto; clear:both; padding-right: 9px; padding-left: 7px;}
+    div.tabla {overflow:hidden; height:120px; clear:both; padding-right: 9px; padding-left: 7px;}
+    .pastilla_ciudad {padding:1px; margin-top:10px; }
+        .clm_2_graph{padding-left:0px; padding-right:0px;}
+        .data-information-section{padding-left:5px; padding-right:5px;} 
+        div.content-emisoras  {padding:10px 10px 0px 10px;}    
+        
+    div.emisora div.switch-emisora.bilbao {padding-bottom: 15px; padding-top: 17px;}
+    div.switch-emisora {}
+    p.text_ciudad { margin-top: 16px;  padding-bottom: 9px; font-size:11px;}
+    p.text_ciudad.bilbao {
+      padding-top: 5px;
+    }
+        .layout-columns{padding:3px;}
+    .check-switch-graphics {  margin-top: 2vh;}
+    .check-switch-eitb {  margin-top: 2vh;position:absolute;float:inherit;}
+    .check-switch-eitb-pie {  margin-top: 3vh;position:absolute;}
+    .cityName{width:55%;}
+    .congreso-senado{
+      margin-left:66%;
+      margin-top:-15%;
+      width:27%;
+    }
+
+}
+@media (max-width: 349px) and (orientation: portrait) {
+    .tab-content>.active { padding-top: 10px;}
+    .txt_titular { font-size: 1em; text-transform:uppercase; font-weight:bold; line-height:16px; margin-top: 5px !important;}
+    span.comparative {display: none;} 
+    div.emisora {overflow:auto; height:auto; clear:both; padding-right: 9px; padding-left: 7px;}
+    div.tabla {overflow:hidden; height:120px; clear:both; padding-right: 9px; padding-left: 7px;}
+    .pastilla_ciudad {padding:1px; margin-top:10px; }
+        .clm_2_graph{padding-left:0px; padding-right:0px;}
+        .data-information-section{padding-left:5px; padding-right:5px;} 
+        div.content-emisoras  {padding:10px 10px 0px 10px;}    
+        
+    div.emisora div.switch-emisora.bilbao {padding-bottom: 15px; padding-top: 17px;}
+    div.switch-emisora {}
+    p.text_ciudad { margin-top: 16px;  padding-bottom: 9px; font-size:10px;}
+    p.text_ciudad.bilbao {
+      padding-top: 5px;
+    }
+        .layout-columns{padding:3px;}
+    .check-switch-graphics {  margin-top: 2vh;}
+    .check-switch-eitb {  margin-top: 2vh;position:absolute;float:inherit;}
+    .check-switch-eitb-pie {  margin-top: 2vh;position:absolute;}
+    .cityName{width:55%;}
+    .congreso-senado{
+      margin-left:73%;
+      margin-top:-15%;
+      width:30%;
+    }
+
+}

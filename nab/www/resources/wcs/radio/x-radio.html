@@ -1,0 +1,184 @@
+<link rel="import" href="/resources/wcs/bower_components/polymer/polymer.html">
+<dom-module id="x-radio" >
+
+
+
+<template>
+	<style >
+
+#container {
+	background-color: #0A2533;
+	padding: 5px;
+}
+.content-detalle-radio .radio-component-panel{background-color:#000003; overflow:auto; border-radius:15px; padding:3%;}
+.content-detalle-radio .radio-component-panel img{width:100%;}
+.content-detalle-radio .radio-component-panel .logo-radio{background-color:#317da7; border-radius:15px;}
+.content-detalle-radio .radio-component-panel .equal {padding-top:15px;}
+
+.radio-component-panel-all .radio-title p{font-family: 'Montserrat', sans-serif; font-size:7vw; color:#ffffff; text-align:center;}
+
+
+
+
+@media (min-width: 993px) and (orientation: landscape){
+    .logo-radio{width:50%; float:left;}
+    .equal {width:50%; float:right;}
+    p{font-size:50px;display:block;}
+}
+@media (min-width: 993px) and (orientation: portrait){
+    .logo-radio{width:100%; float:none;}
+    .equal {width:100%; float:none;}
+    p{font-size:50px;display:block;}
+
+}
+@media (max-width: 992px) and (orientation: landscape){
+    .logo-radio{width:50%; float:left;}
+    .equal {width:50%; float:right;}
+    p{font-size:50px;display:block;}
+}
+@media (max-width: 992px) and (orientation: portrait){
+    .logo-radio{width:100%; float:none;}
+    .equal {width:100%; float:none;}
+    p{font-size:50px;display:block;}
+
+}
+
+@media (max-width: 768px) and (orientation: landscape){
+    .logo-radio{width:50%; float:left;}
+    .equal {width:50%; float:right;}
+    p{font-size:large;display:block;}
+}
+@media (max-width: 768px) and (orientation: portrait){
+    .logo-radio{width:100%; float:none;}
+    .equal {width:100%; float:none;}
+    p{font-size:large;display:block;}
+}
+
+
+
+@media (max-width: 700px) and (orientation: landscape){
+    .logo-radio{width:50%; float:left;}
+    .equal {width:50%; float:right;}
+    p{font-size:large;}
+}
+@media (max-width: 700px) and (orientation: portrait){
+    .logo-radio{width:100%; float:none;}
+    .equal {width:100%; float:none;}
+    p{font-size:large;display:block;}
+
+}
+@media (max-width:450px) and (max-height:130px){
+	p{display:none;}
+}
+
+</style>
+
+<div id='container' class="template-all-layouts ">
+            <div class="col-md-12 layout-fullwidth content-detalle-radio" style='background-color:#173F56;'>
+				<div class="radio-component-panel-all">
+                    <div class="radio-component-panel">
+                        <div class="logo-radio col-md-6 col-sm-6">
+                            <img id="broadcaster_logo" src="Logo-Radio-Euskadi_BLANCO.png" />
+                        </div>
+                        <div class="equal col-md-6 col-sm-6">
+                            <img id="gifRadio" src="animacion-ecualizador_transp.gif" />
+                        </div>
+                    </div>
+                    <div class="radio-title col-md-12">
+                        <p id='broadcaster_name'>Radio Euskadi</p>
+                    </div>
+                </div>
+            </div>
+						  <audio id='radioAudio' src=''></audio>
+        </div>
+
+
+</template>
+</dom-module>
+ <script>
+Polymer({
+	is:'x-radio',
+  behaviors:[ComponentQueryBehavior,ComponentStatusBehavior],
+	hostAttributes:{
+		skew:0.0,
+		sm:null,
+		l:''
+	},
+	properties:{
+			file:{
+				 type:String,
+
+			},
+			customCmd:{
+		        type:String,
+		        value:'',
+		        observer: 'customCmdReceived'
+		    }
+
+	},
+
+	ready: function() {
+		var _this = this;
+		 if(navigator.userAgent.toLowerCase().indexOf('hbbtv')==-1){
+				document.addEventListener ('motion-ready',this.smReady.bind(this));
+				this.$.radioAudio.addEventListener('play',function(){
+					_this.$.gifRadio.src='../resources/configPanel/img/radio/animacion-ecualizador_transp.gif';
+				});
+				this.$.radioAudio.addEventListener('pause',function(){
+					_this.$.gifRadio.src='../resources/configPanel/img/radio/Radio-animacion-off-estatico.png';
+				});
+
+			}
+
+	},
+
+	smReady:function(e){
+		var _this = this;
+		this.sm = mediascape.AdaptationToolkit.Motion;
+		var id = 0;
+		var audio = _this.querySelector('audio')
+		this.sm.addMedia (audio);
+
+
+  	},
+
+  play:function(){
+		if (this.sm) this.sm.controller.play();
+	},
+	pause:function(){
+		if (this.sm) this.sm.controller.pause();
+	},
+
+	muteRadio:function(){
+		this.$.radioAudio.muted=true;
+	},
+	soundRadio:function(){
+		this.$.radioAudio.muted=false;
+	},
+	restart: function (){
+		this.sm.controller.currentTime = 0;
+		this.sm.controller.play();
+	},
+
+	customCmdReceived: function(data){
+			//console.log("DATA",data);
+
+	},
+	unload:function(){
+		 var audio = this.querySelector('audio')
+		 audio.src ="";
+		 this.loaded = false;
+	},
+	load:function(){
+			 if(navigator.userAgent.toLowerCase().indexOf('hbbtv')==-1){
+	     var audio = this.querySelector('audio');
+			 this.pause();
+			 audio.src = this.file;
+			 if(this.ismuted==="true"){
+				audio.muted=true;
+			}
+			this.play();
+		}
+	}
+});
+ </script>

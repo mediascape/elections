@@ -1,0 +1,131 @@
+#video1{
+  order:1;
+  rwidth:900px;
+  propx:16;
+  propy:9;
+  icon:../resources/images/icons_manag/etb2.png;
+}
+#video2{
+  order:2;
+  rwidth:460px;
+  propx:16;
+  propy:9;
+  icon:../resources/images/icons_manag/bildu.png;
+}
+#video3{
+  order:4;
+  rwidth:460px;
+  propx:16;
+  propy:9;
+  icon:../resources/images/icons_manag/eaj.png;
+}
+#video4{
+  order:6;
+  rwidth:460px;
+  propx:16;
+  propy:9;
+  icon:../resources/images/icons_manag/eaj.png;
+}
+#video5{
+  order:3;
+  rwidth:460px;
+  propx:16;
+  propy:9;
+  icon:../resources/images/icons_manag/eaj.png;
+}
+#video6{
+  order:5;
+  rwidth:460px;
+  propx:16;
+  propy:9;
+  icon:../resources/images/icons_manag/eaj.png;
+}
+#video7{
+  order:3;
+  rwidth:460px;
+  propx:16;
+  propy:9;
+  icon:../resources/images/icons_manag/eaj.png;
+}
+
+#twitterViewer{  
+  order:7;
+  rwidth:450px;
+  propx:400;
+  propy:190;  
+  icon:../resources/images/icons_manag/twitter.png;
+}
+
+#radio1{
+  order:8;
+  rwidth:460px;
+  propx:460;
+  propy:460;
+  icon:../resources/images/icons_manag/table.png;
+}
+#radio2{
+  order:9;
+  rwidth:460px;
+  propx:460;
+  propy:460;
+  icon:../resources/images/icons_manag/table.png;
+}
+
+#resultsEitb1{
+  order:10;
+  rwidth:460px;
+  propx:460;
+  propy:460;
+  icon:../resources/images/icons_manag/table.png;
+}
+#resultsEitb2{
+  order:11;
+  rwidth:460px;
+  propx:460;
+  propy:460;
+  icon:../resources/images/icons_manag/table.png;
+}
+
+#resultsMap1{
+  order:12;
+  rwidth:460px;
+  propx:460;
+  propy:460;
+  icon:../resources/images/icons_manag/table.png;
+}
+#resultsMap2{
+  order:13;
+  rwidth:460px;
+  propx:460;
+  propy:460;
+  icon:../resources/images/icons_manag/table.png;
+}
+
+#graficoSemi1{
+  order:14;
+  rwidth:460px;
+  propx:460;
+  propy:460;
+  icon:../resources/images/icons_manag/table.png;
+}
+#graficoSemi2{
+  order:15;
+  rwidth:460px;
+  propx:460;
+  propy:460;
+  icon:../resources/images/icons_manag/table.png;
+}
+#graficoSemi3{
+  order:16;
+  rwidth:460px;
+  propx:460;
+  propy:460;
+  icon:../resources/images/icons_manag/table.png;
+}
+#graficoSemi4{
+  order:17;
+  rwidth:460px;
+  propx:460;
+  propy:460;
+  icon:../resources/images/icons_manag/table.png;
+}

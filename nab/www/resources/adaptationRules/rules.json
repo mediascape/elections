@@ -1,0 +1,433 @@
+{
+    "name": "FileName: Multi-device adaptation behaviour descriptor for the multi-device adaptation engine",
+    "applicationAttributes":["route","msg","reset","language"],
+    "groupCapacities":false,
+    "explicitRules": {
+        "name": "explicit",
+        "enabled": false,
+        "priority": 2,
+        "capabilities": ["deviceType"],
+        "behaviour": {
+            "agents": {
+                "agent1": {
+                    "deviceType": "computer"
+                },
+                "agent2": {
+                    "deviceType": "computer"
+                },
+                "agent3": {
+                    "deviceType": "mobile"
+                },
+                "agent4": {
+                    "deviceType": "tv"
+                }
+            },
+            "rules": [
+                {
+                    "conditions": {
+                        "exists": [
+                            "agent1"
+                        ]
+                    },
+                    "actions": {
+                        "agent1": {
+                            "view": {
+                                "load": true
+                            },
+                            "map": {
+                                "load": false,
+                                "volume": 1
+                            },
+                            "chart": {
+                                "load": false
+                            }
+                        }
+                    }
+                },
+                {
+                    "conditions": {
+                        "exists": [
+                            "agent2"
+                        ]
+                    },
+                    "actions": {
+                        "agent2": {
+                            "view": {
+                                "load": false
+                            },
+                            "map": {
+                                "load": true,
+                                "volume": 1
+                            },
+                            "chart": {
+                                "load": false
+                            }
+                        }
+                    }
+                },
+                {
+                    "conditions": {
+                        "exists": [
+                            "agent1",
+                            "agent2"
+                        ]
+                    },
+                    "actions": {
+                        "agent1": {
+                            "view": {
+                                "load": false
+                            },
+                            "map": {
+                                "load": false,
+                                "volume": 1
+                            },
+                            "chart": {
+                                "load": true
+                            }
+                        },
+                        "agent2":{
+                            "view": {
+                                "load": true
+                            },
+                            "map": {
+                                "load": false
+                            },
+                            "chart": {
+                                "load": true
+                            }
+                        }
+                    }
+                },
+                {
+                    "conditions": {
+                        "exists": [
+                            "agent1",
+                            "agent2",
+                            "agent3"
+                        ]
+                    },
+                    "actions": {
+                        "agent1": {
+                            "view": {
+                                "load": false
+                            },
+                            "map": {
+                                "load": false,
+                                "volume": 1
+                            },
+                            "chart": {
+                                "load": true
+                            }
+                        },
+                        "agent2":{
+                            "view": {
+                                "load": true
+                            },
+                            "map": {
+                                "load": false
+                            },
+                            "chart": {
+                                "load": false
+                            }
+                        },
+                        "agent3":{
+                            "view": {
+                                "load": false
+                            },
+                            "map": {
+                                "load": true
+                            },
+                            "chart": {
+                                "load": false
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "implicitRules": {
+        "hbbtv":{
+          "name":"hbbtv",
+          "enabled":false,
+          "capabilities": ["touchScreen","screenSize","deviceType"],
+          "priority": 2,
+          "behaviour": []
+        },
+        "bestfit": {
+            "name": "bestfit",
+            "enabled": true,
+            "capabilities": ["touchScreen","deviceType","screenSize","componentsStatus","layoutEvent","platform","layoutStatus","layoutParameter"],
+            "priority": 1,
+            "behaviour": [
+                {
+                    "componentId": "video1",
+                    "required": true,
+                    "bestfit": "biggestScreenSize",
+                    "movable": true,
+                    "duplicable":false,
+                    "needs":"none",
+                    "videoLimit":"main"
+                },
+                {
+                    "componentId": "video2",
+                    "required": false,
+                    "bestfit": "biggestScreenSize",
+                    "movable": true,
+                    "duplicable":false,
+                    "needs":"none",
+                    "videoLimit":"other"
+                },
+                {
+                    "componentId": "video3",
+                    "required": false,
+                    "bestfit": "biggestScreenSize",
+                    "movable": true,
+                    "duplicable":false,
+                    "needs":"none",
+                    "videoLimit":"other"
+                },
+                {
+                    "componentId": "video4",
+                    "required": false,
+                    "bestfit": "biggestScreenSize",
+                    "movable": true,
+                    "duplicable":false,
+                    "needs":"none",
+                    "videoLimit":"other"
+                },
+                {
+                    "componentId": "video5",
+                    "required": false,
+                    "bestfit": "biggestScreenSize",
+                    "movable": true,
+                    "duplicable":false,
+                    "needs":"none",
+                    "videoLimit":"other"
+                },
+                {
+                    "componentId": "video6",
+                    "required": false,
+                    "bestfit": "biggestScreenSize",
+                    "movable": true,
+                    "duplicable":false,
+                    "needs":"none",
+                    "videoLimit":"other"
+                },
+                {
+                    "componentId": "video7",
+                    "required": false,
+                    "bestfit": "biggestScreenSize",
+                    "movable": true,
+                    "duplicable":false,
+                    "needs":"none",
+                    "videoLimit":"other"
+                },
+
+                {
+                    "componentId": "graph1",
+                    "required": false,
+                    "bestfit": "touchable",
+                    "movable": true,
+                    "duplicable":false,
+                    "needs":"none",
+                    "videoLimit":"none"
+                },
+                {
+                    "componentId": "graph2",
+                    "required": false,
+                    "bestfit": "smallestScreenSize",
+                    "movable": true,
+                    "duplicable":false,
+                    "needs":"none",
+                    "videoLimit":"none"
+                },
+                {
+                    "componentId": "graph3",
+                    "required": false,
+                    "bestfit": "smallestScreenSize",
+                    "movable": true,
+                    "duplicable":false,
+                    "needs":"none",
+                    "videoLimit":"none"
+                },
+                {
+                    "componentId": "graph4",
+                    "required": false,
+                    "bestfit": "smallestScreenSize",
+                    "movable": true,
+                    "duplicable":false,
+                    "needs":"none",
+                    "videoLimit":"none"
+                },
+                {
+                    "componentId": "results",
+                    "required": false,
+                    "bestfit": "smallestScreenSize",
+                    "movable": true,
+                    "duplicable":false,
+                    "needs":"none",
+                    "videoLimit":"none"
+                },
+                {
+                    "componentId": "resultsMap1",
+                    "required": false,
+                    "bestfit": "smallestScreenSize",
+                    "movable": true,
+                    "duplicable":false,
+                    "needs":"none",
+                    "videoLimit":"none"
+                },
+                {
+                    "componentId": "resultsMap2",
+                    "required": false,
+                    "bestfit": "smallestScreenSize",
+                    "movable": true,
+                    "duplicable":false,
+                    "needs":"none",
+                    "videoLimit":"none"
+                },
+                {
+                    "componentId": "resultsEitb1",
+                    "required": true,
+                    "bestfit": "touchable",
+                    "movable": true,
+                    "duplicable":false,
+                    "needs":"none",
+                    "videoLimit":"none"
+                },
+                {
+                    "componentId": "resultsEitb2",
+                    "required": false,
+                    "bestfit": "smallestScreenSize",
+                    "movable": true,
+                    "duplicable":false,
+                    "needs":"none",
+                    "videoLimit":"none"
+                },
+
+
+                {
+                    "componentId": "graficoSemi1",
+                    "required": false,
+                    "bestfit": "smallestScreenSize",
+                    "movable": true,
+                    "duplicable":false,
+                    "needs":"none",
+                    "videoLimit":"none"
+                },
+                {
+                    "componentId": "graficoSemi2",
+                    "required": true,
+                    "bestfit": "touchable",
+                    "movable": true,
+                    "duplicable":false,
+                    "needs":"none",
+                    "videoLimit":"none"
+                },
+                {
+                    "componentId": "graficoSemi3",
+                    "required": true,
+                    "bestfit": "touchable",
+                    "movable": true,
+                    "duplicable":false,
+                    "needs":"none",
+                    "videoLimit":"none"
+                },
+                {
+                    "componentId": "graficoSemi4",
+                    "required": true,
+                    "bestfit": "touchable",
+                    "movable": true,
+                    "duplicable":false,
+                    "needs":"none",
+                    "videoLimit":"none"
+                },
+                {
+                    "componentId": "radio1",
+                    "required": false,
+                    "bestfit": "smallestScreenSize",
+                    "movable": true,
+                    "duplicable":false,
+                    "needs":"none",
+                    "videoLimit":"none"
+                },
+                {
+                    "componentId": "radio2",
+                    "required": false,
+                    "bestfit": "smallestScreenSize",
+                    "movable": true,
+                    "duplicable":false,
+                    "needs":"none",
+                    "videoLimit":"none"
+                },
+                {
+                    "componentId": "twitterViewer",
+                    "required": false,
+                    "bestfit": "smallestScreenSize",
+                    "movable": true,
+                    "duplicable":false,
+                    "needs":"none",
+                    "videoLimit":"none"
+                },
+                {
+                    "componentId": "twitterMap",
+                    "required": false,
+                    "bestfit": "smallestScreenSize",
+                    "movable": true,
+                    "duplicable":false,
+                    "needs":"none",
+                    "videoLimit":"none"
+                }
+
+
+            ]
+        },
+        "affinitymatch": {
+            "name": "affinitymatch",
+            "enabled": false,
+            "priority": 4,
+            "capabilities": ["platform","onLine"],
+            "behaviour": [
+                {
+                    "componentId": "chart",
+                    "requirement": "platform(Win32)",
+                    "preference": "onLine(high, 2)"
+                },
+                {
+                    "componentId": "view",
+                    "requirement": "platform(linux)",
+                    "preference": "onLine(high, 1)"
+                },
+                {
+                    "componentId": "map",
+                    "requirement": "platform(android)",
+                    "preference": "onLine(high, 1)"
+                }
+            ]
+        }
+    },
+    "userPreferences": {
+        "name": "userpref",
+        "enabled": true,
+        "priority": 2,
+        "capabilities": ["deviceType","componentsStatus"],
+        "behaviour": [
+            {
+                "componentId": "chart",
+                "movable": true,
+                "duplicable": true
+            },
+            {
+                "componentId": "view",
+                "movable": true,
+                "duplicable": true
+            },
+            {
+                "componentId": "map",
+                "movable": true,
+                "duplicable": true
+            }
+        ]
+    }
+}

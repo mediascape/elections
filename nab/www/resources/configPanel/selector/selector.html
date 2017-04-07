@@ -1,0 +1,186 @@
+
+
+
+
+
+<dom-module id="x-select" >
+<template>
+
+
+<style>
+/* Dropdown Button */
+.dropbtn {
+    background-color: #fff;
+    	
+    padding: 8px;
+    font-size: 12px;
+    border: solid #C0C0C0 1px;
+    border-radius: 4px;
+    cursor: pointer;
+    width:150px;
+    text-align: left;
+    text-transform:none;
+    color:black;
+    font-weight:normal;
+}
+
+/* Dropdown button on hover & focus */
+/*.dropbtn:hover, .dropbtn:focus {
+    background-color: #3e8e41;
+}*/
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    border: solid #C0C0C0 1px;
+    max-height:150px;
+    overflow: auto;
+    position:fixed;
+    z-index: 99999999;
+}
+
+
+    /*box-shadow: 0px 8px 16px 0px rgba(0}
+/* Links inside the dropdown */
+.dropdown-content-a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 12px;
+    
+}
+i{
+	z-index: 9999;
+    font-size: 25;
+    left: 130;
+    position: absolute;
+    top: 4;
+}
+#container{
+	padding-bottom: 10px;
+
+}
+
+
+/* Change color of dropdown links on hover */
+.dropdown-content-a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+
+
+</style>
+
+<div id='container' class="dropdown">
+  <button id='selectBut' class="dropbtn">Dropdown
+  	
+  </button>
+
+  <i id='selectOpen' class="zmdi zmdi-caret-down"></i>
+
+  <div id="myDropdown" class="dropdown-content">
+    <content></content>
+  </div>
+</div>
+
+
+</template>
+</dom-module>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>-->
+ <script>
+Polymer({
+	is:'x-select',
+  	
+	properties:{
+		lang:{
+	        type:String,
+	        value:'es'
+
+      	},
+      	val:{
+      		type:String,
+      		observer:'valChanged',
+      		value:''
+      	}
+      
+
+
+
+
+	},
+
+	ready: function(){
+
+	var _this=this;
+		this.addEventListener('click',function(){
+
+			_this.myFunction();
+
+		});
+		this.$.selectBut.addEventListener('focus',function(){
+			_this.$.container.style.border='1px solid orange';
+		});
+		this.$.selectBut.addEventListener('blur',function(){
+			_this.$.container.style.border='';
+		});
+		
+
+		this.$.selectOpen.addEventListener('click',function(){
+			_this.myFunction();
+		});
+		for(var i=0;i<this.$.myDropdown.children.length;i++){
+			this.$.myDropdown.children[i].style.color='black';
+			this.$.myDropdown.children[i].style.padding='12px 8px';
+			this.$.myDropdown.children[i].style.textDecoration='none';
+			this.$.myDropdown.children[i].style.display='block';
+    
+			
+		}
+		
+
+	},
+
+
+		/* When the user clicks on the button, 
+	toggle between hiding and showing the dropdown content */
+	myFunction:function() {
+	    this.$.myDropdown.classList.toggle("show");
+	    if(this.$.myDropdown.className.indexOf('show')>-1){
+	    	this.$.myDropdown.children[0].focus();
+	    }
+	},
+
+	// Close the dropdown menu if the user clicks outside of it
+	
+	valChanged:function(){
+		//Dispatch event chnged
+		//this.$.selectBut.innerText=this.val;
+		for(var k=0;k<this.$.myDropdown.children.length;k++){
+			if(this.val===this.$.myDropdown.children[k].getAttribute('value')){
+				this.$.selectBut.innerHTML=this.$.myDropdown.children[k].innerText;
+				this.$.myDropdown.children[k].style.backgroundColor='blue';
+			}
+			else{this.$.myDropdown.children[k].style.backgroundColor='white';}
+		}
+		if(this.$.myDropdown.className.indexOf('show')>-1){
+			this.$.myDropdown.classList.toggle("show");
+		}
+		var evt=new CustomEvent('change',{'detail':{'value':this.val}});
+		this.dispatchEvent(evt);
+		
+	}
+	
+	
+
+});
+ </script>

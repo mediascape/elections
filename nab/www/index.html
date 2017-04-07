@@ -1,0 +1,194 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1.0, minimum-scale=1.0, maximum-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0"/>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.22/webcomponents-lite.js"></script>-->
+<!-- FOR LG TV -->
+
+<script src="/resources/webcomponentsjs/dist/webcomponents-lite.min.js"></script>
+<script type="text/javascript" src="http://donostian.eus:8082/console.io.js"></script>
+
+<link rel="import" href="/resources/wcs/bower_components/polymer/polymer.html">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+<link href="../resources/configPanel/css/material-design-iconic-font.min.css" rel="stylesheet">
+<link href="../resources/configPanel/css/vicomtech-template.css" rel="stylesheet">
+<link href="../resources/configPanel/css/add-device.css" rel="stylesheet">
+<link href="../resources/configPanel/css/add-twitter.css" rel="stylesheet">
+
+<link href="../resources/configPanel/css/radio.css" rel="stylesheet">
+<link href="../resources/configPanel/css/graphics.css" rel="stylesheet">
+<link href="../resources/configPanel/css/camara.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../resources/css/style.css"/>
+<link rel="stylesheet" type="text/css" href="../resources/configPanel/css/animate.css"/>
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.0/css/swiper.min.css">
+<link href="../resources/css/carousel.css" rel="stylesheet">
+
+
+
+<!-- NEEDED SCRIPTS -->
+
+<script  src="/resources/libs/require.js"></script>
+<script  src="js/mediascape.js"></script>
+<script src="/resources/libs/loadingPanel.js"></script>
+
+
+<!-- NEEDED SCRIPTS END -->
+
+<!-- WEBCOMPONETS -->
+<link rel="import" href="../js/mediascape/AdaptationToolkit/componentManager/component-query.html">
+<link rel="import" href="../js/mediascape/AdaptationToolkit/componentManager/componentStatus.html">
+<link rel="import" href="../resources/wcs/x-media/x-media.html">
+<link rel="import" href="../resources/wcs/graphic/x-graphic.html">
+<link rel="import" href="../resources/wcs/table/x-table.html">
+<link rel="import" href="../resources/wcs/radio/x-radio.html">
+<link rel="import" href="../resources/wcs/twitter-viewer/twitter-viewer.html">
+<link rel="import" href="../resources/wcs/mapaEiTB/mapa.html">
+<link rel="import" href="../resources/wcs/tablaEiTB/tabla.html">
+<link rel="import" href="../resources/wcs/semiCirculoEiTB/semiCirculo.html">
+<link rel="import" href="../resources/wcs/twitter-map/twitter-map.html">
+<link href="../resources/configPanel/css/controller.css" rel="stylesheet">
+<link rel="import" href="../resources/configPanel/switch/paper-switch.html">
+<link rel="import" href="../resources/configPanel/selector/selector.html">
+
+<!-- WEBCOMPONETS END -->
+
+
+
+
+
+<script>
+
+document.addEventListener('adaptationToolkit-ready',function(data){
+
+        var AE = mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation;
+        var rulesAE = "/resources/adaptationRules/rules.json"
+        AE.startApplicationContext();
+        var UI = mediascape.AdaptationToolkit.Adaptation.UIAdaptation;
+        UI.init(data.detail.components,UI.LAYOUTMODE.STATIC);
+        // IF want to apply to all device same layout it can be used as
+        // UI.useLayout('accordion')
+        // Device type that knows about: Desktop,Mobile,Tablet,Tv
+        UI.useLayout({deviceTypes:[{deviceType:'TV',layout:'pipGrid',isMain:true},{deviceType:'TV',layout:'divided',isMain:false},{deviceType:'desktop',layout:'pipGrid',isMain:true},{deviceType:'desktop',layout:'pipGrid',isMain:false},{deviceType:'Desktop',layout:'pipGrid',isMain:false},{deviceType:'Desktop',layout:'pipGrid',isMain:true},{deviceType:'Tablet',layout:'divided',isMain:true},{deviceType:'Tablet',layout:'divided',isMain:false},{deviceType:'Mobile',layout:'divided',isMain:true},{deviceType:'Mobile',layout:'divided',isMain:false}]});
+        var location = "http://"+window.location.host+window.location.pathname;
+
+        document.addEventListener('applicationContext-ready',function(){
+            mediascape.AdaptationToolkit.uiComponents.addControlPanel(location+"?group="+AE.GROUP_ID);
+            AE.init(rulesAE, AE.getApplicationContext());
+            AE.on('actionchange', UI.onComponentsChange);
+            //mediascape.AdaptationToolkit.uiComponents.addController();
+	    mediascape.AdaptationToolkit.componentManager.core.checkComponentsReady();
+
+        });
+
+
+});
+setTimeout ( function(){
+    var media = document.getElementsByTagName('x-media')[0];
+    if (navigator.userAgent.toLowerCase().indexOf("lg")==-1 && typeof media.done == "undefined"){
+        var unsupported_msg = document.createElement('img');
+        	unsupported_msg.src='/resources/images/unsupportedMsg.png';
+        	unsupported_msg.style.width='50%';
+        	unsupported_msg.style.position="absolute";
+        	unsupported_msg.style.zIndex=99999999;
+        	unsupported_msg.style.top="50%";
+        	unsupported_msg.style.left="25%";
+        	document.body.appendChild(unsupported_msg);
+
+        setTimeout(function(){
+          var app = document['appmgr'].getOwnerApplication(document);
+          app.destroyApplication();
+        },5000);
+    }
+    else
+      if (navigator.userAgent.toLowerCase().indexOf("lg")!=-1){
+		var media = document.querySelector('x-mapa');
+       		//alert(media.done);
+		if (!media.done)
+            		document.location.reload();
+    }
+},20000);
+
+</script>
+</head>
+<body >
+  <x-media  id="video1" file="/resources/media/ETB2_new.mp4"  ismuted="false"></x-media>
+  <x-media id="video2" file="/resources/media/Bildu_new.mp4"    ismuted="true"></x-media>
+  <x-media id="video3"  file="/resources/media/EAJ_new.mp4"  ismuted="true"></x-media>
+  <x-media id="video4"  file="/resources/media/PSE_new_full.mp4"  ismuted="true"></x-media>
+  <x-media id="video5"  file="/resources/media/PPGENOVA_new.mp4"  ismuted="true"></x-media>
+  <x-media id="video6"  file="/resources/media/PODEMOSMADRID_new.mp4"  ismuted="true"></x-media>
+
+
+ <x-mapa id='resultsMap1' lugar='cav' tipoEleccion='A'></x-mapa>
+ <x-mapa id='resultsMap2' lugar='alava' tipoEleccion='A'></x-mapa>
+
+ <x-tabla id='resultsEitb1' lugar='cav' tipoEleccion='A'></x-tabla>
+ <x-tabla id='resultsEitb2' lugar='alava'  tipoEleccion='A'></x-tabla>
+
+  <x-semicirculo id='graficoSemi1' lugar='cav' tipoEleccion='A'></x-semicirculo>
+  <x-semicirculo id='graficoSemi2' lugar='alava' tipoEleccion='A'></x-semicirculo>
+  <x-semicirculo id='graficoSemi3' lugar='guipuzcoa' tipoEleccion='A'></x-semicirculo>
+  <x-semicirculo id='graficoSemi4' lugar='vizcaya' tipoEleccion='A'></x-semicirculo>
+ <!-- <x-radio id='radio1' emisora='Radio Euskadi' file='http://hdstreamflash-lh.akamaihd.net/I/Radio_Euskadi_1@109208/master.m3u8' ></x-radio>
+  <x-radio id='radio2' emisora='Euskadi Irratia' file='http://hdstreamflash-lh.akamaihd.net/i/Euskadi_Irratia_1@109218/master.m3u8' ></x-radio>-->
+
+<twitter-viewer id="twitterViewer" ></twitter-viewer >
+
+<!--<twitter-map id="twitterMap" language="es"></twitter-map>-->
+
+<!-- End of definition of each webcompoent -->
+<script>
+/*
+console.log=function(e){
+ var log = document.querySelector('#log');
+ log.innerHTML+= e;
+}
+console.error=function(e){
+ var log = document.querySelector('#log');
+ log.innerHTML+= e;
+}
+*/
+var divUA=document.createElement('div');
+divUA.innerHTML=navigator.userAgent;
+divUA.style.backgroundColor='yellow';
+divUA.style.zIndex='99999999';
+divUA.style.marginTop='500px';
+divUA.style.position='absolute';
+document.body.appendChild(divUA);
+
+
+var img=document.createElement('img');
+img.id='loadingNotif';
+img.src='../resources/images/cargandoeu.png';
+img.style.position="absolute";
+img.style.display='none';
+img.style.top='20%';
+img.style.left='30%';
+img.style.zIndex="99999999";
+img.style.width="40%";
+img.style.border='5px solid #ccc';
+img.style.boxShadow='0px 0px 10px rgba(0,0,0,0.5)';
+document.body.appendChild(img);
+new loadingPanel('/resources/images/LoadingLogos.png',8);
+ </script>
+ <object id="video" type="video/broadcast" style="display:none;width:0px;height:0px;"></object>
+ <object id="appmgr" type="application/oipfApplicationManager" style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px;"></object><object id="oipfcfg" type="application/oipfConfiguration" style="position: absolute; left: 0px; top: 0px; width: 0px; height: 0px;"></object>
+
+<!--<div id="log" style="position:absolute;top:100px;left:100px;z-index:9999999;background:black;color:white;"></div>-->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-139026-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</body>
+</html>
