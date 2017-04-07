@@ -82,6 +82,8 @@ Polymer({
 				var video = this.querySelector('object');
 				video.bindToCurrentChannel();
 				this.addEventListener('component-query',this.onMediaQuery.bind(this),true);
+	                        document.addEventListener ('motion-ready',this.smReady.bind(this));
+
 			}
 			else{
 			   Polymer.dom(this.querySelector('#subContainer')).removeChild(this.querySelector('object'));
@@ -104,10 +106,13 @@ Polymer({
 		var _this = this;
 		this.sm = mediascape.AdaptationToolkit.Motion;
 		var id = 0;
-  	var video =this.querySelector('video');
-		this.sm.controller = this.sm.addMedia(video);
-		this.sm.controller.addEventListener("timeupdate", this.checkBuffer.bind(this));
-    this.sm.controller.play();
+	  	setTimeout(function(){
+			var video =_this.querySelector('video');
+			_this.sm.controller = _this.sm.addMedia(video);
+		
+		_this.sm.controller.addEventListener("timeupdate", _this.checkBuffer.bind(_this));
+	       _this.sm.controller.play();
+		},1000);
 },
 	play:function(){
 			if (navigator.userAgent.toLowerCase().indexOf('hbbtv')!=-1){
@@ -121,20 +126,14 @@ Polymer({
 	pause:function(){
 			if (navigator.userAgent.toLowerCase().indexOf('hbbtv')!=-1){
 				var video = this.querySelector('object');
-			  video.bindToCurrentChannel();
+			  video.stop();
 			}
 			else
 		 		if (this.sm) this.sm.controller.pause();
 	},
 	checkBuffer:function(){
-		/*	 var video = this.querySelector('video');
-			 if (this.sm.controller.paused && this.loaded){
-				 	   this.$.loading.style.display ="block"
-			 }
-			 else {
-				    this.$.loading.style.display ="none"
-			 }*/
-	},
+			console.log("update time");
+         },
 
   start_volumeChanged:function(currentVol){
 		this.$.container.children[0].volume=parseInt(currentVol);
@@ -204,13 +203,26 @@ Polymer({
        var _this = this;
 			 this.loaded = true;
 			 this.pause();
+			if (video){
 			 video.src = this.file;
 			 if(this.ismuted==="true"){
 				 video.muted=true;
 			 }
+			}
 			this.play();
 
+	},
+	onMediaQuery:function(e){
+		 if (navigator.userAgent.toLowerCase().indexOf('hbbtv')!=-1){
+			var video = this.querySelector('object');
+			
+			video.style.width= this.style.width;
+			video.style.height = this.style.height;
+                        video.bindToCurrentChannel();
+                }
+                
 	}
+
 
 });
  </script>

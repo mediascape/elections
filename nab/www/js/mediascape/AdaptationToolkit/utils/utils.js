@@ -27,6 +27,7 @@ define ([],
 		xhttp.open("GET", "/getCameraStatus", true);
 		xhttp.send();	
 	   },1500);
+	  clearInterval(inter);
       }
       this.diff = function(a,b){
    		 var r = {};

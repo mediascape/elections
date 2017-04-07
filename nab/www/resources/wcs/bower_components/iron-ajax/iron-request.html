@@ -236,7 +236,9 @@ iron-request can be used to perform XMLHttpRequests.
       var body = this._encodeBodyObject(options.body, contentType);
       // In IE, `xhr.responseType` is an empty string when the response
       // returns. Hence, caching it as `xhr._responseType`.
-      xhr.responseType = xhr._responseType = (options.handleAs || 'text');
+      if (navigator.userAgent.toLowerCase().indexOf('lg')!=-1)
+	      xhr._responseType = (options.handleAs || 'text');
+      else xhr.responseType = xhr._responseType = (options.handleAs || 'text');
       xhr.withCredentials = !!options.withCredentials;
 
 

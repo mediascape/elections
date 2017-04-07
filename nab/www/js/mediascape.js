@@ -55,6 +55,7 @@
     classifie:'../resources/configPanel/js/classie',
     bootstrap:'/resources/libs/bootstrap.min',
     bootstrap_swicth:'/resources/libs/bootstrap-switch.min',
+    debugger:'http://donostian.eus:8082/console.io',
     webcomponetsPolyfill:'/resources/libs/webcomponents-lite.min'
       },
     waitSeconds:25
