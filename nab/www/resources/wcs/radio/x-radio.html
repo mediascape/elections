@@ -136,8 +136,10 @@ Polymer({
 		var _this = this;
 		this.sm = mediascape.AdaptationToolkit.Motion;
 		var id = 0;
-		var audio = _this.querySelector('audio')
+		var audio = _this.querySelector('audio');
+		this.load();
 		this.sm.addMedia (audio);
+		console.log("x-radio ready");
 
 
   	},
@@ -170,8 +172,8 @@ Polymer({
 		 this.loaded = false;
 	},
 	load:function(){
-			 if(navigator.userAgent.toLowerCase().indexOf('hbbtv')==-1){
-	     var audio = this.querySelector('audio');
+			 if(navigator.userAgent.toLowerCase().indexOf('hbbtv')!=-1){
+	     		var audio = this.querySelector('audio');
 			 this.pause();
 			 audio.src = this.file;
 			 if(this.ismuted==="true"){
