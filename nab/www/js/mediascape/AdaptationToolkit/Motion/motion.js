@@ -35,6 +35,7 @@ define([
     velocity: 0
   };
   var controller = undefined;
+  var timming = undefined;
 
   /**********************************************************************
   Create the timing object associated with the online timing service
@@ -42,7 +43,7 @@ define([
 var start = function (){
   var timingProvider = new SocketTimingProvider(
     'ws://' + window.location.hostname+":8080/" + mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.GROUP_ID);
-  var timing = new TimingObject();
+  timing = new TimingObject();
   timing.srcObject = timingProvider;
   controller = new TimingMediaController(timing);
   mediascape.AdaptationToolkit.uiComponents.addController();
@@ -80,11 +81,15 @@ var addMedia = function(media){
   var getController = function (){
     return controller;
   }
+  var getTiming = function (){
+    return timing;
+  }
    var API = {
       addMedia:addMedia,
       getController:getController,
       start:start,
-      ready:false
+      ready:false,
+      timing:getTiming
    }
 
    return API;

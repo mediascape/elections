@@ -244,7 +244,8 @@ define(function (require) {
               // Associate with a new local timing provider
               // (this should not trigger a "change" event since
               // vector does not change internally)
-              master = true;
+              if (navigator.userAgent.toLowerCase().indexOf('hbbtv')!=-1) master = false;
+              else master = true;
               provider = new LocalTimingProvider(
                 previousProvider.query(),
                 previousProvider.range
