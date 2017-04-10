@@ -292,7 +292,8 @@ define(function (require) {
       // Get new readings from Timing object
       timingVector = timing.query();
 
-      controlledElements.forEach(controlElement);
+      if (navigator.userAgent.toLowerCase().indexOf('hbbtv')==-1)
+        controlledElements.forEach(controlElement);
 
       var amortNeeded = false;
       controlledElements.forEach(function (wrappedEl) {
