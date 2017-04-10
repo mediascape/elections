@@ -137,8 +137,9 @@ Polymer({
 		this.sm = mediascape.AdaptationToolkit.Motion;
 		var id = 0;
 		var audio = _this.querySelector('audio');
+		this.sm.controller = this.sm.addMedia (audio);
+		this.sm.controller = this.sm.getController();
 		this.load();
-		this.sm.addMedia (audio);
 		console.log("x-radio ready");
 
 
