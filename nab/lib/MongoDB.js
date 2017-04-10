@@ -28,7 +28,7 @@ function MongoDB() {
     var userAppModel = {};
     var groupModel = {};
     var usedIds = [];
-
+    var Url = {};
     var userCollect = false;
     var appCollect = false;
     var userAppCollect = false;
@@ -115,7 +115,33 @@ function MongoDB() {
         appModel = db.model(config.mappingPath + '_app', appSchema);
         userAppModel = db.model(config.mappingPath + '_appUser', userAppSchema);
         groupModel = db.model(config.mappingPath + '_group', groupSchema);
+        var CounterSchema = new db.Schema({
+            _id: {type: String, required: true},
+            seq: { type: Number, default: 0 }
+        });
 
+        var counter = db.model('counter', CounterSchema);
+        var c = new counter({_id:'url_count',seq:1});
+        c.save();
+        // create a schema for our links
+        var urlSchema = new db.Schema({
+          _id: {type: Number, index: true},
+          long_url: String,
+          created_at: Date
+        });
+
+        urlSchema.pre('save', function(next){
+          var doc = this;
+          counter.findByIdAndUpdate({_id: 'url_count'}, {$inc: {seq:1 }}, function(error, counter) {
+              if (error)
+                  return next(error);
+              doc.created_at = new Date();
+              doc._id = counter.seq;
+              next();
+          });
+        });
+
+        Url = db.model('Url', urlSchema);
         collectServices();
 
     };
@@ -550,6 +576,10 @@ function MongoDB() {
 
 
     init();
+    function getShortenModel (){
+
+        return Url;
+    }
 
     that = {
 
@@ -557,7 +587,8 @@ function MongoDB() {
         changeState: changeState,
         getUserMapping: getUserMapping,
         getGroupMapping: getGroupMapping,
-        checkAllowed: checkAllowed
+        checkAllowed: checkAllowed,
+        getShortenModel:getShortenModel
 
     };
 

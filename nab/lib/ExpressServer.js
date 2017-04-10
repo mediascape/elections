@@ -9,7 +9,7 @@
  * @copyright 2014 Institut für Rundfunktechnik GmbH, All rights reserved.
  */
 
-function ExpressServer() {
+function ExpressServer(db) {
     var that;
 
     var config = require('../config');
@@ -29,7 +29,9 @@ function ExpressServer() {
     var cookieParser = require('cookie-parser');
     var session = require('express-session');
     var MongoStore = require('connect-mongo')(session);
-
+    var base58 = require('./base58.js');
+    var path = require('path');
+    var Url = db.getShortenModel();
 
     var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
@@ -214,14 +216,63 @@ function ExpressServer() {
             user: req.user
         });
     });
+    app.post('/api/shorten', function(req, res){
+          var longUrl = req.body.url;
+          var shortUrl = '';
 
-    app.use(compression({ threshold: 0 }));
+          // check if url already exists in database
+          Url.findOne({long_url: longUrl}, function (err, doc){
+            if (doc){
+              shortUrl = config.webhost + base58.encode(doc._id);
+
+              // the document exists, so we return it without creating a new entry
+              res.send({'shortUrl': shortUrl});
+            } else {
+              // since it doesn't exist, let's go ahead and create it:
+              var newUrl = Url({
+                long_url: longUrl
+              });
+
+              // save the new link
+              newUrl.save(function(err) {
+                if (err){
+                  console.log(err);
+                }
+
+                shortUrl = config.webhost + base58.encode(newUrl._id);
+
+                res.send({'shortUrl': shortUrl});
+              });
+            }
+
+          });
+
+    });
+
+app.get('/s/:encoded_id', function(req, res){
+
+      var base58Id = req.params.encoded_id;
+
+      var id = base58.decode(base58Id);
+
+      // check if url already exists in database
+      Url.findOne({_id: id}, function (err, doc){
+        if (doc) {
+          res.redirect(doc.long_url);
+        } else {
+          res.redirect(config.webhost);
+        }
+      });
+
+});
+app.use(compression({ threshold: 0 }));
     app.use(function (req, res, next) {
     	var filename = path.basename(req.url);
         logger.debug("The file " + filename + " was requested.");
 	  next();
     });
-    app.use(express.static(__dirname + config.express.filePath,{ maxAge:1210000}));
+
+    app.use(express.static(__dirname + config.express.filePath,{ maxAge:86400000*7}));
 
     server.listen(config.express.port, function () {
         logger.debug('Webserver listening at port %d', config.express.port);

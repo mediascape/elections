@@ -44,7 +44,7 @@ function Core() {
     function setupClientConnection() {
 
         var ExpressServer = require('./ExpressServer.js');
-        var MyExpressServer = ExpressServer();
+        var MyExpressServer = ExpressServer(db);
 
         var SocketServer = require('./SocketServer.js');
         MySocketsServer = SocketServer(MyExpressServer.getServer());

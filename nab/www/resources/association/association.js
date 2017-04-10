@@ -147,14 +147,13 @@ define( ["jquery","qrcode","webcodecam","qrcodelib"], function($) {
 							marginLeft=args[6];
 							marginTop=args[7];
 						}
-
-						if(short&&url.indexOf("bit.ly")==-1&&bitlyUser!=""&&bitlyPass!=""){
+					 //if(short&&url.indexOf("bit.ly")==-1&&bitlyUser!=""&&bitlyPass!=""){
 							shortURL(url).then(function(data){
 								return visualizeQr(placeId,data.response,width,height,marginLeft,marginTop,true,resolve);
 							});
-						}else{
-							return visualizeQr(placeId,url,width,height,marginLeft,marginTop,true,resolve);
-						}
+						//}else{
+							//return visualizeQr(placeId,url,width,height,marginLeft,marginTop,true,resolve);
+						//}
 				});
 				return p1;
 			}
@@ -162,6 +161,7 @@ define( ["jquery","qrcode","webcodecam","qrcodelib"], function($) {
 
 			function visualizeQr(placeId,url,width,height,marginLeft,marginTop,link,resolve){
 				var shortedUrl = url;
+				url='http://'+url.split('/')[2]+'/s/'+url.split('/')[3]
 				var asociationElement=document.getElementById(placeId);
 				var associationCode = document.createElement("div");
 				associationCode.id="code";
@@ -219,8 +219,8 @@ define( ["jquery","qrcode","webcodecam","qrcodelib"], function($) {
 			function visualizeLink(url){
 				var urlElement = document.createElement("a");
 				urlElement.id="url";
-				urlElement.href=url;				
-				urlElement.innerHTML=url;
+				urlElement.href='http://'+url.split('/')[2]+'/s/'+url.split('/')[3];
+				urlElement.innerHTML='http://'+url.split('/')[2]+'/s/'+url.split('/')[3];
 				urlElement.target='_blank';
 				return urlElement;
 			}
@@ -1272,7 +1272,22 @@ define( ["jquery","qrcode","webcodecam","qrcodelib"], function($) {
 					function(resolve,reject){
 						var deferred = $.Deferred();
 						if(bitlyPass!==""&&bitlyUser!==""){
-							$.ajax({
+
+							 $.ajax({
+							    url: '/api/shorten',
+							    type: 'POST',
+							    dataType: 'JSON',
+							    data: {url: url},
+							    success: function(data){
+							        console.log('Shorten:'+data.shortUrl);
+							        resolve(JSON.parse('{"response":"'+data.shortUrl+'"}'));
+							    }
+							  });
+							
+
+
+
+							/*$.ajax({
 								url:"http://api.bit.ly/v3/shorten",
 								data:{
 									longUrl:url,
@@ -1286,7 +1301,7 @@ define( ["jquery","qrcode","webcodecam","qrcodelib"], function($) {
 									var shortedUrl = data.data.url;
 									resolve(JSON.parse('{"response":"'+shortedUrl+'"}'));
 								}else resolve(JSON.parse('{"response":"<p>It has not been possible to minimize the url.</p>"}'));
-							});
+							});*/
 						}else resolve(JSON.parse('{"response":"<p>It has not been possible to minimize the url.<p></p> Define a Bitly user and pass.</p>"}'));
 					});
 				return p1;

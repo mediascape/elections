@@ -1,78 +1,54 @@
-[2017-04-07 16:58:57.385] [DEBUG] ExpressServer - The file deviceProfile.js was requested.
-[2017-04-07 16:58:57.388] [DEBUG] ExpressServer - The file mediasync.js was requested.
-[2017-04-07 16:58:57.391] [DEBUG] ExpressServer - The file association.js was requested.
-[2017-04-07 16:58:57.588] [DEBUG] ExpressServer - The file configPanel.js was requested.
-[2017-04-07 16:58:57.594] [DEBUG] ExpressServer - The file swiper.min.js was requested.
-[2017-04-07 16:58:57.596] [DEBUG] ExpressServer - The file domReady.js was requested.
-[2017-04-07 16:58:57.735] [DEBUG] ExpressServer - The file iron-ajax.html?0.6917187385261059 was requested.
-[2017-04-07 16:58:57.736] [DEBUG] ExpressServer - The file modules.js was requested.
-[2017-04-07 16:58:57.737] [DEBUG] ExpressServer - The file polymer-mini.html?0.4114857530221343 was requested.
-[2017-04-07 16:58:57.802] [DEBUG] ExpressServer - The file uiComponents.js was requested.
-[2017-04-07 16:58:57.804] [DEBUG] ExpressServer - The file modules.js was requested.
-[2017-04-07 16:58:57.805] [DEBUG] ExpressServer - The file motion.js was requested.
-[2017-04-07 16:58:57.941] [DEBUG] ExpressServer - The file jquery-2.1.1.min.js was requested.
-[2017-04-07 16:58:58.001] [DEBUG] ExpressServer - The file utils.js was requested.
-[2017-04-07 16:58:58.004] [DEBUG] ExpressServer - The file namedwebsockets.js was requested.
-[2017-04-07 16:58:58.005] [DEBUG] ExpressServer - The file qrcode.min.js was requested.
-[2017-04-07 16:58:58.008] [DEBUG] ExpressServer - The file shake.js was requested.
-[2017-04-07 16:58:58.165] [DEBUG] ExpressServer - The file WebCodeCam.min.js was requested.
-[2017-04-07 16:58:58.258] [DEBUG] ExpressServer - The file keycodes.js was requested.
-[2017-04-07 16:58:58.261] [DEBUG] ExpressServer - The file classie.js was requested.
-[2017-04-07 16:58:58.264] [DEBUG] ExpressServer - The file qrcodelib.js was requested.
-[2017-04-07 16:58:58.266] [DEBUG] ExpressServer - The file polymer-micro.html?0.8157193576917052 was requested.
-[2017-04-07 16:58:58.266] [DEBUG] ExpressServer - The file iron-request.html?0.937678896356374 was requested.
-[2017-04-07 16:58:58.401] [DEBUG] ExpressServer - The file hbbtvapp.js was requested.
-[2017-04-07 16:58:58.489] [DEBUG] ExpressServer - The file cssParser.js was requested.
-[2017-04-07 16:58:58.491] [DEBUG] ExpressServer - The file core.js was requested.
-[2017-04-07 16:58:58.729] [DEBUG] ExpressServer - The file UIAdaptation.js was requested.
-[2017-04-07 16:58:58.731] [DEBUG] ExpressServer - The file loadManager.js was requested.
-[2017-04-07 16:58:58.733] [DEBUG] ExpressServer - The file mdadaptation.js was requested.
-[2017-04-07 16:58:58.734] [DEBUG] ExpressServer - The file TimingObject.js was requested.
-[2017-04-07 16:58:58.937] [DEBUG] ExpressServer - The file TimingMediaController.js was requested.
-[2017-04-07 16:58:58.937] [DEBUG] ExpressServer - The file SocketTimingProvider.js was requested.
-[2017-04-07 16:58:59.219] [DEBUG] ExpressServer - The file StateVector.js was requested.
-[2017-04-07 16:58:59.221] [DEBUG] ExpressServer - The file bootstrap.min.js was requested.
-[2017-04-07 16:58:59.224] [DEBUG] ExpressServer - The file DecoderWorker.js was requested.
-[2017-04-07 16:58:59.229] [DEBUG] ExpressServer - The file promise-polyfill-lite.html?0.5448119763750583 was requested.
-[2017-04-07 16:58:59.303] [DEBUG] ExpressServer - The file underscore-min.js was requested.
-[2017-04-07 16:58:59.304] [DEBUG] ExpressServer - The file explicit.js was requested.
-[2017-04-07 16:58:59.384] [DEBUG] ExpressServer - The file affinitymatch.js was requested.
-[2017-04-07 16:58:59.391] [DEBUG] ExpressServer - The file bestfit.js was requested.
-[2017-04-07 16:58:59.414] [DEBUG] ExpressServer - The file userpref.js was requested.
-[2017-04-07 16:58:59.416] [DEBUG] ExpressServer - The file menu.js was requested.
-[2017-04-07 16:58:59.551] [DEBUG] ExpressServer - The file hbbtv.js was requested.
-[2017-04-07 16:58:59.554] [DEBUG] ExpressServer - The file pip.js was requested.
-[2017-04-07 16:58:59.693] [DEBUG] ExpressServer - The file horizontal.js was requested.
-[2017-04-07 16:58:59.699] [DEBUG] ExpressServer - The file accordion.js was requested.
-[2017-04-07 16:58:59.700] [DEBUG] ExpressServer - The file customGrid.js was requested.
-[2017-04-07 16:58:59.704] [DEBUG] ExpressServer - The file verticalMenu.js was requested.
-[2017-04-07 16:58:59.772] [DEBUG] ExpressServer - The file spinner.js was requested.
-[2017-04-07 16:58:59.773] [DEBUG] ExpressServer - The file scrollHorizontal.js was requested.
-[2017-04-07 16:58:59.860] [DEBUG] ExpressServer - The file divided.js was requested.
-[2017-04-07 16:58:59.862] [DEBUG] ExpressServer - The file carousel.js was requested.
-[2017-04-07 16:58:59.863] [DEBUG] ExpressServer - The file event-target.amd.js was requested.
-[2017-04-07 16:58:59.865] [DEBUG] ExpressServer - The file pipGrid.js was requested.
-[2017-04-07 16:58:59.931] [DEBUG] ExpressServer - The file LocalTimingProvider.js was requested.
-[2017-04-07 16:58:59.937] [DEBUG] ExpressServer - The file AbstractTimingProvider.js was requested.
-[2017-04-07 16:59:00.006] [DEBUG] ExpressServer - The file utils.js was requested.
-[2017-04-07 16:59:00.008] [DEBUG] ExpressServer - The file WebSocketClient.js was requested.
-[2017-04-07 16:59:00.008] [DEBUG] ExpressServer - The file SocketSyncClock.js was requested.
-[2017-04-07 16:59:00.009] [DEBUG] ExpressServer - The file layoutConstructor.js was requested.
-[2017-04-07 16:59:00.065] [DEBUG] ExpressServer - The file raphael.js was requested.
-[2017-04-07 16:59:00.080] [DEBUG] ExpressServer - The file Interval.js was requested.
-[2017-04-07 16:59:00.200] [DEBUG] ExpressServer - The file AbstractSyncClock.js was requested.
-[2017-04-07 16:59:00.237] [DEBUG] ExpressServer - The file literales.js was requested.
-[2017-04-07 16:59:00.382] [DEBUG] ExpressServer - The file g.raphael.js was requested.
-[2017-04-07 16:59:00.529] [DEBUG] ExpressServer - The file paths.municipios.js was requested.
-[2017-04-07 16:59:06.645] [DEBUG] ExpressServer - The file FontSiteSans-Cond-webfont.woff was requested.
-[2017-04-07 16:59:12.343] [INFO] SocketServer - User accepted without authentication User not authorized through passport. (User Property not found)
-[2017-04-07 16:59:12.656] [DEBUG] ExpressServer - The file FontSiteSans-Cond-webfont.woff was requested.
-[2017-04-07 16:59:13.123] [DEBUG] ExpressServer - The file FontSiteSans-Cond-webfont.ttf was requested.
-[2017-04-07 16:59:13.217] [INFO] SocketServer - created nsp with 9fff9a85a90fdf9b797a
-[2017-04-07 16:59:13.876] [DEBUG] ExpressServer - The file FontSiteSans-Cond-webfont.svg was requested.
-[2017-04-07 16:59:13.991] [INFO] SocketServer - User accepted without authentication User not authorized through passport. (User Property not found)
-[2017-04-07 16:59:14.334] [DEBUG] ExpressServer - The file rules.json?1490695006750&_=1490694968240 was requested.
-[2017-04-07 16:59:14.788] [DEBUG] SocketServer - somebody want to join 9fff9a85a90fdf9b797a with { agentID: '717844433' }
-[2017-04-07 16:59:14.794] [INFO] SocketServer - path 9fff9a85a90fdf9b797a data { agentID: '717844433', userId: undefined } allowed true isGroup true
-[2017-04-07 16:59:22.210] [DEBUG] ExpressServer - The file Material-Design-Iconic-Font.woff?v=2.1.0 was requested.
-[2017-04-07 16:59:22.600] [DEBUG] ExpressServer - The file index.html?group=mediascapecgeVT was requested.
+[2017-04-10 11:47:11.420] [DEBUG] ExpressServer - The file FontSiteSans-Cond-webfont.woff was requested.
+[2017-04-10 11:47:11.454] [DEBUG] ExpressServer - The file FontSiteSans-Cond-webfont.ttf was requested.
+[2017-04-10 11:47:11.583] [DEBUG] ExpressServer - The file FontSiteSans-Cond-webfont.woff was requested.
+[2017-04-10 11:47:11.606] [DEBUG] ExpressServer - The file FontSiteSans-Cond-webfont.ttf was requested.
+[2017-04-10 11:47:12.008] [INFO] SocketServer - User accepted without authentication User not authorized through passport. (User Property not found)
+[2017-04-10 11:47:12.114] [INFO] SocketServer - created nsp with 862b304492f0f0d1b369
+[2017-04-10 11:47:12.172] [INFO] SocketServer - User accepted without authentication User not authorized through passport. (User Property not found)
+[2017-04-10 11:47:12.229] [DEBUG] ExpressServer - The file rules.json?1491817632219&_=1491817626010 was requested.
+[2017-04-10 11:47:12.239] [DEBUG] ExpressServer - The file Tab.png was requested.
+[2017-04-10 11:47:12.280] [DEBUG] ExpressServer - The file logo-etb-menu.png was requested.
+[2017-04-10 11:47:12.295] [DEBUG] ExpressServer - The file LogoVicomtech.png was requested.
+[2017-04-10 11:47:12.427] [DEBUG] ExpressServer - The file hito.jpg was requested.
+[2017-04-10 11:47:12.451] [DEBUG] ExpressServer - The file rew_izda.png was requested.
+[2017-04-10 11:47:12.468] [DEBUG] ExpressServer - The file rew_dcha.png was requested.
+[2017-04-10 11:47:12.479] [DEBUG] ExpressServer - The file Play_activo.png was requested.
+[2017-04-10 11:47:12.488] [DEBUG] ExpressServer - The file btn.png was requested.
+[2017-04-10 11:47:12.505] [DEBUG] SocketServer - somebody want to join 862b304492f0f0d1b369 with { agentID: '687221968' }
+[2017-04-10 11:47:12.600] [INFO] SocketServer - path 862b304492f0f0d1b369 data { agentID: '687221968', userId: undefined } allowed true isGroup true
+[2017-04-10 11:47:13.791] [DEBUG] ExpressServer - The file qrPCnotifeu.png was requested.
+[2017-04-10 11:47:13.869] [DEBUG] ExpressServer - The file Pause_activo.png was requested.
+[2017-04-10 11:47:14.407] [DEBUG] ExpressServer - The file paper-switch.css was requested.
+[2017-04-10 11:47:14.491] [DEBUG] ExpressServer - The file LAPTOP_1.png was requested.
+[2017-04-10 11:47:14.510] [DEBUG] ExpressServer - The file QR-manos_grande.png was requested.
+[2017-04-10 11:47:14.525] [DEBUG] ExpressServer - The file layout_03.png was requested.
+[2017-04-10 11:47:14.526] [DEBUG] ExpressServer - The file layout_06.png was requested.
+[2017-04-10 11:47:14.527] [DEBUG] ExpressServer - The file layout_11.png was requested.
+[2017-04-10 11:47:14.528] [DEBUG] ExpressServer - The file logos_partidos_PNV_BLANCO.png was requested.
+[2017-04-10 11:47:14.574] [DEBUG] ExpressServer - The file logo_sozialista.png was requested.
+[2017-04-10 11:47:14.595] [DEBUG] ExpressServer - The file logo_podemos.png was requested.
+[2017-04-10 11:47:14.597] [DEBUG] ExpressServer - The file logo_bildu.png was requested.
+[2017-04-10 11:47:14.605] [DEBUG] ExpressServer - The file logos_partidos_Populares_vascos_BLANCO.png was requested.
+[2017-04-10 11:47:14.610] [DEBUG] ExpressServer - The file twitter_consombra.png was requested.
+[2017-04-10 11:47:19.808] [DEBUG] ExpressServer - The file Material-Design-Iconic-Font.woff2?v=2.1.0 was requested.
+[2017-04-10 11:47:49.825] [DEBUG] ExpressServer - The file index.html?group=mediascapeBU5Id was requested.
+[2017-04-10 11:47:51.267] [DEBUG] ExpressServer - The file DecoderWorker.js was requested.
+[2017-04-10 11:47:53.908] [DEBUG] ExpressServer - The file FontSiteSans-Cond-webfont.woff was requested.
+[2017-04-10 11:47:54.088] [DEBUG] ExpressServer - The file FontSiteSans-Cond-webfont.ttf was requested.
+[2017-04-10 11:47:55.273] [INFO] SocketServer - User accepted without authentication User not authorized through passport. (User Property not found)
+[2017-04-10 11:47:55.392] [INFO] SocketServer - User accepted without authentication User not authorized through passport. (User Property not found)
+[2017-04-10 11:47:55.452] [DEBUG] ExpressServer - The file rules.json?1491817675445&_=1491817671229 was requested.
+[2017-04-10 11:47:55.518] [DEBUG] SocketServer - somebody want to join 862b304492f0f0d1b369 with { agentID: '41577347' }
+[2017-04-10 11:47:55.529] [INFO] SocketServer - path 862b304492f0f0d1b369 data { agentID: '41577347', userId: undefined } allowed true isGroup true
+[2017-04-10 11:47:57.550] [DEBUG] ExpressServer - The file full-screen-icon.png was requested.
+[2017-04-10 11:47:57.636] [DEBUG] ExpressServer - The file ETB2_new.mp4 was requested.
+[2017-04-10 11:47:58.091] [DEBUG] ExpressServer - The file diferencia-up-ico.png was requested.
+[2017-04-10 11:47:58.096] [DEBUG] ExpressServer - The file diferencia-down-ico.png was requested.
+[2017-04-10 11:47:59.821] [DEBUG] ExpressServer - The file Bildu_new.mp4 was requested.
+[2017-04-10 11:47:59.884] [DEBUG] ExpressServer - The file EAJ_new.mp4 was requested.
+[2017-04-10 11:47:59.927] [DEBUG] ExpressServer - The file PSE_new_full.mp4 was requested.
+[2017-04-10 11:47:59.940] [DEBUG] ExpressServer - The file PPGENOVA_new.mp4 was requested.
+[2017-04-10 11:47:59.942] [DEBUG] ExpressServer - The file PODEMOSMADRID_new.mp4 was requested.
+[2017-04-10 11:48:00.098] [DEBUG] ExpressServer - The file Connectedeu.png was requested.
+[2017-04-10 11:48:01.414] [DEBUG] ExpressServer - The file LAPTOP_2.png was requested.
+[2017-04-10 11:48:12.217] [DEBUG] ExpressServer - The file Disconnectedeu.png was requested.
