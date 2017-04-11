@@ -1,33 +1,20 @@
-[2017-04-11 12:35:26.295] [DEBUG] ExpressServer - The file FontSiteSans-Cond-webfont.ttf was requested.
-[2017-04-11 12:35:26.668] [INFO] SocketServer - User accepted without authentication User not authorized through passport. (User Property not found)
-[2017-04-11 12:35:27.167] [DEBUG] ExpressServer - The file hito.jpg was requested.
-[2017-04-11 12:35:27.225] [DEBUG] ExpressServer - The file rew_izda.png was requested.
-[2017-04-11 12:35:27.231] [DEBUG] ExpressServer - The file rew_dcha.png was requested.
-[2017-04-11 12:35:27.264] [DEBUG] ExpressServer - The file Play_activo.png was requested.
-[2017-04-11 12:35:27.337] [DEBUG] ExpressServer - The file btn.png was requested.
-[2017-04-11 12:35:27.685] [INFO] SocketServer - created nsp with b18de0bfaf7ad11eb4bd
-[2017-04-11 12:35:27.761] [INFO] SocketServer - User accepted without authentication User not authorized through passport. (User Property not found)
-[2017-04-11 12:35:27.944] [DEBUG] ExpressServer - The file rules.json?1491906927937&_=1491906915275 was requested.
-[2017-04-11 12:35:27.970] [DEBUG] ExpressServer - The file Tab.png was requested.
-[2017-04-11 12:35:27.977] [DEBUG] ExpressServer - The file logo-etb-menu.png was requested.
-[2017-04-11 12:35:28.026] [DEBUG] ExpressServer - The file LogoVicomtech.png was requested.
-[2017-04-11 12:35:28.199] [DEBUG] SocketServer - somebody want to join b18de0bfaf7ad11eb4bd with { agentID: '530588356' }
-[2017-04-11 12:35:28.261] [INFO] SocketServer - path b18de0bfaf7ad11eb4bd data { agentID: '530588356', userId: undefined } allowed true isGroup true
-[2017-04-11 12:35:29.021] [DEBUG] ExpressServer - The file full-screen-icon.png was requested.
-[2017-04-11 12:35:29.192] [DEBUG] ExpressServer - The file ETB2_new.mp4 was requested.
-[2017-04-11 12:35:31.802] [DEBUG] ExpressServer - The file diferencia-up-ico.png was requested.
-[2017-04-11 12:35:31.816] [DEBUG] ExpressServer - The file diferencia-down-ico.png was requested.
-[2017-04-11 12:35:32.727] [DEBUG] ExpressServer - The file qrPCnotifeu.png was requested.
-[2017-04-11 12:35:33.538] [DEBUG] ExpressServer - The file paper-switch.css was requested.
-[2017-04-11 12:35:33.765] [DEBUG] ExpressServer - The file LAPTOP_1.png was requested.
-[2017-04-11 12:35:33.836] [DEBUG] ExpressServer - The file QR-manos_grande.png was requested.
-[2017-04-11 12:35:33.842] [DEBUG] ExpressServer - The file layout_03.png was requested.
-[2017-04-11 12:35:33.855] [DEBUG] ExpressServer - The file layout_06.png was requested.
-[2017-04-11 12:35:33.917] [DEBUG] ExpressServer - The file layout_11.png was requested.
-[2017-04-11 12:35:33.953] [DEBUG] ExpressServer - The file logos_partidos_PNV_BLANCO.png was requested.
-[2017-04-11 12:35:34.019] [DEBUG] ExpressServer - The file logo_bildu.png was requested.
-[2017-04-11 12:35:34.043] [DEBUG] ExpressServer - The file logo_sozialista.png was requested.
-[2017-04-11 12:35:34.051] [DEBUG] ExpressServer - The file logo_podemos.png was requested.
-[2017-04-11 12:35:34.108] [DEBUG] ExpressServer - The file logos_partidos_Populares_vascos_BLANCO.png was requested.
-[2017-04-11 12:35:34.196] [DEBUG] ExpressServer - The file twitter_consombra.png was requested.
-[2017-04-11 12:35:36.216] [DEBUG] ExpressServer - The file Pause_activo.png was requested.
+[2017-04-11 10:57:49.525] [DEBUG] ExpressServer - The file PODEMOSMADRID_new.mp4 was requested.
+[2017-04-11 10:57:50.718] [DEBUG] ExpressServer - The file ETB2_new.mp4 was requested.
+[2017-04-11 10:57:50.886] [DEBUG] ExpressServer - The file EAJ_new.mp4 was requested.
+[2017-04-11 10:57:50.890] [DEBUG] ExpressServer - The file Bildu_new.mp4 was requested.
+[2017-04-11 10:57:50.896] [DEBUG] ExpressServer - The file PPGENOVA_new.mp4 was requested.
+[2017-04-11 10:57:50.898] [DEBUG] ExpressServer - The file PODEMOSMADRID_new.mp4 was requested.
+[2017-04-11 10:57:52.140] [DEBUG] ExpressServer - The file 23.jpeg was requested.
+[2017-04-11 10:57:53.348] [DEBUG] ExpressServer - The file ETB2_new.mp4 was requested.
+[2017-04-11 10:57:54.509] [DEBUG] ExpressServer - The file ETB2_new.mp4 was requested.
+[2017-04-11 10:57:57.028] [DEBUG] ExpressServer - The file ETB2_new.mp4 was requested.
+[2017-04-11 10:57:58.944] [DEBUG] ExpressServer - The file ETB2_new.mp4 was requested.
+[2017-04-11 10:58:09.739] [DEBUG] ExpressServer - The file ETB2_new.mp4 was requested.
+[2017-04-11 10:58:11.346] [DEBUG] ExpressServer - The file ETB2_new.mp4 was requested.
+[2017-04-11 10:58:18.090] [DEBUG] ExpressServer - The file ETB2_new.mp4 was requested.
+[2017-04-11 10:58:25.990] [DEBUG] ExpressServer - The file ETB2_new.mp4 was requested.
+[2017-04-11 10:58:28.364] [DEBUG] ExpressServer - The file ETB2_new.mp4 was requested.
+[2017-04-11 10:58:32.568] [DEBUG] ExpressServer - The file ETB2_new.mp4 was requested.
+[2017-04-11 10:58:35.001] [DEBUG] ExpressServer - The file ETB2_new.mp4 was requested.
+[2017-04-11 10:58:36.545] [DEBUG] ExpressServer - The file ETB2_new.mp4 was requested.
+[2017-04-11 10:58:38.767] [DEBUG] ExpressServer - The file ETB2_new.mp4 was requested.
