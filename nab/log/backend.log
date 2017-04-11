@@ -1,29 +1,33 @@
-[2017-04-11 10:29:51.090] [DEBUG] ExpressServer - The file qrPCnotifeu.png was requested.
-[2017-04-11 10:29:51.252] [DEBUG] ExpressServer - The file Pause_activo.png was requested.
-[2017-04-11 10:29:51.680] [DEBUG] ExpressServer - The file paper-switch.css was requested.
-[2017-04-11 10:29:51.796] [DEBUG] ExpressServer - The file LAPTOP_1.png was requested.
-[2017-04-11 10:29:51.798] [DEBUG] ExpressServer - The file QR-manos_grande.png was requested.
-[2017-04-11 10:29:51.799] [DEBUG] ExpressServer - The file layout_03.png was requested.
-[2017-04-11 10:29:51.800] [DEBUG] ExpressServer - The file layout_06.png was requested.
-[2017-04-11 10:29:51.801] [DEBUG] ExpressServer - The file layout_11.png was requested.
-[2017-04-11 10:29:51.802] [DEBUG] ExpressServer - The file logos_partidos_PNV_BLANCO.png was requested.
-[2017-04-11 10:29:51.862] [DEBUG] ExpressServer - The file logo_sozialista.png was requested.
-[2017-04-11 10:29:51.863] [DEBUG] ExpressServer - The file logo_podemos.png was requested.
-[2017-04-11 10:29:51.864] [DEBUG] ExpressServer - The file logo_bildu.png was requested.
-[2017-04-11 10:29:51.865] [DEBUG] ExpressServer - The file logos_partidos_Populares_vascos_BLANCO.png was requested.
-[2017-04-11 10:29:51.887] [DEBUG] ExpressServer - The file twitter_consombra.png was requested.
-[2017-04-11 10:30:01.290] [DEBUG] ExpressServer - The file promise-6.1.0.min.js.map was requested.
-[2017-04-11 10:30:01.331] [DEBUG] ExpressServer - The file swiper.min.js.map was requested.
-[2017-04-11 10:30:01.432] [DEBUG] ExpressServer - The file underscore-min.map was requested.
-[2017-04-11 10:30:50.823] [DEBUG] ExpressServer - The file diferencia-up-ico.png was requested.
-[2017-04-11 10:30:50.843] [DEBUG] ExpressServer - The file diferencia-down-ico.png was requested.
-[2017-04-11 10:32:00.987] [DEBUG] ExpressServer - The file DecoderWorker.js was requested.
-[2017-04-11 10:32:03.475] [DEBUG] ExpressServer - The file FontSiteSans-Cond-webfont.woff was requested.
-[2017-04-11 10:32:03.581] [DEBUG] ExpressServer - The file FontSiteSans-Cond-webfont.ttf was requested.
-[2017-04-11 10:32:04.635] [INFO] SocketServer - User accepted without authentication User not authorized through passport. (User Property not found)
-[2017-04-11 10:32:04.702] [INFO] SocketServer - created nsp with a144656ab406ea8a0083
-[2017-04-11 10:32:04.741] [INFO] SocketServer - User accepted without authentication User not authorized through passport. (User Property not found)
-[2017-04-11 10:32:04.810] [DEBUG] ExpressServer - The file rules.json?1491899524804&_=1491899520961 was requested.
-[2017-04-11 10:32:04.879] [DEBUG] SocketServer - somebody want to join a144656ab406ea8a0083 with { agentID: '894926436' }
-[2017-04-11 10:32:04.897] [INFO] SocketServer - path a144656ab406ea8a0083 data { agentID: '894926436', userId: undefined } allowed true isGroup true
-[2017-04-11 10:32:05.364] [DEBUG] ExpressServer - The file ETB2_new.mp4 was requested.
+[2017-04-11 12:35:26.295] [DEBUG] ExpressServer - The file FontSiteSans-Cond-webfont.ttf was requested.
+[2017-04-11 12:35:26.668] [INFO] SocketServer - User accepted without authentication User not authorized through passport. (User Property not found)
+[2017-04-11 12:35:27.167] [DEBUG] ExpressServer - The file hito.jpg was requested.
+[2017-04-11 12:35:27.225] [DEBUG] ExpressServer - The file rew_izda.png was requested.
+[2017-04-11 12:35:27.231] [DEBUG] ExpressServer - The file rew_dcha.png was requested.
+[2017-04-11 12:35:27.264] [DEBUG] ExpressServer - The file Play_activo.png was requested.
+[2017-04-11 12:35:27.337] [DEBUG] ExpressServer - The file btn.png was requested.
+[2017-04-11 12:35:27.685] [INFO] SocketServer - created nsp with b18de0bfaf7ad11eb4bd
+[2017-04-11 12:35:27.761] [INFO] SocketServer - User accepted without authentication User not authorized through passport. (User Property not found)
+[2017-04-11 12:35:27.944] [DEBUG] ExpressServer - The file rules.json?1491906927937&_=1491906915275 was requested.
+[2017-04-11 12:35:27.970] [DEBUG] ExpressServer - The file Tab.png was requested.
+[2017-04-11 12:35:27.977] [DEBUG] ExpressServer - The file logo-etb-menu.png was requested.
+[2017-04-11 12:35:28.026] [DEBUG] ExpressServer - The file LogoVicomtech.png was requested.
+[2017-04-11 12:35:28.199] [DEBUG] SocketServer - somebody want to join b18de0bfaf7ad11eb4bd with { agentID: '530588356' }
+[2017-04-11 12:35:28.261] [INFO] SocketServer - path b18de0bfaf7ad11eb4bd data { agentID: '530588356', userId: undefined } allowed true isGroup true
+[2017-04-11 12:35:29.021] [DEBUG] ExpressServer - The file full-screen-icon.png was requested.
+[2017-04-11 12:35:29.192] [DEBUG] ExpressServer - The file ETB2_new.mp4 was requested.
+[2017-04-11 12:35:31.802] [DEBUG] ExpressServer - The file diferencia-up-ico.png was requested.
+[2017-04-11 12:35:31.816] [DEBUG] ExpressServer - The file diferencia-down-ico.png was requested.
+[2017-04-11 12:35:32.727] [DEBUG] ExpressServer - The file qrPCnotifeu.png was requested.
+[2017-04-11 12:35:33.538] [DEBUG] ExpressServer - The file paper-switch.css was requested.
+[2017-04-11 12:35:33.765] [DEBUG] ExpressServer - The file LAPTOP_1.png was requested.
+[2017-04-11 12:35:33.836] [DEBUG] ExpressServer - The file QR-manos_grande.png was requested.
+[2017-04-11 12:35:33.842] [DEBUG] ExpressServer - The file layout_03.png was requested.
+[2017-04-11 12:35:33.855] [DEBUG] ExpressServer - The file layout_06.png was requested.
+[2017-04-11 12:35:33.917] [DEBUG] ExpressServer - The file layout_11.png was requested.
+[2017-04-11 12:35:33.953] [DEBUG] ExpressServer - The file logos_partidos_PNV_BLANCO.png was requested.
+[2017-04-11 12:35:34.019] [DEBUG] ExpressServer - The file logo_bildu.png was requested.
+[2017-04-11 12:35:34.043] [DEBUG] ExpressServer - The file logo_sozialista.png was requested.
+[2017-04-11 12:35:34.051] [DEBUG] ExpressServer - The file logo_podemos.png was requested.
+[2017-04-11 12:35:34.108] [DEBUG] ExpressServer - The file logos_partidos_Populares_vascos_BLANCO.png was requested.
+[2017-04-11 12:35:34.196] [DEBUG] ExpressServer - The file twitter_consombra.png was requested.
+[2017-04-11 12:35:36.216] [DEBUG] ExpressServer - The file Pause_activo.png was requested.

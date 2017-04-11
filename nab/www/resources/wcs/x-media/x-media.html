@@ -108,7 +108,7 @@ Polymer({
 	  	setTimeout(function(){
 			var video =_this.querySelector('video');
 			_this.sm.controller = _this.sm.addMedia(video);
-		
+
 		_this.sm.controller.addEventListener("timeupdate", _this.checkBuffer.bind(_this));
 	       _this.sm.controller.play();
 		},1000);
@@ -202,7 +202,7 @@ Polymer({
        var _this = this;
 			 this.loaded = true;
 			 this.pause();
-			if (video){
+			if (navigator.userAgent.toLowerCase().indexOf('hbbtv')==-1){
 			 video.src = this.file;
 			 if(this.ismuted==="true"){
 				 video.muted=true;
@@ -214,12 +214,12 @@ Polymer({
 	onMediaQuery:function(e){
 		 if (navigator.userAgent.toLowerCase().indexOf('hbbtv')!=-1){
 			var video = this.querySelector('object');
-			
+
 			video.style.width= this.style.width;
 			video.style.height = this.style.height;
                         video.bindToCurrentChannel();
                 }
-                
+
 	}
 
 
