@@ -265,11 +265,11 @@ var ControlPanel= function (url){
     resTableA.setName(c[0].id);
     resTableA.setID(c[0].getAttribute('compId'));
 
-    comp='resultsEitb2';
+    /*comp='resultsEitb2';
     c=cmps.filter(filterById);
     var resTableB=new table();
     resTableB.setName(c[0].id);
-    resTableB.setID(c[0].getAttribute('compId'));
+    resTableB.setID(c[0].getAttribute('compId'));*/
 
     /*comp='radio1';
     c=cmps.filter(filterById);
@@ -303,11 +303,11 @@ var ControlPanel= function (url){
     resMapA.setName(c[0].id);
     resMapA.setID(c[0].getAttribute('compId'));
 
-    comp='resultsMap2';
+    /*comp='resultsMap2';
     c=cmps.filter(filterById);
     var resMapB=new partyMap();
     resMapB.setName(c[0].id);
-    resMapB.setID(c[0].getAttribute('compId'));
+    resMapB.setID(c[0].getAttribute('compId'));*/
 
     comp='graficoSemi1';
     c=cmps.filter(filterById);
@@ -346,10 +346,10 @@ var ControlPanel= function (url){
 
     graphicSect=new graphicSection();
     graphicSect.addTableComp(resTableA);
-    graphicSect.addTableComp(resTableB);
+    //graphicSect.addTableComp(resTableB);
 
     graphicSect.addPartyMapComp(resMapA);
-    graphicSect.addPartyMapComp(resMapB);
+    //graphicSect.addPartyMapComp(resMapB);
     graphicSect.addPieComp(pieGraphA);
     graphicSect.addPieComp(pieGraphB);
     graphicSect.addPieComp(pieGraphC);
@@ -501,14 +501,14 @@ var ControlPanel= function (url){
        if(window.location.href.indexOf('?lang')>-1){
           var notLang=mediascape.AdaptationToolkit.Utils.getUrlVar('lang');
        }else{
-          var notLang='eu'; 
+          var notLang='eu';
        }
-       
+
     }
     else{
        var notLang=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language');
     }
-    if(mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext().agents.length===1 && 
+    if(mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext().agents.length===1 &&
       event.detail.status==='join'){
         if(event.detail.profile.deviceType.toLowerCase()==='tv'){
           mediascape.AdaptationToolkit.uiComponents.qrNotification(notLang,'tv');
@@ -520,7 +520,7 @@ var ControlPanel= function (url){
     }
     else{
       if(event.detail.status==='join'){
-         
+
         mediascape.AdaptationToolkit.uiComponents.connectedNotification(notLang);
       }
       else if(event.detail.status==='left'){
@@ -687,7 +687,7 @@ var ControlPanel= function (url){
         for(var i=2;i<sectionNum;i++){
           sectionDiv[i].replaceChild(devBox.render(),sectionDiv[i].children[0]);
         }
-        
+
 
       }
       else{
@@ -932,7 +932,7 @@ var ControlPanel= function (url){
         document.querySelector('#hide').focus();
       }else{
         mediascape.AdaptationToolkit.uiComponents.ctrlPanel.hide();
-      }      
+      }
       if(mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')===undefined){
 
         if(window.location.href.indexOf('?lang')>-1){
@@ -1256,7 +1256,7 @@ var ControlPanel= function (url){
        }else{
           mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setAppAttribute('language','eu');
        }
-        
+
       }
       else{
         var l=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language');
@@ -1509,11 +1509,11 @@ var ControlPanel= function (url){
             document.querySelector('#qrNotif').src=document.querySelector('#qrNotif').src.split('notif')[0]+'notif'+event.detail.value+'.png';
           }
           for(var i=0;i<this.textos.menu.length;i++){
-            
+
             if(document.querySelector('#fullTemp').querySelector('#'+this.textos.menu[i].id)!==null){
               document.querySelector('#fullTemp').querySelector('#'+this.textos.menu[i].id).innerHTML=this.textos.menu[i][event.detail.value];
             }
-            
+
           }
           for(var i=0;i<this.textos.addDev.length;i++){
             var elToChange=document.querySelector('#fullTemp').querySelectorAll('#'+this.textos.addDev[i].id);
@@ -1719,12 +1719,12 @@ var ControlPanel= function (url){
         if(smallestId===undefined){
           smallestId=agentsToMute[0];
         }
-        
+
       }
       else{
         var smallestId=agentsToMute[0];
       }
-      
+
       if(smallestId.id===mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAgentId()){
         for(var k=0;k<agentsToMute.length;k++){
           !function outer(k){
@@ -1732,10 +1732,10 @@ var ControlPanel= function (url){
             mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentsToMute[k].id,vMuteCompId,'mutePlayer');
             mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentsToMute[k].id,vMuteCompId,false);
 
-            
+
           },k*2000);
         }(k);
-          
+
 
         }
         for(var k=0;k<agentsToMute.length;k++){
@@ -1745,7 +1745,7 @@ var ControlPanel= function (url){
 
             },(k*2000)+1000);
           }(k);
-          
+
 
         }
         mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeOwnCamera(smallestId.id,vMute,'off');
@@ -1769,7 +1769,7 @@ var ControlPanel= function (url){
         var smallestId=agentsToMute.filter(filterBy_Id)._id;
         if(smallestId===undefined){
           smallestId=agentsToMute[0];
-        }        
+        }
       }
       else{
         var smallestId=agentsToMute[0];
@@ -1794,11 +1794,11 @@ var ControlPanel= function (url){
         }
       }
     }
-    
 
 
 
-    
+
+
   });
   this.onCtxUpdate=function(event){
     //console.log(event);
@@ -1933,8 +1933,8 @@ var ControlPanel= function (url){
                 sectionDiv[i].querySelector('#tableSelect'+changes[j].compId).value=changes[j].newValue.split('tablelug')[1];
               }
             }
-            
-            
+
+
             /*if(sections[i].name===event.detail.agentid+'graphics' && changes[j].newValue.indexOf('tabletipo')>-1){
               if(changes[j].newValue.indexOf('S')>-1){
                 sectionDiv[i].querySelector('#congInp'+changes[j].compId).checked=false;
@@ -2243,7 +2243,7 @@ var ControlPanel= function (url){
       document.querySelector('#'+cId).querySelector('video').muted=true;
       document.querySelector('#'+cId).querySelector('#etbmuteimg').style.display='block';
     }
-    
+
   }
   this.changePiePlace=function(agentToChange,h,cId){
     var sections=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.items;
@@ -2300,10 +2300,10 @@ var ControlPanel= function (url){
       if(sections[i].name.indexOf('cameras')>-1){
         if(mediascape.cameras.pnv==='off'){
           sectionDiv[i].querySelector('#soundCheck'+document.querySelector('#video2').compId).style.pointerEvents='none';
-        }        
+        }
         if(mediascape.cameras.pse==='off'){
           sectionDiv[i].querySelector('#soundCheck'+document.querySelector('#video3').compId).style.pointerEvents='none';
-        }       
+        }
         if(mediascape.cameras.podemos==='off'){
           sectionDiv[i].querySelector('#soundCheck'+document.querySelector('#video4').compId).style.pointerEvents='none';
         }
@@ -2313,14 +2313,14 @@ var ControlPanel= function (url){
         if(mediascape.cameras.pp==='off'){
           sectionDiv[i].querySelector('#soundCheck'+document.querySelector('#video6').compId).style.pointerEvents='none';
         }
-        
+
 
         if(mediascape.cameras.pnv==='on'){
           sectionDiv[i].querySelector('#soundCheck'+document.querySelector('#video2').compId).style.pointerEvents='auto';
-        }        
+        }
         if(mediascape.cameras.pse==='on'){
           sectionDiv[i].querySelector('#soundCheck'+document.querySelector('#video3').compId).style.pointerEvents='auto';
-        }       
+        }
         if(mediascape.cameras.podemos==='on'){
           sectionDiv[i].querySelector('#soundCheck'+document.querySelector('#video4').compId).style.pointerEvents='auto';
         }
@@ -2330,7 +2330,7 @@ var ControlPanel= function (url){
         if(mediascape.cameras.pp==='on'){
           sectionDiv[i].querySelector('#soundCheck'+document.querySelector('#video6').compId).style.pointerEvents='auto';
         }
-        
+
 
       }
     }
@@ -2541,7 +2541,7 @@ var menu = function (){
       var closeApp=new closeAppItem();
     ul.appendChild(closeApp.render());
     }
-    
+
 
     var logo=new logoItem();
     ul.appendChild(logo.render());
@@ -2610,7 +2610,7 @@ var langItem=function(){
     else{
        eu.setAttribute('style','nav-right:#langes;nav-up:#fullli;nav-down:#hide;');
     }
-   
+
      es.onfocus=function(){
 
       es.style.border='5px solid orange';
@@ -2625,7 +2625,7 @@ var langItem=function(){
     else{
         es.setAttribute('style','nav-left:#langeu;nav-up:#fullli;nav-down:#hide;');
     }
-   
+
     eu.onclick=function(){
       if(mediascape.AdaptationToolkit.uiComponents.ctrlPanel.enabled===true){
         mediascape.AdaptationToolkit.uiComponents.loadingNotification();
@@ -2636,7 +2636,7 @@ var langItem=function(){
           mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setAppAttribute('language','eu');
           mediascape.AdaptationToolkit.uiComponents.ctrlPanel.enableClicks();
         },500);
-        
+
       }
     }
     es.onclick=function(){
@@ -2724,16 +2724,16 @@ var fullScreenItem=function(){
       a.style.backgroundColor='';
     }
     li.id='fullli';
-    
-   
+
+
        li.tabIndex=1;
 
-       
+
            li.setAttribute('style','nav-down:#langeu;nav-up:#graphics;');
-        
-       
- 
-   
+
+
+
+
     li.onclick=function(event){
       mediascape.AdaptationToolkit.uiComponents.toggleFullScreen();
       document.querySelector('#devNum').setAttribute('src',mediascape.AdaptationToolkit.uiComponents.ctrlPanel.selfDev);
@@ -2770,19 +2770,19 @@ var closeAppItem=function(){
       a.style.backgroundColor='';
     }
     li.id='cappli';
-    
-      
+
+
        li.tabIndex=1;
        li.setAttribute('style','nav-down:#langeu;nav-up:#graphics;');
- 
-   
+
+
     li.onclick=function(event){
-      
+
         var app = document['appmgr'].getOwnerApplication(document);
         app.destroyApplication();
 
-      
-     
+
+
     }
     return li;
   }
@@ -3002,7 +3002,7 @@ var layout=function(){
       mediascape.AdaptationToolkit.uiComponents.loadingNotification();
       mediascape.AdaptationToolkit.uiComponents.ctrlPanel.enabled=false;
       var _this=this;
-      setTimeout(function(){       
+      setTimeout(function(){
         var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
         mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.changeAgentlayout(agentToChange,_this.name);
         mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeLayout(agentToChange,_this.name);
@@ -3090,9 +3090,9 @@ var qrSection=function(url){
       mediascape.association.doAssociation('qr','qr-code-content', url, true,(50*width/100),(50*width/100),(30*width/100),0);
     }
     else{
-      mediascape.association.doAssociation('qr','qr-code-content', url, true,(30*width/100),(30*width/100),leftMargin,0);  
+      mediascape.association.doAssociation('qr','qr-code-content', url, true,(30*width/100),(30*width/100),leftMargin,0);
     }
-    
+
     return extDiv;
   }
 }
@@ -3215,7 +3215,7 @@ var camera=function(){
       });
       var camToCheck='';
 
-      if(scope.name==='video2'){        
+      if(scope.name==='video2'){
         camToCheck=mediascape.cameras.pnv;
       }
       else if(scope.name==='video3'){
@@ -3267,7 +3267,7 @@ var camera=function(){
                 }
 
 
-              }          
+              }
               else if(b[0].customCmd.lastIndexOf('offSound')>b[0].customCmd.lastIndexOf('mutePlayer')){
                 mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,scope.id,'onSound');
                 mediascape.AdaptationToolkit.uiComponents.ctrlPanel.changeSoundSwVal(agentToChange,scope.id,true);
@@ -3659,7 +3659,7 @@ var hashtag=function(){
         }
         mediascape.AdaptationToolkit.uiComponents.ctrlPanel.enableClicks();
       },500);
-      
+
 
     }
   }
@@ -4006,7 +4006,7 @@ var twitterSection=function(){
       });
 
       console.log('viewClick');
-      setTimeout(function(){        
+      setTimeout(function(){
 
         if(b[0].show===true){
           mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,scope.id,'hide');
@@ -4227,9 +4227,9 @@ var table=function(){
       span2.style.border='';
     }*/
     var gen={"zonas":[{"Z":1,"N":"Alava-Araba","O":28,"NE":"Araba","NC":"Alava","C":1984},{"Z":2,"N":"Vizcaya","O":28,"NE":"Bizkaia","NC":"Bizkaia","C":1984},{"Z":3,"N":"Guipuzcoa","O":28,"NE":"Gipuzkoa","NC":"Guipúzcoa","C":1984},{"Z":5,"N":"CAV-EAE","O":28,"NE":"EAE","NC":"CAV","C":1984}]};
-      var ar={"zonas":[{"Z":1001,"N":"Alegría-Dulantzi","O":28,"NE":"Dulantzi","NC":"Alegría-Dulantzi","C":1984},{"Z":1002,"N":"Amurrio","O":29,"NE":"Amurrio","NC":"Amurrio","C":8139},{"Z":1049,"N":"Añana","O":63,"NE":"Añana","NC":"Añana","C":140},{"Z":1003,"N":"Aramaio","O":30,"NE":"Aramaio","NC":"Aramaio","C":1186},{"Z":1006,"N":"Armiñón","O":32,"NE":"Armiñon","NC":"Armiñón","C":176},{"Z":1037,"N":"Arraia-Maeztu","O":55,"NE":"Arraia-Maeztu","NC":"Arraia-Maeztu","C":586},{"Z":1008,"N":"Arratzua-Ubarrundia","O":33,"NE":"Arratzua-Ubarrundia","NC":"Arratzua-Ubarrundia","C":790},{"Z":1004,"N":"Artziniega","O":31,"NE":"Artziniega","NC":"Artziniega","C":1405},{"Z":1009,"N":"Asparrena","O":34,"NE":"Asparrena","NC":"Asparrena","C":1281},{"Z":1010,"N":"Ayala/Aiara","O":35,"NE":"Aiara","NC":"Ayala","C":2275},{"Z":1011,"N":"Baños de Ebro/Mañueta","O":36,"NE":"Mañueta","NC":"Baños de Ebro","C":237},{"Z":1013,"N":"Barrundia","O":37,"NE":"Barrundia","NC":"Barrundia","C":711},{"Z":1014,"N":"Berantevilla","O":38,"NE":"Berantevilla","NC":"Berantevilla","C":372},{"Z":1016,"N":"Bernedo","O":39,"NE":"Bernedo","NC":"Bernedo","C":439},{"Z":1017,"N":"Campezo/Kanpezu","O":40,"NE":"Kanpezu","NC":"Campezo","C":869},{"Z":1021,"N":"Elburgo/Burgelu","O":44,"NE":"Burgu","NC":"Elburgo","C":460},{"Z":1022,"N":"Elciego","O":45,"NE":"Eltziego","NC":"Elciego","C":805},{"Z":1023,"N":"Elvillar/Bilar","O":46,"NE":"Bilar","NC":"Elvillar","C":269},{"Z":1901,"N":"Iruña Oka/Iruña de Oca","O":76,"NE":"Iruña Oka","NC":"Iruña de Oca","C":2344},{"Z":1027,"N":"Iruraiz-Gauna","O":47,"NE":"Iruraitz-Gauna","NC":"Iruraitz-Gauna","C":416},{"Z":1019,"N":"Kripan","O":42,"NE":"Kripan","NC":"Kripan","C":144},{"Z":1020,"N":"Kuartango","O":43,"NE":"Kuartango","NC":"Kuartango","C":326},{"Z":1028,"N":"Labastida","O":48,"NE":"Bastida","NC":"Labastida","C":1077},{"Z":1030,"N":"Lagrán","O":49,"NE":"Lagran","NC":"Lagrán","C":159},{"Z":1031,"N":"Laguardia","O":50,"NE":"Guardia","NC":"Laguardia","C":1183},{"Z":1032,"N":"Lanciego/Lantziego","O":51,"NE":"Lantziego","NC":"Lanciego","C":522},{"Z":1902,"N":"Lantarón","O":77,"NE":"Lantaron","NC":"Lantarón","C":738},{"Z":1033,"N":"Lapuebla de Labarca","O":52,"NE":"Lapuebla de Labarca","NC":"Lapuebla de Labarca","C":649},{"Z":1058,"N":"Legutiano","O":71,"NE":"Legutio","NC":"Legutio","C":1327},{"Z":1034,"N":"Leza","O":53,"NE":"Leza","NC":"Leza","C":165},{"Z":1036,"N":"Llodio/Laudio","O":54,"NE":"Laudio","NC":"Llodio","C":15034},{"Z":1039,"N":"Moreda de Alava","O":56,"NE":"Moreda Araba","NC":"Moreda de Alava","C":202},{"Z":1041,"N":"Navaridas","O":57,"NE":"Navaridas","NC":"Navaridas","C":153},{"Z":1042,"N":"Okondo","O":58,"NE":"Okondo","NC":"Okondo","C":901},{"Z":1043,"N":"Oyón/Oion","O":59,"NE":"Oion","NC":"Oyón","C":2318},{"Z":1044,"N":"Peñacerrada-Urizaharra","O":60,"NE":"Urizaharra","NC":"Peñacerrada","C":236},{"Z":1046,"N":"Ribera Alta","O":61,"NE":"Erriberagoitia","NC":"Ribera Alta","C":594},{"Z":1047,"N":"Ribera Baja/Erribera Beitia","O":62,"NE":"Erriberabeitia","NC":"Ribera Baja","C":964},{"Z":1051,"N":"Salvatierra/Agurain","O":64,"NE":"Agurain","NC":"Salvatierra","C":3606},{"Z":1052,"N":"Samaniego","O":65,"NE":"Samaniego","NC":"Samaniego","C":244},{"Z":1053,"N":"San Millán/Donemiliaga","O":66,"NE":"Donemiliaga","NC":"San Millán","C":587},{"Z":1054,"N":"Urkabustaiz","O":67,"NE":"Urkabustaiz","NC":"Urkabustaiz","C":952},{"Z":1055,"N":"Valdegovía/Gaubea","O":68,"NE":"Gaubea","NC":"Valdegovía","C":836},{"Z":1056,"N":"Harana/Valle de Arana","O":69,"NE":"Harana","NC":"Valle de Arana","C":218},{"Z":1057,"N":"Villabuena de Alava/Eskuernaga","O":70,"NE":"Villabuena","NC":"Villabuena de Alava","C":245},{"Z":10,"N":"Gasteiz","O":7,"NE":"Gasteiz","NC":"Vitoria-Gasteiz","C":186354},{"Z":1060,"N":"Yécora/Iekora","O":72,"NE":"Ekora","NC":"Yécora","C":199},{"Z":1061,"N":"Zalduondo","O":73,"NE":"Zalduondo","NC":"Zalduondo","C":153},{"Z":1062,"N":"Zambrana","O":74,"NE":"Zanbrana","NC":"Zambrana","C":314},{"Z":1018,"N":"Zigoitia","O":41,"NE":"Zigoitia","NC":"Zigoitia","C":1370},{"Z":1063,"N":"Zuia","O":75,"NE":"Zuia","NC":"Zuia","C":1799}]};
-      var viz={"zonas":[{"Z":2001,"N":"Abadiño","O":81,"NE":"Abadiño","NC":"Abadiño","C":5832},{"Z":2002,"N":"Abanto y Ciérvana/Abanto Zierbena","O":82,"NE":"Abanto","NC":"Abanto y Ciérvana","C":7851},{"Z":2911,"N":"Ajangiz","O":187,"NE":"Ajangiz","NC":"Ajangiz","C":382},{"Z":2912,"N":"Alonsotegi","O":188,"NE":"Alonsotegi","NC":"Alonsotegi","C":2308},{"Z":2003,"N":"Amorebieta-Etxano","O":83,"NE":"Zornotza","NC":"Amorebieta-Etxano","C":14338},{"Z":2004,"N":"Amoroto","O":84,"NE":"Amoroto","NC":"Amoroto","C":334},{"Z":2005,"N":"Arakaldo","O":85,"NE":"Arakaldo","NC":"Arakaldo","C":117},{"Z":2006,"N":"Arantzazu","O":86,"NE":"Arantzazu","NC":"Arantzazu","C":289},{"Z":2093,"N":"Areatza","O":172,"NE":"Areatza","NC":"Areatza","C":900},{"Z":2009,"N":"Arrankudiaga","O":89,"NE":"Arrankudiaga","NC":"Arrankudiaga","C":786},{"Z":2914,"N":"Arratzu","O":190,"NE":"Arratzu","NC":"Arratzu","C":330},{"Z":2010,"N":"Arrieta","O":90,"NE":"Arrieta","NC":"Arrieta","C":457},{"Z":2011,"N":"Arrigorriaga","O":91,"NE":"Arrigorriaga","NC":"Arrigorriaga","C":9692},{"Z":2023,"N":"Artea","O":102,"NE":"Arteaga","NC":"Artea","C":594},{"Z":2008,"N":"Arcentales","O":88,"NE":"Artzentales","NC":"Artzentales","C":617},{"Z":2091,"N":"Atxondo","O":170,"NE":"Atxondo","NC":"Atxondo","C":1134},{"Z":2070,"N":"Aulesti","O":149,"NE":"Aulesti","NC":"Aulesti","C":545},{"Z":2012,"N":"Bakio","O":92,"NE":"Bakio","NC":"Bakio","C":2041},{"Z":2090,"N":"Balmaseda","O":169,"NE":"Balmaseda","NC":"Balmaseda","C":6022},{"Z":2013,"N":"Barakaldo","O":93,"NE":"Barakaldo","NC":"Barakaldo","C":79984},{"Z":2014,"N":"Barrika","O":94,"NE":"Barrika","NC":"Barrika","C":1218},{"Z":2015,"N":"Basauri","O":95,"NE":"Basauri","NC":"Basauri","C":33690},{"Z":2092,"N":"Bedia","O":171,"NE":"Bedia","NC":"Bedia","C":837},{"Z":2016,"N":"Berango","O":96,"NE":"Berango","NC":"Berango","C":5260},{"Z":2017,"N":"Bermeo","O":97,"NE":"Bermeo","NC":"Bermeo","C":13290},{"Z":2018,"N":"Berriatua","O":98,"NE":"Berriatua","NC":"Berriatua","C":875},{"Z":2019,"N":"Berriz","O":99,"NE":"Berriz","NC":"Berriz","C":3594},{"Z":20,"N":"Bilbao","O":8,"NE":"Bilbo","NC":"Bilbao","C":274076},{"Z":2021,"N":"Busturia","O":100,"NE":"Busturia","NC":"Busturia","C":1352},{"Z":2901,"N":"Derio","O":177,"NE":"Derio","NC":"Derio","C":4775},{"Z":2026,"N":"Dima","O":105,"NE":"Dima","NC":"Dima","C":1134},{"Z":2027,"N":"Durango","O":106,"NE":"Durango","NC":"Durango","C":22033},{"Z":2028,"N":"Ea","O":107,"NE":"Ea","NC":"Ea","C":715},{"Z":2031,"N":"Elantxobe","O":110,"NE":"Elantxobe","NC":"Elantxobe","C":340},{"Z":2032,"N":"Elorrio","O":111,"NE":"Elorrio","NC":"Elorrio","C":5735},{"Z":2902,"N":"Erandio","O":178,"NE":"Erandio","NC":"Erandio","C":19124},{"Z":2033,"N":"Ereño","O":112,"NE":"Ereño","NC":"Ereño","C":215},{"Z":2034,"N":"Ermua","O":113,"NE":"Ermua","NC":"Ermua","C":12902},{"Z":2079,"N":"Errigoiti","O":158,"NE":"Errigoiti","NC":"Errigoiti","C":425},{"Z":2029,"N":"Etxebarri Anteiglesia de San Esteban","O":108,"NE":"Etxebarri","NC":"Etxebarri","C":8332},{"Z":2030,"N":"Etxebarria","O":109,"NE":"Etxebarria","NC":"Etxebarria","C":608},{"Z":2906,"N":"Forua","O":182,"NE":"Forua","NC":"Forua","C":775},{"Z":2035,"N":"Fruiz","O":114,"NE":"Fruiz","NC":"Fruiz","C":412},{"Z":2036,"N":"Galdakao","O":115,"NE":"Galdakao","NC":"Galdakao","C":24144},{"Z":2037,"N":"Galdames","O":116,"NE":"Galdames","NC":"Galdames","C":678},{"Z":2038,"N":"Gamiz-Fika","O":117,"NE":"Gamiz-Fika","NC":"Gamiz-Fika","C":1122},{"Z":2039,"N":"Garai","O":118,"NE":"Garai","NC":"Garai","C":243},{"Z":2040,"N":"Gatika","O":119,"NE":"Gatika","NC":"Gatika","C":1299},{"Z":2041,"N":"Gautegiz Arteaga","O":120,"NE":"Gautegiz-Arteaga","NC":"Gautegiz-Arteaga","C":704},{"Z":2046,"N":"Gernika-Lumo","O":125,"NE":"Gernika-Lumo","NC":"Gernika-Lumo","C":12617},{"Z":2044,"N":"Getxo","O":123,"NE":"Getxo","NC":"Getxo","C":62989},{"Z":2047,"N":"Gizaburuaga","O":126,"NE":"Gizaburuaga","NC":"Gizaburuaga","C":161},{"Z":2042,"N":"Gordexola","O":121,"NE":"Gordexola","NC":"Gordexola","C":1384},{"Z":2043,"N":"Gorliz","O":122,"NE":"Gorliz","NC":"Gorliz","C":4403},{"Z":2045,"N":"Güeñes","O":124,"NE":"Gueñes","NC":"Güeñes","C":5149},{"Z":2048,"N":"Ibarrangelu","O":127,"NE":"Ibarrangelu","NC":"Ibarrangelu","C":562},{"Z":2094,"N":"Igorre","O":173,"NE":"Igorre","NC":"Igorre","C":3193},{"Z":2049,"N":"Ispaster","O":128,"NE":"Ispaster","NC":"Ispaster","C":548},{"Z":2910,"N":"Iurreta","O":186,"NE":"Iurreta","NC":"Iurreta","C":2948},{"Z":2050,"N":"Izurtza","O":129,"NE":"Izurtza","NC":"Izurtza","C":198},{"Z":2907,"N":"Kortezubi","O":183,"NE":"Kortezubi","NC":"Kortezubi","C":355},{"Z":2051,"N":"Lanestosa","O":130,"NE":"Lanestosa","NC":"Lanestosa","C":220},{"Z":2052,"N":"Larrabetzu","O":131,"NE":"Larrabetzu","NC":"Larrabetzu","C":1559},{"Z":2053,"N":"Laukiz","O":132,"NE":"Laukiz","NC":"Laukiz","C":900},{"Z":2054,"N":"Leioa","O":133,"NE":"Leioa","NC":"Leioa","C":24135},{"Z":2057,"N":"Lekeitio","O":136,"NE":"Lekeitio","NC":"Lekeitio","C":5749},{"Z":2055,"N":"Lemoa","O":134,"NE":"Lemoa","NC":"Lemoa","C":2662},{"Z":2056,"N":"Lemoiz","O":135,"NE":"Lemoiz","NC":"Lemoiz","C":978},{"Z":2081,"N":"Lezama","O":160,"NE":"Lezama","NC":"Lezama","C":1883},{"Z":2903,"N":"Loiu","O":179,"NE":"Loiu","NC":"Loiu","C":1838},{"Z":2058,"N":"Mallabia","O":137,"NE":"Mallabia","NC":"Mallabia","C":972},{"Z":2059,"N":"Mañaria","O":138,"NE":"Mañaria","NC":"Mañaria","C":402},{"Z":2060,"N":"Markina-Xemein","O":139,"NE":"Markina-Xemein","NC":"Markina-Xemein","C":3645},{"Z":2061,"N":"Maruri-Jatabe","O":140,"NE":"Jatabe","NC":"Maruri-Jatabe","C":762},{"Z":2062,"N":"Mendata","O":141,"NE":"Mendata","NC":"Mendata","C":300},{"Z":2063,"N":"Mendexa","O":142,"NE":"Mendexa","NC":"Mendexa","C":373},{"Z":2064,"N":"Meñaka","O":143,"NE":"Meñaka","NC":"Meñaka","C":603},{"Z":2066,"N":"Morga","O":145,"NE":"Morga","NC":"Morga","C":346},{"Z":2068,"N":"Mundaka","O":147,"NE":"Mundaka","NC":"Mundaka","C":1551},{"Z":2069,"N":"Mungia","O":148,"NE":"Mungia","NC":"Mungia","C":12765},{"Z":2007,"N":"Munitibar-Arbatzegi Gerrikaitz","O":87,"NE":"Munitibar","NC":"Munitibar-Arbatzegi-Gerrikaitz","C":365},{"Z":2908,"N":"Murueta","O":184,"NE":"Murueta","NC":"Murueta","C":245},{"Z":2071,"N":"Muskiz","O":150,"NE":"Muskiz","NC":"Muskiz","C":6118},{"Z":2067,"N":"Muxika","O":146,"NE":"Muxika","NC":"Muxika","C":1161},{"Z":2909,"N":"Nabarniz","O":185,"NE":"Nabarniz","NC":"Nabarniz","C":207},{"Z":2073,"N":"Ondarroa","O":152,"NE":"Ondarroa","NC":"Ondarroa","C":6952},{"Z":2074,"N":"Orduña","O":153,"NE":"Urduña","NC":"Orduña","C":3333},{"Z":2075,"N":"Orozko","O":154,"NE":"Orozko","NC":"Orozko","C":1975},{"Z":2083,"N":"Ortuella","O":162,"NE":"Ortuella","NC":"Ortuella","C":6950},{"Z":2072,"N":"Otxandio","O":151,"NE":"Otxandio","NC":"Otxandio","C":974},{"Z":2077,"N":"Plentzia","O":156,"NE":"Plentzia","NC":"Plentzia","C":3367},{"Z":2078,"N":"Portugalete","O":157,"NE":"Portugalete","NC":"Portugalete","C":38742},{"Z":2082,"N":"Santurtzi","O":161,"NE":"Santurtzi","NC":"Santurtzi","C":37673},{"Z":2084,"N":"Sestao","O":163,"NE":"Sestao","NC":"Sestao","C":22577},{"Z":2904,"N":"Sondika","O":180,"NE":"Sondika","NC":"Sondika","C":3504},{"Z":2085,"N":"Sopelana","O":164,"NE":"Sopela","NC":"Sopela","C":10301},{"Z":2086,"N":"Sopuerta","O":165,"NE":"Sopuerta","NC":"Sopuerta","C":2073},{"Z":2076,"N":"Sukarrieta","O":155,"NE":"Sukarrieta","NC":"Sukarrieta","C":314},{"Z":2087,"N":"Trucios-Turtzioz","O":166,"NE":"Turtzioz","NC":"Trucios","C":429},{"Z":2088,"N":"Ubide","O":167,"NE":"Ubide","NC":"Ubide","C":135},{"Z":2065,"N":"Ugao-Miraballes","O":144,"NE":"Ugao","NC":"Ugao-Miraballes","C":3315},{"Z":2089,"N":"Urduliz","O":168,"NE":"Urduliz","NC":"Urduliz","C":3266},{"Z":2022,"N":"Carranza","O":101,"NE":"Karrantza","NC":"Valle de Carranza","C":2355},{"Z":2080,"N":"Valle de Trápaga-Trapagaran","O":159,"NE":"Trapagaran","NC":"Valle de Trápaga","C":9971},{"Z":2095,"N":"Zaldibar","O":174,"NE":"Zaldibar","NC":"Zaldibar","C":2352},{"Z":2096,"N":"Zalla","O":175,"NE":"Zalla","NC":"Zalla","C":6608},{"Z":2905,"N":"Zamudio","O":181,"NE":"Zamudio","NC":"Zamudio","C":2565},{"Z":2097,"N":"Zaratamo","O":176,"NE":"Zaratamo","NC":"Zaratamo","C":1303},{"Z":2024,"N":"Zeanuri","O":103,"NE":"Zeanuri","NC":"Zeanuri","C":1003},{"Z":2025,"N":"Zeberio","O":104,"NE":"Zeberio","NC":"Zeberio","C":883},{"Z":2913,"N":"Zierbena","O":189,"NE":"Zierbena","NC":"Zierbena","C":1251},{"Z":2915,"N":"Ziortza-Bolibar","O":191,"NE":"Ziortza-Bolibar","NC":"Ziortza-Bolibar","C":362}]};
-      var gip={"zonas":[{"Z":3001,"N":"Abaltzisketa","O":192,"NE":"Abaltzisketa","NC":"Abaltzisketa","C":242},{"Z":3002,"N":"Aduna","O":193,"NE":"Aduna","NC":"Aduna","C":343},{"Z":3016,"N":"Aia","O":207,"NE":"Aia","NC":"Aia","C":1514},{"Z":3003,"N":"Aizarnazabal","O":194,"NE":"Aizarnazabal","NC":"Aizarnazabal","C":541},{"Z":3004,"N":"Albiztur","O":195,"NE":"Albiztur","NC":"Albiztur","C":252},{"Z":3005,"N":"Alegia","O":196,"NE":"Alegia","NC":"Alegia","C":1261},{"Z":3006,"N":"Alkiza","O":197,"NE":"Alkiza","NC":"Alkiza","C":262},{"Z":3906,"N":"Altzaga","O":277,"NE":"Altzaga","NC":"Altzaga","C":121},{"Z":3007,"N":"Altzo","O":198,"NE":"Altzo","NC":"Altzo","C":304},{"Z":3008,"N":"Amezketa","O":199,"NE":"Amezketa","NC":"Amezketa","C":721},{"Z":3009,"N":"Andoain","O":200,"NE":"Andoain","NC":"Andoain","C":11528},{"Z":3010,"N":"Anoeta","O":201,"NE":"Anoeta","NC":"Anoeta","C":1494},{"Z":3011,"N":"Antzuola","O":202,"NE":"Antzuola","NC":"Antzuola","C":1660},{"Z":3012,"N":"Arama","O":203,"NE":"Arama","NC":"Arama","C":144},{"Z":3013,"N":"Aretxabaleta","O":204,"NE":"Aretxabaleta","NC":"Aretxabaleta","C":5427},{"Z":3014,"N":"Asteasu","O":205,"NE":"Asteasu","NC":"Asteasu","C":1111},{"Z":3903,"N":"Astigarraga","O":274,"NE":"Astigarraga","NC":"Astigarraga","C":4247},{"Z":3015,"N":"Ataun","O":206,"NE":"Ataun","NC":"Ataun","C":1272},{"Z":3017,"N":"Azkoitia","O":208,"NE":"Azkoitia","NC":"Azkoitia","C":8580},{"Z":3018,"N":"Azpeitia","O":209,"NE":"Azpeitia","NC":"Azpeitia","C":11074},{"Z":3904,"N":"Baliarrain","O":275,"NE":"Baliarrain","NC":"Baliarrain","C":96},{"Z":3019,"N":"Beasain","O":210,"NE":"Beasain","NC":"Beasain","C":10053},{"Z":3020,"N":"Beizama","O":211,"NE":"Beizama","NC":"Beizama","C":129},{"Z":3021,"N":"Belauntza","O":212,"NE":"Belauntza","NC":"Belauntza","C":199},{"Z":3022,"N":"Berastegi","O":213,"NE":"Berastegi","NC":"Berastegi","C":834},{"Z":3074,"N":"Bergara","O":264,"NE":"Bergara","NC":"Bergara","C":11610},{"Z":3023,"N":"Berrobi","O":214,"NE":"Berrobi","NC":"Berrobi","C":445},{"Z":3024,"N":"Bidania-Goiatz","O":215,"NE":"Bidania-Goiatz","NC":"Bidania-Goiatz","C":393},{"Z":3029,"N":"Deba","O":220,"NE":"Deba","NC":"Deba","C":4258},{"Z":30,"N":"Donostia","O":9,"NE":"Donostia","NC":"Donostia-San Sebastián","C":147189},{"Z":3030,"N":"Eibar","O":221,"NE":"Eibar","NC":"Eibar","C":21515},{"Z":3031,"N":"Elduain","O":222,"NE":"Elduain","NC":"Elduain","C":180},{"Z":3033,"N":"Elgeta","O":224,"NE":"Elgeta","NC":"Elgeta","C":864},{"Z":3032,"N":"Elgoibar","O":223,"NE":"Elgoibar","NC":"Elgoibar","C":8785},{"Z":3067,"N":"Errenteria","O":258,"NE":"Errenteria","NC":"Errenteria","C":30825},{"Z":3066,"N":"Errezil","O":257,"NE":"Errezil","NC":"Errezil","C":461},{"Z":3034,"N":"Eskoriatza","O":225,"NE":"Eskoriatza","NC":"Eskoriatza","C":3157},{"Z":3035,"N":"Ezkio-Itsaso","O":226,"NE":"Ezkio-Itsaso","NC":"Ezkio-Itsaso","C":482},{"Z":3038,"N":"Gabiria","O":229,"NE":"Gabiria","NC":"Gabiria","C":392},{"Z":3037,"N":"Gaintza","O":228,"NE":"Gaintza","NC":"Gaintza","C":97},{"Z":3907,"N":"Gaztelu","O":278,"NE":"Gaztelu","NC":"Gaztelu","C":120},{"Z":3039,"N":"Getaria","O":230,"NE":"Getaria","NC":"Getaria","C":2111},{"Z":3040,"N":"Hernani","O":231,"NE":"Hernani","NC":"Hernani","C":15321},{"Z":3041,"N":"Hernialde","O":232,"NE":"Hernialde","NC":"Hernialde","C":258},{"Z":3036,"N":"Hondarribia","O":227,"NE":"Hondarribia","NC":"Hondarribia","C":13148},{"Z":3042,"N":"Ibarra","O":233,"NE":"Ibarra","NC":"Ibarra","C":3251},{"Z":3043,"N":"Idiazabal","O":234,"NE":"Idiazabal","NC":"Idiazabal","C":1740},{"Z":3044,"N":"Ikaztegieta","O":235,"NE":"Ikaztegieta","NC":"Ikaztegieta","C":368},{"Z":3045,"N":"Irun","O":236,"NE":"Irun","NC":"Irun","C":46691},{"Z":3046,"N":"Irura","O":237,"NE":"Irura","NC":"Irura","C":1167},{"Z":3047,"N":"Itsasondo","O":238,"NE":"Itsasondo","NC":"Itsasondo","C":477},{"Z":3048,"N":"Larraul","O":239,"NE":"Larraul","NC":"Larraul","C":176},{"Z":3902,"N":"Lasarte-Oria","O":273,"NE":"Lasarte-Oria","NC":"Lasarte-Oria","C":14193},{"Z":3049,"N":"Lazkao","O":240,"NE":"Lazkao","NC":"Lazkao","C":4124},{"Z":3050,"N":"Leaburu","O":241,"NE":"Leaburu","NC":"Leaburu","C":263},{"Z":3051,"N":"Legazpi","O":242,"NE":"Legazpi","NC":"Legazpi","C":6904},{"Z":3052,"N":"Legorreta","O":243,"NE":"Legorreta","NC":"Legorreta","C":1091},{"Z":3068,"N":"Leintz-Gatzaga","O":259,"NE":"Leintz Gatzaga","NC":"Leintz-Gatzaga","C":183},{"Z":3053,"N":"Lezo","O":244,"NE":"Lezo","NC":"Lezo","C":4765},{"Z":3054,"N":"Lizartza","O":245,"NE":"Lizartza","NC":"Lizartza","C":447},{"Z":3901,"N":"Mendaro","O":272,"NE":"Mendaro","NC":"Mendaro","C":1441},{"Z":3055,"N":"Arrasate/Mondragón","O":246,"NE":"Arrasate","NC":"Mondragón","C":17522},{"Z":3057,"N":"Mutiloa","O":248,"NE":"Mutiloa","NC":"Mutiloa","C":201},{"Z":3056,"N":"Mutriku","O":247,"NE":"Mutriku","NC":"Mutriku","C":4104},{"Z":3063,"N":"Oiartzun","O":254,"NE":"Oiartzun","NC":"Oiartzun","C":7990},{"Z":3058,"N":"Olaberria","O":249,"NE":"Olaberria","NC":"Olaberria","C":746},{"Z":3059,"N":"Oñati","O":250,"NE":"Oñati","NC":"Oñati","C":8863},{"Z":3076,"N":"Ordizia","O":266,"NE":"Ordizia","NC":"Ordizia","C":6978},{"Z":3905,"N":"Orendain","O":276,"NE":"Orendain","NC":"Orendain","C":141},{"Z":3060,"N":"Orexa","O":251,"NE":"Orexa","NC":"Orexa","C":89},{"Z":3061,"N":"Orio","O":252,"NE":"Orio","NC":"Orio","C":4273},{"Z":3062,"N":"Ormaiztegi","O":253,"NE":"Ormaiztegi","NC":"Ormaiztegi","C":982},{"Z":3064,"N":"Pasaia","O":255,"NE":"Pasaia","NC":"Pasaia","C":12526},{"Z":3070,"N":"Segura","O":260,"NE":"Segura","NC":"Segura","C":1099},{"Z":3065,"N":"Soraluze","O":256,"NE":"Soraluze","NC":"Soraluze","C":3006},{"Z":3071,"N":"Tolosa","O":261,"NE":"Tolosa","NC":"Tolosa","C":14818},{"Z":3072,"N":"Urnieta","O":262,"NE":"Urnieta","NC":"Urnieta","C":4731},{"Z":3077,"N":"Urretxu","O":267,"NE":"Urretxu","NC":"Urretxu","C":5243},{"Z":3073,"N":"Usurbil","O":263,"NE":"Usurbil","NC":"Usurbil","C":4677},{"Z":3075,"N":"Villabona","O":265,"NE":"Villabona","NC":"Villabona","C":4359},{"Z":3078,"N":"Zaldibia","O":268,"NE":"Zaldibia","NC":"Zaldibia","C":1155},{"Z":3079,"N":"Zarautz","O":269,"NE":"Zarautz","NC":"Zarautz","C":17835},{"Z":3025,"N":"Zegama","O":216,"NE":"Zegama","NC":"Zegama","C":1144},{"Z":3026,"N":"Zerain","O":217,"NE":"Zerain","NC":"Zerain","C":202},{"Z":3027,"N":"Zestoa","O":218,"NE":"Zestoa","NC":"Zestoa","C":2816},{"Z":3028,"N":"Zizurkil","O":219,"NE":"Zizurkil","NC":"Zizurkil","C":2255},{"Z":3081,"N":"Zumaia","O":271,"NE":"Zumaia","NC":"Zumaia","C":7460},{"Z":3080,"N":"Zumarraga","O":270,"NE":"Zumarraga","NC":"Zumarraga","C":7900}]}
+      //var ar={"zonas":[{"Z":1001,"N":"Alegría-Dulantzi","O":28,"NE":"Dulantzi","NC":"Alegría-Dulantzi","C":1984},{"Z":1002,"N":"Amurrio","O":29,"NE":"Amurrio","NC":"Amurrio","C":8139},{"Z":1049,"N":"Añana","O":63,"NE":"Añana","NC":"Añana","C":140},{"Z":1003,"N":"Aramaio","O":30,"NE":"Aramaio","NC":"Aramaio","C":1186},{"Z":1006,"N":"Armiñón","O":32,"NE":"Armiñon","NC":"Armiñón","C":176},{"Z":1037,"N":"Arraia-Maeztu","O":55,"NE":"Arraia-Maeztu","NC":"Arraia-Maeztu","C":586},{"Z":1008,"N":"Arratzua-Ubarrundia","O":33,"NE":"Arratzua-Ubarrundia","NC":"Arratzua-Ubarrundia","C":790},{"Z":1004,"N":"Artziniega","O":31,"NE":"Artziniega","NC":"Artziniega","C":1405},{"Z":1009,"N":"Asparrena","O":34,"NE":"Asparrena","NC":"Asparrena","C":1281},{"Z":1010,"N":"Ayala/Aiara","O":35,"NE":"Aiara","NC":"Ayala","C":2275},{"Z":1011,"N":"Baños de Ebro/Mañueta","O":36,"NE":"Mañueta","NC":"Baños de Ebro","C":237},{"Z":1013,"N":"Barrundia","O":37,"NE":"Barrundia","NC":"Barrundia","C":711},{"Z":1014,"N":"Berantevilla","O":38,"NE":"Berantevilla","NC":"Berantevilla","C":372},{"Z":1016,"N":"Bernedo","O":39,"NE":"Bernedo","NC":"Bernedo","C":439},{"Z":1017,"N":"Campezo/Kanpezu","O":40,"NE":"Kanpezu","NC":"Campezo","C":869},{"Z":1021,"N":"Elburgo/Burgelu","O":44,"NE":"Burgu","NC":"Elburgo","C":460},{"Z":1022,"N":"Elciego","O":45,"NE":"Eltziego","NC":"Elciego","C":805},{"Z":1023,"N":"Elvillar/Bilar","O":46,"NE":"Bilar","NC":"Elvillar","C":269},{"Z":1901,"N":"Iruña Oka/Iruña de Oca","O":76,"NE":"Iruña Oka","NC":"Iruña de Oca","C":2344},{"Z":1027,"N":"Iruraiz-Gauna","O":47,"NE":"Iruraitz-Gauna","NC":"Iruraitz-Gauna","C":416},{"Z":1019,"N":"Kripan","O":42,"NE":"Kripan","NC":"Kripan","C":144},{"Z":1020,"N":"Kuartango","O":43,"NE":"Kuartango","NC":"Kuartango","C":326},{"Z":1028,"N":"Labastida","O":48,"NE":"Bastida","NC":"Labastida","C":1077},{"Z":1030,"N":"Lagrán","O":49,"NE":"Lagran","NC":"Lagrán","C":159},{"Z":1031,"N":"Laguardia","O":50,"NE":"Guardia","NC":"Laguardia","C":1183},{"Z":1032,"N":"Lanciego/Lantziego","O":51,"NE":"Lantziego","NC":"Lanciego","C":522},{"Z":1902,"N":"Lantarón","O":77,"NE":"Lantaron","NC":"Lantarón","C":738},{"Z":1033,"N":"Lapuebla de Labarca","O":52,"NE":"Lapuebla de Labarca","NC":"Lapuebla de Labarca","C":649},{"Z":1058,"N":"Legutiano","O":71,"NE":"Legutio","NC":"Legutio","C":1327},{"Z":1034,"N":"Leza","O":53,"NE":"Leza","NC":"Leza","C":165},{"Z":1036,"N":"Llodio/Laudio","O":54,"NE":"Laudio","NC":"Llodio","C":15034},{"Z":1039,"N":"Moreda de Alava","O":56,"NE":"Moreda Araba","NC":"Moreda de Alava","C":202},{"Z":1041,"N":"Navaridas","O":57,"NE":"Navaridas","NC":"Navaridas","C":153},{"Z":1042,"N":"Okondo","O":58,"NE":"Okondo","NC":"Okondo","C":901},{"Z":1043,"N":"Oyón/Oion","O":59,"NE":"Oion","NC":"Oyón","C":2318},{"Z":1044,"N":"Peñacerrada-Urizaharra","O":60,"NE":"Urizaharra","NC":"Peñacerrada","C":236},{"Z":1046,"N":"Ribera Alta","O":61,"NE":"Erriberagoitia","NC":"Ribera Alta","C":594},{"Z":1047,"N":"Ribera Baja/Erribera Beitia","O":62,"NE":"Erriberabeitia","NC":"Ribera Baja","C":964},{"Z":1051,"N":"Salvatierra/Agurain","O":64,"NE":"Agurain","NC":"Salvatierra","C":3606},{"Z":1052,"N":"Samaniego","O":65,"NE":"Samaniego","NC":"Samaniego","C":244},{"Z":1053,"N":"San Millán/Donemiliaga","O":66,"NE":"Donemiliaga","NC":"San Millán","C":587},{"Z":1054,"N":"Urkabustaiz","O":67,"NE":"Urkabustaiz","NC":"Urkabustaiz","C":952},{"Z":1055,"N":"Valdegovía/Gaubea","O":68,"NE":"Gaubea","NC":"Valdegovía","C":836},{"Z":1056,"N":"Harana/Valle de Arana","O":69,"NE":"Harana","NC":"Valle de Arana","C":218},{"Z":1057,"N":"Villabuena de Alava/Eskuernaga","O":70,"NE":"Villabuena","NC":"Villabuena de Alava","C":245},{"Z":10,"N":"Gasteiz","O":7,"NE":"Gasteiz","NC":"Vitoria-Gasteiz","C":186354},{"Z":1060,"N":"Yécora/Iekora","O":72,"NE":"Ekora","NC":"Yécora","C":199},{"Z":1061,"N":"Zalduondo","O":73,"NE":"Zalduondo","NC":"Zalduondo","C":153},{"Z":1062,"N":"Zambrana","O":74,"NE":"Zanbrana","NC":"Zambrana","C":314},{"Z":1018,"N":"Zigoitia","O":41,"NE":"Zigoitia","NC":"Zigoitia","C":1370},{"Z":1063,"N":"Zuia","O":75,"NE":"Zuia","NC":"Zuia","C":1799}]};
+      //var viz={"zonas":[{"Z":2001,"N":"Abadiño","O":81,"NE":"Abadiño","NC":"Abadiño","C":5832},{"Z":2002,"N":"Abanto y Ciérvana/Abanto Zierbena","O":82,"NE":"Abanto","NC":"Abanto y Ciérvana","C":7851},{"Z":2911,"N":"Ajangiz","O":187,"NE":"Ajangiz","NC":"Ajangiz","C":382},{"Z":2912,"N":"Alonsotegi","O":188,"NE":"Alonsotegi","NC":"Alonsotegi","C":2308},{"Z":2003,"N":"Amorebieta-Etxano","O":83,"NE":"Zornotza","NC":"Amorebieta-Etxano","C":14338},{"Z":2004,"N":"Amoroto","O":84,"NE":"Amoroto","NC":"Amoroto","C":334},{"Z":2005,"N":"Arakaldo","O":85,"NE":"Arakaldo","NC":"Arakaldo","C":117},{"Z":2006,"N":"Arantzazu","O":86,"NE":"Arantzazu","NC":"Arantzazu","C":289},{"Z":2093,"N":"Areatza","O":172,"NE":"Areatza","NC":"Areatza","C":900},{"Z":2009,"N":"Arrankudiaga","O":89,"NE":"Arrankudiaga","NC":"Arrankudiaga","C":786},{"Z":2914,"N":"Arratzu","O":190,"NE":"Arratzu","NC":"Arratzu","C":330},{"Z":2010,"N":"Arrieta","O":90,"NE":"Arrieta","NC":"Arrieta","C":457},{"Z":2011,"N":"Arrigorriaga","O":91,"NE":"Arrigorriaga","NC":"Arrigorriaga","C":9692},{"Z":2023,"N":"Artea","O":102,"NE":"Arteaga","NC":"Artea","C":594},{"Z":2008,"N":"Arcentales","O":88,"NE":"Artzentales","NC":"Artzentales","C":617},{"Z":2091,"N":"Atxondo","O":170,"NE":"Atxondo","NC":"Atxondo","C":1134},{"Z":2070,"N":"Aulesti","O":149,"NE":"Aulesti","NC":"Aulesti","C":545},{"Z":2012,"N":"Bakio","O":92,"NE":"Bakio","NC":"Bakio","C":2041},{"Z":2090,"N":"Balmaseda","O":169,"NE":"Balmaseda","NC":"Balmaseda","C":6022},{"Z":2013,"N":"Barakaldo","O":93,"NE":"Barakaldo","NC":"Barakaldo","C":79984},{"Z":2014,"N":"Barrika","O":94,"NE":"Barrika","NC":"Barrika","C":1218},{"Z":2015,"N":"Basauri","O":95,"NE":"Basauri","NC":"Basauri","C":33690},{"Z":2092,"N":"Bedia","O":171,"NE":"Bedia","NC":"Bedia","C":837},{"Z":2016,"N":"Berango","O":96,"NE":"Berango","NC":"Berango","C":5260},{"Z":2017,"N":"Bermeo","O":97,"NE":"Bermeo","NC":"Bermeo","C":13290},{"Z":2018,"N":"Berriatua","O":98,"NE":"Berriatua","NC":"Berriatua","C":875},{"Z":2019,"N":"Berriz","O":99,"NE":"Berriz","NC":"Berriz","C":3594},{"Z":20,"N":"Bilbao","O":8,"NE":"Bilbo","NC":"Bilbao","C":274076},{"Z":2021,"N":"Busturia","O":100,"NE":"Busturia","NC":"Busturia","C":1352},{"Z":2901,"N":"Derio","O":177,"NE":"Derio","NC":"Derio","C":4775},{"Z":2026,"N":"Dima","O":105,"NE":"Dima","NC":"Dima","C":1134},{"Z":2027,"N":"Durango","O":106,"NE":"Durango","NC":"Durango","C":22033},{"Z":2028,"N":"Ea","O":107,"NE":"Ea","NC":"Ea","C":715},{"Z":2031,"N":"Elantxobe","O":110,"NE":"Elantxobe","NC":"Elantxobe","C":340},{"Z":2032,"N":"Elorrio","O":111,"NE":"Elorrio","NC":"Elorrio","C":5735},{"Z":2902,"N":"Erandio","O":178,"NE":"Erandio","NC":"Erandio","C":19124},{"Z":2033,"N":"Ereño","O":112,"NE":"Ereño","NC":"Ereño","C":215},{"Z":2034,"N":"Ermua","O":113,"NE":"Ermua","NC":"Ermua","C":12902},{"Z":2079,"N":"Errigoiti","O":158,"NE":"Errigoiti","NC":"Errigoiti","C":425},{"Z":2029,"N":"Etxebarri Anteiglesia de San Esteban","O":108,"NE":"Etxebarri","NC":"Etxebarri","C":8332},{"Z":2030,"N":"Etxebarria","O":109,"NE":"Etxebarria","NC":"Etxebarria","C":608},{"Z":2906,"N":"Forua","O":182,"NE":"Forua","NC":"Forua","C":775},{"Z":2035,"N":"Fruiz","O":114,"NE":"Fruiz","NC":"Fruiz","C":412},{"Z":2036,"N":"Galdakao","O":115,"NE":"Galdakao","NC":"Galdakao","C":24144},{"Z":2037,"N":"Galdames","O":116,"NE":"Galdames","NC":"Galdames","C":678},{"Z":2038,"N":"Gamiz-Fika","O":117,"NE":"Gamiz-Fika","NC":"Gamiz-Fika","C":1122},{"Z":2039,"N":"Garai","O":118,"NE":"Garai","NC":"Garai","C":243},{"Z":2040,"N":"Gatika","O":119,"NE":"Gatika","NC":"Gatika","C":1299},{"Z":2041,"N":"Gautegiz Arteaga","O":120,"NE":"Gautegiz-Arteaga","NC":"Gautegiz-Arteaga","C":704},{"Z":2046,"N":"Gernika-Lumo","O":125,"NE":"Gernika-Lumo","NC":"Gernika-Lumo","C":12617},{"Z":2044,"N":"Getxo","O":123,"NE":"Getxo","NC":"Getxo","C":62989},{"Z":2047,"N":"Gizaburuaga","O":126,"NE":"Gizaburuaga","NC":"Gizaburuaga","C":161},{"Z":2042,"N":"Gordexola","O":121,"NE":"Gordexola","NC":"Gordexola","C":1384},{"Z":2043,"N":"Gorliz","O":122,"NE":"Gorliz","NC":"Gorliz","C":4403},{"Z":2045,"N":"Güeñes","O":124,"NE":"Gueñes","NC":"Güeñes","C":5149},{"Z":2048,"N":"Ibarrangelu","O":127,"NE":"Ibarrangelu","NC":"Ibarrangelu","C":562},{"Z":2094,"N":"Igorre","O":173,"NE":"Igorre","NC":"Igorre","C":3193},{"Z":2049,"N":"Ispaster","O":128,"NE":"Ispaster","NC":"Ispaster","C":548},{"Z":2910,"N":"Iurreta","O":186,"NE":"Iurreta","NC":"Iurreta","C":2948},{"Z":2050,"N":"Izurtza","O":129,"NE":"Izurtza","NC":"Izurtza","C":198},{"Z":2907,"N":"Kortezubi","O":183,"NE":"Kortezubi","NC":"Kortezubi","C":355},{"Z":2051,"N":"Lanestosa","O":130,"NE":"Lanestosa","NC":"Lanestosa","C":220},{"Z":2052,"N":"Larrabetzu","O":131,"NE":"Larrabetzu","NC":"Larrabetzu","C":1559},{"Z":2053,"N":"Laukiz","O":132,"NE":"Laukiz","NC":"Laukiz","C":900},{"Z":2054,"N":"Leioa","O":133,"NE":"Leioa","NC":"Leioa","C":24135},{"Z":2057,"N":"Lekeitio","O":136,"NE":"Lekeitio","NC":"Lekeitio","C":5749},{"Z":2055,"N":"Lemoa","O":134,"NE":"Lemoa","NC":"Lemoa","C":2662},{"Z":2056,"N":"Lemoiz","O":135,"NE":"Lemoiz","NC":"Lemoiz","C":978},{"Z":2081,"N":"Lezama","O":160,"NE":"Lezama","NC":"Lezama","C":1883},{"Z":2903,"N":"Loiu","O":179,"NE":"Loiu","NC":"Loiu","C":1838},{"Z":2058,"N":"Mallabia","O":137,"NE":"Mallabia","NC":"Mallabia","C":972},{"Z":2059,"N":"Mañaria","O":138,"NE":"Mañaria","NC":"Mañaria","C":402},{"Z":2060,"N":"Markina-Xemein","O":139,"NE":"Markina-Xemein","NC":"Markina-Xemein","C":3645},{"Z":2061,"N":"Maruri-Jatabe","O":140,"NE":"Jatabe","NC":"Maruri-Jatabe","C":762},{"Z":2062,"N":"Mendata","O":141,"NE":"Mendata","NC":"Mendata","C":300},{"Z":2063,"N":"Mendexa","O":142,"NE":"Mendexa","NC":"Mendexa","C":373},{"Z":2064,"N":"Meñaka","O":143,"NE":"Meñaka","NC":"Meñaka","C":603},{"Z":2066,"N":"Morga","O":145,"NE":"Morga","NC":"Morga","C":346},{"Z":2068,"N":"Mundaka","O":147,"NE":"Mundaka","NC":"Mundaka","C":1551},{"Z":2069,"N":"Mungia","O":148,"NE":"Mungia","NC":"Mungia","C":12765},{"Z":2007,"N":"Munitibar-Arbatzegi Gerrikaitz","O":87,"NE":"Munitibar","NC":"Munitibar-Arbatzegi-Gerrikaitz","C":365},{"Z":2908,"N":"Murueta","O":184,"NE":"Murueta","NC":"Murueta","C":245},{"Z":2071,"N":"Muskiz","O":150,"NE":"Muskiz","NC":"Muskiz","C":6118},{"Z":2067,"N":"Muxika","O":146,"NE":"Muxika","NC":"Muxika","C":1161},{"Z":2909,"N":"Nabarniz","O":185,"NE":"Nabarniz","NC":"Nabarniz","C":207},{"Z":2073,"N":"Ondarroa","O":152,"NE":"Ondarroa","NC":"Ondarroa","C":6952},{"Z":2074,"N":"Orduña","O":153,"NE":"Urduña","NC":"Orduña","C":3333},{"Z":2075,"N":"Orozko","O":154,"NE":"Orozko","NC":"Orozko","C":1975},{"Z":2083,"N":"Ortuella","O":162,"NE":"Ortuella","NC":"Ortuella","C":6950},{"Z":2072,"N":"Otxandio","O":151,"NE":"Otxandio","NC":"Otxandio","C":974},{"Z":2077,"N":"Plentzia","O":156,"NE":"Plentzia","NC":"Plentzia","C":3367},{"Z":2078,"N":"Portugalete","O":157,"NE":"Portugalete","NC":"Portugalete","C":38742},{"Z":2082,"N":"Santurtzi","O":161,"NE":"Santurtzi","NC":"Santurtzi","C":37673},{"Z":2084,"N":"Sestao","O":163,"NE":"Sestao","NC":"Sestao","C":22577},{"Z":2904,"N":"Sondika","O":180,"NE":"Sondika","NC":"Sondika","C":3504},{"Z":2085,"N":"Sopelana","O":164,"NE":"Sopela","NC":"Sopela","C":10301},{"Z":2086,"N":"Sopuerta","O":165,"NE":"Sopuerta","NC":"Sopuerta","C":2073},{"Z":2076,"N":"Sukarrieta","O":155,"NE":"Sukarrieta","NC":"Sukarrieta","C":314},{"Z":2087,"N":"Trucios-Turtzioz","O":166,"NE":"Turtzioz","NC":"Trucios","C":429},{"Z":2088,"N":"Ubide","O":167,"NE":"Ubide","NC":"Ubide","C":135},{"Z":2065,"N":"Ugao-Miraballes","O":144,"NE":"Ugao","NC":"Ugao-Miraballes","C":3315},{"Z":2089,"N":"Urduliz","O":168,"NE":"Urduliz","NC":"Urduliz","C":3266},{"Z":2022,"N":"Carranza","O":101,"NE":"Karrantza","NC":"Valle de Carranza","C":2355},{"Z":2080,"N":"Valle de Trápaga-Trapagaran","O":159,"NE":"Trapagaran","NC":"Valle de Trápaga","C":9971},{"Z":2095,"N":"Zaldibar","O":174,"NE":"Zaldibar","NC":"Zaldibar","C":2352},{"Z":2096,"N":"Zalla","O":175,"NE":"Zalla","NC":"Zalla","C":6608},{"Z":2905,"N":"Zamudio","O":181,"NE":"Zamudio","NC":"Zamudio","C":2565},{"Z":2097,"N":"Zaratamo","O":176,"NE":"Zaratamo","NC":"Zaratamo","C":1303},{"Z":2024,"N":"Zeanuri","O":103,"NE":"Zeanuri","NC":"Zeanuri","C":1003},{"Z":2025,"N":"Zeberio","O":104,"NE":"Zeberio","NC":"Zeberio","C":883},{"Z":2913,"N":"Zierbena","O":189,"NE":"Zierbena","NC":"Zierbena","C":1251},{"Z":2915,"N":"Ziortza-Bolibar","O":191,"NE":"Ziortza-Bolibar","NC":"Ziortza-Bolibar","C":362}]};
+      //var gip={"zonas":[{"Z":3001,"N":"Abaltzisketa","O":192,"NE":"Abaltzisketa","NC":"Abaltzisketa","C":242},{"Z":3002,"N":"Aduna","O":193,"NE":"Aduna","NC":"Aduna","C":343},{"Z":3016,"N":"Aia","O":207,"NE":"Aia","NC":"Aia","C":1514},{"Z":3003,"N":"Aizarnazabal","O":194,"NE":"Aizarnazabal","NC":"Aizarnazabal","C":541},{"Z":3004,"N":"Albiztur","O":195,"NE":"Albiztur","NC":"Albiztur","C":252},{"Z":3005,"N":"Alegia","O":196,"NE":"Alegia","NC":"Alegia","C":1261},{"Z":3006,"N":"Alkiza","O":197,"NE":"Alkiza","NC":"Alkiza","C":262},{"Z":3906,"N":"Altzaga","O":277,"NE":"Altzaga","NC":"Altzaga","C":121},{"Z":3007,"N":"Altzo","O":198,"NE":"Altzo","NC":"Altzo","C":304},{"Z":3008,"N":"Amezketa","O":199,"NE":"Amezketa","NC":"Amezketa","C":721},{"Z":3009,"N":"Andoain","O":200,"NE":"Andoain","NC":"Andoain","C":11528},{"Z":3010,"N":"Anoeta","O":201,"NE":"Anoeta","NC":"Anoeta","C":1494},{"Z":3011,"N":"Antzuola","O":202,"NE":"Antzuola","NC":"Antzuola","C":1660},{"Z":3012,"N":"Arama","O":203,"NE":"Arama","NC":"Arama","C":144},{"Z":3013,"N":"Aretxabaleta","O":204,"NE":"Aretxabaleta","NC":"Aretxabaleta","C":5427},{"Z":3014,"N":"Asteasu","O":205,"NE":"Asteasu","NC":"Asteasu","C":1111},{"Z":3903,"N":"Astigarraga","O":274,"NE":"Astigarraga","NC":"Astigarraga","C":4247},{"Z":3015,"N":"Ataun","O":206,"NE":"Ataun","NC":"Ataun","C":1272},{"Z":3017,"N":"Azkoitia","O":208,"NE":"Azkoitia","NC":"Azkoitia","C":8580},{"Z":3018,"N":"Azpeitia","O":209,"NE":"Azpeitia","NC":"Azpeitia","C":11074},{"Z":3904,"N":"Baliarrain","O":275,"NE":"Baliarrain","NC":"Baliarrain","C":96},{"Z":3019,"N":"Beasain","O":210,"NE":"Beasain","NC":"Beasain","C":10053},{"Z":3020,"N":"Beizama","O":211,"NE":"Beizama","NC":"Beizama","C":129},{"Z":3021,"N":"Belauntza","O":212,"NE":"Belauntza","NC":"Belauntza","C":199},{"Z":3022,"N":"Berastegi","O":213,"NE":"Berastegi","NC":"Berastegi","C":834},{"Z":3074,"N":"Bergara","O":264,"NE":"Bergara","NC":"Bergara","C":11610},{"Z":3023,"N":"Berrobi","O":214,"NE":"Berrobi","NC":"Berrobi","C":445},{"Z":3024,"N":"Bidania-Goiatz","O":215,"NE":"Bidania-Goiatz","NC":"Bidania-Goiatz","C":393},{"Z":3029,"N":"Deba","O":220,"NE":"Deba","NC":"Deba","C":4258},{"Z":30,"N":"Donostia","O":9,"NE":"Donostia","NC":"Donostia-San Sebastián","C":147189},{"Z":3030,"N":"Eibar","O":221,"NE":"Eibar","NC":"Eibar","C":21515},{"Z":3031,"N":"Elduain","O":222,"NE":"Elduain","NC":"Elduain","C":180},{"Z":3033,"N":"Elgeta","O":224,"NE":"Elgeta","NC":"Elgeta","C":864},{"Z":3032,"N":"Elgoibar","O":223,"NE":"Elgoibar","NC":"Elgoibar","C":8785},{"Z":3067,"N":"Errenteria","O":258,"NE":"Errenteria","NC":"Errenteria","C":30825},{"Z":3066,"N":"Errezil","O":257,"NE":"Errezil","NC":"Errezil","C":461},{"Z":3034,"N":"Eskoriatza","O":225,"NE":"Eskoriatza","NC":"Eskoriatza","C":3157},{"Z":3035,"N":"Ezkio-Itsaso","O":226,"NE":"Ezkio-Itsaso","NC":"Ezkio-Itsaso","C":482},{"Z":3038,"N":"Gabiria","O":229,"NE":"Gabiria","NC":"Gabiria","C":392},{"Z":3037,"N":"Gaintza","O":228,"NE":"Gaintza","NC":"Gaintza","C":97},{"Z":3907,"N":"Gaztelu","O":278,"NE":"Gaztelu","NC":"Gaztelu","C":120},{"Z":3039,"N":"Getaria","O":230,"NE":"Getaria","NC":"Getaria","C":2111},{"Z":3040,"N":"Hernani","O":231,"NE":"Hernani","NC":"Hernani","C":15321},{"Z":3041,"N":"Hernialde","O":232,"NE":"Hernialde","NC":"Hernialde","C":258},{"Z":3036,"N":"Hondarribia","O":227,"NE":"Hondarribia","NC":"Hondarribia","C":13148},{"Z":3042,"N":"Ibarra","O":233,"NE":"Ibarra","NC":"Ibarra","C":3251},{"Z":3043,"N":"Idiazabal","O":234,"NE":"Idiazabal","NC":"Idiazabal","C":1740},{"Z":3044,"N":"Ikaztegieta","O":235,"NE":"Ikaztegieta","NC":"Ikaztegieta","C":368},{"Z":3045,"N":"Irun","O":236,"NE":"Irun","NC":"Irun","C":46691},{"Z":3046,"N":"Irura","O":237,"NE":"Irura","NC":"Irura","C":1167},{"Z":3047,"N":"Itsasondo","O":238,"NE":"Itsasondo","NC":"Itsasondo","C":477},{"Z":3048,"N":"Larraul","O":239,"NE":"Larraul","NC":"Larraul","C":176},{"Z":3902,"N":"Lasarte-Oria","O":273,"NE":"Lasarte-Oria","NC":"Lasarte-Oria","C":14193},{"Z":3049,"N":"Lazkao","O":240,"NE":"Lazkao","NC":"Lazkao","C":4124},{"Z":3050,"N":"Leaburu","O":241,"NE":"Leaburu","NC":"Leaburu","C":263},{"Z":3051,"N":"Legazpi","O":242,"NE":"Legazpi","NC":"Legazpi","C":6904},{"Z":3052,"N":"Legorreta","O":243,"NE":"Legorreta","NC":"Legorreta","C":1091},{"Z":3068,"N":"Leintz-Gatzaga","O":259,"NE":"Leintz Gatzaga","NC":"Leintz-Gatzaga","C":183},{"Z":3053,"N":"Lezo","O":244,"NE":"Lezo","NC":"Lezo","C":4765},{"Z":3054,"N":"Lizartza","O":245,"NE":"Lizartza","NC":"Lizartza","C":447},{"Z":3901,"N":"Mendaro","O":272,"NE":"Mendaro","NC":"Mendaro","C":1441},{"Z":3055,"N":"Arrasate/Mondragón","O":246,"NE":"Arrasate","NC":"Mondragón","C":17522},{"Z":3057,"N":"Mutiloa","O":248,"NE":"Mutiloa","NC":"Mutiloa","C":201},{"Z":3056,"N":"Mutriku","O":247,"NE":"Mutriku","NC":"Mutriku","C":4104},{"Z":3063,"N":"Oiartzun","O":254,"NE":"Oiartzun","NC":"Oiartzun","C":7990},{"Z":3058,"N":"Olaberria","O":249,"NE":"Olaberria","NC":"Olaberria","C":746},{"Z":3059,"N":"Oñati","O":250,"NE":"Oñati","NC":"Oñati","C":8863},{"Z":3076,"N":"Ordizia","O":266,"NE":"Ordizia","NC":"Ordizia","C":6978},{"Z":3905,"N":"Orendain","O":276,"NE":"Orendain","NC":"Orendain","C":141},{"Z":3060,"N":"Orexa","O":251,"NE":"Orexa","NC":"Orexa","C":89},{"Z":3061,"N":"Orio","O":252,"NE":"Orio","NC":"Orio","C":4273},{"Z":3062,"N":"Ormaiztegi","O":253,"NE":"Ormaiztegi","NC":"Ormaiztegi","C":982},{"Z":3064,"N":"Pasaia","O":255,"NE":"Pasaia","NC":"Pasaia","C":12526},{"Z":3070,"N":"Segura","O":260,"NE":"Segura","NC":"Segura","C":1099},{"Z":3065,"N":"Soraluze","O":256,"NE":"Soraluze","NC":"Soraluze","C":3006},{"Z":3071,"N":"Tolosa","O":261,"NE":"Tolosa","NC":"Tolosa","C":14818},{"Z":3072,"N":"Urnieta","O":262,"NE":"Urnieta","NC":"Urnieta","C":4731},{"Z":3077,"N":"Urretxu","O":267,"NE":"Urretxu","NC":"Urretxu","C":5243},{"Z":3073,"N":"Usurbil","O":263,"NE":"Usurbil","NC":"Usurbil","C":4677},{"Z":3075,"N":"Villabona","O":265,"NE":"Villabona","NC":"Villabona","C":4359},{"Z":3078,"N":"Zaldibia","O":268,"NE":"Zaldibia","NC":"Zaldibia","C":1155},{"Z":3079,"N":"Zarautz","O":269,"NE":"Zarautz","NC":"Zarautz","C":17835},{"Z":3025,"N":"Zegama","O":216,"NE":"Zegama","NC":"Zegama","C":1144},{"Z":3026,"N":"Zerain","O":217,"NE":"Zerain","NC":"Zerain","C":202},{"Z":3027,"N":"Zestoa","O":218,"NE":"Zestoa","NC":"Zestoa","C":2816},{"Z":3028,"N":"Zizurkil","O":219,"NE":"Zizurkil","NC":"Zizurkil","C":2255},{"Z":3081,"N":"Zumaia","O":271,"NE":"Zumaia","NC":"Zumaia","C":7460},{"Z":3080,"N":"Zumarraga","O":270,"NE":"Zumarraga","NC":"Zumarraga","C":7900}]}
       //var nav={"zonas":[{"Z":4001,"N":"Abáigar","O":279,"NE":"Abaigar","NC":"Abáigar","C":90},{"Z":4002,"N":"Abárzuza","O":280,"NE":"Abartzuza","NC":"Abárzuza","C":424},{"Z":4003,"N":"Abaurregaina/Abaurrea Alta","O":281,"NE":"Abaurregaina","NC":"Abaurrea Alta","C":124},{"Z":4004,"N":"Abaurrepea/Abaurrea Baja","O":282,"NE":"Abaurrepea","NC":"Abaurrea Baja","C":35},{"Z":4005,"N":"Aberin","O":283,"NE":"Aberin","NC":"Aberin","C":296},{"Z":4006,"N":"Ablitas","O":284,"NE":"Ablitas","NC":"Ablitas","C":1952},{"Z":4007,"N":"Adiós","O":285,"NE":"Adios","NC":"Adiós","C":136},{"Z":4008,"N":"Aguilar de Codés","O":286,"NE":"Aguilar Kodes","NC":"Aguilar de Codés","C":80},{"Z":4009,"N":"Aibar/Oibar","O":287,"NE":"Oibar","NC":"Aibar","C":690},{"Z":4011,"N":"Allín","O":289,"NE":"Allin","NC":"Allín","C":697},{"Z":4012,"N":"Allo","O":290,"NE":"Allo","NC":"Allo","C":814},{"Z":4010,"N":"Altsasu/Alsasua","O":288,"NE":"Altsasu","NC":"Alsasua","C":5721},{"Z":4013,"N":"Améscoa Baja","O":291,"NE":"Ameskoabarrena","NC":"Améscoa Baja","C":661},{"Z":4014,"N":"Ancín","O":292,"NE":"Antzin","NC":"Ancín","C":274},{"Z":4015,"N":"Andosilla","O":293,"NE":"Andosilla","NC":"Andosilla","C":2001},{"Z":4016,"N":"Ansoáin","O":294,"NE":"Antsoain","NC":"Ansoáin","C":7642},{"Z":4017,"N":"Anue","O":295,"NE":"Anue","NC":"Anue","C":361},{"Z":4018,"N":"Añorbe","O":296,"NE":"Añorbe","NC":"Añorbe","C":409},{"Z":4019,"N":"Aoiz/Agoitz","O":297,"NE":"Agoitz","NC":"Aoiz","C":1809},{"Z":4020,"N":"Araitz","O":298,"NE":"Araitz","NC":"Araitz","C":454},{"Z":4025,"N":"Arakil","O":303,"NE":"Arakil","NC":"Arakil","C":768},{"Z":4021,"N":"Aranarache","O":299,"NE":"Aranaratxe","NC":"Aranarache","C":64},{"Z":4023,"N":"Aranguren","O":301,"NE":"Aranguren","NC":"Aranguren","C":6826},{"Z":4024,"N":"Arano","O":302,"NE":"Arano","NC":"Arano","C":102},{"Z":4022,"N":"Arantza","O":300,"NE":"Arantza","NC":"Arantza","C":526},{"Z":4026,"N":"Aras","O":304,"NE":"Aras","NC":"Aras","C":147},{"Z":4027,"N":"Arbizu","O":305,"NE":"Arbizu","NC":"Arbizu","C":838},{"Z":4028,"N":"Arce/Artzi","O":306,"NE":"Artzibar","NC":"Arce","C":211},{"Z":4030,"N":"Arellano","O":308,"NE":"Arellano","NC":"Arellano","C":145},{"Z":4031,"N":"Areso","O":309,"NE":"Areso","NC":"Areso","C":221},{"Z":4032,"N":"Arguedas","O":310,"NE":"Arguedas","NC":"Arguedas","C":1733},{"Z":4033,"N":"Aria","O":311,"NE":"Aria","NC":"Aria","C":49},{"Z":4034,"N":"Aribe","O":312,"NE":"Aribe","NC":"Aribe","C":40},{"Z":4035,"N":"Armañanzas","O":313,"NE":"Armañantzas","NC":"Armañanzas","C":63},{"Z":4036,"N":"Arróniz","O":314,"NE":"Arronitz","NC":"Arróniz","C":921},{"Z":4037,"N":"Arruazu","O":315,"NE":"Arruazu","NC":"Arruazu","C":86},{"Z":4038,"N":"Artajona","O":316,"NE":"Artaxoa","NC":"Artajona","C":1348},{"Z":4039,"N":"Artazu","O":317,"NE":"Artazu","NC":"Artazu","C":83},{"Z":4040,"N":"Atez","O":318,"NE":"Atetz","NC":"Atez","C":194},{"Z":4041,"N":"Ayegui","O":319,"NE":"Aiegi","NC":"Ayegui","C":1583},{"Z":4042,"N":"Azagra","O":320,"NE":"Azagra","NC":"Azagra","C":2744},{"Z":4043,"N":"Azuelo","O":321,"NE":"Azuelo","NC":"Azuelo","C":38},{"Z":4044,"N":"Bakaiku","O":322,"NE":"Bakaiku","NC":"Bakaiku","C":290},{"Z":4901,"N":"Barañain","O":542,"NE":"Barañain","NC":"Barañáin","C":15475},{"Z":4045,"N":"Barásoain","O":323,"NE":"Barasoain","NC":"Barasoáin","C":504},{"Z":4046,"N":"Barbarin","O":324,"NE":"Barbarin","NC":"Barbarin","C":60},{"Z":4047,"N":"Bargota","O":325,"NE":"Bargota","NC":"Bargota","C":261},{"Z":4048,"N":"Barillas","O":326,"NE":"Barillas","NC":"Barillas","C":169},{"Z":4049,"N":"Basaburua","O":327,"NE":"Basaburua","NC":"Basaburua","C":704},{"Z":4050,"N":"Baztan","O":328,"NE":"Baztan","NC":"Baztan","C":6058},{"Z":4051,"N":"Beire","O":329,"NE":"Beire","NC":"Beire","C":253},{"Z":4052,"N":"Belascoáin","O":330,"NE":"Beraskoain","NC":"Belascoáin","C":88},{"Z":4250,"N":"Bera/Vera de Bidasoa","O":526,"NE":"Bera","NC":"Bera","C":2832},{"Z":4053,"N":"Berbinzana","O":331,"NE":"Berbintzana","NC":"Berbinzana","C":532},{"Z":4905,"N":"Beriáin","O":546,"NE":"Beriain","NC":"Beriain","C":2847},{"Z":4902,"N":"Berrioplano","O":543,"NE":"Berriobeiti","NC":"Berrioplano","C":4346},{"Z":4903,"N":"Berriozar","O":544,"NE":"Berriozar","NC":"Berriozar","C":6593},{"Z":4054,"N":"Bertizarana","O":332,"NE":"Bertizarana","NC":"Bertizarana","C":460},{"Z":4055,"N":"Betelu","O":333,"NE":"Betelu","NC":"Betelu","C":259},{"Z":4253,"N":"Bidaurreta","O":529,"NE":"Bidaurreta","NC":"Bidaurreta","C":129},{"Z":4056,"N":"Biurrun-Olcoz","O":334,"NE":"Biurrun-Olkotz","NC":"Biurrun-Olcoz","C":179},{"Z":4057,"N":"Buñuel","O":335,"NE":"Buñuel","NC":"Buñuel","C":1812},{"Z":4058,"N":"Auritz/Burguete","O":336,"NE":"Auritz","NC":"Burguete","C":215},{"Z":4059,"N":"Burgui/Burgi","O":337,"NE":"Burgi","NC":"Burgui","C":191},{"Z":4060,"N":"Burlata/Burlada","O":338,"NE":"Burlata","NC":"Burlada","C":13723},{"Z":4062,"N":"Cabanillas","O":340,"NE":"Cabanillas","NC":"Cabanillas","C":1088},{"Z":4063,"N":"Cabredo","O":341,"NE":"Cabredo","NC":"Cabredo","C":88},{"Z":4064,"N":"Cadreita","O":342,"NE":"Cadreita","NC":"Cadreita","C":1447},{"Z":4065,"N":"Caparroso","O":343,"NE":"Caparroso","NC":"Caparroso","C":1892},{"Z":4066,"N":"Carcar","O":344,"NE":"Carcar","NC":"Cárcar","C":867},{"Z":4067,"N":"Carcastillo","O":345,"NE":"Zarrakaztelu","NC":"Carcastillo","C":1938},{"Z":4068,"N":"Cascante","O":346,"NE":"Cascante","NC":"Cascante","C":2893},{"Z":4069,"N":"Cáseda","O":347,"NE":"Kaseda","NC":"Cáseda","C":847},{"Z":4070,"N":"Castejón","O":348,"NE":"Castejon","NC":"Castejón","C":2652},{"Z":4071,"N":"Castillonuevo","O":349,"NE":"Gazteluberri","NC":"Castillo-Nuevo","C":17},{"Z":4193,"N":"Oltza","O":471,"NE":"Oltza zendea","NC":"Cendea de Olza","C":1414},{"Z":4072,"N":"Cintruénigo","O":350,"NE":"Cintruenigo","NC":"Cintruénigo","C":5288},{"Z":4074,"N":"Cirauqui","O":352,"NE":"Zirauki","NC":"Cirauqui","C":394},{"Z":4075,"N":"Ciriza","O":353,"NE":"Ziritza","NC":"Ciriza","C":101},{"Z":4076,"N":"Cizur","O":354,"NE":"Zizur","NC":"Cizur","C":2407},{"Z":4077,"N":"Corella","O":355,"NE":"Corella","NC":"Corella","C":5384},{"Z":4078,"N":"Cortes","O":356,"NE":"Cortes","NC":"Cortes","C":2447},{"Z":4079,"N":"Desojo","O":357,"NE":"Desoio","NC":"Desojo","C":76},{"Z":4080,"N":"Dicastillo","O":358,"NE":"Deikaztelu","NC":"Dicastillo","C":510},{"Z":4081,"N":"Donamaria","O":359,"NE":"Donamaria","NC":"Donamaria","C":342},{"Z":4083,"N":"Echarri","O":361,"NE":"Etxarri","NC":"Echarri","C":56},{"Z":4086,"N":"Egüés","O":364,"NE":"Eguesibar","NC":"Egüés","C":12987},{"Z":4061,"N":"Busto (El)","O":339,"NE":"El Busto","NC":"El Busto","C":56},{"Z":4087,"N":"Elgorriaga","O":365,"NE":"Elgorriaga","NC":"Elgorriaga","C":169},{"Z":4089,"N":"Enériz","O":367,"NE":"Eneritz","NC":"Enériz","C":242},{"Z":4090,"N":"Eratsun","O":368,"NE":"Eratsun","NC":"Eratsun","C":146},{"Z":4091,"N":"Ergoiena","O":369,"NE":"Ergoiena","NC":"Ergoiena","C":347},{"Z":4092,"N":"Erro","O":370,"NE":"Erroibar","NC":"Erro","C":662},{"Z":4093,"N":"Ezcároz/Ezkaroze","O":371,"NE":"Ezkaroze","NC":"Escároz","C":293},{"Z":4094,"N":"Eslava","O":372,"NE":"Eslaba","NC":"Eslava","C":112},{"Z":4095,"N":"Esparza de Salazar","O":373,"NE":"Espartza","NC":"Esparza de Salazar","C":76},{"Z":4096,"N":"Espronceda","O":374,"NE":"Esprontzeda","NC":"Espronceda","C":115},{"Z":4097,"N":"Estella/Lizarra","O":375,"NE":"Lizarra","NC":"Estella","C":10436},{"Z":4098,"N":"Esteribar","O":376,"NE":"Esteribar","NC":"Esteribar","C":1918},{"Z":4099,"N":"Etayo","O":377,"NE":"Etaiu","NC":"Etayo","C":63},{"Z":4082,"N":"Etxalar","O":360,"NE":"Etxalar","NC":"Etxalar","C":615},{"Z":4084,"N":"Etxarri-Aranatz","O":362,"NE":"Etxarri Aranatz","NC":"Etxarri Aranatz","C":1935},{"Z":4085,"N":"Etxauri","O":363,"NE":"Etxauri","NC":"Etxauri","C":471},{"Z":4100,"N":"Eulate","O":378,"NE":"Eulate","NC":"Eulate","C":264},{"Z":4101,"N":"Ezcabarte","O":379,"NE":"Ezkabarte","NC":"Ezcabarte","C":1390},{"Z":4102,"N":"Ezkurra","O":380,"NE":"Ezkurra","NC":"Ezkurra","C":146},{"Z":4103,"N":"Ezprogui","O":381,"NE":"Ezporogi","NC":"Ezprogui","C":46},{"Z":4104,"N":"Falces","O":382,"NE":"Faltzes","NC":"Falces","C":1876},{"Z":4105,"N":"Fitero","O":383,"NE":"Fitero","NC":"Fitero","C":1535},{"Z":4106,"N":"Fontellas","O":384,"NE":"Fontellas","NC":"Fontellas","C":689},{"Z":4107,"N":"Funes","O":385,"NE":"Funes","NC":"Funes","C":1707},{"Z":4108,"N":"Fustiñana","O":386,"NE":"Fustiñana","NC":"Fustiñana","C":1878},{"Z":4109,"N":"Galar","O":387,"NE":"Galar","NC":"Galar","C":1562},{"Z":4110,"N":"Gallipienzo","O":388,"NE":"Galipentzu","NC":"Gallipienzo","C":90},{"Z":4111,"N":"Gallués/Galoze","O":389,"NE":"Galoze","NC":"Gallués","C":96},{"Z":4112,"N":"Garaioa","O":390,"NE":"Garaioa","NC":"Garaioa","C":94},{"Z":4113,"N":"Garde","O":391,"NE":"Garde","NC":"Garde","C":137},{"Z":4114,"N":"Garínoain","O":392,"NE":"Garinoain","NC":"Garínoain","C":362},{"Z":4115,"N":"Garralda","O":393,"NE":"Garralda","NC":"Garralda","C":166},{"Z":4116,"N":"Genevilla","O":394,"NE":"Genevilla","NC":"Genevilla","C":65},{"Z":4117,"N":"Goizueta","O":395,"NE":"Goizueta","NC":"Goizueta","C":620},{"Z":4118,"N":"Goñi","O":396,"NE":"Goñerri","NC":"Goñi","C":165},{"Z":4119,"N":"Guesa/Gorza","O":397,"NE":"Gorza","NC":"Güesa","C":40},{"Z":4120,"N":"Guesálaz","O":398,"NE":"Gesalatz","NC":"Guesálaz","C":394},{"Z":4121,"N":"Guirguillano","O":399,"NE":"Girgillao","NC":"Guirguillano","C":64},{"Z":4122,"N":"Huarte/Uharte","O":400,"NE":"Uharte","NC":"Huarte","C":4719},{"Z":4124,"N":"Ibargoiti","O":402,"NE":"Ibargoiti","NC":"Ibargoiti","C":210},{"Z":4259,"N":"Igantzi","O":535,"NE":"Igantzi","NC":"Igantzi","C":485},{"Z":4125,"N":"Igúzquiza","O":403,"NE":"Iguzkitza","NC":"Igúzquiza","C":275},{"Z":4126,"N":"Imotz","O":404,"NE":"Imotz","NC":"Imotz","C":357},{"Z":4127,"N":"Irañeta","O":405,"NE":"Irañeta","NC":"Irañeta","C":143},{"Z":4904,"N":"Irurtzun","O":545,"NE":"Irurtzun","NC":"Irurtzun","C":1559},{"Z":4128,"N":"Isaba/Izaba","O":406,"NE":"Izaba","NC":"Isaba","C":370},{"Z":4129,"N":"Ituren","O":407,"NE":"Ituren","NC":"Ituren","C":393},{"Z":4130,"N":"Iturmendi","O":408,"NE":"Iturmendi","NC":"Iturmendi","C":310},{"Z":4131,"N":"Iza","O":409,"NE":"Itza","NC":"Iza","C":871},{"Z":4132,"N":"Izagaondoa","O":410,"NE":"Itzagaondoa","NC":"Izagaondoa","C":146},{"Z":4133,"N":"Izalzu/Itzaltzu","O":411,"NE":"Itzaltzu","NC":"Izalzu","C":44},{"Z":4134,"N":"Jaurrieta","O":412,"NE":"Jaurrieta","NC":"Jaurrieta","C":178},{"Z":4135,"N":"Javier","O":413,"NE":"Xabier","NC":"Javier","C":102},{"Z":4136,"N":"Juslapeña","O":414,"NE":"Txulapain","NC":"Juslapeña","C":444},{"Z":4137,"N":"Labaien","O":415,"NE":"Labaien","NC":"Labaien","C":208},{"Z":4138,"N":"Lakuntza","O":416,"NE":"Lakuntza","NC":"Lakuntza","C":934},{"Z":4139,"N":"Lana","O":417,"NE":"Lana","NC":"Lana","C":159},{"Z":4140,"N":"Lantz","O":418,"NE":"Lantz","NC":"Lantz","C":116},{"Z":4141,"N":"Lapoblación","O":419,"NE":"Lapoblacion","NC":"Lapoblación","C":109},{"Z":4142,"N":"Larraga","O":420,"NE":"Larraga","NC":"Larraga","C":1411},{"Z":4143,"N":"Larraona","O":421,"NE":"Larragoa","NC":"Larraona","C":98},{"Z":4144,"N":"Larraun","O":422,"NE":"Larraun","NC":"Larraun","C":804},{"Z":4145,"N":"Lazagurría","O":423,"NE":"Elizagorria","NC":"Lazagurría","C":171},{"Z":4146,"N":"Leache","O":424,"NE":"Leatxe","NC":"Leache","C":35},{"Z":4147,"N":"Legarda","O":425,"NE":"Legarda","NC":"Legarda","C":98},{"Z":4148,"N":"Legaria","O":426,"NE":"Legaria","NC":"Legaria","C":93},{"Z":4149,"N":"Leitza","O":427,"NE":"Leitza","NC":"Leitza","C":2338},{"Z":4908,"N":"Lekunberri","O":549,"NE":"Lekunberri","NC":"Lekunberri","C":1008},{"Z":4150,"N":"Leoz","O":428,"NE":"Leotz","NC":"Leoz","C":213},{"Z":4151,"N":"Lerga","O":429,"NE":"Lerga","NC":"Lerga","C":67},{"Z":4152,"N":"Lerín","O":430,"NE":"Lerin","NC":"Lerín","C":1347},{"Z":4153,"N":"Lesaka","O":431,"NE":"Lesaka","NC":"Lesaka","C":2172},{"Z":4154,"N":"Lezáun","O":432,"NE":"Lezaun","NC":"Lezáun","C":227},{"Z":4155,"N":"Liédena","O":433,"NE":"Ledea","NC":"Liédena","C":253},{"Z":4156,"N":"Lizoain-Arriasgoiti","O":434,"NE":"Lizoain-Arriasgoiti","NC":"Lizoain-Arriasgoiti","C":252},{"Z":4157,"N":"Lodosa","O":435,"NE":"Lodosa","NC":"Lodosa","C":3546},{"Z":4158,"N":"Lónguida/Longida","O":436,"NE":"Longida","NC":"Lónguida","C":252},{"Z":4029,"N":"Arcos (Los)","O":307,"NE":"Los Arcos","NC":"Los Arcos","C":925},{"Z":4159,"N":"Lumbier","O":437,"NE":"Irunberri","NC":"Lumbier","C":1134},{"Z":4160,"N":"Luquin","O":438,"NE":"Lukin","NC":"Luquin","C":107},{"Z":4161,"N":"Mañeru","O":439,"NE":"Mañeru","NC":"Mañeru","C":344},{"Z":4162,"N":"Marañón","O":440,"NE":"Marañon","NC":"Marañón","C":47},{"Z":4163,"N":"Marcilla","O":441,"NE":"Martzilla","NC":"Marcilla","C":2017},{"Z":4164,"N":"Mélida","O":442,"NE":"Melida","NC":"Mélida","C":582},{"Z":4165,"N":"Mendavia","O":443,"NE":"Mendabia","NC":"Mendavia","C":2794},{"Z":4166,"N":"Mendaza","O":444,"NE":"Mendaza","NC":"Mendaza","C":260},{"Z":4167,"N":"Mendigorría","O":445,"NE":"Mendigorria","NC":"Mendigorría","C":827},{"Z":4168,"N":"Metauten","O":446,"NE":"Metauten","NC":"Metauten","C":248},{"Z":4169,"N":"Milagro","O":447,"NE":"Milagro","NC":"Milagro","C":2217},{"Z":4170,"N":"Mirafuentes","O":448,"NE":"Mirafuentes","NC":"Mirafuentes","C":49},{"Z":4171,"N":"Miranda de Arga","O":449,"NE":"Miranda Arga","NC":"Miranda de Arga","C":693},{"Z":4172,"N":"Monreal","O":450,"NE":"Elo","NC":"Monreal","C":367},{"Z":4173,"N":"Monteagudo","O":451,"NE":"Monteagudo","NC":"Monteagudo","C":873},{"Z":4174,"N":"Morentin","O":452,"NE":"Morentin","NC":"Morentin","C":110},{"Z":4175,"N":"Mues","O":453,"NE":"Mues","NC":"Mués","C":72},{"Z":4176,"N":"Murchante","O":454,"NE":"Murchante","NC":"Murchante","C":2856},{"Z":4177,"N":"Murieta","O":455,"NE":"Murieta","NC":"Murieta","C":262},{"Z":4178,"N":"Murillo el Cuende","O":456,"NE":"Murillo el Cuende","NC":"Murillo el Cuende","C":495},{"Z":4179,"N":"Murillo el Fruto","O":457,"NE":"Murillo el Fruto","NC":"Murillo el Fruto","C":509},{"Z":4180,"N":"Muruzábal","O":458,"NE":"Muruzabal","NC":"Muruzábal","C":216},{"Z":4181,"N":"Navascués","O":459,"NE":"Nabaskoze","NC":"Navascués","C":150},{"Z":4182,"N":"Nazar","O":460,"NE":"Nazar","NC":"Nazar","C":37},{"Z":4088,"N":"Noáin (Valle de Elorz)","O":366,"NE":"Noain Elortzibar","NC":"Noain","C":5574},{"Z":4183,"N":"Obanos","O":461,"NE":"Obanos","NC":"Obanos","C":681},{"Z":4185,"N":"Ochagavía/Otsagabia","O":463,"NE":"Otsagabia","NC":"Ochagavía","C":501},{"Z":4184,"N":"Oco","O":462,"NE":"Oko","NC":"Oco","C":61},{"Z":4186,"N":"Odieta","O":464,"NE":"Odieta","NC":"Odieta","C":302},{"Z":4187,"N":"Oitz","O":465,"NE":"Oitz","NC":"Oitz","C":111},{"Z":4188,"N":"Olaibar","O":466,"NE":"Olaibar","NC":"Oláibar","C":227},{"Z":4189,"N":"Olazti/Olazagutía","O":467,"NE":"Olatzagutia","NC":"Olazagutía","C":1170},{"Z":4190,"N":"Olejua","O":468,"NE":"Olexua","NC":"Olejua","C":44},{"Z":4191,"N":"Olite","O":469,"NE":"Erriberri","NC":"Olite","C":3018},{"Z":4194,"N":"Ollo","O":472,"NE":"Ollaran","NC":"Ollo","C":315},{"Z":4192,"N":"Olóriz","O":470,"NE":"Oloritz","NC":"Olóriz","C":159},{"Z":4195,"N":"Orbaizeta","O":473,"NE":"Orbaizeta","NC":"Orbaizeta","C":180},{"Z":4196,"N":"Orbara","O":474,"NE":"Orbara","NC":"Orbara","C":39},{"Z":4197,"N":"Orísoain","O":475,"NE":"Orisoain","NC":"Orísoain","C":70},{"Z":4906,"N":"Orkoien","O":547,"NE":"Orkoien","NC":"Orkoien","C":2553},{"Z":4198,"N":"Oronz/Orontze","O":476,"NE":"Orontze","NC":"Oronz","C":36},{"Z":4199,"N":"Orotz-Betelu","O":477,"NE":"Orotz-Betelu","NC":"Orotz-Betelu","C":150},{"Z":4200,"N":"Oteiza","O":478,"NE":"Oteitza","NC":"Oteiza","C":764},{"Z":40,"N":"Iruña","O":10,"NE":"Iruñea","NC":"Pamplona-Iruña","C":147803},{"Z":4202,"N":"Peralta","O":479,"NE":"Azkoien","NC":"Peralta","C":4326},{"Z":4203,"N":"Petilla de Aragón","O":480,"NE":"Petilla Aragoi","NC":"Petilla de Aragón","C":40},{"Z":4204,"N":"Piedramillera","O":481,"NE":"Piedramillera","NC":"Piedramillera","C":37},{"Z":4205,"N":"Pitillas","O":482,"NE":"Pitillas","NC":"Pitillas","C":427},{"Z":4206,"N":"Puente la Reina/Gares","O":483,"NE":"Gares","NC":"Puente la Reina","C":2095},{"Z":4207,"N":"Pueyo","O":484,"NE":"Puiu","NC":"Pueyo","C":271},{"Z":4208,"N":"Ribaforada","O":485,"NE":"Ribaforada","NC":"Ribaforada","C":2569},{"Z":4209,"N":"Romanzado","O":486,"NE":"Erromantzatua","NC":"Romanzado","C":157},{"Z":4210,"N":"Roncal/Erronkari","O":487,"NE":"Erronkari","NC":"Roncal","C":199},{"Z":4211,"N":"Orreaga/Roncesvalles","O":488,"NE":"Orreaga","NC":"Roncesvalles","C":25},{"Z":4212,"N":"Sada","O":489,"NE":"Zare","NC":"Sada","C":151},{"Z":4213,"N":"Saldías","O":490,"NE":"Saldias","NC":"Saldias","C":105},{"Z":4214,"N":"Salinas de Oro","O":491,"NE":"Jaitz","NC":"Salinas de Oro","C":93},{"Z":4215,"N":"San Adrián","O":492,"NE":"San Adrian","NC":"San Adrián","C":4649},{"Z":4217,"N":"San Martín de Unx","O":494,"NE":"San Martín de Unx","NC":"San Martín de Unx","C":337},{"Z":4216,"N":"Sangüesa/Zangoza","O":493,"NE":"Zangoza","NC":"Sangüesa","C":3882},{"Z":4219,"N":"Sansol","O":495,"NE":"Santsol","NC":"Sansol","C":88},{"Z":4220,"N":"Santacara","O":496,"NE":"Santakara","NC":"Santacara","C":752},{"Z":4221,"N":"Doneztebe/Santesteban","O":497,"NE":"Doneztebe","NC":"Santesteban","C":1211},{"Z":4222,"N":"Sarriés/Sartze","O":498,"NE":"Sartze","NC":"Sarriés","C":63},{"Z":4223,"N":"Sartaguda","O":499,"NE":"Sartaguda","NC":"Sartaguda","C":995},{"Z":4224,"N":"Sesma","O":500,"NE":"Sesma","NC":"Sesma","C":914},{"Z":4225,"N":"Sorlada","O":501,"NE":"Sorlada","NC":"Sorlada","C":36},{"Z":4226,"N":"Sunbilla","O":502,"NE":"Sunbilla","NC":"Sunbilla","C":585},{"Z":4227,"N":"Tafalla","O":503,"NE":"Tafalla","NC":"Tafalla","C":8226},{"Z":4228,"N":"Tiebas-Muruarte de Reta","O":504,"NE":"Tiebas-Muru Artederreta","NC":"Tiebas-Muruarte de Reta","C":496},{"Z":4229,"N":"Tirapu","O":505,"NE":"Tirapu","NC":"Tirapu","C":50},{"Z":4230,"N":"Torralba del Río","O":506,"NE":"Torralba del Rio","NC":"Torralba del Río","C":107},{"Z":4231,"N":"Torres del Río","O":507,"NE":"Torres del Rio","NC":"Torres del Río","C":115},{"Z":4232,"N":"Tudela","O":508,"NE":"Tutera","NC":"Tudela","C":25152},{"Z":4233,"N":"Tulebras","O":509,"NE":"Tulebras","NC":"Tulebras","C":96},{"Z":4234,"N":"Ucar","O":510,"NE":"Ukar","NC":"Úcar","C":144},{"Z":4123,"N":"Uharte-Arakil","O":401,"NE":"Uharte Arakil","NC":"Uharte Arakil","C":654},{"Z":4235,"N":"Ujué","O":511,"NE":"Uxue","NC":"Ujué","C":166},{"Z":4236,"N":"Ultzama","O":512,"NE":"Ultzama","NC":"Ultzama","C":1324},{"Z":4237,"N":"Unciti","O":513,"NE":"Untzitibar","NC":"Unciti","C":195},{"Z":4238,"N":"Unzué","O":514,"NE":"Untzue","NC":"Unzué","C":110},{"Z":4239,"N":"Urdazubi/Urdax","O":515,"NE":"Urdazubi","NC":"Urdax","C":310},{"Z":4240,"N":"Urdiain","O":516,"NE":"Urdiain","NC":"Urdiain","C":531},{"Z":4241,"N":"Urraul Alto","O":517,"NE":"Urraulgoiti","NC":"Urraul Alto","C":134},{"Z":4242,"N":"Urraul Bajo","O":518,"NE":"Urraulbeiti","NC":"Urraul Bajo","C":253},{"Z":4244,"N":"Urrotz","O":520,"NE":"Urrotz","NC":"Urrotz","C":156},{"Z":4243,"N":"Urroz","O":519,"NE":"Urroz","NC":"Urroz","C":314},{"Z":4245,"N":"Urzainqui/Urzainki","O":521,"NE":"Urzainki","NC":"Urzainqui","C":83},{"Z":4246,"N":"Uterga","O":522,"NE":"Uterga","NC":"Uterga","C":140},{"Z":4247,"N":"Uztárroz/Uztarroze","O":523,"NE":"Uztarroze","NC":"Uztárroz","C":152},{"Z":4248,"N":"Luzaide/Valcarlos","O":524,"NE":"Luzaide","NC":"Valcarlos","C":295},{"Z":4249,"N":"Valtierra","O":525,"NE":"Valtierra","NC":"Valtierra","C":1885},{"Z":4251,"N":"Viana","O":527,"NE":"Viana","NC":"Viana","C":3110},{"Z":4252,"N":"Vidángoz/Bidankoze","O":528,"NE":"Bidankoze","NC":"Vidángoz","C":87},{"Z":4254,"N":"Villafranca","O":530,"NE":"Villafranca","NC":"Villafranca","C":1920},{"Z":4255,"N":"Villamayor de Monjardín","O":531,"NE":"Villamayor de Monjardin","NC":"Villamayor de Monjardín","C":102},{"Z":4256,"N":"Hiriberri/Villanueva de Aezkoa","O":532,"NE":"Hiriberri","NC":"Villanueva de Aezkoa","C":109},{"Z":4257,"N":"Villatuerta","O":533,"NE":"Villatuerta","NC":"Villatuerta","C":866},{"Z":4258,"N":"Villava/Atarrabia","O":534,"NE":"Atarrabia","NC":"Villava","C":7841},{"Z":4260,"N":"Yerri/Deierri","O":536,"NE":"Deierri","NC":"Yerri","C":1245},{"Z":4261,"N":"Yesa","O":537,"NE":"Esa","NC":"Yesa","C":235},{"Z":4262,"N":"Zabalza","O":538,"NE":"Zabaltza","NC":"Zabalza","C":206},{"Z":4073,"N":"Ziordia","O":351,"NE":"Ziordia","NC":"Ziordia","C":315},{"Z":4907,"N":"Zizur Mayor/Zizur Nagusia","O":548,"NE":"Zizur Nagusia","NC":"Zizur Mayor","C":10677},{"Z":4263,"N":"Zubieta","O":539,"NE":"Zubieta","NC":"Zubieta","C":236},{"Z":4264,"N":"Zugarramurdi","O":540,"NE":"Zugarramurdi","NC":"Zugarramurdi","C":179},{"Z":4265,"N":"Zúñiga","O":541,"NE":"Zuñiga","NC":"Zúñiga","C":86}]};
     if(navigator.appVersion.indexOf('Panasonic')>-1){
       var select=document.createElement('x-select');
@@ -4237,7 +4237,7 @@ var table=function(){
       //select.addEventListener('change',this.sendLugarclick.bind(this),true);
       var _this=this;
       select.id='tableSelect'+this.id;
-      
+
       for(var i=0;i<gen.zonas.length;i++){
         var opt1=document.createElement('a');
         opt1.id=gen.zonas[i]['NC']+gen.zonas[i]['Z'];
@@ -4251,24 +4251,24 @@ var table=function(){
         opt1.style.display='block';
         opt1.addEventListener('click',function(event){
           event.stopPropagation();
-          select.val=event.target.getAttribute('value');        
+          select.val=event.target.getAttribute('value');
           select.$.selectBut.innerHTML=event.target.innerText;
           select.focus();
           _this.sendPlaceclick(event.target.getAttribute('value'));
         },true);
         opt1.addEventListener('focus',function(event){
            event.target.style.border='solid 5px orange';
-        });      
+        });
         opt1.addEventListener('blur',function(event){
            event.target.style.border='';
         });
-       
-        
+
+
         select.$.myDropdown.appendChild(opt1);
         //select.style.position='fixed';
-        
+
       }
-      var munAr=document.createElement('a');
+      /*var munAr=document.createElement('a');
       munAr.id='arMun';
       munAr.style.fontWeight='bold';
       munAr.style.paddingLeft='12px';
@@ -4289,22 +4289,22 @@ var table=function(){
         opt1.style.display='block';
         opt1.addEventListener('click',function(event){
           event.stopPropagation();
-          select.val=event.target.getAttribute('value');        
+          select.val=event.target.getAttribute('value');
           select.$.selectBut.innerHTML=event.target.innerText;
           select.focus();
           _this.sendPlaceclick(event.target.getAttribute('value'));
         },true);
         opt1.addEventListener('focus',function(event){
            event.target.style.border='solid 5px orange';
-        });      
+        });
         opt1.addEventListener('blur',function(event){
            event.target.style.border='';
         });
-       
-        
+
+
         select.$.myDropdown.appendChild(opt1);
         //select.style.position='fixed';
-        
+
       }
       var munViz=document.createElement('a');
       munViz.id='vizMun';
@@ -4326,22 +4326,22 @@ var table=function(){
         opt1.style.display='block';
         opt1.addEventListener('click',function(event){
           event.stopPropagation();
-          select.val=event.target.getAttribute('value');        
+          select.val=event.target.getAttribute('value');
           select.$.selectBut.innerHTML=event.target.innerText;
           select.focus();
           _this.sendPlaceclick(event.target.getAttribute('value'));
         },true);
         opt1.addEventListener('focus',function(event){
            event.target.style.border='solid 5px orange';
-        });      
+        });
         opt1.addEventListener('blur',function(event){
            event.target.style.border='';
         });
-       
-        
+
+
         select.$.myDropdown.appendChild(opt1);
         //select.style.position='fixed';
-        
+
       }
       var munGip=document.createElement('a');
       munGip.id='gipMun';
@@ -4363,22 +4363,22 @@ var table=function(){
         opt1.style.display='block';
         opt1.addEventListener('click',function(event){
           event.stopPropagation();
-          select.val=event.target.getAttribute('value');        
+          select.val=event.target.getAttribute('value');
           select.$.selectBut.innerHTML=event.target.innerText;
           select.focus();
           _this.sendPlaceclick(event.target.getAttribute('value'));
         },true);
         opt1.addEventListener('focus',function(event){
            event.target.style.border='solid 5px orange';
-        });      
+        });
         opt1.addEventListener('blur',function(event){
            event.target.style.border='';
         });
-       
-        
+
+
         select.$.myDropdown.appendChild(opt1);
         //select.style.position='fixed';
-        
+
       }
        /*var munNav=document.createElement('a');
       munNav.id='navMun';
@@ -4400,22 +4400,22 @@ var table=function(){
         opt1.style.display='block';
         opt1.addEventListener('click',function(event){
           event.stopPropagation();
-          select.val=event.target.getAttribute('value');        
+          select.val=event.target.getAttribute('value');
           select.$.selectBut.innerHTML=event.target.innerText;
           select.focus();
           _this.sendPlaceclick(event.target.getAttribute('value'));
         },true);
         opt1.addEventListener('focus',function(event){
            event.target.style.border='solid 5px orange';
-        });      
+        });
         opt1.addEventListener('blur',function(event){
            event.target.style.border='';
         });
-       
-        
+
+
         select.$.myDropdown.appendChild(opt1);
         //select.style.position='fixed';
-        
+
       }*/
       select.style.zIndex=999999999999999;
       select.tabIndex=1;
@@ -4437,7 +4437,7 @@ var table=function(){
       },true);
       select.id='tableSelect'+this.id;
       //var lugares=['alava','vizcaya','guipuzcoa','cav','navarra','estado'];
-      
+
 
       for(var i=0;i<gen.zonas.length;i++){
         var opt1=document.createElement('option');
@@ -4447,7 +4447,7 @@ var table=function(){
         //opt1.addEventListener('click',this.sendPlaceclick.bind(this),true);
         select.appendChild(opt1);
       }
-      var optG1=document.createElement('optgroup');
+      /*var optG1=document.createElement('optgroup');
       optG1.id='arMun';
       optG1.label='Municipios de Alava';
 
@@ -4735,24 +4735,24 @@ var partyMap=function(){
         opt1.style.display='block';
         opt1.addEventListener('click',function(event){
           event.stopPropagation();
-          select.val=event.target.getAttribute('value');        
+          select.val=event.target.getAttribute('value');
           select.$.selectBut.innerHTML=event.target.innerText;
           select.focus();
           _this.sendLugarclick(event.target.getAttribute('value'));
         },true);
         opt1.addEventListener('focus',function(event){
            event.target.style.border='solid 5px orange';
-        });      
+        });
         opt1.addEventListener('blur',function(event){
            event.target.style.border='';
         });
-       
-        
+
+
         select.$.myDropdown.appendChild(opt1);
         //select.style.position='fixed';
         select.style.zIndex=999999999999999;
       }
-      
+
       select.tabIndex=1;
       select.onfocus=function(){
         select.$.selectBut.style.border='solid 5px orange';
@@ -5010,24 +5010,24 @@ var pieChart=function(){
         opt1.style.display='block';
         opt1.addEventListener('click',function(event){
           event.stopPropagation();
-          select.val=event.target.getAttribute('value');        
+          select.val=event.target.getAttribute('value');
           select.$.selectBut.innerHTML=event.target.innerText;
           select.focus();
           _this.sendLugarclick(event.target.getAttribute('value'));
         },true);
         opt1.addEventListener('focus',function(event){
            event.target.style.border='solid 5px orange';
-        });      
+        });
         opt1.addEventListener('blur',function(event){
            event.target.style.border='';
         });
-       
-        
+
+
         select.$.myDropdown.appendChild(opt1);
         //select.style.position='fixed';
         select.style.zIndex=999999999999999;
       }
-      
+
       select.tabIndex=1;
       select.onfocus=function(){
         select.$.selectBut.style.border='solid 5px orange';
@@ -5037,7 +5037,7 @@ var pieChart=function(){
         select.$.selectBut.style.border='';
       }
       select.setAttribute('val',this.LugarStatus);
-    } 
+    }
     else{
       var _this=this;
       var select=document.createElement('select');
@@ -5056,7 +5056,7 @@ var pieChart=function(){
         //opt1.addEventListener('click',this.sendLugarclick.bind(this),true);
         select.appendChild(opt1);
       }
-      
+
       select.tabIndex=1;
       select.onfocus=function(){
         select.style.border='solid 5px orange';
@@ -5080,7 +5080,7 @@ var pieChart=function(){
       mediascape.AdaptationToolkit.uiComponents.loadingNotification();
       mediascape.AdaptationToolkit.uiComponents.ctrlPanel.enabled=false;
       var _this=this;
-      setTimeout(function(){     
+      setTimeout(function(){
         var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
         var tip='pietipo'+event.target.value;
         mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,_this.id,tip);
@@ -5094,7 +5094,7 @@ var pieChart=function(){
       mediascape.AdaptationToolkit.uiComponents.loadingNotification();
       mediascape.AdaptationToolkit.uiComponents.ctrlPanel.enabled=false;
       var _this=this;
-      setTimeout(function(){      
+      setTimeout(function(){
         var agentToChange=mediascape.AdaptationToolkit.uiComponents.ctrlPanel.activeDevice;
         var lug='pielug'+v;
         mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,_this.id,lug);
@@ -5123,7 +5123,7 @@ var pieChart=function(){
       });
 
       console.log('viewClick');
-      setTimeout(function(){        
+      setTimeout(function(){
 
         if(b[0].show===true){
           mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setRemoteAgentComponentStatus(agentToChange,scope.id,'hide');
@@ -5252,7 +5252,7 @@ var graphicSection=function(){
 
 
     div5.appendChild(this.tableComp[0].render());
-    div5.appendChild(this.partyMapComp[0].render());
+    //div5.appendChild(this.partyMapComp[0].render());
     div5.appendChild(this.pieComp[0].render());
     div5.appendChild(this.pieComp[2].render());
 
@@ -5265,8 +5265,8 @@ var graphicSection=function(){
     var div8=document.createElement('div');
     div8.className='col-md-12 ';
 
-    div8.appendChild(this.tableComp[1].render());
-    div8.appendChild(this.partyMapComp[1].render());
+    //div8.appendChild(this.tableComp[1].render());
+    div8.appendChild(this.partyMapComp[0].render());
     div8.appendChild(this.pieComp[1].render());
     div8.appendChild(this.pieComp[3].render());
 

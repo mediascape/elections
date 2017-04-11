@@ -18,9 +18,9 @@ var loadingPanel = function (centralImg,time,cb){
    img.id="loaderimg";
    img.src=centralImg;
    img.style.position="absolute";
-   img.style.top="25%";
-   img.style.left="25%";
-   img.style.width='50%';
+   img.style.top="30%";
+   img.style.left="37.5%";
+   img.style.width='25%';
    img.style.animationDelay="0s";
    div.appendChild(img);
    img.addEventListener('click',function(){

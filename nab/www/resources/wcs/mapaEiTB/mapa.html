@@ -692,7 +692,7 @@
 	<div class="wgi_escrutado wgi_barra_porcentual">
 		<ul>
 			<li id='escrText'>Escrutado:</li>
-			
+
 			 <li class="percent" id="escrutado_percent"> </li>
 		</ul>
 	</div>
@@ -812,7 +812,7 @@ Polymer({
 		}
 
 
-		_this.$.data.url="http://api.eitb.eus/data/hauteskundeak/2016/eae/mapatabla_"+_this.lugar+"_"+_this.tipoEleccion+"_2012.json";
+		_this.$.data.url="/resources/wcs/semiCirculoEiTB/"+_this.lugar+".json";
 		datos("response").then(function(value){
 			_this.resultsData=value;
 			var cod_provincia = _this.wgi_generales_name2cod(_this.lugar);
@@ -821,15 +821,15 @@ Polymer({
 				_this.showError();
 			}
 			else{
-				_this.$.data.url="http://api.eitb.eus/data/hauteskundeak/2016/eae/partidos_"+_this.tipoEleccion+"_2016.json";
+				_this.$.data.url="/resources/wcs/tablaEiTB/partidos.json";
 			}
 			datos("response").then(function(value1){
 				_this.partidos=value1;
 				if(_this.lugar==='cav'){
-					_this.$.data.url="http://api.eitb.eus/data/hauteskundeak/2016/eae/zonas_es_todas.json";
-				}				
+					_this.$.data.url="/resources/wcs/mapaEiTB/zonas_euskadi.json";
+				}
 				else{
-					_this.$.data.url="http://api.eitb.eus/data/hauteskundeak/2016/eae/zonas_es_"+_this.lugar+".json";
+					_this.$.data.url="/resources/wcs/mapaEiTB/zonas_"+_this.lugar+".json";
 				}
 				datos("response").then(function(value2){
 					_this.municipios=value2;
@@ -1071,7 +1071,7 @@ Polymer({
 	},
 	wgi_generales_setActualizacion:function(data)
 	{
-		
+
 
 		if (data != null && typeof data.actualizacion != 'undefined')
 		{
@@ -1080,7 +1080,7 @@ Polymer({
 			{
 				var actualizacion = data.actualizacion;
 				this.$.actualizacion.innerHTML=actualizacion;
-				
+
 			}
 			else
 			{
@@ -2278,30 +2278,30 @@ Polymer({
 	customCmdReceived: function(data){
 		if(data.indexOf('lugar')>-1){
 			this.cod_zona=data.split('lugar')[1];
-			
+
 			if(data.split('lugar')[1][0]==='1'){
 				this.lugar='';
-				this.lugar='alava';				
+				this.lugar='alava';
 			}
 			else if(data.split('lugar')[1][0]==='2'){
 				this.lugar='';
-				this.lugar='vizcaya';				
+				this.lugar='vizcaya';
 			}
 			else if(data.split('lugar')[1][0]==='3'){
 				this.lugar='';
-				this.lugar='guipuzcoa';				
+				this.lugar='guipuzcoa';
 			}
 			else if(data.split('lugar')[1][0]==='4'){
 				this.lugar='';
-				this.lugar='navarra';				
+				this.lugar='navarra';
 			}
 			else if(data.split('lugar')[1][0]==='5'){
 				this.lugar='';
-				this.lugar='cav';			
+				this.lugar='cav';
 			}
 			else if(data.split('lugar')[1][0]==='6'){
 				this.lugar='';
-				this.lugar='estado';				
+				this.lugar='estado';
 			}
 		}
 		else if(data.indexOf('maptipo')>-1){
@@ -2323,7 +2323,7 @@ Polymer({
 			this.wgi_grafico;
 			this.mun = {};
 			if(this.lang!=='eu' && this.lang!== 'es'){
-				if(mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')==='es' || 
+				if(mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')==='es' ||
 					mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')==='eu'){
 					this.lang=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language');
 				}
@@ -2331,10 +2331,10 @@ Polymer({
 					if(window.location.search.indexOf('?lang')>-1){
 			          this.lang=window.location.search.split('?lang=')[1];
 			       }else{
-			          this.lang='eu'; 
+			          this.lang='eu';
 			       }
 				}
-				
+
 			}
 
 
@@ -2342,12 +2342,12 @@ Polymer({
 			this.wgi_over = false;
 			this.emptyContainers();
 			this.$.data.url='';
-			this.listeners.forEach (function(listener){			      
+			this.listeners.forEach (function(listener){
 		        _this.$.data.removeEventListener('response',listener,true);
 		        _this.$.data.removeEventListener('response',listener,false);
 		        _this.$.data.removeEventListener('error',listener,true);
 			    _this.$.data.removeEventListener('error',listener,false);
-		      
+
 		    },this);
 			this.reqData();
 		}
@@ -2381,12 +2381,12 @@ Polymer({
 				this.wgi_over = false;
 				this.emptyContainers();
 				this.$.data.url='';
-				this.listeners.forEach (function(listener){			      
+				this.listeners.forEach (function(listener){
 			        _this.$.data.removeEventListener('response',listener,true);
 			        _this.$.data.removeEventListener('response',listener,false);
 			        _this.$.data.removeEventListener('error',listener,true);
 				    _this.$.data.removeEventListener('error',listener,false);
-			      
+
 			    },this);
 				this.reqData();
 			}
@@ -2404,7 +2404,7 @@ Polymer({
 			this.wgi_grafico;
 			this.mun = {};
 			if(this.lang!=='eu' && this.lang!== 'es'){
-				if(mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')==='es' || 
+				if(mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')==='es' ||
 					mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')==='eu'){
 					this.lang=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language');
 				}
@@ -2412,10 +2412,10 @@ Polymer({
 					if(window.location.search.indexOf('?lang')>-1){
 			          this.lang=window.location.search.split('?lang=')[1];
 			       }else{
-			          this.lang='eu'; 
+			          this.lang='eu';
 			       }
 				}
-				
+
 			}
 
 
@@ -2423,12 +2423,12 @@ Polymer({
 			this.wgi_over = false;
 			this.emptyContainers();
 			this.$.data.url='';
-			this.listeners.forEach (function(listener){			      
+			this.listeners.forEach (function(listener){
 		        _this.$.data.removeEventListener('response',listener,true);
 		        _this.$.data.removeEventListener('response',listener,false);
 		        _this.$.data.removeEventListener('error',listener,true);
 			    _this.$.data.removeEventListener('error',listener,false);
-		      
+
 		    },this);
 			this.reqData();
 		}
@@ -2448,7 +2448,7 @@ Polymer({
 		this.wgi_grafico;
 		this.mun = {};
 		if(this.lang!=='eu' && this.lang!== 'es'){
-			if(mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')==='es' || 
+			if(mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')==='es' ||
 				mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')==='eu'){
 				this.lang=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language');
 			}
@@ -2456,22 +2456,22 @@ Polymer({
 				if(window.location.search.indexOf('?lang')>-1){
 		          this.lang=window.location.search.split('?lang=')[1];
 		       }else{
-		          this.lang='eu'; 
+		          this.lang='eu';
 		       }
 			}
-			
+
 		}
 
 
 		this.wgi_tipHtml = "";
 		this.wgi_over = false;
 		this.emptyContainers();
-		this.listeners.forEach (function(listener){			      
+		this.listeners.forEach (function(listener){
 		        _this.$.data.removeEventListener('response',listener,true);
 		        _this.$.data.removeEventListener('response',listener,false);
 		        _this.$.data.removeEventListener('error',listener,true);
 		        _this.$.data.removeEventListener('error',listener,false);
-		      
+
 		 },this);
 		this.$.data.url='';
 		this.reqData();
@@ -2480,7 +2480,7 @@ Polymer({
 
 				_this.apiTimer=setInterval(function(){
 					if(this.lang!=='eu' && this.lang!== 'es'){
-						if(mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')==='es' || 
+						if(mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')==='es' ||
 							mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')==='eu'){
 							this.lang=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language');
 						}
@@ -2488,18 +2488,18 @@ Polymer({
 							if(window.location.search.indexOf('?lang')>-1){
 					          this.lang=window.location.search.split('?lang=')[1];
 					       }else{
-					          this.lang='eu'; 
+					          this.lang='eu';
 					       }
 						}
-						
+
 					}
 					_this.emptyContainers();
-					_this.listeners.forEach (function(listener){			      
+					_this.listeners.forEach (function(listener){
 					        _this.$.data.removeEventListener('response',listener,true);
 					        _this.$.data.removeEventListener('response',listener,false);
 					        _this.$.data.removeEventListener('error',listener,true);
 					        _this.$.data.removeEventListener('error',listener,false);
-					      
+
 					 },_this);
 					_this.$.data.url='';
 					_this.reqData();

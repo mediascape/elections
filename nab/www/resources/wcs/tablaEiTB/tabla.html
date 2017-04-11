@@ -192,8 +192,8 @@
 	}
 }
 @media(min-width:501px){
-	
-	
+
+
 	td{
 		font-size:15px;
 	}
@@ -259,7 +259,7 @@
 	<div class="wgi_escrutado wgi_barra_porcentual">
 		<ul>
 			<li id='escrText'>Escrutado:</li>
-			
+
 			 <li class="percent" id="escrutado_percent"> </li>
 		</ul>
 	</div>
@@ -289,7 +289,7 @@ Polymer({
       		type:String,
       		observer:'lugarChanged'
       	},
-      	
+
       	tipoEleccion:{
       		type:String,
       		observer:'tipoEleccionChanged',
@@ -300,7 +300,7 @@ Polymer({
             value:'',
             observer: 'customCmdReceived'
         }
-        
+
 
 
 
@@ -326,7 +326,7 @@ Polymer({
 
 		//this.lang='eu';
 
-		
+
 
 
 
@@ -340,14 +340,14 @@ Polymer({
 		this.$.actualizacion.innerHTML='';
 		this.$.escrutado_percent.innerHTML='';
 
-		
+
 	},
 	reqData:function(){
 		var _this=this;
 		function datos(value){
 			return new Promise(function(resolve, reject) {
 
-				
+
 				_this.$.data.addEventListener(value,listFunc);
 				_this.listeners.push(listFunc);
 				function listFunc(e){
@@ -356,12 +356,12 @@ Polymer({
 				}
 			});
 		}
-		if(this.cod_zona.length===4 || this.cod_zona.length===2){
-			
+		/*if(this.cod_zona.length===4 || this.cod_zona.length===2){
+
 				_this.$.data.url="http://api.eitb.eus/data/hauteskundeak/2016/eae/barras_municipio_"+_this.tipoEleccion+'_'+_this.cod_zona+"_2012.json";
 			//_this.$.data.generateRequest();
 			datos("response").then(function(value){
-				
+
 					_this.resultsData=value;
 					if(!value.totales[0] || value.totales[0].E==='0' || value.totales[0].E==='0.00' || value.totales[0].E==='00'){
 						_this.showError();
@@ -370,14 +370,14 @@ Polymer({
 					_this.$.data.url="http://api.eitb.eus/data/hauteskundeak/2016/eae/partidos_"+_this.tipoEleccion+"_2016.json";
 					}
 				datos("response").then(function(value1){
-					
+
 						_this.partidos=value1;
 						_this.renderData(value,value1);
 						if(_this.showing===true){
 								mediascape.AdaptationToolkit.Adaptation.UIAdaptation.updateUniqueComponent(_this);
 
 						}
-					
+
 				},function(reject){
 					_this.showError();
 				});
@@ -390,12 +390,12 @@ Polymer({
 			datos('error').then(function(value){
 				_this.showError();
 			});
-		}
-		else{
-			_this.$.data.url="http://api.eitb.eus/data/hauteskundeak/2016/eae/mapatabla_"+_this.lugar+"_"+_this.tipoEleccion+"_2012.json";			
+		}*/
+		//else{
+			_this.$.data.url="/resources/wcs/tablaEiTB/euskadi.json";
 			//_this.$.data.generateRequest();
 			datos("response").then(function(value){
-				
+
 					_this.resultsData=value;
 					var cod_provincia = _this.wgi_generales_name2cod(_this.lugar);
 					var data_t = _this.wgi_findElement(value.totales, cod_provincia, "Z");
@@ -403,9 +403,9 @@ Polymer({
 						_this.showError();
 					}
 					else{
-						_this.$.data.url="http://api.eitb.eus/data/hauteskundeak/2016/eae/partidos_"+_this.tipoEleccion+"_2016.json";
+						_this.$.data.url="/resources/wcs/tablaEiTB/partidos.json";
 					}
-			
+
 				datos("response").then(function(value1){
 						_this.partidos=value1;
 						_this.renderData(value,value1);
@@ -413,7 +413,7 @@ Polymer({
 								mediascape.AdaptationToolkit.Adaptation.UIAdaptation.updateUniqueComponent(_this);
 
 						}
-					
+
 
 				},function(reject){
 					_this.showError();
@@ -427,8 +427,8 @@ Polymer({
 			datos('error').then(function(value){
 				_this.showError();
 			});
-		}
-		
+		//}
+
 	},
 	showError:function(){
 		this.emptyContainers();
@@ -461,7 +461,7 @@ Polymer({
 		errorImage.style.border='5px solid #ccc';
         errorImage.style.boxShadow='0px 0px 10px rgba(0,0,0,0.5)';
 		this.$.containerTabla.appendChild(errorImage);
-		
+
 		if(this.lang==='es'){
 			this.$.escrText.innerHTML='Escrutado:';
 			this.$.actText.innerHTML='Actualizado:'
@@ -510,7 +510,7 @@ Polymer({
             subtitulo  = this.resultsData["l"+ idioma + "2"] || "",
             tipoEscano = this.resultsData["l"+ idioma + "3"] || "";
         }*/
-       
+
          this.$.titleContainer.innerHTML=titulo;
 
 
@@ -546,7 +546,7 @@ Polymer({
 	},
 	wgi_generales_setActualizacion:function(data)
 	{
-		
+
 
 		if (data != null && typeof data.actualizacion != 'undefined')
 		{
@@ -555,7 +555,7 @@ Polymer({
 			{
 				var actualizacion = data.actualizacion;
 				this.$.actualizacion.innerHTML=actualizacion;
-				
+
 			}
 			else
 			{
@@ -737,7 +737,7 @@ Polymer({
 				}
 				else
 				{
-					siglas = partidos[partido]['S'];					
+					siglas = partidos[partido]['S'];
 					color = data_partido['C'];
 					image = data_partido['I'];
 
@@ -795,7 +795,7 @@ Polymer({
 					var diferencia = this.wgi_generales_diferenciaPartidoAnt(diferencia_calculada);
 
 					tbl_html += '<tr>';
-					tbl_html += '<td class="nombre_partido"><img src="http://www.eitb.eus' + image + '" alt="' + siglas + '" />' + nombre + '</td>';
+					tbl_html += '<td class="nombre_partido"><img src="/resources/wcs/tablaEiTB/logos/' + image + '" alt="' + siglas + '" />' + nombre + '</td>';
 					if(this.cod_zona.length!==4 && this.cod_zona.length!==2){
 						tbl_html += '<td class="' + siglas + '">' + partidos[partido].ESC + ' <span class="diferencia ' + diferencia.clase + '">' + diferencia.cantidad + '</span></td>';
 					}
@@ -1015,30 +1015,30 @@ Polymer({
 			this.cod_zona=data.split('tablelug')[1];
 			if(data.split('tablelug')[1][0]==='1'){
 				this.lugar='';
-				this.lugar='alava';				
+				this.lugar='alava';
 			}
 			else if(data.split('tablelug')[1][0]==='2'){
 				this.lugar='';
-				this.lugar='vizcaya';				
+				this.lugar='vizcaya';
 			}
 			else if(data.split('tablelug')[1][0]==='3'){
 				this.lugar='';
-				this.lugar='guipuzcoa';				
+				this.lugar='guipuzcoa';
 			}
 			else if(data.split('tablelug')[1][0]==='4'){
 				this.lugar='';
-				this.lugar='navarra';				
+				this.lugar='navarra';
 			}
 			else if(data.split('tablelug')[1][0]==='5'){
 				this.lugar='';
-				this.lugar='cav';			
+				this.lugar='cav';
 			}
 			else if(data.split('tablelug')[1][0]==='6'){
 				this.lugar='';
-				this.lugar='estado';				
+				this.lugar='estado';
 			}
-			
-			
+
+
 		}
 		else if(data.indexOf('tabletipo')>-1){
 			this.tipoEleccion=data.split('tabletipo')[1];
@@ -1058,7 +1058,7 @@ Polymer({
 			this.wgi_grafico;
 			this.mun = {};
 			if(this.lang!=='eu' && this.lang!== 'es'){
-				if(mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')==='es' || 
+				if(mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')==='es' ||
 					mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')==='eu'){
 					this.lang=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language');
 				}
@@ -1066,10 +1066,10 @@ Polymer({
 					if(window.location.search.indexOf('?lang')>-1){
 			          this.lang=window.location.search.split('?lang=')[1];
 			       }else{
-			          this.lang='eu'; 
+			          this.lang='eu';
 			       }
 				}
-				
+
 			}
 
 
@@ -1077,12 +1077,12 @@ Polymer({
 			this.wgi_over = false;
 			this.emptyContainers();
 			this.$.data.url='';
-			this.listeners.forEach (function(listener){			      
+			this.listeners.forEach (function(listener){
 		        _this.$.data.removeEventListener('response',listener,true);
 		        _this.$.data.removeEventListener('response',listener,false);
 		        _this.$.data.removeEventListener('error',listener,true);
 			    _this.$.data.removeEventListener('error',listener,false);
-		      
+
 		    },this);
 			this.reqData();
 		}
@@ -1090,7 +1090,7 @@ Polymer({
 	appAttributeChange:function(event){
 		if(this.showing===true){
 			if(event.detail.value==='es'||event.detail.value==='eu'){
-				
+
 				var _this=this;
 				var vals=[];
 				this.resultsData={};
@@ -1106,7 +1106,7 @@ Polymer({
 					this.$.escrText.innerHTML='Zenbatua:';
 					this.$.actText.innerHTML='Eguneratuta:';
 				}
-				
+
 				this.wgi_grafico;
 				this.mun = {},
 				this.lang=event.detail.value;
@@ -1116,23 +1116,23 @@ Polymer({
 				this.wgi_over = false;
 				this.emptyContainers();
 				this.$.data.url='';
-				this.listeners.forEach (function(listener){			      
+				this.listeners.forEach (function(listener){
 			        _this.$.data.removeEventListener('response',listener,true);
 			        _this.$.data.removeEventListener('response',listener,false);
 			        _this.$.data.removeEventListener('error',listener,true);
 			        _this.$.data.removeEventListener('error',listener,false);
-			      
+
 			    },this);
 				this.reqData();
 
 			}
 		}
-	
+
 	},
 	lugarChanged:function(e){
 		if(this.showing===true){
 			if(this.lugar!==''){
-				
+
 				var _this=this;
 				var vals=[];
 				this.resultsData={};
@@ -1144,7 +1144,7 @@ Polymer({
 				this.wgi_grafico;
 				this.mun = {};
 				if(this.lang!=='eu' && this.lang!== 'es'){
-					if(mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')==='es' || 
+					if(mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')==='es' ||
 						mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')==='eu'){
 						this.lang=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language');
 					}
@@ -1152,24 +1152,24 @@ Polymer({
 						if(window.location.search.indexOf('?lang')>-1){
 				          this.lang=window.location.search.split('?lang=')[1];
 				       }else{
-				          this.lang='eu'; 
+				          this.lang='eu';
 				       }
 					}
-					
+
 				}
-				
+
 
 
 				this.wgi_tipHtml = "";
 				this.wgi_over = false;
 				this.emptyContainers();
 				this.$.data.url='';
-				this.listeners.forEach (function(listener){			      
+				this.listeners.forEach (function(listener){
 			        _this.$.data.removeEventListener('response',listener,true);
 			        _this.$.data.removeEventListener('response',listener,false);
 			        _this.$.data.removeEventListener('error',listener,true);
 			        _this.$.data.removeEventListener('error',listener,false);
-			      
+
 			    },this);
 				this.reqData();
 			}
@@ -1189,7 +1189,7 @@ Polymer({
 		this.wgi_grafico;
 		this.mun = {};
 		if(this.lang!=='eu' && this.lang!== 'es'){
-			if(mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')==='es' || 
+			if(mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')==='es' ||
 				mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')==='eu'){
 				this.lang=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language');
 			}
@@ -1197,23 +1197,23 @@ Polymer({
 				if(window.location.search.indexOf('?lang')>-1){
 		          this.lang=window.location.search.split('?lang=')[1];
 		       }else{
-		          this.lang='eu'; 
+		          this.lang='eu';
 		       }
 			}
-			
+
 		}
-		
+
 
 
 		this.wgi_tipHtml = "";
 		this.wgi_over = false;
 		this.emptyContainers();
-		this.listeners.forEach (function(listener){			      
+		this.listeners.forEach (function(listener){
 		        _this.$.data.removeEventListener('response',listener,true);
 		        _this.$.data.removeEventListener('response',listener,false);
 		        _this.$.data.removeEventListener('error',listener,true);
 		        _this.$.data.removeEventListener('error',listener,false);
-		      
+
 		 },this);
 		this.$.data.url='';
 		this.reqData();
@@ -1221,7 +1221,7 @@ Polymer({
 			if(_this.showing===true){
 				_this.apiTimer=setInterval(function(){
 					if(this.lang!=='eu' && this.lang!== 'es'){
-						if(mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')==='es' || 
+						if(mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')==='es' ||
 							mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language')==='eu'){
 							this.lang=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getAppAttribute('language');
 						}
@@ -1229,18 +1229,18 @@ Polymer({
 							if(window.location.search.indexOf('?lang')>-1){
 					          this.lang=window.location.search.split('?lang=')[1];
 					       }else{
-					          this.lang='eu'; 
+					          this.lang='eu';
 					       }
 						}
-						
+
 					}
 					_this.emptyContainers();
-					_this.listeners.forEach (function(listener){			      
+					_this.listeners.forEach (function(listener){
 					        _this.$.data.removeEventListener('response',listener,true);
 					        _this.$.data.removeEventListener('response',listener,false);
 					        _this.$.data.removeEventListener('error',listener,true);
 					        _this.$.data.removeEventListener('error',listener,false);
-					      
+
 					 },_this);
 					_this.$.data.url='';
 					_this.reqData();
