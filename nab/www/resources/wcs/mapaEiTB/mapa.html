@@ -812,7 +812,7 @@ Polymer({
 		}
 
 
-		_this.$.data.url="/resources/wcs/semiCirculoEiTB/"+_this.lugar+".json";
+		_this.$.data.url="/resources/graphsData/"+_this.lugar+".json";
 		datos("response").then(function(value){
 			_this.resultsData=value;
 			var cod_provincia = _this.wgi_generales_name2cod(_this.lugar);
@@ -821,15 +821,15 @@ Polymer({
 				_this.showError();
 			}
 			else{
-				_this.$.data.url="/resources/wcs/tablaEiTB/partidos.json";
+				_this.$.data.url="/resources/graphsData/partidos.json";
 			}
 			datos("response").then(function(value1){
 				_this.partidos=value1;
 				if(_this.lugar==='cav'){
-					_this.$.data.url="/resources/wcs/mapaEiTB/zonas_euskadi.json";
+					_this.$.data.url="/resources/graphsData/zonas_euskadi.json";
 				}
 				else{
-					_this.$.data.url="/resources/wcs/mapaEiTB/zonas_"+_this.lugar+".json";
+					_this.$.data.url="/resources/graphsData/zonas_"+_this.lugar+".json";
 				}
 				datos("response").then(function(value2){
 					_this.municipios=value2;

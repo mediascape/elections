@@ -2747,7 +2747,7 @@ Polymer({
 		}
 
 		if(this.lugar==='cav'){
-			_this.$.data.url="/resources/wcs/semiCirculoEiTB/resumenGeneral.json";
+			_this.$.data.url="/resources/graphsData/resumenGeneral.json";
 			datos("response").then(function(value){
 				_this.resultsData=value;
 				var cod_provincia = _this.wgi_generales_name2cod(_this.lugar);
@@ -2760,7 +2760,7 @@ Polymer({
 					_this.showError();
 				}
 				else{
-					_this.$.data.url="/resources/wcs/tablaEiTB/partidos.json";
+					_this.$.data.url="/resources/graphsData/partidos.json";
 				}
 				datos("response").then(function(value1){
 					_this.partidos=value1;
@@ -2790,7 +2790,7 @@ Polymer({
 			});
 		}
 		else{
-			_this.$.data.url="/resources/wcs/semiCirculoEiTB/"+_this.lugar+".json";
+			_this.$.data.url="/resources/graphsData/"+_this.lugar+".json";
 			datos("response").then(function(value){
 				_this.resultsData=value;
 				var cod_provincia = _this.wgi_generales_name2cod(_this.lugar);
@@ -2803,7 +2803,7 @@ Polymer({
 					_this.showError();
 				}
 				else{
-					_this.$.data.url="/resources/wcs/tablaEiTB/partidos.json";
+					_this.$.data.url="/resources/graphsData/partidos.json";
 				}
 				datos("response").then(function(value1){
 					_this.partidos=value1;
@@ -3198,10 +3198,10 @@ Polymer({
 					var diferencia = this.wgi_generales_diferenciaPartidoAnt(diferencia_calculada);
 					if(contador1%2!==0){
 						tbl_html += '<tr>';
-					tbl_html += '<td class="nombre_partido"><img src="/resources/wcs/tablaEiTB/logos/' + image + '" alt="' + siglas + '" class="wgi_logo_tabla_small" />' + partidos[partido].ESC + ' <span class="diferencia ' + diferencia.clase + '">' + diferencia.cantidad + '</span></td>';
+					tbl_html += '<td class="nombre_partido"><img src="/resources/graphsData/logos/' + image + '" alt="' + siglas + '" class="wgi_logo_tabla_small" />' + partidos[partido].ESC + ' <span class="diferencia ' + diferencia.clase + '">' + diferencia.cantidad + '</span></td>';
 					}
 					else{
-						tbl_html += '<td class="nombre_partido"><img src="/resources/wcs/tablaEiTB/logos/' + image + '" alt="' + siglas + '" class="wgi_logo_tabla_small" />' + partidos[partido].ESC + ' <span class="diferencia ' + diferencia.clase + '">' + diferencia.cantidad + '</span></td>';
+						tbl_html += '<td class="nombre_partido"><img src="/resources/graphsData/logos/' + image + '" alt="' + siglas + '" class="wgi_logo_tabla_small" />' + partidos[partido].ESC + ' <span class="diferencia ' + diferencia.clase + '">' + diferencia.cantidad + '</span></td>';
 					tbl_html += '</tr>';
 					}
 

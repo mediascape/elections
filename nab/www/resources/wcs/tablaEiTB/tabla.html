@@ -392,7 +392,7 @@ Polymer({
 			});
 		}*/
 		//else{
-			_this.$.data.url="/resources/wcs/tablaEiTB/euskadi.json";
+			_this.$.data.url="/resources/graphsData/euskadi.json";
 			//_this.$.data.generateRequest();
 			datos("response").then(function(value){
 
@@ -403,7 +403,7 @@ Polymer({
 						_this.showError();
 					}
 					else{
-						_this.$.data.url="/resources/wcs/tablaEiTB/partidos.json";
+						_this.$.data.url="/resources/graphsData/partidos.json";
 					}
 
 				datos("response").then(function(value1){
@@ -795,7 +795,7 @@ Polymer({
 					var diferencia = this.wgi_generales_diferenciaPartidoAnt(diferencia_calculada);
 
 					tbl_html += '<tr>';
-					tbl_html += '<td class="nombre_partido"><img src="/resources/wcs/tablaEiTB/logos/' + image + '" alt="' + siglas + '" />' + nombre + '</td>';
+					tbl_html += '<td class="nombre_partido"><img src="/resources/graphsData/logos/' + image + '" alt="' + siglas + '" />' + nombre + '</td>';
 					if(this.cod_zona.length!==4 && this.cod_zona.length!==2){
 						tbl_html += '<td class="' + siglas + '">' + partidos[partido].ESC + ' <span class="diferencia ' + diferencia.clase + '">' + diferencia.cantidad + '</span></td>';
 					}
