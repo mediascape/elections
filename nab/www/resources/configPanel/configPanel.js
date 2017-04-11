@@ -501,7 +501,7 @@ var ControlPanel= function (url){
        if(window.location.href.indexOf('?lang')>-1){
           var notLang=mediascape.AdaptationToolkit.Utils.getUrlVar('lang');
        }else{
-          var notLang='eu';
+          var notLang='es';
        }
 
     }
@@ -938,7 +938,7 @@ var ControlPanel= function (url){
         if(window.location.href.indexOf('?lang')>-1){
            mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setAppAttribute('language',mediascape.AdaptationToolkit.Utils.getUrlVar('lang'));
        }else{
-          mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setAppAttribute('language','eu');
+          mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setAppAttribute('language','es');
        }
       }
       else{
@@ -1254,7 +1254,7 @@ var ControlPanel= function (url){
         if(window.location.href.indexOf('?lang')>-1){
           ediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setAppAttribute('language',mediascape.AdaptationToolkit.Utils.getUrlVar('lang'));
        }else{
-          mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setAppAttribute('language','eu');
+          mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.setAppAttribute('language','es');
        }
 
       }
@@ -1482,8 +1482,8 @@ var ControlPanel= function (url){
           var elToChange3=document.querySelector('#fullTemp').querySelectorAll('#gipMun');
           //var elToChange4=document.querySelector('#fullTemp').querySelectorAll('#navMun');
           if(event.detail.value==='es'){
-            document.querySelector('#langes').className='active';
-            document.querySelector('#langeu').className='';
+            //document.querySelector('#langes').className='active';
+            //document.querySelector('#langeu').className='';
             for(var k=0;k<elToChange1.length;k++){
               elToChange1[k].label='Municipios de Alava';
               elToChange2[k].label='Municipios de Bizkaia';
@@ -1494,8 +1494,8 @@ var ControlPanel= function (url){
             document.querySelector('#loadingNotif').src='../resources/images/cargandoes.png';
           }
           else if(event.detail.value==='eu'){
-            document.querySelector('#langeu').className='active';
-            document.querySelector('#langes').className='';
+            //document.querySelector('#langeu').className='active';
+            //document.querySelector('#langes').className='';
             for(var k=0;k<elToChange1.length;k++){
               elToChange1[k].label='Arabako udalerriak';
               elToChange2[k].label='Bizkaiako udalerriak';
@@ -2496,8 +2496,8 @@ var menu = function (){
 
     //take the agent number which is related to the agentId
 
-    var langconf=new langItem();
-    containerDiv.appendChild(langconf.render());
+    /*var langconf=new langItem();
+    containerDiv.appendChild(langconf.render());*/
 
 
     var device=new devId();
