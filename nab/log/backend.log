@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [2017-04-11 15:32:15.890] [DEBUG] ExpressServer - The file qrPCnotifes.png was requested.
 [2017-04-11 15:32:16.259] [DEBUG] ExpressServer - The file Pause_activo.png was requested.
 [2017-04-11 15:32:16.409] [DEBUG] ExpressServer - The file paper-switch.css was requested.
@@ -54,3 +55,25 @@
 [2017-04-11 15:39:15.291] [DEBUG] ExpressServer - The file 6.jpeg was requested.
 [2017-04-11 15:39:32.049] [DEBUG] ExpressServer - The file 35.jpeg was requested.
 [2017-04-11 15:40:09.853] [DEBUG] ExpressServer - The file 19.jpeg was requested.
+=======
+[2017-04-11 10:57:49.525] [DEBUG] ExpressServer - The file PODEMOSMADRID_new.mp4 was requested.
+[2017-04-11 10:57:50.718] [DEBUG] ExpressServer - The file ETB2_new.mp4 was requested.
+[2017-04-11 10:57:50.886] [DEBUG] ExpressServer - The file EAJ_new.mp4 was requested.
+[2017-04-11 10:57:50.890] [DEBUG] ExpressServer - The file Bildu_new.mp4 was requested.
+[2017-04-11 10:57:50.896] [DEBUG] ExpressServer - The file PPGENOVA_new.mp4 was requested.
+[2017-04-11 10:57:50.898] [DEBUG] ExpressServer - The file PODEMOSMADRID_new.mp4 was requested.
+[2017-04-11 10:57:52.140] [DEBUG] ExpressServer - The file 23.jpeg was requested.
+[2017-04-11 10:57:53.348] [DEBUG] ExpressServer - The file ETB2_new.mp4 was requested.
+[2017-04-11 10:57:54.509] [DEBUG] ExpressServer - The file ETB2_new.mp4 was requested.
+[2017-04-11 10:57:57.028] [DEBUG] ExpressServer - The file ETB2_new.mp4 was requested.
+[2017-04-11 10:57:58.944] [DEBUG] ExpressServer - The file ETB2_new.mp4 was requested.
+[2017-04-11 10:58:09.739] [DEBUG] ExpressServer - The file ETB2_new.mp4 was requested.
+[2017-04-11 10:58:11.346] [DEBUG] ExpressServer - The file ETB2_new.mp4 was requested.
+[2017-04-11 10:58:18.090] [DEBUG] ExpressServer - The file ETB2_new.mp4 was requested.
+[2017-04-11 10:58:25.990] [DEBUG] ExpressServer - The file ETB2_new.mp4 was requested.
+[2017-04-11 10:58:28.364] [DEBUG] ExpressServer - The file ETB2_new.mp4 was requested.
+[2017-04-11 10:58:32.568] [DEBUG] ExpressServer - The file ETB2_new.mp4 was requested.
+[2017-04-11 10:58:35.001] [DEBUG] ExpressServer - The file ETB2_new.mp4 was requested.
+[2017-04-11 10:58:36.545] [DEBUG] ExpressServer - The file ETB2_new.mp4 was requested.
+[2017-04-11 10:58:38.767] [DEBUG] ExpressServer - The file ETB2_new.mp4 was requested.
+>>>>>>> f71c7db14c820740e6a399cc28f50a16cb6b291c

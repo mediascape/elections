@@ -49,10 +49,10 @@ var start = function (){
   mediascape.AdaptationToolkit.uiComponents.addController();
   var event = new CustomEvent("motion-ready", {"detail":{"loaded":true}});
   document.dispatchEvent(event);
- setInterval(function(){
+  controller.addEventListener("timeupdate",function(e){
      var realTimeupdate = new CustomEvent('realTimeupdate',{'detail':{'currentTime':controller.currentTime}});
      if (controller.currentTime) document.dispatchEvent(realTimeupdate);
-  },500);
+  });
 }
 var addMedia = function(media){
   controller.addMediaElement(media);
