@@ -90,8 +90,15 @@ Polymer({
 			}
 		}
 		else {
-			document.addEventListener ('motion-ready',this.smReady.bind(this));
-			Polymer.dom(this.querySelector('#subContainer')).removeChild(this.querySelector('object'));
+			if (this.id ==="video1"){
+					Polymer.dom(this.querySelector('#subContainer')).removeChild(this.querySelector('object'));
+					var video = this.querySelector('video');
+					video.setAttribute("data-dashjs-player","");
+			}
+			else {
+				document.addEventListener ('motion-ready',this.smReady.bind(this));
+				Polymer.dom(this.querySelector('#subContainer')).removeChild(this.querySelector('object'));
+			}
 			// Asegurar que si para vuelva a reproducirse el video
 		}
 
@@ -119,19 +126,29 @@ Polymer({
          video.stop();
 				 if (this.id == "video1")video.bindToCurrentChannel();
 			}
-			else
-		 	if (this.sm) this.sm.controller.play();
+			else{
+				if (this.id ==="video1"){
+					var url = "http://localhost/resources/media/toystory_dash.mpd";
+					var player = dashjs.MediaPlayer().create();
+					player.initialize(document.querySelector("video"), url, true);
+				}else
+		 			if (this.sm) this.sm.controller.play();
+			}
 	},
 	pause:function(){
 			if (navigator.userAgent.toLowerCase().indexOf('hbbtv')!=-1){
 				var video = this.querySelector('object');
 			  video.stop();
 			}
-			else
-		 		if (this.sm) this.sm.controller.pause();
+			else{
+				if (this.id ==="video1"){
+						this.querySelector('video').pause();
+				}else
+		 			if (this.sm) this.sm.controller.pause();
+			}
 	},
 	checkBuffer:function(){
-			console.log("update time");
+
          },
 
   start_volumeChanged:function(currentVol){
