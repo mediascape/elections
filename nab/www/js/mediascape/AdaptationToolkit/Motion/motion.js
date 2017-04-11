@@ -50,7 +50,7 @@ var start = function (){
   var event = new CustomEvent("motion-ready", {"detail":{"loaded":true}});
   document.dispatchEvent(event);
  setInterval(function(){
-     var realTimeupdate = new CustomEvent('realTimeupdate',{'detail':{'currentTime':controller.currentTime}});
+     var realTimeupdate = new CustomEvent('realTimeupdate',{'detail':{'currentTime':timing.query().postiion}});
      if (controller.currentTime) document.dispatchEvent(realTimeupdate);
   },500);
 }
