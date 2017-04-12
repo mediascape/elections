@@ -128,7 +128,7 @@ Polymer({
 			}
 			else{
 				if (this.id ==="video1"){
-					var url = "http://localhost/resources/media/toystory_dash.mpd";
+					var url=this.file;
 					var player = dashjs.MediaPlayer().create();
 					player.initialize(document.querySelector("video"), url, true);
 				}else
@@ -215,8 +215,8 @@ Polymer({
 
 	},
 	load:function(){
-	     var video = this.querySelector('video');
-       var _this = this;
+			 var video = this.querySelector('video');
+	  		 var _this = this;
 			 this.loaded = true;
 			 this.pause();
 			if (navigator.userAgent.toLowerCase().indexOf('hbbtv')==-1){
