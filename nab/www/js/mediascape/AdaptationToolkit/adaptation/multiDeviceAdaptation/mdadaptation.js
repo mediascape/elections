@@ -732,7 +732,7 @@ function($, applicationContext){
       var evt = new CustomEvent("agentChange",
       { "detail": {"status":status,"agentid":agentid,profile:profile}});
       document.dispatchEvent(evt);
-    },0);
+    },500);
   }
 
   // Change remote agent layout: name

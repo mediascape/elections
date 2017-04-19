@@ -116,14 +116,14 @@ Polymer({
 			var video =_this.querySelector('video');
 			_this.sm.controller = _this.sm.addMedia(video);
 
-		_this.sm.controller.addEventListener("timeupdate", _this.checkBuffer.bind(_this));
+		//_this.sm.controller.addEventListener("timeupdate", _this.checkBuffer.bind(_this));
 	       _this.sm.controller.play();
 		},1000);
 },
 	play:function(){
 			if (navigator.userAgent.toLowerCase().indexOf('hbbtv')!=-1){
 				 var video = this.querySelector('object');
-         video.stop();
+         			video.stop();
 				 if (this.id == "video1")video.bindToCurrentChannel();
 			}
 			else{

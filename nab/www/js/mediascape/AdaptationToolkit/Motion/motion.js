@@ -46,7 +46,7 @@ var start = function (){
   timing = new TimingObject();
   timing.srcObject = timingProvider;
   controller = new TimingMediaController(timing);
-  mediascape.AdaptationToolkit.uiComponents.addController();
+  if (navigator.userAgent.toLowerCase().indexOf('hbbtv')==-1)mediascape.AdaptationToolkit.uiComponents.addController();
   var event = new CustomEvent("motion-ready", {"detail":{"loaded":true}});
   document.dispatchEvent(event);
   controller.addEventListener("timeupdate",function(e){

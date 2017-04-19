@@ -1,4 +1,4 @@
-define( ["jquery","qrcode","webcodecam","qrcodelib"], function($) {
+define( ["jquery","qrcode","qrcodelib"], function($) {
 	var Association = function() {
 		var freq;
 		var interval;
@@ -170,8 +170,6 @@ define( ["jquery","qrcode","webcodecam","qrcodelib"], function($) {
 				qrElement.style.width=width+"px";
 				qrElement.style.height=height+"px";
 				//qrElement.style.margin="auto auto";
-
-
 				associationCode.style.transition="width 1.5s";
 				if((marginLeft!=0)||(marginTop!=0)){
 					qrElement.style.marginLeft=marginLeft+"px";
@@ -190,8 +188,8 @@ define( ["jquery","qrcode","webcodecam","qrcodelib"], function($) {
 				if(mediascape.deviceType.toLowerCase()==='mobile'){
 					var qrcode = new QRCode("qrcode", {
 						text: url,
-						width:width-20,
-						height:height-20,
+						width:width-10,
+						height:height-10,
 						colorDark : "#000000",
 						colorLight : "#ffffff",
 						correctLevel : QRCode.CorrectLevel.H
@@ -211,8 +209,6 @@ define( ["jquery","qrcode","webcodecam","qrcodelib"], function($) {
 					});
 					asociationElement.querySelector('#code').querySelector('img').style.border='solid white 20px';
 				}
-				
-				
 				resolve(JSON.parse('{"response":"'+url+'"}'));
 			}
 

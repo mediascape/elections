@@ -69,10 +69,7 @@ define( ["jquery","namedwebsockets"], function($,namedWebSockets) {
 								return batteryPresence();
 							}else if(technology.toLowerCase().indexOf("bluetooth")!=-1){
 									return bluetoothPresence();
-								}else if(technology.toLowerCase().indexOf("camera")!=-1){
-										return cameraPresence();
-									}else if(technology.toLowerCase().indexOf("audio")!=-1){
-											return audioPresence();
+																	
 										}else if(technology.toLowerCase().indexOf("deviceproximity")!=-1){
 												return deviceProximityPresence();
 											}else if(technology.toLowerCase().indexOf("geolocation")!=-1){

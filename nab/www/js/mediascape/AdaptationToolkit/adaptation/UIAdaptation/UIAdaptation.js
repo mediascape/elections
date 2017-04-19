@@ -142,7 +142,7 @@ define(
 
                  // Find out which layout reciprocate with the deviceType
               var found =   layoutName.deviceTypes.some(function(deviceType){
-                    var locCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext().agents[0].capabilities.componentsStatus;
+                    //var locCtx=mediascape.AdaptationToolkit.Adaptation.multiDeviceAdaptation.getLocalContext().agents[0].capabilities.componentsStatus;
                     var val='video1';
                     function filterById(el){
                       if(el.id===val)return el;

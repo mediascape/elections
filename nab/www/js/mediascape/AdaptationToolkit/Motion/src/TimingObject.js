@@ -97,7 +97,7 @@ define(function (require) {
      * a third-party timing provider
      */
     var master = true;
-    if (navigator.userAgent.toLowerCase().indexOf('hbbtv')!=-1) master = false;
+   
 
     /**
      * Timing provider object associated with this timing object,

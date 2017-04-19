@@ -204,21 +204,21 @@ var ControlPanel= function (url){
     var cmps=mediascape.AdaptationToolkit.componentManager.core.getComponents();
     console.log('Konstruktorea');
     //'../resources/configPanel/img/camara/logo_etb2.png'
-    var comp='video2';
+    var comp='video1';
 
     function filterById(el){
       if(el.id===comp)return el;
     }
     var c=cmps.filter(filterById);
 
-    /*var cam1=new camera();
+    var cam1=new camera();
     cam1.setID(c[0].getAttribute('compId'));
     cam1.setName(c[0].id);
-    cam1.setImage('../resources/configPanel/img/camara/ETBSat.png');*/
+    cam1.setImage('../resources/configPanel/img/camara/ETBSat.png');
 
 
-    //comp='video2';
-    //c=cmps.filter(filterById);
+    comp='video2';
+    c=cmps.filter(filterById);
     var cam2=new camera();
     cam2.setID(c[0].getAttribute('compId'));
     cam2.setName(c[0].id);
@@ -335,7 +335,7 @@ var ControlPanel= function (url){
 
 
     camerasSect=new camerasSection();
-    //camerasSect.addCamera(cam1);
+    camerasSect.addCamera(cam1);
     camerasSect.addCamera(cam2);
     camerasSect.addCamera(cam3);
     camerasSect.addCamera(cam4);

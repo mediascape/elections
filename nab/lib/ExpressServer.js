@@ -13,6 +13,7 @@ function ExpressServer(db) {
     var that;
 
     var config = require('../config');
+console.log(config);
     var log4js = require('log4js');
     log4js.configure(config.logConfig);
     var logger = log4js.getLogger('ExpressServer');

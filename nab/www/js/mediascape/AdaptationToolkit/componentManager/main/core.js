@@ -176,7 +176,7 @@ define(
 
       }
 
-      var iid = setInterval(this.checkComponentsReady.bind(this),500);
+      var iid = setInterval(this.checkComponentsReady.bind(this),3500);
       // Wrapp components into main div #componentsContainer does not work on gecko
       function wrappComponents (cmps){
         var componentsContainer = document.createElement('div');

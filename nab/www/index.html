@@ -29,7 +29,7 @@
 
 
 <!-- NEEDED SCRIPTS -->
-<script src="http://cdn.dashjs.org/latest/dash.all.min.js"></script>
+<script src="/resources/libs/dash.all.min.js"></script>
 <script  src="/resources/libs/require.js"></script>
 <script  src="js/mediascape.js"></script>
 <script src="/resources/libs/loadingPanel.js"></script>
@@ -72,11 +72,11 @@ document.addEventListener('adaptationToolkit-ready',function(data){
         var location = "http://"+window.location.host+window.location.pathname;
 
         document.addEventListener('applicationContext-ready',function(){
-            mediascape.AdaptationToolkit.uiComponents.addControlPanel(location+"?group="+AE.GROUP_ID);
-            AE.init(rulesAE, AE.getApplicationContext());
-            AE.on('actionchange', UI.onComponentsChange);
-            //mediascape.AdaptationToolkit.uiComponents.addController();
-	    mediascape.AdaptationToolkit.componentManager.core.checkComponentsReady();
+            	mediascape.AdaptationToolkit.uiComponents.addControlPanel(location+"?group="+AE.GROUP_ID);
+         	AE.init(rulesAE, AE.getApplicationContext());
+            	AE.on('actionchange', UI.onComponentsChange);
+           	 mediascape.AdaptationToolkit.componentManager.core.checkComponentsReady();
+
 
         });
 
@@ -111,12 +111,12 @@ setTimeout ( function(){
 </script>
 </head>
 <body >
-  <x-media  id="video1" file="http://yt-dash-mse-test.commondatastorage.googleapis.com/media/oops-20120802-manifest.mpd"  ismuted="false"></x-media>
+  <x-media  id="video1" file="http://192.168.43.245:81/dash/stream0.mpd"  ismuted="false"></x-media>
   <x-media id="video2" file="/resources/media/Bildu_new.mp4"    ismuted="true"></x-media>
   <x-media id="video3"  file="/resources/media/EAJ_new.mp4"  ismuted="true"></x-media>
-  <x-media id="video4"  file="/resources/media/PSE_new_full.mp4"  ismuted="true"></x-media>
-  <x-media id="video5"  file="/resources/media/PPGENOVA_new.mp4"  ismuted="true"></x-media>
-  <x-media id="video6"  file="/resources/media/PODEMOSMADRID_new.mp4"  ismuted="true"></x-media>
+  <x-media id="video4"  file="http://192.168.43.245:81/media/PSE_new_full.mp4"  ismuted="true"></x-media>
+  <x-media id="video5"  file="http://192.168.43.245:81/media/PPEUSKADI_new_full.mp4"  ismuted="true"></x-media>
+  <x-media id="video6"  file="http://192.168.43.245:81/media/Bildu_new.mp4"  ismuted="true"></x-media>
 
 
  <x-mapa id='resultsMap1' lugar='cav' tipoEleccion='A'></x-mapa>
