@@ -214,7 +214,7 @@ var ControlPanel= function (url){
     var cam1=new camera();
     cam1.setID(c[0].getAttribute('compId'));
     cam1.setName(c[0].id);
-    cam1.setImage('../resources/configPanel/img/camara/ETBSat.png');
+    cam1.setImage('../resources/configPanel/img/camara/live_icon.png');
 
 
     comp='video2';
@@ -222,23 +222,23 @@ var ControlPanel= function (url){
     var cam2=new camera();
     cam2.setID(c[0].getAttribute('compId'));
     cam2.setName(c[0].id);
-    cam2.setImage('../resources/configPanel/img/camara/logos_partidos_PNV_BLANCO.png');
+    cam2.setImage('../resources/configPanel/img/camara/logo_bildu.png');
 
     comp='video3';
     c=cmps.filter(filterById);
     var cam3=new camera();
     cam3.setID(c[0].getAttribute('compId'));
     cam3.setName(c[0].id);
-    cam3.setImage('../resources/configPanel/img/camara/logo_sozialista.png');
+    cam3.setImage('../resources/configPanel/img/camara/logos_partidos_PNV_BLANCO.png');
 
     comp='video4';
     c=cmps.filter(filterById);
     var cam4=new camera();
     cam4.setID(c[0].getAttribute('compId'));
     cam4.setName(c[0].id);
-    cam4.setImage('../resources/configPanel/img/camara/logo_podemos.png');
+    cam4.setImage('../resources/configPanel/img/camara/ETBSat.png');
 
-    comp='video5';
+    /*comp='video5';
     c=cmps.filter(filterById);
     var cam5=new camera();
     cam5.setID(c[0].getAttribute('compId'));
@@ -250,7 +250,7 @@ var ControlPanel= function (url){
     var cam6=new camera();
     cam6.setID(c[0].getAttribute('compId'));
     cam6.setName(c[0].id);
-    cam6.setImage('../resources/configPanel/img/camara/logos_partidos_Populares_vascos_BLANCO.png');
+    cam6.setImage('../resources/configPanel/img/camara/logos_partidos_Populares_vascos_BLANCO.png');*/
 /*
     comp='video7';
     c=cmps.filter(filterById);
@@ -339,8 +339,8 @@ var ControlPanel= function (url){
     camerasSect.addCamera(cam2);
     camerasSect.addCamera(cam3);
     camerasSect.addCamera(cam4);
-    camerasSect.addCamera(cam5);
-    camerasSect.addCamera(cam6);
+   //camerasSect.addCamera(cam5);
+    //camerasSect.addCamera(cam6);
     //camerasSect.addCamera(cam7);
 
 

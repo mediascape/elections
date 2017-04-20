@@ -327,12 +327,16 @@
 					this.showing = false;
 					var _this=this;
 					var element=this.shadowRoot;
-					document.addEventListener ('motion-ready',this.smReady.bind(this));
+					//document.addEventListener ('motion-ready',this.smReady.bind(this));
 					this.tweetList={};
 					this.$.data.addEventListener("response",function(e){
 						_this.tweetList=e.detail.response;
 						_this.timestamp=1432509468;
 					});
+					setInterval(function(){
+						_this.timestampChanged();
+
+					},3000);
 
 
 
@@ -416,7 +420,7 @@
 											<a style="color:#C0C0C0;text-decoration: none;">Retweet</a> \
 											<img src="././resources/images/twitter/favorite.png" class="imageof_favorite"></img> \
 											<a style="color:#C0C0C0;text-decoration: none;">Favorite</a> \
-											<a style="margin-left:10px;">Sunday, 24 May '+_this.prettyPrint(_this.timestamp).split('days')[1]+'</a>';
+											<a style="margin-left:10px;">Sunday, 24 May</a>';
 								div1.appendChild(div6);
 								li.appendChild(div1);
 								_this.$.ulList.insertBefore(li,_this.$.ulList.firstChild);
